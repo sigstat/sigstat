@@ -5,6 +5,14 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>

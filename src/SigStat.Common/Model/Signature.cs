@@ -71,7 +71,7 @@ namespace SigStat.Common
 
         public List<T> GetFeatures<T>()
         {
-            return features[FeatureDescriptor.GetKey<T>()] as List<T>;
+            return (features.TryGetValue(FeatureDescriptor.GetKey<T>(), out var result)) ? result as List<T> : null;
         }
 
 

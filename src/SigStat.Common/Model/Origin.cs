@@ -8,7 +8,7 @@ namespace SigStat.Common
     public enum Origin
     {
         Unknown = 0,
-        Original,
+        Genuine,
         Forged
     }
 }

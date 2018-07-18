@@ -11,7 +11,13 @@ namespace SigStat.Common
         public Type FeatureType { get; set; }
 
         //HACK: itt általános gyűjteménykezelés kéne a listakezelés helyett
-        public bool IsCollection { get { return FeatureType.IsGenericType && FeatureType.GetGenericTypeDefinition() == typeof(List<>); } }
+        public bool IsCollection
+        {
+            get
+            {
+                return FeatureType.IsGenericType && FeatureType.GetGenericTypeDefinition() == typeof(List<>);
+            }
+        }
         static readonly Dictionary<string, FeatureDescriptor> descriptors = new Dictionary<string, FeatureDescriptor>();
 
         public FeatureDescriptor(string name, string key, Type featureType)

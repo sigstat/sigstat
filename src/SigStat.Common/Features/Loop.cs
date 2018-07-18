@@ -4,7 +4,7 @@ using System.Text;
 using System.Drawing;
 namespace SigStat.Common
 {
-    [Feature("SigStat.Loop")]
+    [Feature("Loop")]
     public class Loop
     {
         public PointF Center { get; set; }
@@ -14,6 +14,11 @@ namespace SigStat.Common
 
         static Loop()
         {
+        }
+
+        public override string ToString()
+        {
+            return "Loop " + Center;
         }
     }
 }

@@ -29,18 +29,25 @@ namespace SigStat.Sample
 
         }
 
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello");
+            SignatureDemo();
+            OfflineVerifierDemo();
+            OnlineVerifierDemo();
+            await OnlineVerifierBenchmarkDemo();
+            Console.WriteLine("Done");
+            Console.ReadKey();
         }
 
         public static void SignatureDemo()
         {
-            MySignature sig = new MySignature() { ID = "Demo", Origin = Origin.Original };
+            MySignature sig = new MySignature() { ID = "Demo", Origin = Origin.Genuine };
+            var sampleLoops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
 
             // Generikus függvény + Típus
-            sig["Loop"] = new List<Loop>();
-            sig["X"] = new List<double>();
+            sig["Loop"] = sampleLoops;
+            sig["X"] = new List<double>() { 1,2,3};
             sig["Bounds"] = new RectangleF();
 
             var f1 = sig["Loop"];
@@ -58,30 +65,30 @@ namespace SigStat.Sample
             List<Loop> loops = sig.GetFeatures<Loop>();
 
             // Tulajdonságokkal + ID
-            sig["Loops"] = new List<Loop>();
-            loops = (List<Loop>)sig["Loops"];
+            sig["Loop"] = new List<Loop>();
+            loops = (List<Loop>)sig["Loop"];
 
             // Generikus függvény + ID
-            sig.SetFeature(new List<Loop>());
+            sig.SetFeatures(new List<Loop>());
             loops = sig.GetFeature(Features.Loop);
 
             // Erősen típusos burkolóval
-            sig.Loops = new List<Loop>();
+            sig.Loops = sampleLoops;
             loops = sig.Loops;
 
             foreach (var descriptor in sig.GetFeatureDescriptors())
             {
-                Console.WriteLine(descriptor.Name);
-                Console.WriteLine(descriptor.Key);
-                if (descriptor.IsCollection)
+                Console.WriteLine($"Name: {descriptor.Name}, Key: {descriptor.Key}");
+                if (!descriptor.IsCollection)
                 {
                     Console.WriteLine(sig[descriptor]);
                 }
                 else
                 {
-                    foreach (var item in (IEnumerable)sig[descriptor])
+                    var items = (IList)sig[descriptor];
+                    for (int i = 0; i < items.Count; i++)
                     {
-                        Console.WriteLine(item);
+                        Console.WriteLine($" {i}.) {items[i]}");
                     }
                 }
             }
@@ -150,7 +157,7 @@ namespace SigStat.Sample
             //verifier.Test(questioned);
         }
 
-        static async Task OnlineVerifierBenchmark()
+        static Task OnlineVerifierBenchmarkDemo()
         {
             //var benchmark = new VerifierBenchmark()
             //{
@@ -169,6 +176,7 @@ namespace SigStat.Sample
             //    Console.WriteLine($"{signerResults.Signer} AER: {signerResults.Aer}");
             //}
             //Console.WriteLine($"AER: {result.Aer}");
+            return Task.CompletedTask;
         }
 
         public void Log(string message)
