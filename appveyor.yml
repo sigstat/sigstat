@@ -34,4 +34,5 @@ deploy:
 - provider: NuGet
   server: https://www.myget.org/F/bencekovari/api/v3/index.json
   api_key:
-    secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
+    secure: Lt06yKCteORxJGN1HKZz3WbzQXLDHsRiuJCXTVKOM9DAAC7ZR/Lr9OI4BsOHrguh
+
