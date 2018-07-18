@@ -1,7 +1,7 @@
 version: 0.1.{build}
 branches:
   only:
-  - /master
+  - master
 image: Visual Studio 2017
 configuration: Release
 #assembly_info:
@@ -25,8 +25,8 @@ environment:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
 before_build:
 - cmd: nuget restore
-after_build:
-- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
+#after_build:
+#- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
   publish_nuget: true
   verbosity: minimal
@@ -37,6 +37,4 @@ deploy:
   server: https://www.myget.org/F/bencekovari/api/v3/index.json
   api_key:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
-  on:
-    branch: /master
   artifact: SigStat.Common.nupkg
