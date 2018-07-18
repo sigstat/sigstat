@@ -1,5 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <PackageId>SigStat</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Bence Kovari</Authors>
+    <Company>Bence Kovari</Company>
+    <PackageLicenseUrl>https://github.com/bmeaut/sigstat/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bmeaut/sigstat</PackageProjectUrl>
+    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Package Description</Description>
+    <!-- <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>     -->
+    <Copyright>Copyright 2018</Copyright>
+    <PackageTags>Signature;verification;offline;online</PackageTags>
+  </PropertyGroup>
+  
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
