@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
+    <!-- Version info will be overwriten by the publish process -->
     <Version>0.1.0</Version>
     <Authors>Bence Kovari</Authors>
     <Company>Bence Kovari</Company>
