@@ -35,4 +35,3 @@ deploy:
   server: https://www.myget.org/F/bencekovari/api/v3/index.json
   api_key:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
-  artifact: SigStat.{version}.nupkg
