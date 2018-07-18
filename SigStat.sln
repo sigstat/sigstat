@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.Common", "src\SigSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.Sample", "src\SigStat.Sample\SigStat.Sample.csproj", "{3AEA1631-8B9F-475E-860F-97F35E74EB6E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildArtifacts", "BuildArtifacts", "{BF92BBE5-239C-4E06-931A-3E500A675C03}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{BF92BBE5-239C-4E06-931A-3E500A675C03}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
+		LICENSE.md = LICENSE.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
