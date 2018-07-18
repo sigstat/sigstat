@@ -29,10 +29,10 @@ before_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
   publish_nuget: true
-  verbosity: minimal
+  verbosity: normal
 deploy:
 - provider: NuGet
   server: https://www.myget.org/F/bencekovari/api/v2/package
   api_key:
-    secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
+    secure: Lt06yKCteORxJGN1HKZz3WbzQXLDHsRiuJCXTVKOM9DAAC7ZR/Lr9OI4BsOHrguh
 
