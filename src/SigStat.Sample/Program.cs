@@ -36,7 +36,7 @@ namespace SigStat.Sample
             OfflineVerifierDemo();
             OnlineVerifierDemo();
             await OnlineVerifierBenchmarkDemo();
-            Console.WriteLine("Done");
+            Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
         }
 
