@@ -57,10 +57,6 @@ namespace SigStat.Sample
 
 
 
-
-
-
-
             Loop loop = sig.GetFeature<Loop>(1);
             List<Loop> loops = sig.GetFeatures<Loop>();
 
@@ -97,26 +93,26 @@ namespace SigStat.Sample
 
         static void OfflineVerifierDemo()
         {
-            //var verifier = new Verifier()
-            //{
-            //    FeatureExtraction =
-            //    {
-            //        new RealisticImageGeneration(),
-            //        new BasicMetadataExtraction(),
-            //        new BaselineExtraction(),
-            //        new LoopExtraction()
-            //    },
-            //    Classifier = new StatisticalFeatureClassifier()
-            //    {
-            //        Features = new[] { s => s.BaseLinse, s => s.Loops, nameof(MySignature.Loops) }, //!!!!
-            //        Mapping = new HungarianMapping()
-            //    },
-            //};
+            var verifier = new Verifier()
+            {
+                Pipeline =
+                {
+                    new RealisticImageGeneration(),
+                    new BasicMetadataExtraction(),
+                    new BaselineExtraction(),
+                    new LoopExtraction()
+                },
+                Classifier = new StatisticalFeatureClassifier()
+                {
+                    Features = new[] { s => s.BaseLinse, s => s.Loops, nameof(MySignature.Loops) }, //!!!!
+                    Mapping = new HungarianMapping()
+                },
+            };
 
-            //List<Signature> references = new List<Signature>();
-            //Signature questioned = new Svc2004Loader().LoadSignature("questioned.txt");
-            //verifier.Train(references);
-            //verifier.Test(questioned);
+            List<Signature> references = new List<Signature>();
+            Signature questioned = new Svc2004Loader().LoadSignature("questioned.txt");
+            verifier.Train(references);
+            verifier.Test(questioned);
         }
 
         static void OnlineVerifierDemo()
