@@ -16,7 +16,7 @@ namespace SigStat.Common
     {
         #region VectorPoint
         public enum VectorPointKind { Start, End }
-        public class VectorPoint : IPoint
+        public class VectorPoint 
         {
             private Vector vector;
             private VectorPointKind kind;

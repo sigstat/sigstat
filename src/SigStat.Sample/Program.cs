@@ -9,6 +9,10 @@ namespace SigStat.Sample
 {
     class Program
     {
+        public static class MyFeatures
+        {
+
+        }
         struct OnlinePoint { public int X; public int Y; public int Pressure; }
         class MySignature : Signature
         {
@@ -53,9 +57,10 @@ namespace SigStat.Sample
             var f1 = sig["Loop"];
             sig.GetFeature<List<double>>("X");
             sig.GetFeature<RectangleF>("Bounds");
+            //var xt = sig.GetFeature(Features.X);
             sig.GetFeatures<Loop>();
 
-
+            
 
             Loop loop = sig.GetFeature<Loop>(1);
             List<Loop> loops = sig.GetFeatures<Loop>();
@@ -67,6 +72,8 @@ namespace SigStat.Sample
             // Generikus függvény + ID
             sig.SetFeatures(new List<Loop>());
             loops = sig.GetFeature(Features.Loop);
+            loops = sig.GetFeatures<Loop>();
+            //var loop6 = sig.GetFeature<Loop>(6);
 
             // Erősen típusos burkolóval
             sig.Loops = sampleLoops;
@@ -93,26 +100,26 @@ namespace SigStat.Sample
 
         static void OfflineVerifierDemo()
         {
-            var verifier = new Verifier()
-            {
-                Pipeline =
-                {
-                    new RealisticImageGeneration(),
-                    new BasicMetadataExtraction(),
-                    new BaselineExtraction(),
-                    new LoopExtraction()
-                },
-                Classifier = new StatisticalFeatureClassifier()
-                {
-                    Features = new[] { s => s.BaseLinse, s => s.Loops, nameof(MySignature.Loops) }, //!!!!
-                    Mapping = new HungarianMapping()
-                },
-            };
+            //var verifier = new Verifier()
+            //{
+            //    Pipeline =
+            //    {
+            //        new RealisticImageGeneration(),
+            //        new BasicMetadataExtraction(),
+            //        new BaselineExtraction(),
+            //        new LoopExtraction()
+            //    },
+            //    Classifier = new StatisticalFeatureClassifier()
+            //    {
+            //        Features = new[] { s => s.BaseLinse, s => s.Loops, nameof(MySignature.Loops) }, //!!!!
+            //        Mapping = new HungarianMapping()
+            //    },
+            //};
 
-            List<Signature> references = new List<Signature>();
-            Signature questioned = new Svc2004Loader().LoadSignature("questioned.txt");
-            verifier.Train(references);
-            verifier.Test(questioned);
+            //List<Signature> references = new List<Signature>();
+            //Signature questioned = new Svc2004Loader().LoadSignature("questioned.txt");
+            //verifier.Train(references);
+            //verifier.Test(questioned);
         }
 
         static void OnlineVerifierDemo()
