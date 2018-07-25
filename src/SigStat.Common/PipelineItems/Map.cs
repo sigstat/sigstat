@@ -40,5 +40,11 @@ namespace SigStat.Common.PipelineItems
             signature.SetFeature(f, values);
 
         }
+
+        public void Run(Signature input)
+        {
+            Transform(input);
+        }
+
     }
 }

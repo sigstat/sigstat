@@ -201,6 +201,11 @@ namespace Alairas.Common
 
         }
 
+        public void Run(Signature input)
+        {
+            Transform(input);
+        }
+
 
 
 

@@ -86,5 +86,11 @@ namespace Alairas.Common
             //DoProgressChanged(100);
 
         }
+
+        public void Run(Signature input)
+        {
+            Transform(input);
+        }
+
     }
 }

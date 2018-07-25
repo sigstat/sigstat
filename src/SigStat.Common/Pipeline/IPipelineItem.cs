@@ -6,7 +6,7 @@ namespace SigStat.Common
 {
     public interface IPipelineItem
     {
-
+        void Run(/*object*/Signature input);
     }
 
     public interface ITransformation : IPipelineItem

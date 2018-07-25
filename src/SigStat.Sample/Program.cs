@@ -127,14 +127,13 @@ namespace SigStat.Sample
         {
             var verifier = new Verifier()
             {
-                Pipeline = new ProcessingPipeline()
+                Pipeline = new SequentialPipeline()
                 {
                     new Common.PipelineItems.Map(10,20, Features.X),
                     new Common.PipelineItems.Normalize(Features.Y),
-                    /*new Normalization(0,1, ()=>Y),
-                    new Normalization(0,1, ()=>Pressure),
-                    new Normalization(0,1, ()=>Altitude),
-                    new AlignmentNormalization(Alignment.Origin),
+                    //new Common.PipelineItems.Normalize(Features.Pressure),
+                    //new Common.PipelineItems.Normalize(Features.Altitude),
+                    /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                 },
                 //Classifier = new MyScoreFusionClassifier

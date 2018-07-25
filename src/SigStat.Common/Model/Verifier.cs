@@ -6,11 +6,11 @@ namespace SigStat.Common.Model
 {
     public class Verifier
     {
-        public ProcessingPipeline Pipeline { get; set; }
+        public IPipelineItem Pipeline { get; set; }
 
         public Verifier()
         {
-            Pipeline = new ProcessingPipeline();
+            Pipeline = new SequentialPipeline();
         }
     }
 }

@@ -53,6 +53,12 @@ namespace Alairas.Common
             signature.SetFeature(Features.Image, image);
             
         }
+
+        public void Run(Signature input)
+        {
+            Transform(input);
+        }
+
     }
 }
 
