@@ -1,321 +1,168 @@
-﻿//using Alairas.WpfTemalabor.Common;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-//namespace Alairas.WpfTemalabor.DTW
-//{
-//    //TODO: r megadása, külső használata
-//    public class Dtw
-//    {
-//        public SignatureData TestSignature { get; }
-//        public SignatureData ReferenceSignature { get; }
-//        public double[,] CostMatrix { get; set; }
-//        public List<Point> WarpingPath { get; set; }
-//        public List<Point> WarpingPathModified { get; set; }
-//        public int WindowSize { get; set; } = 11;
+namespace SigStat.Common.Algorithms
+{
+    /// <summary>
+    /// Dynamic Time Warping algorithm
+    /// </summary>
+    public class DTW
+    {
+        private double[,] dMat;
+        private double[,] wMat;
 
-//        int spacingParameterValue = Configuration.DefaultSpacingParameterValue;
-//        private int usedLengthOfTestSignature;
-//        private int usedLengthOfRefSignature;
-//        private bool isCostMatrixFilled;
-//        private bool isWarpingPathDefined;
-//        private bool isWarpingPathModifiedFound;
+        private List<(int, int)> forwardPath;
 
-//        Features featureFilter = Configuration.DefaultFeatureFilter;
+        private Func<double[], double[], double> dist_method;
 
-//        public Dtw(SignatureData testSignature, SignatureData referenceSignature)
-//        {
-//            TestSignature = testSignature;
-//            ReferenceSignature = referenceSignature;
+        public DTW()
+        {
+            dist_method = Accord.Math.Distance.Euclidean;
+        }
 
-//            //because the derived features are shorter than original feautures
-//            // '-r' --> first order differences vector length
-//            // '-1' --> second order differences vector length
-//            usedLengthOfTestSignature = TestSignature.NumOfPoints - spacingParameterValue - 1;
-//            usedLengthOfRefSignature = ReferenceSignature.NumOfPoints - spacingParameterValue - 1;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Sequence1"></param>
+        /// <param name="Sequence2"></param>
+        /// <param name="DistanceMethod">Accord.Math.Distance.*</param>
+        public DTW(Func<double[], double[], double> DistanceMethod)
+        {
+            dist_method = DistanceMethod;
+        }
 
-//            CostMatrix = new double[usedLengthOfTestSignature, usedLengthOfRefSignature];
-//            isCostMatrixFilled = false;
-//            isWarpingPathDefined = false;
+        /// <summary>
+        /// Generate shortest path between the two sequences.
+        /// </summary>
+        /// <returns>List of index pairs, cost</returns>
+        public (List<(int, int)>, double warpingDistance) Compute(double[][] s1, double[][] s2)
+        {
+            int n = s1.Length;
+            int m = s2.Length;
+            double dAcc = 0.0;
+            dMat = new double[n, m];//distance matrix
+            wMat = new double[n, m];//warp matrix
 
-//            featureFilter = Configuration.DefaultFeatureFilter;
+            int i = 0;
+            int j = 0;
+            //tavolsagok
+            for (i = 0; i < n; i++)
+                for (j = 0; j < m; j++)
+                    dMat[i, j] = Distance(s1[i], s2[j]);
 
-//            DeriveFeaturesWithSpacingParameter();
-//        }
+            //sarok
+            wMat[0, 0] = dMat[0, 0];
+            //két oldal
+            for (i = 1; i < n; i++)
+                wMat[i, 0] = dMat[i, 0] + wMat[i - 1, 0];
+            for (j = 1; j < m; j++)
+                wMat[0, j] = dMat[0, j] + wMat[0, j - 1];
+            //tobbi resz
+            for (i = 1; i < n; i++)
+                for (j = 1; j < m; j++)
+                {
+                    dAcc = Math.Min(Math.Min(wMat[i - 1, j], wMat[i - 1, j - 1]), wMat[i, j - 1]);
+                    dAcc += dMat[i, j];
+                    wMat[i, j] = dAcc;
+                }
 
-//        public Dtw(SignatureData ts, SignatureData rs, Features ff) : this(ts, rs)
-//        {
-//            featureFilter = ff;
-//        }
+            //legrovidebb ut megtalalas:
+            int[,] warpingPath = new int[n + m, 2];//lepesek
+            int K = 0;//K. lepes
+            i = n - 1;//vegerol indulunk visszafele
+            j = m - 1;
+            warpingPath[0, 0] = i;//cel
+            warpingPath[0, 1] = j;
+            K++;
+            while (i > 0 || j > 0)
+            {
+                if (i == 0)
+                    j--;//bal szele
+                else if (j == 0)
+                    i--;//also szele
+                else
+                {
+                    List<double> a = new List<double> { wMat[i - 1, j], wMat[i, j - 1], wMat[i - 1, j - 1] };
+                    int minIndex = a.IndexOf(Math.Min(Math.Min(a[0], a[1]), a[2]));
+                    //ez meg nem optimalis: ha tobb minimum van, akkor jobb, ha a diagonalis iranyt valasztjuk
+                    if (a[minIndex] == a[2])
+                        minIndex = 2;
+                    if (minIndex == 0)
+                        i -= 1;
+                    else if (minIndex == 1)
+                        j -= 1;
+                    else if (minIndex == 2)
+                    {
+                        i -= 1;
+                        j -= 1;
+                    }
+                }
+                warpingPath[K, 0] = i;
+                warpingPath[K, 1] = j;
+                K++;
+            }
 
-
-//        public double CalculateDtwScore()
-//        {
-//            if (!isCostMatrixFilled)
-//            {
-//                FillCostMatrix();
-//            }
-//            if (!isWarpingPathDefined)
-//            {
-//                FindWarpingPath();
-//            }
-
-//            int lwp = WarpingPath.Count;
-
-//            return CostMatrix[usedLengthOfTestSignature - 1, usedLengthOfRefSignature - 1] / lwp;
-//        }
-
-//        public double CalculateWarpingPathScore()
-//        {
-//            return CalculateNormalizedAverageDistortion() + CalculateNormalizedAverageDisplacement();
-//        }
-
-//        public double CalculateNormalizedAverageDistortion()
-//        {
-//            if (!isWarpingPathDefined)
-//                FindWarpingPath();
-//            if (!isWarpingPathModifiedFound)
-//                FindWarpingPathModified(WindowSize);
-//            //throw new Exception("Modified warping path must be found before. Call FindWarpingPathModified with a chosen window size!");
-
-
-//            double averageDistortion = 0;
-
-//            for (int i = 0; i < WarpingPath.Count; i++)
-//            {
-//                int testIndex = WarpingPath[i].X;
-//                int referenceIndexInWPath = WarpingPath[i].Y;
-//                int referenceIndexInWPathModified = WarpingPathModified[i].Y;
-
-//                double distInWarpingPath = Analyzer.GetManhattanDistance(
-//                    TestSignature.GetFeatures(testIndex, featureFilter),
-//                    ReferenceSignature.GetFeatures(referenceIndexInWPath, featureFilter));
-
-//                double distInWarpingPathModified = Analyzer.GetManhattanDistance(
-//                    TestSignature.GetFeatures(testIndex, featureFilter),
-//                    ReferenceSignature.GetFeatures(referenceIndexInWPathModified, featureFilter));
-
-//                double normalizationFactor = GetMaxDistanceBetweenTestIndexAndReference(testIndex);
-
-//                averageDistortion += (Math.Abs(distInWarpingPath - distInWarpingPathModified) / normalizationFactor);
-//            }
-
-//            averageDistortion /= WarpingPath.Count;
-
-//            return averageDistortion;
-//        }
-
-//        public double CalculateNormalizedAverageDisplacement()
-//        {
-//            if (!isWarpingPathDefined)
-//                FindWarpingPath();
-//            if (!isWarpingPathModifiedFound)
-//                FindWarpingPathModified(WindowSize);
-//            //throw new Exception("Modified warping path must be found before. Call FindWarpingPathModified with a chosen window size!");
-
-//            double averageDisplacement = 0;
-//            double normalizationFactor = usedLengthOfRefSignature;
-
-//            for (int i = 0; i < WarpingPath.Count; i++)
-//            {
-//                averageDisplacement += (Math.Abs(WarpingPath[i].Y - WarpingPathModified[i].Y) / normalizationFactor);
-//            }
-
-//            averageDisplacement /= WarpingPath.Count;
-
-//            return averageDisplacement;
-//        }
-
-//        public void FindWarpingPath()
-//        {
-//            if (isWarpingPathDefined)
-//            {
-//                return;
-//            }
-
-//            WarpingPath = new List<Point>(Math.Max(usedLengthOfTestSignature, usedLengthOfRefSignature));
-//            int i = usedLengthOfTestSignature - 1;
-//            int j = usedLengthOfRefSignature - 1;
-
-//            while (i > 0 && j > 0)
-//            {
-//                if (i == 0) { j = j - 1; }
-//                else if (j == 0) { i = i - 1; }
-//                else
-//                {
-//                    double minDist = Analyzer.Min( CostMatrix[i, j - 1], CostMatrix[i - 1, j - 1], CostMatrix[i - 1, j]);
-
-//                    if (CostMatrix[i - 1, j] == minDist) { i = i - 1; }
-//                    else if (CostMatrix[i, j - 1] == minDist) { j = j - 1; }
-//                    else { i = i - 1; j = j - 1; }
-
-//                    WarpingPath.Add(new Point(i, j));
-//                }
-//            }
+            //Array.Reverse(warpingPath);//ez csak jagged[][] nel mukodik
+            forwardPath = new List<(int, int)>(K);
+            for (i = K - 1; i >= 0; i--)
+                forwardPath.Add((warpingPath[i, 0], warpingPath[i, 1]));
 
 
-//            isWarpingPathDefined = true;
-//        }
+            double cost = 0;
 
-//        public void FillCostMatrix()
-//        {
+            double warpingDistance = dAcc / K;//gabor megoldasa, ez manhattan
 
-//            for (int i = 0; i < usedLengthOfTestSignature; i++)
-//            {
-//                for (int j = 0; j < usedLengthOfRefSignature; j++)
-//                {
-//                    if (i == 0 && j == 0)
-//                    {
-//                        //init [0,0]
-//                        CostMatrix[0, 0] = Analyzer.GetManhattanDistance( 
-//                            TestSignature.GetFeatures(i, featureFilter),
-//                            ReferenceSignature.GetFeatures(j, featureFilter));
-//                    }
-//                    else if (i == 0 && j > 0)
-//                    {
-//                        CostMatrix[i, j] = Analyzer.GetManhattanDistance(
-//                            TestSignature.GetFeatures(i, featureFilter),
-//                            ReferenceSignature.GetFeatures(j, featureFilter))
-//                            + CostMatrix[i, j - 1];
+            double[] bests1 = new double[K];
+            double[] bests2 = new double[K];
+            for (int istep = 0; istep < K; istep++)
+            {
+                (int s1i, int s2i) = forwardPath[istep];
+                bests1[istep] = s1[s1i][0];
+                bests2[istep] = s2[s2i][0];
+            }
+            cost = Distance(bests1, bests2);
 
-//                    }
-//                    else if (j == 0 && i > 0)
-//                    {
-//                        CostMatrix[i, j] = Analyzer.GetManhattanDistance(
-//                            TestSignature.GetFeatures(i, featureFilter),
-//                            ReferenceSignature.GetFeatures(j, featureFilter))
-//                           + CostMatrix[i - 1, j];
-//                    }
-//                    else
-//                    {
-//                        double preDist =  Analyzer.Min(CostMatrix[i, j - 1], CostMatrix[i - 1, j - 1], CostMatrix[i - 1, j]);
-//                        CostMatrix[i, j] = Analyzer.GetManhattanDistance(
-//                            TestSignature.GetFeatures(i, featureFilter),
-//                            ReferenceSignature.GetFeatures(j, featureFilter))
-//                            + preDist;
-//                    }
-//                }
-//            }
+            cost /= K; //ettol EER jobb lesz de AER rosszabb
 
-//            isCostMatrixFilled = true;
-//        }
+            return (forwardPath, cost);
+        }
 
-//        public void FindWarpingPathModified(int window)
-//        {
-//            if (window < 0)
-//                throw new Exception("Window size has to be non-negative");
+        /// <summary>
+        /// Mask of the shortest path
+        /// </summary>
+        /// <returns></returns>
+        /*public bool[,] genPathArray()
+        {
+            if (forwardPath == null)
+                Compute();
 
-//            if (isWarpingPathModifiedFound) return;
+            bool[,] img = new bool[s1.Length, s2.Length];
+            foreach ((int x,int y) step in forwardPath)
+            {
+                img[step.x, step.y] = true;
+            }
+            return img;
+        }*/
 
-//            if (!isWarpingPathDefined)
-//                FindWarpingPath();
+        /// <summary>
+        /// Calculate distance between two points.
+        /// Distance method can be set in ctor.
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        private double Distance(double[] p1, double[] p2)
+        {
+            if (p1.Length == 1)//nem ter vissza az Accord, ha a pontok 1 dimenziosak, ezert ezt kulon kezeljuk
+                return Math.Abs(p2[0] - p1[0]);
 
-//            WarpingPathModified = new List<Point>();
+            double d = Accord.Math.Distance.GetDistance(dist_method).Distance(p1, p2);
+            if (double.IsNaN(d))
+                d = 0;//ez nehany metrikanal kell, pl Canberra 0,0 ban
 
-//            for (int i = 0; i < WarpingPath.Count; i++)
-//            {
-//                int testIndex = WarpingPath[i].X;
-//                int refIndex = FindIndexOfClosestMatchInReferenceWithWindowSize(testIndex, window);
-//                WarpingPathModified.Add(new Point(testIndex, refIndex));
-//            }
+            return d;
+        }
 
-//            isWarpingPathModifiedFound = true;
-//        }
-
-//        private int FindIndexOfClosestMatchInReferenceWithWindowSize(int testIndex, int window)
-//        {
-
-//            if (testIndex < 0 || testIndex >= usedLengthOfTestSignature)
-//                throw new Exception("Out of range index");
-
-//            int x;
-//            double minCenterDist = double.MaxValue;
-//            double minWindowSegmentDist = double.MaxValue;
-//            int minIndex = usedLengthOfRefSignature;
-
-//            for (int i = 0; i < usedLengthOfRefSignature; i++)
-//            {
-//                double windowSegmentDist = GetWindowSegmentDistance(window, testIndex, i);
-
-//                if (windowSegmentDist < minWindowSegmentDist)
-//                {
-//                    minWindowSegmentDist = windowSegmentDist;
-//                    minIndex = i;
-//                    minCenterDist = Analyzer.GetManhattanDistance(
-//                        TestSignature.GetFeatures(testIndex, featureFilter),
-//                        ReferenceSignature.GetFeatures(i, featureFilter));
-//                }
-//                else if (windowSegmentDist == minWindowSegmentDist)
-//                {
-//                    double centerDist = Analyzer.GetManhattanDistance(
-//                        TestSignature.GetFeatures(testIndex, featureFilter),
-//                        ReferenceSignature.GetFeatures(i, featureFilter));
-//                    if (centerDist < minCenterDist)
-//                    {
-//                        minWindowSegmentDist = windowSegmentDist;
-//                        minIndex = i;
-//                        minCenterDist = centerDist;
-//                    }
-//                }
-//                else
-//                    x = 0;
-//            }
-
-//            if (minIndex == usedLengthOfRefSignature)
-//                throw new Exception("itt nem talált pontpárt");
-
-//            return minIndex;
-//        }
-
-//        private double GetWindowSegmentDistance(int window, int centerIndexTest, int centerIndexReference)
-//        {
-//            double dist = 0;
-//            for (int i = -window; i <= window; i++)
-//            {
-//                //Out of range indices, padding with repitions of the feature vectors of the first or last point
-//                int actualIndexTest = centerIndexTest + i;
-//                int actualIndexReference = centerIndexReference + i;
-//                if (actualIndexTest < 0) { actualIndexTest = 0; }
-//                if (actualIndexReference < 0) { actualIndexReference = 0; }
-//                if (actualIndexTest > usedLengthOfTestSignature - 1) { actualIndexTest = usedLengthOfTestSignature - 1; }
-//                if (actualIndexReference > usedLengthOfRefSignature - 1) { actualIndexReference = usedLengthOfRefSignature - 1; }
-
-//                dist += Analyzer.GetManhattanDistance(
-//                    TestSignature.GetFeatures(actualIndexTest, featureFilter),
-//                    ReferenceSignature.GetFeatures(actualIndexReference, featureFilter));
-//            }
-//            return dist;
-//        }
-
-//        private double GetMaxDistanceBetweenTestIndexAndReference(int testIndex)
-//        {
-//            if (testIndex < 0 || testIndex >= usedLengthOfTestSignature)
-//                throw new Exception("Out of range index");
-
-//            double maxDist = -1;
-//            for (int i = 0; i < usedLengthOfRefSignature; i++)
-//            {
-//                double dist = Analyzer.GetManhattanDistance(
-//                    TestSignature.GetFeatures(testIndex, featureFilter),
-//                    ReferenceSignature.GetFeatures(i, featureFilter));
-
-//                if (dist > maxDist)
-//                {
-//                    maxDist = dist;
-//                }
-//            }
-
-//            return maxDist;
-//        }
-
-//        private void DeriveFeaturesWithSpacingParameter()
-//        {
-//            TestSignature.DeriveFeatures(spacingParameterValue);
-//            ReferenceSignature.DeriveFeatures(spacingParameterValue);
-//        }
-
-//    }
-//}
+    }
+}
