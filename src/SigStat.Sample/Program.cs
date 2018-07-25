@@ -129,7 +129,7 @@ namespace SigStat.Sample
             {
                 Pipeline = new ProcessingPipeline()
                 {
-                    //new Common.PipelineItems.Map(10,20, Features.X),
+                    new Common.PipelineItems.Map(10,20, Features.X),
                     //new Common.PipelineItems.Normalize(Features.Y),
                     /*new Normalization(0,1, ()=>Y),
                     new Normalization(0,1, ()=>Pressure),
