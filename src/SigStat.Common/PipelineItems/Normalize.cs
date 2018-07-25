@@ -4,17 +4,15 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems
 {
-    public class Map : ITransformation
+    /// <summary>
+    /// Similar to Map, but with 0 - 1 interval.
+    /// </summary>
+    public class Normalize : ITransformation
     {
-        private readonly double v0;
-        private readonly double v1;
         private readonly FeatureDescriptor<List<double>> f;
 
-        public Map(double minval, double maxval, FeatureDescriptor<List<double>> f)
+        public Normalize(FeatureDescriptor<List<double>> f)
         {
-            this.v0 = minval;
-            this.v1 = maxval;
-            
             this.f = f;
         }
 
@@ -30,15 +28,11 @@ namespace SigStat.Common.PipelineItems
                 max = Math.Max(max, d);
             });
 
-            //min lesz v0, max lesz v1
-            for(int i = 0; i < values.Count; i++)
-            { 
-                double t = (values[i] - min) / (max - min);//0-1
-                values[i] = (1.0 - t) * v0 + t * v1;//lerp
-            }
+            //min lesz 0, max lesz 1
+            for (int i = 0; i < values.Count; i++)
+                values[i] = (values[i] - min) / (max - min);//0-1
 
             signature.SetFeature(f, values);
-
         }
     }
 }
