@@ -27,7 +27,7 @@ namespace Alairas.Common
             // Calculate coordinates at 600 dpi
             var points = Enumerable
                 .Range(0, xt.Count)
-                .Select(i => new PointF(xt[i]*600/dpi, yt[i] * 600 / dpi))
+                .Select(i => new PointF((float)xt[i]*600.0f/dpi, (float)yt[i] * 600.0f / dpi))
                 .ToList();
 
             // Set margins to 20 pixels

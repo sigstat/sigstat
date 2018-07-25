@@ -14,8 +14,8 @@ namespace SigStat.Common
 
         public static readonly FeatureDescriptor<List<Loop>> Loop = new FeatureDescriptor<List<Loop>>("Loop", "Loop");
         public static readonly FeatureDescriptor<int> Dpi = new FeatureDescriptor<int>("DPI", "Dpi");
-        public static readonly FeatureDescriptor<List<int>> X = new FeatureDescriptor<List<int>>("X(t)", "X");
-        public static readonly FeatureDescriptor<List<int>> Y = new FeatureDescriptor<List<int>>("Y(t)", "Y");
+        public static readonly FeatureDescriptor<List<double>> X = new FeatureDescriptor<List<double>>("X(t)", "X");
+        public static readonly FeatureDescriptor<List<double>> Y = new FeatureDescriptor<List<double>>("Y(t)", "Y");
         public static readonly FeatureDescriptor<List<int>> T = new FeatureDescriptor<List<int>>("t", "Svc2004.t");
         public static readonly FeatureDescriptor<List<int>> Button = new FeatureDescriptor<List<int>>("Button(t)", "Button");
         public static readonly FeatureDescriptor<List<int>> Azimuth = new FeatureDescriptor<List<int>>("Azimuth(t)", "Azimuth");

@@ -42,6 +42,19 @@ namespace SigStat.Common
             }
         }
 
+        //ezt nem lehet..
+        /*public T this<T>[FeatureDescriptor<T> featureDescriptor]
+        {
+            get
+            {
+                return (T)features[featureDescriptor.Key];
+            }
+            set
+            {
+                features[featureDescriptor.Key] = value;
+            }
+        }*/
+
         public T GetFeature<T>(string featureKey)
         {
             return (T)features[featureKey];

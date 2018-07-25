@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -102,7 +103,7 @@ namespace SigStat.Sample
         {
             //var verifier = new Verifier()
             //{
-            //    Pipeline =
+            //    Pipeline = 
             //    {
             //        new RealisticImageGeneration(),
             //        new BasicMetadataExtraction(),
@@ -124,35 +125,36 @@ namespace SigStat.Sample
 
         static void OnlineVerifierDemo()
         {
-            //var verifier = new Verifier()
-            //{
-            //    FeatureExtraction =
-            //    {
-            //        new Normalization(0,1, ()=>X),
-            //        new Normalization(0,1, ()=>Y),
-            //        new Normalization(0,1, ()=>Pressure),
-            //        new Normalization(0,1, ()=>Altitude),
-            //        new AlignmentNormalization(Alignment.Origin),
-            //        new Paper13FeatureExtractor(),
-            //    },
-            //    Classifier = new MyScoreFusionClassifier
-            //    {
-            //        {
-            //            new MultiDimensionDtwClassifier(), 0.2
-            //        },
-            //        {
-            //            new MultiDimensionKolmogorovSmirnovClassifier
-            //            {
-            //                Features = {"X", "Y" },
-            //                ThresholdStrategy = ThresholdStrategies.AveragePlusDeviance
-            //            },
-            //            0,8
-            //        }
-            //    }
+            var verifier = new Verifier()
+            {
+                Pipeline = new ProcessingPipeline()
+                {
+                    //new Common.PipelineItems.Map(10,20, Features.X),
+                    //new Common.PipelineItems.Normalize(Features.Y),
+                    /*new Normalization(0,1, ()=>Y),
+                    new Normalization(0,1, ()=>Pressure),
+                    new Normalization(0,1, ()=>Altitude),
+                    new AlignmentNormalization(Alignment.Origin),
+                    new Paper13FeatureExtractor(),*/
+                },
+                //Classifier = new MyScoreFusionClassifier
+                //{
+                //    {
+                //        new MultiDimensionDtwClassifier(), 0.2
+                //    },
+                //    {
+                //        new MultiDimensionKolmogorovSmirnovClassifier
+                //        {
+                //            Features = {"X", "Y" },
+                //            ThresholdStrategy = ThresholdStrategies.AveragePlusDeviance
+                //        },
+                //        0,8
+                //    }
+                //}
 
 
 
-            //};
+            };
 
             //List<Signature> references = new List<Signature>();
             //Signature questioned = new Signature();

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace SigStat.Common.Model
 {
-    class Verifier
+    public class Verifier
     {
-        public ProcessingPipeline Pipeline { get; private set; }
+        public ProcessingPipeline Pipeline { get; set; }
 
         public Verifier()
         {

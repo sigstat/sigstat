@@ -4,16 +4,17 @@ using System.Text;
 
 namespace SigStat.Common
 {
-    public interface IPiplineItem
-    {        
+    public interface IPipelineItem
+    {
+
     }
 
-    public interface ITransformation : IPiplineItem
+    public interface ITransformation : IPipelineItem
     {
         void Transform(Signature signature);
     }
 
-    public interface IClassification : IPiplineItem
+    public interface IClassification : IPipelineItem
     {
         void Train(IEnumerable<Signature> signatures);
         void Test(Signature signature);
