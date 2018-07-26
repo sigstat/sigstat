@@ -30,8 +30,4 @@
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0004" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="PipelineItems\Classifiers\" />
-  </ItemGroup>
-
 </Project>

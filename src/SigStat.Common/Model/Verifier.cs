@@ -11,7 +11,7 @@ namespace SigStat.Common.Model
 
         public Verifier()
         {
-            TransformPipeline = new Pipeline.SequentialTransformPipeline();
+            //TransformPipeline = new Pipeline.SequentialTransformPipeline();
         }
 
         public void Train(Signer signer)
@@ -30,7 +30,8 @@ namespace SigStat.Common.Model
         public bool Test(Signature sig)
         {
             TransformPipeline.Transform(sig);
-                return ClassifierPipeline.Test(sig);
+            double value = ClassifierPipeline.Test(sig);
+            throw new NotImplementedException();//TODO: Limit alapjan true/false
         }
 
     }

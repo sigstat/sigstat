@@ -1,6 +1,7 @@
 ﻿using SigStat.Common;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
+using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
@@ -141,20 +142,20 @@ namespace SigStat.Sample
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                 },
-                //Classifier = new MyScoreFusionClassifier
-                //{
-                //    {
-                //        new MultiDimensionDtwClassifier(), 0.2
-                //    },
-                //    {
-                //        new MultiDimensionKolmogorovSmirnovClassifier
-                //        {
-                //            Features = {"X", "Y" },
-                //            ThresholdStrategy = ThresholdStrategies.AveragePlusDeviance
-                //        },
-                //        0,8
-                //    }
-                //}
+                ClassifierPipeline = new WeightedClassifier()
+                {
+                    {
+                        (new DTWClassifier(Features.X), 0.2)
+                    },
+                    //{
+                    //    (new MultiDimensionKolmogorovSmirnovClassifier
+                    //    {
+                    //        Features = {"X", "Y" },
+                    //        ThresholdStrategy = ThresholdStrategies.AveragePlusDeviance
+                    //    },
+                    //    0.8)
+                    //}
+                }
 
 
 

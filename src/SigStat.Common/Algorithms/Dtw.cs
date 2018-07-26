@@ -36,7 +36,7 @@ namespace SigStat.Common.Algorithms
         /// Generate shortest path between the two sequences.
         /// </summary>
         /// <returns>List of index pairs, cost</returns>
-        public (List<(int, int)>, double warpingDistance) Compute(double[][] s1, double[][] s2)
+        public (List<(int, int)>, double cost) Compute(double[][] s1, double[][] s2)
         {
             int n = s1.Length;
             int m = s2.Length;
