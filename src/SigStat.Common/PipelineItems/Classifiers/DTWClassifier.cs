@@ -1,26 +1,35 @@
 ﻿using SigStat.Common.Algorithms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
-    public class DTWClassifier : IClassification
+    public class DTWClassifier : IClassification, IEnumerable
     {
-        private readonly FeatureDescriptor f;
+        private readonly List<FeatureDescriptor> fs;
         private List<Signature> training = new List<Signature>();
         DTW dtwalg;
 
-        public DTWClassifier(FeatureDescriptor f)
+        public DTWClassifier()
         {
-            this.f = f;
             dtwalg = new DTW(Accord.Math.Distance.Manhattan);
         }
 
-        public DTWClassifier(FeatureDescriptor f, Func<double[], double[], double> DistanceMethod)
+        public DTWClassifier(Func<double[], double[], double> DistanceMethod)
         {
-            this.f = f;
             dtwalg = new DTW(DistanceMethod);
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return fs.GetEnumerator();
+        }
+
+        public void Add(FeatureDescriptor f)
+        {
+            fs.Add(f);
         }
 
         public double Test(Signature signature)
@@ -46,19 +55,25 @@ namespace SigStat.Common.PipelineItems.Classifiers
         private double[][] prepareData(Signature signature)
         {
             double[][] values = null;
-            if (f.FeatureType == typeof(List<double>))
-            {//1d ertekek, pl tangens
-                var v = signature.GetFeature<List<double>>(f.Key);
-                double[] tmp = v.ToArray();
-                values = new double[tmp.Length][];
-                for (int i = 0; i < tmp.Length; i++)
-                    values[i] = new double[] { tmp[i] };
-            }
-            else if (f.FeatureType == typeof(List<double[]>))
+
+            int len = signature.GetFeature<List<double>>(fs[0].Key).Count;
+            values = new double[len][];
+            for(int i = 0; i < len; i++)
+                values[i] = new double[fs.Count];//dim
+
+            for (int iF = 0; iF < fs.Count; iF++)
             {
-                values = signature.GetFeature<List<double[]>>(f.Key).ToArray();
+                var v = signature.GetFeature<List<double>>(fs[iF].Key);
+                for (int i = 0; i < len; i++)
+                {
+                    values[i][iF] = v[i];
+                }
             }
-            //else TODO PointF
+
+            //TODO: pl lehetne aggregalt featuret atadni: PointF az X és Y bol
+
+
+
             return values;
         }
     }

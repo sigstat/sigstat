@@ -145,7 +145,15 @@ namespace SigStat.Sample
                 ClassifierPipeline = new WeightedClassifier()
                 {
                     {
-                        (new DTWClassifier(Features.X), 0.2)
+                        (new DTWClassifier(Accord.Math.Distance.Manhattan){
+                            Features.X,
+                            Features.Y
+                        }, 0.8)
+                    },
+                    {
+                        (new DTWClassifier(){
+                            Features.Pressure
+                        }, 0.2)
                     },
                     //{
                     //    (new MultiDimensionKolmogorovSmirnovClassifier
@@ -161,10 +169,10 @@ namespace SigStat.Sample
 
             };
 
-            //List<Signature> references = new List<Signature>();
-            //Signature questioned = new Signature();
-            //verifier.Train(references);
-            //verifier.Test(questioned);
+            List<Signature> references = new List<Signature>();
+            Signature questioned = new Signature();
+            verifier.Train(references);
+            bool isGenuine = verifier.Test(questioned);
         }
 
         static Task OnlineVerifierBenchmarkDemo()
