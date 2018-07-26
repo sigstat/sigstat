@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Similar to Map, but with 0 - 1 interval.
@@ -33,11 +33,6 @@ namespace SigStat.Common.PipelineItems
                 values[i] = (values[i] - min) / (max - min);//0-1
 
             signature.SetFeature(f, values);
-        }
-
-        public void Run(Signature input)
-        {
-            Transform(input);
         }
 
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems
+namespace SigStat.Common.Transforms
 {
     public class Map : ITransformation
     {
@@ -39,11 +39,6 @@ namespace SigStat.Common.PipelineItems
 
             signature.SetFeature(f, values);
 
-        }
-
-        public void Run(Signature input)
-        {
-            Transform(input);
         }
 
     }

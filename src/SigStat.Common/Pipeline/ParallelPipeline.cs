@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace SigStat.Common.Pipeline
 {
-    public class ParallelPipeline : IEnumerable, IPipelineItem
+    public class ParallelTransformPipeline : IEnumerable, ITransformation
     {
-        public List<IPipelineItem> Items = new List<IPipelineItem>();
+        public List<ITransformation> Items = new List<ITransformation>();
 
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
-        public void Add(IPipelineItem newitem)
+        public void Add(ITransformation newitem)
         {
             Items.Add(newitem);
         }
 
-        public void Run(Signature input)
+        public void Transform(Signature signature)
         {
             //TODO mindnek kovetni a progressét, a minimum lesz ezé is
-            Parallel.ForEach(Items, (i) => i.Run(input));
+            Parallel.ForEach(Items, (i) => i.Transform(signature));
         }
     }
 }

@@ -3,27 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.Model
+namespace SigStat.Common.Pipeline
 {
-    public class SequentialPipeline : IEnumerable, IPipelineItem
+    public class SequentialTransformPipeline : IEnumerable, ITransformation
     {
-        public List<IPipelineItem> Items = new List<IPipelineItem>();
+        public List<ITransformation> Items = new List<ITransformation>();
 
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
-        public void Add(IPipelineItem newitem)
+        public void Add(ITransformation newitem)
         {
             Items.Add(newitem);
         }
 
-        public void Run(Signature input)
+        public void Transform(Signature signature)
         {
             //TODO: progress szamolo
-            Items.ForEach(i => i.Run(input));
+            Items.ForEach(i => i.Transform(signature));
         }
-
     }
 }

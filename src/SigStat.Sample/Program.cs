@@ -1,5 +1,7 @@
 ﻿using SigStat.Common;
 using SigStat.Common.Model;
+using SigStat.Common.Pipeline;
+using SigStat.Common.Transforms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -127,10 +129,13 @@ namespace SigStat.Sample
         {
             var verifier = new Verifier()
             {
-                Pipeline = new SequentialPipeline()
+                TransformPipeline = new SequentialTransformPipeline()
                 {
-                    new Common.PipelineItems.Map(10,20, Features.X),
-                    new Common.PipelineItems.Normalize(Features.Y),
+                    new ParallelTransformPipeline()
+                    {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
+                        new Map(10,20, Features.X),
+                        new Normalize(Features.Y),
+                    }
                     //new Common.PipelineItems.Normalize(Features.Pressure),
                     //new Common.PipelineItems.Normalize(Features.Altitude),
                     /*new AlignmentNormalization(Alignment.Origin),

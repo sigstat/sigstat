@@ -6,11 +6,32 @@ namespace SigStat.Common.Model
 {
     public class Verifier
     {
-        public IPipelineItem Pipeline { get; set; }
+        public ITransformation TransformPipeline { get; set; }
+        public IClassification ClassifierPipeline { get; set; }
 
         public Verifier()
         {
-            Pipeline = new SequentialPipeline();
+            TransformPipeline = new Pipeline.SequentialTransformPipeline();
         }
+
+        public void Train(Signer signer)
+        {
+            Train(signer.Signatures);
+        }
+
+        public void Train(List<Signature> sigs)
+        {
+            sigs.ForEach((sig) => {
+                TransformPipeline.Transform(sig);
+            });
+            ClassifierPipeline.Train(sigs);
+        }
+
+        public bool Test(Signature sig)
+        {
+            TransformPipeline.Transform(sig);
+                return ClassifierPipeline.Test(sig);
+        }
+
     }
 }
