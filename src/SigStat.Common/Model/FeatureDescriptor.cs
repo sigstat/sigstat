@@ -17,6 +17,7 @@ namespace SigStat.Common
             {
                 return FeatureType.IsGenericType && FeatureType.GetGenericTypeDefinition() == typeof(List<>);
             }
+            //private set;
         }
         protected static readonly Dictionary<string, FeatureDescriptor> descriptors = new Dictionary<string, FeatureDescriptor>();
 
@@ -29,6 +30,7 @@ namespace SigStat.Common
             Name = name;
             Key = key;
             FeatureType = featureType;
+            //IsCollection = FeatureType.IsGenericType && FeatureType.GetGenericTypeDefinition() == typeof(List<>);//nem csak List lehet
             descriptors.Add(key, this);
         }
 

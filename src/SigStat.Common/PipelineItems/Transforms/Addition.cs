@@ -5,23 +5,29 @@ using System.Text;
 
 namespace SigStat.Common.Transforms
 {
-    public class Additon : IEnumerable, ITransformation
+    public class Addition : IEnumerable, ITransformation
     {
         //melyik feature-t mennyivel toljuk el
         private List<(FeatureDescriptor<List<double>> f, double t)> fts = new List<(FeatureDescriptor<List<double>> f, double t)>();
 
         //ezeket a featureoket ezzel toljuk el
-        private readonly FeatureDescriptor<List<double>> byFeature;
         private List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
+        private readonly FeatureDescriptor<List<double>> byValues;//ez olyan hosszu, mint fs
+        private readonly FeatureDescriptor<double> byValue;//vagy ezzel az eggyel
 
-        public Additon()
+        public Addition()
         {
 
         }
 
-        public Additon(FeatureDescriptor<List<double>> byFeature)
+        public Addition(FeatureDescriptor<List<double>> byValues)
         {
-            this.byFeature = byFeature;
+            this.byValues = byValues;
+        }
+
+        public Addition(FeatureDescriptor<double> byValue)
+        {
+            this.byValue = byValue;
         }
 
         public IEnumerator GetEnumerator()
@@ -41,9 +47,20 @@ namespace SigStat.Common.Transforms
 
         public void Transform(Signature signature)
         {
-            if (byFeature != null)
-            {//megadott feature alapjan (pl centroid)
-                var by = signature.GetFeature(byFeature);
+            if(byValue!=null)
+            {//megadott feature ertek alapjan mindet, pl. time reset
+                var by = signature.GetFeature(byValue);
+                for (int iF = 0; iF < fs.Count; iF++)
+                {
+                    var values = signature.GetFeature(fs[iF]);
+                    for (int i = 0; i < values.Count; i++)
+                        values[i] = values[i] + by;
+                    signature.SetFeature(fs[iF], values);
+                }
+            }
+            else if (byValues != null)
+            {//megadott feature ertekek alapjan egyenkent (pl centroid.xy)
+                var by = signature.GetFeature(byValues);
                 for (int iF = 0; iF < fs.Count; iF++)
                 {
                     var values = signature.GetFeature(fs[iF]);
@@ -53,7 +70,7 @@ namespace SigStat.Common.Transforms
                 }
             }
             else
-            {//megadott ertekek alapjan
+            {//megadott konstans ertekek alapjan
                 foreach (var ft in fts)
                 {
                     var values = signature.GetFeature(ft.f);

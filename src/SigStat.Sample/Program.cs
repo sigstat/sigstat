@@ -138,12 +138,21 @@ namespace SigStat.Sample
                         new Normalize(Features.Y),
                     },
                     new Translate(0.5,0.1),
-                    new Additon
+                    new Addition
                     {
                         (Features.X, -0.5)
                     },
-                    new CentroidTranslate()//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
-                    
+                    new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
+
+                    new Extrema(Features.T, "TMin", "TMax"),
+                    /*new Multiply
+                    {
+                        (FeatureDescriptor<List<double>>.GetDescriptor("TMin"),-1.0)
+                    },*/
+                    new Addition(FeatureDescriptor<List<double>>.GetDescriptor("TMin"))
+                    {
+                        Features.T
+                    }
                     //new Common.PipelineItems.Normalize(Features.Pressure),
                     //new Common.PipelineItems.Normalize(Features.Altitude),
                     /*new AlignmentNormalization(Alignment.Origin),

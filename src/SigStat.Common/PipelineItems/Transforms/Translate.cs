@@ -16,7 +16,7 @@ namespace SigStat.Common.Transforms
         {
             Items = new List<ITransformation>()
             {
-                new Additon
+                new Addition
                 {
                     (Features.X, xadd),
                     (Features.Y, yadd)
@@ -28,7 +28,7 @@ namespace SigStat.Common.Transforms
         {
             Items = new List<ITransformation>()
             {
-                new Additon(byFeature)//emiatt kell az Additionnak több Featuret egyszerre is kezelnie: itt a konstruktorban nem kérhetjük le még a byFeature értékét, mert jó eséllyel nem létezik még
+                new Addition(byFeature)//emiatt kell az Additionnak több Featuret egyszerre is kezelnie: itt a konstruktorban nem kérhetjük le még a byFeature értékét, mert jó eséllyel nem létezik még
                 {
                     Features.X,
                     Features.Y
