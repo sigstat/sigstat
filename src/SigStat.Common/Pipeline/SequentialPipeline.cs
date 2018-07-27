@@ -5,6 +5,12 @@ using System.Text;
 
 namespace SigStat.Common.Pipeline
 {
+    /// <summary>
+    /// ...
+    /// Ebbol jo dolog leszarmazni es az Itemeket az adott feladatszerint inicializalni
+    /// pl. CentroidTranslate: CentroidExtraction + Multiply -1 + Translate
+    /// TODO: Add() nem kene hogy latszodjon leszarmazottakban, kell egy koztes dolog
+    /// </summary>
     public class SequentialTransformPipeline : IEnumerable, ITransformation
     {
         public List<ITransformation> Items = new List<ITransformation>();

@@ -141,7 +141,9 @@ namespace SigStat.Sample
                     {
                         (Features.X, 0.5),
                         (Features.Y, -2.0)
-                    }
+                    },
+                    new CentroidTranslate()//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
+                    
                     //new Common.PipelineItems.Normalize(Features.Pressure),
                     //new Common.PipelineItems.Normalize(Features.Altitude),
                     /*new AlignmentNormalization(Alignment.Origin),

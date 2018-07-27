@@ -13,5 +13,11 @@ namespace SigStat.Common
         {
 
         }
+
+        public new static FeatureDescriptor<T> GetDescriptor(string key)
+        {
+            return (FeatureDescriptor<T>)descriptors[key];
+        }
+
     }
 }

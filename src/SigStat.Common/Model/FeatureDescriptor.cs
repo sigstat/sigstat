@@ -18,7 +18,7 @@ namespace SigStat.Common
                 return FeatureType.IsGenericType && FeatureType.GetGenericTypeDefinition() == typeof(List<>);
             }
         }
-        static readonly Dictionary<string, FeatureDescriptor> descriptors = new Dictionary<string, FeatureDescriptor>();
+        protected static readonly Dictionary<string, FeatureDescriptor> descriptors = new Dictionary<string, FeatureDescriptor>();
 
         public FeatureDescriptor(string name, string key, Type featureType)
         {
