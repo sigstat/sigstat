@@ -65,7 +65,11 @@ namespace SigStat.Common
             return (T)features[featureDescriptor.Key];
         }
 
-        
+        //proba
+        public T GetFeature<T>(FeatureDescriptor f)
+        {
+            return (T)features[f.Key];
+        }
 
         public T GetFeature<T>()
         {
