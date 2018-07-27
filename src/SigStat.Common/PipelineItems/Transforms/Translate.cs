@@ -1,67 +1,39 @@
-﻿using System;
+﻿using SigStat.Common.Pipeline;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.Transforms
 {
-    public class Translate : IEnumerable, ITransformation
+    public class Translate : SequentialTransformPipeline
     {
-        //melyik feature-t mennyivel toljuk el
-        private List<(FeatureDescriptor<List<double>> f, double t)> fts = new List<(FeatureDescriptor<List<double>> f, double t)>();
-
         //ezeket a featureoket ezzel toljuk el
         private readonly FeatureDescriptor<List<double>> byFeature;
         private List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
 
-        public Translate()
+        public Translate(double xadd, double yadd)
         {
-
+            Items = new List<ITransformation>()
+            {
+                new Additon
+                {
+                    (Features.X, xadd),
+                    (Features.Y, yadd)
+                }
+            };
         }
 
         public Translate(FeatureDescriptor<List<double>> byFeature)
         {
-            this.byFeature = byFeature;
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            return fts.GetEnumerator();
-        }
-
-        public void Add((FeatureDescriptor<List<double>> f, double t) newitem)
-        {
-            fts.Add(newitem);
-        }
-
-        public void Add(FeatureDescriptor<List<double>> newitem)
-        {
-            fs.Add(newitem);
-        }
-
-        public void Transform(Signature signature)
-        {
-            if (byFeature != null)
-            {//megadott feature alapjan (pl centroid)
-                var by = signature.GetFeature(byFeature);
-                for(int iF = 0; iF<fs.Count;iF++)
+            Items = new List<ITransformation>()
+            {
+                new Additon(byFeature)//emiatt kell az Additionnak több Featuret egyszerre is kezelnie: itt a konstruktorban nem kérhetjük le még a byFeature értékét, mert jó eséllyel nem létezik még
                 {
-                    var values = signature.GetFeature(fs[iF]);
-                    for (int i = 0; i < values.Count; i++)
-                        values[i] = values[i] + by[iF];
-                    signature.SetFeature(fs[iF], values);
+                    Features.X,
+                    Features.Y
                 }
-            }
-            else
-            {//megadott ertekek alapjan
-                foreach (var ft in fts)
-                {
-                    var values = signature.GetFeature(ft.f);
-                    for (int i = 0; i < values.Count; i++)
-                        values[i] = values[i] + ft.t;
-                    signature.SetFeature(ft.f, values);
-                }
-            }
+            };
         }
     }
 }

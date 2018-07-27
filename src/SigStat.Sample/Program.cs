@@ -137,10 +137,10 @@ namespace SigStat.Sample
                         new Map(10,20, Features.X),
                         new Normalize(Features.Y),
                     },
-                    new Translate
+                    new Translate(0.5,0.1),
+                    new Additon
                     {
-                        (Features.X, 0.5),
-                        (Features.Y, -2.0)
+                        (Features.X, -0.5)
                     },
                     new CentroidTranslate()//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
                     
