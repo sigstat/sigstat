@@ -15,6 +15,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public DTWClassifier()
         {
             dtwalg = new DTW(Accord.Math.Distance.Manhattan);
+            fs = new List<FeatureDescriptor>();
         }
 
         public DTWClassifier(Func<double[], double[], double> DistanceMethod)

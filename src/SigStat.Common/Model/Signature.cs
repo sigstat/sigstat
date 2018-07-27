@@ -111,6 +111,8 @@ namespace SigStat.Common
         /// <returns></returns>
         public List<double[]> GetAggregateFeature(List<FeatureDescriptor> fs)
         {
+            //TODO: mi legyen, ha nem array a feature
+
             double[][] values = null;
 
             int len = this.GetFeature<List<double>>(fs[0].Key).Count;

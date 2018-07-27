@@ -130,19 +130,24 @@ namespace SigStat.Sample
         {
             var verifier = new Verifier()
             {
-                TransformPipeline = new SequentialTransformPipeline()
+                TransformPipeline = new SequentialTransformPipeline
                 {
-                    new ParallelTransformPipeline()
+                    new ParallelTransformPipeline
                     {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
                         new Map(10,20, Features.X),
                         new Normalize(Features.Y),
+                    },
+                    new Translate
+                    {
+                        (Features.X, 0.5),
+                        (Features.Y, -2.0)
                     }
                     //new Common.PipelineItems.Normalize(Features.Pressure),
                     //new Common.PipelineItems.Normalize(Features.Altitude),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                 },
-                ClassifierPipeline = new WeightedClassifier()
+                ClassifierPipeline = new WeightedClassifier
                 {
                     {
                         (new DTWClassifier(Accord.Math.Distance.Manhattan){
