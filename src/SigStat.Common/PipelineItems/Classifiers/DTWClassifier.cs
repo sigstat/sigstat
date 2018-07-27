@@ -34,10 +34,10 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
         public double Test(Signature signature)
         {
-            double[][] testsig = prepareData(signature);
+            double[][] testsig = signature.GetAggregateFeature(fs).ToArray();
             double[] results = new double[training.Count];
             for (int i = 0; i < training.Count; i++)
-                results[i] = dtwalg.Compute(testsig, prepareData(training[i])).cost;
+                results[i] = dtwalg.Compute(testsig, training[i].GetAggregateFeature(fs).ToArray()).cost;
             double atlag = 0;
             foreach (double d in results)
                 atlag += d;
@@ -52,29 +52,5 @@ namespace SigStat.Common.PipelineItems.Classifiers
             //TODO: calculate limit, etc. here
         }
 
-        private double[][] prepareData(Signature signature)
-        {
-            double[][] values = null;
-
-            int len = signature.GetFeature<List<double>>(fs[0].Key).Count;
-            values = new double[len][];
-            for(int i = 0; i < len; i++)
-                values[i] = new double[fs.Count];//dim
-
-            for (int iF = 0; iF < fs.Count; iF++)
-            {
-                var v = signature.GetFeature<List<double>>(fs[iF].Key);
-                for (int i = 0; i < len; i++)
-                {
-                    values[i][iF] = v[i];
-                }
-            }
-
-            //TODO: pl lehetne aggregalt featuret atadni: PointF az X és Y bol
-
-
-
-            return values;
-        }
     }
 }

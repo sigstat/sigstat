@@ -103,7 +103,31 @@ namespace SigStat.Common
             features[featureDescriptor.Key] = feature;
         }
 
+        /// <summary>
+        /// feature aggregalas, pl. X és Y feature a bemenet -> P.xy lesz.
+        /// Hasznos pl. multidimenziós DTW bemeneténél.
+        /// </summary>
+        /// <param name="fs"></param>
+        /// <returns></returns>
+        public List<double[]> GetAggregateFeature(List<FeatureDescriptor> fs)
+        {
+            double[][] values = null;
 
+            int len = this.GetFeature<List<double>>(fs[0].Key).Count;
+            values = new double[len][];
+            for (int i = 0; i < len; i++)
+                values[i] = new double[fs.Count];//dim
+
+            for (int iF = 0; iF < fs.Count; iF++)
+            {
+                var v = this.GetFeature<List<double>>(fs[iF].Key);
+                for (int i = 0; i < len; i++)
+                {
+                    values[i][iF] = v[i];
+                }
+            }
+            return values.ToList();
+        }
   
 
  
