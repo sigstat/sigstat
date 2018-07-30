@@ -143,16 +143,7 @@ namespace SigStat.Sample
                         (Features.X, -0.5)
                     },
                     new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
-
-                    new Extrema(Features.T, "TMin", "TMax"),
-                    /*new Multiply
-                    {
-                        (FeatureDescriptor<List<double>>.GetDescriptor("TMin"),-1.0)
-                    },*/
-                    new Addition(FeatureDescriptor<List<double>>.GetDescriptor("TMin"))
-                    {
-                        Features.T
-                    }
+                    new TimeReset(),//^
                     //new Common.PipelineItems.Normalize(Features.Pressure),
                     //new Common.PipelineItems.Normalize(Features.Altitude),
                     /*new AlignmentNormalization(Alignment.Origin),
