@@ -20,7 +20,7 @@ namespace SigStat.Common
         public static readonly FeatureDescriptor<List<int>> Button = new FeatureDescriptor<List<int>>("Button(t)", "Button");
         public static readonly FeatureDescriptor<List<int>> Azimuth = new FeatureDescriptor<List<int>>("Azimuth(t)", "Azimuth");
         public static readonly FeatureDescriptor<List<int>> Altitude = new FeatureDescriptor<List<int>>("Altitude(t)", "Altitude");
-        public static readonly FeatureDescriptor<List<int>> Pressure = new FeatureDescriptor<List<int>>("Pressure(t)", "Pressure");
+        public static readonly FeatureDescriptor<List<double>> Pressure = new FeatureDescriptor<List<double>>("Pressure(t)", "Pressure");
         public static readonly FeatureDescriptor<Image<Rgba32>> Image = new FeatureDescriptor<Image<Rgba32>>("Image", "Image");
         public static readonly FeatureDescriptor<Point> Cog = new FeatureDescriptor<Point>("Center of gratvity", "Cog");
 

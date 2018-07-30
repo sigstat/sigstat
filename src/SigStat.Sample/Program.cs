@@ -134,7 +134,7 @@ namespace SigStat.Sample
             {
                 TransformPipeline = new SequentialTransformPipeline
                 {
-                    new ParallelTransformPipeline
+                    /*new ParallelTransformPipeline
                     {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
                         new Map(10,20, Features.X),
                         new Normalize(Features.Y),
@@ -143,11 +143,11 @@ namespace SigStat.Sample
                     new Addition
                     {
                         (Features.X, -0.5)
-                    },
+                    },*/
+                    new Normalize(Features.Pressure),
                     new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
                     new TimeReset(),//^
-                    //new Common.PipelineItems.Normalize(Features.Pressure),
-                    //new Common.PipelineItems.Normalize(Features.Altitude),
+                    new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                 },
@@ -157,12 +157,17 @@ namespace SigStat.Sample
                         (new DTWClassifier(Accord.Math.Distance.Manhattan){
                             Features.X,
                             Features.Y
-                        }, 0.8)
+                        }, 0.15)
                     },
                     {
                         (new DTWClassifier(){
                             Features.Pressure
-                        }, 0.2)
+                        }, 0.3)
+                    },
+                    {
+                        (new DTWClassifier(){
+                            FeatureDescriptor.GetDescriptor("Tangent")//Features.Tangent
+                        }, 0.55)
                     },
                     //{
                     //    (new MultiDimensionKolmogorovSmirnovClassifier
@@ -186,11 +191,10 @@ namespace SigStat.Sample
             List<Signature> references = signers[0].Signatures.GetRange(0,10);
             verifier.Train(references);
 
-            bool isGenuine;
             Signature questioned1 = signers[0].Signatures[0];
-            Signature questioned2 = signers[0].Signatures[20];
-            isGenuine = verifier.Test(questioned1);//true
-            isGenuine = verifier.Test(questioned2);//false
+            Signature questioned2 = signers[0].Signatures[25];
+            bool isGenuine1 = verifier.Test(questioned1);//true
+            bool isGenuine2 = verifier.Test(questioned2);//false
         }
 
         static Task OnlineVerifierBenchmarkDemo()
