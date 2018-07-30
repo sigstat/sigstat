@@ -23,6 +23,7 @@ namespace SigStat.Sample
             public List<Loop> Loops { get { return (List<Loop>)this["Loop"]; } set { this["Loop"] = value; } }
 
             public List<Loop> Loops2 { get { return GetFeature<List<Loop>>(Features.Loop.Key); } set { this[Features.Loop.Key] = value; } }
+            // Preferált:
             public List<Loop> Loops3 { get { return GetFeature(Features.Loop); } set { SetFeature(Features.Loop, value); } }
 
             public List<Loop> Loops4 { get { return GetFeatures<Loop>(); } set { SetFeatures(value); } }
@@ -58,7 +59,7 @@ namespace SigStat.Sample
             sig["X"] = new List<double>() { 1,2,3};
             sig["Bounds"] = new RectangleF();
 
-            var f1 = sig["Loop"];
+            var f1 = (List<Loop>)sig["Loop"];
             sig.GetFeature<List<double>>("X");
             sig.GetFeature<RectangleF>("Bounds");
             //var xt = sig.GetFeature(Features.X);
@@ -190,7 +191,7 @@ namespace SigStat.Sample
             //    Verifier = new BasicVerifier(),
             //    SampleSelectionStrategy = new ConstantSelectionStrategy(
             //           s => s.Signatures.Where(s => s.IsOriginal).Take(10),
-            //           s => s.Signatures.Where(s => s.IsOriginal).Take(10),
+            //           s => s.Signatures.Where(s => s.IsOriginal).Skip(10).Take(10),
             //           s => s.Signatures.Where(s => !s.IsOriginal).Take(10)),
             //    Logger = Log,
             //    Progress = Progress
