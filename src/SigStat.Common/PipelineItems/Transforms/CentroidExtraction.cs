@@ -13,6 +13,17 @@ namespace SigStat.Common.Transforms
     {
         public List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
 
+        private FeatureDescriptor<List<double>> centroidfd;//akar lehetne egy gettere is
+
+        public CentroidExtraction()
+        {
+            //itt letre kell hozni azt a feature descriptort, amit ki fog szamolni. 
+            //Kulonben a kesobbi pipeline elemek inicializalasanal nem talalnank.
+            //TODO: ezt talan lehetne automatizalni: Ha olyan feature descriptort kerunk le ami nincs, akkor letrehozzuk
+            centroidfd = new FeatureDescriptor<List<double>>("Centroid", "Centroid");
+
+        }
+
         public IEnumerator GetEnumerator()
         {
             return fs.GetEnumerator();
@@ -38,7 +49,9 @@ namespace SigStat.Common.Transforms
 
             }
 
-            signature["Centroid"] = c;
+            signature[centroidfd] = c;
+            //signature.SetFeature(centroidfd, c);
+            //signature["Centroid"] = c;
         }
     }
 }

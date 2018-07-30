@@ -55,7 +55,7 @@ namespace SigStat.Common.Transforms
                     var values = signature.GetFeature(fs[iF]);
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] + by;
-                    signature.SetFeature(fs[iF], values);
+                    signature[fs[iF]] = values;
                 }
             }
             else if (byValues != null)
@@ -66,7 +66,7 @@ namespace SigStat.Common.Transforms
                     var values = signature.GetFeature(fs[iF]);
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] + by[iF];
-                    signature.SetFeature(fs[iF], values);
+                    signature[fs[iF]] = values;
                 }
             }
             else
@@ -76,7 +76,7 @@ namespace SigStat.Common.Transforms
                     var values = signature.GetFeature(ft.f);
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] + ft.t;
-                    signature.SetFeature(ft.f, values);
+                    signature[ft.f] = values;
                 }
             }
         }

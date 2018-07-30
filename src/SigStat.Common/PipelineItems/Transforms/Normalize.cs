@@ -32,7 +32,7 @@ namespace SigStat.Common.Transforms
             for (int i = 0; i < values.Count; i++)
                 values[i] = (values[i] - min) / (max - min);//0-1
 
-            signature.SetFeature(f, values);
+            signature[f] = values;
         }
 
     }

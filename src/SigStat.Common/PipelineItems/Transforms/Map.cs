@@ -37,7 +37,7 @@ namespace SigStat.Common.Transforms
                 values[i] = (1.0 - t) * v0 + t * v1;//lerp
             }
 
-            signature.SetFeature(f, values);
+            signature[f] = values;
 
         }
 

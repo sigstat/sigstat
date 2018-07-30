@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
@@ -40,8 +41,8 @@ namespace SigStat.Sample
         public static async Task Main(string[] args)
         {
             Console.WriteLine("Hello");
-            SignatureDemo();
-            OfflineVerifierDemo();
+            //SignatureDemo();
+            //OfflineVerifierDemo();
             OnlineVerifierDemo();
             await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
@@ -176,8 +177,13 @@ namespace SigStat.Sample
 
             };
 
-            List<Signature> references = new List<Signature>();
-            Signature questioned = new Signature();
+            bool signer1(string p)
+            { return p == "01"; }
+            Svc2004Loader loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\");
+            var  signers = new List<Signer>(loader.EnumerateSigners(signer1));
+            Signature questioned = signers[0].Signatures[0];
+            signers[0].Signatures.RemoveAt(0);
+            List<Signature> references = signers[0].Signatures;
             verifier.Train(references);
             bool isGenuine = verifier.Test(questioned);
         }

@@ -8,14 +8,13 @@ namespace SigStat.Common.PipelineItems.Classifiers
 {
     public class DTWClassifier : IClassification, IEnumerable
     {
-        private readonly List<FeatureDescriptor> fs;
+        private readonly List<FeatureDescriptor> fs = new List<FeatureDescriptor>();
         private List<Signature> training = new List<Signature>();
         DTW dtwalg;
 
         public DTWClassifier()
         {
             dtwalg = new DTW(Accord.Math.Distance.Manhattan);
-            fs = new List<FeatureDescriptor>();
         }
 
         public DTWClassifier(Func<double[], double[], double> DistanceMethod)

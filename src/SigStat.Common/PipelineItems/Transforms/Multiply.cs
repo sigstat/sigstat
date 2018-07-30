@@ -29,13 +29,13 @@ namespace SigStat.Common.Transforms
                     var values = signature.GetFeature<List<double>>(fm.f);
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] * fm.m;
-                    signature.SetFeature(fm.f, values);
+                    signature[fm.f] = values;
                 }
                 else
                 {
                     var values = signature.GetFeature<double>(fm.f);
                     values = values * fm.m;
-                    signature.SetFeature(fm.f, values);
+                    signature[fm.f] = values;
                 }
             }
             

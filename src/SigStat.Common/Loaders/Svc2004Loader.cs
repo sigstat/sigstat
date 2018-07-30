@@ -17,6 +17,8 @@ namespace SigStat.Common.Loaders
         public static readonly FeatureDescriptor Altitude = new FeatureDescriptor("Altitude(t)", "Svc2004.Altitude", typeof(List<int>));
         public static readonly FeatureDescriptor Pressure = new FeatureDescriptor("Pressure(t)", "Svc2004.Pressure", typeof(List<int>));
 
+        //TODO: ez nem igazan Feature, hanem csak a pipeline reszeredmenyeihez kell
+        //-> vagy toroljuk oket a vegen, vagy a pipeline-nak is kellenek descriptorok
         public static readonly FeatureDescriptor[] Task1 = new FeatureDescriptor[] { X, Y, T, Button };
         public static readonly FeatureDescriptor[] Task2 = new FeatureDescriptor[] { X, Y, T, Button, Azimuth, Altitude, Pressure };
 
@@ -69,6 +71,7 @@ namespace SigStat.Common.Loaders
                         ID = signatureFile.SignatureID
                     };
                     LoadSignature(signature, signatureFile.File);
+                    signer.Signatures.Add(signature);
                 }
                 yield return signer;
             }
@@ -82,19 +85,19 @@ namespace SigStat.Common.Loaders
                 .ToList();
 
 
-            if (lines[0].Length == 4) // Task1
-            {
-                signature.SetFeature(Svc2004.X, lines.Select(l => l[0]).ToList());
-                signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());
-                signature.SetFeature(Svc2004.T, lines.Select(l => l[2]).ToList());
-                signature.SetFeature(Svc2004.Button, lines.Select(l => l[3]).ToList());
+            //if (lines[0].Length == 4) // Task1
+            {//ezek a masodik taszkhoz is kellenek, es ne hasznaljunk kulon svc2004 feature-eket
+                signature.SetFeature(Features.X, lines.Select(l => l[0]).ToList());
+                signature.SetFeature(Features.Y, lines.Select(l => l[1]).ToList());
+                signature.SetFeature(Features.T, lines.Select(l => l[2]).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => l[3]).ToList());
             }
 
             if (lines[0].Length == 7) // Task2
             {
-                signature.SetFeature(Svc2004.Azimuth, lines.Select(l => l[4]).ToList());
-                signature.SetFeature(Svc2004.Altitude, lines.Select(l => l[5]).ToList());
-                signature.SetFeature(Svc2004.Pressure, lines.Select(l => l[6]).ToList());
+                signature.SetFeature(Features.Azimuth, lines.Select(l => l[4]).ToList());
+                signature.SetFeature(Features.Altitude, lines.Select(l => l[5]).ToList());
+                signature.SetFeature(Features.Pressure, lines.Select(l => l[6]).ToList());
             }
 
         }
