@@ -35,7 +35,9 @@ namespace SigStat.Common
 
     public interface IClassification// : IPipelineItem
     {
-        void Train(IEnumerable<Signature> signatures);
-        double Test(Signature signature);
+        double Pair(Signature signature1, Signature signature2);
+
+        //void Train(IEnumerable<Signature> signatures);
+        //double Test(Signature signature);
     }
 }

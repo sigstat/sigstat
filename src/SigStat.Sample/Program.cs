@@ -182,11 +182,15 @@ namespace SigStat.Sample
             { return p == "01"; }
             Svc2004Loader loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\");
             var  signers = new List<Signer>(loader.EnumerateSigners(signer1));
-            Signature questioned = signers[0].Signatures[0];
-            signers[0].Signatures.RemoveAt(0);
-            List<Signature> references = signers[0].Signatures;
+
+            List<Signature> references = signers[0].Signatures.GetRange(0,10);
             verifier.Train(references);
-            bool isGenuine = verifier.Test(questioned);
+
+            bool isGenuine;
+            Signature questioned1 = signers[0].Signatures[0];
+            Signature questioned2 = signers[0].Signatures[20];
+            isGenuine = verifier.Test(questioned1);//true
+            isGenuine = verifier.Test(questioned2);//false
         }
 
         static Task OnlineVerifierBenchmarkDemo()

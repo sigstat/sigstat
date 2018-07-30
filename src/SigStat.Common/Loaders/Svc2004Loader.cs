@@ -7,7 +7,7 @@ using System.Linq;
 namespace SigStat.Common.Loaders
 {
 
-    public class Svc2004
+    /*public class Svc2004
     {
         public static readonly FeatureDescriptor X = new FeatureDescriptor("X(t)", "Svc2004.X", typeof(List<int>));
         public static readonly FeatureDescriptor Y = new FeatureDescriptor("Y(t)", "Svc2004.Y", typeof(List<int>));
@@ -22,7 +22,7 @@ namespace SigStat.Common.Loaders
         public static readonly FeatureDescriptor[] Task1 = new FeatureDescriptor[] { X, Y, T, Button };
         public static readonly FeatureDescriptor[] Task2 = new FeatureDescriptor[] { X, Y, T, Button, Azimuth, Altitude, Pressure };
 
-    }
+    }*/
     public class Svc2004Loader : DataSetLoader
     {
         private struct SignatureFile
@@ -71,6 +71,7 @@ namespace SigStat.Common.Loaders
                         ID = signatureFile.SignatureID
                     };
                     LoadSignature(signature, signatureFile.File);
+                    signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
                     signer.Signatures.Add(signature);
                 }
                 yield return signer;
@@ -81,7 +82,7 @@ namespace SigStat.Common.Loaders
         {
             var lines = File.ReadAllLines(file)
                 .Skip(1)
-                .Select(l=>l.Split(' ').Select(s=>int.Parse(s)).ToArray())
+                .Select(l=>l.Split(' ').Select(s=>double.Parse(s)).ToArray())
                 .ToList();
 
 

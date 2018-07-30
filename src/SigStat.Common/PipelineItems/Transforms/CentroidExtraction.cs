@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Transforms
@@ -40,11 +41,7 @@ namespace SigStat.Common.Transforms
             foreach (var f in fs)
             {
                 var values = signature.GetFeature(f);
-                double avg = 0;
-                values.ForEach((d) => {
-                    avg += d;
-                });
-                avg /= values.Count;
+                double avg = values.Average();
                 c.Add(avg);
 
             }

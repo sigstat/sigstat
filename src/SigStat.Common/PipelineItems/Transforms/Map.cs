@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Transforms
@@ -23,15 +24,11 @@ namespace SigStat.Common.Transforms
             var values = signature.GetFeature(f);
 
             //find min and max values
-            double min = Double.PositiveInfinity;
-            double max = Double.NegativeInfinity;
-            values.ForEach((d) => {
-                min = Math.Min(min, d);
-                max = Math.Max(max, d);
-            });
+            double min = values.Min();
+            double max = values.Max();
 
             //min lesz v0, max lesz v1
-            for(int i = 0; i < values.Count; i++)
+            for (int i = 0; i < values.Count; i++)
             { 
                 double t = (values[i] - min) / (max - min);//0-1
                 values[i] = (1.0 - t) * v0 + t * v1;//lerp

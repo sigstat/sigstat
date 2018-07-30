@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Transforms
@@ -27,12 +28,8 @@ namespace SigStat.Common.Transforms
         {
             List<double> values = signature.GetFeature(f);
             //find min and max values
-            double min = Double.PositiveInfinity;
-            double max = Double.NegativeInfinity;
-            values.ForEach((d) => {
-                min = Math.Min(min, d);
-                max = Math.Max(max, d);
-            });
+            double min = values.Min();
+            double max = values.Max();
 
             signature[minfd] = new List<double> { min };//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
             signature[maxfd] = new List<double> { max };

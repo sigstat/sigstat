@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
@@ -9,7 +10,6 @@ namespace SigStat.Common.PipelineItems.Classifiers
     public class DTWClassifier : IClassification, IEnumerable
     {
         private readonly List<FeatureDescriptor> fs = new List<FeatureDescriptor>();
-        private List<Signature> training = new List<Signature>();
         DTW dtwalg;
 
         public DTWClassifier()
@@ -32,25 +32,20 @@ namespace SigStat.Common.PipelineItems.Classifiers
             fs.Add(f);
         }
 
-        public double Test(Signature signature)
+        public double Pair(Signature signature1, Signature signature2)
         {
-            double[][] testsig = signature.GetAggregateFeature(fs).ToArray();
-            double[] results = new double[training.Count];
-            for (int i = 0; i < training.Count; i++)
-                results[i] = dtwalg.Compute(testsig, training[i].GetAggregateFeature(fs).ToArray()).cost;
-            double atlag = 0;
-            foreach (double d in results)
-                atlag += d;
-            atlag /= results.Length;
-            return atlag;
+            double[][] testsig1 = signature1.GetAggregateFeature(fs).ToArray();
+            double[][] testsig2 = signature2.GetAggregateFeature(fs).ToArray();
+            return dtwalg.Compute(testsig1, testsig2).cost;
+
         }
 
-        public void Train(IEnumerable<Signature> signatures)
+        /*public void Train(IEnumerable<Signature> signatures)
         {
             training.Clear();
             training.AddRange(signatures);
             //TODO: calculate limit, etc. here
-        }
+        }*/
 
     }
 }
