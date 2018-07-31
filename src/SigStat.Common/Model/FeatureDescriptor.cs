@@ -25,7 +25,8 @@ namespace SigStat.Common
         {
             if (descriptors.ContainsKey(key))
             {
-                throw new InvalidOperationException($"A descriptor with key '{key}' has already been registered. Choose an other key for your descriptor or use FeatureDescriptor.GetDescriptor() to get a reference to the existing one.");
+                return;//nem baj, ha mar van ilyen. Akkor ne csinaljunk semmit
+                //throw new InvalidOperationException($"A descriptor with key '{key}' has already been registered. Choose an other key for your descriptor or use FeatureDescriptor.GetDescriptor() to get a reference to the existing one.");
             }
             Name = name;
             Key = key;
@@ -36,9 +37,8 @@ namespace SigStat.Common
 
         public static FeatureDescriptor GetDescriptor(string key)
         {
-            return descriptors[key];
+             return descriptors[key];
         }
-
 
         public static string GetKey(Type featureType)
         {

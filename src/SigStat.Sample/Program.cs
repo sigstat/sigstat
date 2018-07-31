@@ -166,7 +166,7 @@ namespace SigStat.Sample
                     },
                     {
                         (new DTWClassifier(){
-                            FeatureDescriptor.GetDescriptor("Tangent")//Features.Tangent
+                            FeatureDescriptor<List<double>>.Descriptor("Tangent")//Features.Tangent
                         }, 0.55)
                     },
                     //{
@@ -197,36 +197,41 @@ namespace SigStat.Sample
             bool isGenuine2 = verifier.Test(questioned2);//false
         }
 
-        static Task OnlineVerifierBenchmarkDemo()
+        static async Task OnlineVerifierBenchmarkDemo()
         {
-            //var benchmark = new VerifierBenchmark()
-            //{
-            //    Loader = new Svc2004Loader(),
-            //    Verifier = new BasicVerifier(),
-            //    SampleSelectionStrategy = new ConstantSelectionStrategy(
-            //           s => s.Signatures.Where(s => s.IsOriginal).Take(10),
-            //           s => s.Signatures.Where(s => s.IsOriginal).Skip(10).Take(10),
-            //           s => s.Signatures.Where(s => !s.IsOriginal).Take(10)),
-            //    Logger = Log,
-            //    Progress = Progress
-            //};
+            var benchmark = new VerifierBenchmark()
+            {
+                Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\"),
+                Verifier = Verifier.BasicVerifier,
+                SampleSelectionStrategy = (10, 10, 10),
+                Log = Log,
+                Progress = Progress
+            };
             //var result = await benchmark.ExecuteAsync();
-            //foreach (var signerResults in result.SignerResults)
-            //{
-            //    Console.WriteLine($"{signerResults.Signer} AER: {signerResults.Aer}");
-            //}
-            //Console.WriteLine($"AER: {result.Aer}");
-            return Task.CompletedTask;
+            var result = benchmark.Execute();
+            /*foreach (var signerResults in result.SignerResults)
+            {
+                Console.WriteLine($"{signerResults.Signer}");
+                Console.WriteLine($"FRR: {signerResults.FRR}");
+                Console.WriteLine($"FAR: {signerResults.FAR}");
+                Console.WriteLine($"AER: {signerResults.AER}");
+                Console.WriteLine($"EER: {signerResults.EER}");
+            }*/
+            Console.WriteLine("Final results: ");
+            Console.WriteLine($"FRR: {result.final.FRR}");
+            Console.WriteLine($"FAR: {result.final.FAR}");
+            Console.WriteLine($"AER: {result.final.AER}");
+            Console.WriteLine($"EER: {result.final.EER}");
         }
 
-        public void Log(string message)
+        public static void Log(string message)
         {
-
+            Console.WriteLine(message);
         }
 
-        public void Progress(int progrees)
+        public static void Progress(int progress)
         {
-
+            Console.WriteLine($"Progress: {progress}%");
         }
     }
 }

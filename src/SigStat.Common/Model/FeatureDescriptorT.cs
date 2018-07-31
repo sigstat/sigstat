@@ -9,14 +9,16 @@ namespace SigStat.Common
         private FeatureDescriptor(string name, string key, Type featureType) : base(name, key, featureType)
         {
         }
-        public FeatureDescriptor(string name, string key) : base(name, key, typeof(T))
+        private FeatureDescriptor(string name, string key) : base(name, key, typeof(T))
         {
 
         }
 
-        public new static FeatureDescriptor<T> GetDescriptor(string key)
+        public static FeatureDescriptor<T> Descriptor(string key)
         {
-            return (FeatureDescriptor<T>)descriptors[key];
+            if (descriptors.ContainsKey(key))
+                return (FeatureDescriptor<T>)descriptors[key];
+            return new FeatureDescriptor<T>(key, key);//ha meg nincs ilyen, akkor csinalunk
         }
 
     }

@@ -12,7 +12,7 @@ namespace SigStat.Common.Transforms
             //itt letre kell hozni azt a feature descriptort, amit ki fog szamolni. 
             //Kulonben a kesobbi pipeline elemek inicializalasanal nem talalnank.
             //TODO: ezt talan lehetne automatizalni: Ha olyan feature descriptort kerunk le ami nincs, akkor letrehozzuk
-            tangentfd = new FeatureDescriptor<List<double>>("Tangent", "Tangent");
+            tangentfd = FeatureDescriptor<List<double>>.Descriptor("Tangent");//new FeatureDescriptor<List<double>>("Tangent", "Tangent");
         }
 
         public void Transform(Signature signature)

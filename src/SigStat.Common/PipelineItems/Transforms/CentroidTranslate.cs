@@ -25,9 +25,9 @@ namespace SigStat.Common.Transforms
                 },
                 new Multiply
                 {
-                    (FeatureDescriptor<List<double>>.GetDescriptor("Centroid"), -1.0)//TODO ez tul hosszu
+                    (FeatureDescriptor<List<double>>.Descriptor("Centroid"), -1.0)//TODO ez tul hosszu
                 },
-                new Translate(FeatureDescriptor<List<double>>.GetDescriptor("Centroid"))
+                new Translate(FeatureDescriptor<List<double>>.Descriptor("Centroid"))
             };
         }
 

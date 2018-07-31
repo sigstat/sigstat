@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SigStat.Common.PipelineItems.Classifiers;
+using SigStat.Common.Transforms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,5 +54,16 @@ namespace SigStat.Common.Model
             return avg < limit;
         }
 
+        public static Verifier BasicVerifier
+        {
+            get
+            {
+                return new Verifier()
+                {
+                    TransformPipeline = new TangentExtraction(),
+                    ClassifierPipeline = new DTWClassifier() { FeatureDescriptor<List<double>>.Descriptor("Tangent") }
+                };
+            }
+        }
     }
 }

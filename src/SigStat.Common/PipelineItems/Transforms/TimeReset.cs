@@ -22,15 +22,15 @@ namespace SigStat.Common.Transforms
                 new Extrema(Features.T, "TMin", "TMax"),
                 new Multiply
                 {
-                    (FeatureDescriptor/*<List<double>>*/.GetDescriptor("TMin"),-1.0)
+                    (FeatureDescriptor<List<double>>.Descriptor("TMin"),-1.0)
                 },
-                new Addition(FeatureDescriptor<List<double>>.GetDescriptor("TMin"))
+                new Addition(FeatureDescriptor<List<double>>.Descriptor("TMin"))
                 {
                     Features.T
                 },
                 new Multiply
                 {//ezt ugy is lehetne pl hogy egy TMin_Neg featuret hozzaadunk, de ugyse kell kesobb..
-                    (FeatureDescriptor/*<List<double>>*/.GetDescriptor("TMin"),-1.0)
+                    (FeatureDescriptor<List<double>>.Descriptor("TMin"),-1.0)
                 },
             };
         }

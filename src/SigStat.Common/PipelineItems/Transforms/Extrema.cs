@@ -20,8 +20,8 @@ namespace SigStat.Common.Transforms
             //itt letre kell hozni azt a feature descriptort, amit ki fog szamolni. 
             //Kulonben a kesobbi pipeline elemek inicializalasanal nem talalnank.
             //TODO: ezt talan lehetne automatizalni: Ha olyan feature descriptort kerunk le ami nincs, akkor letrehozzuk
-            minfd = new FeatureDescriptor<List<double>>(minFeatureName, minFeatureName);
-            maxfd = new FeatureDescriptor<List<double>>(maxFeatureName, maxFeatureName);
+            minfd = FeatureDescriptor<List<double>>.Descriptor(minFeatureName);
+            maxfd = FeatureDescriptor<List<double>>.Descriptor(maxFeatureName);
         }
 
         public void Transform(Signature signature)
