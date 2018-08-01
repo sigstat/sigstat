@@ -3,6 +3,7 @@ using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
+using SigStat.Common.PipelineItems.Markers;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
@@ -134,6 +135,7 @@ namespace SigStat.Sample
             {
                 TransformPipeline = new SequentialTransformPipeline
                 {
+                    new TimeMarkerStart(FeatureDescriptor<DateTime>.Descriptor("Timer1")),
                     /*new ParallelTransformPipeline
                     {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
                         new Map(10,20, Features.X),
@@ -150,6 +152,8 @@ namespace SigStat.Sample
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
+                    new TimeMarkerStop(FeatureDescriptor<DateTime>.Descriptor("Timer1")),
+                    new LogMarker(Log, FeatureDescriptor<DateTime>.Descriptor("Timer1"))
                 },
                 ClassifierPipeline = new WeightedClassifier
                 {
@@ -199,6 +203,7 @@ namespace SigStat.Sample
 
         static async Task OnlineVerifierBenchmarkDemo()
         {
+
             var benchmark = new VerifierBenchmark()
             {
                 Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\"),
