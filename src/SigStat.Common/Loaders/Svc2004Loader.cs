@@ -82,17 +82,14 @@ namespace SigStat.Common.Loaders
         {
             var lines = File.ReadAllLines(file)
                 .Skip(1)
-                .Select(l=>l.Split(' ').Select(s=>double.Parse(s)).ToArray())
+                .Select(l => l.Split(' ').Select(s => double.Parse(s)).ToArray())
                 .ToList();
 
-
-            //if (lines[0].Length == 4) // Task1
-            {//ezek a masodik taszkhoz is kellenek, es ne hasznaljunk kulon svc2004 feature-eket
-                signature.SetFeature(Features.X, lines.Select(l => l[0]).ToList());
-                signature.SetFeature(Features.Y, lines.Select(l => l[1]).ToList());
-                signature.SetFeature(Features.T, lines.Select(l => l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[3]).ToList());
-            }
+            // Task1, Task2
+            signature.SetFeature(Features.X, lines.Select(l => l[0]).ToList());
+            signature.SetFeature(Features.Y, lines.Select(l => l[1]).ToList());
+            signature.SetFeature(Features.T, lines.Select(l => l[2]).ToList());
+            signature.SetFeature(Features.Button, lines.Select(l => l[3]).ToList());
 
             if (lines[0].Length == 7) // Task2
             {

@@ -131,11 +131,13 @@ namespace SigStat.Sample
 
         static void OnlineVerifierDemo()
         {
+            var timer1 = FeatureDescriptor<DateTime>.Descriptor("Timer1");
+
             var verifier = new Verifier()
             {
                 TransformPipeline = new SequentialTransformPipeline
                 {
-                    new TimeMarkerStart(FeatureDescriptor<DateTime>.Descriptor("Timer1")),
+                    new TimeMarkerStart(timer1),
                     /*new ParallelTransformPipeline
                     {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
                         new Map(10,20, Features.X),
@@ -152,8 +154,8 @@ namespace SigStat.Sample
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
-                    new TimeMarkerStop(FeatureDescriptor<DateTime>.Descriptor("Timer1")),
-                    new LogMarker(Log, FeatureDescriptor<DateTime>.Descriptor("Timer1"))
+                    new TimeMarkerStop(timer1),
+                    new LogMarker(Log, timer1)
                 },
                 ClassifierPipeline = new WeightedClassifier
                 {
@@ -223,10 +225,10 @@ namespace SigStat.Sample
                 Console.WriteLine($"EER: {signerResults.EER}");
             }*/
             Console.WriteLine("Final results: ");
-            Console.WriteLine($"FRR: {result.final.FRR}");
-            Console.WriteLine($"FAR: {result.final.FAR}");
-            Console.WriteLine($"AER: {result.final.AER}");
-            Console.WriteLine($"EER: {result.final.EER}");
+            Console.WriteLine($"FRR: {result.final.Frr}");
+            Console.WriteLine($"FAR: {result.final.Far}");
+            Console.WriteLine($"AER: {result.final.Aer}");
+            Console.WriteLine($"EER: {result.final.Eer}");
         }
 
         public static void Log(string message)

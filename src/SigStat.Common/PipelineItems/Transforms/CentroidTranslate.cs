@@ -10,6 +10,7 @@ namespace SigStat.Common.Transforms
     /// Custom transzformáció X és Y featureon, az alábbi pipeline elemekből:
     /// CentroidExtraction, Multiply -1, Translate
     /// </summary>
+
     public class CentroidTranslate : SequentialTransformPipeline
     {
         private new void Add(ITransformation newitem) { }//TODO erre jobbat kitalalni, pl. pipeline ososztaly

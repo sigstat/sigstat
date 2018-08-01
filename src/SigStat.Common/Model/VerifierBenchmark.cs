@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using SigStat.Common.Loaders;
+using System.Linq;
 
 namespace SigStat.Common.Model
 {
     public struct Result
     {
         public readonly string Signer;
-        public readonly double FRR;
-        public readonly double FAR;
-        public readonly double AER;
-        public readonly double EER;
+        public readonly double Frr;
+        public readonly double Far;
+        public readonly double Aer;
+        public readonly double Eer;
 
-        public Result(string signer, double fRR, double fAR, double aER, double eER)
+        public Result(string signer, double frr, double far, double aer, double eer)
         {
             Signer = signer;
-            FRR = fRR;
-            FAR = fAR;
-            AER = aER;
-            EER = eER;
+            Frr = frr;
+            Far = far;
+            Aer = aer;
+            Eer = eer;
         }
     }
 
