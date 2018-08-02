@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SigStat.Common.Loaders;
 using System.Linq;
+using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Model
 {
@@ -40,7 +41,7 @@ namespace SigStat.Common.Model
         public IDataSetLoader Loader;
         public Verifier Verifier;
         public Sampler Sampler;
-        public Action<string> Log;
+        public Logger Log;
         public Action<int> Progress;
 
         public VerifierBenchmark()
@@ -61,9 +62,9 @@ namespace SigStat.Common.Model
             double far_acc = 0;
             double frr_acc = 0;
 
-            Log("Loading data..");
+            Log.Info(this, "Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners(null));
-            Log(signers.Count + " signers found. Benchmarking..");
+            Log.Info(this, signers.Count + " signers found. Benchmarking..");
             for(int i = 0; i < signers.Count; i++)
             {
                 Sampler.Init(signers[i]);

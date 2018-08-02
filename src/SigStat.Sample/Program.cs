@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
@@ -211,7 +212,7 @@ namespace SigStat.Sample
                 Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Log = Log,
+                Log = new Logger(LogLevel.Debug, Log),
                 Progress = Progress
             };
             //var result = await benchmark.ExecuteAsync();
