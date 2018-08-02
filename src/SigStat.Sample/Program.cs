@@ -210,7 +210,7 @@ namespace SigStat.Sample
             {
                 Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true),
                 Verifier = Verifier.BasicVerifier,
-                SampleSelectionStrategy = (10, 10, 10),
+                Sampler = Sampler.BasicSampler,
                 Log = Log,
                 Progress = Progress
             };

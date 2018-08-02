@@ -39,9 +39,16 @@ namespace SigStat.Common.Model
     {
         public IDataSetLoader Loader;
         public Verifier Verifier;
-        public (int train_count, int test_genuine_count, int test_forgery_count) SampleSelectionStrategy;
+        public Sampler Sampler;
         public Action<string> Log;
         public Action<int> Progress;
+
+        public VerifierBenchmark()
+        {
+            //ha nem allit be kulon semmit, akkor ez legyen a default
+            Verifier = Verifier.BasicVerifier;
+            Sampler = Sampler.BasicSampler;
+        }
 
         public async Task<int> ExecuteAsync()
         {
@@ -59,27 +66,29 @@ namespace SigStat.Common.Model
             Log(signers.Count + " signers found. Benchmarking..");
             for(int i = 0; i < signers.Count; i++)
             {
-                List<Signature> references = signers[i].Originals.GetRange(0, SampleSelectionStrategy.train_count);
-                List<Signature> test_genuines = signers[i].Originals.GetRange(SampleSelectionStrategy.train_count, SampleSelectionStrategy.test_genuine_count);
-                List<Signature> test_forgeries = signers[i].Forgeries.GetRange(0, SampleSelectionStrategy.test_forgery_count);
+                Sampler.Init(signers[i]);
+                List<Signature> references = Sampler.SampleReferences();
+                List<Signature> genuineTests = Sampler.SampleGenuineTests();
+                List<Signature> forgeryTests = Sampler.SampleForgeryTests();
                 //catch: nem volt eleg alairas a benchmarkhoz
+
                 Verifier.Train(references);
 
                 //FRR: false rejection rate
                 //FRR = elutasított eredeti / összes eredeti
                 int false_reject_cnt = 0;
-                foreach (Signature genuine in test_genuines)
+                foreach (Signature genuine in genuineTests)
                     if (!Verifier.Test(genuine))
                         false_reject_cnt++;//eredeti alairast hamisnak hisz
-                double FRR = false_reject_cnt / (double)test_genuines.Count;
+                double FRR = false_reject_cnt / (double)genuineTests.Count;
 
                 //FAR: false acceptance rate
                 //FAR = elfogadott hamis / összes hamis
                 int false_accept_cnt = 0;
-                foreach (Signature forgery in test_forgeries)
+                foreach (Signature forgery in forgeryTests)
                     if (Verifier.Test(forgery))
                         false_accept_cnt++;//hamis alairast eredetinek hisz
-                double FAR = false_accept_cnt / (double)test_forgeries.Count;
+                double FAR = false_accept_cnt / (double)forgeryTests.Count;
 
                 //AER: average error rate
                 double AER = (FRR + FAR) / 2.0;

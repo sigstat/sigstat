@@ -11,7 +11,8 @@ namespace SigStat.Common
         public string ID { get; set; }
         public virtual List<Signature> Signatures { get; set; } = new List<Signature>();
 
-        public List<Signature> Originals
+        //ezt cachelni kene, de azzal is lennenek bajok. Inkabb a Sampler osztaly megoldja
+        /*public List<Signature> Originals
         {
             get => Signatures.FindAll((s) => s.Origin == Origin.Genuine); 
         }
@@ -19,7 +20,7 @@ namespace SigStat.Common
         public List<Signature> Forgeries
         {
             get => Signatures.FindAll((s) => s.Origin == Origin.Forged);
-        }
+        }*/
 
         public Signer() { }
     }
