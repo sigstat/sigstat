@@ -7,7 +7,7 @@ using System.Linq;
 namespace SigStat.Common.Loaders
 {
 
-    /*public class Svc2004
+    public class Svc2004
     {
         public static readonly FeatureDescriptor X = new FeatureDescriptor("X(t)", "Svc2004.X", typeof(List<int>));
         public static readonly FeatureDescriptor Y = new FeatureDescriptor("Y(t)", "Svc2004.Y", typeof(List<int>));
@@ -22,7 +22,7 @@ namespace SigStat.Common.Loaders
         public static readonly FeatureDescriptor[] Task1 = new FeatureDescriptor[] { X, Y, T, Button };
         public static readonly FeatureDescriptor[] Task2 = new FeatureDescriptor[] { X, Y, T, Button, Azimuth, Altitude, Pressure };
 
-    }*/
+    }
     public class Svc2004Loader : DataSetLoader
     {
         private struct SignatureFile
@@ -43,10 +43,12 @@ namespace SigStat.Common.Loaders
         }
 
         public string DatabasePath { get; set; }
+        public bool StandardFeatures { get; }
 
-        public Svc2004Loader(string databasePath)
+        public Svc2004Loader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
+            StandardFeatures = standardFeatures;
         }
 
 
@@ -82,22 +84,34 @@ namespace SigStat.Common.Loaders
         {
             var lines = File.ReadAllLines(file)
                 .Skip(1)
-                .Select(l => l.Split(' ').Select(s => double.Parse(s)).ToArray())
+                .Select(l => l.Split(' ').Select(s => int.Parse(s)).ToArray())
                 .ToList();
 
             // Task1, Task2
-            signature.SetFeature(Features.X, lines.Select(l => l[0]).ToList());
-            signature.SetFeature(Features.Y, lines.Select(l => l[1]).ToList());
-            signature.SetFeature(Features.T, lines.Select(l => l[2]).ToList());
-            signature.SetFeature(Features.Button, lines.Select(l => l[3]).ToList());
+            signature.SetFeature(Svc2004.X, lines.Select(l => l[0]).ToList());
+            signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());
+            signature.SetFeature(Svc2004.T, lines.Select(l => l[2]).ToList());
+            signature.SetFeature(Svc2004.Button, lines.Select(l => l[3]).ToList());
+            if (StandardFeatures)
+            {
+                signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
+                signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
+                signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => (double)l[3]).ToList());
+            }
 
             if (lines[0].Length == 7) // Task2
             {
-                signature.SetFeature(Features.Azimuth, lines.Select(l => l[4]).ToList());
-                signature.SetFeature(Features.Altitude, lines.Select(l => l[5]).ToList());
-                signature.SetFeature(Features.Pressure, lines.Select(l => l[6]).ToList());
+                signature.SetFeature(Svc2004.Azimuth, lines.Select(l => l[4]).ToList());
+                signature.SetFeature(Svc2004.Altitude, lines.Select(l => l[5]).ToList());
+                signature.SetFeature(Svc2004.Pressure, lines.Select(l => l[6]).ToList());
+                if (StandardFeatures)
+                {
+                    signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[4]).ToList());
+                    signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
+                    signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[6]).ToList());
+                }
             }
-
         }
     }
 }

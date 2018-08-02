@@ -191,7 +191,7 @@ namespace SigStat.Sample
 
             bool signer1(string p)
             { return p == "01"; }
-            Svc2004Loader loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\");
+            Svc2004Loader loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true);
             var  signers = new List<Signer>(loader.EnumerateSigners(signer1));
 
             List<Signature> references = signers[0].Signatures.GetRange(0,10);
@@ -208,7 +208,7 @@ namespace SigStat.Sample
 
             var benchmark = new VerifierBenchmark()
             {
-                Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\"),
+                Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true),
                 Verifier = Verifier.BasicVerifier,
                 SampleSelectionStrategy = (10, 10, 10),
                 Log = Log,
