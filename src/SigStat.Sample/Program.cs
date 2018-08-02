@@ -222,13 +222,11 @@ namespace SigStat.Sample
                 Console.WriteLine($"FRR: {signerResults.FRR}");
                 Console.WriteLine($"FAR: {signerResults.FAR}");
                 Console.WriteLine($"AER: {signerResults.AER}");
-                Console.WriteLine($"EER: {signerResults.EER}");
             }*/
             Console.WriteLine("Final results: ");
-            Console.WriteLine($"FRR: {result.final.Frr}");
-            Console.WriteLine($"FAR: {result.final.Far}");
-            Console.WriteLine($"AER: {result.final.Aer}");
-            Console.WriteLine($"EER: {result.final.Eer}");
+            Console.WriteLine($"FRR: {result.FinalResult.Frr}");
+            Console.WriteLine($"FAR: {result.FinalResult.Far}");
+            Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
         public static void Log(string message)

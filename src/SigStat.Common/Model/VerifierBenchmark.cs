@@ -13,15 +13,25 @@ namespace SigStat.Common.Model
         public readonly double Frr;
         public readonly double Far;
         public readonly double Aer;
-        public readonly double Eer;
 
-        public Result(string signer, double frr, double far, double aer, double eer)
+        public Result(string signer, double frr, double far, double aer)
         {
             Signer = signer;
             Frr = frr;
             Far = far;
             Aer = aer;
-            Eer = eer;
+        }
+    }
+
+    public struct BenchmarkResults
+    {
+        public readonly List<Result> SignerResults;
+        public readonly Result FinalResult;
+
+        public BenchmarkResults(List<Result> signerResults, Result finalResult)
+        {
+            SignerResults = signerResults;
+            FinalResult = finalResult;
         }
     }
 
@@ -38,7 +48,7 @@ namespace SigStat.Common.Model
             throw new NotImplementedException();
         }
 
-        public (List<Result> SignerResults, Result final) Execute()
+        public BenchmarkResults Execute()
         {
             var results = new List<Result>();
             double far_acc = 0;
@@ -74,12 +84,11 @@ namespace SigStat.Common.Model
                 //AER: average error rate
                 double AER = (FRR + FAR) / 2.0;
 
-                //EER: equal error rate
-                double EER = Math.Abs(FRR - FAR);
+                //EER definicio fix: ez az az ertek amikor FAR==FRR
 
                 frr_acc += FRR;
                 far_acc += FAR;
-                results.Add(new Result(signers[i].ID, FRR, FAR, AER, EER));
+                results.Add(new Result(signers[i].ID, FRR, FAR, AER));
 
                 Progress( (int)(i / (double)(signers.Count-1) * 100.0) );
             }
@@ -87,9 +96,8 @@ namespace SigStat.Common.Model
             double frr_final = frr_acc / signers.Count;
             double far_final = far_acc / signers.Count;
             double aer_final = (frr_final + far_final) / 2.0;
-            double eer_final = Math.Abs(frr_final - far_final);
 
-            return (results, new Result(null, frr_final, far_final, aer_final, eer_final));
+            return new BenchmarkResults(results, new Result(null, frr_final, far_final, aer_final));
         }
 
 
