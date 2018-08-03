@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
-    public class WeightedClassifier : PipelineBase, IEnumerable, IClassification
+    public class WeightedClassifier : PipelineBase, IEnumerable, IClassification, IProgress
     {
         public List<(IClassification classifier, double weight)> Items = new List<(IClassification classifier, double weight)>();
 
@@ -20,6 +20,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 Items.ForEach(i => i.classifier.Logger = _logger);
             }
         }
+
+        public event EventHandler<int> ProgressChanged = delegate { };
 
         public IEnumerator GetEnumerator()
         {
@@ -41,7 +43,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             for (int i = 0; i < Items.Count; i++)
             {
                 score += Items[i].classifier.Pair(signature1, signature2) * Items[i].weight;
-                //TODO: progress szamolas
+                ProgressChanged(this, (int)(i / (double)(Items.Count - 1) * 100.0));
             }
             return score;
         }

@@ -36,11 +36,10 @@ namespace SigStat.Common.Model
         }
     }
 
-    public class VerifierBenchmark
+    public class VerifierBenchmark : ILogger, IProgress
     {
         public IDataSetLoader Loader;
         public Sampler Sampler;
-        public Action<int> Progress;
 
         private Verifier _verifier;
         public Verifier Verifier { get => _verifier;
@@ -61,6 +60,9 @@ namespace SigStat.Common.Model
                     Verifier.Logger = _log;
             }
         }
+
+        public event EventHandler<int> ProgressChanged = delegate { };
+
         protected void Log(LogLevel level, string message)
         {
             if (_log != null)
@@ -126,7 +128,7 @@ namespace SigStat.Common.Model
                 far_acc += FAR;
                 results.Add(new Result(signers[i].ID, FRR, FAR, AER));
 
-                Progress( (int)(i / (double)(signers.Count-1) * 100.0) );
+                ProgressChanged(this, (int)(i / (double)(signers.Count - 1) * 100.0));
             }
 
             double frr_final = frr_acc / signers.Count;

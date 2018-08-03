@@ -37,6 +37,22 @@ namespace SigStat.Common.Helpers
             };
         }
 
+        public Logger(LogLevel level, Stream outputStream, Action<string> output)
+        {
+            this.Level = level;
+            sw = new StreamWriter(outputStream);
+            sw.AutoFlush = true;
+            OutputAction = (s) => {
+                if (sw != null)
+                    sw.WriteLine(s);
+                output(s);
+            };
+        }
+
+        /// <summary>
+        /// Ezzel elvehetjuk a konzol outputot.
+        /// </summary>
+        /// <param name="level"></param>
         public Logger(LogLevel level)
         {
             this.Level = level;

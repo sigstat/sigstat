@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.Common.Pipeline
 {
-    public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
+    public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation, IProgress
     {
         public List<ITransformation> Items = new List<ITransformation>();
 
@@ -21,6 +21,8 @@ namespace SigStat.Common.Pipeline
                 Items.ForEach(i => i.Logger = _logger);
             }
         }
+
+        public event EventHandler<int> ProgressChanged = delegate { };
 
         public IEnumerator GetEnumerator()
         {

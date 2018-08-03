@@ -29,7 +29,7 @@ namespace SigStat.Common
         void Test(Signature signature);
     }*/
 
-    public class PipelineBase : ILogger
+    public abstract class PipelineBase : ILogger
     {
         public Logger Logger { get; set; }
 

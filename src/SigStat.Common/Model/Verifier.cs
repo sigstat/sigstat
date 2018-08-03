@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SigStat.Common.Model
 {
-    public class Verifier
+    public class Verifier : ILogger, IProgress
     {
         private ITransformation _tp;
         public ITransformation TransformPipeline { get => _tp; set { _tp = value; _tp.Logger = Logger; } }
@@ -34,6 +34,8 @@ namespace SigStat.Common.Model
             if (_log != null)
                 _log.AddEntry(level, this, message);
         }
+
+        public event EventHandler<int> ProgressChanged = delegate { };
 
         public Verifier()
         {
@@ -84,7 +86,7 @@ namespace SigStat.Common.Model
             for (int i = 0; i < genuines.Count; i++)
             {
                 vals[i] = ClassifierPipeline.Pair(sig, genuines[i]);
-                //progress++
+                ProgressChanged(this, (int)(i / (double)(genuines.Count - 1) * 100.0));
             }
             double avg = vals.Average();
             Log(LogLevel.Debug, $"Verification SignatureID {sig.ID} result: { (avg < limit ? Origin.Genuine : Origin.Forged) }");

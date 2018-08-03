@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace SigStat.Sample
@@ -59,7 +60,7 @@ namespace SigStat.Sample
 
             // Generikus függvény + Típus
             sig["Loop"] = sampleLoops;
-            sig["X"] = new List<double>() { 1,2,3};
+            sig["X"] = new List<double>() { 1, 2, 3 };
             sig["Bounds"] = new RectangleF();
 
             var f1 = (List<Loop>)sig["Loop"];
@@ -68,7 +69,7 @@ namespace SigStat.Sample
             //var xt = sig.GetFeature(Features.X);
             sig.GetFeatures<Loop>();
 
-            
+
 
             Loop loop = sig.GetFeature<Loop>(1);
             List<Loop> loops = sig.GetFeatures<Loop>();
@@ -194,9 +195,9 @@ namespace SigStat.Sample
             bool signer1(string p)
             { return p == "01"; }
             Svc2004Loader loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true);
-            var  signers = new List<Signer>(loader.EnumerateSigners(signer1));
+            var signers = new List<Signer>(loader.EnumerateSigners(signer1));
 
-            List<Signature> references = signers[0].Signatures.GetRange(0,10);
+            List<Signature> references = signers[0].Signatures.GetRange(0, 10);
             verifier.Train(references);
 
             Signature questioned1 = signers[0].Signatures[0];
@@ -213,21 +214,17 @@ namespace SigStat.Sample
                 Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Logger = new Logger(LogLevel.Info, LogConsole),
-                Progress = Progress
+                Logger = new Logger(LogLevel.Debug, new FileStream($@"D:\Benchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
+                //ProgressChanged += ProgressConsole//ezt itt nem lehet
             };
+
+            benchmark.ProgressChanged += ProgressBenchmark;
+            benchmark.Verifier.ProgressChanged += ProgressVerifier;
+
             //var result = await benchmark.ExecuteAsync();
             var result = benchmark.Execute();
-            /*foreach (var signerResults in result.SignerResults)
-            {
-                Console.WriteLine($"{signerResults.Signer}");
-                Console.WriteLine($"FRR: {signerResults.FRR}");
-                Console.WriteLine($"FAR: {signerResults.FAR}");
-                Console.WriteLine($"AER: {signerResults.AER}");
-            }*/
-            Console.WriteLine("Final results: ");
-            Console.WriteLine($"FRR: {result.FinalResult.Frr}");
-            Console.WriteLine($"FAR: {result.FinalResult.Far}");
+
+            //result.SignerResults...
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
@@ -236,9 +233,26 @@ namespace SigStat.Sample
             Console.WriteLine(message);
         }
 
-        public static void Progress(int progress)
+        public static void ProgressConsole(object sender, int progress)
         {
-            Console.WriteLine($"Progress: {progress}%");
+            Console.WriteLine($"{sender.ToString()} Progress: {progress}%");
+        }
+
+        static int benchmarkP = 0;
+        static int verifierP = 0;
+        public static void ProgressBenchmark(object sender, int progress)
+        {
+            benchmarkP = progress;
+            SetTitleProgress();
+        }
+        public static void ProgressVerifier(object sender, int progress)
+        {
+            verifierP = progress;
+            SetTitleProgress();
+        }
+        public static void SetTitleProgress()
+        {
+            Console.Title = $"Benchmark: {benchmarkP}% | Verifier: {verifierP}%";
         }
     }
 }
