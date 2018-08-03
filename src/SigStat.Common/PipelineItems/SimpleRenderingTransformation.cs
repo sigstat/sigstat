@@ -9,13 +9,14 @@ using SixLabors.ImageSharp.Processing.Drawing;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing.Drawing.Pens;
 using SixLabors.Primitives;
+using SigStat.Common.Helpers;
 
 namespace Alairas.Common
 {
     /// <summary>
     /// Renders an image of the signature based on the available online information (X,Y,Dpi)
     /// </summary>
-    public class SimpleRenderingTransformation : ITransformation
+    public class SimpleRenderingTransformation : PipelineBase, ITransformation
     {
         public void Transform(Signature signature)
         {

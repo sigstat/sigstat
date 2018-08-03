@@ -1,4 +1,5 @@
-﻿using SigStat.Common.PipelineItems.Classifiers;
+﻿using SigStat.Common.Helpers;
+using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,30 @@ namespace SigStat.Common.Model
 {
     public class Verifier
     {
-        public ITransformation TransformPipeline { get; set; }
-        public IClassification ClassifierPipeline { get; set; }
+        private ITransformation _tp;
+        public ITransformation TransformPipeline { get => _tp; set { _tp = value; _tp.Logger = Logger; } }
+
+        private IClassification _cp;
+        public IClassification ClassifierPipeline { get => _cp; set { _cp = value; _cp.Logger = Logger; } }
+
         double limit;
         List<Signature> genuines;
+
+        private Logger _log;//TODO: ezzel kezdeni valamit
+        public Logger Logger { get => _log;
+            set {
+                _log = value;
+                if(_tp != null)
+                    _tp.Logger = _log;
+                if(_cp != null)
+                    _cp.Logger = _log;
+            }
+        }
+        protected void Log(LogLevel level, string message)
+        {
+            if (_log != null)
+                _log.AddEntry(level, this, message);
+        }
 
         public Verifier()
         {
@@ -21,28 +42,43 @@ namespace SigStat.Common.Model
 
         public void Train(Signer signer)
         {
-            Train(signer.Signatures);
+            Train(signer.Signatures.FindAll((s) => s.Origin == Origin.Genuine));
         }
 
         public void Train(List<Signature> sigs)
         {
-            //pl. constraint hogy csak Genuine-okkal tudjunk trainelni (?)
+            Log(LogLevel.Info, $"Training started with {sigs.Count} signatures.");
+            genuines = new List<Signature>(sigs);
 
-            sigs.ForEach((sig) => {
-                TransformPipeline.Transform(sig);
+            //constraint hogy csak Genuine-okkal tudjunk trainelni
+            genuines.ForEach((sig) =>
+            {
+                if (sig.Origin != Origin.Genuine)
+                    Log(LogLevel.Warn, $"Training with a non-genuine signature. ID: {sig.ID}");
             });
 
-            //optimize limit with genuine sigs
-            genuines = sigs.FindAll((s) => s.Origin == Origin.Genuine);
+            genuines.ForEach((sig) =>
+            {
+                TransformPipeline.Transform(sig);
+            });
+            Log(LogLevel.Debug, "Signatures transformed.");
+
+            //optimize limit
             limit = new ApproximateLimit(ClassifierPipeline).Calculate(genuines);
 
             //TODO: egyeb optimizalasi lehetosegek
-            
+
+            Log(LogLevel.Debug, $"Limit approximation: {limit}");
+            Log(LogLevel.Info, "Training finished.");
+
         }
 
         public bool Test(Signature sig)
         {
+            Log(LogLevel.Info, $"Verification SignatureID {sig.ID} in progress.");
+
             TransformPipeline.Transform(sig);
+            Log(LogLevel.Debug, "Signature transformed. Classifying..");
 
             double[] vals = new double[genuines.Count];
             for (int i = 0; i < genuines.Count; i++)
@@ -51,6 +87,8 @@ namespace SigStat.Common.Model
                 //progress++
             }
             double avg = vals.Average();
+            Log(LogLevel.Debug, $"Verification SignatureID {sig.ID} result: { (avg < limit ? Origin.Genuine : Origin.Forged) }");
+            Log(LogLevel.Info, $"Verification SignatureID {sig.ID}  finished.");
             return avg < limit;
         }
 

@@ -1,13 +1,25 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
-    public class WeightedClassifier : IEnumerable, IClassification
+    public class WeightedClassifier : PipelineBase, IEnumerable, IClassification
     {
         public List<(IClassification classifier, double weight)> Items = new List<(IClassification classifier, double weight)>();
+
+        private Logger _logger;
+        public new Logger Logger
+        {
+            get => _logger;
+            set
+            {
+                _logger = value;
+                Items.ForEach(i => i.classifier.Logger = _logger);
+            }
+        }
 
         public IEnumerator GetEnumerator()
         {
@@ -16,6 +28,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
         public void Add((IClassification classifier, double weight) newitem)
         {
+            if (_logger != null)
+                newitem.classifier.Logger = _logger;
             Items.Add(newitem);
         }
 

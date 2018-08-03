@@ -18,6 +18,7 @@ namespace SigStat.Common
         {
             if (descriptors.ContainsKey(key))
                 return (FeatureDescriptor<T>)descriptors[key];
+            //TODO: log info new descriptor created
             return new FeatureDescriptor<T>(key, key);//ha meg nincs ilyen, akkor csinalunk
         }
 

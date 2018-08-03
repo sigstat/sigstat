@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -11,9 +12,17 @@ namespace SigStat.Common.Pipeline
     /// pl. CentroidTranslate: CentroidExtraction + Multiply -1 + Translate
     /// TODO: Add() nem kene hogy latszodjon leszarmazottakban, kell egy koztes dolog
     /// </summary>
-    public class SequentialTransformPipeline : IEnumerable, ITransformation
+    public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         public List<ITransformation> Items = new List<ITransformation>();
+
+        private Logger _logger;
+        public new Logger Logger { get => _logger;
+            set {
+                _logger = value;
+                Items.ForEach(i => i.Logger = _logger);
+            }
+        }
 
         public IEnumerator GetEnumerator()
         {
@@ -22,6 +31,8 @@ namespace SigStat.Common.Pipeline
 
         public void Add(ITransformation newitem)
         {
+            if (_logger != null)
+                newitem.Logger = _logger;
             Items.Add(newitem);
         }
 

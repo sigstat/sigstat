@@ -136,6 +136,7 @@ namespace SigStat.Sample
 
             var verifier = new Verifier()
             {
+                Logger = new Logger(LogLevel.Info, LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new TimeMarkerStart(timer1),
@@ -156,7 +157,7 @@ namespace SigStat.Sample
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                     new TimeMarkerStop(timer1),
-                    new LogMarker(Log, timer1)
+                    new LogMarker(LogLevel.Info, timer1)
                 },
                 ClassifierPipeline = new WeightedClassifier
                 {
@@ -212,7 +213,7 @@ namespace SigStat.Sample
                 Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Log = new Logger(LogLevel.Debug, Log),
+                Logger = new Logger(LogLevel.Info, LogConsole),
                 Progress = Progress
             };
             //var result = await benchmark.ExecuteAsync();
@@ -230,7 +231,7 @@ namespace SigStat.Sample
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
-        public static void Log(string message)
+        public static void LogConsole(string message)
         {
             Console.WriteLine(message);
         }

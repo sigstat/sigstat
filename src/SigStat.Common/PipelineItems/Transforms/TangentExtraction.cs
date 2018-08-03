@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.Transforms
 {
-    public class TangentExtraction : ITransformation
+    public class TangentExtraction : PipelineBase, ITransformation
     {
         FeatureDescriptor<List<double>> tangentfd;
         public TangentExtraction()

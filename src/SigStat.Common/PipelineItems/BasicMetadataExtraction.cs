@@ -5,10 +5,11 @@ using System.Text;
 using System.IO;
 using System.Drawing;
 using SigStat.Common;
+using SigStat.Common.Helpers;
 
 namespace Alairas.Common
 {
-    public class BasicMetadataExtraction : ITransformation
+    public class BasicMetadataExtraction : PipelineBase, ITransformation
     {
         public const double Trim = 0.05;
         public void Transform(Signature signature)

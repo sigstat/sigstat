@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SigStat.Common.Transforms
     /// <summary>
     /// Similar to Map, but with 0 - 1 interval.
     /// </summary>
-    public class Normalize : ITransformation
+    public class Normalize : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<List<double>> f;
 

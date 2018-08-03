@@ -1,4 +1,5 @@
 ﻿using SigStat.Common.Algorithms;
+using SigStat.Common.Helpers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
-    public class DTWClassifier : IClassification, IEnumerable
+    public class DTWClassifier : PipelineBase, IClassification, IEnumerable
     {
         private readonly List<FeatureDescriptor> fs = new List<FeatureDescriptor>();
         DTW dtwalg;

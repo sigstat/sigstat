@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SigStat.Common.Transforms
     /// <summary>
     /// Find minimum and maximum values of given feature, add them as new features
     /// </summary>
-    public class Extrema : ITransformation
+    public class Extrema : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<List<double>> f;
         private readonly FeatureDescriptor<List<double>> minfd;
@@ -30,6 +31,8 @@ namespace SigStat.Common.Transforms
             //find min and max values
             double min = values.Min();
             double max = values.Max();
+
+            Log(LogLevel.Debug, $"SigID: {signature.ID} Min: {min} Max: {max}");
 
             signature[minfd] = new List<double> { min };//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
             signature[maxfd] = new List<double> { max };

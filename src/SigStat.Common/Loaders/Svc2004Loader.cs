@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Linq;
+using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Loaders
 {
@@ -55,6 +56,7 @@ namespace SigStat.Common.Loaders
 
         public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
         {
+            Log(LogLevel.Info, "Enumerating signers started.");
             var signatureGroups = Directory.EnumerateFiles(DatabasePath, "U*S*.txt")
                 .Select(f => new SignatureFile(f))
                 .GroupBy(sf => sf.SignerID);
@@ -78,6 +80,7 @@ namespace SigStat.Common.Loaders
                 }
                 yield return signer;
             }
+            Log(LogLevel.Info, "Enumerating signers finished.");
         }
 
         public void LoadSignature(Signature signature, string file)

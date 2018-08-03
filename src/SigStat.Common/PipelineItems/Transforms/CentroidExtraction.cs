@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace SigStat.Common.Transforms
     /// sulypont kiszamolasa, hozzaadas a Featureokhoz.
     /// Hasznos ezutan pl Translate a Centroidba.
     /// </summary>
-    public class CentroidExtraction : IEnumerable, ITransformation
+    public class CentroidExtraction : PipelineBase, IEnumerable, ITransformation
     {
         public List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
 

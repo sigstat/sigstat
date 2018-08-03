@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Markers
 {
-    public class TimeMarkerStart : ITransformation
+    public class TimeMarkerStart : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<DateTime> time_fd;
 
@@ -19,7 +20,7 @@ namespace SigStat.Common.PipelineItems.Markers
         }
     }
 
-    public class TimeMarkerStop : ITransformation
+    public class TimeMarkerStop : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<DateTime> time_fd;
 

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.Transforms
 {
-    public class Multiply : IEnumerable, ITransformation
+    public class Multiply : PipelineBase, IEnumerable, ITransformation
     {
         //melyik feature-t mennyivel szorozzuk
         private List<(FeatureDescriptor f, double m)> fms = new List<(FeatureDescriptor f, double m)>();

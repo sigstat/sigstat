@@ -10,12 +10,12 @@ using SixLabors.ImageSharp.Processing.Binarization;
 using SixLabors.ImageSharp.Processing.Filters;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
+using SigStat.Common.Helpers;
 
 namespace Alairas.Common
 {
-    public class BaseLineExtraction : ITransformation
+    public class BaseLineExtraction : PipelineBase, ITransformation
     {
-
         public void Transform(Signature signature)
         {
             var image = signature.GetFeature(Features.Image);

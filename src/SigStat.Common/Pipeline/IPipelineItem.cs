@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,12 +29,23 @@ namespace SigStat.Common
         void Test(Signature signature);
     }*/
 
-    public interface ITransformation// : IPipelineItem
+    public class PipelineBase : ILogger
+    {
+        public Logger Logger { get; set; }
+
+        protected void Log(LogLevel level, string message)
+        {
+            if(Logger!=null)
+                Logger.AddEntry(level, this, message);
+        }
+    }
+
+    public interface ITransformation : ILogger
     {
         void Transform(Signature signature);
     }
 
-    public interface IClassification// : IPipelineItem
+    public interface IClassification : ILogger
     {
         double Pair(Signature signature1, Signature signature2);
 

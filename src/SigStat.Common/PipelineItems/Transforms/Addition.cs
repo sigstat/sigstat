@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.Transforms
 {
-    public class Addition : IEnumerable, ITransformation
+    public class Addition : PipelineBase, IEnumerable, ITransformation
     {
         //melyik feature-t mennyivel toljuk el
         private List<(FeatureDescriptor<List<double>> f, double t)> fts = new List<(FeatureDescriptor<List<double>> f, double t)>();

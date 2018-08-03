@@ -39,10 +39,33 @@ namespace SigStat.Common.Model
     public class VerifierBenchmark
     {
         public IDataSetLoader Loader;
-        public Verifier Verifier;
         public Sampler Sampler;
-        public Logger Log;
         public Action<int> Progress;
+
+        private Verifier _verifier;
+        public Verifier Verifier { get => _verifier;
+            set {
+                _verifier = value;
+                _verifier.Logger = Logger;
+            }
+        }
+
+        private Logger _log;//TODO: ezzel kezdeni valamit
+        public Logger Logger
+        {
+            get => _log;
+            set
+            {
+                _log = value;
+                if (Verifier != null)
+                    Verifier.Logger = _log;
+            }
+        }
+        protected void Log(LogLevel level, string message)
+        {
+            if (_log != null)
+                _log.AddEntry(level, this, message);
+        }
 
         public VerifierBenchmark()
         {
@@ -58,20 +81,22 @@ namespace SigStat.Common.Model
 
         public BenchmarkResults Execute()
         {
+            Log(LogLevel.Info, "Benchmark execution started.");
             var results = new List<Result>();
             double far_acc = 0;
             double frr_acc = 0;
 
-            Log.Info(this, "Loading data..");
+            Log(LogLevel.Info, "Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners(null));
-            Log.Info(this, signers.Count + " signers found. Benchmarking..");
+            Log(LogLevel.Info, signers.Count + " signers found. Benchmarking..");
             for(int i = 0; i < signers.Count; i++)
             {
+                Log(LogLevel.Info, $"Benchmarking Signer ID {signers[i].ID} ({i+1}/{signers.Count})");
                 Sampler.Init(signers[i]);
                 List<Signature> references = Sampler.SampleReferences();
                 List<Signature> genuineTests = Sampler.SampleGenuineTests();
                 List<Signature> forgeryTests = Sampler.SampleForgeryTests();
-                //catch: nem volt eleg alairas a benchmarkhoz
+                //catch: Log.Error("nem volt eleg alairas a benchmarkhoz");
 
                 Verifier.Train(references);
 
@@ -93,6 +118,7 @@ namespace SigStat.Common.Model
 
                 //AER: average error rate
                 double AER = (FRR + FAR) / 2.0;
+                Log(LogLevel.Debug, $"AER for Signer ID {signers[i].ID}: {AER}");
 
                 //EER definicio fix: ez az az ertek amikor FAR==FRR
 
@@ -107,6 +133,8 @@ namespace SigStat.Common.Model
             double far_final = far_acc / signers.Count;
             double aer_final = (frr_final + far_final) / 2.0;
 
+            Log(LogLevel.Info, "Benchmark execution finished.");
+            Log(LogLevel.Debug, $"AER: {aer_final}");
             return new BenchmarkResults(results, new Result(null, frr_final, far_final, aer_final));
         }
 

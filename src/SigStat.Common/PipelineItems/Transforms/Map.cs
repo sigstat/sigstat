@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Transforms
 {
-    public class Map : ITransformation
+    public class Map : PipelineBase, ITransformation
     {
         private readonly double v0;
         private readonly double v1;
