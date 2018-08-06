@@ -7,36 +7,37 @@ namespace SigStat.Common.Algorithms
     /// <summary>
     /// Dynamic Time Warping algorithm
     /// </summary>
-    public class DTW
+    public class Dtw
     {
         private double[,] dMat;
         private double[,] wMat;
 
-        private List<(int, int)> forwardPath;
+        public List<(int, int)> ForwardPath { get; private set; }
 
-        private Func<double[], double[], double> dist_method;
+        private readonly Func<double[], double[], double> distMethod;
 
-        public DTW()
+        /// <summary>
+        /// Initialize the DTW algorithm with the default Euclidean distance method.
+        /// </summary>
+        public Dtw()
         {
-            dist_method = Accord.Math.Distance.Euclidean;
+            this.distMethod = Accord.Math.Distance.Euclidean;
         }
 
         /// <summary>
-        /// 
+        /// Initialize the DTW algorithm with given distance method.
         /// </summary>
-        /// <param name="Sequence1"></param>
-        /// <param name="Sequence2"></param>
-        /// <param name="DistanceMethod">Accord.Math.Distance.*</param>
-        public DTW(Func<double[], double[], double> DistanceMethod)
+        /// <param name="DistMethod">Accord.Math.Distance.*</param>
+        public Dtw(Func<double[], double[], double> distMethod)
         {
-            dist_method = DistanceMethod;
+            this.distMethod = distMethod;
         }
 
         /// <summary>
         /// Generate shortest path between the two sequences.
         /// </summary>
-        /// <returns>List of index pairs, cost</returns>
-        public (List<(int, int)>, double cost) Compute(double[][] s1, double[][] s2)
+        /// <returns>Cost of the path.</returns>
+        public double Compute(double[][] s1, double[][] s2)
         {
             int n = s1.Length;
             int m = s2.Length;
@@ -104,9 +105,9 @@ namespace SigStat.Common.Algorithms
             }
 
             //Array.Reverse(warpingPath);//ez csak jagged[][] nel mukodik
-            forwardPath = new List<(int, int)>(K);
+            ForwardPath = new List<(int, int)>(K);
             for (i = K - 1; i >= 0; i--)
-                forwardPath.Add((warpingPath[i, 0], warpingPath[i, 1]));
+                ForwardPath.Add((warpingPath[i, 0], warpingPath[i, 1]));
 
 
             double cost = 0;
@@ -117,7 +118,7 @@ namespace SigStat.Common.Algorithms
             double[] bests2 = new double[K];
             for (int istep = 0; istep < K; istep++)
             {
-                (int s1i, int s2i) = forwardPath[istep];
+                (int s1i, int s2i) = ForwardPath[istep];
                 bests1[istep] = s1[s1i][0];
                 bests2[istep] = s2[s2i][0];
             }
@@ -125,7 +126,7 @@ namespace SigStat.Common.Algorithms
 
             cost /= K; //ettol EER jobb lesz de AER rosszabb
 
-            return (forwardPath, cost);
+            return cost;
         }
 
         /// <summary>
@@ -157,7 +158,7 @@ namespace SigStat.Common.Algorithms
             if (p1.Length == 1)//nem ter vissza az Accord, ha a pontok 1 dimenziosak, ezert ezt kulon kezeljuk
                 return Math.Abs(p2[0] - p1[0]);
 
-            double d = Accord.Math.Distance.GetDistance(dist_method).Distance(p1, p2);
+            double d = Accord.Math.Distance.GetDistance(distMethod).Distance(p1, p2);
             if (double.IsNaN(d))
                 d = 0;//ez nehany metrikanal kell, pl Canberra 0,0 ban
 

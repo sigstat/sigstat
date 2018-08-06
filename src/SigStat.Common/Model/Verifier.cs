@@ -16,8 +16,8 @@ namespace SigStat.Common.Model
         private IClassification _cp;
         public IClassification ClassifierPipeline { get => _cp; set { _cp = value; _cp.Logger = Logger; } }
 
-        double limit;
-        List<Signature> genuines;
+        private double limit;
+        private List<Signature> genuines;
 
         private Logger _log;//TODO: ezzel kezdeni valamit
         public Logger Logger { get => _log;
@@ -35,6 +35,8 @@ namespace SigStat.Common.Model
                 _log.AddEntry(level, this, message);
         }
 
+        private int _progress;
+        public int Progress { get => _progress; set { _progress = value; ProgressChanged(this, value); } }
         public event EventHandler<int> ProgressChanged = delegate { };
 
         public Verifier()
@@ -86,7 +88,8 @@ namespace SigStat.Common.Model
             for (int i = 0; i < genuines.Count; i++)
             {
                 vals[i] = ClassifierPipeline.Pair(sig, genuines[i]);
-                ProgressChanged(this, (int)(i / (double)(genuines.Count - 1) * 100.0));
+                //if(i%10==0)
+                    Progress = (int)(i / (double)(genuines.Count - 1) * 100.0);
             }
             double avg = vals.Average();
             Log(LogLevel.Debug, $"Verification SignatureID {sig.ID} result: { (avg < limit ? Origin.Genuine : Origin.Forged) }");

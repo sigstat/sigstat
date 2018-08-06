@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SigStat.Common.Pipeline
 {
-    public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation, IProgress
+    public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         public List<ITransformation> Items = new List<ITransformation>();
 
@@ -22,18 +23,18 @@ namespace SigStat.Common.Pipeline
             }
         }
 
-        public event EventHandler<int> ProgressChanged = delegate { };
+        public new int Progress { get { return Items.Min((i) => i.Progress); } }
 
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
-        public void Add(ITransformation newitem)
+        public void Add(ITransformation newItem)
         {
             if (_logger != null)
-                newitem.Logger = _logger;
-            Items.Add(newitem);
+                newItem.Logger = _logger;
+            Items.Add(newItem);
         }
 
         public void Transform(Signature signature)

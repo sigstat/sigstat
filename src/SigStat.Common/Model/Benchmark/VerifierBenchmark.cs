@@ -61,6 +61,8 @@ namespace SigStat.Common.Model
             }
         }
 
+        private int _progress;
+        public int Progress { get => _progress; set { _progress = value; ProgressChanged(this, value); } }
         public event EventHandler<int> ProgressChanged = delegate { };
 
         protected void Log(LogLevel level, string message)
@@ -85,8 +87,8 @@ namespace SigStat.Common.Model
         {
             Log(LogLevel.Info, "Benchmark execution started.");
             var results = new List<Result>();
-            double far_acc = 0;
-            double frr_acc = 0;
+            double farAcc = 0;
+            double frrAcc = 0;
 
             Log(LogLevel.Info, "Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners(null));
@@ -104,19 +106,19 @@ namespace SigStat.Common.Model
 
                 //FRR: false rejection rate
                 //FRR = elutasított eredeti / összes eredeti
-                int false_reject_cnt = 0;
+                int nFalseReject = 0;
                 foreach (Signature genuine in genuineTests)
                     if (!Verifier.Test(genuine))
-                        false_reject_cnt++;//eredeti alairast hamisnak hisz
-                double FRR = false_reject_cnt / (double)genuineTests.Count;
+                        nFalseReject++;//eredeti alairast hamisnak hisz
+                double FRR = nFalseReject / (double)genuineTests.Count;
 
                 //FAR: false acceptance rate
                 //FAR = elfogadott hamis / összes hamis
-                int false_accept_cnt = 0;
+                int nFalseAccept = 0;
                 foreach (Signature forgery in forgeryTests)
                     if (Verifier.Test(forgery))
-                        false_accept_cnt++;//hamis alairast eredetinek hisz
-                double FAR = false_accept_cnt / (double)forgeryTests.Count;
+                        nFalseAccept++;//hamis alairast eredetinek hisz
+                double FAR = nFalseAccept / (double)forgeryTests.Count;
 
                 //AER: average error rate
                 double AER = (FRR + FAR) / 2.0;
@@ -124,20 +126,21 @@ namespace SigStat.Common.Model
 
                 //EER definicio fix: ez az az ertek amikor FAR==FRR
 
-                frr_acc += FRR;
-                far_acc += FAR;
+                frrAcc += FRR;
+                farAcc += FAR;
                 results.Add(new Result(signers[i].ID, FRR, FAR, AER));
 
-                ProgressChanged(this, (int)(i / (double)(signers.Count - 1) * 100.0));
+                //if(i%10==0)
+                    Progress = (int)(i / (double)(signers.Count - 1) * 100.0);
             }
 
-            double frr_final = frr_acc / signers.Count;
-            double far_final = far_acc / signers.Count;
-            double aer_final = (frr_final + far_final) / 2.0;
+            double frrFinal = frrAcc / signers.Count;
+            double farFinal = farAcc / signers.Count;
+            double aerFinal = (frrFinal + farFinal) / 2.0;
 
             Log(LogLevel.Info, "Benchmark execution finished.");
-            Log(LogLevel.Debug, $"AER: {aer_final}");
-            return new BenchmarkResults(results, new Result(null, frr_final, far_final, aer_final));
+            Log(LogLevel.Debug, $"AER: {aerFinal}");
+            return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
         }
 
 

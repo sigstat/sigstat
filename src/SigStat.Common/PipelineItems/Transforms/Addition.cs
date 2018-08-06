@@ -57,6 +57,7 @@ namespace SigStat.Common.Transforms
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] + by;
                     signature[fs[iF]] = values;
+                    Progress += 100 / fs.Count;
                 }
             }
             else if (byValues != null)
@@ -68,6 +69,7 @@ namespace SigStat.Common.Transforms
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] + by[iF];
                     signature[fs[iF]] = values;
+                    Progress += 100 / fs.Count;
                 }
             }
             else
@@ -78,6 +80,7 @@ namespace SigStat.Common.Transforms
                     for (int i = 0; i < values.Count; i++)
                         values[i] = values[i] + ft.t;
                     signature[ft.f] = values;
+                    Progress += 100 / fts.Count;
                 }
             }
         }

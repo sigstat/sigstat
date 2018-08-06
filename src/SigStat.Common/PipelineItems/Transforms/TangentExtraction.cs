@@ -7,13 +7,13 @@ namespace SigStat.Common.Transforms
 {
     public class TangentExtraction : PipelineBase, ITransformation
     {
-        FeatureDescriptor<List<double>> tangentfd;
+        FeatureDescriptor<List<double>> tangentFd;
         public TangentExtraction()
         {
             //itt letre kell hozni azt a feature descriptort, amit ki fog szamolni. 
             //Kulonben a kesobbi pipeline elemek inicializalasanal nem talalnank.
             //TODO: ezt talan lehetne automatizalni: Ha olyan feature descriptort kerunk le ami nincs, akkor letrehozzuk
-            tangentfd = FeatureDescriptor<List<double>>.Descriptor("Tangent");//new FeatureDescriptor<List<double>>("Tangent", "Tangent");
+            tangentFd = FeatureDescriptor<List<double>>.Descriptor("Tangent");
         }
 
         public void Transform(Signature signature)
@@ -27,11 +27,13 @@ namespace SigStat.Common.Transforms
                 double dx = xs[i + 1] - xs[i - 1];
                 double dy = ys[i + 1] - ys[i - 1];
                 res.Add(Math.Atan2(dy, dx));
+                Progress += 100 / xs.Count-2;
             }
             res.Insert(0, res[0]);//elso
             res.Add(res[res.Count - 1]);//utolso
             res.Add(res[res.Count - 1]);//utolso
-            signature[tangentfd] = res;
+            signature[tangentFd] = res;
+            Progress = 100;
         }
     }
 }

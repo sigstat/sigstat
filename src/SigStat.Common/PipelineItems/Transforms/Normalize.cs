@@ -28,7 +28,10 @@ namespace SigStat.Common.Transforms
 
             //min lesz 0, max lesz 1
             for (int i = 0; i < values.Count; i++)
+            {
                 values[i] = (values[i] - min) / (max - min);//0-1
+                Progress += 100 / values.Count;
+            }
 
             signature[f] = values;
         }

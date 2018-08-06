@@ -20,10 +20,10 @@ namespace SigStat.Common.Helpers
 
         private Action<string> OutputAction { get; }
 
-        public Logger(LogLevel level, Action<string> output)
+        public Logger(LogLevel level, Action<string> outputAction)
         {
             this.Level = level;
-            OutputAction = output;
+            this.OutputAction = outputAction;
         }
 
         public Logger(LogLevel level, Stream outputStream)
@@ -31,21 +31,21 @@ namespace SigStat.Common.Helpers
             this.Level = level;
             sw = new StreamWriter(outputStream);
             sw.AutoFlush = true;
-            OutputAction = (s) => {
+            this.OutputAction = (s) => {
                 if (sw != null)
                     sw.WriteLine(s);
             };
         }
 
-        public Logger(LogLevel level, Stream outputStream, Action<string> output)
+        public Logger(LogLevel level, Stream outputStream, Action<string> outputAction)
         {
             this.Level = level;
             sw = new StreamWriter(outputStream);
             sw.AutoFlush = true;
-            OutputAction = (s) => {
+            this.OutputAction = (s) => {
                 if (sw != null)
                     sw.WriteLine(s);
-                output(s);
+                outputAction(s);
             };
         }
 
@@ -59,7 +59,7 @@ namespace SigStat.Common.Helpers
             sw = new StreamWriter(Console.OpenStandardOutput());
             sw.AutoFlush = true;
             Console.SetOut(sw);
-            OutputAction = (s) => {
+            this.OutputAction = (s) => {
                 if (sw != null)
                     sw.WriteLine(s);
             };

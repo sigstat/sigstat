@@ -12,7 +12,7 @@ namespace SigStat.Common.Pipeline
     /// pl. CentroidTranslate: CentroidExtraction + Multiply -1 + Translate
     /// TODO: Add() nem kene hogy latszodjon leszarmazottakban, kell egy koztes dolog
     /// </summary>
-    public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation, IProgress
+    public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         public List<ITransformation> Items = new List<ITransformation>();
 
@@ -24,18 +24,16 @@ namespace SigStat.Common.Pipeline
             }
         }
 
-        public event EventHandler<int> ProgressChanged = delegate { };
-
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
-        public void Add(ITransformation newitem)
+        public void Add(ITransformation newItem)
         {
             if (_logger != null)
-                newitem.Logger = _logger;
-            Items.Add(newitem);
+                newItem.Logger = _logger;
+            Items.Add(newItem);
         }
 
         public void Transform(Signature signature)
@@ -43,7 +41,7 @@ namespace SigStat.Common.Pipeline
             for(int i=0;i<Items.Count;i++)
             {
                 Items[i].Transform(signature);
-                ProgressChanged(this, (int)(i / (double)(Items.Count - 1) * 100.0));
+                Progress = (int)(i / (double)(Items.Count - 1) * 100.0);
             }
         }
     }

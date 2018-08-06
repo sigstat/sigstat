@@ -29,18 +29,27 @@ namespace SigStat.Common
         void Test(Signature signature);
     }*/
 
-    public abstract class PipelineBase : ILogger
+    /// <summary>
+    /// TODO: C# 8.0 ban ezt atalakitani default implementacios interface be
+    /// </summary>
+    public abstract class PipelineBase : ILogger, IProgress
     {
+
         public Logger Logger { get; set; }
+
+        private int _progress;
+        public int Progress { get => _progress; set { _progress = value; ProgressChanged(this, value); } }
+
+        public event EventHandler<int> ProgressChanged = delegate { };
 
         protected void Log(LogLevel level, string message)
         {
-            if(Logger!=null)
+            if (Logger != null)
                 Logger.AddEntry(level, this, message);
         }
     }
 
-    public interface ITransformation : ILogger
+    public interface ITransformation : ILogger, IProgress
     {
         void Transform(Signature signature);
     }

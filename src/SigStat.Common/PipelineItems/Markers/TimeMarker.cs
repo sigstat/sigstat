@@ -7,31 +7,31 @@ namespace SigStat.Common.PipelineItems.Markers
 {
     public class TimeMarkerStart : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<DateTime> time_fd;
+        private readonly FeatureDescriptor<DateTime> timeFd;
 
-        public TimeMarkerStart(FeatureDescriptor<DateTime> time_fd)
+        public TimeMarkerStart(FeatureDescriptor<DateTime> timeFd)
         {
-            this.time_fd = time_fd;
+            this.timeFd = timeFd;
         }
 
         public void Transform(Signature signature)
         {
-            signature[time_fd] = DateTime.Now;
+            signature[timeFd] = DateTime.Now;
         }
     }
 
     public class TimeMarkerStop : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<DateTime> time_fd;
-
-        public TimeMarkerStop(FeatureDescriptor<DateTime> time_fd)
+        private readonly FeatureDescriptor<DateTime> timeFd;
+        
+        public TimeMarkerStop(FeatureDescriptor<DateTime> timeFd)
         {
-            this.time_fd = time_fd;
+            this.timeFd = timeFd;
         }
 
         public void Transform(Signature signature)
         {
-            signature[time_fd] = DateTime.Now - signature.GetFeature(time_fd);
+            signature[timeFd] = DateTime.Now - signature.GetFeature(timeFd);
         }
     }
 

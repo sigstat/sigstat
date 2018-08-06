@@ -12,10 +12,10 @@ namespace SigStat.Common.Transforms
         private readonly double v1;
         private readonly FeatureDescriptor<List<double>> f;
 
-        public Map(double minval, double maxval, FeatureDescriptor<List<double>> f)
+        public Map(double minVal, double maxVal, FeatureDescriptor<List<double>> f)
         {
-            this.v0 = minval;
-            this.v1 = maxval;
+            this.v0 = minVal;
+            this.v1 = maxVal;
             
             this.f = f;
         }
@@ -33,6 +33,7 @@ namespace SigStat.Common.Transforms
             { 
                 double t = (values[i] - min) / (max - min);//0-1
                 values[i] = (1.0 - t) * v0 + t * v1;//lerp
+                Progress += 100 / values.Count;
             }
 
             signature[f] = values;

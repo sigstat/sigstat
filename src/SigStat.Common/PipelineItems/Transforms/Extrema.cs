@@ -12,8 +12,8 @@ namespace SigStat.Common.Transforms
     public class Extrema : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<List<double>> f;
-        private readonly FeatureDescriptor<List<double>> minfd;
-        private readonly FeatureDescriptor<List<double>> maxfd;
+        private readonly FeatureDescriptor<List<double>> minFd;
+        private readonly FeatureDescriptor<List<double>> maxFd;
 
         public Extrema(FeatureDescriptor<List<double>> f, string minFeatureName, string maxFeatureName)
         {
@@ -21,8 +21,8 @@ namespace SigStat.Common.Transforms
             //itt letre kell hozni azt a feature descriptort, amit ki fog szamolni. 
             //Kulonben a kesobbi pipeline elemek inicializalasanal nem talalnank.
             //TODO: ezt talan lehetne automatizalni: Ha olyan feature descriptort kerunk le ami nincs, akkor letrehozzuk
-            minfd = FeatureDescriptor<List<double>>.Descriptor(minFeatureName);
-            maxfd = FeatureDescriptor<List<double>>.Descriptor(maxFeatureName);
+            minFd = FeatureDescriptor<List<double>>.Descriptor(minFeatureName);
+            maxFd = FeatureDescriptor<List<double>>.Descriptor(maxFeatureName);
         }
 
         public void Transform(Signature signature)
@@ -34,8 +34,9 @@ namespace SigStat.Common.Transforms
 
             Log(LogLevel.Debug, $"SigID: {signature.ID} Min: {min} Max: {max}");
 
-            signature[minfd] = new List<double> { min };//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
-            signature[maxfd] = new List<double> { max };
+            signature[minFd] = new List<double> { min };//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
+            signature[maxFd] = new List<double> { max };
+            Progress = 100;
         }
     }
 }

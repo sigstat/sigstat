@@ -9,17 +9,17 @@ namespace SigStat.Common.Transforms
     public class Translate : SequentialTransformPipeline
     {
         //ezeket a featureoket ezzel toljuk el
-        private readonly FeatureDescriptor<List<double>> byFeature;
+        //private readonly FeatureDescriptor<List<double>> byFeature;
         private List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
 
-        public Translate(double xadd, double yadd)
+        public Translate(double xAdd, double yAdd)
         {
             Items = new List<ITransformation>()
             {
                 new Addition
                 {
-                    (Features.X, xadd),
-                    (Features.Y, yadd)
+                    (Features.X, xAdd),
+                    (Features.Y, yAdd)
                 }
             };
         }

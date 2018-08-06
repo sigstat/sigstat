@@ -16,9 +16,9 @@ namespace SigStat.Common.Transforms
             return fms.GetEnumerator();
         }
 
-        public void Add((FeatureDescriptor f, double t) newitem)
+        public void Add((FeatureDescriptor f, double t) newItem)
         {
-            fms.Add(newitem);
+            fms.Add(newItem);
         }
 
         public void Transform(Signature signature)
@@ -38,6 +38,7 @@ namespace SigStat.Common.Transforms
                     values = values * fm.m;
                     signature[fm.f] = values;
                 }
+                Progress += 100/fms.Count;
             }
             
         }

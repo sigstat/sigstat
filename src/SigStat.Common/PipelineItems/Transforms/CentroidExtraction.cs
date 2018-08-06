@@ -44,7 +44,7 @@ namespace SigStat.Common.Transforms
                 var values = signature.GetFeature(f);
                 double avg = values.Average();
                 c.Add(avg);
-
+                Progress += 100 / fs.Count;
             }
 
             signature[centroidfd] = c;
