@@ -114,6 +114,7 @@ namespace SigStat.Sample
             //    Pipeline = 
             //    {
             //        new Binarization(Features.Image, ForegroundType.Dark),
+            //        new Trim(FeatureDescriptor<List<double>>.Descriptor("Binarized"), 5),
             //        new RealisticImageGeneration(),
             //        new BasicMetadataExtraction(),
             //        new BaselineExtraction(),

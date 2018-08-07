@@ -63,7 +63,8 @@ namespace SigStat.Common.PipelineItems.Transforms
             }
 
             Log(LogLevel.Info, "Binarization done.");
-            signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), b) ;
+            signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), b);
+            Progress = 100;
         }
 
         /// <summary>
