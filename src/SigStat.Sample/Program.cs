@@ -113,6 +113,7 @@ namespace SigStat.Sample
             //{
             //    Pipeline = 
             //    {
+            //        new Binarization(Features.Image, ForegroundType.Dark),
             //        new RealisticImageGeneration(),
             //        new BasicMetadataExtraction(),
             //        new BaselineExtraction(),

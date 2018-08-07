@@ -37,10 +37,10 @@ namespace SigStat.Common.Algorithms
         /// Generate shortest path between the two sequences.
         /// </summary>
         /// <returns>Cost of the path.</returns>
-        public double Compute(double[][] s1, double[][] s2)
+        public double Compute(double[][] signature1, double[][] signature2)
         {
-            int n = s1.Length;
-            int m = s2.Length;
+            int n = signature1.Length;
+            int m = signature2.Length;
             double dAcc = 0.0;
             dMat = new double[n, m];//distance matrix
             wMat = new double[n, m];//warp matrix
@@ -50,7 +50,7 @@ namespace SigStat.Common.Algorithms
             //tavolsagok
             for (i = 0; i < n; i++)
                 for (j = 0; j < m; j++)
-                    dMat[i, j] = Distance(s1[i], s2[j]);
+                    dMat[i, j] = Distance(signature1[i], signature2[j]);
 
             //sarok
             wMat[0, 0] = dMat[0, 0];
@@ -119,8 +119,8 @@ namespace SigStat.Common.Algorithms
             for (int istep = 0; istep < K; istep++)
             {
                 (int s1i, int s2i) = ForwardPath[istep];
-                bests1[istep] = s1[s1i][0];
-                bests2[istep] = s2[s2i][0];
+                bests1[istep] = signature1[s1i][0];
+                bests2[istep] = signature2[s2i][0];
             }
             cost = Distance(bests1, bests2);
 

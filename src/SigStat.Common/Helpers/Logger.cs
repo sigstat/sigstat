@@ -15,20 +15,20 @@ namespace SigStat.Common.Helpers
     public class Logger
     {
         public List<LogEntry> Entries = new List<LogEntry>();
-        public LogLevel Level = LogLevel.Error;
+        public LogLevel LogLevel = LogLevel.Error;
         private StreamWriter sw;
 
         private Action<string> OutputAction { get; }
 
         public Logger(LogLevel level, Action<string> outputAction)
         {
-            this.Level = level;
+            this.LogLevel = level;
             this.OutputAction = outputAction;
         }
 
         public Logger(LogLevel level, Stream outputStream)
         {
-            this.Level = level;
+            this.LogLevel = level;
             sw = new StreamWriter(outputStream);
             sw.AutoFlush = true;
             this.OutputAction = (s) => {
@@ -39,7 +39,7 @@ namespace SigStat.Common.Helpers
 
         public Logger(LogLevel level, Stream outputStream, Action<string> outputAction)
         {
-            this.Level = level;
+            this.LogLevel = level;
             sw = new StreamWriter(outputStream);
             sw.AutoFlush = true;
             this.OutputAction = (s) => {
@@ -55,7 +55,7 @@ namespace SigStat.Common.Helpers
         /// <param name="level"></param>
         public Logger(LogLevel level)
         {
-            this.Level = level;
+            this.LogLevel = level;
             sw = new StreamWriter(Console.OpenStandardOutput());
             sw.AutoFlush = true;
             Console.SetOut(sw);
@@ -93,7 +93,7 @@ namespace SigStat.Common.Helpers
         //ez pl a LogMarker miatt public
         public void AddEntry(LogLevel messageLevel, object sender, string message)
         {
-            if (Level >= messageLevel)
+            if (LogLevel >= messageLevel)
             {
                 LogEntry newEntry = new LogEntry(DateTime.Now, messageLevel, sender, message);
                 Entries.Add(newEntry);
