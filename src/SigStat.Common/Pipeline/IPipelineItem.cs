@@ -37,7 +37,7 @@ namespace SigStat.Common
 
         public Logger Logger { get; set; }
 
-        private int _progress;
+        private int _progress = 0;
         public int Progress { get => _progress; set { _progress = value; ProgressChanged(this, value); } }
 
         public event EventHandler<int> ProgressChanged = delegate { };
