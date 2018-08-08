@@ -131,18 +131,13 @@ namespace SigStat.Sample
                 ClassifierPipeline = new DTWClassifier()
             };
 
-            /*bool signer1(string p)
+            bool signer1(string p)
             { return p == "01"; }
-            ImageLoader loader = new ImageLoader(@"D:\sig1.png", true);
+            ImageLoader loader = new ImageLoader(@"D:\");
             var signers = new List<Signer>(loader.EnumerateSigners(signer1));
 
-            List<Signature> references = signers[0].Signatures.GetRange(0, 10);
+            List<Signature> references = signers[0].Signatures.GetRange(0, 1);
             verifier.Train(references);
-
-            Signature questioned1 = signers[0].Signatures[0];
-            Signature questioned2 = signers[0].Signatures[25];
-            bool isGenuine1 = verifier.Test(questioned1);//true
-            bool isGenuine2 = verifier.Test(questioned2);//false*/
 
         }
 
