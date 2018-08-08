@@ -118,6 +118,7 @@ namespace SigStat.Sample
             //        new HSCPThinning(FeatureDescriptor<List<double>>.Descriptor("Trimmed")),
             //        new OnePixelThinning(FeatureDescriptor<List<double>>.Descriptor("Skeleton")),
             //        new EndpointExtraction(),
+            //        new ComponentExtraction(5),
 
             //        new RealisticImageGeneration(),
             //        new BasicMetadataExtraction(),
