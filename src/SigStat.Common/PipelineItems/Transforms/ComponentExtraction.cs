@@ -30,7 +30,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             foreach (var endings in crossings)
                 endPoints.AddRange(endings);
             Progress = 33;
-            Log(LogLevel.Debug, $"{crossings.Count} crossings from {crossingPoints.Count} crossing points");
+            Log(LogLevel.Debug, $"{crossings.Count} crossings found.");
 
             var sectionlist = Trace(endPoints);
             Log(LogLevel.Debug, $"{sectionlist.Count} sections found");

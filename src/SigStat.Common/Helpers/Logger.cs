@@ -18,9 +18,9 @@ namespace SigStat.Common.Helpers
         public LogLevel LogLevel = LogLevel.Error;
         private StreamWriter sw;
 
-        private Action<string> OutputAction { get; }
+        private Action<LogLevel, string> OutputAction { get; }
 
-        public Logger(LogLevel level, Action<string> outputAction)
+        public Logger(LogLevel level, Action<LogLevel, string> outputAction)
         {
             this.LogLevel = level;
             this.OutputAction = outputAction;
@@ -31,21 +31,21 @@ namespace SigStat.Common.Helpers
             this.LogLevel = level;
             sw = new StreamWriter(outputStream);
             sw.AutoFlush = true;
-            this.OutputAction = (s) => {
+            this.OutputAction = (l, s) => {
                 if (sw != null)
                     sw.WriteLine(s);
             };
         }
 
-        public Logger(LogLevel level, Stream outputStream, Action<string> outputAction)
+        public Logger(LogLevel level, Stream outputStream, Action<LogLevel, string> outputAction)
         {
             this.LogLevel = level;
             sw = new StreamWriter(outputStream);
             sw.AutoFlush = true;
-            this.OutputAction = (s) => {
+            this.OutputAction = (l, s) => {
                 if (sw != null)
                     sw.WriteLine(s);
-                outputAction(s);
+                outputAction(l, s);
             };
         }
 
@@ -59,7 +59,7 @@ namespace SigStat.Common.Helpers
             sw = new StreamWriter(Console.OpenStandardOutput());
             sw.AutoFlush = true;
             Console.SetOut(sw);
-            this.OutputAction = (s) => {
+            this.OutputAction = (l, s) => {
                 if (sw != null)
                     sw.WriteLine(s);
             };
@@ -98,7 +98,7 @@ namespace SigStat.Common.Helpers
                 LogEntry newEntry = new LogEntry(DateTime.Now, messageLevel, sender, message);
                 Entries.Add(newEntry);
                 string entryString = newEntry.ToString();
-                OutputAction(entryString);
+                OutputAction(messageLevel, entryString);
             }
         }
 
@@ -132,7 +132,7 @@ namespace SigStat.Common.Helpers
         public override string ToString()
         {
             string senderID = Sender.ToString().Split('.').Last() + Sender.GetHashCode();//TODO: legyen a loggolo objecteknek IDja
-            return $"{Timestamp.ToLongTimeString()} [{Level}] - {senderID}: {Message}";
+            return $"{Timestamp.ToLongTimeString()} [{Level}] \t - {senderID}: {Message}";
         }
     }
 

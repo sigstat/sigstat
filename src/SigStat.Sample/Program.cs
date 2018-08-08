@@ -47,9 +47,9 @@ namespace SigStat.Sample
         {
             Console.WriteLine("Hello");
             //SignatureDemo();
-            //OfflineVerifierDemo();
-            OnlineVerifierDemo();
-            await OnlineVerifierBenchmarkDemo();
+            OfflineVerifierDemo();
+            //OnlineVerifierDemo();
+            //await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
         }
@@ -112,6 +112,7 @@ namespace SigStat.Sample
         {
             var verifier = new Verifier()
             {
+                Logger = new Logger(LogLevel.Debug, LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new Binarization(Features.Image, Binarization.ForegroundType.Dark),
@@ -238,8 +239,27 @@ namespace SigStat.Sample
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
-        public static void LogConsole(string message)
+        public static void LogConsole(LogLevel l, string message)
         {
+            switch (l)
+            {
+                case LogLevel.Fatal:
+                case LogLevel.Error:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case LogLevel.Warn:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case LogLevel.Info:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+                case LogLevel.Debug:
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    break;
+                default:
+                    break;
+            }
+            
             Console.WriteLine(message);
         }
 
