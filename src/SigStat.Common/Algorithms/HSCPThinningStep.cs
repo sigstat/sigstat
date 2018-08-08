@@ -4,6 +4,12 @@ using System.Text;
 
 namespace SigStat.Common.Algorithms
 {
+    /// <summary>
+    /// HSCP thinning algorithm
+    /// http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
+    /// 
+    /// TODO: ez parhuzamosithato
+    /// </summary>
     public class HSCPThinningStep
     {
         public bool? ResultChanged { get; private set; } = null;

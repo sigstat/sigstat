@@ -116,6 +116,8 @@ namespace SigStat.Sample
             //        new Binarization(Features.Image, ForegroundType.Dark),
             //        new Trim(FeatureDescriptor<List<double>>.Descriptor("Binarized"), 5),
             //        new HSCPThinning(FeatureDescriptor<List<double>>.Descriptor("Trimmed")),
+            //        new OnePixelThinning(FeatureDescriptor<List<double>>.Descriptor("Skeleton")),
+
             //        new RealisticImageGeneration(),
             //        new BasicMetadataExtraction(),
             //        new BaselineExtraction(),

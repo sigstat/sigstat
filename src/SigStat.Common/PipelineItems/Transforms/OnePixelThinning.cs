@@ -6,11 +6,11 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
-    public class HSCPThinning : PipelineBase, ITransformation
+    public class OnePixelThinning : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<bool[,]> bFd;
 
-        public HSCPThinning(FeatureDescriptor<bool[,]> bFd)
+        public OnePixelThinning(FeatureDescriptor<bool[,]> bFd)
         {
             this.bFd = bFd;
         }
@@ -20,7 +20,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             bool[,] b = signature.GetFeature(bFd);
             Progress = 50;
             int stepCnt = 0;
-            HSCPThinningStep algo = new HSCPThinningStep();
+            OnePixelThinningStep algo = new OnePixelThinningStep();
             while (algo.ResultChanged != false)
             {
                 b = algo.Scan(b);
@@ -28,8 +28,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             }
             signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Skeleton"), b);
             Progress = 100;
-            Log(LogLevel.Info, $"HSCP thinning steps applied {stepCnt} times.");
+            Log(LogLevel.Info, $"One pixel thinning steps applied {stepCnt} times.");
         }
-        
     }
 }
