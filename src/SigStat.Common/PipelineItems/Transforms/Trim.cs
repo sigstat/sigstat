@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
-    class Trim : PipelineBase, ITransformation
+    public class Trim : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<bool[,]> bFd;
         private readonly int framewidth;

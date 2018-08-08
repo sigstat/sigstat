@@ -5,6 +5,7 @@ using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Markers;
+using SigStat.Common.PipelineItems.Transforms;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
@@ -109,35 +110,40 @@ namespace SigStat.Sample
 
         static void OfflineVerifierDemo()
         {
-            //var verifier = new Verifier()
-            //{
-            //    Pipeline = 
-            //    {
-            //        new Binarization(Features.Image, ForegroundType.Dark),
-            //        new Trim(FeatureDescriptor<List<double>>.Descriptor("Binarized"), 5),
-            //        new HSCPThinning(FeatureDescriptor<List<double>>.Descriptor("Trimmed")),
-            //        new OnePixelThinning(FeatureDescriptor<List<double>>.Descriptor("Skeleton")),
-            //        new EndpointExtraction(),
-            //        new ComponentExtraction(5),
-            //        new ComponentSorter(),
+            var verifier = new Verifier()
+            {
+                TransformPipeline = new SequentialTransformPipeline
+                {
+                    new Binarization(Features.Image, Binarization.ForegroundType.Dark),
+                    new Trim(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), 5),
+                    new HSCPThinning(FeatureDescriptor<bool[,]>.Descriptor("Trimmed")),
+                    new OnePixelThinning(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),
+                    new EndpointExtraction(),
+                    new ComponentExtraction(5),
+                    new ComponentSorter(),
+                    new ComponentsToFeatures()
 
+                    /*new RealisticImageGeneration(),
+                    new BasicMetadataExtraction(),
+                    new BaselineExtraction(),
+                    new LoopExtraction()*/
+                },
+                ClassifierPipeline = new DTWClassifier()
+            };
 
-            //        new RealisticImageGeneration(),
-            //        new BasicMetadataExtraction(),
-            //        new BaselineExtraction(),
-            //        new LoopExtraction()
-            //    },
-            //    Classifier = new StatisticalFeatureClassifier()
-            //    {
-            //        Features = new[] { s => s.BaseLinse, s => s.Loops, nameof(MySignature.Loops) }, //!!!!
-            //        Mapping = new HungarianMapping()
-            //    },
-            //};
+            /*bool signer1(string p)
+            { return p == "01"; }
+            ImageLoader loader = new ImageLoader(@"D:\sig1.png", true);
+            var signers = new List<Signer>(loader.EnumerateSigners(signer1));
 
-            //List<Signature> references = new List<Signature>();
-            //Signature questioned = new Svc2004Loader().LoadSignature("questioned.txt");
-            //verifier.Train(references);
-            //verifier.Test(questioned);
+            List<Signature> references = signers[0].Signatures.GetRange(0, 10);
+            verifier.Train(references);
+
+            Signature questioned1 = signers[0].Signatures[0];
+            Signature questioned2 = signers[0].Signatures[25];
+            bool isGenuine1 = verifier.Test(questioned1);//true
+            bool isGenuine2 = verifier.Test(questioned2);//false*/
+
         }
 
         static void OnlineVerifierDemo()

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
-    public class Binarizer : PipelineBase, ITransformation
+    public class Binarization : PipelineBase, ITransformation
     {
 
         public enum ForegroundType
@@ -25,7 +25,7 @@ namespace SigStat.Common.PipelineItems.Transforms
         /// </summary>
         /// <param name="imageFd"></param>
         /// <param name="foregroundType"></param>
-        public Binarizer(FeatureDescriptor<Image<Rgba32>> imageFd, ForegroundType foregroundType)
+        public Binarization(FeatureDescriptor<Image<Rgba32>> imageFd, ForegroundType foregroundType)
         {
             this.imageFd = imageFd;
             this.foregroundType = foregroundType;
@@ -37,7 +37,7 @@ namespace SigStat.Common.PipelineItems.Transforms
         /// <param name="imageFd"></param>
         /// <param name="foregroundType"></param>
         /// <param name="binThreshold">0-1</param>
-        public Binarizer(FeatureDescriptor<Image<Rgba32>> imageFd, ForegroundType foregroundType, double binThreshold)
+        public Binarization(FeatureDescriptor<Image<Rgba32>> imageFd, ForegroundType foregroundType, double binThreshold)
         {
             this.imageFd = imageFd;
             this.foregroundType = foregroundType;
