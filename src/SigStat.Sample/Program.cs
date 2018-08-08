@@ -119,6 +119,8 @@ namespace SigStat.Sample
             //        new OnePixelThinning(FeatureDescriptor<List<double>>.Descriptor("Skeleton")),
             //        new EndpointExtraction(),
             //        new ComponentExtraction(5),
+            //        new ComponentSorter(),
+
 
             //        new RealisticImageGeneration(),
             //        new BasicMetadataExtraction(),

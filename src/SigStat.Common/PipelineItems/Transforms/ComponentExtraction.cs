@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -28,16 +29,19 @@ namespace SigStat.Common.PipelineItems.Transforms
             var crossings = SplitCrossings(crossingPoints);
             foreach (var endings in crossings)
                 endPoints.AddRange(endings);
+            Progress = 33;
+            Log(LogLevel.Debug, $"{crossings.Count} crossings from {crossingPoints.Count} crossing points");
 
             var sectionlist = Trace(endPoints);
+            Log(LogLevel.Debug, $"{sectionlist.Count} sections found");
+            Progress = 66;
             //megvannak a sectionok, de meg ossze kell oket kotni a crossingoknal
 
             var componentlist = JoinSections(sectionlist, crossings);
 
-
-
-
-
+            signature.SetFeature(FeatureDescriptor<List<List<PointF>>>.Descriptor("Components"), componentlist);
+            Progress = 100;
+            Log(LogLevel.Info, $"Component extraction done. {componentlist.Count} components found.");
         }
 
         /// <summary>
@@ -152,6 +156,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                     }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
+            Log(LogLevel.Warn, "Section tracing: 1-pixel section found");
             return (prevp/*ez most p*/, p);
         }
 
