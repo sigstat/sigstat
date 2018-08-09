@@ -28,7 +28,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 {
                     xs.Add(p.X);
                     ys.Add(p.Y);
-                    if (p == c[0])//nem equals
+                    if (p == c[0])//direkt nem equals(), hanem ==
                         pendown.Add(0);
                     else
                         pendown.Add(1);

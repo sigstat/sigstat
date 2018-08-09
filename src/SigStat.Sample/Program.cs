@@ -124,7 +124,7 @@ namespace SigStat.Sample
                     new ComponentSorter(),
                     new ComponentsToFeatures()
 
-                    /*new RealisticImageGeneration(),
+                    /*//new RealisticImageGeneration(),
                     new BasicMetadataExtraction(),
                     new BaselineExtraction(),
                     new LoopExtraction()*/
