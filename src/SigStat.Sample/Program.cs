@@ -20,7 +20,7 @@ namespace SigStat.Sample
     {
         public static class MyFeatures
         {
-
+            public static FeatureDescriptor<bool[,]> Binarized = FeatureDescriptor<bool[,]>.Descriptor("Binarized");
         }
         struct OnlinePoint { public int X; public int Y; public int Pressure; }
         class MySignature : Signature
@@ -110,13 +110,20 @@ namespace SigStat.Sample
 
         static void OfflineVerifierDemo()
         {
+            //Task.Factory.StartNew<int>(null)
+            //    .ContinueWith(t=>()=> t.Result/2);
+            //    .ContinueWith(t => () => t.Result / 2);
+
+
+            //var pipeline = new SequentialTransformPipeline().Append( new Binarization().Append())
+
             var verifier = new Verifier()
             {
                 Logger = new Logger(LogLevel.Debug, LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new Binarization(Features.Image, Binarization.ForegroundType.Dark),
-                    new Trim(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), 5),
+                    new Trim(MyFeatures.Binarized, 5),
                     new HSCPThinning(FeatureDescriptor<bool[,]>.Descriptor("Trimmed")),
                     new OnePixelThinning(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),
                     new EndpointExtraction(),

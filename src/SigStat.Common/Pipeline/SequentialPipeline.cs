@@ -17,8 +17,11 @@ namespace SigStat.Common.Pipeline
         public List<ITransformation> Items = new List<ITransformation>();
 
         private Logger _logger;
-        public new Logger Logger { get => _logger;
-            set {
+        public new Logger Logger
+        {
+            get => _logger;
+            set
+            {
                 _logger = value;
                 Items.ForEach(i => i.Logger = _logger);
             }
@@ -38,9 +41,17 @@ namespace SigStat.Common.Pipeline
 
         public void Transform(Signature signature)
         {
-            for(int i=0;i<Items.Count;i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                Items[i].Transform(signature);
+                //try
+                //{
+                    Items[i].Transform(signature);
+                //}
+                //catch (Exception exc)
+                //{
+                //    throw PipelineException("Error while executing {pipelineItem.Type} with signature {sig.ToString()}", exc);
+                //}
+
                 Progress = (int)(i / (double)(Items.Count - 1) * 100.0);
             }
         }
