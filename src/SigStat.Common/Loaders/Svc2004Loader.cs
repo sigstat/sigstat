@@ -74,7 +74,7 @@ namespace SigStat.Common.Loaders
                         Signer = signer,
                         ID = signatureFile.SignatureID
                     };
-                    LoadSignature(signature, signatureFile.File);
+                    LoadSignature(signature, signatureFile.File, StandardFeatures);
                     signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
                     signer.Signatures.Add(signature);
                 }
@@ -83,7 +83,7 @@ namespace SigStat.Common.Loaders
             Log(LogLevel.Info, "Enumerating signers finished.");
         }
 
-        public void LoadSignature(Signature signature, string file)
+        public static void LoadSignature(Signature signature, string file, bool standardFeatures)
         {
             var lines = File.ReadAllLines(file)
                 .Skip(1)
@@ -95,12 +95,12 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());
             signature.SetFeature(Svc2004.T, lines.Select(l => l[2]).ToList());
             signature.SetFeature(Svc2004.Button, lines.Select(l => l[3]).ToList());
-            if (StandardFeatures)
+            if (standardFeatures)
             {
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => (double)l[3]).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => l[3]).ToList());
             }
 
             if (lines[0].Length == 7) // Task2
@@ -108,10 +108,10 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Svc2004.Azimuth, lines.Select(l => l[4]).ToList());
                 signature.SetFeature(Svc2004.Altitude, lines.Select(l => l[5]).ToList());
                 signature.SetFeature(Svc2004.Pressure, lines.Select(l => l[6]).ToList());
-                if (StandardFeatures)
+                if (standardFeatures)
                 {
-                    signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[4]).ToList());
-                    signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
+                    signature.SetFeature(Features.Azimuth, lines.Select(l => l[4]).ToList());
+                    signature.SetFeature(Features.Altitude, lines.Select(l => l[5]).ToList());
                     signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[6]).ToList());
                 }
             }

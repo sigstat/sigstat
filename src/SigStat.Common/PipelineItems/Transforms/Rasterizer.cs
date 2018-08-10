@@ -9,6 +9,7 @@ using SixLabors.ImageSharp.Processing.Drawing;
 using SixLabors.ImageSharp.Processing.Drawing.Pens;
 using SixLabors.Primitives;
 using SigStat.Common.Helpers;
+using SixLabors.Shapes;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
@@ -44,19 +45,20 @@ namespace SigStat.Common.PipelineItems.Transforms
             img.Mutate(ctx => ctx.Fill(bg));
 
             int len = xs.Count;
+            List<IPath> paths = new List<IPath>();
             List<PointF> points = new List<PointF>();
             for (int i=0;i<len;i++)
             {
                 if (pendowns[i]>0)
                 {
-                    points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * h)));
+                    points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * w)));//y-t nem h-val szorozzuk, mert akkor torzulna
                 }
                 else
                 {
                     if(points.Count>0)
                         img.Mutate(ctx => ctx.DrawLines(pen, points.ToArray()));
                     points = new List<PointF>();
-                    points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * h)));
+                    points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * w)));
                 }
                 Progress = (int)(i / (double)len * 90);
             }
@@ -70,6 +72,12 @@ namespace SigStat.Common.PipelineItems.Transforms
             signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), b);
             Progress = 100;
             Log(LogLevel.Info, "Rasterization done.");
+        }
+
+
+        void DrawLines(IImageProcessingContext<Byte4> ctx, List<PointF> ps)
+        {
+            
         }
     }
 }
