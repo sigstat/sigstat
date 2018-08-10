@@ -8,21 +8,15 @@ using SigStat.Common.Helpers;
 namespace SigStat.Common.Loaders
 {
 
-    public class Svc2004
+    public static class Svc2004
     {
-        public static readonly FeatureDescriptor X = new FeatureDescriptor("X(t)", "Svc2004.X", typeof(List<int>));
-        public static readonly FeatureDescriptor Y = new FeatureDescriptor("Y(t)", "Svc2004.Y", typeof(List<int>));
-        public static readonly FeatureDescriptor T = new FeatureDescriptor("t", "Svc2004.t", typeof(List<int>));
-        public static readonly FeatureDescriptor Button = new FeatureDescriptor("Button(t)", "Svc2004.Button", typeof(List<int>));
-        public static readonly FeatureDescriptor Azimuth = new FeatureDescriptor("Azimuth(t)", "Svc2004.Azimuth", typeof(List<int>));
-        public static readonly FeatureDescriptor Altitude = new FeatureDescriptor("Altitude(t)", "Svc2004.Altitude", typeof(List<int>));
-        public static readonly FeatureDescriptor Pressure = new FeatureDescriptor("Pressure(t)", "Svc2004.Pressure", typeof(List<int>));
-
-        //TODO: ez nem igazan Feature, hanem csak a pipeline reszeredmenyeihez kell
-        //-> vagy toroljuk oket a vegen, vagy a pipeline-nak is kellenek descriptorok
-        public static readonly FeatureDescriptor[] Task1 = new FeatureDescriptor[] { X, Y, T, Button };
-        public static readonly FeatureDescriptor[] Task2 = new FeatureDescriptor[] { X, Y, T, Button, Azimuth, Altitude, Pressure };
-
+        public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor<List<int>>.Descriptor("Svc2004.X");
+        public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Y");
+        public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor<List<int>>.Descriptor("Svc2004.t");
+        public static readonly FeatureDescriptor<List<int>> Button = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Button");
+        public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Azimuth");
+        public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Altitude");
+        public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Pressure");
     }
     public class Svc2004Loader : DataSetLoader
     {
@@ -100,7 +94,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[3]).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => (l[3]==1)).ToList());
             }
 
             if (lines[0].Length == 7) // Task2

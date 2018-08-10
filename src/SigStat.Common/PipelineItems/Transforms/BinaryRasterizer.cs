@@ -35,7 +35,7 @@ namespace SigStat.Common.PipelineItems.Transforms
         {
             List<double> xs = signature.GetFeature(Features.X);
             List<double> ys = signature.GetFeature(Features.Y);
-            List<int> pendowns = signature.GetFeature(Features.Button);
+            List<bool> pendowns = signature.GetFeature(Features.Button);
             List<double> ps = signature.GetFeature(Features.Pressure);
             List<int> alts = signature.GetFeature(Features.Altitude);
             List<int> azs = signature.GetFeature(Features.Azimuth);
@@ -51,20 +51,20 @@ namespace SigStat.Common.PipelineItems.Transforms
             List<PointF> points = new List<PointF>();
             for (int i=0;i<len;i++)
             {
-                if (pendowns[i]>0)
+                if (pendowns[i])
                 {
-                    points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * w)));//y-t nem h-val szorozzuk, mert akkor torzulna
+                    points.Add(ToImageCoords(xs[i], ys[i]));
                 }
                 else
                 {
                     if(points.Count>0)
-                        img.Mutate(ctx => DrawLines(ctx, points));
+                        DrawLines(img, points);
                     points = new List<PointF>();
-                    points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * w)));
+                    points.Add(ToImageCoords(xs[i], ys[i]));
                 }
                 Progress = (int)(i / (double)len * 90);
             }
-            img.Mutate(ctx => DrawLines(ctx, points));
+            DrawLines(img, points);
 
             bool[,] b = new bool[w, h];
             for (int x = 0; x < w; x++)
@@ -76,10 +76,27 @@ namespace SigStat.Common.PipelineItems.Transforms
             Log(LogLevel.Info, "Rasterization done.");
         }
 
-        void DrawLines(IImageProcessingContext<Byte4> ctx, List<PointF> ps)
+        private PointF ToImageCoords(double x, double y)
         {
-            ctx.DrawLines(noAA, pen, ps.ToArray());
-            ctx.DrawLines(noAA, pen, ps.ToArray());// 2x kell meghivni hogy mukodjon??
+            //ha x-et w-vel, y-t pedig h-val szoroznank, akkor torzulna
+            //megtartjuk az aranyokat ugy, hogy w es h bol a kisebbiket valasztjuk (igy biztos belefer a kepbe minden)
+            int m = Math.Min(w, h);
+
+            int frame = m / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
+
+            //betesszuk a kep kozepere is
+            return new PointF(
+                (float)(frame + x * (m-frame*2) + (w-m)/2),
+                (float)(frame + y * (m-frame*2) + (h-m)/2)
+            );
+        }
+
+        private void DrawLines(Image<Byte4> img, List<PointF> ps)
+        {
+            img.Mutate(ctx => {
+                ctx.DrawLines(noAA, pen, ps.ToArray());
+                ctx.DrawLines(noAA, pen, ps.ToArray());// 2x kell meghivni hogy mukodjon??
+            });
         }
     }
 }
