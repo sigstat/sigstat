@@ -8,7 +8,7 @@ using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Model
 {
-    public struct Result
+    public class Result
     {
         public readonly string Signer;
         public readonly double Frr;
@@ -22,6 +22,18 @@ namespace SigStat.Common.Model
             Far = far;
             Aer = aer;
         }
+    }
+
+    public class ThresholdResult: Result
+    {
+        public readonly double Threshold;
+
+        public ThresholdResult(string signer, double frr, double far, double aer, double threshold)
+            : base(signer, frr, far, aer)
+        {
+            Threshold = threshold;
+        }
+
     }
 
     public struct BenchmarkResults
