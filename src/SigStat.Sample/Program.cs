@@ -258,7 +258,7 @@ namespace SigStat.Sample
             {
                 new Normalize(Features.X),
                 new Normalize(Features.Y),
-                new BinaryRasterizer(500, 500, 2),
+                new BinaryRasterizer(400, 300, 2),
                 new ImageGenerator()
             };
             tfs.Logger = new Logger(LogLevel.Debug, LogConsole);
