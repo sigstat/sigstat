@@ -13,17 +13,22 @@ using SixLabors.Shapes;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
-    public class Rasterizer : PipelineBase, ITransformation
+    public class BinaryRasterizer : PipelineBase, ITransformation
     {
         private readonly int w;
         private readonly int h;
         private readonly float penwidth;
+        Byte4 fg = new Byte4(0, 0, 0, 255);
+        Byte4 bg = new Byte4(255, 255, 255, 255);
+        GraphicsOptions noAA = new GraphicsOptions(false);//aa kikapcs, mert binarisan dolgozunk es ne legyenek szakadasok
+        Pen<Byte4> pen;
 
-        public Rasterizer(int resolutionX, int resolutionY, float penwidth)
+        public BinaryRasterizer(int resolutionX, int resolutionY, float penwidth)
         {
             this.w = resolutionX;
             this.h = resolutionY;
             this.penwidth = penwidth;
+            pen = new Pen<Byte4>(fg, penwidth);
         }
 
         public void Transform(Signature signature)
@@ -39,9 +44,6 @@ namespace SigStat.Common.PipelineItems.Transforms
             //TODO: X,Y legyen normalizalva, normalizaljuk ha nincs, ahhoz kell az Extrema, ..
 
             Image<Byte4> img = new Image<Byte4>(w, h);
-            Byte4 bg = new Byte4(255, 255, 255, 255);
-            Byte4 fg = new Byte4(0, 0, 0, 255);
-            Pen<Byte4> pen = new Pen<Byte4>(fg, penwidth);
             img.Mutate(ctx => ctx.Fill(bg));
 
             int len = xs.Count;
@@ -56,13 +58,13 @@ namespace SigStat.Common.PipelineItems.Transforms
                 else
                 {
                     if(points.Count>0)
-                        img.Mutate(ctx => ctx.DrawLines(pen, points.ToArray()));
+                        img.Mutate(ctx => DrawLines(ctx, points));
                     points = new List<PointF>();
                     points.Add(new PointF((float)(xs[i] * w), (float)(ys[i] * w)));
                 }
                 Progress = (int)(i / (double)len * 90);
             }
-            img.Mutate(ctx => ctx.DrawLines(pen, points.ToArray()));
+            img.Mutate(ctx => DrawLines(ctx, points));
 
             bool[,] b = new bool[w, h];
             for (int x = 0; x < w; x++)
@@ -74,10 +76,10 @@ namespace SigStat.Common.PipelineItems.Transforms
             Log(LogLevel.Info, "Rasterization done.");
         }
 
-
         void DrawLines(IImageProcessingContext<Byte4> ctx, List<PointF> ps)
         {
-            
+            ctx.DrawLines(noAA, pen, ps.ToArray());
+            ctx.DrawLines(noAA, pen, ps.ToArray());// 2x kell meghivni hogy mukodjon??
         }
     }
 }

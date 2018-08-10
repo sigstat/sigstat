@@ -47,7 +47,8 @@ namespace SigStat.Sample
         {
             Console.WriteLine("Hello");
             //SignatureDemo();
-            OfflineVerifierDemo();
+            OnlineToImage();
+            //OfflineVerifierDemo();
             //OnlineVerifierDemo();
             //await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
@@ -244,6 +245,26 @@ namespace SigStat.Sample
 
             //result.SignerResults...
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
+        }
+
+        static void OnlineToImage()
+        {
+            Signature s1 = new Signature();
+            bool signer1(string p)
+            { return p == "01"; }
+            Svc2004Loader.LoadSignature(s1, @"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\U1S1.txt", true);
+
+            var tfs = new SequentialTransformPipeline
+            {
+                new Normalize(Features.X),
+                new Normalize(Features.Y),
+                new BinaryRasterizer(500, 500, 2),
+                new ImageGenerator()
+            };
+            tfs.Logger = new Logger(LogLevel.Debug, LogConsole);
+            tfs.Transform(s1);
+
+            ImageSaver.Save(s1, @"D:\generatedImage.png");
         }
 
         public static void LogConsole(LogLevel l, string message)
