@@ -36,12 +36,20 @@ namespace SigStat.Common.Pipeline
         {
             if (_logger != null)
                 newItem.Logger = _logger;
+            newItem.ProgressChanged += ((o, p) => calcProgress(i,p));
             Items.Add(newItem);
         }
 
+        private void calcProgress(int i, int p)
+        {
+            double m = p / 100.0;
+            Progress = (int)((i*(1-m)+(i+1)*m) / (Items.Count) * 100.0);
+        }
+
+        int i=0;
         public void Transform(Signature signature)
         {
-            for (int i = 0; i < Items.Count; i++)
+            for (i = 0; i < Items.Count; i++)
             {
                 //try
                 //{
@@ -52,7 +60,7 @@ namespace SigStat.Common.Pipeline
                 //    throw PipelineException("Error while executing {pipelineItem.Type} with signature {sig.ToString()}", exc);
                 //}
 
-                Progress = (int)(i / (double)(Items.Count - 1) * 100.0);
+                //Progress = (int)(i / (double)(Items.Count - 1) * 100.0);
             }
         }
     }

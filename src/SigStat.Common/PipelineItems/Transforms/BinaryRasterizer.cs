@@ -37,8 +37,8 @@ namespace SigStat.Common.PipelineItems.Transforms
             List<double> ys = signature.GetFeature(Features.Y);
             List<bool> pendowns = signature.GetFeature(Features.Button);
             List<double> ps = signature.GetFeature(Features.Pressure);
-            List<int> alts = signature.GetFeature(Features.Altitude);
-            List<int> azs = signature.GetFeature(Features.Azimuth);
+            List<double> alts = signature.GetFeature(Features.Altitude);
+            List<double> azs = signature.GetFeature(Features.Azimuth);
             //+ egyeb ami kellhet
 
             //TODO: X,Y legyen normalizalva, normalizaljuk ha nincs, ahhoz kell az Extrema, ..
@@ -47,7 +47,6 @@ namespace SigStat.Common.PipelineItems.Transforms
             img.Mutate(ctx => ctx.Fill(bg));
 
             int len = xs.Count;
-            List<IPath> paths = new List<IPath>();
             List<PointF> points = new List<PointF>();
             for (int i=0;i<len;i++)
             {
@@ -84,10 +83,11 @@ namespace SigStat.Common.PipelineItems.Transforms
 
             int frame = m / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
 
+            //Y-okat meg kell forditani, hogy ne legyen fejjel lefele a kepen
             //betesszuk a kep kozepere is
             return new PointF(
                 (float)(frame + x * (m-frame*2) + (w-m)/2),
-                (float)(frame + y * (m-frame*2) + (h-m)/2)
+                (float)(frame + (1-y) * (m-frame*2) + (h-m)/2)
             );
         }
 

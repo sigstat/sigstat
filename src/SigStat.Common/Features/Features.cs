@@ -18,8 +18,8 @@ namespace SigStat.Common
         public static readonly FeatureDescriptor<List<double>> Y = FeatureDescriptor<List<double>>.Descriptor("Y");
         public static readonly FeatureDescriptor<List<double>> T = FeatureDescriptor<List<double>>.Descriptor("T");
         public static readonly FeatureDescriptor<List<bool>> Button = FeatureDescriptor<List<bool>>.Descriptor("Button");
-        public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor<List<int>>.Descriptor("Azimuth");
-        public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor<List<int>>.Descriptor("Altitude");
+        public static readonly FeatureDescriptor<List<double>> Azimuth = FeatureDescriptor<List<double>>.Descriptor("Azimuth");
+        public static readonly FeatureDescriptor<List<double>> Altitude = FeatureDescriptor<List<double>>.Descriptor("Altitude");
         public static readonly FeatureDescriptor<List<double>> Pressure = FeatureDescriptor<List<double>>.Descriptor("Pressure");
         public static readonly FeatureDescriptor<Image<Rgba32>> Image = FeatureDescriptor<Image<Rgba32>>.Descriptor("Image");
         public static readonly FeatureDescriptor<Point> Cog = FeatureDescriptor<Point>.Descriptor("Cog");

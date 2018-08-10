@@ -40,7 +40,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             for (int x = 0; x < w; x++)
             {
                 for (int y = 0; y < h; y++)
-                    img[x, y] = b[x, y] ? Rgba32.LightBlue : Rgba32.White;
+                    img[x, y] = b[x, y] ? fg : bg;
                 Progress = (int)(x / (double)w * 95);
             }
 

@@ -250,18 +250,18 @@ namespace SigStat.Sample
         static void OnlineToImage()
         {
             Signature s1 = new Signature();
-            bool signer1(string p)
-            { return p == "01"; }
-            Svc2004Loader.LoadSignature(s1, @"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\U1S1.txt", true);
+            Svc2004Loader.LoadSignature(s1, @"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\U10S10.txt", true);
 
             var tfs = new SequentialTransformPipeline
             {
                 new Normalize(Features.X),
                 new Normalize(Features.Y),
-                new BinaryRasterizer(400, 300, 2),
-                new ImageGenerator()
+                /*new BinaryRasterizer(400, 300, 2),
+                new ImageGenerator()*/
+                new RealisticImageGenerator(1280, 720)
             };
             tfs.Logger = new Logger(LogLevel.Debug, LogConsole);
+            tfs.ProgressChanged += ProgressBenchmark;
             tfs.Transform(s1);
 
             ImageSaver.Save(s1, @"D:\generatedImage.png");

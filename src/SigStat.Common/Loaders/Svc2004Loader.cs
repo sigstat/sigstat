@@ -99,14 +99,20 @@ namespace SigStat.Common.Loaders
 
             if (lines[0].Length == 7) // Task2
             {
-                signature.SetFeature(Svc2004.Azimuth, lines.Select(l => l[4]).ToList());
-                signature.SetFeature(Svc2004.Altitude, lines.Select(l => l[5]).ToList());
-                signature.SetFeature(Svc2004.Pressure, lines.Select(l => l[6]).ToList());
+                List<int> azimuth = lines.Select(l => l[4]).ToList();
+                List<int> altitude = lines.Select(l => l[5]).ToList();
+                List<int> pressure = lines.Select(l => l[6]).ToList();
+                signature.SetFeature(Svc2004.Azimuth, azimuth);
+                signature.SetFeature(Svc2004.Altitude, altitude);
+                signature.SetFeature(Svc2004.Pressure, pressure);
                 if (standardFeatures)
                 {
-                    signature.SetFeature(Features.Azimuth, lines.Select(l => l[4]).ToList());
-                    signature.SetFeature(Features.Altitude, lines.Select(l => l[5]).ToList());
-                    signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[6]).ToList());
+                    double azimuthmax = azimuth.Max();
+                    double altitudemax = altitude.Max();
+                    double pressuremax = pressure.Max();
+                    signature.SetFeature(Features.Azimuth, azimuth.Select(a => a / azimuthmax * 2 * Math.PI).ToList());
+                    signature.SetFeature(Features.Altitude, altitude.Select(a => a / altitudemax).ToList());
+                    signature.SetFeature(Features.Pressure, pressure.Select(a => a / pressuremax).ToList());
                 }
             }
         }
