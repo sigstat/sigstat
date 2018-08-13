@@ -12,6 +12,7 @@ namespace SigStat.Common.PipelineItems.Transforms
         public ComponentSorter()
         {
             componentsFeature = FeatureDescriptor<List<List<PointF>>>.Descriptor("Components");
+            this.Output(componentsFeature);
         }
 
         Comparison<List<PointF>> kezdo_x = new Comparison<List<PointF>>
@@ -66,7 +67,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 components.RemoveAt(minindex);
             }
 
-            signature.SetFeature(componentsFeature, sorted);
+            signature.SetFeature(OutputFeatures[0], sorted);
 
         }
 

@@ -40,7 +40,14 @@ namespace SigStat.Common.Pipeline
         public void Transform(Signature signature)
         {
             //TODO mindnek kovetni a progressét, a minimum lesz ezé is
-            Parallel.ForEach(Items, (i) => i.Transform(signature));
+            Parallel.ForEach(Items, (i) => {
+                if (i.InputFeatures == null)//pass previously calculated features if input not specified
+                    i.InputFeatures = this.InputFeatures;
+                i.Transform(signature);
+                });
+
+            //TODO mi legyen a parallel pipeline Outputja??
+
         }
     }
 }

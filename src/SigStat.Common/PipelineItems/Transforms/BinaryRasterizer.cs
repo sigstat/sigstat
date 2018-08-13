@@ -29,6 +29,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             this.h = resolutionY;
             this.penwidth = penwidth;
             pen = new Pen<Byte4>(fg, penwidth);
+            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
         }
 
         public void Transform(Signature signature)
@@ -70,7 +71,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 for (int y = 0; y < h; y++)
                     b[x, y] = (img[x, y] == fg);
 
-            signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), b);
+            signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
             Log(LogLevel.Info, "Rasterization done.");
         }

@@ -10,19 +10,18 @@ namespace SigStat.Common.Transforms
     {
         private readonly double v0;
         private readonly double v1;
-        private readonly FeatureDescriptor<List<double>> f;
 
-        public Map(double minVal, double maxVal, FeatureDescriptor<List<double>> f)
+        public Map(double minVal, double maxVal)
         {
             this.v0 = minVal;
             this.v1 = maxVal;
-            
-            this.f = f;
+
+            this.Output(FeatureDescriptor<List<double>>.Descriptor("MapResult"));
         }
 
         public void Transform(Signature signature)
         {
-            var values = signature.GetFeature(f);
+            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);
 
             //find min and max values
             double min = values.Min();
@@ -36,7 +35,7 @@ namespace SigStat.Common.Transforms
                 Progress += 100 / values.Count;
             }
 
-            signature[f] = values;
+            signature.SetFeature(OutputFeatures[0], values);
 
         }
 

@@ -8,37 +8,43 @@ namespace SigStat.Common.Transforms
 {
     public class Multiply : PipelineBase, IEnumerable, ITransformation
     {
-        //melyik feature-t mennyivel szorozzuk
-        private List<(FeatureDescriptor f, double m)> fms = new List<(FeatureDescriptor f, double m)>();
+        private readonly double byConst;
+
+        public Multiply(double byConst)
+        {
+            this.byConst = byConst;
+        }
 
         public IEnumerator GetEnumerator()
         {
-            return fms.GetEnumerator();
+            return InputFeatures.GetEnumerator();
         }
 
-        public void Add((FeatureDescriptor f, double t) newItem)
+        public void Add(FeatureDescriptor newItem)
         {
-            fms.Add(newItem);
+            InputFeatures.Add(newItem);
         }
 
         public void Transform(Signature signature)
         {
-            foreach (var fm in fms)
+            foreach (var f in InputFeatures)
             {
-                if (fm.f.IsCollection)
+                if (f.IsCollection)
                 {
-                    var values = signature.GetFeature<List<double>>(fm.f);
+                    var values = signature.GetFeature<List<double>>(f);
                     for (int i = 0; i < values.Count; i++)
-                        values[i] = values[i] * fm.m;
-                    signature[fm.f] = values;
+                        values[i] = values[i] * byConst;
+                    signature.SetFeature(f, values);
+                    this.Output(f);
                 }
                 else
                 {
-                    var values = signature.GetFeature<double>(fm.f);
-                    values = values * fm.m;
-                    signature[fm.f] = values;
+                    var values = signature.GetFeature<double>(f);
+                    values = values * byConst;
+                    signature.SetFeature(f, values);
+                    this.Output(f);
                 }
-                Progress += 100/fms.Count;
+                Progress += 100 / InputFeatures.Count;
             }
             
         }

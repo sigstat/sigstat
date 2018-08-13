@@ -15,6 +15,7 @@ namespace SigStat.Common.PipelineItems.Transforms
         public ComponentExtraction(int samplingResolution)
         {
             this.samplingResolution = samplingResolution;
+            this.Output(FeatureDescriptor<List<List<PointF>>>.Descriptor("Components"));
         }
 
         public void Transform(Signature signature)
@@ -39,7 +40,7 @@ namespace SigStat.Common.PipelineItems.Transforms
 
             var componentlist = JoinSections(sectionlist, crossings);
 
-            signature.SetFeature(FeatureDescriptor<List<List<PointF>>>.Descriptor("Components"), componentlist);
+            signature.SetFeature(OutputFeatures[0], componentlist);
             Progress = 100;
             Log(LogLevel.Info, $"Component extraction done. {componentlist.Count} components found.");
         }

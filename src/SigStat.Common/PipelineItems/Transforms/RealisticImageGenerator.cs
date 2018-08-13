@@ -37,6 +37,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             w = resolutionX;
             h = resolutionY;
             penScale = Math.Min(w,h) / 300 + 0.5f;
+            this.Output(Features.Image);
         }
 
         public void Transform(Signature signature)
@@ -76,7 +77,7 @@ namespace SigStat.Common.PipelineItems.Transforms
 
 
 
-            signature.SetFeature(Features.Image, img);
+            signature.SetFeature(OutputFeatures[0], img);
             Progress = 100;
             Log(LogLevel.Info, "Realistic image generation done.");
         }

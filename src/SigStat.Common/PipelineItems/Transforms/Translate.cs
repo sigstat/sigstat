@@ -2,16 +2,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Transforms
 {
     public class Translate : SequentialTransformPipeline
     {
-        //ezeket a featureoket ezzel toljuk el
-        //private readonly FeatureDescriptor<List<double>> byFeature;
-        private List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
-
         public Translate(double xAdd, double yAdd)
         {
             Items = new List<ITransformation>()
@@ -22,6 +19,10 @@ namespace SigStat.Common.Transforms
                     (Features.Y, yAdd)
                 }
             };
+
+            //Output of last transform is the output of the sequence
+            this.Output(Items.Last().OutputFeatures.ToArray());
+
         }
 
         public Translate(FeatureDescriptor<List<double>> byFeature)
@@ -34,6 +35,10 @@ namespace SigStat.Common.Transforms
                     Features.Y
                 }
             };
+
+            //Output of last transform is the output of the sequence
+            this.Output(Items.Last().OutputFeatures.ToArray());
+
         }
     }
 }

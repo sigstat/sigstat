@@ -7,18 +7,17 @@ namespace SigStat.Common.PipelineItems.Transforms
 {
     public class Trim : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<bool[,]> bFd;
         private readonly int framewidth;
 
-        public Trim(FeatureDescriptor<bool[,]> bFd, int framewidth)
+        public Trim(int framewidth)
         {
-            this.bFd = bFd;
             this.framewidth = framewidth;
+            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Trimmed"));
         }
 
         public void Transform(Signature signature)
         {
-            bool[,] input = signature.GetFeature(bFd);
+            bool[,] input = signature.GetFeature<bool[,]>(InputFeatures[0]);
             int w = input.GetLength(0);
             int h = input.GetLength(1);
 
@@ -56,7 +55,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 for (int y = 0; y < o.GetLength(1); y++)
                     o[x, y] = input[x0 + x, y0 + y];
 
-            signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Trimmed"), o);
+            signature.SetFeature(OutputFeatures[0], o);
             Progress = 100;
             Log(LogLevel.Info, $"Trimming done. New resolution: {x1-x0}x{y1-y0} px");
         }

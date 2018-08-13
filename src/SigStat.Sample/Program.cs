@@ -47,9 +47,9 @@ namespace SigStat.Sample
         {
             Console.WriteLine("Hello");
             //SignatureDemo();
-            //OnlineToImage();
+            OnlineToImage();
             //OfflineVerifierDemo();
-            OnlineVerifierDemo();
+            //OnlineVerifierDemo();
             //await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
@@ -123,10 +123,10 @@ namespace SigStat.Sample
                 Logger = new Logger(LogLevel.Debug, LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
-                    new Binarization(Features.Image, Binarization.ForegroundType.Dark),
-                    new Trim(MyFeatures.Binarized, 5),
-                    new HSCPThinning(FeatureDescriptor<bool[,]>.Descriptor("Trimmed")),
-                    new OnePixelThinning(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),
+                    new Binarization().Input(Features.Image),
+                    new Trim(5)/*.Input(MyFeatures.Binarized)*/,
+                    new HSCPThinning(),
+                    new OnePixelThinning(),
                     new EndpointExtraction(),
                     new ComponentExtraction(5),
                     new ComponentSorter(),
@@ -170,14 +170,14 @@ namespace SigStat.Sample
                     {
                         (Features.X, -0.5)
                     },*/
-                    new Normalize(Features.Pressure),
+                    new Normalize().Input(Features.Pressure),
                     new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
                     new TimeReset(),//^
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                     new TimeMarkerStop().Output(timer1),
-                    new LogMarker(LogLevel.Info, timer1)
+                    new LogMarker(LogLevel.Info).Input(timer1)
                 },
                 ClassifierPipeline = new WeightedClassifier
                 {
@@ -254,8 +254,8 @@ namespace SigStat.Sample
 
             var tfs = new SequentialTransformPipeline
             {
-                new Normalize(Features.X),
-                new Normalize(Features.Y),
+                new Normalize().Input(Features.X),
+                new Normalize().Input(Features.Y),
                 /*new BinaryRasterizer(400, 300, 2),
                 new ImageGenerator()*/
                 new RealisticImageGenerator(1280, 720)

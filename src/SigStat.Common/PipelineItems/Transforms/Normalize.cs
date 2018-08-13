@@ -11,16 +11,15 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class Normalize : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<List<double>> f;
 
-        public Normalize(FeatureDescriptor<List<double>> f)
+        public Normalize()
         {
-            this.f = f;
+            this.Output(FeatureDescriptor<List<double>>.Descriptor("NormalizationResult"));
         }
 
         public void Transform(Signature signature)
         {
-            var values = signature.GetFeature(f);
+            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);
 
             //find min and max values
             double min = values.Min();
@@ -33,7 +32,7 @@ namespace SigStat.Common.Transforms
                 Progress += 100 / values.Count;
             }
 
-            signature[f] = values;
+            signature.SetFeature(OutputFeatures[0], values);
         }
 
     }

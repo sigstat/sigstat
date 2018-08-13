@@ -13,43 +13,37 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class CentroidExtraction : PipelineBase, IEnumerable, ITransformation
     {
-        public List<FeatureDescriptor<List<double>>> fs = new List<FeatureDescriptor<List<double>>>();
-
-        private FeatureDescriptor<List<double>> centroidfd;//akar lehetne egy gettere is
 
         public CentroidExtraction()
         {
-            //itt letre kell hozni azt a feature descriptort, amit ki fog szamolni. 
-            //Kulonben a kesobbi pipeline elemek inicializalasanal nem talalnank.
-            //TODO: ezt talan lehetne automatizalni: Ha olyan feature descriptort kerunk le ami nincs, akkor letrehozzuk
-            centroidfd = FeatureDescriptor<List<double>>.Descriptor("Centroid");
-
+            //this.Input(Features.X, Features.X);
+            this.Output(FeatureDescriptor<List<double>>.Descriptor("Centroid"));
         }
 
         public IEnumerator GetEnumerator()
         {
-            return fs.GetEnumerator();
+            return InputFeatures.GetEnumerator();
         }
 
         public void Add(FeatureDescriptor<List<double>> newitem)
         {
-            fs.Add(newitem);
+            InputFeatures.Add(newitem);
         }
 
         public void Transform(Signature signature)
         {
-            List<double> c = new List<double>(fs.Count);
-            foreach (var f in fs)
+            List<double> c = new List<double>(InputFeatures.Count);
+            foreach (var f in InputFeatures)
             {
-                var values = signature.GetFeature(f);
+                var values = signature.GetFeature<List<double>>(f);
                 double avg = values.Average();
                 c.Add(avg);
-                Progress += 100 / fs.Count;
+                Progress += 100 / InputFeatures.Count;
             }
 
-            signature[centroidfd] = c;
-            //signature.SetFeature(centroidfd, c);
-            //signature["Centroid"] = c;
+            signature.SetFeature(OutputFeatures[0], c);
+            Progress = 100;
+            Log(LogLevel.Info, "Centroid extraction done.");
         }
     }
 }

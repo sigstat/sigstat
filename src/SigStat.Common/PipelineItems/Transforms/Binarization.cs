@@ -17,36 +17,30 @@ namespace SigStat.Common.PipelineItems.Transforms
         }
 
         private double binThreshold = -1;//0-1 //-1: iterative
-        private readonly FeatureDescriptor<Image<Rgba32>> imageFd;
-        private readonly ForegroundType foregroundType;
+        private readonly ForegroundType foregroundType = ForegroundType.Dark;
 
         /// <summary>
-        /// threshold automatikusan lesz kiszamolva
+        /// threshold automatikusan lesz kiszamolva, sotet eloter, vilagos hatter
         /// </summary>
-        /// <param name="imageFd"></param>
-        /// <param name="foregroundType"></param>
-        public Binarization(FeatureDescriptor<Image<Rgba32>> imageFd, ForegroundType foregroundType)
+        public Binarization()
         {
-            this.imageFd = imageFd;
-            this.foregroundType = foregroundType;
+            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="imageFd"></param>
         /// <param name="foregroundType"></param>
         /// <param name="binThreshold">0-1</param>
-        public Binarization(FeatureDescriptor<Image<Rgba32>> imageFd, ForegroundType foregroundType, double binThreshold)
+        public Binarization(ForegroundType foregroundType, double binThreshold)
         {
-            this.imageFd = imageFd;
             this.foregroundType = foregroundType;
             this.binThreshold = binThreshold;
         }
 
         public void Transform(Signature signature)
         {
-            Image<Rgba32> image = signature.GetFeature(imageFd);
+            Image<Rgba32> image = signature.GetFeature<Image<Rgba32>>(InputFeatures[0]);
             int w = image.Size().Width;
             int h = image.Size().Height;
 
@@ -63,7 +57,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             }
 
             Log(LogLevel.Info, "Binarization done.");
-            signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Binarized"), b);
+            signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
         }
 

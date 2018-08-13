@@ -13,6 +13,11 @@ namespace SigStat.Common.PipelineItems.Transforms
         public ComponentsToFeatures()
         {
             componentsFeature = FeatureDescriptor<List<List<PointF>>>.Descriptor("Components");
+            this.Output(
+                Features.X,
+                Features.Y,
+                Features.Button
+                );
         }
 
         public void Transform(Signature signature)
@@ -36,9 +41,9 @@ namespace SigStat.Common.PipelineItems.Transforms
                 Progress += (int)(1.0 / components.Count * 100);
             }
 
-            signature.SetFeature(Features.X, xs);
-            signature.SetFeature(Features.Y, ys);
-            signature.SetFeature(Features.Button, pendown);
+            signature.SetFeature(OutputFeatures[0], xs);
+            signature.SetFeature(OutputFeatures[1], ys);
+            signature.SetFeature(OutputFeatures[2], pendown);
             Progress = 100;
             Log(LogLevel.Info, $"X,Y,Button features extracted. Length: {xs.Count}");
 

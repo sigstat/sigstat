@@ -3,6 +3,7 @@ using SigStat.Common.Transforms;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace SigStat.Common.Transforms
 {
@@ -24,12 +25,13 @@ namespace SigStat.Common.Transforms
                     Features.X,
                     Features.Y
                 },
-                new Multiply
-                {
-                    (FeatureDescriptor<List<double>>.Descriptor("Centroid"), -1.0)//TODO ez tul hosszu
-                },
+                new Multiply(-1.0),
                 new Translate(FeatureDescriptor<List<double>>.Descriptor("Centroid"))
             };
+
+            //Output of last transform is the output of the sequence
+            this.Output(Items.Last().OutputFeatures.ToArray());
+
         }
 
     }

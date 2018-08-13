@@ -13,7 +13,10 @@ namespace SigStat.Common.PipelineItems.Transforms
     {
         public EndpointExtraction()
         {
-
+            this.Output(
+                FeatureDescriptor<List<Point>>.Descriptor("EndPoints"),
+                FeatureDescriptor<List<Point>>.Descriptor("CrossingPoints")
+            );
         }
 
         public void Transform(Signature signature)
@@ -52,8 +55,8 @@ namespace SigStat.Common.PipelineItems.Transforms
                 Progress = (int)(i / (double)(w - 1) * 100);
             }
 
-            signature.SetFeature(FeatureDescriptor<List<Point>>.Descriptor("EndPoints"), endPoints);
-            signature.SetFeature(FeatureDescriptor<List<Point>>.Descriptor("CrossingPoints"), crossingPoints);
+            signature.SetFeature(OutputFeatures[0], endPoints);
+            signature.SetFeature(OutputFeatures[1], crossingPoints);
 
             Progress = 100;
             Log(LogLevel.Info, $"Endpoint extraction done. {endPoints.Count} endpoints and {crossingPoints.Count} crossingpoints found.");

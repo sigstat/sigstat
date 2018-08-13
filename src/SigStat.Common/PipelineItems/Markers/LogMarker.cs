@@ -8,17 +8,16 @@ namespace SigStat.Common.PipelineItems.Markers
     public class LogMarker : PipelineBase, ITransformation
     {
         private readonly LogLevel level;
-        private readonly FeatureDescriptor fd;
 
-        public LogMarker(LogLevel level,  FeatureDescriptor fd)
+        public LogMarker(LogLevel level)
         {
             this.level = level;
-            this.fd = fd;
+            //this.Input(FeatureDescriptor<DateTime>.Descriptor("DefaultTimer"));
         }
 
         public void Transform(Signature signature)
         {
-            Log(level, $"Signature{signature.ID}.{fd.Name} = {signature[fd].ToString()}");
+            Log(level, $"Signature{signature.ID}.{InputFeatures[0].Name} = {signature[InputFeatures[0]].ToString()}");
         }
     }
 }

@@ -8,16 +8,15 @@ namespace SigStat.Common.PipelineItems.Transforms
 {
     public class OnePixelThinning : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<bool[,]> bFd;
 
-        public OnePixelThinning(FeatureDescriptor<bool[,]> bFd)
+        public OnePixelThinning()
         {
-            this.bFd = bFd;
+            this.Output(FeatureDescriptor<bool[,]>.Descriptor("OnePixelThinningResult"));
         }
 
         public void Transform(Signature signature)
         {
-            bool[,] b = signature.GetFeature(bFd);
+            bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
             Progress = 50;
             int stepCnt = 0;
             OnePixelThinningStep algo = new OnePixelThinningStep();
@@ -26,7 +25,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 b = algo.Scan(b);
                 stepCnt++;
             }
-            signature.SetFeature(FeatureDescriptor<bool[,]>.Descriptor("Skeleton"), b);
+            signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
             Log(LogLevel.Info, $"One pixel thinning steps applied {stepCnt} times.");
         }

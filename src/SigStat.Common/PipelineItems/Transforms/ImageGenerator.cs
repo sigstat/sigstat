@@ -19,17 +19,19 @@ namespace SigStat.Common.PipelineItems.Transforms
         {
             fg = Rgba32.LightBlue;
             bg = Rgba32.White;
+            this.Output(Features.Image);
         }
 
         public ImageGenerator(Rgba32 foregroundColor, Rgba32 backgroundColor)
         {
             fg = foregroundColor;
             bg = backgroundColor;
+            this.Output(Features.Image);
         }
 
         public void Transform(Signature signature)
         {
-            bool[,] b = signature.GetFeature(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
+            bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
             int w = b.GetLength(0);
             int h = b.GetLength(1);
 
@@ -44,7 +46,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 Progress = (int)(x / (double)w * 95);
             }
 
-            signature.SetFeature(Features.Image, img);
+            signature.SetFeature(OutputFeatures[0], img);
             Progress = 100;
             Log(LogLevel.Info, "Image generation from binary raster done.");
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Pipeline
@@ -38,6 +39,8 @@ namespace SigStat.Common.Pipeline
                 newItem.Logger = _logger;
             newItem.ProgressChanged += ((o, p) => calcProgress(i,p));
             Items.Add(newItem);
+            //Output of last transform is the output of the sequence
+            this.Output(Items.Last().OutputFeatures.ToArray());
         }
 
         private void calcProgress(int i, int p)
@@ -53,7 +56,9 @@ namespace SigStat.Common.Pipeline
             {
                 //try
                 //{
-                    Items[i].Transform(signature);
+                if (Items[i].InputFeatures == null)//pass previously calculated features if input not specified
+                    Items[i].InputFeatures = Items[i - 1].OutputFeatures;
+                Items[i].Transform(signature);
                 //}
                 //catch (Exception exc)
                 //{

@@ -68,6 +68,7 @@ namespace SigStat.Common
         //proba
         public T GetFeature<T>(FeatureDescriptor f)
         {
+            //try cast, catch log
             return (T)features[f.Key];
         }
 
