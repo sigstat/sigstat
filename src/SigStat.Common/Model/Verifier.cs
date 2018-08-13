@@ -36,8 +36,8 @@ namespace SigStat.Common.Model
         }
 
         private int _progress;
-        public int Progress { get => _progress; set { _progress = value; ProgressChanged(this, value); } }
-        public event EventHandler<int> ProgressChanged = delegate { };
+        public int Progress { get => _progress; set { _progress = value; ProgressChanged?.Invoke(this, value); } }
+        public event EventHandler<int> ProgressChanged;
 
         public Verifier()
         {

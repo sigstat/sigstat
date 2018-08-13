@@ -47,9 +47,9 @@ namespace SigStat.Sample
         {
             Console.WriteLine("Hello");
             //SignatureDemo();
-            OnlineToImage();
+            //OnlineToImage();
             //OfflineVerifierDemo();
-            //OnlineVerifierDemo();
+            OnlineVerifierDemo();
             //await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
@@ -159,7 +159,7 @@ namespace SigStat.Sample
                 Logger = new Logger(LogLevel.Info, LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
-                    new TimeMarkerStart(timer1),
+                    new TimeMarkerStart().Output(timer1),
                     /*new ParallelTransformPipeline
                     {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
                         new Map(10,20, Features.X),
@@ -176,7 +176,7 @@ namespace SigStat.Sample
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
-                    new TimeMarkerStop(timer1),
+                    new TimeMarkerStop().Output(timer1),
                     new LogMarker(LogLevel.Info, timer1)
                 },
                 ClassifierPipeline = new WeightedClassifier
