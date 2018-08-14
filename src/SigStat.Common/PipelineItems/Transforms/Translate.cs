@@ -7,21 +7,21 @@ using System.Text;
 
 namespace SigStat.Common.Transforms
 {
+    /// <summary>
+    /// input: X Y
+    /// output: X Y
+    /// </summary>
     public class Translate : SequentialTransformPipeline
     {
         public Translate(double xAdd, double yAdd)
         {
             Items = new List<ITransformation>()
             {
-                new Addition
-                {
-                    (Features.X, xAdd),
-                    (Features.Y, yAdd)
-                }
+                new AddConst(xAdd).Input(Features.X),
+                new AddConst(yAdd).Input(Features.Y),
             };
 
-            //Output of last transform is the output of the sequence
-            this.Output(Items.Last().OutputFeatures.ToArray());
+            this.Output(Features.X, Features.Y);
 
         }
 
@@ -36,8 +36,7 @@ namespace SigStat.Common.Transforms
                 }
             };
 
-            //Output of last transform is the output of the sequence
-            this.Output(Items.Last().OutputFeatures.ToArray());
+            this.Output(Features.X, Features.Y);
 
         }
     }
