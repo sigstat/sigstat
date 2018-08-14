@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using SigStat.Common.Helpers;
+using System.IO.Compression;
 
 namespace SigStat.Common.Loaders
 {
@@ -29,7 +30,8 @@ namespace SigStat.Common.Loaders
             public SignatureFile(string file)
             {
                 File = file;
-                var parts = Path.GetFileNameWithoutExtension(file).Replace("U", "").Split('S');
+                string name = file.Split('/').Last();//handle if file is in zip directory
+                var parts = Path.GetFileNameWithoutExtension(name).Replace("U", "").Split('S');
                 if (parts.Length != 2)
                     throw new InvalidOperationException("Invalid file format. All signature files should be in 'U__S__.txt' format");
                 SignerID = parts[0].PadLeft(2, '0');
@@ -40,14 +42,52 @@ namespace SigStat.Common.Loaders
         public string DatabasePath { get; set; }
         public bool StandardFeatures { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databasePath">ZIP file</param>
+        /// <param name="standardFeatures"></param>
         public Svc2004Loader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
 
+        public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
+        {
+            Log(LogLevel.Info, "Enumerating signers started.");
+            using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
+            {
+                //cut names if the files are in directories
+                var signatureGroups = zip.Entries.Where(f=>f.Name.EndsWith(".TXT")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
+                Log(LogLevel.Debug, signatureGroups.Count().ToString() + " signers found in database");
+                foreach (var group in signatureGroups)
+                {
+                    if (signerFilter != null && !signerFilter(group.Key))
+                        continue;
+                    Signer signer = new Signer() { ID = group.Key };
+                    foreach (var signatureFile in group)
+                    {
+                        Signature signature = new Signature()
+                        {
+                            Signer = signer,
+                            ID = signatureFile.SignatureID
+                        };
+                        using (Stream s = zip.GetEntry(signatureFile.File).Open())
+                        {
+                            LoadSignature(signature, s, StandardFeatures);
+                        }
+                        signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
+                        signer.Signatures.Add(signature);
+                        
+                    }
+                    yield return signer;
+                }
+            }
+            Log(LogLevel.Info, "Enumerating signers finished.");
+        }
 
-
+        /*
         public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
         {
             Log(LogLevel.Info, "Enumerating signers started.");
@@ -75,12 +115,26 @@ namespace SigStat.Common.Loaders
                 yield return signer;
             }
             Log(LogLevel.Info, "Enumerating signers finished.");
+        }*/
+        
+        public static void LoadSignature(Signature signature, string path, bool standardFeatures)
+        {
+            ParseSignature(signature, File.ReadAllLines(path), standardFeatures);
+        } 
+             
+        public static void LoadSignature(Signature signature, Stream stream, bool standardFeatures)
+        {
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                ParseSignature(signature, sr.ReadToEnd().Split( new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None), standardFeatures);
+            }
         }
 
-        public static void LoadSignature(Signature signature, string file, bool standardFeatures)
+        public static void ParseSignature(Signature signature, string[] linesArray, bool standardFeatures)
         {
-            var lines = File.ReadAllLines(file)
+            var lines = linesArray
                 .Skip(1)
+                .Where(l=>l!="")
                 .Select(l => l.Split(' ').Select(s => int.Parse(s)).ToArray())
                 .ToList();
 

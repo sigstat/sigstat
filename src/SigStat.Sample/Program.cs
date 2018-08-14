@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SigStat.Sample
@@ -49,8 +50,8 @@ namespace SigStat.Sample
             //SignatureDemo();
             //OnlineToImage();
             //OfflineVerifierDemo();
-            OnlineVerifierDemo();
-            //await OnlineVerifierBenchmarkDemo();
+            //OnlineVerifierDemo();
+            await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
         }
@@ -212,7 +213,7 @@ namespace SigStat.Sample
 
             bool signer1(string p)
             { return p == "01"; }
-            Svc2004Loader loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners(signer1));
 
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);
@@ -229,7 +230,7 @@ namespace SigStat.Sample
 
             var benchmark = new VerifierBenchmark()
             {
-                Loader = new Svc2004Loader(@"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\", true),
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
                 Logger = new Logger(LogLevel.Debug, new FileStream($@"D:\Benchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
@@ -247,8 +248,8 @@ namespace SigStat.Sample
 
         static void OnlineToImage()
         {
-            Signature s1 = new Signature();
-            Svc2004Loader.LoadSignature(s1, @"D:\AutSoft\SigStat\projekt\AH_dotNet\AH_dotNet\Assets\online_signatures\U10S10.txt", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            Signature s1 = loader.EnumerateSigners(p=>(p=="10")).ToList()[0].Signatures[10];//signer 10, signature 10
 
             var tfs = new SequentialTransformPipeline
             {

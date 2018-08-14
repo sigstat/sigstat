@@ -14,6 +14,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Databases\Online\SVC2004\Task2.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Databases\Online\SVC2004\Task2.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
 
