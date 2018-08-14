@@ -47,9 +47,9 @@ namespace SigStat.Sample
         {
             Console.WriteLine("Hello");
             //SignatureDemo();
-            OnlineToImage();
+            //OnlineToImage();
             //OfflineVerifierDemo();
-            //OnlineVerifierDemo();
+            OnlineVerifierDemo();
             //await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
@@ -126,11 +126,11 @@ namespace SigStat.Sample
                     new Binarization().Input(Features.Image),
                     new Trim(5)/*.Input(MyFeatures.Binarized)*/,
                     new HSCPThinning(),
-                    new OnePixelThinning(),
+                    new OnePixelThinning().Output(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),//output Skeletonba, mert az Extraction onnan szedi
                     new EndpointExtraction(),
                     new ComponentExtraction(5),
                     new ComponentSorter(),
-                    new ComponentsToFeatures()
+                    new ComponentsToFeatures(),
 
                     /*//new RealisticImageGeneration(),
                     new BasicMetadataExtraction(),
@@ -156,21 +156,20 @@ namespace SigStat.Sample
 
             var verifier = new Verifier()
             {
-                Logger = new Logger(LogLevel.Info, LogConsole),
+                Logger = new Logger(LogLevel.Debug, LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new TimeMarkerStart().Output(timer1),
                     /*new ParallelTransformPipeline
                     {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
-                        new Map(10,20, Features.X),
-                        new Normalize(Features.Y),
+                        new Map(10,20).Input(Features.X),
+                        new Normalize().Input(Features.Y),
                     },
                     new Translate(0.5,0.1),
-                    new Addition
-                    {
-                        (Features.X, -0.5)
-                    },*/
+                    */
                     new Normalize().Input(Features.Pressure),
+                    new Map(0, 1).Input(Features.X),
+                    new Map(0, 1).Input(Features.Y),
                     new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
                     new TimeReset(),//^
                     new TangentExtraction(),
@@ -234,7 +233,6 @@ namespace SigStat.Sample
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
                 Logger = new Logger(LogLevel.Debug, new FileStream($@"D:\Benchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
-                //ProgressChanged += ProgressConsole//ezt itt nem lehet
             };
 
             benchmark.ProgressChanged += ProgressBenchmark;

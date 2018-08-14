@@ -17,6 +17,7 @@ namespace SigStat.Common.Transforms
         public CentroidExtraction()
         {
             //this.Input(Features.X, Features.X);
+            InputFeatures = new List<FeatureDescriptor>();
             this.Output(FeatureDescriptor<List<double>>.Descriptor("Centroid"));
         }
 

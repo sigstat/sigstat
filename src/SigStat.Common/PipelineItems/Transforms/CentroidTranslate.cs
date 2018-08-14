@@ -11,7 +11,6 @@ namespace SigStat.Common.Transforms
     /// Custom transzformáció X és Y featureon, az alábbi pipeline elemekből:
     /// CentroidExtraction, Multiply -1, Translate
     /// </summary>
-
     public class CentroidTranslate : SequentialTransformPipeline
     {
         private new void Add(ITransformation newitem) { }//TODO erre jobbat kitalalni, pl. pipeline ososztaly
@@ -26,11 +25,10 @@ namespace SigStat.Common.Transforms
                     Features.Y
                 },
                 new Multiply(-1.0),
-                new Translate(FeatureDescriptor<List<double>>.Descriptor("Centroid"))
+                new Translate(FeatureDescriptor<List<double>>.Descriptor("Centroid")).Input(Features.X, Features.Y)
             };
 
-            //Output of last transform is the output of the sequence
-            this.Output(Items.Last().OutputFeatures.ToArray());
+            this.Output(Features.X, Features.Y);
 
         }
 

@@ -12,7 +12,7 @@ namespace SigStat.Common.PipelineItems.Markers
         public LogMarker(LogLevel level)
         {
             this.level = level;
-            //this.Input(FeatureDescriptor<DateTime>.Descriptor("DefaultTimer"));
+            OutputFeatures = new List<FeatureDescriptor>();//no output
         }
 
         public void Transform(Signature signature)

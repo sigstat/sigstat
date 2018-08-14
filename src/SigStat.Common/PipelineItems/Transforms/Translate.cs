@@ -25,15 +25,11 @@ namespace SigStat.Common.Transforms
 
         }
 
-        public Translate(FeatureDescriptor<List<double>> byFeature)
+        public Translate(FeatureDescriptor<List<double>> vectorFeature)
         {
             Items = new List<ITransformation>()
             {
-                new Addition(byFeature)//emiatt kell az Additionnak több Featuret egyszerre is kezelnie: itt a konstruktorban nem kérhetjük le még a byFeature értékét, mert jó eséllyel nem létezik még
-                {
-                    Features.X,
-                    Features.Y
-                }
+                new AddVector(vectorFeature).Input(Features.X, Features.Y)
             };
 
             this.Output(Features.X, Features.Y);

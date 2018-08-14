@@ -9,11 +9,13 @@ namespace SigStat.Common.Helpers
 {
     //Holding a single writer open will be more efficient than repeatedly opening and closing it. If this is critical data,
     //however, you should call Flush() after each write to make sure it gets to disk.
+
     //Is your program multi-threaded? If so, you may wish to have a producer/consumer queue
     //TODO ezt
 
     public class Logger
     {
+        public bool StoreEntries { get; set; } = false;
         public List<LogEntry> Entries = new List<LogEntry>();
         public LogLevel LogLevel = LogLevel.Error;
         private StreamWriter sw;
@@ -96,7 +98,8 @@ namespace SigStat.Common.Helpers
             if (LogLevel >= messageLevel)
             {
                 LogEntry newEntry = new LogEntry(DateTime.Now, messageLevel, sender, message);
-                Entries.Add(newEntry);
+                if(StoreEntries)
+                    Entries.Add(newEntry);
                 string entryString = newEntry.ToString();
                 OutputAction(messageLevel, entryString);
             }

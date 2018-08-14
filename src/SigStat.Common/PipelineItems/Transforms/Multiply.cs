@@ -27,26 +27,25 @@ namespace SigStat.Common.Transforms
 
         public void Transform(Signature signature)
         {
-            foreach (var f in InputFeatures)
+            //default output is the input
+            if (OutputFeatures == null)
+                OutputFeatures = InputFeatures;
+
+            if (InputFeatures[0].IsCollection)
             {
-                if (f.IsCollection)
-                {
-                    var values = signature.GetFeature<List<double>>(f);
-                    for (int i = 0; i < values.Count; i++)
-                        values[i] = values[i] * byConst;
-                    signature.SetFeature(f, values);
-                    this.Output(f);
-                }
-                else
-                {
-                    var values = signature.GetFeature<double>(f);
-                    values = values * byConst;
-                    signature.SetFeature(f, values);
-                    this.Output(f);
-                }
-                Progress += 100 / InputFeatures.Count;
+                var values = signature.GetFeature<List<double>>(InputFeatures[0]);
+                for (int i = 0; i < values.Count; i++)
+                    values[i] = values[i] * byConst;
+                signature.SetFeature(OutputFeatures[0], values);
             }
-            
+            else
+            {
+                var values = signature.GetFeature<double>(InputFeatures[0]);
+                values = values * byConst;
+                signature.SetFeature(OutputFeatures[0], values);
+            }
+
+            Progress = 100;
         }
     }
 }

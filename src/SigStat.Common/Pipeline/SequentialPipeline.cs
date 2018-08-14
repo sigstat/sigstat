@@ -56,7 +56,7 @@ namespace SigStat.Common.Pipeline
             {
                 //try
                 //{
-                if (Items[i].InputFeatures == null)//pass previously calculated features if input not specified
+                if (Items[i].InputFeatures == null && i > 0)//pass previously calculated features if input not specified
                     Items[i].InputFeatures = Items[i - 1].OutputFeatures;
                 Items[i].Transform(signature);
                 //}
