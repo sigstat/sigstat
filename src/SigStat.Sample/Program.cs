@@ -126,11 +126,13 @@ namespace SigStat.Sample
                 {
                     new Binarization().Input(Features.Image),
                     new Trim(5),
+                    new PrepareForThinning(),
                     new ImageGenerator(true),
                     new HSCPThinning(),
                     new ImageGenerator(true),
                     new OnePixelThinning().Output(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),//output Skeletonba, mert az Extraction onnan szedi
                     new ImageGenerator(true),
+                    //Baseline ide
                     new EndpointExtraction(),
                     new ComponentExtraction(5),
                     new ComponentSorter(),

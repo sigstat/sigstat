@@ -61,11 +61,14 @@ namespace SigStat.Common.PipelineItems.Transforms
 
             if(writeToFile)
             {
-                img.SaveAsPng(File.Create(OutputFeatures[1].Name+".png"));
+                string signerString = (signature.Signer!=null) ? signature.Signer.ID : "Null";
+                string filename = $"U_{signerString}_S_{signature.ID?? "Null"}_{OutputFeatures[1].Name}.png";
+                img.SaveAsPng(File.Create(filename));
+                Log(LogLevel.Info, $"Image saved: {filename}");
             }
 
             Progress = 100;
-            Log(LogLevel.Info, $"Image generation from binary raster done: {OutputFeatures[1].Name}.png");
+            Log(LogLevel.Info, $"Image generation from binary raster done.");
         }
     }
 }
