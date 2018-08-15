@@ -44,6 +44,13 @@ namespace SigStat.Common.Model
             //TransformPipeline = new Pipeline.SequentialTransformPipeline();
         }
 
+        public Verifier(Verifier v)
+        {
+            this.Logger = v.Logger;
+            this.TransformPipeline = v.TransformPipeline;
+            this.ClassifierPipeline = v.ClassifierPipeline;
+        }
+
         public void Train(Signer signer)
         {
             Train(signer.Signatures.FindAll((s) => s.Origin == Origin.Genuine));

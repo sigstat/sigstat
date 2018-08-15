@@ -33,6 +33,12 @@ namespace SigStat.Common
         }
         public event EventHandler<int> ProgressChanged;
 
+        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes
+        public void OnProgressChanged(int v)
+        {
+            ProgressChanged?.Invoke(this, v);
+        }
+
     }
 
 

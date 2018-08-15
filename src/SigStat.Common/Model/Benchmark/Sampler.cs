@@ -12,6 +12,13 @@ namespace SigStat.Common.Model
         private readonly Func<List<Signature>, List<Signature>> forgeryTests;
         private List<Signature> signatures;
 
+        public Sampler(Sampler s)
+        {
+            this.references = s.references;
+            this.genuineTests = s.genuineTests;
+            this.forgeryTests = s.forgeryTests;
+        }
+
         public Sampler(Func<List<Signature>, List<Signature>> references, Func<List<Signature>, List<Signature>> genuineTests, Func<List<Signature>, List<Signature>> forgeryTests)
         {
             this.references = references;

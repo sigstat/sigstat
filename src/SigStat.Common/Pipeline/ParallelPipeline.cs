@@ -34,6 +34,7 @@ namespace SigStat.Common.Pipeline
         {
             if (_logger != null)
                 newItem.Logger = _logger;
+            newItem.ProgressChanged += (o,p) => OnProgressChanged(p);
             Items.Add(newItem);
         }
 
@@ -46,7 +47,11 @@ namespace SigStat.Common.Pipeline
                 i.Transform(signature);
                 });
 
-            //TODO mi legyen a parallel pipeline Outputja??
+
+            //Add the new item's output to output
+            OutputFeatures = new List<FeatureDescriptor>();
+            foreach (var item in Items)
+                OutputFeatures.AddRange(item.OutputFeatures);
 
         }
     }

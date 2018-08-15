@@ -30,35 +30,10 @@ namespace SigStat.Common.PipelineItems.Transforms
             var crossings = SplitCrossings(crossingPoints);
 
             //neha a szukito miatt tobbnek erzekelunk egy crossingot -> tul kozelieket vonjuk ossze
-            List<PointF> cMids = new List<PointF>();
-            for (int iC = 0; iC < crossings.Count; iC++)
-            {
-                PointF crmid = new PointF(0, 0);
-                foreach (Point cre in crossings[iC])
-                {
-                    crmid.X += cre.X;
-                    crmid.Y += cre.Y;
-                }
-                crmid = new PointF(crmid.X / crossings[iC].Count, crmid.Y / crossings[iC].Count);
-                cMids.Add(crmid);
-            }
-            for (int iC = 0; iC < crossings.Count-1; iC++)
-            {
-                for (int jC = iC+1; jC < crossings.Count; jC++)
-                {
-                    double dist = Math.Abs(cMids[iC].X - cMids[jC].X) + Math.Abs(cMids[iC].Y - cMids[jC].Y);
-                    if (dist < 45)//
-                    {//osszevon ha tul kozel
-                        crossings[iC].AddRange(crossings[jC]);
-                        crossings.RemoveAt(jC);
-                        cMids[iC] = new PointF((cMids[iC].X + cMids[jC].X) / 2, (cMids[iC].Y + cMids[jC].Y) / 2);
-                        cMids.RemoveAt(jC);
-                    }
-                }
-            }
+            crossings = UniteCloseCrossings(crossings, 45);
 
 
-                foreach (var endings in crossings)
+            foreach (var endings in crossings)
                 endPoints.AddRange(endings);
             Progress = 33;
             Log(LogLevel.Debug, $"{crossings.Count} crossings found.");
@@ -119,6 +94,37 @@ namespace SigStat.Common.PipelineItems.Transforms
                 }
 
                 crossings.Add(newEndpoints);
+            }
+            return crossings;
+        }
+
+        private List<List<Point>> UniteCloseCrossings(List<List<Point>> crossings, int epsilon)
+        {
+            List<PointF> cMids = new List<PointF>();
+            for (int iC = 0; iC < crossings.Count; iC++)
+            {
+                PointF crmid = new PointF(0, 0);
+                foreach (Point cre in crossings[iC])
+                {
+                    crmid.X += cre.X;
+                    crmid.Y += cre.Y;
+                }
+                crmid = new PointF(crmid.X / crossings[iC].Count, crmid.Y / crossings[iC].Count);
+                cMids.Add(crmid);
+            }
+            for (int iC = 0; iC < crossings.Count - 1; iC++)
+            {
+                for (int jC = iC + 1; jC < crossings.Count; jC++)
+                {
+                    double dist = Math.Abs(cMids[iC].X - cMids[jC].X) + Math.Abs(cMids[iC].Y - cMids[jC].Y);
+                    if (dist < epsilon)
+                    {//osszevon ha tul kozel
+                        crossings[iC].AddRange(crossings[jC]);
+                        crossings.RemoveAt(jC);
+                        cMids[iC] = new PointF((cMids[iC].X + cMids[jC].X) / 2, (cMids[iC].Y + cMids[jC].Y) / 2);
+                        cMids.RemoveAt(jC);
+                    }
+                }
             }
             return crossings;
         }

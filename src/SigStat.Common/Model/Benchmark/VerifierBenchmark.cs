@@ -155,6 +155,70 @@ namespace SigStat.Common.Model
             return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
         }
 
+        public BenchmarkResults ExecuteParallel()
+        {
+            Log(LogLevel.Info, "Parallel benchmark execution started.");
+            var results = new List<Result>();
+            double farAcc = 0;
+            double frrAcc = 0;
+
+            Log(LogLevel.Info, "Loading data..");
+            var signers = new List<Signer>(Loader.EnumerateSigners(null));
+            Log(LogLevel.Info, signers.Count + " signers found. Benchmarking..");
+            double parallelProgress = 0;
+            Parallel.ForEach(signers, iSigner =>
+            {
+                Log(LogLevel.Info, $"Benchmarking Signer ID {iSigner.ID}");
+                Sampler localSampler = new Sampler(Sampler);
+                localSampler.Init(iSigner);//parhuzamositas miatt kell kulon sampler mindenkinek
+                List<Signature> references = localSampler.SampleReferences();
+                List<Signature> genuineTests = localSampler.SampleGenuineTests();
+                List<Signature> forgeryTests = localSampler.SampleForgeryTests();
+                //catch: Log.Error("nem volt eleg alairas a benchmarkhoz");
+
+                Verifier localVerifier = new Verifier(Verifier);
+                localVerifier.Train(references);
+
+                //FRR: false rejection rate
+                //FRR = elutasított eredeti / összes eredeti
+                int nFalseReject = 0;
+                foreach (Signature genuine in genuineTests)
+                    if (!localVerifier.Test(genuine))
+                        nFalseReject++;//eredeti alairast hamisnak hisz
+                double FRR = nFalseReject / (double)genuineTests.Count;
+
+                //FAR: false acceptance rate
+                //FAR = elfogadott hamis / összes hamis
+                int nFalseAccept = 0;
+                foreach (Signature forgery in forgeryTests)
+                    if (localVerifier.Test(forgery))
+                        nFalseAccept++;//hamis alairast eredetinek hisz
+                double FAR = nFalseAccept / (double)forgeryTests.Count;
+
+                //AER: average error rate
+                double AER = (FRR + FAR) / 2.0;
+                Log(LogLevel.Debug, $"AER for Signer ID {iSigner.ID}: {AER}");
+
+                //EER definicio fix: ez az az ertek amikor FAR==FRR
+
+                frrAcc += FRR;
+                farAcc += FAR;
+                results.Add(new Result(iSigner.ID, FRR, FAR, AER));
+
+                parallelProgress += 1.0 / (double)(signers.Count - 1);
+                Progress = (int)(parallelProgress * 100);//TODO: atterni doublere, hogy ne kelljen kulon valtozot szamolni
+            });
+
+            double frrFinal = frrAcc / signers.Count;
+            double farFinal = farAcc / signers.Count;
+            double aerFinal = (frrFinal + farFinal) / 2.0;
+
+            Progress = 100;
+            Log(LogLevel.Info, "Benchmark execution finished.");
+            Log(LogLevel.Debug, $"AER: {aerFinal}");
+            return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
+        }
+
 
     }
 }

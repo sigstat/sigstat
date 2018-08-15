@@ -11,16 +11,14 @@ namespace SigStat.Common.PipelineItems.Classifiers
     public class DTWClassifier : PipelineBase, IClassification, IEnumerable
     {
         private readonly List<FeatureDescriptor> fs = new List<FeatureDescriptor>();
-        private Dtw dtwAlg;
+        private readonly Func<double[], double[], double> distanceMethod;
 
-        public DTWClassifier()
+        public DTWClassifier() : this(Accord.Math.Distance.Manhattan)
         {
-            dtwAlg = new Dtw(Accord.Math.Distance.Manhattan);
         }
-
         public DTWClassifier(Func<double[], double[], double> DistanceMethod)
         {
-            dtwAlg = new Dtw(DistanceMethod);
+            distanceMethod = DistanceMethod;
         }
 
         public IEnumerator GetEnumerator()
@@ -36,6 +34,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public double Pair(Signature signature1, Signature signature2)
         {
             Progress = 0;
+            Dtw dtwAlg = new Dtw(distanceMethod);
+
+
             double[][] testSig1 = signature1.GetAggregateFeature(fs).ToArray();
             double[][] testSig2 = signature2.GetAggregateFeature(fs).ToArray();
             Progress = 50;//..

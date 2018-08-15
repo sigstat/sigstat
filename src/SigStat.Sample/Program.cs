@@ -49,9 +49,9 @@ namespace SigStat.Sample
             Console.WriteLine("Hello");
             //SignatureDemo();
             //OnlineToImage();
-            OfflineVerifierDemo();
+            //OfflineVerifierDemo();
             //OnlineVerifierDemo();
-            //await OnlineVerifierBenchmarkDemo();
+            await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
         }
@@ -121,7 +121,7 @@ namespace SigStat.Sample
 
             var verifier = new Verifier()
             {
-                Logger = new Logger(LogLevel.Debug, LogConsole),
+                Logger = new Logger(LogLevel.Debug, new FileStream($@"OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new Binarization().Input(Features.Image),
@@ -137,8 +137,11 @@ namespace SigStat.Sample
                     new ComponentExtraction(5),
                     new ComponentSorter(),
                     new ComponentsToFeatures(),
-                    new Normalize().Input(Features.X),
-                    new Normalize().Input(Features.Y),
+                    new ParallelTransformPipeline
+                    {
+                        new Normalize().Input(Features.X),
+                        new Normalize().Input(Features.Y)
+                    },
                     new ApproximateOnlineFeatures(),
                     new RealisticImageGenerator(1280, 720),
 
@@ -157,7 +160,7 @@ namespace SigStat.Sample
 
             verifier.Train(s);
 
-            ImageSaver.Save(s1,  @"generatedImage.png");
+            ImageSaver.Save(s1,  @"GeneratedOfflineImage.png");
 
         }
 
@@ -167,22 +170,18 @@ namespace SigStat.Sample
 
             var verifier = new Verifier()
             {
-                Logger = new Logger(LogLevel.Debug, LogConsole),
+                Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole),
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new TimeMarkerStart().Output(timer1),
-                    /*new ParallelTransformPipeline
-                    {//pl. ezt a kettot tudjuk parhuzamositani, mert egymastol fuggetlenek
-                        new Map(10,20).Input(Features.X),
-                        new Normalize().Input(Features.Y),
+                    new ParallelTransformPipeline
+                    {
+                        new Normalize().Input(Features.Pressure),
+                        new Map(0, 1).Input(Features.X),
+                        new Map(0, 1).Input(Features.Y),
+                        new TimeReset(),
                     },
-                    new Translate(0.5,0.1),
-                    */
-                    new Normalize().Input(Features.Pressure),
-                    new Map(0, 1).Input(Features.X),
-                    new Map(0, 1).Input(Features.Y),
                     new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
-                    new TimeReset(),//^
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
@@ -243,14 +242,14 @@ namespace SigStat.Sample
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Logger = new Logger(LogLevel.Debug, new FileStream($@"Logs\Benchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
+                Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlindeBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
             };
 
             benchmark.ProgressChanged += ProgressBenchmark;
             benchmark.Verifier.ProgressChanged += ProgressVerifier;
 
             //var result = await benchmark.ExecuteAsync();
-            var result = benchmark.Execute();
+            var result = benchmark.ExecuteParallel();
 
             //result.SignerResults...
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
@@ -263,17 +262,20 @@ namespace SigStat.Sample
 
             var tfs = new SequentialTransformPipeline
             {
-                new Normalize().Input(Features.X),
-                new Normalize().Input(Features.Y),
+                new ParallelTransformPipeline
+                {
+                    new Normalize().Input(Features.X),
+                    new Normalize().Input(Features.Y)
+                },
                 /*new BinaryRasterizer(400, 300, 2),
                 new ImageGenerator()*/
                 new RealisticImageGenerator(1280, 720)
             };
-            tfs.Logger = new Logger(LogLevel.Debug, LogConsole);
+            tfs.Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlineToImageDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole);
             tfs.ProgressChanged += ProgressBenchmark;
             tfs.Transform(s1);
 
-            ImageSaver.Save(s1, @"generatedImage.png");
+            ImageSaver.Save(s1, @"GeneratedOnlineImage.png");
         }
 
         public static void LogConsole(LogLevel l, string message)
