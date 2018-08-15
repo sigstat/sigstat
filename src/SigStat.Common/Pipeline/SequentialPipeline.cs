@@ -39,8 +39,10 @@ namespace SigStat.Common.Pipeline
                 newItem.Logger = _logger;
             newItem.ProgressChanged += ((o, p) => calcProgress(i,p));
             Items.Add(newItem);
-            //Output of last transform is the output of the sequence
-            this.Output(Items.Last().OutputFeatures.ToArray());
+
+            //Set sequence output to last item's output (if given)
+            if(newItem.OutputFeatures!=null)
+                this.Output(newItem.OutputFeatures.ToArray());
         }
 
         private void calcProgress(int i, int p)

@@ -49,9 +49,9 @@ namespace SigStat.Sample
             Console.WriteLine("Hello");
             //SignatureDemo();
             //OnlineToImage();
-            //OfflineVerifierDemo();
+            OfflineVerifierDemo();
             //OnlineVerifierDemo();
-            await OnlineVerifierBenchmarkDemo();
+            //await OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
         }
@@ -125,29 +125,37 @@ namespace SigStat.Sample
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new Binarization().Input(Features.Image),
-                    new Trim(5)/*.Input(MyFeatures.Binarized)*/,
+                    new Trim(5),
+                    new ImageGenerator(true),
                     new HSCPThinning(),
+                    new ImageGenerator(true),
                     new OnePixelThinning().Output(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),//output Skeletonba, mert az Extraction onnan szedi
+                    new ImageGenerator(true),
                     new EndpointExtraction(),
                     new ComponentExtraction(5),
                     new ComponentSorter(),
                     new ComponentsToFeatures(),
+                    new Normalize().Input(Features.X),
+                    new Normalize().Input(Features.Y),
+                    new ApproximateOnlineFeatures(),
+                    new RealisticImageGenerator(1280, 720),
 
-                    /*//new RealisticImageGeneration(),
-                    new BasicMetadataExtraction(),
+                    /*new BasicMetadataExtraction(),
                     new BaselineExtraction(),
                     new LoopExtraction()*/
                 },
                 ClassifierPipeline = new DTWClassifier()
             };
 
-            bool signer1(string p)
-            { return p == "01"; }
-            ImageLoader loader = new ImageLoader(@"D:\");
-            var signers = new List<Signer>(loader.EnumerateSigners(signer1));
+            Signature s1 = new Signature();
+            ImageLoader.LoadSignature(s1, @"Databases\Offline\Images\U1S1.png");
+            s1.Origin = Origin.Genuine;
+            Signer s = new Signer();
+            s.Signatures.Add(s1);
 
-            List<Signature> references = signers[0].Signatures.GetRange(0, 1);
-            verifier.Train(references);
+            verifier.Train(s);
+
+            ImageSaver.Save(s1,  @"generatedImage.png");
 
         }
 
@@ -233,7 +241,7 @@ namespace SigStat.Sample
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Logger = new Logger(LogLevel.Debug, new FileStream($@"D:\Benchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
+                Logger = new Logger(LogLevel.Debug, new FileStream($@"Logs\Benchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
             };
 
             benchmark.ProgressChanged += ProgressBenchmark;
@@ -263,7 +271,7 @@ namespace SigStat.Sample
             tfs.ProgressChanged += ProgressBenchmark;
             tfs.Transform(s1);
 
-            ImageSaver.Save(s1, @"D:\generatedImage.png");
+            ImageSaver.Save(s1, @"generatedImage.png");
         }
 
         public static void LogConsole(LogLevel l, string message)

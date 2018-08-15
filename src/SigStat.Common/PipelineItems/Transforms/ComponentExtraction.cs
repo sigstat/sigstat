@@ -128,8 +128,12 @@ namespace SigStat.Common.PipelineItems.Transforms
                             break;
                         }
                     }
-                    if (prevp.Equals(p))
+                    if (!end && prevp.Equals(p))
+                    {
                         end = true;//ritka eset amikor nincs szomszed
+                        section.Remove(prevp);
+                        break;//akkor azt felejtsuk is el, jo esellyel csak szukites hibaja
+                    }
 
                     nextsample--;
                     if (nextsample == 0 || end)
@@ -138,7 +142,8 @@ namespace SigStat.Common.PipelineItems.Transforms
                         section.Add(new Point(p.X, p.Y));
                     }
                 }
-                sectionlist.Add(section);
+                if(section.Count>0)//x db pontnal rovidebb sectionoket felejtsuk el, jo esellyel csak szukites hibaja
+                    sectionlist.Add(section);
             }
 
             return sectionlist;
@@ -157,7 +162,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                     }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
-            Log(LogLevel.Warn, "Section tracing: 1-pixel section found");
+            Log(LogLevel.Warn, $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
             return (prevp/*ez most p*/, p);
         }
 
@@ -218,12 +223,14 @@ namespace SigStat.Common.PipelineItems.Transforms
 
                 //eddig int koordinatak voltak, de most at kell ternunk, mert lehet hogy a szakasz osszekotesek pontja finomabb lesz
                 List<(List<PointF> Data, bool First)> connF = new List<(List<PointF>, bool)>();
+                List<bool> hasPair = new List<bool>();
                 foreach (var ci in conn)
                 {// list<point> => list<pointF>
                     List<PointF> ps = new List<PointF>();
                     foreach (var pi in ci.Data)
                         ps.Add(pi);
                     connF.Add((ps, ci.First));
+                    hasPair.Add(false);
                 }
                 conn = null;
 
@@ -242,11 +249,15 @@ namespace SigStat.Common.PipelineItems.Transforms
                     double diff = diffs.Keys[0];
                     diffs.RemoveAt(0);
                     for (int jD = 0; jD < diffs.Count; jD++)
-                    {//toroljuk a rosszabb ertekeit a megtalalt endpointoknak
+                    {//toroljuk a rosszabb ertekeit a megtalalt endpointoknak //TODO: ez nem jo, mert lehet olyat torlunk akinek nincs mas parja
                         (int deli, int delj) = diffs[diffs.Keys[jD]];
                         if (deli == iP || deli == jP || delj == iP || delj == jP)
                             diffs.RemoveAt(jD--);
                     }
+
+                    //megvan a par
+                    hasPair[iP] = true;
+                    hasPair[jP] = true;
 
                     //egy iranyba nezzen a ket szakasz
                     if (connF[iP].First)
@@ -266,6 +277,17 @@ namespace SigStat.Common.PipelineItems.Transforms
 
                     //hozzaadjuk a tobbihez a ketto osszekapcsolasat
                     componentlist.Add(connF[iP].Data);
+                }
+
+                //van e olyan, akinek meg nincs parja
+                for(int iP = 0; iP<connF.Count;iP++)
+                {
+                    if(!hasPair[iP])
+                    {
+                        if (connF[iP].First)
+                            connF[iP].Data.Reverse();
+                        componentlist.Add(connF[iP].Data);
+                    }
                 }
 
             }

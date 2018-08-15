@@ -67,7 +67,7 @@ namespace SigStat.Common.Loaders
             Log(LogLevel.Info, "Enumerating signers finished.");
         }
 
-        public void LoadSignature(Signature signature, string file)
+        public static void LoadSignature(Signature signature, string file)
         {
             Image<Rgba32> image = Image.Load(file);
             signature.SetFeature(Features.Image, image);

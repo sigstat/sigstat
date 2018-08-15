@@ -52,7 +52,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             for (int i = 0; i < w; i++)
             {
                 for (int j = 0; j < h; j++)
-                    b[i, j] = (Level(image[i, j]) > binThreshold);
+                    b[i, h-j-1] = (Level(image[i, j]) > binThreshold);
                 Progress += (int)((1.0 / w)*100);
             }
 

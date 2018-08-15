@@ -26,7 +26,7 @@ namespace SigStat.Common.PipelineItems.Transforms
 
             List<double> xs = new List<double>();
             List<double> ys = new List<double>();
-            List<int> pendown = new List<int>();//TODO: ez miert nem bool
+            List<bool> pendown = new List<bool>();
             foreach (var c in components)
             {
                 foreach (var p in c)
@@ -34,9 +34,9 @@ namespace SigStat.Common.PipelineItems.Transforms
                     xs.Add(p.X);
                     ys.Add(p.Y);
                     if (p == c[0])//direkt nem equals(), hanem ==
-                        pendown.Add(0);
+                        pendown.Add(false);
                     else
-                        pendown.Add(1);
+                        pendown.Add(true);
                 }
                 Progress += (int)(1.0 / components.Count * 100);
             }
