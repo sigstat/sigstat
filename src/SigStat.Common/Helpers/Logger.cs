@@ -35,7 +35,7 @@ namespace SigStat.Common.Helpers
                 sw.AutoFlush = true;
             }
             this.OutputAction = outputAction;
-            StartConsuming();
+            StartConsumingThread();
         }
 
         /// <summary>
@@ -53,27 +53,27 @@ namespace SigStat.Common.Helpers
         //Ez picit sorminta, de konnyeb hasznalni: Log.Error(..) ahelyett hogy Log.Message<LogLevel.Error>(..)
         public void Fatal(object sender, string message)
         {
-            AddEntry(LogLevel.Fatal, sender, message);
+            EnqueueEntry(LogLevel.Fatal, sender, message);
         }
         public void Error(object sender, string message)
         {
-            AddEntry(LogLevel.Error, sender, message);
+            EnqueueEntry(LogLevel.Error, sender, message);
         }
         public void Warn(object sender, string message)
         {
-            AddEntry(LogLevel.Warn, sender, message);
+            EnqueueEntry(LogLevel.Warn, sender, message);
         }
         public void Info(object sender, string message)
         {
-            AddEntry(LogLevel.Info, sender, message);
+            EnqueueEntry(LogLevel.Info, sender, message);
         }
         public void Debug(object sender, string message)
         {
-            AddEntry(LogLevel.Debug, sender, message);
+            EnqueueEntry(LogLevel.Debug, sender, message);
         }
 
         //ez pl a LogMarker miatt public
-        public void AddEntry(LogLevel messageLevel, object sender, string message)
+        public void EnqueueEntry(LogLevel messageLevel, object sender, string message)
         {
             if (LogLevel >= messageLevel)
             {
@@ -82,20 +82,34 @@ namespace SigStat.Common.Helpers
             }
         }
 
-        private void StartConsuming()
+        private void StartConsumingThread()
         {
             Info(this, "Logger started consuming.");
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(ConsumerLoop);
+        }
+
+        private void ConsumerLoop()
+        {
+            foreach (LogEntry newEntry in queue.GetConsumingEnumerable())
             {
-                foreach (LogEntry newEntry in queue.GetConsumingEnumerable())
-                {
-                    if (StoreEntries)
-                        Entries.Add(newEntry);
-                    string s = newEntry.ToString();
-                    sw?.WriteLine(s);
-                    OutputAction?.Invoke(newEntry.Level, s);
-                }
-            });
+                if (StoreEntries)
+                    Entries.Add(newEntry);
+                string s = newEntry.ToString();
+                sw?.WriteLine(s);
+                OutputAction?.Invoke(newEntry.Level, s);
+                if (queue.IsCompleted)//IsCompleted meaning: marked as complete for adding && empty
+                    return;
+            }
+        }
+
+        /// <summary>
+        /// Stop accepting entries, flush the queue and stop the thread.
+        /// </summary>
+        public void Stop()
+        {
+            //StopConsumingThread();
+            queue.CompleteAdding();
+            ConsumerLoop();//consume rest of the entries synchronously
         }
 
     }

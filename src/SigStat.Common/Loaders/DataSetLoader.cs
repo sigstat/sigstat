@@ -11,7 +11,7 @@ namespace SigStat.Common.Loaders
         protected void Log(LogLevel level, string message)
         {
             if (Logger != null)
-                Logger.AddEntry(level, this, message);
+                Logger.EnqueueEntry(level, this, message);
         }
 
         public abstract IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null);

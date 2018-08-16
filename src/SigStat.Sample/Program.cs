@@ -19,11 +19,17 @@ namespace SigStat.Sample
 {
     class Program
     {
+
         public static class MyFeatures
         {
+            //Define the features of your signature model
             public static FeatureDescriptor<bool[,]> Binarized = FeatureDescriptor<bool[,]>.Descriptor("Binarized");
+            public static FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor<bool[,]>.Descriptor("Skeleton");
+            public static FeatureDescriptor<List<double>> Tangent = FeatureDescriptor<List<double>>.Descriptor("Tangent");
         }
+
         struct OnlinePoint { public int X; public int Y; public int Pressure; }
+
         class MySignature : Signature
         {
             public List<Loop> Loops { get { return (List<Loop>)this["Loop"]; } set { this["Loop"] = value; } }
@@ -40,18 +46,48 @@ namespace SigStat.Sample
 
             public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
 
-
+            public bool[,] Binarized { get { return GetFeature(MyFeatures.Binarized); } set { SetFeature(MyFeatures.Binarized, value); } }
+            public List<double> Tangent { get { return GetFeature(MyFeatures.Tangent); } set { SetFeature(MyFeatures.Tangent, value); } }
 
         }
 
         public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello");
-            //SignatureDemo();
-            //OnlineToImage();
-            //OfflineVerifierDemo();
-            //OnlineVerifierDemo();
-            await OnlineVerifierBenchmarkDemo();
+            Console.WriteLine("SigStat library sample");
+            int menuitem = 0;
+            do
+            {
+                Console.WriteLine("Choose a demo: ");
+                Console.WriteLine(" - 1. Signature demo");
+                Console.WriteLine(" - 2. Online Signature -> Image");
+                Console.WriteLine(" - 3. Offline Verifier");
+                Console.WriteLine(" - 4. Online Verifier");
+                Console.WriteLine(" - 5. Online Benchmark");
+                Console.WriteLine(" - 0. Exit");
+                if (!int.TryParse(Console.ReadKey().KeyChar.ToString(), out menuitem))
+                    menuitem = 0;
+                Console.WriteLine();
+                switch (menuitem)
+                {
+                    case 1:
+                        SignatureDemo();
+                        break;
+                    case 2:
+                        OnlineToImage();
+                        break;
+                    case 3:
+                        OfflineVerifierDemo();
+                        break;
+                    case 4:
+                        OnlineVerifierDemo();
+                        break;
+                    case 5:
+                        await OnlineVerifierBenchmarkDemo();
+                        break;
+                    default:
+                        break;
+                }
+            } while (menuitem != 0);
             Console.WriteLine("Done. Press any key to continue!");
             Console.ReadKey();
         }
@@ -110,18 +146,19 @@ namespace SigStat.Sample
 
         }
 
+        /// <summary>
+        /// Read signature from image, extract features, generate new image
+        /// </summary>
         static void OfflineVerifierDemo()
         {
-            //Task.Factory.StartNew<int>(null)
-            //    .ContinueWith(t=>()=> t.Result/2);
-            //    .ContinueWith(t => () => t.Result / 2);
-
-
-            //var pipeline = new SequentialTransformPipeline().Append( new Binarization().Append())
+            Logger debugLogger = new Logger(
+                LogLevel.Debug,
+                new FileStream($@"OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                LogConsole);
 
             var verifier = new Verifier()
             {
-                Logger = new Logger(LogLevel.Debug, new FileStream($@"OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole),
+                Logger = debugLogger,
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new Binarization().Input(Features.Image),
@@ -130,9 +167,10 @@ namespace SigStat.Sample
                     new ImageGenerator(true),
                     new HSCPThinning(),
                     new ImageGenerator(true),
-                    new OnePixelThinning().Output(FeatureDescriptor<bool[,]>.Descriptor("Skeleton")),//output Skeletonba, mert az Extraction onnan szedi
+                    new OnePixelThinning().Output(MyFeatures.Skeleton),//output Skeletonba, mert az Extraction onnan szedi
                     new ImageGenerator(true),
-                    //Baseline ide
+                    //new BaselineExtraction(),
+                    //new LoopExtraction(),
                     new EndpointExtraction(),
                     new ComponentExtraction(5),
                     new ComponentSorter(),
@@ -144,13 +182,10 @@ namespace SigStat.Sample
                     },
                     new ApproximateOnlineFeatures(),
                     new RealisticImageGenerator(1280, 720),
-
-                    /*new BasicMetadataExtraction(),
-                    new BaselineExtraction(),
-                    new LoopExtraction()*/
                 },
                 ClassifierPipeline = new DTWClassifier()
             };
+            verifier.ProgressChanged += ProgressVerifier;
 
             Signature s1 = new Signature();
             ImageLoader.LoadSignature(s1, @"Databases\Offline\Images\U1S1.png");
@@ -160,17 +195,24 @@ namespace SigStat.Sample
 
             verifier.Train(s);
 
-            ImageSaver.Save(s1,  @"GeneratedOfflineImage.png");
+            //TODO: ha mar Verifier demo, akkor Test()-et is hasznaljuk..
 
+            ImageSaver.Save(s1,  @"GeneratedOfflineImage.png");
+            debugLogger.Stop();
         }
 
         static void OnlineVerifierDemo()
         {
+            Logger debugLogger = new Logger(
+                LogLevel.Debug,
+                new FileStream($@"OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                LogConsole);
+
             var timer1 = FeatureDescriptor<DateTime>.Descriptor("Timer1");
 
             var verifier = new Verifier()
             {
-                Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole),
+                Logger = debugLogger,
                 TransformPipeline = new SequentialTransformPipeline
                 {
                     new TimeMarkerStart().Output(timer1),
@@ -181,7 +223,7 @@ namespace SigStat.Sample
                         new Map(0, 1).Input(Features.Y),
                         new TimeReset(),
                     },
-                    new CentroidTranslate(),//ez egy sequential pipeline leszarmazott, hogy epitkezni tudjunk az elemekbol
+                    new CentroidTranslate(),//is a sequential pipeline of other building blocks
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
@@ -215,15 +257,11 @@ namespace SigStat.Sample
                     //    0.8)
                     //}
                 }
-
-
-
             };
+            verifier.ProgressChanged += ProgressVerifier;
 
-            bool signer1(string p)
-            { return p == "01"; }
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            var signers = new List<Signer>(loader.EnumerateSigners(signer1));
+            var signers = new List<Signer>(loader.EnumerateSigners(p=>p=="01"));//Load the first signer only
 
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);
             verifier.Train(references);
@@ -232,17 +270,22 @@ namespace SigStat.Sample
             Signature questioned2 = signers[0].Signatures[25];
             bool isGenuine1 = verifier.Test(questioned1);//true
             bool isGenuine2 = verifier.Test(questioned2);//false
+            debugLogger.Stop();
         }
 
         static async Task OnlineVerifierBenchmarkDemo()
         {
+            Logger debugLogger = new Logger(
+                LogLevel.Debug,
+                new FileStream($@"OnlineBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                LogConsole);
 
             var benchmark = new VerifierBenchmark()
             {
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlindeBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole),
+                Logger = debugLogger,
             };
 
             benchmark.ProgressChanged += ProgressBenchmark;
@@ -251,12 +294,19 @@ namespace SigStat.Sample
             //var result = await benchmark.ExecuteAsync();
             var result = benchmark.ExecuteParallel();
 
+            debugLogger.Stop();
+
             //result.SignerResults...
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
         static void OnlineToImage()
         {
+            Logger debugLogger = new Logger(
+                LogLevel.Debug,
+                new FileStream($@"OnlineToImageDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                LogConsole);
+
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             Signature s1 = loader.EnumerateSigners(p=>(p=="10")).ToList()[0].Signatures[10];//signer 10, signature 10
 
@@ -267,15 +317,14 @@ namespace SigStat.Sample
                     new Normalize().Input(Features.X),
                     new Normalize().Input(Features.Y)
                 },
-                /*new BinaryRasterizer(400, 300, 2),
-                new ImageGenerator()*/
                 new RealisticImageGenerator(1280, 720)
             };
-            tfs.Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlineToImageDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole);
+            tfs.Logger = debugLogger;
             tfs.ProgressChanged += ProgressBenchmark;
             tfs.Transform(s1);
 
             ImageSaver.Save(s1, @"GeneratedOnlineImage.png");
+            debugLogger.Stop();
         }
 
         public static void LogConsole(LogLevel l, string message)
@@ -298,8 +347,8 @@ namespace SigStat.Sample
                 default:
                     break;
             }
-            
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public static void ProgressConsole(object sender, int progress)

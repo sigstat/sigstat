@@ -32,7 +32,7 @@ namespace SigStat.Common.Model
         protected void Log(LogLevel level, string message)
         {
             if (_log != null)
-                _log.AddEntry(level, this, message);
+                _log.EnqueueEntry(level, this, message);
         }
 
         private int _progress;

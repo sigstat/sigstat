@@ -10,7 +10,6 @@ namespace SigStat.Common.PipelineItems.Classifiers
 {
     public class DTWClassifier : PipelineBase, IClassification, IEnumerable
     {
-        private readonly List<FeatureDescriptor> fs = new List<FeatureDescriptor>();
         private readonly Func<double[], double[], double> distanceMethod;
 
         public DTWClassifier() : this(Accord.Math.Distance.Manhattan)
@@ -19,16 +18,17 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public DTWClassifier(Func<double[], double[], double> DistanceMethod)
         {
             distanceMethod = DistanceMethod;
+            InputFeatures = new List<FeatureDescriptor>();
         }
 
         public IEnumerator GetEnumerator()
         {
-            return fs.GetEnumerator();
+            return InputFeatures.GetEnumerator();
         }
 
         public void Add(FeatureDescriptor f)
         {
-            fs.Add(f);
+            InputFeatures.Add(f);
         }
 
         public double Pair(Signature signature1, Signature signature2)
@@ -37,8 +37,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
             Dtw dtwAlg = new Dtw(distanceMethod);
 
 
-            double[][] testSig1 = signature1.GetAggregateFeature(fs).ToArray();
-            double[][] testSig2 = signature2.GetAggregateFeature(fs).ToArray();
+            double[][] testSig1 = signature1.GetAggregateFeature(InputFeatures).ToArray();
+            double[][] testSig2 = signature2.GetAggregateFeature(InputFeatures).ToArray();
             Progress = 50;//..
             double cost = dtwAlg.Compute(testSig1, testSig2);
             Log(LogLevel.Info, $"Paired SigID {signature1.ID} with SigID {signature2.ID}");

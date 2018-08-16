@@ -19,7 +19,7 @@ namespace SigStat.Common
         protected void Log(LogLevel level, string message)
         {
             if (Logger != null)
-                Logger.AddEntry(level, this, message);
+                Logger.EnqueueEntry(level, this, message);
         }
 
         private int _progress = 0;
