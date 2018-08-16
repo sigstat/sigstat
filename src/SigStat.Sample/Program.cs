@@ -242,7 +242,7 @@ namespace SigStat.Sample
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
                 Verifier = Verifier.BasicVerifier,
                 Sampler = Sampler.BasicSampler,
-                Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlindeBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create)),
+                Logger = new Logger(LogLevel.Debug, new FileStream($@"OnlindeBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create), LogConsole),
             };
 
             benchmark.ProgressChanged += ProgressBenchmark;

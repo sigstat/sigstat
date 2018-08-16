@@ -1,70 +1,50 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SigStat.Common.Helpers
 {
     //Holding a single writer open will be more efficient than repeatedly opening and closing it. If this is critical data,
     //however, you should call Flush() after each write to make sure it gets to disk.
 
-    //Is your program multi-threaded? If so, you may wish to have a producer/consumer queue
-    //TODO ezt
+    //producer/consumer pattern, concurrent queue
 
     public class Logger
     {
         public bool StoreEntries { get; set; } = false;
-        public List<LogEntry> Entries = new List<LogEntry>();
+        public List<LogEntry> Entries = new List<LogEntry>();//ez maradhat sima list, mert csak 1 consumer van
         public LogLevel LogLevel = LogLevel.Error;
         private StreamWriter sw;
-
         private Action<LogLevel, string> OutputAction { get; }
+        //The default collection type for BlockingCollection<T> is ConcurrentQueue<T>
+        private BlockingCollection<LogEntry> queue = new BlockingCollection<LogEntry>();
 
-        public Logger(LogLevel level, Action<LogLevel, string> outputAction)
-        {
-            this.LogLevel = level;
-            this.OutputAction = outputAction;
-        }
-
-        public Logger(LogLevel level, Stream outputStream)
-        {
-            this.LogLevel = level;
-            sw = new StreamWriter(outputStream);
-            sw.AutoFlush = true;
-            this.OutputAction = (l, s) => {
-                if (sw != null)
-                    sw.WriteLine(s);
-            };
-        }
-
+        public Logger(LogLevel level, Stream outputStream) : this(level, outputStream, null) { }
+        public Logger(LogLevel level, Action<LogLevel, string> outputAction) : this(level, null, outputAction) { }
         public Logger(LogLevel level, Stream outputStream, Action<LogLevel, string> outputAction)
         {
             this.LogLevel = level;
-            sw = new StreamWriter(outputStream);
-            sw.AutoFlush = true;
-            this.OutputAction = (l, s) => {
-                if (sw != null)
-                    sw.WriteLine(s);
-                outputAction(l, s);
-            };
+            if (outputStream != null)
+            {
+                sw = new StreamWriter(outputStream);
+                sw.AutoFlush = true;
+            }
+            this.OutputAction = outputAction;
+            StartConsuming();
         }
 
         /// <summary>
         /// Ezzel elvehetjuk a konzol outputot.
         /// </summary>
         /// <param name="level"></param>
-        public Logger(LogLevel level)
+        public Logger(LogLevel level) :this(level, Console.OpenStandardOutput(), null)
         {
-            this.LogLevel = level;
-            sw = new StreamWriter(Console.OpenStandardOutput());
-            sw.AutoFlush = true;
             Console.SetOut(sw);
-            this.OutputAction = (l, s) => {
-                if (sw != null)
-                    sw.WriteLine(s);
-            };
         }
 
         //proba volt:
@@ -98,11 +78,24 @@ namespace SigStat.Common.Helpers
             if (LogLevel >= messageLevel)
             {
                 LogEntry newEntry = new LogEntry(DateTime.Now, messageLevel, sender, message);
-                if(StoreEntries)
-                    Entries.Add(newEntry);
-                string entryString = newEntry.ToString();
-                OutputAction(messageLevel, entryString);
+                queue.Add(newEntry);
             }
+        }
+
+        private void StartConsuming()
+        {
+            Info(this, "Logger started consuming.");
+            Task.Factory.StartNew(() =>
+            {
+                foreach (LogEntry newEntry in queue.GetConsumingEnumerable())
+                {
+                    if (StoreEntries)
+                        Entries.Add(newEntry);
+                    string s = newEntry.ToString();
+                    sw?.WriteLine(s);
+                    OutputAction?.Invoke(newEntry.Level, s);
+                }
+            });
         }
 
     }
