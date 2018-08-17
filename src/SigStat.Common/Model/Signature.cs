@@ -7,17 +7,26 @@ using System.Linq;
 
 namespace SigStat.Common
 {
+    /// <summary>
+    /// Represents a signature as a collection of features, containing the data that flows in the pipeline.
+    /// </summary>
     public class Signature
     {
+        /// <summary>An identifier for the Signature. Keep it unique to be useful for logs. </summary>
         public string ID { get; set; }
-
+        /// <summary>Represents our knowledge on the origin of the signature. <see cref="Origin.Unknown"/> may be used in practice before it is verified.</summary>
         public Origin Origin { get; set; }
+        /// <summary>A reference to the <see cref="Common.Signer"/> who this signature belongs to. (The origin is not constrained to be genuine.)</summary>
         public Signer Signer { get; set; }
 
         private readonly ConcurrentDictionary<string, object> features = new ConcurrentDictionary<string, object>();
 
 
-
+        /// <summary>
+        /// Gets or sets the specified feature.
+        /// </summary>
+        /// <param name="featureKey"></param>
+        /// <returns>The feature object without cast.</returns>
         public object this[string featureKey]
         {
             get
@@ -30,6 +39,12 @@ namespace SigStat.Common
             }
         }
 
+
+        /// <summary>
+        /// Gets or sets the specified feature.
+        /// </summary>
+        /// <param name="featureDescriptor"></param>
+        /// <returns>The feature object without cast.</returns>
         public object this[FeatureDescriptor featureDescriptor]
         {
             get
@@ -55,72 +70,96 @@ namespace SigStat.Common
             }
         }*/
 
+        /// <summary>
+        /// Gets the specified feature.
+        /// </summary>
+        /// <param name="featureKey"></param>
+        /// <returns>The casted feature object</returns>
         public T GetFeature<T>(string featureKey)
         {
             return (T)features[featureKey];
         }
-
+        /// <summary>
+        /// Gets the specified feature. This is the preferred way.
+        /// </summary>
+        /// <param name="featureDescriptor"></param>
+        /// <returns>The casted feature object</returns>
         public T GetFeature<T>(FeatureDescriptor<T> featureDescriptor)
         {
             return (T)features[featureDescriptor.Key];
         }
 
-        //proba
-        public T GetFeature<T>(FeatureDescriptor f)
+        /// <summary>
+        /// Gets the specified feature. This is the preferred way.
+        /// </summary>
+        /// <param name="featureDescriptor"></param>
+        /// <returns>The casted feature object</returns>
+        public T GetFeature<T>(FeatureDescriptor featureDescriptor)
         {
-            //try cast, catch log
-            return (T)features[f.Key];
+            //TODO: try cast, catch log
+            return (T)features[featureDescriptor.Key];
         }
 
-        public T GetFeature<T>()
+        /*public T GetFeature<T>()
         {
             return (T)features[FeatureDescriptor.GetKey<T>()];
-        }
+        }*/
 
-        public T GetFeature<T>(int index)
+        /*public T GetFeature<T>(int index)
         {
             return ((List<T>)features[FeatureDescriptor.GetKey<T>()])[index];
-        }
+        }*/
 
+        /// <summary>
+        /// Gets a collection of <see cref="FeatureDescriptor"/>s that are used in this signature.
+        /// </summary>
+        /// <returns>A collection of <see cref="FeatureDescriptor"/>s.</returns>
         public IEnumerable<FeatureDescriptor> GetFeatureDescriptors()
         {
             return features.Keys.Select(k => FeatureDescriptor.GetDescriptor(k));
         }
 
+        /// <summary>
+        /// Gets a list of <see cref="FeatureDescriptor"/>s of given type <typeparamref name="T"/> that are used in this signature.
+        /// </summary>
+        /// <returns>A list of <see cref="FeatureDescriptor"/>s.</returns>
         public List<T> GetFeatures<T>()
         {
             return (features.TryGetValue(FeatureDescriptor.GetKey<T>(), out var result)) ? result as List<T> : null;
         }
 
-
-        public void SetFeature<T>(T feature)
+        /*public void SetFeature<T>(T feature)
         {
             features[FeatureDescriptor.GetKey(feature.GetType())] = feature;
-        }
+        }*/
 
-        public void SetFeatures<T>(List<T> feature)
+        /*public void SetFeatures<T>(List<T> feature)
         {
             features[FeatureDescriptor.GetKey<T>()] = feature;
-        }
+        }*/
 
+        /// <summary>
+        /// Sets the specified feature. This is the preferred way.
+        /// </summary>
+        /// <param name="featureDescriptor">The feature to put the new value in.</param>
+        /// <param name="feature">The value to set.</param>
         public void SetFeature<T>(FeatureDescriptor featureDescriptor, T feature) 
         {
             features[featureDescriptor.Key] = feature;
         }
 
         /// <summary>
-        /// feature aggregalas, pl. X és Y feature a bemenet -> P.xy lesz.
-        /// Hasznos pl. multidimenziós DTW bemeneténél.
+        /// Aggregate multiple features into one. Example: X, Y features -> P.xy feature.
+        /// Use this for example at DTW algorithm input.
         /// </summary>
-        /// <param name="fs"></param>
-        /// <returns></returns>
+        /// <param name="fs">List of features to aggregate.</param>
+        /// <returns>Aggregated feature value</returns>
         public List<double[]> GetAggregateFeature(List<FeatureDescriptor> fs)
         {
-            //TODO: mi legyen, ha nem array a feature
-
             double[][] values = null;
 
             int len = this.GetFeature<List<double>>(fs[0].Key).Count;
+            //TODO: exception if: fs[0].len != fs[1].len
             values = new double[len][];
             for (int i = 0; i < len; i++)
                 values[i] = new double[fs.Count];//dim

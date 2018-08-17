@@ -55,7 +55,6 @@ namespace SigStat.Common.PipelineItems.Transforms
                     b[i, h-j-1] = (Level(image[i, j]) > binThreshold);
                 Progress += (int)((1.0 / w)*100);
             }
-
             Log(LogLevel.Info, "Binarization done.");
             signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;

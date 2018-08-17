@@ -8,14 +8,20 @@ using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Model
 {
+    /// <summary>Contains the benchmark results of a single <see cref="Common.Signer"/></summary>
     public class Result
     {
+        /// <summary>Identifier of the <see cref="Signer"/></summary>
         public readonly string Signer;
+        /// <summary>False Rejection Rate</summary>
         public readonly double Frr;
+        /// <summary>False Acceptance Rate</summary>
         public readonly double Far;
+        /// <summary>Average Error Rate</summary>
         public readonly double Aer;
 
-        public Result(string signer, double frr, double far, double aer)
+        //ez internal, mert csak a Benchmark keszithet uj Resultokat
+        internal Result(string signer, double frr, double far, double aer)
         {
             Signer = signer;
             Frr = frr;
@@ -24,6 +30,7 @@ namespace SigStat.Common.Model
         }
     }
 
+    //TODO: document ThresholdResult
     public class ThresholdResult: Result
     {
         public readonly double Threshold;
@@ -36,24 +43,32 @@ namespace SigStat.Common.Model
 
     }
 
+    /// <summary>Contains the benchmark results of every <see cref="Common.Signer"/> and the summarized final results.</summary>
     public struct BenchmarkResults
     {
+        /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
         public readonly List<Result> SignerResults;
+        /// <summary>Summarized, final result of the benchmark execution.</summary>
         public readonly Result FinalResult;
 
-        public BenchmarkResults(List<Result> signerResults, Result finalResult)
+        //ez internal, mert csak a Benchmark keszithet uj BenchmarkResults-t
+        internal BenchmarkResults(List<Result> signerResults, Result finalResult)
         {
             SignerResults = signerResults;
             FinalResult = finalResult;
         }
     }
 
+    /// <summary> Benchmarking class to test error rates of a <see cref="Model.Verifier"/> </summary>
     public class VerifierBenchmark : ILogger, IProgress
     {
+        /// <summary> The loader to take care of <see cref="Signature"/> database loading. </summary>
         public IDataSetLoader Loader;
+        /// <summary> Defines the sampling strategy for the benchmark. </summary>
         public Sampler Sampler;
 
         private Verifier _verifier;
+        /// <summary> Gets or sets the <see cref="Model.Verifier"/> to be benchmarked. </summary>
         public Verifier Verifier { get => _verifier;
             set {
                 _verifier = value;
@@ -61,7 +76,8 @@ namespace SigStat.Common.Model
             }
         }
 
-        private Logger _log;//TODO: ezzel kezdeni valamit
+        private Logger _log;//TODO: ezzel kezdeni valamit: mivel ez nem pipeline item, ezert nem akartam a PipelineBase-bol szarmaztatni, ami implementalja az ILogger-t.
+        /// <summary> Gets or sets the attached <see cref="Helpers.Logger"/> object used to log messages. Hands it over to the verifier. </summary>
         public Logger Logger
         {
             get => _log;
@@ -74,27 +90,42 @@ namespace SigStat.Common.Model
         }
 
         private int _progress;
+        /// <inheritdoc/>
         public int Progress { get => _progress; set { _progress = value; ProgressChanged?.Invoke(this, value); } }
+        /// <inheritdoc/>
         public event EventHandler<int> ProgressChanged;
 
+        /// <inheritdoc/>
         protected void Log(LogLevel level, string message)
         {
             if (_log != null)
                 _log.EnqueueEntry(level, this, message);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VerifierBenchmark"/> class.
+        /// Sets the <see cref="Model.Verifier"/> to be the <see cref="Verifier.BasicVerifier"/>.
+        /// Sets the <see cref="Model.Sampler"/> to be the <see cref="Sampler.BasicSampler"/>.
+        /// </summary>
         public VerifierBenchmark()
         {
-            //ha nem allit be kulon semmit, akkor ez legyen a default
             Verifier = Verifier.BasicVerifier;
             Sampler = Sampler.BasicSampler;
         }
 
+        /// <summary>
+        /// Asynchronously execute the benchmarking process.
+        /// </summary>
+        /// <returns></returns>
         public async Task<int> ExecuteAsync()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Synchronously execute the benchmarking process.
+        /// </summary>
+        /// <returns></returns>
         public BenchmarkResults Execute()
         {
             Log(LogLevel.Info, "Benchmark execution started.");
@@ -155,6 +186,10 @@ namespace SigStat.Common.Model
             return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
         }
 
+        /// <summary>
+        /// Parallel execute the benchmarking process.
+        /// </summary>
+        /// <returns></returns>
         public BenchmarkResults ExecuteParallel()
         {
             Log(LogLevel.Info, "Parallel benchmark execution started.");

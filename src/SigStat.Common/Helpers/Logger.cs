@@ -9,26 +9,49 @@ using System.Threading.Tasks;
 
 namespace SigStat.Common.Helpers
 {
-    //Holding a single writer open will be more efficient than repeatedly opening and closing it. If this is critical data,
-    //however, you should call Flush() after each write to make sure it gets to disk.
-
-    //producer/consumer pattern, concurrent queue
-
+    /// <summary>
+    /// A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+    /// </summary>
+    /// <remarks>
+    /// <list type="bullet">
+    /// <item>A producer-consumer pattern is implemented with a concurrent queue to support multi-threaded pipelines.</item>
+    /// <item>Holding the StreamWriter open is more efficient than repeatedly opening and closing it.</item>
+    /// </list>
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// Logger l1 = new Logger(LogLevel.Info);
+    /// Logger.Warn(this, "Training on non-genuine signature.");
+    /// </code>
+    /// </example>
     public class Logger
     {
+        /// <summary>
+        /// Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries.
+        /// </summary>
         public bool StoreEntries { get; set; } = false;
+        /// <summary>
+        /// A list where Entries are stored if <see cref="StoreEntries"/> is enabled.
+        /// </summary>
         public List<LogEntry> Entries = new List<LogEntry>();//ez maradhat sima list, mert csak 1 consumer van
-        public LogLevel LogLevel = LogLevel.Error;
+        /// <summary>
+        /// Gets or sets the filtering level. Entries above this level will be ignored.
+        /// </summary>
+        public LogLevel FilteringLevel = LogLevel.Error;
         private StreamWriter sw;
         private Action<LogLevel, string> OutputAction { get; }
         //The default collection type for BlockingCollection<T> is ConcurrentQueue<T>
         private BlockingCollection<LogEntry> queue = new BlockingCollection<LogEntry>();
 
-        public Logger(LogLevel level, Stream outputStream) : this(level, outputStream, null) { }
-        public Logger(LogLevel level, Action<LogLevel, string> outputAction) : this(level, null, outputAction) { }
-        public Logger(LogLevel level, Stream outputStream, Action<LogLevel, string> outputAction)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Logger"/> class.
+        /// </summary>
+        /// <param name="filteringLevel">Entries above this level will be ignored.</param>
+        /// <param name="outputStream">A stream to write consumed entries to. For example a FileStream pointing to the log archives.</param>
+        /// <param name="outputAction">An action to perform when an entry is consumed. Use this for instant gui display of messages.</param>
+        public Logger(LogLevel filteringLevel, Stream outputStream = null, Action<LogLevel, string> outputAction = null)
         {
-            this.LogLevel = level;
+            this.FilteringLevel = filteringLevel;
             if (outputStream != null)
             {
                 sw = new StreamWriter(outputStream);
@@ -39,10 +62,10 @@ namespace SigStat.Common.Helpers
         }
 
         /// <summary>
-        /// Ezzel elvehetjuk a konzol outputot.
+        /// Initializes a new instance of the <see cref="Logger"/> class, and rewire the default Console IO.
         /// </summary>
-        /// <param name="level"></param>
-        public Logger(LogLevel level) :this(level, Console.OpenStandardOutput(), null)
+        /// <param name="filteringLevel">Entries above this level will be ignored.</param>
+        public Logger(LogLevel filteringLevel) :this(filteringLevel, Console.OpenStandardOutput(), null)
         {
             Console.SetOut(sw);
         }
@@ -51,31 +74,63 @@ namespace SigStat.Common.Helpers
         //public void Fatal(string message, [CallerMemberName] string callerName = "")
 
         //Ez picit sorminta, de konnyeb hasznalni: Log.Error(..) ahelyett hogy Log.Message<LogLevel.Error>(..)
+
+        /// <summary>
+        /// Enqueue a fatal level log entry.
+        /// </summary>
+        /// <param name="sender">The object who sent the log. Usually provide [this].</param>
+        /// <param name="message">Main content of the log entry.</param>
         public void Fatal(object sender, string message)
         {
             EnqueueEntry(LogLevel.Fatal, sender, message);
         }
+        /// <summary>
+        /// Enqueue an error level log entry.
+        /// </summary>
+        /// <param name="sender">The object who sent the log. Usually provide [this].</param>
+        /// <param name="message">Main content of the log entry.</param>
         public void Error(object sender, string message)
         {
             EnqueueEntry(LogLevel.Error, sender, message);
         }
+        /// <summary>
+        /// Enqueue a warning level log entry.
+        /// </summary>
+        /// <param name="sender">The object who sent the log. Usually provide [this].</param>
+        /// <param name="message">Main content of the log entry.</param>
         public void Warn(object sender, string message)
         {
             EnqueueEntry(LogLevel.Warn, sender, message);
         }
+        /// <summary>
+        /// Enqueue an information level log entry.
+        /// </summary>
+        /// <param name="sender">The object who sent the log. Usually provide [this].</param>
+        /// <param name="message">Main content of the log entry.</param>
         public void Info(object sender, string message)
         {
             EnqueueEntry(LogLevel.Info, sender, message);
         }
+        /// <summary>
+        /// Enqueue a debug level log entry.
+        /// </summary>
+        /// <param name="sender">The object who sent the log. Usually provide [this].</param>
+        /// <param name="message">Main content of the log entry.</param>
         public void Debug(object sender, string message)
         {
             EnqueueEntry(LogLevel.Debug, sender, message);
         }
 
         //ez pl a LogMarker miatt public
+        /// <summary>
+        /// Enqueue a new log entry with specified level. The entry is filtered through <see cref="FilteringLevel"/>.
+        /// </summary>
+        /// <param name="messageLevel">Log level of the entry.</param>
+        /// <param name="sender">The object who sent the log. Usually provide [this].</param>
+        /// <param name="message">Main content of the log entry.</param>
         public void EnqueueEntry(LogLevel messageLevel, object sender, string message)
         {
-            if (LogLevel >= messageLevel)
+            if (FilteringLevel >= messageLevel)
             {
                 LogEntry newEntry = new LogEntry(DateTime.Now, messageLevel, sender, message);
                 queue.Add(newEntry);
@@ -103,35 +158,56 @@ namespace SigStat.Common.Helpers
         }
 
         /// <summary>
-        /// Stop accepting entries, flush the queue and stop the thread.
+        /// Stop accepting entries, flush the queue and stop the consuming thread.
         /// </summary>
         public void Stop()
         {
-            //StopConsumingThread();
+            //StopConsumingThread();//nem muszaj de szebb lenne (igy most rovid idore 2 consumer van)
             queue.CompleteAdding();
             ConsumerLoop();//consume rest of the entries synchronously
         }
 
     }
 
+    /// <summary>
+    /// Represents the level of log.
+    /// Lowest level: Off.
+    /// Highest level: Debug.
+    /// </summary>
     public enum LogLevel
     {
+        /// <summary>Completely turn off logging.</summary>
         Off,
+        /// <summary>Represents a fatal error level log.</summary>
         Fatal,
+        /// <summary>Represents an error level log.</summary>
         Error,
+        /// <summary>Represents a warning level log.</summary>
         Warn,
+        /// <summary>Represents an information level log.</summary>
         Info,
+        /// <summary>Represents a debug level log.</summary>
         Debug
     }
 
+    /// <summary>
+    /// Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.
+    /// </summary>
     public class LogEntry
     {
-        public DateTime Timestamp;
-        public LogLevel Level;
-        public object Sender;
-        public string Message;
+        /// <summary>Exact date and time of the entry's creation.</summary>
+        public readonly DateTime Timestamp;
+        /// <summary>Log level of the entry.</summary>
+        public readonly LogLevel Level;
+        /// <summary>Reference of the object that created the entry.</summary>
+        public readonly object Sender;
+        /// <summary>Main content of the entry.</summary>
+        public readonly string Message;
 
-        public LogEntry(DateTime timestamp, LogLevel level, object sender, string message)
+        /// <remark>
+        /// The constructor is internal, as only the <see cref="Logger"/> may create new entries.
+        /// </remark>
+        internal LogEntry(DateTime timestamp, LogLevel level, object sender, string message)
         {
             Timestamp = timestamp;
             Level = level;
@@ -139,6 +215,11 @@ namespace SigStat.Common.Helpers
             Message = message;
         }
 
+        /// <summary>
+        /// Format the contained data to string, divided by tab characters.
+        /// Use this to display the entry in the console.
+        /// </summary>
+        /// <returns>String result.</returns>
         public override string ToString()
         {
             string senderID = Sender.ToString().Split('.').Last() + Sender.GetHashCode();//TODO: legyen a loggolo objecteknek IDja

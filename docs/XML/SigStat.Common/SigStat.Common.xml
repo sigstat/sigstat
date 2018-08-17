@@ -1,0 +1,630 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SigStat.Common</name>
+    </assembly>
+    <members>
+        <member name="T:SigStat.Common.Algorithms.Dtw">
+            <summary>
+            Dynamic Time Warping algorithm
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Dtw.#ctor">
+            <summary>
+            Initialize the DTW algorithm with the default Euclidean distance method.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Dtw.#ctor(System.Func{System.Double[],System.Double[],System.Double})">
+            <summary>
+            Initialize the DTW algorithm with given distance method.
+            </summary>
+            <param name="DistMethod">Accord.Math.Distance.*</param>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Dtw.Compute(System.Double[][],System.Double[][])">
+            <summary>
+            Generate shortest path between the two sequences.
+            </summary>
+            <returns>Cost of the path.</returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Dtw.Distance(System.Double[],System.Double[])">
+            <summary>
+            Calculate distance between two points.
+            Distance method can be set in ctor.
+            </summary>
+            <param name="p1"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Algorithms.HSCPThinningStep">
+            <summary>
+            HSCP thinning algorithm
+            http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
+            
+            TODO: ez parhuzamosithato
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])">
+            <summary>
+            Do one step of the thinning. Call it iteratively while ResultChanged
+            </summary>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.HSCPThinningStep.Neighbourhood(System.Boolean[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Algorithms.OnePixelThinningStep">
+            <summary>
+            Skeleton leszukitese 1px vastagra.
+            Hasznos pl hscp utan.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.OnePixelThinningStep.Scan(System.Boolean[0:,0:])">
+            <summary>
+            Scan the input matrix and generate a 1-pixel thinned version
+            </summary>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.PatternMatching3x3.#ctor(System.Nullable{System.Boolean}[0:,0:])">
+            <summary>
+            ha patternben null ertek: don't care
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.PatternMatching3x3.Match(System.Boolean[0:,0:])">
+            <summary>
+            Match the 3x3 input with the 3x3 pattern
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.PatternMatching3x3.RotMatch(System.Boolean[0:,0:])">
+            <summary>
+            Match the 3x3 input with the 3x3 pattern from all 4 directions
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.PatternMatching3x3.Rotate(System.Nullable{System.Boolean}[0:,0:])">
+            <summary>
+            Rotate a 3x3 pattern by 90d
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.ForEach``1(``0[],System.Action{``0})">
+            <summary>
+            Performs a given action on all items of the array and returns the original array.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Helpers.ILogger">
+            <summary>
+            Enables logging by exposing a <see cref="T:SigStat.Common.Helpers.Logger"/> property.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ILogger.Logger">
+            <summary>
+            Gets or sets the attached <see cref="T:SigStat.Common.Helpers.Logger"/> object used to log messages.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.IProgress">
+            <summary>
+            Enables progress tracking by expsoing the <see cref="P:SigStat.Common.Helpers.IProgress.Progress"/> property and the <see cref="E:SigStat.Common.Helpers.IProgress.ProgressChanged"/> event.
+            </summary>
+        </member>
+        <member name="E:SigStat.Common.Helpers.IProgress.ProgressChanged">
+            <summary>
+            Invoked whenever the <see cref="P:SigStat.Common.Helpers.IProgress.Progress"/> property is changed.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.IProgress.Progress">
+            <summary>
+            Gets the current progress in percentage.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Logger">
+            <summary>
+            A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item>A producer-consumer pattern is implemented with a concurrent queue to support multi-threaded pipelines.</item>
+            <item>Holding the StreamWriter open is more efficient than repeatedly opening and closing it.</item>
+            </list>
+            </remarks>
+            <example>
+            <code>
+            Logger l1 = new Logger(LogLevel.Info);
+            Logger.Warn(this, "Training on non-genuine signature.");
+            </code>
+            </example>
+        </member>
+        <member name="P:SigStat.Common.Helpers.Logger.StoreEntries">
+            <summary>
+            Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Helpers.Logger.Entries">
+            <summary>
+            A list where Entries are stored if <see cref="P:SigStat.Common.Helpers.Logger.StoreEntries"/> is enabled.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Helpers.Logger.FilteringLevel">
+            <summary>
+            Gets or sets the filtering level. Entries above this level will be ignored.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Logger.#ctor(SigStat.Common.Helpers.LogLevel,System.IO.Stream,System.Action{SigStat.Common.Helpers.LogLevel,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Helpers.Logger"/> class.
+            </summary>
+            <param name="filteringLevel">Entries above this level will be ignored.</param>
+            <param name="outputStream">A stream to write consumed entries to. For example a FileStream pointing to the log archives.</param>
+            <param name="outputAction">An action to perform when an entry is consumed. Use this for instant gui display of messages.</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Logger.#ctor(SigStat.Common.Helpers.LogLevel)">
+            <summary>
+            Ezzel elvehetjuk a konzol outputot.
+            </summary>
+            <param name="level"></param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Logger.Stop">
+            <summary>
+            Stop accepting entries, flush the queue and stop the thread.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Matrix.Invert(System.Boolean[0:,0:])">
+            <summary>
+            returns a copy of the array with inverted values
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Matrix.Neighbours``1(``0[0:,0:],``0)">
+            <summary>
+            returns a same sized matrix with each item showing the neighbour count for the given position.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="matrix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Matrix.FromTableRows``1(System.Collections.Generic.IEnumerable{System.Data.DataRow},System.Int32,System.Int32)">
+            <summary>
+            Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé. 
+            Az átalakítás során ignoreColumns oszlopot és ignoreRows sort
+            figyelmen kívül hagy.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="rows"></param>
+            <param name="ignoreColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Loaders.ImageLoader">
+            <summary>
+            Similar format to Svc2004Loader, but finds png images.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.Svc2004Loader.#ctor(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="databasePath">ZIP file</param>
+            <param name="standardFeatures"></param>
+        </member>
+        <member name="M:SigStat.Common.Model.ApproximateLimit.Calculate(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <summary>
+            
+            </summary>
+            <param name="sigs">List of genuine signatures</param>
+            <returns></returns>
+        </member>
+        <member name="P:SigStat.Common.Model.Sampler.BasicSampler">
+            <summary>
+            Default sampler for SVC2004 database.
+            10 references, 10 genuine tests, 10 forged tests
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Model.Verifier">
+            <summary>
+            Uses pipelines to transform, train on, and classify <see cref="T:SigStat.Common.Signature"/> objects.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.TransformPipeline">
+            <summary>
+            Gets or sets the transform pipeline. Hands over the Logger object.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.ClassifierPipeline">
+            <summary>
+            Gets or sets the classifier pipeline. Hands over the Logger object.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.Logger">
+            <summary>
+            Gets or sets the attached <see cref="T:SigStat.Common.Helpers.Logger"/> object used to log messages. Hands it over to the pipelines.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.Log(SigStat.Common.Helpers.LogLevel,System.String)">
+            <summary>
+            Enqueues a new log entry to be consumed by the attached <see cref="T:SigStat.Common.Helpers.Logger"/>. Use this when developing new pipeline items.
+            </summary>
+            <param name="level">Specifies the level of the entry. Higher levels than the <see cref="T:SigStat.Common.Helpers.Logger"/>'s filter level will be ignored.</param>
+            <param name="message">The main content of the log entry.</param>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.Progress">
+            <inheritdoc/>
+        </member>
+        <member name="E:SigStat.Common.Model.Verifier.ProgressChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class, with empty pipelines and no <see cref="T:SigStat.Common.Helpers.Logger"/>.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.#ctor(SigStat.Common.Model.Verifier)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class with the properties of <paramref name="v"/>.
+            </summary>
+            <param name="v">An instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class.</param>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.Train(SigStat.Common.Signer)">
+            <summary>
+            Trains the verifier with <see cref="P:SigStat.Common.Signer.Signatures"/> having <see cref="F:SigStat.Common.Origin.Genuine"/> property.
+            </summary>
+            <param name="signer">The signer with genuine signatures.</param>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <summary>
+            Trains the verifier with a list of signatures. Uses the <see cref="P:SigStat.Common.Model.Verifier.TransformPipeline"/> to extract features,
+            and <see cref="P:SigStat.Common.Model.Verifier.ClassifierPipeline"/> to find an optimized limit.
+            </summary>
+            <param name="sigs">The list of signatures to train on.</param>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.Test(SigStat.Common.Signature)">
+            <summary>
+            Verifies the genuinity of <paramref name="sig"/>.
+            </summary>
+            <param name="sig"></param>
+            <returns>True if <paramref name="sig"/> passes the verification test.</returns>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.BasicVerifier">
+            <summary>
+            Basic <see cref="T:SigStat.Common.Model.Verifier"/> model with DTW classification of tangent features.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Signature.GetAggregateFeature(System.Collections.Generic.List{SigStat.Common.FeatureDescriptor})">
+            <summary>
+            feature aggregalas, pl. X és Y feature a bemenet -> P.xy lesz.
+            Hasznos pl. multidimenziós DTW bemeneténél.
+            </summary>
+            <param name="fs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Vector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Vector.Equals(System.Object)">
+            <summary>
+            Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
+            mutatnak és hosszuk is megegyezik. 
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Vector.GetNormal">
+            <summary>
+            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Vector.GetNormal(System.Double)">
+            <summary>
+            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.ApproximateOnlineFeatures">
+            <summary>
+            init Pressure, Altitude, Azimuth features with default values.
+            TODO: approximate Pressure based on Image and Skeleton
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.#ctor">
+            <summary>
+            threshold automatikusan lesz kiszamolva, sotet eloter, vilagos hatter
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.#ctor(SigStat.Common.PipelineItems.Transforms.Binarization.ForegroundType,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="foregroundType"></param>
+            <param name="binThreshold">0-1</param>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.IterativeThreshold(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Double)">
+            <summary>
+            http://accord-framework.net/docs/html/T_Accord_Imaging_Filters_IterativeThreshold.htm
+            </summary>
+            <param name="image"></param>
+            <param name="maxError">pl 0.008</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.Level(SixLabors.ImageSharp.PixelFormats.Rgba32)">
+            <summary>
+            0 - 1 kozotti ertek
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentExtraction.SplitCrossings(System.Collections.Generic.List{System.Drawing.Point})">
+            <summary>
+            Unite crossingpoints into crossings (list of its endpoints), and
+            split all crossings into neighbouring endpoints.
+            </summary>
+            <param name="crs">List of crossingpoints</param>
+            <returns>List of crossings (1 crossing: List of endpoints)</returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentExtraction.Trace(System.Collections.Generic.List{System.Drawing.Point})">
+            <summary>
+            lekoveti a szakaszokat. Ebbe mar ne legyenek crossingpointok
+            </summary>
+            <param name="endPoints"></param>
+            <returns>List of sections</returns>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.EndpointExtraction">
+            <summary>
+            Extract EndPoints and CrossingPoints from Skeleton.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.ImageGenerator">
+            <summary>
+            Binary raster -> Image type feature.
+            Useful for debugging pipeline steps.
+            Output: {Inpu}t, {Input}Image
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.PrepareForThinning">
+            <summary>
+            binarizalas utan, thinning elott.
+            Pl. 1px-lyukak betomese / dilatalas / erozio
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator">
+            <summary>
+            Pen width is auto-approximated based on resolution.
+            Light Blue Foreground, White Background.
+            TODO: Noise.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator.Lerp(System.Single,System.Single,System.Single)">
+            <summary>
+            Basic linear interpolation
+            </summary>
+            <param name="t0"></param>
+            <param name="t1"></param>
+            <param name="t">0.0f to 1.0f</param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Transforms.AddConst">
+            <summary>
+            Default output: the input
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.AddVector">
+            <summary>
+            pl 1. Centroid.xy, 2. X, 3. Y .Akkor
+            X osszes elemehez C.x-t adunk,
+            Y osszes elemehez C.y-t adunk
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.AddVector.#ctor(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
+            <summary>
+            Initialize with a vector feature.
+            Don't forget to add as many Inputs as the vector's dimension.
+            </summary>
+            <param name="vectorFeature"></param>
+        </member>
+        <member name="T:SigStat.Common.Transforms.CentroidExtraction">
+            <summary>
+            sulypont kiszamolasa, hozzaadas a Featureokhoz.
+            Hasznos ezutan pl Translate a Centroidba.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.CentroidTranslate">
+            <summary>
+            Custom transzformáció X és Y featureon, az alábbi pipeline elemekből:
+            CentroidExtraction, Multiply -1, Translate
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.Extrema">
+            <summary>
+            Find minimum and maximum values of given feature, add them as new features
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.Normalize">
+            <summary>
+            Similar to Map, but with 0 - 1 interval.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.TimeReset">
+            <summary>
+            Custom transzformáció T (time) featureon, az alábbi pipeline elemekből:
+            Extrema, Multiply, Addition.
+            Eredmeny: 0. idopontbol indulnak az adatok
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.Translate">
+            <summary>
+            input: X Y
+            output: X Y
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.IClassification">
+            <summary>
+            Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.IClassification.Pair(SigStat.Common.Signature,SigStat.Common.Signature)">
+            <summary>
+            Executes the classification by pairing the parameters.
+            This function gets called by the pipeline.
+            </summary>
+            <param name="signature1">The <see cref="T:SigStat.Common.Signature"/> with a set of features to classify by.</param>
+            <param name="signature2">The <see cref="T:SigStat.Common.Signature"/> with a set of features to classify by.</param>
+            <returns>Cost between the two signatures</returns>
+        </member>
+        <member name="T:SigStat.Common.IClassificationMethods">
+            <summary>
+            Extension methods for <see cref="T:SigStat.Common.IClassification"/> for convenient IO rewiring.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.IClassificationMethods.Input(SigStat.Common.IClassification,SigStat.Common.FeatureDescriptor[])">
+            <summary>
+            Sets the InputFeatures in a convenient way.
+            </summary>
+            <param name="caller"></param>
+            <param name="inputFeatures"></param>
+            <returns>The caller.</returns>
+        </member>
+        <member name="M:SigStat.Common.IClassificationMethods.Output(SigStat.Common.IClassification,SigStat.Common.FeatureDescriptor[])">
+            <summary>
+            Sets the OutputFeatures in a convenient way.
+            </summary>
+            <param name="caller"></param>
+            <param name="outputFeatures"></param>
+            <returns>The caller.</returns>
+        </member>
+        <member name="T:SigStat.Common.Pipeline.IPipelineIO">
+            <summary>
+            Gives ability to get or set (rewire) a pipeline item's default input and output features.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Pipeline.IPipelineIO.InputFeatures">
+            <summary>
+            List of features to be used as input.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Pipeline.IPipelineIO.OutputFeatures">
+            <summary>
+            List of features to be used as output.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Pipeline.SequentialTransformPipeline">
+            <summary>
+            ...
+            Ebbol jo dolog leszarmazni es az Itemeket az adott feladatszerint inicializalni
+            pl. CentroidTranslate: CentroidExtraction + Multiply -1 + Translate
+            TODO: Add() nem kene hogy latszodjon leszarmazottakban, kell egy koztes dolog
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.ITransformation">
+            <summary>
+            Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.ITransformation.Transform(SigStat.Common.Signature)">
+            <summary>
+            Executes the transform on the <paramref name="signature"/> parameter.
+            This function gets called by the pipeline.
+            </summary>
+            <param name="signature">The <see cref="T:SigStat.Common.Signature"/> with a set of features to be transformed.</param>
+        </member>
+        <member name="T:SigStat.Common.ITransformationMethods">
+            <summary>
+            Extension methods for <see cref="T:SigStat.Common.ITransformation"/> for convenient IO rewiring.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.ITransformationMethods.Input(SigStat.Common.ITransformation,SigStat.Common.FeatureDescriptor[])">
+            <summary>
+            Sets the InputFeatures in a convenient way.
+            </summary>
+            <param name="caller"></param>
+            <param name="inputFeatures"></param>
+            <returns>The caller.</returns>
+        </member>
+        <member name="M:SigStat.Common.ITransformationMethods.Output(SigStat.Common.ITransformation,SigStat.Common.FeatureDescriptor[])">
+            <summary>
+            Sets the OutputFeatures in a convenient way.
+            </summary>
+            <param name="caller"></param>
+            <param name="outputFeatures"></param>
+            <returns>The caller.</returns>
+        </member>
+        <member name="T:SigStat.Common.PipelineBase">
+            <summary>
+            TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.
+            IProgress, ILogger, IPipelineIO default implementacioja.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineBase.InputFeatures">
+            <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.PipelineBase.OutputFeatures">
+            <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.PipelineBase.Logger">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.PipelineBase.Log(SigStat.Common.Helpers.LogLevel,System.String)">
+            <summary>
+            Enqueues a new log entry to be consumed by the attached <see cref="T:SigStat.Common.Helpers.Logger"/>. Use this when developing new pipeline items.
+            </summary>
+            <param name="level">Specifies the level of the entry. Higher levels than the <see cref="T:SigStat.Common.Helpers.Logger"/>'s filter level will be ignored.</param>
+            <param name="message">The main content of the log entry.</param>
+        </member>
+        <member name="P:SigStat.Common.PipelineBase.Progress">
+            <inheritdoc/>
+        </member>
+        <member name="E:SigStat.Common.PipelineBase.ProgressChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.PipelineBase.OnProgressChanged(System.Int32)">
+            <summary>
+            Used to raise base class event in derived classes.
+            See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:Alairas.Common.BaseLineExtraction.GetComponentLowerEnvelopes(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})">
+            <summary>
+            Extracts lower envelope for each component
+            </summary>
+            <param name="bmp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alairas.Common.BaseLineExtraction.RemoveOverlapingEnvelopes(System.Collections.Generic.List{System.Collections.Generic.List{System.Drawing.Point}})">
+            <summary>
+            Eltávolítja az egymás fölött lévő komponensek közül a felsőket, amennyiben az átfedés mértéke legalább 50%
+            </summary>
+            <param name="envelopes"></param>
+            <remarks>Az eltávolított komponensek függhetnek a feldolgozás sorrendjétől, így több, egymást kölcsönösen átfedő komponens esetén előfordulhat, hogy hibás eredményt kapunk.</remarks>
+        </member>
+        <member name="M:Alairas.Common.BaseLineExtraction.GetLineOfBestFit(System.Collections.Generic.List{System.Drawing.Point})">
+            <summary>
+            Megkeresi a megadott pontokra legjobban illeszkedő egyenest. Képes még ennek az egyenesnek különböző 
+            hibamértékeinek kiszámítására, azonban jelenleg ezzel nem foglalkozom, hiszen ebben a speciális esetben
+            szinte biztosan elég jól illeszkedő egyenest kapunk eredményül.
+            Az algorimus kimenete nem egy egyenes, hanem egy egy vektor, mely az egyenes egy szakasza. Felteszem,
+            hogy a pontok X koordináta szerint rendezettek, így az első és utolsó pont X koordinátája közötti
+            szakaszt adom vissza az egyenesből.
+            Azaz:
+            Paraméterként egy előzőleg megtalált komponenst kap, kimenete pedig az adott komponens alapvonala.
+            </summary>
+            <param name="points">A pontok, melyre az egyenest illeszteni szeretnénk.</param>
+        </member>
+        <member name="T:Alairas.Common.SimpleRenderingTransformation">
+            <summary>
+            Renders an image of the signature based on the available online information (X,Y,Dpi)
+            </summary>
+        </member>
+    </members>
+</doc>

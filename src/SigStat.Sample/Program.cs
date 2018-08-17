@@ -32,17 +32,18 @@ namespace SigStat.Sample
 
         class MySignature : Signature
         {
-            public List<Loop> Loops { get { return (List<Loop>)this["Loop"]; } set { this["Loop"] = value; } }
+            //public List<Loop> Loops { get { return (List<Loop>)this["Loop"]; } set { this["Loop"] = value; } }
 
-            public List<Loop> Loops2 { get { return GetFeature<List<Loop>>(Features.Loop.Key); } set { this[Features.Loop.Key] = value; } }
+            //public List<Loop> Loops2 { get { return GetFeature<List<Loop>>(Features.Loop.Key); } set { this[Features.Loop.Key] = value; } }
+            
             // Preferált:
             public List<Loop> Loops3 { get { return GetFeature(Features.Loop); } set { SetFeature(Features.Loop, value); } }
 
-            public List<Loop> Loops4 { get { return GetFeatures<Loop>(); } set { SetFeatures(value); } }
+            //public List<Loop> Loops4 { get { return GetFeatures<Loop>(); } set { SetFeatures(value); } }
 
 
-            public List<OnlinePoint> OnlinePoints { get { return GetFeature<List<OnlinePoint>>(); } set { SetFeature(value); } }
-            public List<OnlinePoint> OnlinePoints2 { get { return GetFeatures<OnlinePoint>(); } set { SetFeatures(value); } }
+            //public List<OnlinePoint> OnlinePoints { get { return GetFeature<List<OnlinePoint>>(); } set { SetFeature(value); } }
+            //public List<OnlinePoint> OnlinePoints2 { get { return GetFeatures<OnlinePoint>(); } set { SetFeatures(value); } }
 
             public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
 
@@ -110,7 +111,7 @@ namespace SigStat.Sample
 
 
 
-            Loop loop = sig.GetFeature<Loop>(1);
+            //Loop loop = sig.GetFeature<Loop>(1);
             List<Loop> loops = sig.GetFeatures<Loop>();
 
             // Tulajdonságokkal + ID
@@ -118,14 +119,14 @@ namespace SigStat.Sample
             loops = (List<Loop>)sig["Loop"];
 
             // Generikus függvény + ID
-            sig.SetFeatures(new List<Loop>());
-            loops = sig.GetFeature(Features.Loop);
-            loops = sig.GetFeatures<Loop>();
+            //sig.SetFeatures(new List<Loop>());
+            //loops = sig.GetFeature(Features.Loop);
+            //loops = sig.GetFeatures<Loop>();
             //var loop6 = sig.GetFeature<Loop>(6);
 
             // Erősen típusos burkolóval
-            sig.Loops = sampleLoops;
-            loops = sig.Loops;
+            //sig.Loops = sampleLoops;
+            //loops = sig.Loops;
 
             foreach (var descriptor in sig.GetFeatureDescriptors())
             {
@@ -196,7 +197,6 @@ namespace SigStat.Sample
             verifier.Train(s);
 
             //TODO: ha mar Verifier demo, akkor Test()-et is hasznaljuk..
-
             ImageSaver.Save(s1,  @"GeneratedOfflineImage.png");
             debugLogger.Stop();
         }
