@@ -128,8 +128,10 @@ namespace SigStat.Common.PipelineItems.Transforms
                             color.G = (byte)(tierDarken * darker * fg.G);
                             //color.B = (byte)(darker * fg.B);
 
-                            
-                            ctx.Fill(color, new EllipsePolygon(p, scale*tierRadius));
+                            float ellipseRadius = scale * tierRadius;
+                            p.X -= ellipseRadius / 2.0f;
+                            p.Y -= ellipseRadius / 2.0f;
+                            ctx.Fill(color, new EllipsePolygon(p, ellipseRadius));
                         }
 
                         double tierProgress = i / (double)(points.Count - 1);
