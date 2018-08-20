@@ -9,7 +9,7 @@ namespace SigStat.Common.Loaders
     /// Exposes a function to enable loading collections of <see cref="Signer"/>s.
     /// Base abstract class: <see cref="DataSetLoader"/>.
     /// </summary>
-    internal interface IDataSetLoader
+    public interface IDataSetLoader
     {
         /// <summary>
         /// Loads the database and returns the collection of <see cref="Signer"/>s that match the <paramref name="signerFilter"/>.

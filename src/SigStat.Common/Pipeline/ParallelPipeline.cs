@@ -8,11 +8,16 @@ using System.Linq;
 
 namespace SigStat.Common.Pipeline
 {
+    /// <summary>
+    /// Runs pipeline items in parallel.
+    /// </summary>
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
+        /// <summary>List of transforms to be run parallel.</summary>
         public List<ITransformation> Items = new List<ITransformation>();
 
         private Logger _logger;
+        /// <summary>Passes Logger to child items as well.</summary>
         public new Logger Logger
         {
             get => _logger;
@@ -23,13 +28,19 @@ namespace SigStat.Common.Pipeline
             }
         }
 
+        /// <summary>Gets the minimum progess of all the child items.</summary>
         public new int Progress { get { return Items.Min((i) => i.Progress); } }
 
+        /// <inheritdoc/>
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
+        /// <summary>
+        /// Add new transform to the list. Pass <see cref="Logger"/> and set up Progress event.
+        /// </summary>
+        /// <param name="newItem"></param>
         public void Add(ITransformation newItem)
         {
             if (_logger != null)
@@ -38,9 +49,14 @@ namespace SigStat.Common.Pipeline
             Items.Add(newItem);
         }
 
+        /// <summary>
+        /// Executes transform <see cref="Items"/> parallel.
+        /// Passes input features for each.
+        /// Output is a range of all the Item outputs.
+        /// </summary>
+        /// <param name="signature">Signature to execute transform on.</param>
         public void Transform(Signature signature)
         {
-            //TODO mindnek kovetni a progressét, a minimum lesz ezé is
             Parallel.ForEach(Items, (i) => {
                 if (i.InputFeatures == null)//pass previously calculated features if input not specified
                     i.InputFeatures = this.InputFeatures;

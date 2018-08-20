@@ -6,11 +6,16 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
+    /// <summary>
+    /// Classifies Signatures by weighing other Classifier results.
+    /// </summary>
     public class WeightedClassifier : PipelineBase, IEnumerable, IClassification
     {
+        /// <summary>List of classifiers and belonging weights.</summary>
         public List<(IClassification classifier, double weight)> Items = new List<(IClassification classifier, double weight)>();
 
         private Logger _logger;
+        /// <summary>Gets or sets the Logger. Passes it to child Items as well.</summary>
         public new Logger Logger
         {
             get => _logger;
@@ -21,11 +26,14 @@ namespace SigStat.Common.PipelineItems.Classifiers
             }
         }
 
+        /// <inheritdoc/>
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
+        /// <summary>Add a new classifier with given weight to the list of items.</summary>
+        /// <param name="newItem">Classifier with belonging weight.</param>
         public void Add((IClassification classifier, double weight) newItem)
         {
             if (_logger != null)
@@ -33,6 +41,12 @@ namespace SigStat.Common.PipelineItems.Classifiers
             Items.Add(newItem);
         }
 
+        /// <summary>
+        /// Execute each classifier in the list and weigh returned costs.
+        /// </summary>
+        /// <param name="signature1"></param>
+        /// <param name="signature2"></param>
+        /// <returns>Weighted cost between <paramref name="signature1"/> and <paramref name="signature2"/></returns>
         public double Pair(Signature signature1, Signature signature2)
         {
             //TODO: sulyokat normalizalni pl

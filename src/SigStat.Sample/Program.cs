@@ -228,7 +228,7 @@ namespace SigStat.Sample
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
                     new TimeMarkerStop().Output(timer1),
-                    new LogMarker(LogLevel.Info).Input(timer1)
+                    new LogMarker(LogLevel.Info).Input(timer1),
                 },
                 ClassifierPipeline = new WeightedClassifier
                 {

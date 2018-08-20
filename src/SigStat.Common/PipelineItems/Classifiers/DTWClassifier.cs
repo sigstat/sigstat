@@ -8,29 +8,43 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
+    /// <summary>
+    /// Classifies Signatures with the <see cref="Dtw"/> algorithm.
+    /// </summary>
     public class DTWClassifier : PipelineBase, IClassification, IEnumerable
     {
         private readonly Func<double[], double[], double> distanceMethod;
 
+        /// <summary>Initializes a new instance of the <see cref="DTWClassifier"/> class with the default Manhattan distance method.</summary>
         public DTWClassifier() : this(Accord.Math.Distance.Manhattan)
         {
         }
-        public DTWClassifier(Func<double[], double[], double> DistanceMethod)
+        ///<summary>Initializes a new instance of the <see cref="DTWClassifier"/> class with a specified distance method.</summary>
+        /// <param name="distanceMethod">Accord.Math.Distance.*</param>
+        public DTWClassifier(Func<double[], double[], double> distanceMethod)
         {
-            distanceMethod = DistanceMethod;
+            this.distanceMethod = distanceMethod;
             InputFeatures = new List<FeatureDescriptor>();
         }
 
+        /// <inheritdoc/>
         public IEnumerator GetEnumerator()
         {
             return InputFeatures.GetEnumerator();
         }
 
+        /// <inheritdoc/>
         public void Add(FeatureDescriptor f)
         {
             InputFeatures.Add(f);
         }
 
+        /// <summary>
+        /// Aggregates the input features and executes the <see cref="Dtw"/> algorithm.
+        /// </summary>
+        /// <param name="signature1"></param>
+        /// <param name="signature2"></param>
+        /// <returns>Cost between <paramref name="signature1"/> and <paramref name="signature2"/></returns>
         public double Pair(Signature signature1, Signature signature2)
         {
             Progress = 0;

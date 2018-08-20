@@ -15,9 +15,11 @@ namespace SigStat.Common.Pipeline
     /// </summary>
     public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
+        /// <summary>List of transforms to be run in sequence.</summary>
         public List<ITransformation> Items = new List<ITransformation>();
 
         private Logger _logger;
+        /// <summary>Passes Logger to child items as well.</summary>
         public new Logger Logger
         {
             get => _logger;
@@ -28,16 +30,21 @@ namespace SigStat.Common.Pipeline
             }
         }
 
+        /// <inheritdoc/>
         public IEnumerator GetEnumerator()
         {
             return Items.GetEnumerator();
         }
 
+        /// <summary>
+        /// Add new transform to the list. Pass <see cref="Logger"/> and set up Progress event.
+        /// </summary>
+        /// <param name="newItem"></param>
         public void Add(ITransformation newItem)
         {
             if (_logger != null)
                 newItem.Logger = _logger;
-            newItem.ProgressChanged += ((o, p) => calcProgress(i,p));
+            newItem.ProgressChanged += ((o, p) => CalcProgress(i,p));
             Items.Add(newItem);
 
             //Set sequence output to last item's output (if given)
@@ -45,18 +52,24 @@ namespace SigStat.Common.Pipeline
                 this.Output(newItem.OutputFeatures.ToArray());
         }
 
-        private void calcProgress(int i, int p)
+        private void CalcProgress(int i, int p)
         {
             double m = p / 100.0;
             Progress = (int)((i*(1-m)+(i+1)*m) / (Items.Count) * 100.0);
         }
 
         int i=0;
+        /// <summary>
+        /// Executes transform <see cref="Items"/> in sequence.
+        /// Passes input features for each.
+        /// Output is the output of the last Item in the sequence.
+        /// </summary>
+        /// <param name="signature">Signature to execute transform on.</param>
         public void Transform(Signature signature)
         {
             for (i = 0; i < Items.Count; i++)
             {
-                //try
+                //TODO: try
                 //{
                 if (Items[i].InputFeatures == null && i > 0)//pass previously calculated features if input not specified
                     Items[i].InputFeatures = Items[i - 1].OutputFeatures;
@@ -66,8 +79,6 @@ namespace SigStat.Common.Pipeline
                 //{
                 //    throw PipelineException("Error while executing {pipelineItem.Type} with signature {sig.ToString()}", exc);
                 //}
-
-                //Progress = (int)(i / (double)(Items.Count - 1) * 100.0);
             }
         }
     }
