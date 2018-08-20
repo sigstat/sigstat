@@ -12,6 +12,9 @@ namespace SigStat.Common.Algorithms
         private double[,] dMat;
         private double[,] wMat;
 
+        /// <summary>
+        /// Gets the list of points representing the shortest path.
+        /// </summary>
         public List<(int, int)> ForwardPath { get; private set; }
 
         private readonly Func<double[], double[], double> distMethod;
@@ -27,7 +30,7 @@ namespace SigStat.Common.Algorithms
         /// <summary>
         /// Initialize the DTW algorithm with given distance method.
         /// </summary>
-        /// <param name="DistMethod">Accord.Math.Distance.*</param>
+        /// <param name="distMethod">Accord.Math.Distance.*</param>
         public Dtw(Func<double[], double[], double> distMethod)
         {
             this.distMethod = distMethod;
@@ -129,11 +132,12 @@ namespace SigStat.Common.Algorithms
             return cost;
         }
 
+        /*
         /// <summary>
         /// Mask of the shortest path
         /// </summary>
         /// <returns></returns>
-        /*public bool[,] genPathArray()
+        public bool[,] genPathArray()
         {
             if (forwardPath == null)
                 Compute();
@@ -147,12 +151,12 @@ namespace SigStat.Common.Algorithms
         }*/
 
         /// <summary>
-        /// Calculate distance between two points.
+        /// Calculates distance between two points.
         /// Distance method can be set in ctor.
         /// </summary>
-        /// <param name="p1"></param>
-        /// <param name="p2"></param>
-        /// <returns></returns>
+        /// <param name="p1">Point 1</param>
+        /// <param name="p2">Point 2</param>
+        /// <returns>Distance between <paramref name="p1"/> and <paramref name="p2"/></returns>
         private double Distance(double[] p1, double[] p2)
         {
             if (p1.Length == 1)//nem ter vissza az Accord, ha a pontok 1 dimenziosak, ezert ezt kulon kezeljuk

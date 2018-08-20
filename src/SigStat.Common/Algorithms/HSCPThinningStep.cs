@@ -4,21 +4,24 @@ using System.Text;
 
 namespace SigStat.Common.Algorithms
 {
+    //TODO: ez parhuzamosithato
+
     /// <summary>
     /// HSCP thinning algorithm
     /// http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
-    /// 
-    /// TODO: ez parhuzamosithato
     /// </summary>
     public class HSCPThinningStep
     {
+        /// <summary>
+        /// Gets whether the last <see cref="Scan(bool[,])"/> call was effective.
+        /// </summary>
         public bool? ResultChanged { get; private set; } = null;
 
         /// <summary>
-        /// Do one step of the thinning. Call it iteratively while ResultChanged
+        /// Does one step of the thinning. Call it iteratively while ResultChanged.
         /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="b">Binary raster.</param>
+        /// <returns>Thinned binary raster.</returns>
         public bool[,] Scan(bool[,] b)
         {
             int w = b.GetLength(0);
@@ -91,9 +94,7 @@ namespace SigStat.Common.Algorithms
 
                             if (CN == 2)
                             {
-                                //b[i, j] = false;//Ez hianyzott a helyes mukodeshez (pl. 4 szomszed igy nem fog torlodni)
                                 deletable[i, j] = true;
-                                //ResultChanged = true;
                             }
                         }
                     }
@@ -102,10 +103,8 @@ namespace SigStat.Common.Algorithms
         }
 
         /// <summary>
+        /// Gets neighbour pixels in order.
         /// </summary>
-        /// <param name="i"></param>
-        /// <param name="j"></param>
-        /// <returns></returns>
         private bool[] Neighbourhood(bool[,] b, int i, int j)
         {
             // n[3] n[2] n[1]

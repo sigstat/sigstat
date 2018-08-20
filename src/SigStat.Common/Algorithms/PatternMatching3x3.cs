@@ -4,23 +4,27 @@ using System.Text;
 
 namespace SigStat.Common.Algorithms
 {
+    /// <summary>
+    /// Binary 3x3 pattern matcher with rotating option.
+    /// </summary>
     public class PatternMatching3x3
     {
         private bool?[,] p;
 
         /// <summary>
-        /// ha patternben null ertek: don't care
+        /// Initializes a new instance of the <see cref="PatternMatching3x3"/> class with given pattern.
         /// </summary>
+        /// <param name="pattern">3x3 pattern. null: don't care.</param>
         public PatternMatching3x3(bool?[,] pattern)
         {
             p = pattern;
         }
 
         /// <summary>
-        /// Match the 3x3 input with the 3x3 pattern
+        /// Match the 3x3 input with the 3x3 pattern.
         /// </summary>
         /// <param name="input"></param>
-        /// <returns></returns>
+        /// <returns>True if the pattern matches.</returns>
         public bool Match(bool[,] input)
         {
             for (int di = 0; di < 3; di++)
@@ -37,10 +41,10 @@ namespace SigStat.Common.Algorithms
         }
 
         /// <summary>
-        /// Match the 3x3 input with the 3x3 pattern from all 4 directions
+        /// Match the 3x3 input with the 3x3 pattern from all 4 directions.
         /// </summary>
         /// <param name="input"></param>
-        /// <returns></returns>
+        /// <returns>True if the pattern matches from at least one direction.</returns>
         public bool RotMatch(bool[,] input)
         {
             for (int k = 0; k < 4; k++)
@@ -53,7 +57,7 @@ namespace SigStat.Common.Algorithms
         }
 
         /// <summary>
-        /// Rotate a 3x3 pattern by 90d
+        /// Rotate a 3x3 pattern by 90d.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>

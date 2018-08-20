@@ -5,11 +5,14 @@ using System.Text;
 namespace SigStat.Common.Algorithms
 {
     /// <summary>
-    /// Skeleton leszukitese 1px vastagra.
-    /// Hasznos pl hscp utan.
+    /// One pixel thinning algorithm.
+    /// Use this after <see cref="HSCPThinningStep"/> to generate final skeleton.
     /// </summary>
     class OnePixelThinningStep
     {
+        /// <summary>
+        /// Gets whether the last <see cref="Scan(bool[,])"/> call was effective.
+        /// </summary>
         public bool? ResultChanged { get; private set; } = null;
 
         PatternMatching3x3 m1;
@@ -41,10 +44,11 @@ namespace SigStat.Common.Algorithms
         }
 
         /// <summary>
-        /// Scan the input matrix and generate a 1-pixel thinned version
+        /// Does one step of the thinning. Call it iteratively while ResultChanged.
+        /// Scans the input matrix and generates a 1-pixel thinned version.
         /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="binaryImage">Binary raster.</param>
+        /// <returns>Thinned binary raster.</returns>
         public bool[,] Scan(bool[,] binaryImage)
         {
             int w = binaryImage.GetLength(0);
