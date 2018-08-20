@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SigStat.Common
 {
+    /// <summary>
+    /// Standard set of features.
+    /// </summary>
     public static class Features
     {
         public static readonly FeatureDescriptor<RectangleF> Bounds = FeatureDescriptor<RectangleF>.Descriptor("Bounds");

@@ -8,7 +8,9 @@ using System.IO.Compression;
 
 namespace SigStat.Common.Loaders
 {
-
+    /// <summary>
+    /// Set of features containing raw data loaded from SVC2004-format database.
+    /// </summary>
     public static class Svc2004
     {
         public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor<List<int>>.Descriptor("Svc2004.X");
@@ -19,6 +21,10 @@ namespace SigStat.Common.Loaders
         public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Altitude");
         public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Pressure");
     }
+
+    /// <summary>
+    /// Loads SVC2004-format database from .zip
+    /// </summary>
     public class Svc2004Loader : DataSetLoader
     {
         private struct SignatureFile
@@ -39,20 +45,21 @@ namespace SigStat.Common.Loaders
             }
         }
 
-        public string DatabasePath { get; set; }
-        public bool StandardFeatures { get; }
+        private string DatabasePath { get; set; }
+        private bool StandardFeatures { get; }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
         /// </summary>
-        /// <param name="databasePath">ZIP file</param>
-        /// <param name="standardFeatures"></param>
+        /// <param name="databasePath">File path to a .zip file containing Svc2004 signatures.</param>
+        /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         public Svc2004Loader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
 
+        /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
         {
             Log(LogLevel.Info, "Enumerating signers started.");
@@ -116,12 +123,24 @@ namespace SigStat.Common.Loaders
             }
             Log(LogLevel.Info, "Enumerating signers finished.");
         }*/
-        
+
+        /// <summary>
+        /// Loads one signature from specified file path.
+        /// </summary>
+        /// <param name="signature">Signature to write features to.</param>
+        /// <param name="path">Path to a file of format "U*S*.txt"</param>
+        /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         public static void LoadSignature(Signature signature, string path, bool standardFeatures)
         {
             ParseSignature(signature, File.ReadAllLines(path), standardFeatures);
-        } 
-             
+        }
+
+        /// <summary>
+        /// Loads one signature from specified stream.
+        /// </summary>
+        /// <param name="signature">Signature to write features to.</param>
+        /// <param name="stream">Stream to read svc2004 data from.</param>
+        /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         public static void LoadSignature(Signature signature, Stream stream, bool standardFeatures)
         {
             using (StreamReader sr = new StreamReader(stream))
@@ -130,7 +149,7 @@ namespace SigStat.Common.Loaders
             }
         }
 
-        public static void ParseSignature(Signature signature, string[] linesArray, bool standardFeatures)
+        private static void ParseSignature(Signature signature, string[] linesArray, bool standardFeatures)
         {
             var lines = linesArray
                 .Skip(1)

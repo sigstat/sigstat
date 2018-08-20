@@ -10,12 +10,17 @@ using System.Text;
 namespace SigStat.Common.Loaders
 {
     /// <summary>
+    /// DataSetLoader for Image type databases.
     /// Similar format to Svc2004Loader, but finds png images.
     /// </summary>
     public class ImageLoader : DataSetLoader
     {
         private readonly string DatabasePath;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageLoader"/> class with specified database.
+        /// </summary>
+        /// <param name="databasePath">File path to the database.</param>
         public ImageLoader(string databasePath)
         {
             DatabasePath = databasePath;
@@ -38,6 +43,7 @@ namespace SigStat.Common.Loaders
             }
         }
 
+        /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
         {
             Log(LogLevel.Info, "Enumerating signers started.");
@@ -67,6 +73,11 @@ namespace SigStat.Common.Loaders
             Log(LogLevel.Info, "Enumerating signers finished.");
         }
 
+        /// <summary>
+        /// Load one image.
+        /// </summary>
+        /// <param name="signature">The signature that receives the new <see cref="Features.Image"/></param>
+        /// <param name="file">File path to the image to be loaded.</param>
         public static void LoadSignature(Signature signature, string file)
         {
             Image<Rgba32> image = Image.Load(file);
