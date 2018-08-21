@@ -22,7 +22,7 @@
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>default</LangVersion>
-    <DocumentationFile>D:\AutSoft\SigStat\projekt\SigStat\sigstat\docs\XML\SigStat.Common\SigStat.Common.xml</DocumentationFile>
+    <DocumentationFile>docs\XML\SigStat.Common.xml</DocumentationFile>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
