@@ -14,6 +14,7 @@ using SigStat.Common.Helpers;
 
 namespace Alairas.Common
 {
+    //TODO: rendberak
     public class BaseLineExtraction : PipelineBase, ITransformation
     {
         public void Transform(Signature signature)
@@ -35,7 +36,7 @@ namespace Alairas.Common
                 });
                 var envelopes = GetComponentLowerEnvelopes(tmp);
                 RemoveOverlapingEnvelopes(envelopes);
-                signature.SetFeatures<Baseline>(envelopes.Select(env => GetLineOfBestFit(env)).Where(e => e != null).ToList());
+                //signature.SetFeatures<Baseline>(envelopes.Select(env => GetLineOfBestFit(env)).Where(e => e != null).ToList());
             }
         }
 

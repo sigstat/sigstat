@@ -7,24 +7,29 @@ using System.Text;
 namespace SigStat.Common.Transforms
 {
     /// <summary>
-    /// pl 1. Centroid.xy, 2. X, 3. Y .Akkor
-    /// X osszes elemehez C.x-t adunk,
-    /// Y osszes elemehez C.y-t adunk
+    /// Adds a vector feature's elements to other features.
+    /// <para>Default Pipeline Output: Pipeline Input</para>
     /// </summary>
+    /// <example>
+    /// Inputs are: Centroid.xy, X, Y .
+    /// Adds Centroid.x to each element of X.
+    /// Adds Centroid.y to each element of Y.
+    /// </example>
     public class AddVector : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<List<double>> vectorFeature;
 
         /// <summary>
-        /// Initialize with a vector feature.
+        /// Initializes a new instance of the <see cref="AddVector"/> class with a vector feature.
         /// Don't forget to add as many Inputs as the vector's dimension.
         /// </summary>
-        /// <param name="vectorFeature"></param>
+        /// <param name="vectorFeature">A collection-type feature where each element represents a dimension of the vector.</param>
         public AddVector(FeatureDescriptor<List<double>> vectorFeature)
         {
             this.vectorFeature = vectorFeature;
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             //default output is the input

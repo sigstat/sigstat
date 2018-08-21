@@ -13,25 +13,35 @@ using SixLabors.Shapes;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    /// <summary>
+    /// Converts standard features to a binary raster.
+    /// <para>Default Pipeline Input: Standard <see cref="Features"/></para>
+    /// <para>Default Pipeline Output: (bool[,]) Binarized</para>
+    /// </summary>
     public class BinaryRasterizer : PipelineBase, ITransformation
     {
         private readonly int w;
         private readonly int h;
-        private readonly float penwidth;
-        Byte4 fg = new Byte4(0, 0, 0, 255);
-        Byte4 bg = new Byte4(255, 255, 255, 255);
-        GraphicsOptions noAA = new GraphicsOptions(false);//aa kikapcs, mert binarisan dolgozunk es ne legyenek szakadasok
-        Pen<Byte4> pen;
+        private readonly float penWidth;
+        private Byte4 fg = new Byte4(0, 0, 0, 255);
+        private Byte4 bg = new Byte4(255, 255, 255, 255);
+        private GraphicsOptions noAA = new GraphicsOptions(false);//aa kikapcs, mert binarisan dolgozunk es ne legyenek szakadasok
+        private Pen<Byte4> pen;
 
-        public BinaryRasterizer(int resolutionX, int resolutionY, float penwidth)
+        /// <summary> Initializes a new instance of the <see cref="BinaryRasterizer"/> class with specified raster size and pen width. </summary>
+        /// <param name="resolutionX">Raster width.</param>
+        /// <param name="resolutionY">Raster height.</param>
+        /// <param name="penWidth"></param>
+        public BinaryRasterizer(int resolutionX, int resolutionY, float penWidth)
         {
             this.w = resolutionX;
             this.h = resolutionY;
-            this.penwidth = penwidth;
-            pen = new Pen<Byte4>(fg, penwidth);
+            this.penWidth = penWidth;
+            pen = new Pen<Byte4>(fg, penWidth);
             this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             List<double> xs = signature.GetFeature(Features.X);

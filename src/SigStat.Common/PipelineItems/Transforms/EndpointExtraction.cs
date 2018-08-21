@@ -7,10 +7,13 @@ using System.Text;
 namespace SigStat.Common.PipelineItems.Transforms
 {
     /// <summary>
-    /// Extract EndPoints and CrossingPoints from Skeleton.
+    /// Extracts EndPoints and CrossingPoints from Skeleton.
+    /// <para>Default Pipeline Input: (bool[,]) Skeleton</para>
+    /// <para>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints </para>
     /// </summary>
     public class EndpointExtraction : PipelineBase, ITransformation
     {
+        /// <summary> Initializes a new instance of the <see cref="EndpointExtraction"/> class. </summary>
         public EndpointExtraction()
         {
             this.Output(
@@ -19,6 +22,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             );
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             bool[,] b = signature.GetFeature(FeatureDescriptor<bool[,]>.Descriptor("Skeleton"));

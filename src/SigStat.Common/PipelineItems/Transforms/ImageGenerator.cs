@@ -9,9 +9,11 @@ using System.Text;
 namespace SigStat.Common.PipelineItems.Transforms
 {
     /// <summary>
-    /// Binary raster -> Image type feature.
+    /// Generates an image feature out of a binary raster.
+    /// Optionally, saves the image to a png file.
     /// Useful for debugging pipeline steps.
-    /// Output: {Inpu}t, {Input}Image
+    /// <para>Pipeline Input type: bool[,]</para>
+    /// <para>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage</para>
     /// </summary>
     public class ImageGenerator : PipelineBase, ITransformation
     {
@@ -19,12 +21,15 @@ namespace SigStat.Common.PipelineItems.Transforms
         Rgba32 fg;
         Rgba32 bg;
 
-        public ImageGenerator() : this(false, Rgba32.LightBlue, Rgba32.White)
-        {
-        }
-        public ImageGenerator(bool writeToFile) : this(writeToFile, Rgba32.LightBlue, Rgba32.White)
-        {
-        }
+        /// <summary> Initializes a new instance of the <see cref="ImageGenerator"/> class with default settings: skip file writing, Blue ink on white paper. </summary>
+        public ImageGenerator() : this(false, Rgba32.LightBlue, Rgba32.White) { }
+        /// <summary> Initializes a new instance of the <see cref="ImageGenerator"/> class with default settings. </summary>
+        /// <param name="writeToFile">Whether to save the generated image into a png file.</param>
+        public ImageGenerator(bool writeToFile) : this(writeToFile, Rgba32.LightBlue, Rgba32.White) { }
+        /// <summary> Initializes a new instance of the <see cref="ImageGenerator"/> class with specified settings. </summary>
+        /// <param name="writeToFile">Whether to save the generated image into a png file.</param>
+        /// <param name="foregroundColor">Ink color.</param>
+        /// <param name="backgroundColor">Paper color.</param>
         public ImageGenerator(bool writeToFile, Rgba32 foregroundColor, Rgba32 backgroundColor)
         {
             this.writeToFile = writeToFile;
@@ -33,6 +38,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             //this.Output(Features.Image);
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             //default output is '{input}', '{input}Image'

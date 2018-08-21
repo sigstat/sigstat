@@ -10,6 +10,7 @@ namespace SigStat.Common.Pipeline
 {
     /// <summary>
     /// Runs pipeline items in parallel.
+    /// <para>Default Pipeline Output: Range of all the Item outputs.</para>
     /// </summary>
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {

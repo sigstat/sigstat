@@ -5,10 +5,7 @@ using System.Linq;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
-    /// <summary>
-    /// binarizalas utan, thinning elott.
-    /// Pl. 1px-lyukak betomese / dilatalas / erozio
-    /// </summary>
+    //TODO: xml doc, ha kesz
     public class PrepareForThinning : PipelineBase, ITransformation
     {
         public PrepareForThinning()

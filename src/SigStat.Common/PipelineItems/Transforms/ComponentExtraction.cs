@@ -6,23 +6,33 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    /// <summary>
+    /// Extracts unsorted components by tracing through the binary Skeleton raster.
+    /// <para>Default Pipeline Input: (bool[,]) Skeleton, (List{Point}) EndPoints, (List{Point}) CrossingPoints</para>
+    /// <para>Default Pipeline Output: (List{List{PointF}}) Components</para>
+    /// </summary>
     public class ComponentExtraction : PipelineBase, ITransformation
     {
         private readonly int samplingResolution;
         private bool[,] b;
 
-
+        /// <summary> Initializes a new instance of the <see cref="ComponentExtraction"/> class with specified sampling resolution.</summary>
+        /// <param name="samplingResolution">Steps to trace before a new point is sampled. Smaller values result in a more precise tracing. Provide a positive value.</param>
         public ComponentExtraction(int samplingResolution)
         {
             this.samplingResolution = samplingResolution;
             this.Output(FeatureDescriptor<List<List<PointF>>>.Descriptor("Components"));
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             b = signature.GetFeature(FeatureDescriptor<bool[,]>.Descriptor("Skeleton"));
             var endPoints = signature.GetFeature(FeatureDescriptor<List<Point>>.Descriptor("EndPoints"));
             var crossingPoints = signature.GetFeature(FeatureDescriptor<List<Point>>.Descriptor("CrossingPoints"));
+
+            if (samplingResolution < 1)
+                Log(LogLevel.Warn, $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
 
             //TODO: megtalalni a vegpont nelkulieket (pl. perfekt O betu), ebbol egy pontot hozzaadni a crossingpointokhoz es jo lesz
 

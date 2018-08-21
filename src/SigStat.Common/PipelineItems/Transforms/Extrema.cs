@@ -7,11 +7,15 @@ using System.Text;
 namespace SigStat.Common.Transforms
 {
     /// <summary>
-    /// Find minimum and maximum values of given feature, add them as new features
+    /// Extracts minimum and maximum values of given feature.
+    /// <para>Default Pipeline Output: (List{double}) Min, (List{double}) Max </para>
     /// </summary>
+    /// <remarks>
+    /// Output features are lists, containing only one value each.
+    /// </remarks>
     public class Extrema : PipelineBase, ITransformation
     {
-
+        /// <summary> Initializes a new instance of the <see cref="Extrema"/> class. </summary>
         public Extrema()
         {
             this.Output(
@@ -20,6 +24,7 @@ namespace SigStat.Common.Transforms
             );
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);

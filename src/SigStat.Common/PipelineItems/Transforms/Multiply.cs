@@ -6,25 +6,36 @@ using System.Text;
 
 namespace SigStat.Common.Transforms
 {
+    //TODO: ez miert fogad el tobb Inputot is, csak az elsot transzformalja
+
+    /// <summary>
+    /// Multiplies the values of a feature with a given constant.
+    /// <para>Pipeline Input type: List{double}</para>
+    /// <para>Default Pipeline Output: (List{double}) Input</para>
+    /// </summary>
     public class Multiply : PipelineBase, IEnumerable, ITransformation
     {
         private readonly double byConst;
 
+        /// <summary> Initializes a new instance of the <see cref="Multiply"/> class with specified settings. </summary>
+        /// <param name="byConst">The value to multiply the input feature by.</param>
         public Multiply(double byConst)
         {
             this.byConst = byConst;
         }
 
+        /// <inheritdoc/>
         public IEnumerator GetEnumerator()
         {
             return InputFeatures.GetEnumerator();
         }
-
+        /// <inheritdoc/>
         public void Add(FeatureDescriptor newItem)
         {
             InputFeatures.Add(newItem);
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             //default output is the input

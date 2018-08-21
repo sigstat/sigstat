@@ -12,10 +12,12 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    // TODO: Noise
+
     /// <summary>
-    /// Pen width is auto-approximated based on resolution.
-    /// Light Blue Foreground, White Background.
-    /// TODO: Noise.
+    /// Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
+    /// <para>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude <see cref="Features"/></para>
+    /// <para>Default Pipeline Output: <see cref="Features.Image"/></para>
     /// </summary>
     public class RealisticImageGenerator : PipelineBase, ITransformation
     {
@@ -32,6 +34,9 @@ namespace SigStat.Common.PipelineItems.Transforms
         private List<double> alts;
         private List<double> azs;
 
+        /// <summary> Initializes a new instance of the <see cref="RealisticImageGenerator"/> class with specified settings. </summary>
+        /// <param name="resolutionX">Output image width.</param>
+        /// <param name="resolutionY">Output image height.</param>
         public RealisticImageGenerator(int resolutionX, int resolutionY)
         {
             w = resolutionX;
@@ -40,6 +45,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             this.Output(Features.Image);
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             xs = signature.GetFeature(Features.X);

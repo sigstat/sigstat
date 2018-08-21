@@ -7,44 +7,50 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    /// <summary>
+    /// Generates a binary raster version of the input image with the iterative threshold method.
+    /// <para>Pipeline Input type: Image{Rgba32}</para>
+    /// <para>Default Pipeline Output: (bool[,]) Binarized</para>
+    /// </summary>
     public class Binarization : PipelineBase, ITransformation
     {
-
+        /// <summary> Represents the type of the input image. </summary>
         public enum ForegroundType
         {
+            /// <summary> (default) Foreground is darker than background. (eg. ink on paper) </summary>
             Dark,
+            /// <summary> Foreground is brighter than background. (for non-signature images) </summary>
             Bright
         }
 
-        private double binThreshold = -1;//0-1 //-1: iterative
+        private double? binThreshold = null;//0-1 //null: iterative
         private readonly ForegroundType foregroundType = ForegroundType.Dark;
 
-        /// <summary>
-        /// threshold automatikusan lesz kiszamolva, sotet eloter, vilagos hatter
-        /// </summary>
-        public Binarization()
+        /// <summary> Initializes a new instance of the <see cref="Binarization"/> class with default settings: Iterative threshold and <see cref="ForegroundType.Dark"/>. </summary>
+        public Binarization() :this(ForegroundType.Dark, null)
         {
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <summary> Initializes a new instance of the <see cref="Binarization"/> class with specified settings. </summary>
         /// <param name="foregroundType"></param>
-        /// <param name="binThreshold">0-1</param>
-        public Binarization(ForegroundType foregroundType, double binThreshold)
+        /// <param name="binThreshold">Use this threshold value instead of iteratively calculating it. Range from 0 to 1</param>
+        public Binarization(ForegroundType foregroundType, double? binThreshold)
         {
             this.foregroundType = foregroundType;
             this.binThreshold = binThreshold;
+            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             Image<Rgba32> image = signature.GetFeature<Image<Rgba32>>(InputFeatures[0]);
             int w = image.Size().Width;
             int h = image.Size().Height;
 
-            if (binThreshold < 0)//find threshold if not specified
+            if (binThreshold != null && (binThreshold < 0 || binThreshold > 1))
+                Log(LogLevel.Warn, $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
+
+            if (binThreshold == null)//find threshold if not specified
                 binThreshold = IterativeThreshold(image, 0.008);
 
             //binarize
@@ -105,7 +111,7 @@ namespace SigStat.Common.PipelineItems.Transforms
         }
 
         /// <summary>
-        /// 0 - 1 kozotti ertek
+        /// Extracts the brightness of the input color. Ranges from 0.0 to 1.0
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>

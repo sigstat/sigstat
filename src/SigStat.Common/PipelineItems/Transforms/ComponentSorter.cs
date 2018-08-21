@@ -5,10 +5,16 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    /// <summary>
+    /// Sorts Component order by comparing each starting X value, and finding nearest components.
+    /// <para>Default Pipeline Input: (bool[,]) Components</para>
+    /// <para>Default Pipeline Output: (bool[,]) Components</para>
+    /// </summary>
     public class ComponentSorter : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<List<List<PointF>>> componentsFeature;
 
+        /// <summary> Initializes a new instance of the <see cref="ComponentSorter"/> class. </summary>
         public ComponentSorter()
         {
             componentsFeature = FeatureDescriptor<List<List<PointF>>>.Descriptor("Components");
@@ -28,6 +34,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             return 1;
         });
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             var components = signature.GetFeature(componentsFeature);
@@ -71,6 +78,10 @@ namespace SigStat.Common.PipelineItems.Transforms
 
         }
 
+        /// <summary>
+        /// Calculates distance between two components by comparing last and first points.
+        /// Components that are left behind are in advantage.
+        /// </summary>
         private double Distance(List<PointF> curr, List<PointF> next)
         {
             double cx = curr[curr.Count - 1].X;//mostani vege

@@ -6,11 +6,19 @@ using System.Text;
 
 namespace SigStat.Common.Transforms
 {
+    /// <summary>
+    /// Maps values of a feature to a specified range.
+    /// <para>Pipeline Input type: List{double}</para>
+    /// <para>Default Pipeline Output: (List{double}) MapResult</para>
+    /// </summary>
     public class Map : PipelineBase, ITransformation
     {
         private readonly double v0;
         private readonly double v1;
 
+        /// <summary> Initializes a new instance of the <see cref="Map"/> class with specified settings. </summary>
+        /// <param name="minVal">New minimum value.</param>
+        /// <param name="maxVal">New maximum value.</param>
         public Map(double minVal, double maxVal)
         {
             this.v0 = minVal;
@@ -19,6 +27,7 @@ namespace SigStat.Common.Transforms
             this.Output(FeatureDescriptor<List<double>>.Descriptor("MapResult"));
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);

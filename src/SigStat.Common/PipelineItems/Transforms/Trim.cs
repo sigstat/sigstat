@@ -5,21 +5,33 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    /// <summary>
+    /// Trims unnecessary empty space from a binary raster.
+    /// <para>Pipeline Input type: bool[,]</para>
+    /// <para>Default Pipeline Output: (bool[,]) Trimmed</para>
+    /// </summary>
     public class Trim : PipelineBase, ITransformation
     {
         private readonly int framewidth;
 
+        /// <param name="framewidth">Leave a border around the trimmed area. framewidth > 0</param>
         public Trim(int framewidth)
         {
             this.framewidth = framewidth;
             this.Output(FeatureDescriptor<bool[,]>.Descriptor("Trimmed"));
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             bool[,] input = signature.GetFeature<bool[,]>(InputFeatures[0]);
             int w = input.GetLength(0);
             int h = input.GetLength(1);
+
+            if (framewidth < 0)
+                Log(LogLevel.Warn, $"Negative frame width {framewidth}, this will result in data loss.");
+            if(framewidth > w/2 || framewidth > h/2)
+                Log(LogLevel.Warn, $"Too large frame width {framewidth}, this will result in empty raster.");
 
             int x0 = 0;
             int x1 = w;

@@ -5,13 +5,20 @@ using System.Text;
 
 namespace SigStat.Common.Transforms
 {
+    /// <summary>
+    /// Extracts tangent values of the standard X, Y <see cref="Features"/>
+    /// <para>Default Pipeline Input: X, Y <see cref="Features"/></para>
+    /// <para>Default Pipeline Output: (List{double})  Tangent </para>
+    /// </summary>
     public class TangentExtraction : PipelineBase, ITransformation
     {
+        /// <summary> Initializes a new instance of the <see cref="TangentExtraction"/> class. </summary>
         public TangentExtraction()
         {
             this.Output(FeatureDescriptor<List<double>>.Descriptor("Tangent"));
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             var xs = signature.GetFeature(Features.X);

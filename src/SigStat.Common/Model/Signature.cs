@@ -119,14 +119,14 @@ namespace SigStat.Common
             return features.Keys.Select(k => FeatureDescriptor.GetDescriptor(k));
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Gets a list of <see cref="FeatureDescriptor"/>s of given type <typeparamref name="T"/> that are used in this signature.
         /// </summary>
         /// <returns>A list of <see cref="FeatureDescriptor"/>s.</returns>
         public List<T> GetFeatures<T>()
         {
             return (features.TryGetValue(FeatureDescriptor.GetKey<T>(), out var result)) ? result as List<T> : null;
-        }
+        }*/
 
         /*public void SetFeature<T>(T feature)
         {

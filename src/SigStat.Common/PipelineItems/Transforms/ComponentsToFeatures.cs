@@ -6,10 +6,16 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms
 {
+    /// <summary>
+    /// Extracts standard <see cref="Features"/> from sorted Components.
+    /// <para>Default Pipeline Input: (bool[,]) Components</para>
+    /// <para>Default Pipeline Output: X, Y, Button <see cref="Features"/></para>
+    /// </summary>
     public class ComponentsToFeatures : PipelineBase, ITransformation
     {
         private readonly FeatureDescriptor<List<List<PointF>>> componentsFeature;
 
+        /// <summary> Initializes a new instance of the <see cref="ComponentsToFeatures"/> class. </summary>
         public ComponentsToFeatures()
         {
             componentsFeature = FeatureDescriptor<List<List<PointF>>>.Descriptor("Components");
@@ -20,6 +26,7 @@ namespace SigStat.Common.PipelineItems.Transforms
                 );
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             var components = signature.GetFeature(componentsFeature);

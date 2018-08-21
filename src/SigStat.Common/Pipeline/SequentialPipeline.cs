@@ -7,11 +7,11 @@ using System.Text;
 
 namespace SigStat.Common.Pipeline
 {
+    // TODO: Add() nem kene hogy latszodjon leszarmazottakban, kell egy koztes dolog
+
     /// <summary>
-    /// ...
-    /// Ebbol jo dolog leszarmazni es az Itemeket az adott feladatszerint inicializalni
-    /// pl. CentroidTranslate: CentroidExtraction + Multiply -1 + Translate
-    /// TODO: Add() nem kene hogy latszodjon leszarmazottakban, kell egy koztes dolog
+    /// Runs pipeline items in a sequence.
+    /// <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
     /// </summary>
     public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {

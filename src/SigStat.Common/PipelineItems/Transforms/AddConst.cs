@@ -5,17 +5,23 @@ using System.Text;
 namespace SigStat.Common.Transforms
 {
     /// <summary>
-    /// Default output: the input
+    /// Adds a constant value to a feature. Works with collection features too.
+    /// <para>Default Pipeline Output: Pipeline Input</para>
     /// </summary>
     public class AddConst : PipelineBase, ITransformation
     {
         private readonly double addValue;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddConst"/> class with specified settings.
+        /// </summary>
+        /// <param name="value">The value to be added to the input feature.</param>
         public AddConst(double value)
         {
             this.addValue = value;
         }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             //default output is the input
