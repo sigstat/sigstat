@@ -98,16 +98,16 @@ namespace SigStat.Sample
             //TODO: ezt a reszt redberakni, csak a preferred way maradjon
 
             MySignature sig = new MySignature() { ID = "Demo", Origin = Origin.Genuine };
-            var sampleLoops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
+            //var sampleLoops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
 
             // Generikus függvény + Típus
-            sig["Loop"] = sampleLoops;
-            sig["X"] = new List<double>() { 1, 2, 3 };
-            sig["Bounds"] = new RectangleF();
+            //sig["Loop"] = sampleLoops;
+            //sig["X"] = new List<double>() { 1, 2, 3 };
+            //sig["Bounds"] = new RectangleF();
 
-            var f1 = (List<Loop>)sig["Loop"];
-            sig.GetFeature<List<double>>("X");
-            sig.GetFeature<RectangleF>("Bounds");
+            //var f1 = (List<Loop>)sig["Loop"];
+            //sig.GetFeature<List<double>>("X");
+            //sig.GetFeature<RectangleF>("Bounds");
             //var xt = sig.GetFeature(Features.X);
             //sig.GetFeatures<Loop>();
 
