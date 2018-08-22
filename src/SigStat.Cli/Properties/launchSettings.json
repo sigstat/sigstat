@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SigStat.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "log --hello --display"
+    }
+  }
+}
