@@ -55,15 +55,17 @@ namespace SigStat.Sample
         public static async Task Main(string[] args)
         {
             Console.WriteLine("SigStat library sample");
+            Directory.CreateDirectory("Logs");
             int menuitem = 0;
             do
             {
                 Console.WriteLine("Choose a demo: ");
                 Console.WriteLine(" - 1. Signature demo");
                 Console.WriteLine(" - 2. Online Signature -> Image");
-                Console.WriteLine(" - 3. Offline Verifier");
-                Console.WriteLine(" - 4. Online Verifier");
-                Console.WriteLine(" - 5. Online Benchmark");
+                Console.WriteLine(" - 3. Offline Database Generation");
+                Console.WriteLine(" - 4. Offline Verifier");
+                Console.WriteLine(" - 5. Online Verifier");
+                Console.WriteLine(" - 6. Online Benchmark");
                 Console.WriteLine(" - 0. Exit");
                 if (!int.TryParse(Console.ReadKey().KeyChar.ToString(), out menuitem))
                     menuitem = 0;
@@ -77,20 +79,21 @@ namespace SigStat.Sample
                         OnlineToImage();
                         break;
                     case 3:
-                        OfflineVerifierDemo();
+                        GenerateOfflineDatabase();
                         break;
                     case 4:
-                        OnlineVerifierDemo();
+                        OfflineVerifierDemo();
                         break;
                     case 5:
+                        OnlineVerifierDemo();
+                        break;
+                    case 6:
                         await OnlineVerifierBenchmarkDemo();
                         break;
                     default:
                         break;
                 }
             } while (menuitem != 0);
-            Console.WriteLine("Done. Press any key to continue!");
-            Console.ReadKey();
         }
 
         public static void SignatureDemo()
@@ -156,7 +159,7 @@ namespace SigStat.Sample
         {
             Logger debugLogger = new Logger(
                 LogLevel.Debug,
-                new FileStream($@"OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                new FileStream($@"Logs\OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
                 LogConsole);
 
             var verifier = new Verifier()
@@ -188,7 +191,7 @@ namespace SigStat.Sample
                 },
                 ClassifierPipeline = new DTWClassifier()
             };
-            verifier.ProgressChanged += ProgressVerifier;
+            verifier.ProgressChanged += ProgressSecondary;
 
             Signature s1 = new Signature();
             ImageLoader.LoadSignature(s1, @"Databases\Offline\Images\U1S1.png");
@@ -207,7 +210,7 @@ namespace SigStat.Sample
         {
             Logger debugLogger = new Logger(
                 LogLevel.Debug,
-                new FileStream($@"OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                new FileStream($@"Logs\OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
                 LogConsole);
 
             var timer1 = FeatureDescriptor<DateTime>.Descriptor("Timer1");
@@ -260,7 +263,7 @@ namespace SigStat.Sample
                     //}
                 }
             };
-            verifier.ProgressChanged += ProgressVerifier;
+            verifier.ProgressChanged += ProgressSecondary;
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners(p=>p=="01"));//Load the first signer only
@@ -279,7 +282,7 @@ namespace SigStat.Sample
         {
             Logger debugLogger = new Logger(
                 LogLevel.Debug,
-                new FileStream($@"OnlineBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                new FileStream($@"Logs\OnlineBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
                 LogConsole);
 
             var benchmark = new VerifierBenchmark()
@@ -290,8 +293,8 @@ namespace SigStat.Sample
                 Logger = debugLogger,
             };
 
-            benchmark.ProgressChanged += ProgressBenchmark;
-            benchmark.Verifier.ProgressChanged += ProgressVerifier;
+            benchmark.ProgressChanged += ProgressPrimary;
+            benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
             //var result = await benchmark.ExecuteAsync();
             var result = benchmark.ExecuteParallel();
@@ -306,7 +309,7 @@ namespace SigStat.Sample
         {
             Logger debugLogger = new Logger(
                 LogLevel.Debug,
-                new FileStream($@"OnlineToImageDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                new FileStream($@"Logs\OnlineToImageDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
                 LogConsole);
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
@@ -322,11 +325,51 @@ namespace SigStat.Sample
                 new RealisticImageGenerator(1280, 720)
             };
             tfs.Logger = debugLogger;
-            tfs.ProgressChanged += ProgressBenchmark;
+            tfs.ProgressChanged += ProgressPrimary;
             tfs.Transform(s1);
 
             ImageSaver.Save(s1, @"GeneratedOnlineImage.png");
             debugLogger.Stop();
+        }
+
+        static void GenerateOfflineDatabase()
+        {
+            string path = @"Databases\Offline\Generated\";
+            Directory.CreateDirectory(path);
+
+            Logger warnLogger = new Logger(
+                LogLevel.Warn,
+                new FileStream($@"Logs\OfflineDatabaseDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
+                LogConsole);
+
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            List<Signer> signers = loader.EnumerateSigners(null).ToList();
+
+            var pipeline = new SequentialTransformPipeline
+            {
+                new ParallelTransformPipeline
+                {
+                    new Normalize().Input(Features.X),
+                    new Normalize().Input(Features.Y)
+                },
+                new ApproximateOnlineFeatures(),
+                new RealisticImageGenerator(1280, 720),
+            };
+            pipeline.Logger = warnLogger;//only log warnings and errors
+
+            for(int i = 0; i<signers.Count;i++)
+            {
+                for (int j = 0; j < signers[i].Signatures.Count; j++)
+                {
+                    pipeline.Transform(signers[i].Signatures[j]);
+                    ImageSaver.Save(signers[i].Signatures[j], path + $"U{i+1}S{j+1}.png");
+                    ProgressSecondary(null, (int)(j / (double)signers[i].Signatures.Count * 100.0));
+                }
+                Console.WriteLine($"Signer{signers[i].ID} ({i+1}/{signers.Count}) signature images generated.");
+                ProgressPrimary(null, (int)(i / (double)signers.Count * 100.0));
+            }
+
+
         }
 
         public static void LogConsole(LogLevel l, string message)
@@ -358,21 +401,21 @@ namespace SigStat.Sample
             Console.WriteLine($"{sender.ToString()} Progress: {progress}%");
         }
 
-        static int benchmarkP = 0;
-        static int verifierP = 0;
-        public static void ProgressBenchmark(object sender, int progress)
+        static int primaryP = 0;
+        static int secondaryP = 0;
+        public static void ProgressPrimary(object sender, int progress)
         {
-            benchmarkP = progress;
+            primaryP = progress;
             SetTitleProgress();
         }
-        public static void ProgressVerifier(object sender, int progress)
+        public static void ProgressSecondary(object sender, int progress)
         {
-            verifierP = progress;
+            secondaryP = progress;
             SetTitleProgress();
         }
         public static void SetTitleProgress()
         {
-            Console.Title = $"Benchmark: {benchmarkP}% | Verifier: {verifierP}%";
+            Console.Title = $"Progress: {primaryP}% | Sub-progress: {secondaryP}%";
         }
     }
 }
