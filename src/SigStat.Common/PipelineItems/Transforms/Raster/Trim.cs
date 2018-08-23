@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Trims unnecessary empty space from a binary raster.

@@ -899,91 +899,108 @@
         <member name="M:SigStat.Common.PipelineItems.Markers.TimeMarkerStop.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.ApproximateOnlineFeatures">
+        <member name="T:SigStat.Common.Transforms.ComponentSorter">
+            <summary>
+            Sorts Component order by comparing each starting X value, and finding nearest components.
+            <para>Default Pipeline Input: (bool[,]) Components</para>
+            <para>Default Pipeline Output: (bool[,]) Components</para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ComponentSorter.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentSorter"/> class. </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ComponentSorter.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ComponentSorter.Distance(System.Collections.Generic.List{System.Drawing.PointF},System.Collections.Generic.List{System.Drawing.PointF})">
+            <summary>
+            Calculates distance between two components by comparing last and first points.
+            Components that are left behind are in advantage.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.CentroidTranslate">
+            <summary>
+            Sequential pipeline to translate X and Y <see cref="T:SigStat.Common.Features"/> to Centroid.
+            The following Transforms are called: <see cref="T:SigStat.Common.Transforms.CentroidExtraction"/>, <see cref="T:SigStat.Common.Transforms.Multiply"/>(-1), <see cref="T:SigStat.Common.Transforms.Translate"/>
+            <para>Default Pipeline Input: <see cref="F:SigStat.Common.Features.X"/>, <see cref="F:SigStat.Common.Features.Y"/></para>
+            <para>Default Pipeline Output: (List{double}) Centroid</para>
+            </summary>
+            <remarks>This is a special case of <see cref="T:SigStat.Common.Transforms.Translate"/></remarks>
+        </member>
+        <member name="M:SigStat.Common.Transforms.CentroidTranslate.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.CentroidTranslate"/> class.</summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.TimeReset">
+            <summary>
+            Sequential pipeline to reset time values to begin at 0.
+            The following Transforms are called: Extrema, Multiply, AddVector.
+            <para>Default Pipeline Input: <see cref="F:SigStat.Common.Features.T"/></para>
+            <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.T"/></para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.TimeReset.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.TimeReset"/> class.</summary>
+        </member>
+        <member name="T:SigStat.Common.Transforms.Translate">
+            <summary>
+            Sequential pipeline to translate X and Y <see cref="T:SigStat.Common.Features"/> by specified vector (constant or feature).
+            The following Transforms are called: <see cref="T:SigStat.Common.Transforms.AddConst"/> twice, or <see cref="T:SigStat.Common.Transforms.AddVector"/>.
+            <para>Default Pipeline Input: <see cref="F:SigStat.Common.Features.X"/>, <see cref="F:SigStat.Common.Features.Y"/></para>
+            <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.X"/>, <see cref="F:SigStat.Common.Features.Y"/></para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Translate.#ctor(System.Double,System.Double)">
+            <param name="xAdd">Value to translate <see cref="F:SigStat.Common.Features.X"/> by.</param>
+            <param name="yAdd">Value to translate <see cref="F:SigStat.Common.Features.Y"/> by.</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Translate.#ctor(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
+            <param name="vectorFeature">Feature to translate X and Y by.</param>
+        </member>
+        <member name="T:SigStat.Common.Transforms.ApproximateOnlineFeatures">
             <summary>
             init Pressure, Altitude, Azimuth features with default values.
             <para>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ApproximateOnlineFeatures.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ApproximateOnlineFeatures"/> class.</summary>
+        <member name="M:SigStat.Common.Transforms.ApproximateOnlineFeatures.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ApproximateOnlineFeatures"/> class.</summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ApproximateOnlineFeatures.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.ApproximateOnlineFeatures.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.Binarization">
+        <member name="T:SigStat.Common.Transforms.CentroidExtraction">
             <summary>
-            Generates a binary raster version of the input image with the iterative threshold method.
-            <para>Pipeline Input type: Image{Rgba32}</para>
-            <para>Default Pipeline Output: (bool[,]) Binarized</para>
+            Extracts the Centroid (aka. Center Of Gravity) of the input features.
+            <para> Default Pipeline Output: (List{double}) Centroid. </para>
             </summary>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.Binarization.ForegroundType">
-            <summary> Represents the type of the input image. </summary>
+        <member name="M:SigStat.Common.Transforms.CentroidExtraction.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.CentroidExtraction"/> class. </summary>
         </member>
-        <member name="F:SigStat.Common.PipelineItems.Transforms.Binarization.ForegroundType.Dark">
-            <summary> (default) Foreground is darker than background. (eg. ink on paper) </summary>
-        </member>
-        <member name="F:SigStat.Common.PipelineItems.Transforms.Binarization.ForegroundType.Bright">
-            <summary> Foreground is brighter than background. (for non-signature images) </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.Binarization"/> class with default settings: Iterative threshold and <see cref="F:SigStat.Common.PipelineItems.Transforms.Binarization.ForegroundType.Dark"/>. </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.#ctor(SigStat.Common.PipelineItems.Transforms.Binarization.ForegroundType,System.Nullable{System.Double})">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.Binarization"/> class with specified settings. </summary>
-            <param name="foregroundType"></param>
-            <param name="binThreshold">Use this threshold value instead of iteratively calculating it. Range from 0 to 1</param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.CentroidExtraction.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.IterativeThreshold(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Double)">
-            <summary>
-            http://accord-framework.net/docs/html/T_Accord_Imaging_Filters_IterativeThreshold.htm
-            </summary>
-            <param name="image"></param>
-            <param name="maxError">pl 0.008</param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Binarization.Level(SixLabors.ImageSharp.PixelFormats.Rgba32)">
-            <summary>
-            Extracts the brightness of the input color. Ranges from 0.0 to 1.0
-            </summary>
-            <param name="c"></param>
-            <returns></returns>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.BinaryRasterizer">
-            <summary>
-            Converts standard features to a binary raster.
-            <para>Default Pipeline Input: Standard <see cref="T:SigStat.Common.Features"/></para>
-            <para>Default Pipeline Output: (bool[,]) Binarized</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.BinaryRasterizer.#ctor(System.Int32,System.Int32,System.Single)">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.BinaryRasterizer"/> class with specified raster size and pen width. </summary>
-            <param name="resolutionX">Raster width.</param>
-            <param name="resolutionY">Raster height.</param>
-            <param name="penWidth"></param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.BinaryRasterizer.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.CentroidExtraction.Add(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.ComponentExtraction">
+        <member name="M:SigStat.Common.Transforms.CentroidExtraction.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.Transforms.ComponentExtraction">
             <summary>
             Extracts unsorted components by tracing through the binary Skeleton raster.
             <para>Default Pipeline Input: (bool[,]) Skeleton, (List{Point}) EndPoints, (List{Point}) CrossingPoints</para>
             <para>Default Pipeline Output: (List{List{PointF}}) Components</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentExtraction.#ctor(System.Int32)">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ComponentExtraction"/> class with specified sampling resolution.</summary>
+        <member name="M:SigStat.Common.Transforms.ComponentExtraction.#ctor(System.Int32)">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentExtraction"/> class with specified sampling resolution.</summary>
             <param name="samplingResolution">Steps to trace before a new point is sampled. Smaller values result in a more precise tracing. Provide a positive value.</param>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentExtraction.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.ComponentExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentExtraction.SplitCrossings(System.Collections.Generic.List{System.Drawing.Point})">
+        <member name="M:SigStat.Common.Transforms.ComponentExtraction.SplitCrossings(System.Collections.Generic.List{System.Drawing.Point})">
             <summary>
             Unite crossingpoints into crossings (list of its endpoints), and
             split all crossings into neighbouring endpoints.
@@ -991,144 +1008,50 @@
             <param name="crs">List of crossingpoints</param>
             <returns>List of crossings (1 crossing: List of endpoints)</returns>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentExtraction.Trace(System.Collections.Generic.List{System.Drawing.Point})">
+        <member name="M:SigStat.Common.Transforms.ComponentExtraction.Trace(System.Collections.Generic.List{System.Drawing.Point})">
             <summary>
             lekoveti a szakaszokat. Ebbe mar ne legyenek crossingpointok
             </summary>
             <param name="endPoints"></param>
             <returns>List of sections</returns>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.ComponentSorter">
-            <summary>
-            Sorts Component order by comparing each starting X value, and finding nearest components.
-            <para>Default Pipeline Input: (bool[,]) Components</para>
-            <para>Default Pipeline Output: (bool[,]) Components</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentSorter.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ComponentSorter"/> class. </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentSorter.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentSorter.Distance(System.Collections.Generic.List{System.Drawing.PointF},System.Collections.Generic.List{System.Drawing.PointF})">
-            <summary>
-            Calculates distance between two components by comparing last and first points.
-            Components that are left behind are in advantage.
-            </summary>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.ComponentsToFeatures">
+        <member name="T:SigStat.Common.Transforms.ComponentsToFeatures">
             <summary>
             Extracts standard <see cref="T:SigStat.Common.Features"/> from sorted Components.
-            <para>Default Pipeline Input: (bool[,]) Components</para>
+            <para>Default Pipeline Input: (List{List{PointF}}) Components</para>
             <para>Default Pipeline Output: X, Y, Button <see cref="T:SigStat.Common.Features"/></para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentsToFeatures.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ComponentsToFeatures"/> class. </summary>
+        <member name="M:SigStat.Common.Transforms.ComponentsToFeatures.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentsToFeatures"/> class. </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ComponentsToFeatures.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.ComponentsToFeatures.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.EndpointExtraction">
+        <member name="T:SigStat.Common.Transforms.EndpointExtraction">
             <summary>
             Extracts EndPoints and CrossingPoints from Skeleton.
             <para>Default Pipeline Input: (bool[,]) Skeleton</para>
             <para>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints </para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.EndpointExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.EndpointExtraction"/> class. </summary>
+        <member name="M:SigStat.Common.Transforms.EndpointExtraction.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.EndpointExtraction"/> class. </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.HSCPThinning">
+        <member name="T:SigStat.Common.Transforms.TangentExtraction">
             <summary>
-            Iteratively thins the input binary raster with the <see cref="T:SigStat.Common.Algorithms.HSCPThinningStep"/> algorithm.
-            <para>Pipeline Input type: bool[,]</para>
-            <para>Default Pipeline Output: (bool[,]) HSCPThinningResult </para>
+            Extracts tangent values of the standard X, Y <see cref="T:SigStat.Common.Features"/>
+            <para>Default Pipeline Input: X, Y <see cref="T:SigStat.Common.Features"/></para>
+            <para>Default Pipeline Output: (List{double})  Tangent </para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.HSCPThinning.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.HSCPThinning"/> class. </summary>
+        <member name="M:SigStat.Common.Transforms.TangentExtraction.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.TangentExtraction"/> class. </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.HSCPThinning.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.ImageGenerator">
-            <summary>
-            Generates an image feature out of a binary raster.
-            Optionally, saves the image to a png file.
-            Useful for debugging pipeline steps.
-            <para>Pipeline Input type: bool[,]</para>
-            <para>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ImageGenerator.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ImageGenerator"/> class with default settings: skip file writing, Blue ink on white paper. </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ImageGenerator.#ctor(System.Boolean)">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ImageGenerator"/> class with default settings. </summary>
-            <param name="writeToFile">Whether to save the generated image into a png file.</param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ImageGenerator.#ctor(System.Boolean,SixLabors.ImageSharp.PixelFormats.Rgba32,SixLabors.ImageSharp.PixelFormats.Rgba32)">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.ImageGenerator"/> class with specified settings. </summary>
-            <param name="writeToFile">Whether to save the generated image into a png file.</param>
-            <param name="foregroundColor">Ink color.</param>
-            <param name="backgroundColor">Paper color.</param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.ImageGenerator.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.OnePixelThinning">
-            <summary>
-            Iteratively thins the input binary raster with the <see cref="T:SigStat.Common.Algorithms.OnePixelThinningStep"/> algorithm.
-            <para>Pipeline Input type: bool[,]</para>
-            <para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.OnePixelThinning.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.OnePixelThinning"/> class. </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.OnePixelThinning.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator">
-            <summary>
-            Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
-            <para>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude <see cref="T:SigStat.Common.Features"/></para>
-            <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.Image"/></para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator.#ctor(System.Int32,System.Int32)">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator"/> class with specified settings. </summary>
-            <param name="resolutionX">Output image width.</param>
-            <param name="resolutionY">Output image height.</param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.RealisticImageGenerator.Lerp(System.Single,System.Single,System.Single)">
-            <summary>
-            Basic linear interpolation
-            </summary>
-            <param name="t0"></param>
-            <param name="t1"></param>
-            <param name="t">0.0f to 1.0f</param>
-            <returns></returns>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.Trim">
-            <summary>
-            Trims unnecessary empty space from a binary raster.
-            <para>Pipeline Input type: bool[,]</para>
-            <para>Default Pipeline Output: (bool[,]) Trimmed</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Trim.#ctor(System.Int32)">
-            <param name="framewidth">Leave a border around the trimmed area. framewidth > 0</param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Trim.Transform(SigStat.Common.Signature)">
+        <member name="M:SigStat.Common.Transforms.TangentExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Transforms.AddConst">
@@ -1166,36 +1089,6 @@
         </member>
         <member name="M:SigStat.Common.Transforms.AddVector.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.Transforms.CentroidExtraction">
-            <summary>
-            Extracts the Centroid (aka. Center Of Gravity) of the input features.
-            <para> Default Pipeline Output: (List{double}) Centroid. </para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.CentroidExtraction"/> class. </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.Add(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.Transforms.CentroidTranslate">
-            <summary>
-            Sequential pipeline to translate X and Y <see cref="T:SigStat.Common.Features"/> to Centroid.
-            The following Transforms are called: <see cref="T:SigStat.Common.Transforms.CentroidExtraction"/>, <see cref="T:SigStat.Common.Transforms.Multiply"/>(-1), <see cref="T:SigStat.Common.Transforms.Translate"/>
-            <para>Default Pipeline Input: <see cref="F:SigStat.Common.Features.X"/>, <see cref="F:SigStat.Common.Features.Y"/></para>
-            <para>Default Pipeline Output: (List{double}) Centroid</para>
-            </summary>
-            <remarks>This is a special case of <see cref="T:SigStat.Common.Transforms.Translate"/></remarks>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidTranslate.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.CentroidTranslate"/> class.</summary>
         </member>
         <member name="T:SigStat.Common.Transforms.Extrema">
             <summary>
@@ -1261,44 +1154,151 @@
         <member name="M:SigStat.Common.Transforms.Normalize.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.Transforms.TangentExtraction">
+        <member name="T:SigStat.Common.Transforms.Binarization">
             <summary>
-            Extracts tangent values of the standard X, Y <see cref="T:SigStat.Common.Features"/>
-            <para>Default Pipeline Input: X, Y <see cref="T:SigStat.Common.Features"/></para>
-            <para>Default Pipeline Output: (List{double})  Tangent </para>
+            Generates a binary raster version of the input image with the iterative threshold method.
+            <para>Pipeline Input type: Image{Rgba32}</para>
+            <para>Default Pipeline Output: (bool[,]) Binarized</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.TangentExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.TangentExtraction"/> class. </summary>
+        <member name="T:SigStat.Common.Transforms.Binarization.ForegroundType">
+            <summary> Represents the type of the input image. </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.TangentExtraction.Transform(SigStat.Common.Signature)">
+        <member name="F:SigStat.Common.Transforms.Binarization.ForegroundType.Dark">
+            <summary> (default) Foreground is darker than background. (eg. ink on paper) </summary>
+        </member>
+        <member name="F:SigStat.Common.Transforms.Binarization.ForegroundType.Bright">
+            <summary> Foreground is brighter than background. (for non-signature images) </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Binarization.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Binarization"/> class with default settings: Iterative threshold and <see cref="F:SigStat.Common.Transforms.Binarization.ForegroundType.Dark"/>. </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Binarization.#ctor(SigStat.Common.Transforms.Binarization.ForegroundType,System.Nullable{System.Double})">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Binarization"/> class with specified settings. </summary>
+            <param name="foregroundType"></param>
+            <param name="binThreshold">Use this threshold value instead of iteratively calculating it. Range from 0 to 1</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Binarization.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.Transforms.TimeReset">
+        <member name="M:SigStat.Common.Transforms.Binarization.IterativeThreshold(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Double)">
             <summary>
-            Sequential pipeline to reset time values to begin at 0.
-            The following Transforms are called: Extrema, Multiply, AddVector.
-            <para>Default Pipeline Input: <see cref="F:SigStat.Common.Features.T"/></para>
-            <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.T"/></para>
+            http://accord-framework.net/docs/html/T_Accord_Imaging_Filters_IterativeThreshold.htm
+            </summary>
+            <param name="image"></param>
+            <param name="maxError">pl 0.008</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Binarization.Level(SixLabors.ImageSharp.PixelFormats.Rgba32)">
+            <summary>
+            Extracts the brightness of the input color. Ranges from 0.0 to 1.0
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Transforms.BinaryRasterizer">
+            <summary>
+            Converts standard features to a binary raster.
+            <para>Default Pipeline Input: Standard <see cref="T:SigStat.Common.Features"/></para>
+            <para>Default Pipeline Output: (bool[,]) Binarized</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.TimeReset.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.TimeReset"/> class.</summary>
+        <member name="M:SigStat.Common.Transforms.BinaryRasterizer.#ctor(System.Int32,System.Int32,System.Single)">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.BinaryRasterizer"/> class with specified raster size and pen width. </summary>
+            <param name="resolutionX">Raster width.</param>
+            <param name="resolutionY">Raster height.</param>
+            <param name="penWidth"></param>
         </member>
-        <member name="T:SigStat.Common.Transforms.Translate">
+        <member name="M:SigStat.Common.Transforms.BinaryRasterizer.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.Transforms.HSCPThinning">
             <summary>
-            Sequential pipeline to translate X and Y <see cref="T:SigStat.Common.Features"/> by specified vector (constant or feature).
-            The following Transforms are called: <see cref="T:SigStat.Common.Transforms.AddConst"/> twice, or <see cref="T:SigStat.Common.Transforms.AddVector"/>.
-            <para>Default Pipeline Input: <see cref="F:SigStat.Common.Features.X"/>, <see cref="F:SigStat.Common.Features.Y"/></para>
-            <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.X"/>, <see cref="F:SigStat.Common.Features.Y"/></para>
+            Iteratively thins the input binary raster with the <see cref="T:SigStat.Common.Algorithms.HSCPThinningStep"/> algorithm.
+            <para>Pipeline Input type: bool[,]</para>
+            <para>Default Pipeline Output: (bool[,]) HSCPThinningResult </para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.Translate.#ctor(System.Double,System.Double)">
-            <param name="xAdd">Value to translate <see cref="F:SigStat.Common.Features.X"/> by.</param>
-            <param name="yAdd">Value to translate <see cref="F:SigStat.Common.Features.Y"/> by.</param>
+        <member name="M:SigStat.Common.Transforms.HSCPThinning.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.HSCPThinning"/> class. </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.Translate.#ctor(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
-            <param name="vectorFeature">Feature to translate X and Y by.</param>
+        <member name="M:SigStat.Common.Transforms.HSCPThinning.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.Transforms.ImageGenerator">
+            <summary>
+            Generates an image feature out of a binary raster.
+            Optionally, saves the image to a png file.
+            Useful for debugging pipeline steps.
+            <para>Pipeline Input type: bool[,]</para>
+            <para>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage</para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ImageGenerator.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ImageGenerator"/> class with default settings: skip file writing, Blue ink on white paper. </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ImageGenerator.#ctor(System.Boolean)">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ImageGenerator"/> class with default settings. </summary>
+            <param name="writeToFile">Whether to save the generated image into a png file.</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ImageGenerator.#ctor(System.Boolean,SixLabors.ImageSharp.PixelFormats.Rgba32,SixLabors.ImageSharp.PixelFormats.Rgba32)">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ImageGenerator"/> class with specified settings. </summary>
+            <param name="writeToFile">Whether to save the generated image into a png file.</param>
+            <param name="foregroundColor">Ink color.</param>
+            <param name="backgroundColor">Paper color.</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.ImageGenerator.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.Transforms.OnePixelThinning">
+            <summary>
+            Iteratively thins the input binary raster with the <see cref="T:SigStat.Common.Algorithms.OnePixelThinningStep"/> algorithm.
+            <para>Pipeline Input type: bool[,]</para>
+            <para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.OnePixelThinning.#ctor">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.OnePixelThinning"/> class. </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.OnePixelThinning.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.Transforms.RealisticImageGenerator">
+            <summary>
+            Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
+            <para>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude <see cref="T:SigStat.Common.Features"/></para>
+            <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.Image"/></para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.RealisticImageGenerator.#ctor(System.Int32,System.Int32)">
+            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.RealisticImageGenerator"/> class with specified settings. </summary>
+            <param name="resolutionX">Output image width.</param>
+            <param name="resolutionY">Output image height.</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.RealisticImageGenerator.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Transforms.RealisticImageGenerator.Lerp(System.Single,System.Single,System.Single)">
+            <summary>
+            Basic linear interpolation
+            </summary>
+            <param name="t0"></param>
+            <param name="t1"></param>
+            <param name="t">0.0f to 1.0f</param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Transforms.Trim">
+            <summary>
+            Trims unnecessary empty space from a binary raster.
+            <para>Pipeline Input type: bool[,]</para>
+            <para>Default Pipeline Output: (bool[,]) Trimmed</para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Trim.#ctor(System.Int32)">
+            <param name="framewidth">Leave a border around the trimmed area. framewidth > 0</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Trim.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.IClassification">
             <summary>

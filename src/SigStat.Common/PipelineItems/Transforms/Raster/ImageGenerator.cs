@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Generates an image feature out of a binary raster.

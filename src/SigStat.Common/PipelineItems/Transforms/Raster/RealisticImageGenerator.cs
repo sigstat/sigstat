@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     // TODO: Noise
 

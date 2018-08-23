@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Extracts standard <see cref="Features"/> from sorted Components.
-    /// <para>Default Pipeline Input: (bool[,]) Components</para>
+    /// <para>Default Pipeline Input: (List{List{PointF}}) Components</para>
     /// <para>Default Pipeline Output: X, Y, Button <see cref="Features"/></para>
     /// </summary>
     public class ComponentsToFeatures : PipelineBase, ITransformation

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Extracts unsorted components by tracing through the binary Skeleton raster.

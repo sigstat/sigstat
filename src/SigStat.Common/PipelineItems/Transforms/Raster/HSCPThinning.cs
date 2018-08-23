@@ -4,19 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
-    /// Iteratively thins the input binary raster with the <see cref="OnePixelThinningStep"/> algorithm.
+    /// Iteratively thins the input binary raster with the <see cref="HSCPThinningStep"/> algorithm.
     /// <para>Pipeline Input type: bool[,]</para>
-    /// <para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
+    /// <para>Default Pipeline Output: (bool[,]) HSCPThinningResult </para>
     /// </summary>
-    public class OnePixelThinning : PipelineBase, ITransformation
+    public class HSCPThinning : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="OnePixelThinning"/> class. </summary>
-        public OnePixelThinning()
+        /// <summary> Initializes a new instance of the <see cref="HSCPThinning"/> class. </summary>
+        public HSCPThinning()
         {
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("OnePixelThinningResult"));
+            this.Output(FeatureDescriptor<bool[,]>.Descriptor("HSCPThinningResult"));
         }
 
         /// <inheritdoc/>
@@ -25,7 +25,7 @@ namespace SigStat.Common.PipelineItems.Transforms
             bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
             Progress = 50;
             int stepCnt = 0;
-            OnePixelThinningStep algo = new OnePixelThinningStep();
+            HSCPThinningStep algo = new HSCPThinningStep();
             while (algo.ResultChanged != false)
             {
                 b = algo.Scan(b);
@@ -33,7 +33,8 @@ namespace SigStat.Common.PipelineItems.Transforms
             }
             signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
-            Log(LogLevel.Info, $"One pixel thinning steps applied {stepCnt} times.");
+            Log(LogLevel.Info, $"HSCP thinning steps applied {stepCnt} times.");
         }
+        
     }
 }

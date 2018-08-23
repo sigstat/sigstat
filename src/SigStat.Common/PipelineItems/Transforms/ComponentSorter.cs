@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Sorts Component order by comparing each starting X value, and finding nearest components.

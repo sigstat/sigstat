@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     //TODO: xml doc, ha kesz
     public class PrepareForThinning : PipelineBase, ITransformation

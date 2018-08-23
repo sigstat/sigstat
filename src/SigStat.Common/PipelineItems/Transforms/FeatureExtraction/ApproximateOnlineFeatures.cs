@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     //TODO: approximate Pressure based on Image and Skeleton
 

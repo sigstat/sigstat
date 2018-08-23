@@ -11,7 +11,7 @@ using SixLabors.Primitives;
 using SigStat.Common.Helpers;
 using SixLabors.Shapes;
 
-namespace SigStat.Common.PipelineItems.Transforms
+namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Converts standard features to a binary raster.

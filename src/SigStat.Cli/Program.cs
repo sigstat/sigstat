@@ -31,6 +31,7 @@ namespace SigStat.Cli
             app.HelpOption("-?|-h|--help");
 
             app.OnExecute(() => {
+                //ez akkor fut le, amikor a root commandot argument nelkul hivjuk
                 Console.WriteLine("sigstat cli");
                 return 0;
             });

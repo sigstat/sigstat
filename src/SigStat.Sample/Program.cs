@@ -5,7 +5,6 @@ using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Markers;
-using SigStat.Common.PipelineItems.Transforms;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
@@ -52,7 +51,7 @@ namespace SigStat.Sample
 
         }
 
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("SigStat library sample");
             Directory.CreateDirectory("Logs");
@@ -88,7 +87,7 @@ namespace SigStat.Sample
                         OnlineVerifierDemo();
                         break;
                     case 6:
-                        await OnlineVerifierBenchmarkDemo();
+                        OnlineVerifierBenchmarkDemo();
                         break;
                     default:
                         break;
@@ -191,7 +190,7 @@ namespace SigStat.Sample
                 },
                 ClassifierPipeline = new DTWClassifier()
             };
-            verifier.ProgressChanged += ProgressSecondary;
+            verifier.ProgressChanged += ProgressPrimary;
 
             Signature s1 = new Signature();
             ImageLoader.LoadSignature(s1, @"Databases\Offline\Images\U1S1.png");
@@ -263,7 +262,7 @@ namespace SigStat.Sample
                     //}
                 }
             };
-            verifier.ProgressChanged += ProgressSecondary;
+            verifier.ProgressChanged += ProgressPrimary;
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners(p=>p=="01"));//Load the first signer only
@@ -278,7 +277,7 @@ namespace SigStat.Sample
             debugLogger.Stop();
         }
 
-        static async Task OnlineVerifierBenchmarkDemo()
+        static void OnlineVerifierBenchmarkDemo()
         {
             Logger debugLogger = new Logger(
                 LogLevel.Debug,
