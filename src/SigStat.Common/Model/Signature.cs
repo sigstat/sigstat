@@ -143,7 +143,7 @@ namespace SigStat.Common
         /// </summary>
         /// <param name="featureDescriptor">The feature to put the new value in.</param>
         /// <param name="feature">The value to set.</param>
-        public void SetFeature<T>(FeatureDescriptor featureDescriptor, T feature) 
+        public void SetFeature<T>(FeatureDescriptor featureDescriptor, T feature)
         {
             features[featureDescriptor.Key] = feature;
         }
@@ -174,9 +174,18 @@ namespace SigStat.Common
             }
             return values.ToList();
         }
-  
 
- 
+        public bool HasFeature(FeatureDescriptor featureDescriptor)
+        {
+            return features.ContainsKey(featureDescriptor.Key);
+        }
+
+        public bool HasFeature(string featureKey)
+        {
+            return features.ContainsKey(featureKey);
+        }
+
+
 
 
 

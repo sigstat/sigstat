@@ -86,7 +86,7 @@ namespace SigStat.Common.Model
         /// and <see cref="ClassifierPipeline"/> to find an optimized limit.
         /// </summary>
         /// <param name="sigs">The list of signatures to train on.</param>
-        public void Train(List<Signature> sigs)
+        public virtual void Train(List<Signature> sigs)
         {
             Log(LogLevel.Info, $"Training started with {sigs.Count} signatures.");
             genuines = new List<Signature>(sigs);
@@ -119,7 +119,7 @@ namespace SigStat.Common.Model
         /// </summary>
         /// <param name="sig"></param>
         /// <returns>True if <paramref name="sig"/> passes the verification test.</returns>
-        public bool Test(Signature sig)
+        public virtual bool Test(Signature sig)
         {
             Log(LogLevel.Info, $"Verification SignatureID {sig.ID} in progress.");
 

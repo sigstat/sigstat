@@ -3,7 +3,9 @@ using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
+using System.Linq;
 
 namespace SigStat.Common
 {
@@ -26,6 +28,9 @@ namespace SigStat.Common
         public static readonly FeatureDescriptor<List<double>> Pressure = FeatureDescriptor<List<double>>.Descriptor("Pressure");
         public static readonly FeatureDescriptor<Image<Rgba32>> Image = FeatureDescriptor<Image<Rgba32>>.Descriptor("Image");
         public static readonly FeatureDescriptor<Point> Cog = FeatureDescriptor<Point>.Descriptor("Cog");
+
+        public static readonly IReadOnlyList<FeatureDescriptor> All = 
+            typeof(Features).GetFields(BindingFlags.Public | BindingFlags.Static).Select(fi => fi.GetValue(null)).OfType<FeatureDescriptor>().ToList();
 
 
     }
