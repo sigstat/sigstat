@@ -266,7 +266,7 @@ namespace SigStat.Sample
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners(p=>p=="01"));//Load the first signer only
-
+             
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);
             verifier.Train(references);
 
