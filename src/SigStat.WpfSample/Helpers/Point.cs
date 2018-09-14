@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigStat.WpfSample.Common
+namespace SigStat.WpfSample.Helpers
 {
     public class Point
     {

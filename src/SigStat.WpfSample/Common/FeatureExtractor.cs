@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Common
 {
-    //TODO: xml kommentek
+    //TODO: xml kommentek, paraméter nélküli függvényeket még lehetne általánosítani az svc2004től különbözőkre
     public class FeatureExtractor
     {
         public int SpacingParameter { get; set; }
@@ -44,12 +44,11 @@ namespace SigStat.WpfSample.Common
         public List<double> GetFirstOrderDifference(FeatureDescriptor<List<double>> baseFeatureDescriptor)
         {
             string fodFeatureKey = "FOD" + baseFeatureDescriptor.Key;
-            try
-            {
-                var fodFeature = Signature.GetFeature<List<double>>(fodFeatureKey);
-                return fodFeature;
-            }
-            catch (KeyNotFoundException)
+
+            if (Signature.HasFeature(fodFeatureKey))
+                return Signature.GetFeature<List<double>>(fodFeatureKey);
+
+            else
             {
                 List<double> baseFeature = Signature.GetFeature(baseFeatureDescriptor);
                 List<double> firstOrderDiff = new List<double>(baseFeature.Count);
@@ -74,12 +73,11 @@ namespace SigStat.WpfSample.Common
         public List<double> GetSecondOrderDifference(FeatureDescriptor<List<double>> baseFeatureDescriptor)
         {
             string sodFeatureKey = "SOD" + baseFeatureDescriptor.Key;
-            try
-            {
-                var sodFeature = Signature.GetFeature<List<double>>(sodFeatureKey);
-                return sodFeature;
-            }
-            catch (KeyNotFoundException)
+
+            if (Signature.HasFeature(sodFeatureKey))
+                return Signature.GetFeature<List<double>>(sodFeatureKey);
+
+            else
             {
                 List<double> firstOrderDiff = GetFirstOrderDifference(baseFeatureDescriptor);
 
@@ -102,12 +100,10 @@ namespace SigStat.WpfSample.Common
 
         public List<double> GetSineMeasure()
         {
-            try
-            {
-                var sineMeasure = Signature.GetFeature<List<double>>(DerivedSvc2004Features.SineMeasure);
-                return sineMeasure;
-            }
-            catch (KeyNotFoundException)
+            if (Signature.HasFeature(DerivedSvc2004Features.SineMeasure))
+                return Signature.GetFeature(DerivedSvc2004Features.SineMeasure);
+
+            else
             {
                 List<double> fodX = GetFirstOrderDifference(DerivedSvc2004Features.FODX);
                 List<double> fodY = GetFirstOrderDifference(DerivedSvc2004Features.FODY);
@@ -133,12 +129,10 @@ namespace SigStat.WpfSample.Common
 
         public List<double> GetCosineMeasure()
         {
-            try
-            {
-                var cosineMeasure = Signature.GetFeature<List<double>>(DerivedSvc2004Features.CosineMeasure);
-                return cosineMeasure;
-            }
-            catch (KeyNotFoundException)
+            if (Signature.HasFeature(DerivedSvc2004Features.CosineMeasure))
+                return Signature.GetFeature(DerivedSvc2004Features.CosineMeasure);
+
+            else
             {
                 List<double> fodX = GetFirstOrderDifference(DerivedSvc2004Features.FODX);
                 List<double> fodY = GetFirstOrderDifference(DerivedSvc2004Features.FODY);
@@ -164,12 +158,10 @@ namespace SigStat.WpfSample.Common
 
         public List<double> GetLengthBasedFeatureFirstOrder()
         {
-            try
-            {
-                var lengthBasedFO = Signature.GetFeature<List<double>>(DerivedSvc2004Features.LengthBasedFO);
-                return lengthBasedFO;
-            }
-            catch (KeyNotFoundException)
+            if (Signature.HasFeature(DerivedSvc2004Features.LengthBasedFO))
+                return Signature.GetFeature(DerivedSvc2004Features.LengthBasedFO);
+
+            else
             {
                 var x = GetFirstOrderDifference(Features.X);
                 var y = GetFirstOrderDifference(Features.Y);
@@ -181,12 +173,10 @@ namespace SigStat.WpfSample.Common
 
         public List<double> GetLengthBasedFeatureSecondOrder()
         {
-            try
-            {
-                var lengthBasedSO = Signature.GetFeature<List<double>>(DerivedSvc2004Features.LengthBasedSO);
-                return lengthBasedSO;
-            }
-            catch (KeyNotFoundException)
+            if (Signature.HasFeature(DerivedSvc2004Features.LengthBasedSO))
+                return Signature.GetFeature<List<double>>(DerivedSvc2004Features.LengthBasedSO);
+
+            else
             {
                 var x = GetSecondOrderDifference(Features.X);
                 var y = GetSecondOrderDifference(Features.Y);
@@ -213,12 +203,10 @@ namespace SigStat.WpfSample.Common
 
         public List<double> GetVelocities()
         {
-            try
-            {
-                var velocities = Signature.GetFeature(DerivedSvc2004Features.Velocity);
-                return velocities;
-            }
-            catch (KeyNotFoundException)
+            if (Signature.HasFeature(DerivedSvc2004Features.Velocity))
+                return Signature.GetFeature(DerivedSvc2004Features.Velocity);
+
+            else
             {
                 var x = Signature.GetFeature(Features.X);
                 var y = Signature.GetFeature(Features.Y);
@@ -254,15 +242,12 @@ namespace SigStat.WpfSample.Common
             }
         }
 
-        //TODO: t-n out of range exception, for feltételt megnézni
         public List<double> GetAccelerations()
         {
-            try
-            {
-                var accelerations = Signature.GetFeature(DerivedSvc2004Features.Acceleration);
-                return accelerations;
-            }
-            catch (KeyNotFoundException)
+            if (Signature.HasFeature(DerivedSvc2004Features.Acceleration))
+                return Signature.GetFeature(DerivedSvc2004Features.Acceleration);
+
+            else
             {
                 var velocities = GetVelocities();
                 var t = Signature.GetFeature(Features.T);
@@ -287,27 +272,14 @@ namespace SigStat.WpfSample.Common
                     }
                     //Lista kipótlása az utolsó számított értékkel
                     else
-                        acceleartion.Add(acceleartion[i-1]);
+                        acceleartion.Add(acceleartion[i - 1]);
                 }
 
-                
+
 
                 Signature.SetFeature(DerivedSvc2004Features.Acceleration, acceleartion);
                 return acceleartion;
             }
-        }
-
-        private bool IsDerivableSvc2004Feature(string featureKey)
-        {
-            bool isDerivableFeature = false;
-
-            if (featureKey == DerivableSvc2004Features.XKey) isDerivableFeature = true;
-            if (featureKey == DerivableSvc2004Features.YKey) isDerivableFeature = true;
-            if (featureKey == DerivableSvc2004Features.AzimuthKey) isDerivableFeature = true;
-            if (featureKey == DerivableSvc2004Features.AltitudeKey) isDerivableFeature = true;
-            if (featureKey == DerivableSvc2004Features.PressureKey) isDerivableFeature = true;
-
-            return isDerivableFeature;
         }
     }
 }

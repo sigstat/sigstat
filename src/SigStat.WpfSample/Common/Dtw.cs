@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.WpfSample.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Common
 {
-    //TODO: r megadása, külső használata
+    //TODO: r megadása, külső használata, xml commentek
     public class Dtw
     {
         public Signature TestSignature { get; private set; }
@@ -150,7 +151,7 @@ namespace SigStat.WpfSample.Common
                 else if (j == 0) { i = i - 1; }
                 else
                 {
-                    double minDist = Min(CostMatrix[i, j - 1], CostMatrix[i - 1, j - 1], CostMatrix[i - 1, j]);
+                    double minDist = MyMath.Min(CostMatrix[i, j - 1], CostMatrix[i - 1, j - 1], CostMatrix[i - 1, j]);
 
                     if (CostMatrix[i - 1, j] == minDist) { i = i - 1; }
                     else if (CostMatrix[i, j - 1] == minDist) { j = j - 1; }
@@ -186,7 +187,7 @@ namespace SigStat.WpfSample.Common
                     }
                     else
                     {
-                        double preDist = Min(CostMatrix[i, j - 1], CostMatrix[i - 1, j - 1], CostMatrix[i - 1, j]);
+                        double preDist = MyMath.Min(CostMatrix[i, j - 1], CostMatrix[i - 1, j - 1], CostMatrix[i - 1, j]);
                         CostMatrix[i, j] = Accord.Math.Distance.Manhattan(testSignatureAggregatedFeatures[i], refSignatureAggregatedFeatures[j]) + preDist;
                     }
                 }
@@ -302,24 +303,6 @@ namespace SigStat.WpfSample.Common
 
             FeatureExtractor refSignatureExtractor = new FeatureExtractor(ReferenceSignature, spacingParameterValue);
             ReferenceSignature = refSignatureExtractor.GetAllDerivedSVC2004Features();
-        }
-
-        private double Min(double d1, double d2, double d3)
-        {
-            if (d1 < d2)
-            {
-                if (d3 < d1)
-                    return d3;
-                else
-                    return d1;
-            }
-            else
-            {
-                if (d2 < d3)
-                    return d2;
-                else
-                    return d3;
-            }
         }
 
     }

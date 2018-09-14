@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,9 @@ namespace SigStat.WpfSample.Common
         public static readonly string AzimuthKey = "Azimuth";
         public static readonly string AltitudeKey = "Altitude";
         public static readonly string PressureKey = "Pressure";
+
+        public static readonly IReadOnlyList<FeatureDescriptor> All =
+           typeof(Features).GetFields(BindingFlags.Public | BindingFlags.Static).Select(fi => fi.GetValue(null)).OfType<FeatureDescriptor>().ToList();
     }
 
     public static class DerivedSvc2004Features
@@ -31,5 +35,8 @@ namespace SigStat.WpfSample.Common
         public static readonly FeatureDescriptor<List<double>> LengthBasedSO = FeatureDescriptor<List<double>>.Descriptor("LengthBasedSO");
         public static readonly FeatureDescriptor<List<double>> Velocity = FeatureDescriptor<List<double>>.Descriptor("Velocity");
         public static readonly FeatureDescriptor<List<double>> Acceleration = FeatureDescriptor<List<double>>.Descriptor("Acceleration");
+
+        public static readonly IReadOnlyList<FeatureDescriptor> All =
+           typeof(Features).GetFields(BindingFlags.Public | BindingFlags.Static).Select(fi => fi.GetValue(null)).OfType<FeatureDescriptor>().ToList();
     }
 }
