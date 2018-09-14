@@ -792,7 +792,7 @@
         </member>
         <member name="M:SigStat.Common.Vector.Equals(System.Object)">
             <summary>
-            Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
+            Két vektor akkor egyenlõ, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
             mutatnak és hosszuk is megegyezik. 
             </summary>
             <param name="obj"></param>
@@ -800,12 +800,12 @@
         </member>
         <member name="M:SigStat.Common.Vector.GetNormal">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Elofrgatja a vektort 90 fokkal a kezdõpontja körül az óramutató járásával megegyezõ irányba
             </summary>
         </member>
         <member name="M:SigStat.Common.Vector.GetNormal(System.Double)">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Elofrgatja a vektort 90 fokkal a kezdõpontja körül az óramutató járásával megegyezõ irányba
             </summary>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.DTWClassifier">

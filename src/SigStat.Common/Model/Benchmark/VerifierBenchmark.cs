@@ -72,7 +72,8 @@ namespace SigStat.Common.Model
         public Verifier Verifier { get => _verifier;
             set {
                 _verifier = value;
-                _verifier.Logger = Logger;
+                if (_verifier!=null)
+                    _verifier.Logger = Logger;
             }
         }
 
@@ -109,7 +110,7 @@ namespace SigStat.Common.Model
         /// </summary>
         public VerifierBenchmark()
         {
-            Verifier = Verifier.BasicVerifier;
+            Verifier = null; // Verifier.BasicVerifier;
             Sampler = Sampler.BasicSampler;
         }
 

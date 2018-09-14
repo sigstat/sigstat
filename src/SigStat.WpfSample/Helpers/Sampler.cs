@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Helpers
 {
-    public class Sampler
+    public class MySampler
     {
         public List<Signature> TrainingOriginals { get; private set; }
         public List<Signature> GenuineTestSignatures { get; private set; }
         public List<Signature> ForgedTestSignatures { get; private set; }
 
         //TODO: range helyett jobb nevet találni
-        public Sampler(List<Signature> signatures, int range)
+        public MySampler(List<Signature> signatures, int range)
         {
             List<Signature> originals = signatures.FindAll(s => s.Origin == Origin.Genuine);
             List<Signature> forgeries = signatures.FindAll(s => s.Origin == Origin.Forged);

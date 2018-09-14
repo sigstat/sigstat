@@ -14,6 +14,9 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Linq;
+using SigStat.Common.Helpers;
+using System.Diagnostics;
 
 namespace SigStat.WpfSample
 {
@@ -27,7 +30,7 @@ namespace SigStat.WpfSample
         public int[] SignatureIndexes { get; set; } = Common.Configuration.GetIndexes(Common.Configuration.SignatureCount);
         private List<Signer> Signers { get; set; } = null;
 
-        public List<FeatureDescriptor> FeatureFilter { get; set; } = new List<FeatureDescriptor>(new FeatureDescriptor[] {Features.X, Features.Y});
+        public List<FeatureDescriptor> FeatureFilter { get; set; } = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
         //public String[] Databases { get; set; } = { "SVC2004_Task2" }; //"SVC2004_Task1",
 
         private double progressValue = 0;
@@ -42,7 +45,7 @@ namespace SigStat.WpfSample
             }
         }
 
-        
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -273,7 +276,7 @@ namespace SigStat.WpfSample
                     ExcelWorksheet summaryWs = ExcelHelper.GetWorkSheetFromPackage(package, "Summary");
                     ExcelHelper.SetDebugTableSummarySheetHeader(summaryWs);
 
-                    Parallel.ForEach(Signers, (signer) => 
+                    Parallel.ForEach(Signers, (signer) =>
                     {
                         ExcelWorksheet ws = ExcelHelper.GetWorkSheetFromPackage(package, "Signer" + signer.ID);
                         ExcelHelper.SetOptiClassDebugTableHeader(ws);
@@ -325,7 +328,7 @@ namespace SigStat.WpfSample
             if (Signers == null)
                 LoadSignatures();
 
-            Signature signature1 = Signers[(int)SignerComboBox1.SelectedValue-1].Signatures[(int)SignatureComboBox1.SelectedIndex];
+            Signature signature1 = Signers[(int)SignerComboBox1.SelectedValue - 1].Signatures[(int)SignatureComboBox1.SelectedIndex];
             Signature signature2 = Signers[(int)SignerComboBox2.SelectedValue - 1].Signatures[(int)SignatureComboBox2.SelectedIndex];
 
             //DTWScoreTextBlock.Text = Analyzer.GetCost(sig1, sig2, true).Cost.ToString();
@@ -336,14 +339,36 @@ namespace SigStat.WpfSample
 
         }
 
-
-        private void OkForAll_Click(object sender, RoutedEventArgs e)
+        private void Log(LogLevel ll, string msg)
         {
-                //StatisticsMessagesTextBlock.Text = "Ez akár hosszabb ideig is eltarthat! Statisztika elkészítése folyamatban...";
-                StatisticsMessagesTextBlock.Text = "This can take longer! Creation of statistics is in progress...";
-                ThreadPool.QueueUserWorkItem(o => DoStatistics(false));
+            Debug.WriteLine(msg);
         }
 
+        VerifierBenchmark benchmark;
+        private void OkForAll_Click(object sender, RoutedEventArgs e)
+        {
+            var logger = new Logger(LogLevel.Debug, null, Log);
+
+            benchmark = new VerifierBenchmark()
+            {
+                Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
+                Sampler = Sampler.BasicSampler,
+                Verifier = new MyVerifier(new DTWClassifier(FeatureFilter)),
+                Logger = logger,
+            };
+            benchmark.ProgressChanged += Bm_ProgressChanged;
+            var results = benchmark.Execute();
+            //results.SignerResults[0];
+
+            //StatisticsMessagesTextBlock.Text = "Ez akár hosszabb ideig is eltarthat! Statisztika elkészítése folyamatban...";
+            //StatisticsMessagesTextBlock.Text = "This can take longer! Creation of statistics is in progress...";
+            //ThreadPool.QueueUserWorkItem(o => DoStatistics(false));
+        }
+
+        private void Bm_ProgressChanged(object sender, int e)
+        {
+            Debug.WriteLine($"{benchmark.Progress}%");
+        }
 
         private async void OpenStatistics_Click(object sender, RoutedEventArgs e)
         {
@@ -380,7 +405,7 @@ namespace SigStat.WpfSample
             StatisticsMessagesTextBlock.Text = "This can take longer! Creation of debug tables is in progress...";
             ThreadPool.QueueUserWorkItem(o => CreateDebugTables());
         }
-       
+
 
     }
 }

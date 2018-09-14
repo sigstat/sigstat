@@ -1,5 +1,8 @@
 ﻿using SigStat.Common;
 using SigStat.Common.Helpers;
+using SigStat.Common.Model;
+using SigStat.Common.Transforms;
+using SigStat.WpfSample.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +11,31 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Model
 {
-    public class Verifier 
+    public class MyVerifier: Verifier
     {
         public IClassifier Classifier { get; set; }
 
-        public Verifier(IClassifier classifier)
+        public MyVerifier(IClassifier classifier)
         {
             Classifier = classifier;
         }
 
-        public double Train(Signer signer)
+
+        public override void Train(List<Signature> signatures)
         {
-            return Train(signer.Signatures.FindAll(s => s.Origin == Origin.Genuine));
+            foreach (var sig in signatures)
+            {
+                new Normalize().InputFeatures = new List<FeatureDescriptor>(DerivableSvc2004Features.All);
+                new FeatureExtractor(sig).GetAllDerivedSVC2004Features();
+            }
+            Classifier.Train(signatures);
         }
 
-        public double Train(List<Signature> signatures)
+        public override bool Test(Signature signature)
         {
-            return Classifier.Train(signatures);
-        }
+            new Normalize().InputFeatures = new List<FeatureDescriptor>(DerivableSvc2004Features.All);
+            new FeatureExtractor(signature).GetAllDerivedSVC2004Features();
 
-        public bool Test(Signature signature)
-        {
             return Classifier.Test(signature);
         }
 
