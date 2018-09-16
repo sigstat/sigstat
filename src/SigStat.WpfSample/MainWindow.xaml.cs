@@ -347,6 +347,13 @@ namespace SigStat.WpfSample
         VerifierBenchmark benchmark;
         private void OkForAll_Click(object sender, RoutedEventArgs e)
         {
+            StatisticsMessagesTextBlock.Text = "This can take longer! Creation of statistics is in progress...";
+
+            ProgressValue = 0;
+
+            StatisticsProgressBar.Visibility = Visibility.Visible;
+
+
             var logger = new Logger(LogLevel.Debug, null, Log);
 
             benchmark = new VerifierBenchmark()
@@ -358,16 +365,35 @@ namespace SigStat.WpfSample
             };
             benchmark.ProgressChanged += Bm_ProgressChanged;
             var results = benchmark.Execute();
+
+            string fileName = DateTime.Today.ToShortDateString() + "_DTWClassifier_avgThreshold_NoSigmoidFusion.xlsx";
+
+            using (var package = new ExcelPackage(new FileInfo(fileName)))
+            {
+                ExcelWorksheet ws = ExcelHelper.GetWorkSheetFromPackage(package, "Summary");
+                ExcelHelper.SetBenchmarkresultOfClassificationHeader(ws);
+
+                foreach (var result in results.SignerResults)
+                {
+                    ExcelHelper.SetBenchmarkresultOfClassificationRow(ws, result);
+                }
+
+                ExcelHelper.SetBenchmarkresultOfClassificationSummaryRow(ws, results.FinalResult, results.SignerResults.Count + 2);
+                package.Save();
+            }
+
+            Process.Start(fileName);
+
             //results.SignerResults[0];
 
             //StatisticsMessagesTextBlock.Text = "Ez akár hosszabb ideig is eltarthat! Statisztika elkészítése folyamatban...";
-            //StatisticsMessagesTextBlock.Text = "This can take longer! Creation of statistics is in progress...";
             //ThreadPool.QueueUserWorkItem(o => DoStatistics(false));
         }
 
         private void Bm_ProgressChanged(object sender, int e)
         {
             Debug.WriteLine($"{benchmark.Progress}%");
+            ProgressValue = benchmark.Progress;
         }
 
         private async void OpenStatistics_Click(object sender, RoutedEventArgs e)

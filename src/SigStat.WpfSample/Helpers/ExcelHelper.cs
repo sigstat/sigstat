@@ -454,5 +454,47 @@ namespace SigStat.WpfSample.Helpers
         }
         #endregion
 
+        #region General functions to set table
+        public static void SetBenchmarkresultOfClassificationHeader(ExcelWorksheet ws)
+        {
+            ws.Cells["A1"].Value = "Signer";
+            ws.Cells["B1"].Value = "AvgFAR";
+            ws.Cells["C1"].Value = "AvgFRR";
+            ws.Cells["D1"].Value = "AvgAER";
+
+            ws.Cells["A1:D1"].Style.Font.Bold = true;
+            ws.Cells["A1:D1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            ws.Cells["A1:D1"].AutoFitColumns();
+            ws.Cells["A1:D1"].Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
+        }
+
+        public static void SetBenchmarkresultOfClassificationRow(ExcelWorksheet ws, Result result)
+        {
+            int lineindex = int.Parse(result.Signer) + 1;
+            ws.Cells["A" + lineindex].Value = result.Signer;
+            ws.Cells["B" + lineindex].Value = result.Far;
+            ws.Cells["C" + lineindex].Value = result.Frr;
+            ws.Cells["D" + lineindex].Value = result.Aer;
+
+            ws.Cells["A"+lineindex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            ws.Cells["B" + lineindex + ":D" + lineindex].Style.Numberformat.Format = "0.0000%";
+
+        }
+
+        public static void SetBenchmarkresultOfClassificationSummaryRow(ExcelWorksheet ws, Result finalResult, int lineindex)
+        {
+            ws.Cells["A" + lineindex].Value = finalResult.Signer;
+            ws.Cells["B" + lineindex].Value = finalResult.Far;
+            ws.Cells["C" + lineindex].Value = finalResult.Frr;
+            ws.Cells["D" + lineindex].Value = finalResult.Aer;
+
+            ws.Cells["A"+lineindex+":D"+lineindex].Style.Font.Bold = true;
+            ws.Cells["B" + lineindex + ":D" + lineindex].Style.Numberformat.Format = "0.0000%";
+            ws.Cells["A" + lineindex + ":D" + lineindex].AutoFitColumns();
+            ws.Cells["A" + lineindex + ":D" + lineindex].Style.Border.Top.Style = ExcelBorderStyle.Medium;
+        }
+
+        #endregion
+
     }
 }
