@@ -27,10 +27,13 @@ namespace SigStat.WpfSample.Model
             double n = 0;
             for (int i = 0; i < originals.Count - 1; i++)
             {
-                for (int j = 1; j < originals.Count; j++)
+                for (int j = i + 1; j < originals.Count; j++)
                 {
                     avg += FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
                     n++;
+                    //debug alatt csak:
+                    if (Double.IsNaN(avg))
+                        return -1;
                 }
             }
 

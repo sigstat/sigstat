@@ -289,13 +289,13 @@
                     <StackPanel>
                         <Button Name="OkForAll" Content="Create table" Background="{StaticResource PrimaryHueMidBrush}"
                             HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"  Click="OkForAll_Click"/>
-                        <Button Name="OpenStatistics" Content="Recent table" Background="{StaticResource PrimaryHueMidBrush}"
-                            HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"  Click="OpenStatistics_Click"/>
+                        <!--<Button Name="OpenStatistics" Content="Recent table" Background="{StaticResource PrimaryHueMidBrush}"
+                            HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"  Click="OpenStatistics_Click"/>-->
                     </StackPanel>
 
                 </StackPanel>
-                <Button Content="Create debug table" Background="{StaticResource PrimaryHueMidBrush}"
-                            VerticalAlignment="Center" Margin="5"  Click="CreateDebugTables_Click"/>
+                <!--<Button Content="Create debug table" Background="{StaticResource PrimaryHueMidBrush}"
+                            VerticalAlignment="Center" Margin="5"  Click="CreateDebugTables_Click"/>-->
             </StackPanel>
         </materialDesign:ColorZone>
     </StackPanel>

@@ -19,8 +19,6 @@ namespace SigStat.WpfSample.Common
         public int WindowSize { get; set; } = 11;
 
         int spacingParameterValue = Configuration.DefaultSpacingParameter;
-        //private int usedLengthOfTestSignature;
-        //private int usedLengthOfRefSignature;
         private bool isCostMatrixFilled;
         private bool isWarpingPathDefined;
         private bool isWarpingPathModifiedFound;
@@ -28,20 +26,17 @@ namespace SigStat.WpfSample.Common
         private List<double[]> testSignatureAggregatedFeatures;
         private List<double[]> refSignatureAggregatedFeatures;
 
-        List<FeatureDescriptor> inputFeatures = Configuration.DefaultInputFeatures;
+        List<FeatureDescriptor> inputFeatures;
 
         public Dtw(Signature testSignature, Signature referenceSignature)
         {
             TestSignature = testSignature;
             ReferenceSignature = referenceSignature;
 
-            ////because the derived features are shorter than original feautures
-            //// '-r' --> first order differences vector length
-            //// '-1' --> second order differences vector length
-            //usedLengthOfTestSignature = TestSignature.NumOfPoints - spacingParameterValue - 1;
-            //usedLengthOfRefSignature = ReferenceSignature.NumOfPoints - spacingParameterValue - 1;
+            //verifierben már megtörténik, de ha más is használja, akkor ellenőrizni kell a származtatott dolgok meglétét!
+            //DeriveFeaturesWithSpacingParameter(); 
 
-            DeriveFeaturesWithSpacingParameter();
+            inputFeatures = Configuration.DefaultInputFeatures;
 
             testSignatureAggregatedFeatures = testSignature.GetAggregateFeature(inputFeatures);
             refSignatureAggregatedFeatures = referenceSignature.GetAggregateFeature(inputFeatures);
@@ -50,12 +45,14 @@ namespace SigStat.WpfSample.Common
             isCostMatrixFilled = false;
             isWarpingPathDefined = false;
 
-            inputFeatures = Configuration.DefaultInputFeatures;
         }
 
         public Dtw(Signature ts, Signature rs, List<FeatureDescriptor> fs) : this(ts, rs)
         {
             inputFeatures = fs;
+
+            testSignatureAggregatedFeatures = ts.GetAggregateFeature(inputFeatures);
+            refSignatureAggregatedFeatures = rs.GetAggregateFeature(inputFeatures);
         }
 
 
@@ -72,7 +69,8 @@ namespace SigStat.WpfSample.Common
 
             int lwp = WarpingPath.Count;
 
-            return CostMatrix[testSignatureAggregatedFeatures.Count - 1, refSignatureAggregatedFeatures.Count - 1] / lwp;
+            double retValue = CostMatrix[testSignatureAggregatedFeatures.Count - 1, refSignatureAggregatedFeatures.Count - 1] / lwp;
+            return retValue;
         }
 
         public double CalculateWarpingPathScore()

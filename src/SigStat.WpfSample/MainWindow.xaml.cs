@@ -33,6 +33,8 @@ namespace SigStat.WpfSample
         public List<FeatureDescriptor> FeatureFilter { get; set; } = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
         //public String[] Databases { get; set; } = { "SVC2004_Task2" }; //"SVC2004_Task1",
 
+        VerifierBenchmark benchmark;
+
         private double progressValue = 0;
         public double ProgressValue
         {
@@ -323,6 +325,75 @@ namespace SigStat.WpfSample
             }
         }
 
+        private void TestClassifier(bool isOptiClass = false)
+        {
+
+            ProgressValue = 0;
+            App.Current.Dispatcher.Invoke(delegate
+            {
+                StatisticsProgressBar.Visibility = Visibility.Visible;
+            });
+
+            var logger = new Logger(LogLevel.Debug, null, Log);
+            Dictionary<List<FeatureDescriptor>, BenchmarkResults> benchmarkResults = new Dictionary<List<FeatureDescriptor>, BenchmarkResults>(Common.Configuration.TestInputFeatures.Length);
+
+            Sampler sampler;
+            if (isOptiClass)
+                sampler = new Sampler(
+                    (sl) => sl,
+                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+                    (sl) => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList()
+                    );
+            else
+                sampler = Sampler.BasicSampler;
+
+
+            foreach (var featureFilter in Common.Configuration.TestInputFeatures)
+            {
+
+                benchmark = new VerifierBenchmark()
+                {
+                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
+                    Sampler = sampler,
+                    Verifier = new MyVerifier(new FusedScoreClassifier(featureFilter)),
+                    Logger = logger,
+                };
+                benchmark.ProgressChanged += Bm_ProgressChanged;
+                benchmarkResults.Add(featureFilter, benchmark.Execute());
+
+            }
+
+            string classifierName = ((MyVerifier)benchmark.Verifier).Classifier.GetType().Name;
+            string fileName = DateTime.Today.ToShortDateString() + "_" + classifierName + "_avgThreshold_NoSigmFusion.xlsx";
+
+            using (var package = new ExcelPackage(new FileInfo(fileName)))
+            {
+                foreach (var featureFilter in Common.Configuration.TestInputFeatures)
+                {
+                    string wsName = "";
+                    foreach (var feature in featureFilter)
+                    {
+                        wsName += feature.Name;
+                    }
+                    ExcelWorksheet ws = ExcelHelper.GetWorkSheetFromPackage(package, wsName);
+                    ExcelHelper.SetBenchmarkresultOfClassificationHeader(ws);
+
+                    var results = benchmarkResults[featureFilter];
+                    foreach (var result in results.SignerResults)
+                    {
+                        ExcelHelper.SetBenchmarkresultOfClassificationRow(ws, result);
+                    }
+
+                    ExcelHelper.SetBenchmarkresultOfClassificationSummaryRow(ws, results.FinalResult, results.SignerResults.Count + 2);
+                    package.Save();
+                }
+            }
+
+            Process.Start(fileName);
+        }
+
+        //Azokat a dolgokat amiket a verifier előfeldolgoz itt nincsenek csak részben
+        //a loadsignature-ben van valami minimáis előfeldolgozás
         private void GoDTWButton_Click(object sender, RoutedEventArgs e)
         {
             if (Signers == null)
@@ -344,50 +415,11 @@ namespace SigStat.WpfSample
             Debug.WriteLine(msg);
         }
 
-        VerifierBenchmark benchmark;
         private void OkForAll_Click(object sender, RoutedEventArgs e)
         {
             StatisticsMessagesTextBlock.Text = "This can take longer! Creation of statistics is in progress...";
-
-            ProgressValue = 0;
-
-            StatisticsProgressBar.Visibility = Visibility.Visible;
-
-
-            var logger = new Logger(LogLevel.Debug, null, Log);
-
-            benchmark = new VerifierBenchmark()
-            {
-                Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
-                Sampler = Sampler.BasicSampler,
-                Verifier = new MyVerifier(new DTWClassifier(FeatureFilter)),
-                Logger = logger,
-            };
-            benchmark.ProgressChanged += Bm_ProgressChanged;
-            var results = benchmark.Execute();
-
-            string fileName = DateTime.Today.ToShortDateString() + "_DTWClassifier_avgThreshold_NoSigmoidFusion.xlsx";
-
-            using (var package = new ExcelPackage(new FileInfo(fileName)))
-            {
-                ExcelWorksheet ws = ExcelHelper.GetWorkSheetFromPackage(package, "Summary");
-                ExcelHelper.SetBenchmarkresultOfClassificationHeader(ws);
-
-                foreach (var result in results.SignerResults)
-                {
-                    ExcelHelper.SetBenchmarkresultOfClassificationRow(ws, result);
-                }
-
-                ExcelHelper.SetBenchmarkresultOfClassificationSummaryRow(ws, results.FinalResult, results.SignerResults.Count + 2);
-                package.Save();
-            }
-
-            Process.Start(fileName);
-
-            //results.SignerResults[0];
-
             //StatisticsMessagesTextBlock.Text = "Ez akár hosszabb ideig is eltarthat! Statisztika elkészítése folyamatban...";
-            //ThreadPool.QueueUserWorkItem(o => DoStatistics(false));
+            ThreadPool.QueueUserWorkItem(o => TestClassifier(false));
         }
 
         private void Bm_ProgressChanged(object sender, int e)

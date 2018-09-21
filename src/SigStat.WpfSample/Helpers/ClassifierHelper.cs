@@ -42,5 +42,15 @@ namespace SigStat.WpfSample.Helpers
         {
             return (CalculateFAR(signatures, classifier) + CalculateFRR(signatures, classifier)) / 2.0;
         }
+
+        public static void Normalize(Signature sig, List<FeatureDescriptor> inputFeatures)
+        {
+            foreach (var feature in inputFeatures)
+            {
+                var originalValues = sig.GetFeature<List<double>>(feature).ToArray();
+                var normalizedValues = MyMath.MinMaxTransformationNormalization(originalValues).ToList();
+                sig.SetFeature(feature, normalizedValues);
+            }
+        }
     }
 }

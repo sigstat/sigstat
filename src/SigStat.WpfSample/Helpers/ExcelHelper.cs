@@ -483,12 +483,13 @@ namespace SigStat.WpfSample.Helpers
 
         public static void SetBenchmarkresultOfClassificationSummaryRow(ExcelWorksheet ws, Result finalResult, int lineindex)
         {
-            ws.Cells["A" + lineindex].Value = finalResult.Signer;
+            ws.Cells["A" + lineindex].Value = "Average";
             ws.Cells["B" + lineindex].Value = finalResult.Far;
             ws.Cells["C" + lineindex].Value = finalResult.Frr;
             ws.Cells["D" + lineindex].Value = finalResult.Aer;
 
-            ws.Cells["A"+lineindex+":D"+lineindex].Style.Font.Bold = true;
+            ws.Cells["A" + lineindex].Style.Font.Italic = true;
+            ws.Cells["B"+lineindex+":D"+lineindex].Style.Font.Bold = true;
             ws.Cells["B" + lineindex + ":D" + lineindex].Style.Numberformat.Format = "0.0000%";
             ws.Cells["A" + lineindex + ":D" + lineindex].AutoFitColumns();
             ws.Cells["A" + lineindex + ":D" + lineindex].Style.Border.Top.Style = ExcelBorderStyle.Medium;

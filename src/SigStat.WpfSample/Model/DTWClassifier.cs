@@ -26,9 +26,9 @@ namespace SigStat.WpfSample.Model
             originals = signatures;
             double avg = 0;
 
-            for (int i = 0; i < originals.Count-1; i++)
+            for (int i = 0; i < originals.Count - 1; i++)
             {
-                for (int j = 1; j < originals.Count; j++)
+                for (int j = i + 1; j < originals.Count; j++)
                 {
                     avg += new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
                 }

@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.WpfSample.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SigStat.WpfSample.Common
         {
             double averageDtwScore = 0;
             double averageWPathScore = 0;
-            bool isTestSigInReferences = false;
+            double count = referenceSignatures.Length;
 
             for (int i = 0; i < referenceSignatures.Length; i++)
             {
@@ -24,14 +25,14 @@ namespace SigStat.WpfSample.Common
                     averageWPathScore += dtw.CalculateWarpingPathScore();
                 }
                 else
-                    isTestSigInReferences = true;
+                    count--;
             }
 
-            averageDtwScore /= (isTestSigInReferences ? referenceSignatures.Length-1 : referenceSignatures.Length);
-            averageWPathScore /= (isTestSigInReferences ? referenceSignatures.Length - 1 : referenceSignatures.Length);
+            averageDtwScore /= count;
+            averageWPathScore /= count;
 
-            //double similarityValueFromDtwScore = Analyzer.Sigmoid(averageDtwScore);
-            //double similarityValueFromWPathScore = Analyzer.Sigmoid(averageWPathScore);
+            //double similarityValueFromDtwScore = MyMath.Sigmoid(averageDtwScore);
+            //double similarityValueFromWPathScore = MyMath.Sigmoid(averageWPathScore);
 
             //return similarityValueFromDtwScore + similarityValueFromWPathScore;
             return averageDtwScore + averageWPathScore;

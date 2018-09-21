@@ -32,11 +32,15 @@ namespace SigStat.WpfSample.Model
         public bool Test(Signature signature)
         {
             double avgDist = 0;
+            double count = originals.Count;
             foreach (var original in originals)
             {
-                avgDist += new Dtw(original, signature, InputFeatures).CalculateDtwScore();
+                if (signature == original)
+                    count--;
+                else
+                    avgDist += new Dtw(original, signature, InputFeatures).CalculateDtwScore();
             }
-            avgDist /= originals.Count;
+            avgDist /= count;
 
             return avgDist <= threshold;
         }
