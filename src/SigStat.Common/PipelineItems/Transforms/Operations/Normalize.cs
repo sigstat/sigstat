@@ -23,7 +23,7 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);
+            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]).ToList();
 
             //find min and max values
             double min = values.Min();

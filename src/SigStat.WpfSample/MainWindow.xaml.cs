@@ -335,17 +335,17 @@ namespace SigStat.WpfSample
             });
 
             var logger = new Logger(LogLevel.Debug, null, Log);
-            Dictionary<List<FeatureDescriptor>, BenchmarkResults> benchmarkResults = new Dictionary<List<FeatureDescriptor>, BenchmarkResults>(Common.Configuration.TestInputFeatures.Length);
+            var benchmarkResults = new Dictionary<List<FeatureDescriptor>, BenchmarkResults>(Common.Configuration.TestInputFeatures.Length);
 
-            Sampler sampler;
+            var sampler = Sampler.BasicSampler;
             if (isOptiClass)
+            {
                 sampler = new Sampler(
                     (sl) => sl,
-                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
                     (sl) => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList()
                     );
-            else
-                sampler = Sampler.BasicSampler;
+            }
 
 
             foreach (var featureFilter in Common.Configuration.TestInputFeatures)
@@ -425,7 +425,7 @@ namespace SigStat.WpfSample
         private void Bm_ProgressChanged(object sender, int e)
         {
             Debug.WriteLine($"{benchmark.Progress}%");
-            ProgressValue = benchmark.Progress;
+            ProgressValue = benchmark.Progress / Common.Configuration.TestInputFeatures.Length;
         }
 
         private async void OpenStatistics_Click(object sender, RoutedEventArgs e)

@@ -13,9 +13,9 @@ namespace SigStat.WpfSample.Helpers
     public class OptimalClassifierHelper
     {
         public ClassifierType ClassifierType { get; private set; }
-        public List<Signature> Signatures { get;private set; }
+        public List<Signature> Signatures { get; private set; }
         public List<FeatureDescriptor> InputFeatures { get; private set; }
-        public ThresholdResult  ThresholdResult { get; private set; }
+        public ThresholdResult ThresholdResult { get; private set; }
 
         private List<Signature> originals;
         private double threshold;
@@ -97,7 +97,7 @@ namespace SigStat.WpfSample.Helpers
             return (double)numRejectedOriginal / numOriginal;
         }
 
-        
+
         private bool Test(Signature testSignature)
         {
             return GetAvgDistFrom(testSignature, originals) <= threshold;
@@ -106,10 +106,11 @@ namespace SigStat.WpfSample.Helpers
         private double GetAvgDist(List<Signature> signatures)
         {
             double avg = 0;
+            int n = 0;
 
             for (int i = 0; i < signatures.Count - 1; i++)
             {
-                for (int j = 1; j < signatures.Count; j++)
+                for (int j = i + 1; j < signatures.Count; j++)
                 {
                     if (ClassifierType == ClassifierType.DTW)
                         avg += new Dtw(signatures[i], signatures[j], InputFeatures).CalculateDtwScore();
@@ -117,10 +118,11 @@ namespace SigStat.WpfSample.Helpers
                         avg += FusedScore.CalculateFusionOfDtwAndWPathScore(signatures[i], new Signature[] { signatures[j] }, InputFeatures);
                     else
                         throw new NotImplementedException("Not implemented for this classifier type");
+                    n++;
                 }
             }
 
-            avg /= (originals.Count * (originals.Count - 1) / 2);
+            avg = avg / n;
 
             return avg;
         }
@@ -144,7 +146,7 @@ namespace SigStat.WpfSample.Helpers
                 return FusedScore.CalculateFusionOfDtwAndWPathScore(test, references.ToArray(), InputFeatures);
             else
                 throw new NotImplementedException("Not implemented for this classifier type");
-            
+
         }
     }
 }

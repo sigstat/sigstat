@@ -135,7 +135,7 @@ namespace SigStat.Common.Model
             double frrAcc = 0;
 
             Log(LogLevel.Info, "Loading data..");
-            var signers = new List<Signer>(Loader.EnumerateSigners(null));
+            var signers = new List<Signer>(Loader.EnumerateSigners());
             Log(LogLevel.Info, signers.Count + " signers found. Benchmarking..");
             for(int i = 0; i < signers.Count; i++)
             {

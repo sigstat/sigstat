@@ -186,7 +186,10 @@ namespace SigStat.Common
         }
 
 
-
+        public override string ToString()
+        {
+            return ID;
+        }
 
 
     }

@@ -15,10 +15,16 @@ namespace SigStat.WpfSample.Model
     public class MyVerifier: Verifier
     {
         public IClassifier Classifier { get; set; }
+        private List<ITransformation> pipeline = new List<ITransformation>() ;
 
         public MyVerifier(IClassifier classifier)
         {
             Classifier = classifier;
+
+            foreach (var fd in DerivableSvc2004Features.All)
+            {
+                pipeline.Add(new Normalize().Input(fd).Output(fd));
+            }
         }
 
         //Normalize nem rendeltetésszerűen működik, ha többször normalizálok abból lehet probléma?
@@ -26,20 +32,27 @@ namespace SigStat.WpfSample.Model
         {
             foreach (var sig in signatures)
             {
-                //new Normalize().InputFeatures = new List<FeatureDescriptor>(DerivableSvc2004Features.All);
-                ClassifierHelper.Normalize(sig, new List<FeatureDescriptor>(DerivableSvc2004Features.All));
+                foreach (var item in pipeline)
+                {
+                    item.Transform(sig);
+                }
+
+                //ClassifierHelper.Normalize(sig, new List<FeatureDescriptor>(DerivableSvc2004Features.All));
                 new FeatureExtractor(sig).GetAllDerivedSVC2004Features();
             }
             Classifier.Train(signatures);
         }
 
-        public override bool Test(Signature signature)
+        public override bool Test(Signature sig)
         {
-            //new Normalize().InputFeatures = new List<FeatureDescriptor>(DerivableSvc2004Features.All);
-            ClassifierHelper.Normalize(signature, new List<FeatureDescriptor>(DerivableSvc2004Features.All));
-            new FeatureExtractor(signature).GetAllDerivedSVC2004Features();
+            foreach (var item in pipeline)
+            {
+                item.Transform(sig);
+            }
+            //ClassifierHelper.Normalize(signature, new List<FeatureDescriptor>(DerivableSvc2004Features.All));
+            new FeatureExtractor(sig).GetAllDerivedSVC2004Features();
 
-            return Classifier.Test(signature);
+            return Classifier.Test(sig);
         }
 
     }

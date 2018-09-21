@@ -48,6 +48,7 @@ namespace SigStat.Common.Loaders
         private string DatabasePath { get; set; }
         private bool StandardFeatures { get; }
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
         /// </summary>
@@ -88,6 +89,7 @@ namespace SigStat.Common.Loaders
                         signer.Signatures.Add(signature);
                         
                     }
+                    signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
                     yield return signer;
                 }
             }
