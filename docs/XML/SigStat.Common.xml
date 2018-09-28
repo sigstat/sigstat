@@ -338,7 +338,7 @@
         <member name="M:SigStat.Common.Loaders.DataSetLoader.Log(SigStat.Common.Helpers.LogLevel,System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{System.String})">
+        <member name="M:SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Loaders.IDataSetLoader">
@@ -347,7 +347,7 @@
             Base abstract class: <see cref="T:SigStat.Common.Loaders.DataSetLoader"/>.
             </summary>
         </member>
-        <member name="M:SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners(System.Predicate{System.String})">
+        <member name="M:SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <summary>
             Loads the database and returns the collection of <see cref="T:SigStat.Common.Signer"/>s that match the <paramref name="signerFilter"/>.
             </summary>
@@ -366,7 +366,7 @@
             </summary>
             <param name="databasePath">File path to the database.</param>
         </member>
-        <member name="M:SigStat.Common.Loaders.ImageLoader.EnumerateSigners(System.Predicate{System.String})">
+        <member name="M:SigStat.Common.Loaders.ImageLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Loaders.ImageLoader.LoadSignature(SigStat.Common.Signature,System.String)">
@@ -398,14 +398,15 @@
             Loads SVC2004-format database from .zip
             </summary>
         </member>
-        <member name="M:SigStat.Common.Loaders.Svc2004Loader.#ctor(System.String,System.Boolean)">
+        <member name="M:SigStat.Common.Loaders.Svc2004Loader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
             <summary>
             Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.Svc2004Loader"/> class with specified database.
             </summary>
             <param name="databasePath">File path to a .zip file containing Svc2004 signatures.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter"></param>
         </member>
-        <member name="M:SigStat.Common.Loaders.Svc2004Loader.EnumerateSigners(System.Predicate{System.String})">
+        <member name="M:SigStat.Common.Loaders.Svc2004Loader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Loaders.Svc2004Loader.LoadSignature(SigStat.Common.Signature,System.String,System.Boolean)">

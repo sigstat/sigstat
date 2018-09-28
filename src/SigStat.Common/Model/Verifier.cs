@@ -28,11 +28,13 @@ namespace SigStat.Common.Model
         /// <summary> Gets or sets the attached <see cref="Helpers.Logger"/> object used to log messages. Hands it over to the pipelines. </summary>
         public Logger Logger { get => _log;
             set {
+                var oldLogger = _log;
                 _log = value;
                 if(_tp != null)
                     _tp.Logger = _log;
                 if(_cp != null)
                     _cp.Logger = _log;
+                LoggerChanged(oldLogger, _log);
             }
         }
         /// <summary>
@@ -137,6 +139,11 @@ namespace SigStat.Common.Model
             Log(LogLevel.Debug, $"Verification SignatureID {sig.ID} result: { (avg < limit ? Origin.Genuine : Origin.Forged) }");
             Log(LogLevel.Info, $"Verification SignatureID {sig.ID}  finished.");
             return avg < limit;
+        }
+
+        protected virtual void LoggerChanged(Logger oldLogger, Logger newLogger)
+        {
+
         }
 
         /// <summary>

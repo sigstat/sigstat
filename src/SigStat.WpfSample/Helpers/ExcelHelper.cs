@@ -28,6 +28,7 @@ namespace SigStat.WpfSample.Helpers
         }
 
 
+
         #region Automatic classification
         public static void SetAutomaticClassificationHeader(ExcelWorksheet ws)
         {
@@ -143,6 +144,20 @@ namespace SigStat.WpfSample.Helpers
             ws.Cells["A" + lineIndex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
             //ws.View.FreezePanes(1, 0);
+        }
+
+        internal static void WriteTable(ExcelWorksheet ws, int startRow, int startCol, object[,] table)
+        {
+            int height = table.GetLength(0);
+            int width = table.GetLength(1);
+
+            for (int row = 0; row < height; row++)
+            {
+                for (int col = 0; col < width; col++)
+                {
+                    ws.Cells[startRow + row, startCol + col].Value = table[row, col];
+                }
+            }
         }
         #endregion
 
@@ -476,7 +491,7 @@ namespace SigStat.WpfSample.Helpers
             ws.Cells["C" + lineindex].Value = result.Frr;
             ws.Cells["D" + lineindex].Value = result.Aer;
 
-            ws.Cells["A"+lineindex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            ws.Cells["A" + lineindex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             ws.Cells["B" + lineindex + ":D" + lineindex].Style.Numberformat.Format = "0.0000%";
 
         }
@@ -489,7 +504,7 @@ namespace SigStat.WpfSample.Helpers
             ws.Cells["D" + lineindex].Value = finalResult.Aer;
 
             ws.Cells["A" + lineindex].Style.Font.Italic = true;
-            ws.Cells["B"+lineindex+":D"+lineindex].Style.Font.Bold = true;
+            ws.Cells["B" + lineindex + ":D" + lineindex].Style.Font.Bold = true;
             ws.Cells["B" + lineindex + ":D" + lineindex].Style.Numberformat.Format = "0.0000%";
             ws.Cells["A" + lineindex + ":D" + lineindex].AutoFitColumns();
             ws.Cells["A" + lineindex + ":D" + lineindex].Style.Border.Top.Style = ExcelBorderStyle.Medium;

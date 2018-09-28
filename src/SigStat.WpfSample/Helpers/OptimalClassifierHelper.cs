@@ -18,43 +18,60 @@ namespace SigStat.WpfSample.Helpers
 
         public OptimalClassifierHelper(List<SimilarityResult> distsFromReferences)
         {
-            SimilarityResults = distsFromReferences;
+            SimilarityResults = distsFromReferences.OrderBy(sr=>sr.AvgDistFromReferences).ToList();
         }
 
         //TODO: elkezd egy pont körül "ugrálni" debug
         public double CalculateThresholdForOptimalClassification()
         {
-            SetAvgDistAsInitThreshold();
-            double FAR, FRR;
-            CalculateRates(out FAR, out FRR);
-            double roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
-            double roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
-            double multipFAR = roundedFAR * 100;
-            double multipFRR = roundedFRR * 100;
-            double diff = Math.Abs(multipFAR - multipFRR);
-            int round = 0;
-
-            while (diff > 0 && round < 1000)
+            List<Tuple<double, double>> errorRates = new List<Tuple<double, double>>();
+            double prevThreshold = 0;
+            for (int i = 0; i < SimilarityResults.Count-1; i++)
             {
-                if (FAR > FRR)
-                {
-                    threshold -= Math.Abs(FAR - FRR) * threshold * 0.1;
-                }
-                else if (FAR < FRR)
-                {
-                    threshold += Math.Abs(FAR - FRR) * threshold * 0.1;
-                }
-                CalculateRates(out FAR, out FRR);
+                threshold = (SimilarityResults[i].AvgDistFromReferences + SimilarityResults[i + 1].AvgDistFromReferences) / 2;
+                CalculateRates(out var far, out var frr);
+                errorRates.Add(new Tuple<double, double>((far + frr / 2.0), threshold));
 
-                roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
-                roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
-                multipFAR = roundedFAR * 100;
-                multipFRR = roundedFRR * 100;
-                diff = Math.Abs(multipFAR - multipFRR);
-                round++;
-
+                if (far > frr) return prevThreshold;
+                prevThreshold = threshold;
             }
+            threshold = errorRates.OrderBy(er => er.Item1).First().Item2;
             return threshold;
+
+
+
+
+            //SetAvgDistAsInitThreshold();
+            //double FAR, FRR;
+            //CalculateRates(out FAR, out FRR);
+            //double roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
+            //double roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
+            //double multipFAR = roundedFAR * 100;
+            //double multipFRR = roundedFRR * 100;
+            //double diff = Math.Abs(multipFAR - multipFRR);
+            //int round = 0;
+
+            //while (diff > 0 && round < 1000)
+            //{
+            //    if (FAR > FRR)
+            //    {
+            //        threshold -= Math.Abs(FAR - FRR) * threshold * 0.1;
+            //    }
+            //    else if (FAR < FRR)
+            //    {
+            //        threshold += Math.Abs(FAR - FRR) * threshold * 0.1;
+            //    }
+            //    CalculateRates(out FAR, out FRR);
+
+            //    roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
+            //    roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
+            //    multipFAR = roundedFAR * 100;
+            //    multipFRR = roundedFRR * 100;
+            //    diff = Math.Abs(multipFAR - multipFRR);
+            //    round++;
+
+            //}
+            //return threshold;
         }
 
         private void CalculateRates(out double FAR, out double FRR)

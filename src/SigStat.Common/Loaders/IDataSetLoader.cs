@@ -16,6 +16,6 @@ namespace SigStat.Common.Loaders
         /// </summary>
         /// <param name="signerFilter">Filter to specify which Signers to load. Example: (p=>p=="01")</param>
         /// <returns>Collection of <see cref="Signer"/>s that match the <paramref name="signerFilter"/></returns>
-        IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null);
+        IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null);
     }
 }

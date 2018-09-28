@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Accord.Statistics;
 using SigStat.Common;
+using SigStat.Common.Helpers;
 using SigStat.WpfSample.Common;
 
 namespace SigStat.WpfSample.Model
@@ -15,7 +16,7 @@ namespace SigStat.WpfSample.Model
 
         private double threshold;
         private List<Signature> originals;
-
+        public Logger Logger { get; set; }
         public FusedScoreClassifier(List<FeatureDescriptor> inputFeatures)
         {
             InputFeatures = inputFeatures;

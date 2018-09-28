@@ -44,7 +44,7 @@ namespace SigStat.Common.Loaders
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
+        public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null)
         {
             Log(LogLevel.Info, "Enumerating signers started.");
             var signatureGroups = Directory.EnumerateFiles(DatabasePath, "U*S*.png")
@@ -54,9 +54,10 @@ namespace SigStat.Common.Loaders
 
             foreach (var group in signatureGroups)
             {
-                if (signerFilter != null && !signerFilter(group.Key))
-                    continue;
                 Signer signer = new Signer() { ID = group.Key };
+
+                if (signerFilter != null && !signerFilter(signer))
+                    continue;
                 foreach (var signatureFile in group)
                 {
                     Signature signature = new Signature()

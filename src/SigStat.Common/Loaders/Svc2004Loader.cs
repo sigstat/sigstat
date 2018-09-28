@@ -47,22 +47,26 @@ namespace SigStat.Common.Loaders
 
         private string DatabasePath { get; set; }
         private bool StandardFeatures { get; }
-
+        public Predicate<Signer> SignerFilter { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
         /// </summary>
         /// <param name="databasePath">File path to a .zip file containing Svc2004 signatures.</param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
-        public Svc2004Loader(string databasePath, bool standardFeatures)
+        /// <param name="signerFilter"></param>
+        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
+            SignerFilter = signerFilter;
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
+        public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null)
         {
+            signerFilter = signerFilter ?? SignerFilter ;
+
             Log(LogLevel.Info, "Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
             {
@@ -71,9 +75,10 @@ namespace SigStat.Common.Loaders
                 Log(LogLevel.Debug, signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
-                    if (signerFilter != null && !signerFilter(group.Key))
-                        continue;
                     Signer signer = new Signer() { ID = group.Key };
+
+                    if (signerFilter != null && !signerFilter(signer))
+                        continue;
                     foreach (var signatureFile in group)
                     {
                         Signature signature = new Signature()

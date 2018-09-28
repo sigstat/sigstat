@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Helpers;
 using SigStat.WpfSample.Common;
 using SigStat.WpfSample.Helpers;
 using System;
@@ -18,6 +19,11 @@ namespace SigStat.WpfSample.Model
         private List<Signature> trainSignatures;
         private double threshold;
 
+        object[,] debugInfo;
+
+
+        public Logger Logger { get; set; }
+
         public OptimalDTWClassifier(List<FeatureDescriptor> inputFeatures)
         {
             InputFeatures = inputFeatures;
@@ -25,14 +31,30 @@ namespace SigStat.WpfSample.Model
 
         public double Train(List<Signature> signatures)
         {
+            if (signatures == null)
+                throw new ArgumentNullException(nameof(signatures));
+            if (signatures.Count == 0)
+                throw new ArgumentException("'sigantures' can not be empty", nameof(signatures));
+
             referenceSignatures = signatures.FindAll(s => s.Origin == Origin.Genuine).Take(10).ToList();
             trainSignatures = signatures.FindAll(s => s.Origin == Origin.Genuine);
             trainSignatures.AddRange(signatures.FindAll(s => s.Origin == Origin.Forged).Take(10).ToList());
 
-            
+            debugInfo = new object[trainSignatures.Count + 1, referenceSignatures.Count + 1];
+            for (int i = 0; i < trainSignatures.Count; i++)
+            {
+                debugInfo[i + 1, 0] = trainSignatures[i].ID;
+            }
+            for (int i = 0; i < referenceSignatures.Count; i++)
+            {
+                debugInfo[0, i + 1] = referenceSignatures[i].ID;
+            }
+
             CalculateSimilarity();
 
             threshold = new OptimalClassifierHelper(SimilarityResults).CalculateThresholdForOptimalClassification();
+
+            Logger.Info(this, signatures[0].Signer.ID + "_dtw", debugInfo);
             return threshold;
         }
 
@@ -59,7 +81,11 @@ namespace SigStat.WpfSample.Model
                 if (sig == refSig)
                     count--;
                 else
-                    avgDist += new Dtw(sig, refSig, InputFeatures).CalculateDtwScore();
+                {
+                    var dist = new Dtw(sig, refSig, InputFeatures).CalculateDtwScore();
+                    avgDist += dist;
+                    debugInfo[trainSignatures.IndexOf(sig) + 1, referenceSignatures.IndexOf(refSig) + 1] = dist;
+                }
             }
             avgDist /= count;
 

@@ -34,6 +34,10 @@ namespace SigStat.Common.Helpers
         /// A list where Entries are stored if <see cref="StoreEntries"/> is enabled.
         /// </summary>
         public List<LogEntry> Entries = new List<LogEntry>();//ez maradhat sima list, mert csak 1 consumer van
+
+        ConcurrentDictionary<string, object> objectEntries = new ConcurrentDictionary<string, object>();
+        public IReadOnlyDictionary<string, object> ObjectEntries { get { return objectEntries; } }
+
         /// <summary>
         /// Gets or sets the filtering level. Entries above this level will be ignored.
         /// </summary>
@@ -111,6 +115,15 @@ namespace SigStat.Common.Helpers
         {
             EnqueueEntry(LogLevel.Info, sender, message);
         }
+
+
+        public void Info(object sender, string key, object infoObject)
+        {
+            objectEntries[key] = infoObject;
+            EnqueueEntry(LogLevel.Info, sender, "Added object with key: " + key);
+        }
+
+
         /// <summary>
         /// Enqueue a debug level log entry.
         /// </summary>

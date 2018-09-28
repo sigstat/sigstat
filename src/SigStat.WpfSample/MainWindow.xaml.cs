@@ -17,6 +17,8 @@ using System.Windows;
 using System.Linq;
 using SigStat.Common.Helpers;
 using System.Diagnostics;
+using SigStat.Common.Pipeline;
+using SigStat.Common.Transforms;
 
 namespace SigStat.WpfSample
 {
@@ -110,19 +112,36 @@ namespace SigStat.WpfSample
                     else classifier = new DTWClassifier(featureFilter);
                 }
 
-                    benchmark = new VerifierBenchmark()
+                benchmark = new VerifierBenchmark()
                 {
-                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
+                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s=>s.ID.CompareTo("05")<0),
                     Sampler = sampler,
-                    Verifier = new MyVerifier(classifier),
+                    Verifier = new MyVerifier(classifier)
+                    {
+                        TransformPipeline = new SequentialTransformPipeline()
+                            {
+                                //new Svc2004Normalize(),
+                                new DerivedSvc2004FeatureExtractor()
+                            }                        
+                    },
                     Logger = logger,
                 };
                 benchmark.ProgressChanged += Bm_ProgressChanged;
                 benchmarkResults.Add(featureFilter, benchmark.Execute());
 
+                string dumpFileName = DateTime.Today.ToShortDateString() + "_"+ classifier.GetType().Name+ "_Dump.xlsx";
+                DumpLog(dumpFileName, logger.ObjectEntries);
+                Process.Start(dumpFileName);
             }
 
+
+
             string classifierName = ((MyVerifier)benchmark.Verifier).Classifier.GetType().Name;
+
+
+
+
+
             string fileName = DateTime.Today.ToShortDateString() + "_" + classifierName + "_NoSigmoid.xlsx";
 
             using (var package = new ExcelPackage(new FileInfo(fileName)))
@@ -149,6 +168,21 @@ namespace SigStat.WpfSample
             }
 
             Process.Start(fileName);
+        }
+
+        private void DumpLog(string fileName, IReadOnlyDictionary<string, object> objectEntries)
+        {
+
+            using (var package = new ExcelPackage(new FileInfo(fileName)))
+            {
+                foreach (var item in objectEntries)
+                {
+                    ExcelWorksheet ws = ExcelHelper.GetWorkSheetFromPackage(package, item.Key);
+                    ExcelHelper.WriteTable(ws, 1, 1, (object[,])item.Value);
+
+                }
+                package.Save();
+            }
         }
 
         //Azokat a dolgokat amiket a verifier előfeldolgoz itt nincsenek csak részben

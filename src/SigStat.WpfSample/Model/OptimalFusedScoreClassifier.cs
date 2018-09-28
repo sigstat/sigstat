@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Helpers;
 using SigStat.WpfSample.Common;
 using SigStat.WpfSample.Helpers;
 using System;
@@ -17,7 +18,7 @@ namespace SigStat.WpfSample.Model
         private List<Signature> referenceSignatures;
         private List<Signature> trainSignatures;
         private double threshold;
-        
+        public Logger Logger { get; set; }
 
         public OptimalFusedScoreClassifier(List<FeatureDescriptor> inputFeatures)
         {

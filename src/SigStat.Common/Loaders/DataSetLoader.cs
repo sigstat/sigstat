@@ -20,7 +20,7 @@ namespace SigStat.Common.Loaders
         }
 
         /// <inheritdoc/>
-        public abstract IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null);
+        public abstract IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null);
 
     }
 }
