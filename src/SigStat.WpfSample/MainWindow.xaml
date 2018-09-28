@@ -279,6 +279,22 @@
         <materialDesign:ColorZone Mode="PrimaryDark" Margin="0 10 0 0" Padding="0 5" >
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Height="Auto">
+                    <CheckBox Content="Optimal classification" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsOptiClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Content="Is FusedScore Classifier" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsFusedScoreClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <!--<StackPanel>
+                        <RadioButton GroupName="ClassifierType" 
+                                 Content="Classification based on DTW" Style="{StaticResource MaterialDesignRadioButton}"
+                                 IsChecked="{Binding IsDTWClass, Mode=TwoWay}"/>
+                        <RadioButton GroupName="ClassifierType" 
+                                 Content="Classification based on "  Style="{StaticResource MaterialDesignRadioButton}"
+                                 IsChecked="{Binding IsFusedScoreClass, Mode=TwoWay}"/>
+                    </StackPanel>-->
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="Auto">
                     <StackPanel Width="255">
                         <TextBlock Name="StatisticsMessagesTextBlock" Margin="5" Width="Auto" TextWrapping="Wrap" Foreground="White"/>
                         <ProgressBar Name="StatisticsProgressBar" Margin="5" Width="220" Height="10"

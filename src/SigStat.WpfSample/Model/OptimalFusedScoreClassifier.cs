@@ -13,8 +13,11 @@ namespace SigStat.WpfSample.Model
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
 
-        private List<Signature> originals;
+        public List<SimilarityResult> SimilarityResults { get; private set; }
+        private List<Signature> referenceSignatures;
+        private List<Signature> trainSignatures;
         private double threshold;
+        
 
         public OptimalFusedScoreClassifier(List<FeatureDescriptor> inputFeatures)
         {
@@ -23,15 +26,32 @@ namespace SigStat.WpfSample.Model
 
         public double Train(List<Signature> signatures)
         {
-            originals = signatures.FindAll(s => s.Origin == Origin.Genuine);
+            referenceSignatures = signatures.FindAll(s => s.Origin == Origin.Genuine).Take(10).ToList();
+            trainSignatures = signatures.FindAll(s => s.Origin == Origin.Genuine);
+            trainSignatures.AddRange(signatures.FindAll(s => s.Origin == Origin.Forged).Take(10).ToList());
 
-            threshold = new OptimalClassifierHelper(ClassifierType.FusedScore, signatures, InputFeatures).CalculateThresholdForOptimalClassification();
+            CalculateSimilarity();
+
+            threshold = new OptimalClassifierHelper(SimilarityResults).CalculateThresholdForOptimalClassification();
             return threshold;
         }
 
         public bool Test(Signature signature)
         {
-            return FusedScore.CalculateFusionOfDtwAndWPathScore(signature, originals.ToArray(), InputFeatures) <= threshold;
+            return FusedScore.CalculateFusionOfDtwAndWPathScore(signature, referenceSignatures.ToArray(), InputFeatures) <= threshold;
         }
+
+        private void CalculateSimilarity()
+        {
+            SimilarityResults = new List<SimilarityResult>(trainSignatures.Count);
+            for (int i = 0; i < trainSignatures.Count; i++)
+            {
+                var trainSig = trainSignatures[i];
+                var dist = FusedScore.CalculateFusionOfDtwAndWPathScore(trainSig, referenceSignatures.ToArray(), InputFeatures);
+                SimilarityResults.Add(new SimilarityResult(trainSig, dist));
+            }
+
+        }
+
     }
 }

@@ -33,10 +33,9 @@ namespace SigStat.WpfSample.Common
             TestSignature = testSignature;
             ReferenceSignature = referenceSignature;
 
-            //verifierben már megtörténik, de ha más is használja, akkor ellenőrizni kell a származtatott dolgok meglétét!
-            //DeriveFeaturesWithSpacingParameter(); 
-
             inputFeatures = Configuration.DefaultInputFeatures;
+
+            CheckNeededDerivedFeatures();
 
             testSignatureAggregatedFeatures = testSignature.GetAggregateFeature(inputFeatures);
             refSignatureAggregatedFeatures = referenceSignature.GetAggregateFeature(inputFeatures);
@@ -292,6 +291,27 @@ namespace SigStat.WpfSample.Common
             }
 
             return maxDist;
+        }
+
+        private void CheckNeededDerivedFeatures()
+        {
+            foreach (var feature in inputFeatures)
+            {
+                if(!TestSignature.HasFeature(feature))
+                {
+                    if (!DerivedSvc2004Features.All.Contains(feature))
+                        throw new NullReferenceException("TestSignature has not any feature called " + feature.Name);
+                    else
+                        new FeatureExtractor(TestSignature, spacingParameterValue).GetSVCDerivedFeature(feature);
+                }
+                if (!ReferenceSignature.HasFeature(feature))
+                {
+                    if (!DerivedSvc2004Features.All.Contains(feature))
+                        throw new NullReferenceException("ReferenceSignature has not any feature called " + feature.Name);
+                    else
+                        new FeatureExtractor(ReferenceSignature, spacingParameterValue).GetSVCDerivedFeature(feature);
+                }
+            }
         }
 
         private void DeriveFeaturesWithSpacingParameter()

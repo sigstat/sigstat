@@ -18,7 +18,8 @@ namespace SigStat.WpfSample.Common
 
             for (int i = 0; i < referenceSignatures.Length; i++)
             {
-                if (testSignature.ID != referenceSignatures[i].ID)
+                //TODO: refsig.length == 1 megnézni biztosra
+                if (testSignature.ID != referenceSignatures[i].ID || referenceSignatures.Length == 1)
                 {
                     Dtw dtw = new Dtw(testSignature, referenceSignatures[i], inputFeatures);
                     averageDtwScore += dtw.CalculateDtwScore();

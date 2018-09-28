@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accord.Statistics;
 using SigStat.Common;
 using SigStat.WpfSample.Common;
 
@@ -23,25 +24,30 @@ namespace SigStat.WpfSample.Model
         public double Train(List<Signature> signatures)
         {
             originals = signatures;
+            List<double> costs = new List<double>(originals.Count);
             double avg = 0;
             double n = 0;
             for (int i = 0; i < originals.Count - 1; i++)
             {
                 for (int j = i + 1; j < originals.Count; j++)
                 {
-                    avg += FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
+                    double cost = FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
+                    avg += cost;
+                    costs.Add(cost);
+
+                    //avg += FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
+
                     n++;
-                    //debug alatt csak:
-                    if (Double.IsNaN(avg))
-                        return -1;
+                    
                 }
             }
 
-            //avg /= (originals.Count * (originals.Count - 1) / 2);
             avg /= n;
-            threshold = avg;
 
-            return avg;
+            double dev = Measures.StandardDeviation(costs.ToArray(), false);
+            threshold = avg + 0.3 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni 
+
+            return threshold;
         }
 
         public bool Test(Signature signature)

@@ -12,31 +12,21 @@ namespace SigStat.WpfSample.Helpers
 {
     public class OptimalClassifierHelper
     {
-        public ClassifierType ClassifierType { get; private set; }
-        public List<Signature> Signatures { get; private set; }
-        public List<FeatureDescriptor> InputFeatures { get; private set; }
-        public ThresholdResult ThresholdResult { get; private set; }
+        public List<SimilarityResult> SimilarityResults { get; }
 
-        private List<Signature> originals;
         private double threshold;
 
-        public OptimalClassifierHelper(ClassifierType classifierType, List<Signature> signatures, List<FeatureDescriptor> inputFeatures)
+        public OptimalClassifierHelper(List<SimilarityResult> distsFromReferences)
         {
-            ClassifierType = classifierType;
-            Signatures = signatures;
-            InputFeatures = inputFeatures;
-
-            originals = signatures.FindAll(s => s.Origin == Origin.Genuine);
+            SimilarityResults = distsFromReferences;
         }
 
-
-        //TODO: átgondolni, átbeszélni
+        //TODO: elkezd egy pont körül "ugrálni" debug
         public double CalculateThresholdForOptimalClassification()
         {
-            threshold = GetAvgDist(Signatures);
+            SetAvgDistAsInitThreshold();
             double FAR, FRR;
-            FAR = CalculateFAR();
-            FRR = CalculateFRR();
+            CalculateRates(out FAR, out FRR);
             double roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
             double roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
             double multipFAR = roundedFAR * 100;
@@ -44,7 +34,7 @@ namespace SigStat.WpfSample.Helpers
             double diff = Math.Abs(multipFAR - multipFRR);
             int round = 0;
 
-            while (diff > 0 && round < 10000)
+            while (diff > 0 && round < 1000)
             {
                 if (FAR > FRR)
                 {
@@ -54,8 +44,7 @@ namespace SigStat.WpfSample.Helpers
                 {
                     threshold += Math.Abs(FAR - FRR) * threshold * 0.1;
                 }
-                FAR = CalculateFAR();
-                FRR = CalculateFRR();
+                CalculateRates(out FAR, out FRR);
 
                 roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
                 roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
@@ -65,88 +54,47 @@ namespace SigStat.WpfSample.Helpers
                 round++;
 
             }
-            ThresholdResult = new ThresholdResult(originals[0].Signer.ID, FRR, FAR, (FRR + FAR) / 2, threshold);
             return threshold;
         }
 
-        public double CalculateFAR()
+        private void CalculateRates(out double FAR, out double FRR)
         {
             int numAcceptedForged = 0;
             int numForged = 0;
 
-            foreach (var signature in Signatures)
-            {
-                if (signature.Origin == Origin.Forged) { numForged++; }
-                if (signature.Origin == Origin.Forged && Test(signature)) { numAcceptedForged++; }
-            }
-
-            return (double)numAcceptedForged / numForged;
-        }
-
-        public double CalculateFRR()
-        {
             int numRejectedOriginal = 0;
             int numOriginal = 0;
 
-            foreach (var signature in Signatures)
+            foreach (var simRes in SimilarityResults)
             {
-                if (signature.Origin == Origin.Genuine) { numOriginal++; }
-                if (signature.Origin == Origin.Genuine && !Test(signature)) { numRejectedOriginal++; }
+                if (simRes.TestSignature.Origin == Origin.Forged) { numForged++; }
+                if (simRes.TestSignature.Origin == Origin.Forged && Test(simRes)) { numAcceptedForged++; }
+
+                if (simRes.TestSignature.Origin == Origin.Genuine) { numOriginal++; }
+                if (simRes.TestSignature.Origin == Origin.Genuine && !Test(simRes)) { numRejectedOriginal++; }
             }
 
-            return (double)numRejectedOriginal / numOriginal;
+            FAR = (double)numAcceptedForged / numForged;
+            FRR = (double)numRejectedOriginal / numOriginal;
         }
 
-
-        private bool Test(Signature testSignature)
+        private bool Test(SimilarityResult simRes)
         {
-            return GetAvgDistFrom(testSignature, originals) <= threshold;
+            return simRes.AvgDistFromReferences <= threshold;
         }
 
-        private double GetAvgDist(List<Signature> signatures)
+        private void SetAvgDistAsInitThreshold()
         {
             double avg = 0;
-            int n = 0;
-
-            for (int i = 0; i < signatures.Count - 1; i++)
+            foreach (var simRes in SimilarityResults)
             {
-                for (int j = i + 1; j < signatures.Count; j++)
-                {
-                    if (ClassifierType == ClassifierType.DTW)
-                        avg += new Dtw(signatures[i], signatures[j], InputFeatures).CalculateDtwScore();
-                    else if (ClassifierType == ClassifierType.FusedScore)
-                        avg += FusedScore.CalculateFusionOfDtwAndWPathScore(signatures[i], new Signature[] { signatures[j] }, InputFeatures);
-                    else
-                        throw new NotImplementedException("Not implemented for this classifier type");
-                    n++;
-                }
+                avg += simRes.AvgDistFromReferences;
             }
 
-            avg = avg / n;
-
-            return avg;
+            avg /= SimilarityResults.Count;
+            threshold = avg;
         }
 
-        private double GetAvgDistFrom(Signature test, List<Signature> references)
-        {
-            if (ClassifierType == ClassifierType.DTW)
-            {
-                double avg = 0;
-                bool isTestInRefs = false;
-                foreach (var reference in references)
-                {
-                    if (reference.ID != test.ID)
-                        avg += new Dtw(test, reference, InputFeatures).CalculateDtwScore();
-                    else
-                        isTestInRefs = true;
-                }
-                return avg /= (isTestInRefs ? references.Count - 1 : references.Count);
-            }
-            else if (ClassifierType == ClassifierType.FusedScore)
-                return FusedScore.CalculateFusionOfDtwAndWPathScore(test, references.ToArray(), InputFeatures);
-            else
-                throw new NotImplementedException("Not implemented for this classifier type");
-
-        }
+       
     }
 }

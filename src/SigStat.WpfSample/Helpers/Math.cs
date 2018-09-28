@@ -40,7 +40,7 @@ namespace SigStat.WpfSample.Helpers
             return originalValues;
         }
 
-        //TODO: 'a' paraméter átgondolása
+        //TODO: 'a' paraméter átgondolása, numerikusan stabil megoldásra átírni
         public static double Sigmoid(double x, double a = 1)
         {
             return 1 / (1 + Math.Exp(-x * a));

@@ -14,8 +14,8 @@ namespace SigStat.WpfSample.Common
         public static readonly List<FeatureDescriptor> DefaultInputFeatures = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
         public static readonly List<FeatureDescriptor>[] TestInputFeatures =
             new List<FeatureDescriptor>[] {
-                new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X }),
-                //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Y }),
+                //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X }),
+                new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Y }),
                 ////new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Azimuth }),
                 ////new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Altitude }),
                 ////new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Pressure }),

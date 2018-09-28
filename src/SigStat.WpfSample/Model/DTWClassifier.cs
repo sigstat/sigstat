@@ -1,4 +1,5 @@
-﻿using SigStat.Common;
+﻿using Accord.Statistics;
+using SigStat.Common;
 using SigStat.WpfSample.Common;
 using System;
 using System.Collections;
@@ -24,20 +25,28 @@ namespace SigStat.WpfSample.Model
         public double Train(List<Signature> signatures)
         {
             originals = signatures;
+            List<double> costs = new List<double>(originals.Count);
             double avg = 0;
+            int n = 0;
 
             for (int i = 0; i < originals.Count - 1; i++)
             {
                 for (int j = i + 1; j < originals.Count; j++)
                 {
-                    avg += new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
+                    double cost = new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
+                    avg += cost;
+                    costs.Add(cost);
+
+                    n++;
+                    //avg += new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
                 }
             }
 
-            avg /= (originals.Count * (originals.Count - 1) / 2);
-            threshold = avg;
+            avg /= n;
+            double dev = Measures.StandardDeviation(costs.ToArray(), false);
+            threshold = avg + 0.8 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni
 
-            return avg;
+            return threshold;
         }
 
         public bool Test(Signature signature)

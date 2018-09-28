@@ -40,6 +40,28 @@ namespace SigStat.WpfSample.Common
             return Signature;
         }
 
+        public List<double> GetSVCDerivedFeature(FeatureDescriptor fd)
+        {
+            if (!DerivedSvc2004Features.All.Contains(fd))
+                throw new ArgumentException("This is not a DerivedSVC2004Feature.");
+
+            List<double> feature = null;
+
+            if (fd.Key == DerivedSvc2004Features.FODX.Key) feature = GetFirstOrderDifference(Features.X);
+            if (fd.Key == DerivedSvc2004Features.FODY.Key) feature = GetFirstOrderDifference(Features.Y);
+            if (fd.Key == DerivedSvc2004Features.FODAltitude.Key) feature = GetFirstOrderDifference(Features.Altitude);
+            if (fd.Key == DerivedSvc2004Features.FODAzimuth.Key) feature = GetFirstOrderDifference(Features.Azimuth);
+            if (fd.Key == DerivedSvc2004Features.FODPressure.Key) feature = GetFirstOrderDifference(Features.Pressure);
+            if (fd.Key == DerivedSvc2004Features.SineMeasure.Key) feature = GetSineMeasure();
+            if (fd.Key == DerivedSvc2004Features.CosineMeasure.Key) feature = GetCosineMeasure();
+            if (fd.Key == DerivedSvc2004Features.LengthBasedFO.Key) feature = GetLengthBasedFeatureFirstOrder();
+            if (fd.Key == DerivedSvc2004Features.LengthBasedSO.Key) feature = GetLengthBasedFeatureSecondOrder();
+            if (fd.Key == DerivedSvc2004Features.Velocity.Key) feature = GetVelocities();
+            if (fd.Key == DerivedSvc2004Features.Acceleration.Key) feature = GetAccelerations();
+
+            return feature;
+        }
+
         //TODO: technikailag FODra, SODrea is meg lehet hívni ezeket a függvényeket
         public List<double> GetFirstOrderDifference(FeatureDescriptor<List<double>> baseFeatureDescriptor)
         {
