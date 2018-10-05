@@ -54,7 +54,7 @@ namespace SigStat.WpfSample.Model
 
             threshold = new OptimalClassifierHelper(SimilarityResults).CalculateThresholdForOptimalClassification();
 
-            Logger.Info(this, signatures[0].Signer.ID + "_dtw", debugInfo);
+            Logger.Info(this, signatures[0].Signer.ID + "_optidtw", debugInfo);
             return threshold;
         }
 

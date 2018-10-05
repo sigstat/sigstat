@@ -31,8 +31,13 @@ namespace SigStat.WpfSample
         public int[] SignerIndexes { get; set; } = Common.Configuration.GetIndexes(Common.Configuration.SignerCount);
         public int[] SignatureIndexes { get; set; } = Common.Configuration.GetIndexes(Common.Configuration.SignatureCount);
         private List<Signer> Signers { get; set; } = null;
+
         public bool IsOptiClass { get; set; } = false;
-        public bool IsFusedScoreClass { get; set; } = true;
+        public bool IsNormalizationSelected { get; set; } = false;
+        public bool IsCentroidSelected { get; set; } = false;
+        public bool IsCenteringSelected { get; set; } = false;
+        public bool IsTimeFilterSelected { get; set; } = true;
+        public ClassifierType SelectedClassifier { get; set; } = ClassifierType.FusedScore;
 
         public List<FeatureDescriptor> FeatureFilter { get; set; } = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
         //public String[] Databases { get; set; } = { "SVC2004_Task2" }; //"SVC2004_Task1",
@@ -98,38 +103,45 @@ namespace SigStat.WpfSample
                     );
             }
 
+            string transformPipelineElementsNames = "";
+
             foreach (var featureFilter in Common.Configuration.TestInputFeatures)
             {
-                IClassifier classifier = new FusedScoreClassifier(featureFilter);
-                if (isOptiClass)
+                IClassifier classifier = new TimeFilterClassifier();
+                switch (SelectedClassifier)
                 {
-                    if (IsFusedScoreClass) classifier = new OptimalFusedScoreClassifier(featureFilter);
-                    else classifier = new OptimalDTWClassifier(featureFilter);
+                    case ClassifierType.DTW:
+                        if (IsOptiClass) { classifier = new OptimalDTWClassifier(featureFilter); }
+                        else { classifier = new DTWClassifier(featureFilter); }
+                        break;
+                    case ClassifierType.FusedScore:
+                        if (IsOptiClass) { classifier = new OptimalFusedScoreClassifier(featureFilter); }
+                        else { classifier = new FusedScoreClassifier(featureFilter); }
+                        break;
+                    default:
+                        throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
                 }
-                else
-                {
-                    if (IsFusedScoreClass) classifier = new FusedScoreClassifier(featureFilter);
-                    else classifier = new DTWClassifier(featureFilter);
-                }
+
+                var transformPipeline = new SequentialTransformPipeline() { new DerivedSvc2004FeatureExtractor() };
+                if (IsNormalizationSelected) { transformPipeline.Add(new Svc2004Normalize()); transformPipelineElementsNames += "_Norm"; }
+                if (IsCentroidSelected) { transformPipeline.Add(new CentroidTranslate()); transformPipelineElementsNames += "_Centroid"; }
+                if (IsCenteringSelected) { transformPipeline.Add(new CenteringTransform()); transformPipelineElementsNames += "_Centering";}
 
                 benchmark = new VerifierBenchmark()
                 {
-                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s=>s.ID.CompareTo("05")<0),
+                    //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID.CompareTo("05") < 0),
+                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
                     Sampler = sampler,
                     Verifier = new MyVerifier(classifier)
                     {
-                        TransformPipeline = new SequentialTransformPipeline()
-                            {
-                                //new Svc2004Normalize(),
-                                new DerivedSvc2004FeatureExtractor()
-                            }                        
+                        TransformPipeline = transformPipeline
                     },
                     Logger = logger,
                 };
                 benchmark.ProgressChanged += Bm_ProgressChanged;
                 benchmarkResults.Add(featureFilter, benchmark.Execute());
 
-                string dumpFileName = DateTime.Today.ToShortDateString() + "_"+ classifier.GetType().Name+ "_Dump.xlsx";
+                string dumpFileName = DateTime.Now.ToString().Replace(':', '.') + "_" + classifier.GetType().Name + transformPipelineElementsNames+ "_Dump.xlsx";
                 DumpLog(dumpFileName, logger.ObjectEntries);
                 Process.Start(dumpFileName);
             }
@@ -139,10 +151,7 @@ namespace SigStat.WpfSample
             string classifierName = ((MyVerifier)benchmark.Verifier).Classifier.GetType().Name;
 
 
-
-
-
-            string fileName = DateTime.Today.ToShortDateString() + "_" + classifierName + "_NoSigmoid.xlsx";
+            string fileName = DateTime.Now.ToString().Replace(':','.') + "_" + classifierName + transformPipelineElementsNames + ".xlsx";
 
             using (var package = new ExcelPackage(new FileInfo(fileName)))
             {

@@ -24,22 +24,34 @@ namespace SigStat.WpfSample.Model
 
         public double Train(List<Signature> signatures)
         {
+            if (signatures == null)
+                throw new ArgumentNullException(nameof(signatures));
+            if (signatures.Count == 0)
+                throw new ArgumentException("'sigantures' can not be empty", nameof(signatures));
+
             originals = signatures;
             List<double> costs = new List<double>(originals.Count);
             double avg = 0;
             double n = 0;
+
+            object[,] debugInfo = new object[originals.Count + 1, originals.Count + 1];
+
+            for (int i = 0; i < originals.Count; i++)
+            {
+                debugInfo[i + 1, 0] = signatures[i].ID;
+                debugInfo[0, i + 1] = signatures[i].ID;
+            }
+
             for (int i = 0; i < originals.Count - 1; i++)
             {
                 for (int j = i + 1; j < originals.Count; j++)
                 {
                     double cost = FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
+                    debugInfo[i+1, j+1] = cost;
                     avg += cost;
                     costs.Add(cost);
 
-                    //avg += FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
-
                     n++;
-                    
                 }
             }
 
@@ -47,6 +59,8 @@ namespace SigStat.WpfSample.Model
 
             double dev = Measures.StandardDeviation(costs.ToArray(), false);
             threshold = avg + 0.3 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni 
+
+            Logger.Info(this, signatures[0].Signer.ID + "-fusclassifier-distances", debugInfo);
 
             return threshold;
         }

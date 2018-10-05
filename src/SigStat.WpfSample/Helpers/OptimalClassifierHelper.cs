@@ -21,7 +21,6 @@ namespace SigStat.WpfSample.Helpers
             SimilarityResults = distsFromReferences.OrderBy(sr=>sr.AvgDistFromReferences).ToList();
         }
 
-        //TODO: elkezd egy pont körül "ugrálni" debug
         public double CalculateThresholdForOptimalClassification()
         {
             List<Tuple<double, double>> errorRates = new List<Tuple<double, double>>();

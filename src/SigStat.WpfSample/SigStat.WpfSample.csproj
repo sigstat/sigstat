@@ -231,7 +231,10 @@
     <Compile Include="Common\Dtw.cs" />
     <Compile Include="Common\FeatureExtractor.cs" />
     <Compile Include="Common\FusedScore.cs" />
+    <Compile Include="Helpers\BoolInverterConverter.cs" />
+    <Compile Include="Helpers\BoolMultiAndConverter.cs" />
     <Compile Include="Helpers\ClassifierHelper.cs" />
+    <Compile Include="Helpers\RadioButtonClassifierCheckedConverter.cs" />
     <Compile Include="Helpers\SimilarityResult.cs" />
     <Compile Include="Helpers\OptimalClassifierHelper.cs" />
     <Compile Include="Helpers\ClassifierType.cs" />
@@ -251,14 +254,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CenteringTransform.cs" />
     <Compile Include="Model\DTWClassifier.cs" />
-    <Compile Include="Model\ExtractFusedFeatures.cs" />
+    <Compile Include="Model\DerivedSvc2004FeatureExtractor.cs" />
     <Compile Include="Model\FusedScoreClassifier.cs" />
     <Compile Include="Model\IClassifier.cs" />
     <Compile Include="Model\OptimalDTWClassifier.cs" />
     <Compile Include="Model\OptimalFusedScoreClassifier.cs" />
     <Compile Include="Model\MyVerifier.cs" />
     <Compile Include="Model\Svc2004Normalize.cs" />
+    <Compile Include="Model\TimeFilterClassifier.cs" />
     <Compile Include="OpenStatisticDialog.xaml.cs">
       <DependentUpon>OpenStatisticDialog.xaml</DependentUpon>
     </Compile>

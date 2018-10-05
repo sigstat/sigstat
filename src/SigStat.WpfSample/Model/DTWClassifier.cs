@@ -25,8 +25,11 @@ namespace SigStat.WpfSample.Model
 
         public double Train(List<Signature> signatures)
         {
+            if (signatures == null)
+                throw new ArgumentNullException(nameof(signatures));
             if (signatures.Count == 0)
-                throw new ArgumentException("'signatures' contains no elements", nameof(signatures));
+                throw new ArgumentException("'sigantures' can not be empty", nameof(signatures));
+
             originals = signatures;
             List<double> costs = new List<double>(originals.Count);
             double avg = 0;
@@ -46,12 +49,10 @@ namespace SigStat.WpfSample.Model
                 {
                     double cost = new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
                     debugInfo[i+1, j+1] = cost;
-                    //TODO: átlagszámítást átnézni
                     avg += cost;
                     costs.Add(cost);
 
                     n++;
-                    //avg += new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
                 }
             }
 
@@ -59,7 +60,7 @@ namespace SigStat.WpfSample.Model
             double dev = Measures.StandardDeviation(costs.ToArray(), false);
             threshold = avg + 0.8 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni
 
-            Logger.Info(this, signatures[0].Signer.ID + "-classifier-distances", debugInfo);
+            Logger.Info(this, signatures[0].Signer.ID + "-dtwclassifier-distances", debugInfo);
 
             return threshold;
         }
