@@ -19,7 +19,6 @@ using SigStat.Common.Helpers;
 using System.Diagnostics;
 using SigStat.Common.Pipeline;
 using SigStat.Common.Transforms;
-
 namespace SigStat.WpfSample
 {
     /// <summary>
@@ -129,8 +128,8 @@ namespace SigStat.WpfSample
 
                 benchmark = new VerifierBenchmark()
                 {
-                    //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID.CompareTo("05") < 0),
-                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
+                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID == "24"),
+                    //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
                     Sampler = sampler,
                     Verifier = new MyVerifier(classifier)
                     {
@@ -187,8 +186,11 @@ namespace SigStat.WpfSample
                 foreach (var item in objectEntries)
                 {
                     ExcelWorksheet ws = ExcelHelper.GetWorkSheetFromPackage(package, item.Key);
-                    ExcelHelper.WriteTable(ws, 1, 1, (object[,])item.Value);
+                    var value = item.Value;
+                    if (value is List<object[]>)
+                        value = ((List<object[]>)value).ToMatrix();
 
+                    ExcelHelper.WriteTable(ws, 1, 1, (object[,])value);
                 }
                 package.Save();
             }

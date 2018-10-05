@@ -34,25 +34,30 @@ namespace SigStat.WpfSample.Model
             double avg = 0;
             double n = 0;
 
-            object[,] debugInfo = new object[originals.Count + 1, originals.Count + 1];
+            List<object[]> debugInfo = new List<object[]>();
+            //new object[originals.Count + 1, originals.Count + 1];
 
+            var debugRow = new object[signatures.Count + 1];
             for (int i = 0; i < originals.Count; i++)
             {
-                debugInfo[i + 1, 0] = signatures[i].ID;
-                debugInfo[0, i + 1] = signatures[i].ID;
+                debugRow[i + 1] = signatures[i].ID;
             }
+            debugInfo.Add(debugRow);
 
             for (int i = 0; i < originals.Count - 1; i++)
             {
+                debugRow = new object[signatures.Count + 1];
+                debugRow[0] = signatures[i].ID;
                 for (int j = i + 1; j < originals.Count; j++)
                 {
                     double cost = FusedScore.CalculateFusionOfDtwAndWPathScore(originals[i], new Signature[] { originals[j] }, InputFeatures);
-                    debugInfo[i+1, j+1] = cost;
+                    debugRow[j + 1] = cost;
                     avg += cost;
                     costs.Add(cost);
 
                     n++;
                 }
+                debugInfo.Add(debugRow);
             }
 
             avg /= n;
@@ -67,7 +72,26 @@ namespace SigStat.WpfSample.Model
 
         public bool Test(Signature signature)
         {
-            return FusedScore.CalculateFusionOfDtwAndWPathScore(signature, originals.ToArray(), InputFeatures) <= threshold;
+            var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-fusclassifier-distances"];
+            var debugRow = new object[originals.Count + 1];
+            debugRow[0] = signature.ID;
+
+            double avg = 0;
+
+            int count = originals.Count;
+            for (int j = 0; j < originals.Count; j++)
+            {
+                if (signature == originals[j])
+                    count--;
+                else
+                {
+                    var dist = FusedScore.CalculateFusionOfDtwAndWPathScore(signature, new Signature[] { originals[j] }, InputFeatures);
+                    avg += dist;
+                    debugRow[j + 1] = dist;
+                }
+            }
+            debugInfo.Add(debugRow);
+            return avg / count <= threshold;
         }
     }
 }
