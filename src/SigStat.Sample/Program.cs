@@ -265,7 +265,7 @@ namespace SigStat.Sample
             verifier.ProgressChanged += ProgressPrimary;
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            var signers = new List<Signer>(loader.EnumerateSigners(p=>p=="01"));//Load the first signer only
+            var signers = new List<Signer>(loader.EnumerateSigners(p=>p.ID=="01"));//Load the first signer only
              
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);
             verifier.Train(references);
@@ -312,7 +312,7 @@ namespace SigStat.Sample
                 LogConsole);
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            Signature s1 = loader.EnumerateSigners(p=>(p=="10")).ToList()[0].Signatures[10];//signer 10, signature 10
+            Signature s1 = loader.EnumerateSigners(p=>(p.ID=="10")).ToList()[0].Signatures[10];//signer 10, signature 10
 
             var tfs = new SequentialTransformPipeline
             {
