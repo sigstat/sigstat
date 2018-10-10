@@ -29,19 +29,24 @@ namespace SigStat.WpfSample.Model
             }
 
             double maxTime = 0;
+            double minTime = Double.MaxValue;
             foreach (var sig in signatures)
             {
                 var sigTime = sig.GetFeature(Features.T).Max() - sig.GetFeature(Features.T).Min();
 
-                debugInfo[signatures.IndexOf(sig)+1, 1] = sigTime;
+                debugInfo[signatures.IndexOf(sig) + 1, 1] = sigTime;
 
                 if (sigTime > maxTime)
                     maxTime = sigTime;
+                if (sigTime < minTime)
+                    minTime = sigTime;
             }
 
             Logger.Info(this, signatures[0].Signer.ID + "-maxTime", debugInfo);
 
-            threshold = maxTime;
+
+            threshold = maxTime + 2.5 * (maxTime - minTime);
+
             return maxTime;
         }
 
@@ -50,6 +55,6 @@ namespace SigStat.WpfSample.Model
             return (signature.GetFeature(Features.T).Max() - signature.GetFeature(Features.T).Min()) <= threshold;
         }
 
-       
+
     }
 }

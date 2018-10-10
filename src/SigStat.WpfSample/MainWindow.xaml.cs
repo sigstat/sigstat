@@ -108,20 +108,21 @@ namespace SigStat.WpfSample
             foreach (var featureFilter in Common.Configuration.TestInputFeatures)
             {
                 IClassifier classifier = new TimeFilterClassifier();
-                switch (SelectedClassifier)
-                {
-                    case ClassifierType.DTW:
-                        if (IsOptiClass) { classifier = new OptimalDTWClassifier(featureFilter); }
-                        else { classifier = new DTWClassifier(featureFilter); }
-                        break;
-                    case ClassifierType.FusedScore:
-                        if (IsOptiClass) { classifier = new OptimalFusedScoreClassifier(featureFilter); }
-                        else { classifier = new FusedScoreClassifier(featureFilter); }
-                        break;
-                    default:
-                        throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
-                }
+                //switch (SelectedClassifier)
+                //{
+                //    case ClassifierType.DTW:
+                //        if (IsOptiClass) { classifier = new OptimalDTWClassifier(featureFilter); }
+                //        else { classifier = new DTWClassifier(featureFilter); }
+                //        break;
+                //    case ClassifierType.FusedScore:
+                //        if (IsOptiClass) { classifier = new OptimalFusedScoreClassifier(featureFilter); }
+                //        else { classifier = new FusedScoreClassifier(featureFilter); }
+                //        break;
+                //    default:
+                //        throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
+                //}
 
+                transformPipelineElementsNames = "";
                 var transformPipeline = new SequentialTransformPipeline() { new DerivedSvc2004FeatureExtractor() };
                 if (IsNormalizationSelected) { transformPipeline.Add(new Svc2004Normalize()); transformPipelineElementsNames += "_Norm"; }
                 if (IsCentroidSelected) { transformPipeline.Add(new CentroidTranslate()); transformPipelineElementsNames += "_Centroid"; }
