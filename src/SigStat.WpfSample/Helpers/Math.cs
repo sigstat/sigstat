@@ -7,8 +7,23 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Helpers
 {
-    public class MyMath
+    public static class MyMath
     {
+        public static T[,]  ToMatrix<T>(this List<T[]> listOfArrays)
+        {
+            T[,] result = new T[listOfArrays.Count, listOfArrays[0].Length];
+            for (int i = 0; i < listOfArrays.Count; i++)
+            {
+                for (int j = 0; j < listOfArrays[0].Length; j++)
+                {
+                    result[i, j] = listOfArrays[i][j];
+                }
+            }
+            return result;
+                
+        }
+
+
         public static double Min(double d1, double d2, double d3)
         {
             if (d1 < d2)
