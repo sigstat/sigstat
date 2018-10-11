@@ -16,7 +16,7 @@ namespace SigStat.WpfSample.Model
     public class DTWClassifier : BaseClassifier
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
-        public DtwType DtwType { get; set; }
+        public DtwType DtwType { get; set; } = DtwType.MyDtw;
 
         private double threshold;
         private List<Signature> originals;

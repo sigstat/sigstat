@@ -1,4 +1,5 @@
-﻿using SigStat.Common;
+﻿using NDtw;
+using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.WpfSample.Common;
 using SigStat.WpfSample.Helpers;
@@ -10,10 +11,12 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Model
 {
-    public class OptimalDTWClassifier : BaseClassifier
+    public class OptimalDTWClassifier : IClassifier
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
+        public DtwType DtwType { get; set; } = DtwType.MyDtw;
         public List<SimilarityResult> SimilarityResults { get; private set; }
+        
 
         private List<Signature> referenceSignatures;
         private List<Signature> trainSignatures;
@@ -22,12 +25,19 @@ namespace SigStat.WpfSample.Model
         object[,] debugInfo;
 
 
+        public Logger Logger { get; set; }
+
         public OptimalDTWClassifier(List<FeatureDescriptor> inputFeatures)
         {
             InputFeatures = inputFeatures;
         }
 
-        public override double Train(List<Signature> signatures)
+        public OptimalDTWClassifier(List<FeatureDescriptor> inputFeatures, DtwType dtwType) : this(inputFeatures)
+        {
+            DtwType = dtwType;
+        }
+
+        public double Train(List<Signature> signatures)
         {
             if (signatures == null)
                 throw new ArgumentNullException(nameof(signatures));
@@ -56,7 +66,7 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public override bool Test(Signature signature)
+        public bool Test(Signature signature)
         {
             return GetAvgDistFromReferences(signature) <= threshold;
         }
@@ -80,7 +90,8 @@ namespace SigStat.WpfSample.Model
                     count--;
                 else
                 {
-                    var dist = new Dtw(sig, refSig, InputFeatures).CalculateDtwScore();
+                    //var dist = new Dtw(sig, refSig, InputFeatures).CalculateDtwScore();
+                    var dist = GetCost(sig, refSig, DtwType);
                     avgDist += dist;
                     debugInfo[trainSignatures.IndexOf(sig) + 1, referenceSignatures.IndexOf(refSig) + 1] = dist;
                 }
@@ -88,6 +99,24 @@ namespace SigStat.WpfSample.Model
             avgDist /= count;
 
             return avgDist;
+        }
+
+        private double GetCost(Signature sig1, Signature sig2, DtwType dtwType)
+        {
+            switch (dtwType)
+            {
+                case DtwType.NDtw:
+                    //hatalmas hack, csak egy-egy featurere működik, kombinációra nem
+                    return new NDtw.Dtw(sig1.GetFeature<List<double>>(InputFeatures[0]).ToArray(), sig2.GetFeature<List<double>>(InputFeatures[0]).ToArray(),
+                        DistanceMeasure.Manhattan).GetCost();
+                case DtwType.FrameworkDtw:
+                    return new SigStat.Common.Algorithms.Dtw(Accord.Math.Distance.Manhattan)
+                        .Compute(sig1.GetAggregateFeature(InputFeatures).ToArray(), sig2.GetAggregateFeature(InputFeatures).ToArray());
+                case DtwType.MyDtw:
+                    return new Common.Dtw(sig1, sig2, InputFeatures).CalculateDtwScore();
+                default:
+                    throw new ArgumentException(nameof(dtwType) + typeof(DtwType) + "not exists");
+            }
         }
     }
 }
