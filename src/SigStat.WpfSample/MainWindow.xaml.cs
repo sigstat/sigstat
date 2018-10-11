@@ -254,7 +254,7 @@ namespace SigStat.WpfSample
         {
             StatisticsMessagesTextBlock.Text = "This can take longer! Creation of statistics is in progress...";
             //StatisticsMessagesTextBlock.Text = "Ez akár hosszabb ideig is eltarthat! Statisztika elkészítése folyamatban...";
-            ThreadPool.QueueUserWorkItem(o => TestClassifier(IsOptiClass));
+            ThreadPool.QueueUserWorkItem(o => TestClassifier());
         }
 
         //TODO: Progressbart rendes működésre bírni
