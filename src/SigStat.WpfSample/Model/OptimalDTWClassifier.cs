@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Model
 {
-    public class OptimalDTWClassifier : IClassifier
+    public class OptimalDTWClassifier : BaseClassifier
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
         public DtwType DtwType { get; set; } = DtwType.MyDtw;
         public List<SimilarityResult> SimilarityResults { get; private set; }
-        
+
 
         private List<Signature> referenceSignatures;
         private List<Signature> trainSignatures;
@@ -24,8 +24,7 @@ namespace SigStat.WpfSample.Model
 
         object[,] debugInfo;
 
-
-        public Logger Logger { get; set; }
+        public override string Name => base.Name + "_" + DtwType;
 
         public OptimalDTWClassifier(List<FeatureDescriptor> inputFeatures)
         {
@@ -37,7 +36,7 @@ namespace SigStat.WpfSample.Model
             DtwType = dtwType;
         }
 
-        public double Train(List<Signature> signatures)
+        public override double Train(List<Signature> signatures)
         {
             if (signatures == null)
                 throw new ArgumentNullException(nameof(signatures));
@@ -66,7 +65,7 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public bool Test(Signature signature)
+        public override bool Test(Signature signature)
         {
             return GetAvgDistFromReferences(signature) <= threshold;
         }

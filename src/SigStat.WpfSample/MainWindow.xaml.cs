@@ -49,6 +49,17 @@ namespace SigStat.WpfSample
 
         VerifierBenchmark benchmark;
 
+        public DtwType DtwType
+        {
+            get
+            {
+                if (IsMyDtwSelected) return DtwType.MyDtw;
+                else if (IsNDtwSelected) return DtwType.NDtw;
+                else if (IsFrameworkDtwSelected) return DtwType.FrameworkDtw;
+                else throw new InvalidDataException("None of DtwTypes is selected");
+            }
+        }
+
         private double progressValue = 0;
         public double ProgressValue
         {
@@ -86,7 +97,7 @@ namespace SigStat.WpfSample
             }
         }
 
-        private void TestClassifier(bool isOptiClass = false)
+        private void TestClassifier()
         {
 
             ProgressValue = 0;
@@ -98,65 +109,11 @@ namespace SigStat.WpfSample
             var logger = new Logger(LogLevel.Debug, null, Log);
             var benchmarkResults = new Dictionary<List<FeatureDescriptor>, BenchmarkResults>(Common.Configuration.TestInputFeatures.Length);
 
-            var sampler = Sampler.BasicSampler;
-            if (isOptiClass)
-            {
-                sampler = new Sampler(
-                    (sl) => sl,
-                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
-                    (sl) => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList()
-                    );
-            }
-
+           
             string transformPipelineElementsNames = "";
-            string classifierName = "";
-
             foreach (var featureFilter in Common.Configuration.TestInputFeatures)
             {
-                IClassifier classifier = new TimeFilterClassifier(); classifierName = classifier.GetType().Name;
-                if (!IsTimeFilterSelected)
-                {
-                    switch (SelectedClassifier)
-                    {
-                        case ClassifierType.DTW:
-                            if (IsOptiClass) {
-                                if (IsMyDtwSelected) { classifier = new OptimalDTWClassifier(featureFilter, DtwType.MyDtw); classifierName = classifier.GetType().Name + "_" + DtwType.MyDtw.ToString(); }
-                                else if (IsNDtwSelected) { classifier = new OptimalDTWClassifier(featureFilter, DtwType.NDtw); classifierName = classifier.GetType().Name + "_" + DtwType.NDtw.ToString(); }
-                                else if (IsFrameworkDtwSelected) { classifier = new OptimalDTWClassifier(featureFilter, DtwType.FrameworkDtw); classifierName = classifier.GetType().Name + "_" + DtwType.FrameworkDtw.ToString(); }
-                                else throw new Exception("None of DtwTypes is selected");
-                            }
-                            else {
-                                if (IsMyDtwSelected) { classifier = new DTWClassifier(featureFilter, DtwType.MyDtw); classifierName = classifier.GetType().Name + "_" + DtwType.MyDtw.ToString(); }
-                                else if (IsNDtwSelected) { classifier = new DTWClassifier(featureFilter, DtwType.NDtw); classifierName = classifier.GetType().Name + "_" + DtwType.NDtw.ToString(); }
-                                else if (IsFrameworkDtwSelected) {classifier = new DTWClassifier(featureFilter, DtwType.FrameworkDtw); classifierName = classifier.GetType().Name + "_" + DtwType.FrameworkDtw.ToString(); }
-                                else throw new Exception("None of DtwTypes is selected");
-                            }
-                            break;
-                        case ClassifierType.FusedScore:
-                            if (IsOptiClass) { classifier = new OptimalFusedScoreClassifier(featureFilter); classifierName = classifier.GetType().Name; }
-                            else { classifier = new FusedScoreClassifier(featureFilter); classifierName = classifier.GetType().Name; }
-                            break;
-                        default:
-                            throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
-                    }
-                }
-                else if(IsCompositeClass)
-                {
-                    switch (SelectedClassifier)
-                    {
-                        case ClassifierType.DTW:
-                            if (IsMyDtwSelected) { classifier = new CompositeTimeFilterClassifier(new DTWClassifier(featureFilter, DtwType.MyDtw)); classifierName = "Composite" + classifier.GetType().Name + "_" + DtwType.MyDtw.ToString(); }
-                            else if (IsNDtwSelected) {classifier = new CompositeTimeFilterClassifier(new DTWClassifier(featureFilter, DtwType.NDtw)); classifierName = "Composite" + classifier.GetType().Name + "_" + DtwType.NDtw.ToString(); }
-                            else if (IsFrameworkDtwSelected) {classifier = new CompositeTimeFilterClassifier(new DTWClassifier(featureFilter, DtwType.FrameworkDtw)); classifierName = "Composite" + classifier.GetType().Name + "_" + DtwType.FrameworkDtw.ToString(); }
-                            else throw new Exception("None of DtwTypes is selected");
-                            break;
-                        case ClassifierType.FusedScore:
-                            classifier = new CompositeTimeFilterClassifier(new FusedScoreClassifier(featureFilter)); classifierName = "Composite" + classifier.GetType().Name;
-                            break;
-                        default:
-                            throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
-                    }
-                }
+                IClassifier classifier = GetClassifier(featureFilter);
                 
                 transformPipelineElementsNames = "";
                 var transformPipeline = new SequentialTransformPipeline() { new DerivedSvc2004FeatureExtractor() };
@@ -168,7 +125,7 @@ namespace SigStat.WpfSample
                 {
                     Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID.CompareTo("05") < 0),
                     //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
-                    Sampler = sampler,
+                    Sampler = IsOptiClass ? MySampler.AllReferences : MySampler.Basic,
                     Verifier = new MyVerifier(classifier)
                     {
                         TransformPipeline = transformPipeline
@@ -178,7 +135,7 @@ namespace SigStat.WpfSample
                 benchmark.ProgressChanged += Bm_ProgressChanged;
                 benchmarkResults.Add(featureFilter, benchmark.Execute());
 
-                string dumpFileName = DateTime.Now.ToString().Replace(':', '.') + "_" + classifier.GetType().Name + transformPipelineElementsNames + "_Dump.xlsx";
+                string dumpFileName = DateTime.Now.ToString().Replace(':', '.') + "_" + classifier.Name + transformPipelineElementsNames + "_Dump.xlsx";
                 DumpLog(dumpFileName, logger.ObjectEntries);
                 Process.Start(dumpFileName);
             }
@@ -188,7 +145,7 @@ namespace SigStat.WpfSample
             //string classifierName = ((MyVerifier)benchmark.Verifier).Classifier.GetType().Name;
 
 
-            string fileName = DateTime.Now.ToString().Replace(':', '.') + "_" + classifierName + transformPipelineElementsNames + ".xlsx";
+            string fileName = DateTime.Now.ToString().Replace(':', '.') + "_" + GetClassifier(Common.Configuration.DefaultInputFeatures).Name + transformPipelineElementsNames + ".xlsx";
 
             using (var package = new ExcelPackage(new FileInfo(fileName)))
             {
@@ -214,6 +171,42 @@ namespace SigStat.WpfSample
             }
 
             Process.Start(fileName);
+        }
+
+        private IClassifier GetClassifier(List<FeatureDescriptor> featureFilter)
+        {
+            IClassifier classifier = new TimeFilterClassifier();
+            if (!IsTimeFilterSelected)
+            {
+                switch (SelectedClassifier)
+                {
+                    case ClassifierType.DTW:
+                        if (IsOptiClass)
+                           return new OptimalDTWClassifier(featureFilter, DtwType);
+                        else
+                            return new DTWClassifier(featureFilter, DtwType);
+                    case ClassifierType.FusedScore:
+                        if (IsOptiClass)
+                            return new OptimalFusedScoreClassifier(featureFilter);
+                        else
+                            return new FusedScoreClassifier(featureFilter);
+                    default:
+                        throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
+                }
+            }
+            else if (IsCompositeClass)
+            {
+                switch (SelectedClassifier)
+                {
+                    case ClassifierType.DTW:
+                        return new CompositeTimeFilterClassifier(new DTWClassifier(featureFilter, DtwType));
+                    case ClassifierType.FusedScore:
+                        return new CompositeTimeFilterClassifier(new FusedScoreClassifier(featureFilter));
+                    default:
+                        throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
+                }
+            }
+            return classifier;
         }
 
         private void DumpLog(string fileName, IReadOnlyDictionary<string, object> objectEntries)

@@ -21,6 +21,8 @@ namespace SigStat.WpfSample.Model
         private double threshold;
         private List<Signature> originals;
 
+        public override string Name => base.Name + "_"+DtwType;
+
         public DTWClassifier(List<FeatureDescriptor> inputFeatures)
         {
             InputFeatures = inputFeatures;

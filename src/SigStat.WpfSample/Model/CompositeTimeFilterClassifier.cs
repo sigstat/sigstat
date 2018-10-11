@@ -13,6 +13,19 @@ namespace SigStat.WpfSample.Model
         public IClassifier MainClassifier { get; set; }
         public TimeFilterClassifier TimeFilterClassifier { get; private set; }
 
+        public override string Name
+        {
+            get
+            {
+                if (MainClassifier is DTWClassifier)
+                {
+                    return "CompositeTimeFilterClassifier_" + ((DTWClassifier)MainClassifier).DtwType;
+                }
+                else
+                    return base.Name;
+            }
+        }
+
         public override Logger Logger {
             set
             {
