@@ -301,11 +301,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <CheckBox Grid.Row="0" Grid.Column="0"
-                                Content="Time filter" 
-                                Style="{StaticResource FeatureSelectorStyle}"
-                                IsChecked="{Binding IsTimeFilterSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
+                            
                             <CheckBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Name="NormalizationCheckBox"
                                  Content="Normalization" 
                                  Style="{StaticResource FeatureSelectorStyle}"
@@ -350,9 +346,12 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -361,15 +360,40 @@
                             Content="Optimal classification" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsOptiClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <RadioButton Grid.Row="0" Grid.Column="1" GroupName="ClassifierType" 
+                            <CheckBox Grid.Row="1" Grid.Column="0" Name="TimeFilterCheckbox"
+                                Content="Time filter" 
+                                Style="{StaticResource FeatureSelectorStyle}"
+                                IsChecked="{Binding IsTimeFilterSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <RadioButton Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" GroupName="ClassifierType" Name="DTWRadioButton" 
                                  Content="Classification based on DTW" Style="{StaticResource MaterialDesignRadioButton}"
                                  IsChecked="{Binding SelectedClassifier, Converter={StaticResource RadioButtonClassifierCheckedConverter}, 
                                  ConverterParameter={x:Static helpers:ClassifierType.DTW}}"/>
-                            <RadioButton Grid.Row="1" Grid.Column="1"
+                            <RadioButton Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                             GroupName="ClassifierType" 
                                  Content="Classification based on FusedScore"  Style="{StaticResource MaterialDesignRadioButton}"
                                  IsChecked="{Binding SelectedClassifier, Converter={StaticResource RadioButtonClassifierCheckedConverter}, 
                                  ConverterParameter={x:Static helpers:ClassifierType.FusedScore}}"/>
+                            <CheckBox Grid.Row="2" Grid.Column="0"
+                            Content="NDtw" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsNDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
+                            <CheckBox Grid.Row="2" Grid.Column="1"
+                            Content="FrameworkDtw" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsFrameworkDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
+                            <CheckBox Grid.Row="2" Grid.Column="2"
+                            Content="MyDtw" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsMyDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
+                            <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                            Content="CompositeClassifier" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsCompositeClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding ElementName=TimeFilterCheckbox, Path=IsChecked}"/>
                         </Grid>
                     </GroupBox>
                     <StackPanel Orientation="Horizontal" Height="Auto">

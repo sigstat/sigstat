@@ -17,16 +17,14 @@ namespace SigStat.WpfSample.Model
 
         public double Train(List<Signature> signatures)
         {
+            if (signatures == null)
+                throw new ArgumentNullException(nameof(signatures));
             if (signatures.Count == 0)
                 throw new ArgumentException("'signatures' contains no elements", nameof(signatures));
 
             originals = signatures;
 
-            object[,] debugInfo = new object[originals.Count + 1, 2];
-            for (int i = 0; i < originals.Count; i++)
-            {
-                debugInfo[i + 1, 0] = originals[i].ID;
-            }
+            List<object[]> debugInfo = new List<object[]>();
 
             double maxTime = 0;
             double minTime = Double.MaxValue;
@@ -34,7 +32,7 @@ namespace SigStat.WpfSample.Model
             {
                 var sigTime = sig.GetFeature(Features.T).Max() - sig.GetFeature(Features.T).Min();
 
-                debugInfo[signatures.IndexOf(sig) + 1, 1] = sigTime;
+                debugInfo.Add(new object[] { sig.ID, sigTime });
 
                 if (sigTime > maxTime)
                     maxTime = sigTime;
@@ -52,7 +50,13 @@ namespace SigStat.WpfSample.Model
 
         public bool Test(Signature signature)
         {
-            return (signature.GetFeature(Features.T).Max() - signature.GetFeature(Features.T).Min()) <= threshold;
+            var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-maxTime"];
+
+            var sigTime = signature.GetFeature(Features.T).Max() - signature.GetFeature(Features.T).Min();
+
+            debugInfo.Add(new object[] { signature.ID, sigTime });
+
+            return sigTime <= threshold;
         }
 
 

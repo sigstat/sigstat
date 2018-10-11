@@ -15,7 +15,7 @@ namespace SigStat.WpfSample.Common
         public static readonly List<FeatureDescriptor>[] TestInputFeatures =
             new List<FeatureDescriptor>[] {
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X }),
-                //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Y }),
+                new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Y }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Azimuth }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Altitude }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Pressure }),
@@ -24,7 +24,7 @@ namespace SigStat.WpfSample.Common
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODAzimuth}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODAltitude}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODPressure}),
-                new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.SODX}),
+                //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.SODX}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.SODY}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.SineMeasure}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.CosineMeasure}),

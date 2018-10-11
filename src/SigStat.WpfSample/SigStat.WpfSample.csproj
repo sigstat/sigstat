@@ -61,6 +61,9 @@
       <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NDtw, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NDtw.0.2.3.0\lib\net40\NDtw.dll</HintPath>
+    </Reference>
     <Reference Include="SixLabors.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SixLabors.Core.1.0.0-beta0005\lib\netstandard1.1\SixLabors.Core.dll</HintPath>
     </Reference>
@@ -234,6 +237,7 @@
     <Compile Include="Helpers\BoolInverterConverter.cs" />
     <Compile Include="Helpers\BoolMultiAndConverter.cs" />
     <Compile Include="Helpers\ClassifierHelper.cs" />
+    <Compile Include="Helpers\DtwType.cs" />
     <Compile Include="Helpers\RadioButtonClassifierCheckedConverter.cs" />
     <Compile Include="Helpers\SimilarityResult.cs" />
     <Compile Include="Helpers\OptimalClassifierHelper.cs" />
@@ -264,6 +268,7 @@
     <Compile Include="Model\MyVerifier.cs" />
     <Compile Include="Model\Svc2004Normalize.cs" />
     <Compile Include="Model\TimeFilterClassifier.cs" />
+    <Compile Include="Model\CompositeTimeFilterClassifier.cs" />
     <Compile Include="OpenStatisticDialog.xaml.cs">
       <DependentUpon>OpenStatisticDialog.xaml</DependentUpon>
     </Compile>
