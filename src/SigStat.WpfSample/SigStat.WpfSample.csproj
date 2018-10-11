@@ -259,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\CenteringTransform.cs" />
+    <Compile Include="Model\ClassifierBase.cs" />
     <Compile Include="Model\DTWClassifier.cs" />
     <Compile Include="Model\DerivedSvc2004FeatureExtractor.cs" />
     <Compile Include="Model\FusedScoreClassifier.cs" />

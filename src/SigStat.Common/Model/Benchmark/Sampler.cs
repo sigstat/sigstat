@@ -102,6 +102,7 @@ namespace SigStat.Common.Model
         {
             get
             {
+                // TODO: remove or generalize
                 return new Sampler(
                     (sl) => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
                     (sl) => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
@@ -109,6 +110,5 @@ namespace SigStat.Common.Model
                     );
             }
         }
-
     }
 }

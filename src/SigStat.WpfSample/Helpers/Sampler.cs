@@ -1,4 +1,5 @@
 ﻿using SigStat.Common;
+using SigStat.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +10,30 @@ namespace SigStat.WpfSample.Helpers
 {
     public class MySampler
     {
-        public List<Signature> TrainingOriginals { get; private set; }
-        public List<Signature> GenuineTestSignatures { get; private set; }
-        public List<Signature> ForgedTestSignatures { get; private set; }
-
-        //TODO: range helyett jobb nevet találni
-        public MySampler(List<Signature> signatures, int range)
+        public static Sampler Basic
         {
-            List<Signature> originals = signatures.FindAll(s => s.Origin == Origin.Genuine);
-            List<Signature> forgeries = signatures.FindAll(s => s.Origin == Origin.Forged);
-
-            if (range * 2 > originals.Count)
-                throw new ArgumentOutOfRangeException("The parameter range is too high");
-
-            originals = Shuffle(originals);
-            forgeries = Shuffle(forgeries);
-
-            TrainingOriginals = originals.GetRange(0, range);
-            GenuineTestSignatures = originals.GetRange(range, range);
-            ForgedTestSignatures = forgeries.GetRange(0, range);
+            get
+            {
+                // TODO: remove or generalize
+                return new Sampler(
+                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
+                    (sl) => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList()
+                    );
+            }
         }
 
-       private List<Signature> Shuffle(List<Signature> list)
+        public static Sampler AllReferences
         {
-            Random rnd = new Random();
-            int n = list.Count;
-            while (n > 1)
+            get
             {
-                n--;
-                int k = rnd.Next(n + 1);
-                Signature value = list[k];
-                list[k] = list[n];
-                list[n] = value;
+                // TODO: remove or generalize
+                return new Sampler(
+                    (sl) => sl,
+                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
+                    (sl) => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList()
+                    );
             }
-            return list;
         }
     }
 }

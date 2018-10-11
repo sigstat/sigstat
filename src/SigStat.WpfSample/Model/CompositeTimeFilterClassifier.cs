@@ -8,19 +8,17 @@ using SigStat.Common.Helpers;
 
 namespace SigStat.WpfSample.Model
 {
-    public class CompositeTimeFilterClassifier : IClassifier
+    public class CompositeTimeFilterClassifier : BaseClassifier
     {
         public IClassifier MainClassifier { get; set; }
         public TimeFilterClassifier TimeFilterClassifier { get; private set; }
 
-        private Logger _logger;
-        public Logger Logger {
-            get => _logger;
+        public override Logger Logger {
             set
             {
-                _logger = value;
-                MainClassifier.Logger = _logger;
-                TimeFilterClassifier.Logger = _logger;
+                base.Logger = value;
+                MainClassifier.Logger = value;
+                TimeFilterClassifier.Logger = value;
             }
         }
 
@@ -31,14 +29,14 @@ namespace SigStat.WpfSample.Model
         }
 
         //return még ha használom nem korrekt
-        public double Train(List<Signature> signatures)
+        public override double Train(List<Signature> signatures)
         {
             TimeFilterClassifier.Train(signatures);
             return MainClassifier.Train(signatures);
         }
 
 
-        public bool Test(Signature signature)
+        public override bool Test(Signature signature)
         {
             if (!TimeFilterClassifier.Test(signature))
                 return false;

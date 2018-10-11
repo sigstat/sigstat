@@ -10,19 +10,19 @@ using SigStat.WpfSample.Common;
 
 namespace SigStat.WpfSample.Model
 {
-    public class FusedScoreClassifier : IClassifier
+    public class FusedScoreClassifier : BaseClassifier
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
 
         private double threshold;
         private List<Signature> originals;
-        public Logger Logger { get; set; }
+
         public FusedScoreClassifier(List<FeatureDescriptor> inputFeatures)
         {
             InputFeatures = inputFeatures;
         }
 
-        public double Train(List<Signature> signatures)
+        public override double Train(List<Signature> signatures)
         {
             if (signatures == null)
                 throw new ArgumentNullException(nameof(signatures));
@@ -70,7 +70,7 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public bool Test(Signature signature)
+        public override bool Test(Signature signature)
         {
             var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-fusclassifier-distances"];
             var debugRow = new object[originals.Count + 1];

@@ -8,14 +8,12 @@ using SigStat.Common.Helpers;
 
 namespace SigStat.WpfSample.Model
 {
-    public class TimeFilterClassifier : IClassifier
+    public class TimeFilterClassifier : BaseClassifier
     {
-        public Logger Logger { get; set; }
-
         private List<Signature> originals;
         private double threshold;
 
-        public double Train(List<Signature> signatures)
+        public override double Train(List<Signature> signatures)
         {
             if (signatures == null)
                 throw new ArgumentNullException(nameof(signatures));
@@ -48,7 +46,7 @@ namespace SigStat.WpfSample.Model
             return maxTime;
         }
 
-        public bool Test(Signature signature)
+        public override bool Test(Signature signature)
         {
             var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-maxTime"];
 

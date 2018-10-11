@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Model
 {
-    public class OptimalFusedScoreClassifier : IClassifier
+    public class OptimalFusedScoreClassifier : BaseClassifier
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
 
@@ -18,7 +18,6 @@ namespace SigStat.WpfSample.Model
         private List<Signature> referenceSignatures;
         private List<Signature> trainSignatures;
         private double threshold;
-        public Logger Logger { get; set; }
 
         object[,] debugInfo;
 
@@ -27,7 +26,7 @@ namespace SigStat.WpfSample.Model
             InputFeatures = inputFeatures;
         }
 
-        public double Train(List<Signature> signatures)
+        public override double Train(List<Signature> signatures)
         {
             if (signatures == null)
                 throw new ArgumentNullException(nameof(signatures));
@@ -57,7 +56,7 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public bool Test(Signature signature)
+        public override bool Test(Signature signature)
         {
             return FusedScore.CalculateFusionOfDtwAndWPathScore(signature, referenceSignatures.ToArray(), InputFeatures) <= threshold;
         }
