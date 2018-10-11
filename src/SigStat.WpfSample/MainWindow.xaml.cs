@@ -119,7 +119,12 @@ namespace SigStat.WpfSample
                     switch (SelectedClassifier)
                     {
                         case ClassifierType.DTW:
-                            if (IsOptiClass) { classifier = new OptimalDTWClassifier(featureFilter); classifierName = classifier.GetType().Name; }
+                            if (IsOptiClass) {
+                                if (IsMyDtwSelected) { classifier = new OptimalDTWClassifier(featureFilter, DtwType.MyDtw); classifierName = classifier.GetType().Name + "_" + DtwType.MyDtw.ToString(); }
+                                else if (IsNDtwSelected) { classifier = new OptimalDTWClassifier(featureFilter, DtwType.NDtw); classifierName = classifier.GetType().Name + "_" + DtwType.NDtw.ToString(); }
+                                else if (IsFrameworkDtwSelected) { classifier = new OptimalDTWClassifier(featureFilter, DtwType.FrameworkDtw); classifierName = classifier.GetType().Name + "_" + DtwType.FrameworkDtw.ToString(); }
+                                else throw new Exception("None of DtwTypes is selected");
+                            }
                             else {
                                 if (IsMyDtwSelected) { classifier = new DTWClassifier(featureFilter, DtwType.MyDtw); classifierName = classifier.GetType().Name + "_" + DtwType.MyDtw.ToString(); }
                                 else if (IsNDtwSelected) { classifier = new DTWClassifier(featureFilter, DtwType.NDtw); classifierName = classifier.GetType().Name + "_" + DtwType.NDtw.ToString(); }
