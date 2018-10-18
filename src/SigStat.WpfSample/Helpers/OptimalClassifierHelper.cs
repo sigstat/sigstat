@@ -12,24 +12,33 @@ namespace SigStat.WpfSample.Helpers
 {
     public class OptimalClassifierHelper
     {
-        public List<SimilarityResult> SimilarityResults { get; }
+        public List<SimilarityResult> TrainSimilarityResults { get; }
+        public List<SimilarityResult> TestSimilarityResults { get; }
 
         private double threshold;
 
+        //TODO: OptiFusedScore még a sima módon adja a dolgokat
         public OptimalClassifierHelper(List<SimilarityResult> distsFromReferences)
         {
-            SimilarityResults = distsFromReferences.OrderBy(sr=>sr.AvgDistFromReferences).ToList();
+            TrainSimilarityResults = distsFromReferences.OrderBy(sr => sr.AvgDistFromReferences).ToList();
+
+        }
+        public OptimalClassifierHelper(List<SimilarityResult> distsFromReferences, List<SimilarityResult> testSigDistsFromReferences)
+        {
+            TrainSimilarityResults = distsFromReferences.OrderBy(sr=>sr.AvgDistFromReferences).ToList();
+            TestSimilarityResults = testSigDistsFromReferences;
         }
 
+        //TODO: még nem tökéletes
         public double CalculateThresholdForOptimalClassification()
         {
             List<Tuple<double, double>> errorRates = new List<Tuple<double, double>>();
             double prevThreshold = 0;
-            for (int i = 0; i < SimilarityResults.Count-1; i++)
+            for (int i = 0; i < TrainSimilarityResults.Count-1; i++)
             {
-                threshold = (SimilarityResults[i].AvgDistFromReferences + SimilarityResults[i + 1].AvgDistFromReferences) / 2;
+                threshold = (TrainSimilarityResults[i].AvgDistFromReferences + TrainSimilarityResults[i + 1].AvgDistFromReferences) / 2;
                 CalculateRates(out var far, out var frr);
-                errorRates.Add(new Tuple<double, double>((far + frr / 2.0), threshold));
+                errorRates.Add(new Tuple<double, double>(((far + frr) / 2.0), threshold));
 
                 if (far > frr) return prevThreshold;
                 prevThreshold = threshold;
@@ -81,7 +90,7 @@ namespace SigStat.WpfSample.Helpers
             int numRejectedOriginal = 0;
             int numOriginal = 0;
 
-            foreach (var simRes in SimilarityResults)
+            foreach (var simRes in TestSimilarityResults)
             {
                 if (simRes.TestSignature.Origin == Origin.Forged) { numForged++; }
                 if (simRes.TestSignature.Origin == Origin.Forged && Test(simRes)) { numAcceptedForged++; }
@@ -102,12 +111,12 @@ namespace SigStat.WpfSample.Helpers
         private void SetAvgDistAsInitThreshold()
         {
             double avg = 0;
-            foreach (var simRes in SimilarityResults)
+            foreach (var simRes in TrainSimilarityResults)
             {
                 avg += simRes.AvgDistFromReferences;
             }
 
-            avg /= SimilarityResults.Count;
+            avg /= TrainSimilarityResults.Count;
             threshold = avg;
         }
 

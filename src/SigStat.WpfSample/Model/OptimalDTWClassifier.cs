@@ -15,8 +15,8 @@ namespace SigStat.WpfSample.Model
     {
         public List<FeatureDescriptor> InputFeatures { get; set; }
         public DtwType DtwType { get; set; } = DtwType.MyDtw;
-        public List<SimilarityResult> SimilarityResults { get; private set; }
-
+        public List<SimilarityResult> TrainSimilarityResults { get; private set; }
+        public List<SimilarityResult> TestSimilarityResults { get; private set; }
 
         private List<Signature> referenceSignatures;
         private List<Signature> trainSignatures;
@@ -59,7 +59,7 @@ namespace SigStat.WpfSample.Model
 
             CalculateSimilarity();
 
-            threshold = new OptimalClassifierHelper(SimilarityResults).CalculateThresholdForOptimalClassification();
+            threshold = new OptimalClassifierHelper(TrainSimilarityResults, TestSimilarityResults).CalculateThresholdForOptimalClassification();
 
             Logger.Info(this, signatures[0].Signer.ID + "_optidtw", debugInfo);
             return threshold;
@@ -72,10 +72,14 @@ namespace SigStat.WpfSample.Model
 
         private void CalculateSimilarity()
         {
-            SimilarityResults = new List<SimilarityResult>(trainSignatures.Count);
+            TrainSimilarityResults = new List<SimilarityResult>(trainSignatures.Count);
+            TestSimilarityResults = new List<SimilarityResult>(trainSignatures.Count - referenceSignatures.Count);
             foreach (var testSig in trainSignatures)
             {
-                SimilarityResults.Add(new SimilarityResult(testSig, GetAvgDistFromReferences(testSig)));
+                double sim = GetAvgDistFromReferences(testSig);
+                if (!referenceSignatures.Contains(testSig))
+                    TestSimilarityResults.Add(new SimilarityResult(testSig, sim));
+                TrainSimilarityResults.Add(new SimilarityResult(testSig, sim));
             }
         }
 

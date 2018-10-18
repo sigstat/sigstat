@@ -8,6 +8,7 @@ using SigStat.Common.Helpers;
 
 namespace SigStat.WpfSample.Model
 {
+    //TODO: a TimeFilterClassifier thresholdváltoztatása miatt nem biztos h jó
     public class CompositeTimeFilterClassifier : BaseClassifier
     {
         public IClassifier MainClassifier { get; set; }
@@ -41,7 +42,7 @@ namespace SigStat.WpfSample.Model
             TimeFilterClassifier = new TimeFilterClassifier();
         }
 
-        //return még ha használom nem korrekt
+        //TODO: return még ha használom nem korrekt
         public override double Train(List<Signature> signatures)
         {
             TimeFilterClassifier.Train(signatures);

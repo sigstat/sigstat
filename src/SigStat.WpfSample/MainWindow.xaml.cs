@@ -42,6 +42,7 @@ namespace SigStat.WpfSample
         public bool IsMyDtwSelected { get; set; } = false;
 
         public bool IsCompositeClass { get; set; } = false;
+        public bool IsWeightedClass { get; set; } = false;
         public ClassifierType SelectedClassifier { get; set; } = ClassifierType.FusedScore;
 
         public List<FeatureDescriptor> FeatureFilter { get; set; } = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
@@ -123,8 +124,9 @@ namespace SigStat.WpfSample
 
                 benchmark = new VerifierBenchmark()
                 {
-                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID.CompareTo("05") < 0),
-                    //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
+                    //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID.CompareTo("05") < 0),
+                    //Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true, s => s.ID == "02"),
+                    Loader = new Svc2004Loader(@"..\..\..\SigStat.Sample\Databases\Online\SVC2004\Task2.zip", true),
                     Sampler = IsOptiClass ? MySampler.AllReferences : MySampler.Basic,
                     Verifier = new MyVerifier(classifier)
                     {
@@ -202,6 +204,19 @@ namespace SigStat.WpfSample
                         return new CompositeTimeFilterClassifier(new DTWClassifier(featureFilter, DtwType));
                     case ClassifierType.FusedScore:
                         return new CompositeTimeFilterClassifier(new FusedScoreClassifier(featureFilter));
+                    default:
+                        throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
+                }
+            }
+            else if (IsWeightedClass)
+            {
+                var mainWeight = 0.4;
+                switch (SelectedClassifier)
+                {
+                    case ClassifierType.DTW:
+                        return new WeightedTimeFilterClassifier(new DTWClassifier(featureFilter, DtwType), mainWeight);
+                    case ClassifierType.FusedScore:
+                        return new WeightedTimeFilterClassifier(new FusedScoreClassifier(featureFilter), mainWeight);
                     default:
                         throw new Exception("ClassifierType does not exist. Choose a valid ClassifierType!");
                 }

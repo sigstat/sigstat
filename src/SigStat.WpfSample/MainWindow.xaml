@@ -379,21 +379,27 @@
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsNDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
-                            <CheckBox Grid.Row="2" Grid.Column="1"
+                            <!--<CheckBox Grid.Row="2" Grid.Column="1"
                             Content="FrameworkDtw" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsFrameworkDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
+                              IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>-->
                             <CheckBox Grid.Row="2" Grid.Column="2"
                             Content="MyDtw" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsMyDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
-                            <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                            <!--<CheckBox Grid.Row="3" Grid.Column="0" 
                             Content="CompositeClassifier" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsCompositeClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding ElementName=TimeFilterCheckbox, Path=IsChecked}"/>-->
+                            <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                            Content="WeightedClassifier" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsWeightedClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=TimeFilterCheckbox, Path=IsChecked}"/>
+
                         </Grid>
                     </GroupBox>
                     <StackPanel Orientation="Horizontal" Height="Auto">

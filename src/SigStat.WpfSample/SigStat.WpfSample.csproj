@@ -270,6 +270,7 @@
     <Compile Include="Model\Svc2004Normalize.cs" />
     <Compile Include="Model\TimeFilterClassifier.cs" />
     <Compile Include="Model\CompositeTimeFilterClassifier.cs" />
+    <Compile Include="Model\WeightedTimeFilterClassifier.cs" />
     <Compile Include="OpenStatisticDialog.xaml.cs">
       <DependentUpon>OpenStatisticDialog.xaml</DependentUpon>
     </Compile>

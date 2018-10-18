@@ -41,7 +41,7 @@ namespace SigStat.WpfSample.Model
             Logger.Info(this, signatures[0].Signer.ID + "-maxTime", debugInfo);
 
 
-            threshold = maxTime + 2.5 * (maxTime - minTime);
+            threshold = maxTime + (maxTime - minTime);// + 2.5 * (maxTime - minTime);
 
             return maxTime;
         }
