@@ -70,7 +70,7 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
             var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-fusclassifier-distances"];
             var debugRow = new object[originals.Count + 1];
@@ -91,7 +91,7 @@ namespace SigStat.WpfSample.Model
                 }
             }
             debugInfo.Add(debugRow);
-            return avg / count <= threshold;
+            return CalculateTestResult(avg / count,threshold);
         }
     }
 }

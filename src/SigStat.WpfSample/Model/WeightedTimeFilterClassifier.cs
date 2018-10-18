@@ -38,20 +38,23 @@ namespace SigStat.WpfSample.Model
             return timeTreshold + mainThreshold;
         }
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
             var timeDecision = TimeFilterClassifier.Test(signature);// ? 1 : 0;
             var mainDecision = MainClassifier.Test(signature);// ? 1: 0;
 
             var timeClassifierWeight = 1 - MainClassifierWeight;
 
+            return 0.5 * timeDecision + 0.5 * mainDecision;
+
             //return ((MainClassifierWeight * mainDecision) + (timeClassifierWeight * timeDecision)) >= 0.5;
 
-            if (timeDecision && mainDecision) return true;
-            else if (!timeDecision && !mainDecision) return false;
-            else if (MainClassifierWeight > timeClassifierWeight) return mainDecision;
-            else if (MainClassifierWeight < timeClassifierWeight) return timeDecision;
-            else return !timeDecision ? timeDecision : mainDecision;
+
+            //if (timeDecision && mainDecision) return true;
+            //else if (!timeDecision && !mainDecision) return false;
+            //else if (MainClassifierWeight > timeClassifierWeight) return mainDecision;
+            //else if (MainClassifierWeight < timeClassifierWeight) return timeDecision;
+            //else return !timeDecision ? timeDecision : mainDecision;
         }
     }
 }

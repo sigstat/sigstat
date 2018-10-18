@@ -50,10 +50,10 @@ namespace SigStat.WpfSample.Model
         }
 
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
-            if (!TimeFilterClassifier.Test(signature))
-                return false;
+            if (TimeFilterClassifier.Test(signature)<0.5)
+                return 0;
             else
                 return MainClassifier.Test(signature);
         }

@@ -81,7 +81,7 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
             var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-dtwclassifier-distances"];
             var debugRow = new object[originals.Count + 1];
@@ -99,7 +99,7 @@ namespace SigStat.WpfSample.Model
 
             avgDist /= originals.Count;
 
-            return avgDist <= threshold;
+            return CalculateTestResult(avgDist,threshold);
         }
 
         private double GetCost(Signature sig1, Signature sig2, DtwType dtwType)

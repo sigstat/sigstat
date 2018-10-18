@@ -56,9 +56,9 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
-            return FusedScore.CalculateFusionOfDtwAndWPathScore(signature, referenceSignatures.ToArray(), InputFeatures) <= threshold;
+            return CalculateTestResult(FusedScore.CalculateFusionOfDtwAndWPathScore(signature, referenceSignatures.ToArray(), InputFeatures), threshold);
         }
 
         private void CalculateSimilarity()

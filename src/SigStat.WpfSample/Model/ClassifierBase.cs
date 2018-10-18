@@ -14,8 +14,21 @@ namespace SigStat.WpfSample.Model
 
         public virtual Logger Logger { get; set; }
 
-        public abstract bool Test(Signature signature);
+        public abstract double Test(Signature signature);
 
         public abstract double Train(List<Signature> signatures);
+
+        public double CalculateTestResult(double value, double threshold)
+        {
+            //bool
+            //if (value < threshold) return 0; else return 1;
+            // linear
+            return  Math.Max(1 - (value / threshold) / 2, 0);
+
+
+
+
+
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace SigStat.WpfSample.Helpers
             foreach (var signature in signatures)
             {
                 if (signature.Origin == Origin.Forged) { numForged++; }
-                if (signature.Origin == Origin.Forged && classifier.Test(signature)) { numAcceptedForged++; }
+                if (signature.Origin == Origin.Forged && (classifier.Test(signature)>0.5)) { numAcceptedForged++; }
             }
 
             return (double)numAcceptedForged / numForged;
@@ -32,7 +32,7 @@ namespace SigStat.WpfSample.Helpers
             foreach (var signature in signatures)
             {
                 if (signature.Origin == Origin.Genuine) { numOriginal++; }
-                if (signature.Origin == Origin.Genuine && !classifier.Test(signature)) { numRejectedOriginal++; }
+                if (signature.Origin == Origin.Genuine && (classifier.Test(signature)<0.5)) { numRejectedOriginal++; }
             }
 
             return (double)numRejectedOriginal / numOriginal;

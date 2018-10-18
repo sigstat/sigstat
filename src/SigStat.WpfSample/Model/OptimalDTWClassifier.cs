@@ -65,9 +65,9 @@ namespace SigStat.WpfSample.Model
             return threshold;
         }
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
-            return GetAvgDistFromReferences(signature) <= threshold;
+            return CalculateTestResult(GetAvgDistFromReferences(signature),threshold);
         }
 
         private void CalculateSimilarity()

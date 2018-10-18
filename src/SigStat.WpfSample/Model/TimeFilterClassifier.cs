@@ -46,7 +46,7 @@ namespace SigStat.WpfSample.Model
             return maxTime;
         }
 
-        public override bool Test(Signature signature)
+        public override double Test(Signature signature)
         {
             var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-maxTime"];
 
@@ -54,7 +54,7 @@ namespace SigStat.WpfSample.Model
 
             debugInfo.Add(new object[] { signature.ID, sigTime });
 
-            return sigTime <= threshold;
+            return CalculateTestResult(sigTime,threshold);
         }
 
 

@@ -35,7 +35,7 @@ namespace SigStat.WpfSample.Model
         {
             TransformPipeline.Transform(sig);
 
-            return Classifier.Test(sig);
+            return Classifier.Test(sig)>0.5;
         }
 
         protected override void LoggerChanged(Logger oldLogger, Logger newLogger)

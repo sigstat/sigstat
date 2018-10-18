@@ -13,6 +13,6 @@ namespace SigStat.WpfSample.Model
         string Name { get; }
         double Train(List<Signature> signatures);
 
-        bool Test(Signature signature);
+        double Test(Signature signature);
     }
 }
