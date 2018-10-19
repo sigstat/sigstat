@@ -10,79 +10,37 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Helpers
 {
-    public class OptimalClassifierHelper
+    public static class OptimalClassifierHelper
     {
-        public List<SimilarityResult> TrainSimilarityResults { get; }
-        public List<SimilarityResult> TestSimilarityResults { get; }
-
-        private double threshold;
-
-        //TODO: OptiFusedScore még a sima módon adja a dolgokat
-        public OptimalClassifierHelper(List<SimilarityResult> distsFromReferences)
+        public class ClassificationResult
         {
-            TrainSimilarityResults = distsFromReferences.OrderBy(sr => sr.AvgDistFromReferences).ToList();
-
-        }
-        public OptimalClassifierHelper(List<SimilarityResult> distsFromReferences, List<SimilarityResult> testSigDistsFromReferences)
-        {
-            TrainSimilarityResults = distsFromReferences.OrderBy(sr=>sr.AvgDistFromReferences).ToList();
-            TestSimilarityResults = testSigDistsFromReferences;
+            public double Threshold { get; set; }
+            public List<ClassificationResultLine> Lines { get; set; }
         }
 
-        //TODO: még nem tökéletes
-        public double CalculateThresholdForOptimalClassification()
+        public class ClassificationResultLine
         {
-            List<Tuple<double, double>> errorRates = new List<Tuple<double, double>>();
-            double prevThreshold = 0;
-            for (int i = 0; i < TrainSimilarityResults.Count-1; i++)
+            public double Threshold { get; set; }
+            public double Far { get; set; }
+            public double Frr { get; set; }
+            public double Aer { get; set; }
+        }
+
+        public static ClassificationResult CalculateThreshold(List<SimilarityResult> similarityResults)
+        {
+            var result = new ClassificationResult() { Lines = new List<ClassificationResultLine>() };
+            similarityResults = similarityResults.OrderBy(s => s.AvgDistFromReferences).ToList();
+            for (int i = 0; i < similarityResults.Count - 1; i++)
             {
-                threshold = (TrainSimilarityResults[i].AvgDistFromReferences + TrainSimilarityResults[i + 1].AvgDistFromReferences) / 2;
-                CalculateRates(out var far, out var frr);
-                errorRates.Add(new Tuple<double, double>(((far + frr) / 2.0), threshold));
-
-                if (far > frr) return prevThreshold;
-                prevThreshold = threshold;
+                var threshold = (similarityResults[i].AvgDistFromReferences + similarityResults[i + 1].AvgDistFromReferences) / 2;
+                CalculateRates(similarityResults, threshold, out var far, out var frr);
+                result.Lines.Add(new ClassificationResultLine { Threshold = threshold, Far = far, Frr = frr, Aer = far / frr });
             }
-            threshold = errorRates.OrderBy(er => er.Item1).First().Item2;
-            return threshold;
-
-
-
-
-            //SetAvgDistAsInitThreshold();
-            //double FAR, FRR;
-            //CalculateRates(out FAR, out FRR);
-            //double roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
-            //double roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
-            //double multipFAR = roundedFAR * 100;
-            //double multipFRR = roundedFRR * 100;
-            //double diff = Math.Abs(multipFAR - multipFRR);
-            //int round = 0;
-
-            //while (diff > 0 && round < 1000)
-            //{
-            //    if (FAR > FRR)
-            //    {
-            //        threshold -= Math.Abs(FAR - FRR) * threshold * 0.1;
-            //    }
-            //    else if (FAR < FRR)
-            //    {
-            //        threshold += Math.Abs(FAR - FRR) * threshold * 0.1;
-            //    }
-            //    CalculateRates(out FAR, out FRR);
-
-            //    roundedFAR = Math.Round(FAR, 2, MidpointRounding.AwayFromZero);
-            //    roundedFRR = Math.Round(FRR, 2, MidpointRounding.AwayFromZero);
-            //    multipFAR = roundedFAR * 100;
-            //    multipFRR = roundedFRR * 100;
-            //    diff = Math.Abs(multipFAR - multipFRR);
-            //    round++;
-
-            //}
-            //return threshold;
+            result.Threshold = result.Lines.OrderBy(er => er.Aer).First().Threshold;
+            return result;
         }
 
-        private void CalculateRates(out double FAR, out double FRR)
+        private static void CalculateRates(List<SimilarityResult> similarityResults, double threshold, out double FAR, out double FRR)
         {
             int numAcceptedForged = 0;
             int numForged = 0;
@@ -90,36 +48,24 @@ namespace SigStat.WpfSample.Helpers
             int numRejectedOriginal = 0;
             int numOriginal = 0;
 
-            foreach (var simRes in TestSimilarityResults)
+            foreach (var simRes in similarityResults)
             {
                 if (simRes.TestSignature.Origin == Origin.Forged) { numForged++; }
-                if (simRes.TestSignature.Origin == Origin.Forged && Test(simRes)) { numAcceptedForged++; }
+                if (simRes.TestSignature.Origin == Origin.Forged && Test(simRes, threshold)) { numAcceptedForged++; }
 
                 if (simRes.TestSignature.Origin == Origin.Genuine) { numOriginal++; }
-                if (simRes.TestSignature.Origin == Origin.Genuine && !Test(simRes)) { numRejectedOriginal++; }
+                if (simRes.TestSignature.Origin == Origin.Genuine && !Test(simRes, threshold)) { numRejectedOriginal++; }
             }
 
             FAR = (double)numAcceptedForged / numForged;
             FRR = (double)numRejectedOriginal / numOriginal;
         }
 
-        private bool Test(SimilarityResult simRes)
+        private static bool Test(SimilarityResult simRes, double threshold)
         {
             return simRes.AvgDistFromReferences <= threshold;
         }
 
-        private void SetAvgDistAsInitThreshold()
-        {
-            double avg = 0;
-            foreach (var simRes in TrainSimilarityResults)
-            {
-                avg += simRes.AvgDistFromReferences;
-            }
 
-            avg /= TrainSimilarityResults.Count;
-            threshold = avg;
-        }
-
-       
     }
 }

@@ -50,10 +50,11 @@ namespace SigStat.WpfSample.Model
 
             CalculateSimilarity();
 
-            threshold = new OptimalClassifierHelper(SimilarityResults).CalculateThresholdForOptimalClassification();
+            var result  = OptimalClassifierHelper.CalculateThreshold(SimilarityResults);
+            Logger.Info(this, signatures[0].Signer.ID + "_optifus_roc", result.Lines);
             Logger.Info(this, signatures[0].Signer.ID + "_optifus", debugInfo);
 
-            return threshold;
+            return result.Threshold;
         }
 
         public override double Test(Signature signature)

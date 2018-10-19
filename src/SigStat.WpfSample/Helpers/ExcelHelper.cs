@@ -2,6 +2,7 @@
 using OfficeOpenXml.Style;
 using SigStat.Common.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -156,6 +157,24 @@ namespace SigStat.WpfSample.Helpers
                 for (int col = 0; col < width; col++)
                 {
                     ws.Cells[startRow + row, startCol + col].Value = table[row, col];
+                }
+            }
+        }
+
+        internal static void WriteTable(ExcelWorksheet ws, int startRow, int startCol, IEnumerable items)
+        {
+            var properties = items.Cast<object>().First().GetType().GetProperties();
+            for (int i = 0; i < properties.Length; i++)
+            {
+                ws.Cells[startRow, startCol + i].Value = properties[i].Name;
+            }
+
+            int row = 1;
+            foreach (var item in items)
+            {
+                for (int i = 0; i < properties.Length; i++)
+                {
+                    ws.Cells[startRow+row, startCol + i].Value = properties[i].GetValue(item);
                 }
             }
         }

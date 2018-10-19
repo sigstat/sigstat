@@ -27,7 +27,7 @@ namespace SigStat.Common.Algorithms
 
             for (int i = 1; i < n + 1; i++)
             {
-                for (int j = 0; j < m + 1; j++)
+                for (int j =1; j < m + 1; j++)
                 {
                     //cost = _distance(A[i - 1], B[j - 1], mode)
                     var cost = distance(vector1[i - 1], vector2[j - 1]);
@@ -45,7 +45,7 @@ namespace SigStat.Common.Algorithms
             //                           DTW[i - 1, j - 1])    # match
 
             //return DTW[N, M]
-            return dtw[m, n];
+            return dtw[n-1, m-1];
         }
 
         public static double EuclideanDistance(double[] p1, double[] p2)

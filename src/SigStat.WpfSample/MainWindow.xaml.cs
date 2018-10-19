@@ -19,6 +19,8 @@ using SigStat.Common.Helpers;
 using System.Diagnostics;
 using SigStat.Common.Pipeline;
 using SigStat.Common.Transforms;
+using System.Collections;
+
 namespace SigStat.WpfSample
 {
     /// <summary>
@@ -238,7 +240,10 @@ namespace SigStat.WpfSample
                     if (value is List<object[]>)
                         value = ((List<object[]>)value).ToMatrix();
 
-                    ExcelHelper.WriteTable(ws, 1, 1, (object[,])value);
+                    if (value is object[,])
+                        ExcelHelper.WriteTable(ws, 1, 1, (object[,])value);
+                    else if (value is IEnumerable)
+                        ExcelHelper.WriteTable(ws, 1, 1, (IEnumerable)value);
                 }
                 package.Save();
             }
