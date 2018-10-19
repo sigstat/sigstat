@@ -40,6 +40,7 @@ namespace SigStat.WpfSample
         public bool IsNDtwSelected { get; set; } = false;
         public bool IsFrameworkDtwSelected { get; set; } = false;
         public bool IsMyDtwSelected { get; set; } = false;
+        public bool IsDtwPySelected { get; set; } = false;
 
         public bool IsCompositeClass { get; set; } = false;
         public bool IsWeightedClass { get; set; } = false;
@@ -57,6 +58,7 @@ namespace SigStat.WpfSample
                 if (IsMyDtwSelected) return DtwType.MyDtw;
                 else if (IsNDtwSelected) return DtwType.NDtw;
                 else if (IsFrameworkDtwSelected) return DtwType.FrameworkDtw;
+                else if (IsDtwPySelected) return DtwType.DtwPy;
                 else throw new InvalidDataException("None of DtwTypes is selected");
             }
         }

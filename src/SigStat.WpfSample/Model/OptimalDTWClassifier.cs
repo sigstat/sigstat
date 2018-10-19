@@ -1,5 +1,6 @@
 ﻿using NDtw;
 using SigStat.Common;
+using SigStat.Common.Algorithms;
 using SigStat.Common.Helpers;
 using SigStat.WpfSample.Common;
 using SigStat.WpfSample.Helpers;
@@ -94,7 +95,7 @@ namespace SigStat.WpfSample.Model
                 else
                 {
                     //var dist = new Dtw(sig, refSig, InputFeatures).CalculateDtwScore();
-                    var dist = GetCost(sig, refSig, DtwType);
+                    var dist = DtwHelper.GetCost(sig, refSig, DtwType, InputFeatures);
                     avgDist += dist;
                     debugInfo[trainSignatures.IndexOf(sig) + 1, referenceSignatures.IndexOf(refSig) + 1] = dist;
                 }
@@ -104,22 +105,5 @@ namespace SigStat.WpfSample.Model
             return avgDist;
         }
 
-        private double GetCost(Signature sig1, Signature sig2, DtwType dtwType)
-        {
-            switch (dtwType)
-            {
-                case DtwType.NDtw:
-                    //hatalmas hack, csak egy-egy featurere működik, kombinációra nem
-                    return new NDtw.Dtw(sig1.GetFeature<List<double>>(InputFeatures[0]).ToArray(), sig2.GetFeature<List<double>>(InputFeatures[0]).ToArray(),
-                        DistanceMeasure.Manhattan).GetCost();
-                case DtwType.FrameworkDtw:
-                    return new SigStat.Common.Algorithms.Dtw(Accord.Math.Distance.Manhattan)
-                        .Compute(sig1.GetAggregateFeature(InputFeatures).ToArray(), sig2.GetAggregateFeature(InputFeatures).ToArray());
-                case DtwType.MyDtw:
-                    return new Common.Dtw(sig1, sig2, InputFeatures).CalculateDtwScore();
-                default:
-                    throw new ArgumentException(nameof(dtwType) + typeof(DtwType) + "not exists");
-            }
-        }
     }
 }

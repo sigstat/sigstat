@@ -237,6 +237,7 @@
     <Compile Include="Helpers\BoolInverterConverter.cs" />
     <Compile Include="Helpers\BoolMultiAndConverter.cs" />
     <Compile Include="Helpers\ClassifierHelper.cs" />
+    <Compile Include="Helpers\DtwHelper.cs" />
     <Compile Include="Helpers\DtwType.cs" />
     <Compile Include="Helpers\RadioButtonClassifierCheckedConverter.cs" />
     <Compile Include="Helpers\SimilarityResult.cs" />

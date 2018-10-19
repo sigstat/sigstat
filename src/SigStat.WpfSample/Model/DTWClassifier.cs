@@ -62,7 +62,7 @@ namespace SigStat.WpfSample.Model
                 for (int j = i + 1; j < originals.Count; j++)
                 {
                     //double cost = new Dtw(originals[i], originals[j], InputFeatures).CalculateDtwScore();
-                    double cost = GetCost(originals[i], originals[j], DtwType);
+                    double cost = DtwHelper.GetCost(originals[i], originals[j], DtwType, InputFeatures);
                     debugRow[j + 1] = cost;
                     avg += cost;
                     costs.Add(cost);
@@ -91,7 +91,7 @@ namespace SigStat.WpfSample.Model
             foreach (var original in originals)
             {
                 //var dist = new Dtw(original, signature, InputFeatures).CalculateDtwScore();
-                var dist = GetCost(original, signature, DtwType);
+                var dist = DtwHelper.GetCost(original, signature, DtwType, InputFeatures);
                 avgDist += dist;
                 debugRow[originals.IndexOf(original) + 1] = dist;
             }
@@ -100,24 +100,6 @@ namespace SigStat.WpfSample.Model
             avgDist /= originals.Count;
 
             return CalculateTestResult(avgDist,threshold);
-        }
-
-        private double GetCost(Signature sig1, Signature sig2, DtwType dtwType)
-        {
-            switch (dtwType)
-            {
-                case DtwType.NDtw:
-                    //hatalmas hack, csak egy-egy featurere működik, kombinációra nem
-                    return new NDtw.Dtw(sig1.GetFeature<List<double>>(InputFeatures[0]).ToArray(), sig2.GetFeature<List<double>>(InputFeatures[0]).ToArray(),
-                        DistanceMeasure.Manhattan).GetCost();
-                case DtwType.FrameworkDtw:
-                    return new SigStat.Common.Algorithms.Dtw(Accord.Math.Distance.Manhattan)
-                        .Compute(sig1.GetAggregateFeature(InputFeatures).ToArray(), sig2.GetAggregateFeature(InputFeatures).ToArray());
-                case DtwType.MyDtw:
-                    return new Common.Dtw(sig1, sig2, InputFeatures).CalculateDtwScore();
-                default:
-                    throw new ArgumentException(nameof(dtwType) + typeof(DtwType)+ "not exists");
-            }
         }
     }
 }

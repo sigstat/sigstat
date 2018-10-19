@@ -10,6 +10,7 @@ namespace SigStat.WpfSample.Helpers
     {
         NDtw,
         FrameworkDtw,
-        MyDtw
+        MyDtw,
+        DtwPy,
     }
 }

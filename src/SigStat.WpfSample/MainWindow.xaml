@@ -379,6 +379,11 @@
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsNDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
+                            <CheckBox Grid.Row="2" Grid.Column="1"
+                            Content="DtwPy" 
+                              Style="{StaticResource FeatureSelectorStyle}"
+                              IsChecked="{Binding IsDtwPySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
                             <!--<CheckBox Grid.Row="2" Grid.Column="1"
                             Content="FrameworkDtw" 
                               Style="{StaticResource FeatureSelectorStyle}"
