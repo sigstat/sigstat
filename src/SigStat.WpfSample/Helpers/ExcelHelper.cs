@@ -176,6 +176,7 @@ namespace SigStat.WpfSample.Helpers
                 {
                     ws.Cells[startRow+row, startCol + i].Value = properties[i].GetValue(item);
                 }
+                row++;
             }
         }
         #endregion

@@ -63,6 +63,7 @@ namespace SigStat.WpfSample.Model
             var result = OptimalClassifierHelper.CalculateThreshold(TestSimilarityResults);
             Logger.Info(this, signatures[0].Signer.ID + "_optidtw_roc", result.Lines);
             Logger.Info(this, signatures[0].Signer.ID + "_optidtw", debugInfo);
+            threshold = result.Threshold;
             return result.Threshold;
         }
 

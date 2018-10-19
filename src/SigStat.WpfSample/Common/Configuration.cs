@@ -12,6 +12,8 @@ namespace SigStat.WpfSample.Common
         public const int DefaultSpacingParameter = 1;
 
         public static readonly List<FeatureDescriptor> DefaultInputFeatures = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
+        public static readonly List<FeatureDescriptor>[] XYP = new[] { new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure } };
+
         public static readonly List<FeatureDescriptor>[] TestInputFeatures =
             new List<FeatureDescriptor>[] {
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X }),

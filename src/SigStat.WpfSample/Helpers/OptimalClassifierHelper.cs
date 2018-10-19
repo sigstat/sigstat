@@ -34,7 +34,7 @@ namespace SigStat.WpfSample.Helpers
             {
                 var threshold = (similarityResults[i].AvgDistFromReferences + similarityResults[i + 1].AvgDistFromReferences) / 2;
                 CalculateRates(similarityResults, threshold, out var far, out var frr);
-                result.Lines.Add(new ClassificationResultLine { Threshold = threshold, Far = far, Frr = frr, Aer = far / frr });
+                result.Lines.Add(new ClassificationResultLine { Threshold = threshold, Far = far, Frr = frr, Aer = (far + frr)/2 });
             }
             result.Threshold = result.Lines.OrderBy(er => er.Aer).First().Threshold;
             return result;
