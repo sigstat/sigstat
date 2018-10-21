@@ -32,11 +32,11 @@ namespace SigStat.WpfSample.Common
             averageDtwScore /= count;
             averageWPathScore /= count;
 
-            //double similarityValueFromDtwScore = MyMath.Sigmoid(averageDtwScore);
-            //double similarityValueFromWPathScore = MyMath.Sigmoid(averageWPathScore);
+            double similarityValueFromDtwScore = MyMath.Sigmoid(averageDtwScore);
+            double similarityValueFromWPathScore = MyMath.Sigmoid(averageWPathScore);
 
-            //return similarityValueFromDtwScore + similarityValueFromWPathScore;
-            return averageDtwScore + averageWPathScore;
+            return similarityValueFromDtwScore + similarityValueFromWPathScore;
+            //return averageDtwScore + averageWPathScore;
         }
     }
 }

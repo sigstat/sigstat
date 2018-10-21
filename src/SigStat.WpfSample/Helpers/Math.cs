@@ -60,5 +60,7 @@ namespace SigStat.WpfSample.Helpers
         {
             return 1 / (1 + Math.Exp(-x * a));
         }
+
+
     }
 }

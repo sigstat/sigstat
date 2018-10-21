@@ -9,7 +9,7 @@ namespace SigStat.WpfSample.Common
 {
     public static class Configuration
     {
-        public const int DefaultSpacingParameter = 1;
+        public const int DefaultSpacingParameter = 5;
 
         public static readonly List<FeatureDescriptor> DefaultInputFeatures = new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X, Features.Y });
         public static readonly List<FeatureDescriptor>[] XYP = new[] { new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure } };
@@ -17,12 +17,12 @@ namespace SigStat.WpfSample.Common
         public static readonly List<FeatureDescriptor>[] TestInputFeatures =
             new List<FeatureDescriptor>[] {
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.X }),
-                new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Y }),
+                //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Y }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Azimuth }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Altitude }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { Features.Pressure }),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODX}),
-                //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODY}),
+                new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODY}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODAzimuth}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODAltitude}),
                 //new List<FeatureDescriptor>(new FeatureDescriptor[] { DerivedSvc2004Features.FODPressure}),

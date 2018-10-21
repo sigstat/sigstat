@@ -16,7 +16,7 @@ namespace SigStat.WpfSample.Common
         public double[,] CostMatrix { get; set; }
         public List<Point> WarpingPath { get; set; }
         public List<Point> WarpingPathModified { get; set; }
-        public int WindowSize { get; set; } = 11;
+        public int WindowSize { get; set; } = 15;
 
         int spacingParameterValue = Configuration.DefaultSpacingParameter;
         private bool isCostMatrixFilled;
@@ -68,7 +68,7 @@ namespace SigStat.WpfSample.Common
 
             int lwp = WarpingPath.Count;
 
-            double retValue = CostMatrix[testSignatureAggregatedFeatures.Count - 1, refSignatureAggregatedFeatures.Count - 1] / lwp;
+            double retValue = CostMatrix[testSignatureAggregatedFeatures.Count - 1, refSignatureAggregatedFeatures.Count - 1]; // / lwp;
             return retValue;
         }
 
@@ -221,7 +221,6 @@ namespace SigStat.WpfSample.Common
             if (testIndex < 0 || testIndex >= testSignatureAggregatedFeatures.Count)
                 throw new Exception("Out of range index");
 
-            int x;
             double minCenterDist = double.MaxValue;
             double minWindowSegmentDist = double.MaxValue;
             int minIndex = refSignatureAggregatedFeatures.Count;
@@ -246,8 +245,6 @@ namespace SigStat.WpfSample.Common
                         minCenterDist = centerDist;
                     }
                 }
-                else
-                    x = 0;
             }
 
             if (minIndex == refSignatureAggregatedFeatures.Count)
