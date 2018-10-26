@@ -52,16 +52,25 @@ namespace SigStat.Common.Algorithms
             int j = 0;
             //tavolsagok
             for (i = 0; i < n; i++)
+            {
                 for (j = 0; j < m; j++)
+                {
                     dMat[i, j] = Distance(signature1[i], signature2[j]);
+                }
+            }
 
             //sarok
             wMat[0, 0] = dMat[0, 0];
             //két oldal
             for (i = 1; i < n; i++)
+            {
                 wMat[i, 0] = dMat[i, 0] + wMat[i - 1, 0];
+            }
+
             for (j = 1; j < m; j++)
+            {
                 wMat[0, j] = dMat[0, j] + wMat[0, j - 1];
+            }
             //tobbi resz
             for (i = 1; i < n; i++)
                 for (j = 1; j < m; j++)
@@ -82,20 +91,31 @@ namespace SigStat.Common.Algorithms
             while (i > 0 || j > 0)
             {
                 if (i == 0)
+                {
                     j--;//bal szele
+                }
                 else if (j == 0)
+                {
                     i--;//also szele
+                }
                 else
                 {
                     List<double> a = new List<double> { wMat[i - 1, j], wMat[i, j - 1], wMat[i - 1, j - 1] };
                     int minIndex = a.IndexOf(Math.Min(Math.Min(a[0], a[1]), a[2]));
                     //ez meg nem optimalis: ha tobb minimum van, akkor jobb, ha a diagonalis iranyt valasztjuk
                     if (a[minIndex] == a[2])
+                    {
                         minIndex = 2;
+                    }
+
                     if (minIndex == 0)
+                    {
                         i -= 1;
+                    }
                     else if (minIndex == 1)
+                    {
                         j -= 1;
+                    }
                     else if (minIndex == 2)
                     {
                         i -= 1;
@@ -110,8 +130,9 @@ namespace SigStat.Common.Algorithms
             //Array.Reverse(warpingPath);//ez csak jagged[][] nel mukodik
             ForwardPath = new List<(int, int)>(K);
             for (i = K - 1; i >= 0; i--)
+            {
                 ForwardPath.Add((warpingPath[i, 0], warpingPath[i, 1]));
-
+            }
 
             double cost = 0;
 
@@ -160,11 +181,15 @@ namespace SigStat.Common.Algorithms
         private double Distance(double[] p1, double[] p2)
         {
             if (p1.Length == 1)//nem ter vissza az Accord, ha a pontok 1 dimenziosak, ezert ezt kulon kezeljuk
+            {
                 return Math.Abs(p2[0] - p1[0]);
+            }
 
             double d = Accord.Math.Distance.GetDistance(distMethod).Distance(p1, p2);
             if (double.IsNaN(d))
+            {
                 d = 0;//ez nehany metrikanal kell, pl Canberra 0,0 ban
+            }
 
             return d;
         }
