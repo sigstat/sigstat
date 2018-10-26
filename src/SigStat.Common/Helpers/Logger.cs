@@ -161,12 +161,17 @@ namespace SigStat.Common.Helpers
             foreach (LogEntry newEntry in queue.GetConsumingEnumerable())
             {
                 if (StoreEntries)
+                {
                     Entries.Add(newEntry);
+                }
+
                 string s = newEntry.ToString();
                 sw?.WriteLine(s);
                 OutputAction?.Invoke(newEntry.Level, s);
                 if (queue.IsCompleted)//IsCompleted meaning: marked as complete for adding && empty
+                {
                     return;
+                }
             }
         }
 

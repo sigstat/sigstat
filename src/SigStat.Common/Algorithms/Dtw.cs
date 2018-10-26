@@ -73,12 +73,14 @@ namespace SigStat.Common.Algorithms
             }
             //tobbi resz
             for (i = 1; i < n; i++)
+            {
                 for (j = 1; j < m; j++)
                 {
                     dAcc = Math.Min(Math.Min(wMat[i - 1, j], wMat[i - 1, j - 1]), wMat[i, j - 1]);
                     dAcc += dMat[i, j];
                     wMat[i, j] = dAcc;
                 }
+            }
 
             //legrovidebb ut megtalalas:
             int[,] warpingPath = new int[n + m, 2];//lepesek

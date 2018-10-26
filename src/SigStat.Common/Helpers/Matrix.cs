@@ -21,8 +21,13 @@ namespace SigStat.Common
         {
             bool[,] result = new bool[array.GetLength(0), array.GetLength(1)];
             for (int i = 0; i < array.GetLength(0); i++)
+            {
                 for (int j = 0; j < array.GetLength(1); j++)
+                {
                     result[i, j] = !array[i, j];
+                }
+            }
+
             return result;
 
         }
@@ -38,7 +43,11 @@ namespace SigStat.Common
 
         public static T[] SetValues<T>(this T[] array, Func<T,T> transformation)
         {
-            if (array == null) return null;
+            if (array == null)
+            {
+                return null;
+            }
+
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] = transformation(array[i]);
@@ -58,19 +67,54 @@ namespace SigStat.Common
             int height = matrix.GetLength(1);
             byte[,] result = new byte[width, height];
             for (int y = 1; y < height - 1; y++)
+            {
                 for (int x = 1; x < width - 1; x++)
                 {
                     byte n = 0;
-                    if (x > 0 && y > 0 && !matrix[x - 1, y - 1].Equals(emptyValue)) n++;
-                    if (y > 0 && !matrix[x - 0, y - 1].Equals(emptyValue)) n++;
-                    if (x < width - 1 && y > 0 && !matrix[x + 1, y - 1].Equals(emptyValue)) n++;
-                    if (x > 0 && !matrix[x - 1, y - 0].Equals(emptyValue)) n++;
-                    if (x < width - 1 && !matrix[x + 1, y - 0].Equals(emptyValue)) n++;
-                    if (x > 0 && y < height - 1 && !matrix[x - 1, y + 1].Equals(emptyValue)) n++;
-                    if (y < height - 1 && !matrix[x - 0, y + 1].Equals(emptyValue)) n++;
-                    if (x < width - 1 && y < height - 1 && !matrix[x + 1, y + 1].Equals(emptyValue)) n++;
+                    if (x > 0 && y > 0 && !matrix[x - 1, y - 1].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (y > 0 && !matrix[x - 0, y - 1].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (x < width - 1 && y > 0 && !matrix[x + 1, y - 1].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (x > 0 && !matrix[x - 1, y - 0].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (x < width - 1 && !matrix[x + 1, y - 0].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (x > 0 && y < height - 1 && !matrix[x - 1, y + 1].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (y < height - 1 && !matrix[x - 0, y + 1].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
+                    if (x < width - 1 && y < height - 1 && !matrix[x + 1, y + 1].Equals(emptyValue))
+                    {
+                        n++;
+                    }
+
                     result[x, y] = n;
                 }
+            }
+
             return result;
 
 
@@ -103,12 +147,19 @@ namespace SigStat.Common
                 };
 
             var i = (result.IndexOf(start)+ offset) % 8;
-            if (i == -1) throw new Exception("Invalid start point");
+            if (i == -1)
+            {
+                throw new Exception("Invalid start point");
+            }
+
             if (i == 0)
+            {
                 return result;
+            }
             else
+            {
                 return result.Skip(i).Concat(result.Take(i));
-            
+            }
         }
 
 
@@ -136,7 +187,10 @@ namespace SigStat.Common
                 sumFk += sumTmp * y;
             }
 
-            if (sumF > 0) result.Y = Convert.ToInt32(sumFk / sumF);
+            if (sumF > 0)
+            {
+                result.Y = Convert.ToInt32(sumFk / sumF);
+            }
 
 
             // let's calculate ky
@@ -153,7 +207,10 @@ namespace SigStat.Common
                 sumFk += sumTmp * x;
             }
 
-            if (sumF > 0) result.X = Convert.ToInt32(sumFk / sumF);
+            if (sumF > 0)
+            {
+                result.X = Convert.ToInt32(sumFk / sumF);
+            }
 
             return result;
         }
@@ -164,10 +221,13 @@ namespace SigStat.Common
             int height = matrix.GetLength(1);
             E[,] result = new E[width, height];
             for (int y = 0; y < height; y++)
+            {
                 for (int x = 0; x < width; x++)
                 {
                     result[x, y] = evaluator(matrix[x, y]);
                 }
+            }
+
             return result;
         }
 
@@ -175,8 +235,13 @@ namespace SigStat.Common
         {
             double sum = 0;
             for (int x = x1; x <= x2; x++)
+            {
                 for (int y = y1; y <= y2; y++)
+                {
                     sum += matrix[x, y];
+                }
+            }
+
             return sum;
         }
 
@@ -203,17 +268,30 @@ namespace SigStat.Common
         /// <returns></returns>
         public static T[,] FromTableRows<T>(IEnumerable<DataRow> rows, int ignoreColumns, int ignoreRows)
         {
-            if (rows == null) return new T[0, 0];
+            if (rows == null)
+            {
+                return new T[0, 0];
+            }
+
             List<DataRow> rowList = rows.ToList();
-            if (rowList.Count == 0) return new T[0, 0];
+            if (rowList.Count == 0)
+            {
+                return new T[0, 0];
+            }
+
             int colCount = rowList[0].Table.Columns.Count - ignoreColumns;
             int rowCount = rowList.Count - ignoreRows;
 
             T[,] result = new T[colCount, rowCount];
 
             for (int row = 0; row < rowCount; row++)
+            {
                 for (int col = 0; col < colCount; col++)
+                {
                     result[row, col] = (T)rowList[ignoreRows + row][ignoreColumns + col];
+                }
+            }
+
             return result;
         }
 

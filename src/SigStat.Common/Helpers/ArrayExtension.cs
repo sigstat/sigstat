@@ -10,14 +10,18 @@ namespace SigStat.Common
         public static void SetRow<T>(this T[,] array, int y, T value)
         {
             for (int x = 0; x < array.GetLength(0); x++)
+            {
                 array[x, y] = value;
+            }
         }
 
 
         public static void SetColumn<T>(this T[,] array, int x, T value)
         {
             for (int y = 0; y < array.GetLength(1); y++)
+            {
                 array[x, y] = value;
+            }
         }
 
 
@@ -49,18 +53,26 @@ namespace SigStat.Common
             for (int i = 0; i < array.GetLength(0); i++)
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if (max < array[i, j]) max = array[i, j];
+                    if (max < array[i, j])
+                    {
+                        max = array[i, j];
+                    }
                 }
             return max;
         }
         public static Tuple<int,int> IndexOf(this int[,] array, int value)
         {
             for (int i = 0; i < array.GetLength(0); i++)
+            {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (array[i, j] == value)
+                    {
                         return new Tuple<int, int>(i, j);
+                    }
                 }
+            }
+
             return null;
         }
         public static Tuple<int, int> IndexOf(this double[,] array, double value)
@@ -99,7 +111,10 @@ namespace SigStat.Common
         {
             T[][] result = new T[length1][];
             for (int i = 0; i < length1; i++)
+            {
                 result[i] = new T[length2];
+            }
+
             return result;
         }
 
@@ -135,10 +150,13 @@ namespace SigStat.Common
         {
             var result = new T[length1, length2];
             for (int i1 = 0; i1 < length1; i1++)
-                for (int i2 = 0; i2 < length2; i2++)
             {
-                result[i1, i2] = source[startIndex1 + i1, startIndex2 + i2];
+                for (int i2 = 0; i2 < length2; i2++)
+                {
+                    result[i1, i2] = source[startIndex1 + i1, startIndex2 + i2];
+                }
             }
+
             return result;
         }
 

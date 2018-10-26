@@ -51,7 +51,9 @@ namespace SigStat.Common.Algorithms
         public static double EuclideanDistance(double[] p1, double[] p2)
         {
             if (p1.Length != p2.Length)
+            {
                 throw new ArgumentException();
+            }
 
             double sum = 0;
             for (int i = 0; i < p1.Length; i++)

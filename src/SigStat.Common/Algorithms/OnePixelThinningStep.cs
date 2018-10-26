@@ -58,6 +58,7 @@ namespace SigStat.Common.Algorithms
 
             bool[,] res = new bool[w, h];
             for (int i = 1; i < w - 1; i++)
+            {
                 for (int j = 1; j < h - 1; j++)
                 {
                     res[i, j] = b[i, j];
@@ -77,6 +78,7 @@ namespace SigStat.Common.Algorithms
                         }
                     }
                 }
+            }
 
             return res;
         }

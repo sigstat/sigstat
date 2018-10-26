@@ -32,7 +32,9 @@ namespace SigStat.Common.Algorithms
 
             bool[,] o = new bool[w, h];
             for (int i = 1; i < w - 1; i++)
+            {
                 for (int j = 1; j < h - 1; j++)
+                {
                     if (deletable[i, j])
                     {
                         bool[] nbs = Neighbourhood(b, i, j);
@@ -65,7 +67,11 @@ namespace SigStat.Common.Algorithms
 
                     }
                     else
+                    {
                         o[i, j] = b[i, j];
+                    }
+                }
+            }
 
             return o;
         }
@@ -76,6 +82,7 @@ namespace SigStat.Common.Algorithms
             int h = b.GetLength(1);
             bool[,] deletable = new bool[w, h];
             for (int i = 1; i < w - 1; i++)
+            {
                 for (int j = 1; j < h - 1; j++)
                 {
                     if (b[i, j])
@@ -83,13 +90,18 @@ namespace SigStat.Common.Algorithms
                         bool[] nbs = Neighbourhood(b, i, j);
                         int ncnt = 0;//count neighbours
                         for (int ni = 0; ni < 8; ni++)
+                        {
                             ncnt += nbs[ni] ? 1 : 0;
+                        }
 
                         if (ncnt > 1 && ncnt < 7)
                         {//Gabor: min 1, max 7 szomszed kell a torleshez, >1 && <7
                             int CN = 0;//rutovitz crossing number
                             for (int ni = 0; ni < 7; ni++)
+                            {
                                 CN += (nbs[ni] == nbs[ni + 1]) ? 0 : 1;
+                            }
+
                             CN += (nbs[7] == nbs[0]) ? 0 : 1;
 
                             if (CN == 2)
@@ -99,6 +111,8 @@ namespace SigStat.Common.Algorithms
                         }
                     }
                 }
+            }
+
             return deletable;
         }
 
