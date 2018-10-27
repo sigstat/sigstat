@@ -73,7 +73,9 @@ namespace SigStat.Common.Model
             set {
                 _verifier = value;
                 if (_verifier!=null)
+                {
                     _verifier.Logger = Logger;
+                }
             }
         }
 
@@ -86,7 +88,9 @@ namespace SigStat.Common.Model
             {
                 _log = value;
                 if (Verifier != null)
+                {
                     Verifier.Logger = _log;
+                }
             }
         }
 
@@ -100,7 +104,9 @@ namespace SigStat.Common.Model
         protected void Log(LogLevel level, string message)
         {
             if (_log != null)
+            {
                 _log.EnqueueEntry(level, this, message);
+            }
         }
 
         /// <summary>
@@ -152,16 +158,26 @@ namespace SigStat.Common.Model
                 //FRR = elutasított eredeti / összes eredeti
                 int nFalseReject = 0;
                 foreach (Signature genuine in genuineTests)
+                {
                     if (!Verifier.Test(genuine))
+                    {
                         nFalseReject++;//eredeti alairast hamisnak hisz
+                    }
+                }
+
                 double FRR = nFalseReject / (double)genuineTests.Count;
 
                 //FAR: false acceptance rate
                 //FAR = elfogadott hamis / összes hamis
                 int nFalseAccept = 0;
                 foreach (Signature forgery in forgeryTests)
+                {
                     if (Verifier.Test(forgery))
+                    {
                         nFalseAccept++;//hamis alairast eredetinek hisz
+                    }
+                }
+
                 double FAR = nFalseAccept / (double)forgeryTests.Count;
 
                 //AER: average error rate
@@ -219,16 +235,26 @@ namespace SigStat.Common.Model
                 //FRR = elutasított eredeti / összes eredeti
                 int nFalseReject = 0;
                 foreach (Signature genuine in genuineTests)
+                {
                     if (!localVerifier.Test(genuine))
+                    {
                         nFalseReject++;//eredeti alairast hamisnak hisz
+                    }
+                }
+
                 double FRR = nFalseReject / (double)genuineTests.Count;
 
                 //FAR: false acceptance rate
                 //FAR = elfogadott hamis / összes hamis
                 int nFalseAccept = 0;
                 foreach (Signature forgery in forgeryTests)
+                {
                     if (localVerifier.Test(forgery))
+                    {
                         nFalseAccept++;//hamis alairast eredetinek hisz
+                    }
+                }
+
                 double FAR = nFalseAccept / (double)forgeryTests.Count;
 
                 //AER: average error rate
