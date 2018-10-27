@@ -33,13 +33,20 @@ namespace SigStat.Common.Model
             //calc each pair
             List<double> pairingResults = new List<double>();
             for (int i = 0; i < sigs.Count - 1; i++)
+            {
                 for (int j = i + 1; j < sigs.Count; j++)
+                {
                     pairingResults.Add(pipeline.Pair(sigs[i], sigs[j]));
+                }
+            }
 
             //calc average cost
             double avg = 0;
             foreach (double v in pairingResults)
+            {
                 avg += v;
+            }
+
             avg /= pairingResults.Count;
 
             //calc standard deviation
