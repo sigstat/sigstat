@@ -16,12 +16,15 @@ namespace SigStat.Common.Transforms
     /// <remarks>This is a special case of <see cref="Translate"/></remarks>
     public class CentroidTranslate : SequentialTransformPipeline
     {
-        private new void Add(ITransformation newitem) { }//TODO erre jobbat kitalalni, pl. pipeline ososztaly
+        private new void Add(ITransformation newitem)
+        {
+            //TODO erre jobbat kitalalni, pl. pipeline ososztaly
+        }
 
         /// <summary> Initializes a new instance of the <see cref="CentroidTranslate"/> class.</summary>
         public CentroidTranslate()
         {
-            Items = new List<ITransformation>()
+            Items = new List<ITransformation>
             {
                 new CentroidExtraction
                 {

@@ -40,13 +40,17 @@ namespace SigStat.Common.Transforms
         {
             //default output is the input
             if (OutputFeatures == null)
+            {
                 OutputFeatures = InputFeatures;
+            }
 
             if (InputFeatures[0].IsCollection)
             {
                 var values = signature.GetFeature<List<double>>(InputFeatures[0]);
                 for (int i = 0; i < values.Count; i++)
+                {
                     values[i] = values[i] * byConst;
+                }
                 signature.SetFeature(OutputFeatures[0], values);
             }
             else

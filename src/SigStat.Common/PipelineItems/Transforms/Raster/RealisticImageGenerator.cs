@@ -118,7 +118,9 @@ namespace SigStat.Common.Transforms
                         PointF iP = points[i];
                         PointF jP = points[i + 1];
                         if (!pendowns[i + 1])
+                        {
                             continue;
+                        }
                         //kb mennyit kell a ket pont koze rajzolni: tavolsaguktol fugg
                         float step = 1.5f / (Math.Abs(iP.X - jP.X) + Math.Abs(iP.Y - jP.Y));//lehetne euclidean is de minek es draga
                         for (float t = 0.0f; t <= 1.0f; t += step)

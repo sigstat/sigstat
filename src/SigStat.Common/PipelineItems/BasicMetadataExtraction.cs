@@ -11,7 +11,10 @@ namespace Alairas.Common
 {
     public class BasicMetadataExtraction : PipelineBase, ITransformation
     {
-        public const double Trim = 0.05;
+        public static double Trim
+        {
+            get { return 0.05; }
+        }
         public void Transform(Signature signature)
         {
             var image = signature.GetFeature(Features.Image);

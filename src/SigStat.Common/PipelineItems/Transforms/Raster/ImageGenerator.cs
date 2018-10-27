@@ -43,11 +43,12 @@ namespace SigStat.Common.Transforms
         {
             //default output is '{input}', '{input}Image'
             if (OutputFeatures == null)
+            {
                 OutputFeatures = new List<FeatureDescriptor> {
                     InputFeatures[0],
                     FeatureDescriptor<Image<Rgba32>>.Descriptor(InputFeatures[0].Name + "Image")
                 };
-
+            }
             bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
             int w = b.GetLength(0);
             int h = b.GetLength(1);
@@ -59,7 +60,9 @@ namespace SigStat.Common.Transforms
             for (int x = 0; x < w; x++)
             {
                 for (int y = 0; y < h; y++)
-                    img[x, h-1-y] = b[x, y] ? fg : bg;
+                {
+                    img[x, h - 1 - y] = b[x, y] ? fg : bg;
+                }
                 Progress = (int)(x / (double)w * 95);
             }
 

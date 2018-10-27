@@ -35,6 +35,7 @@ namespace SigStat.Common.Transforms
             for (int i = 1; i < w - 1; i++)
             {
                 for (int j = 1; j < h - 1; j++)
+                {
                     if (b[i, j])
                     {
                         bool[] ns = {//8 szomszed sorrendben
@@ -49,13 +50,19 @@ namespace SigStat.Common.Transforms
                         };
                         int ncnt = 0;//count neighbours
                         for (int ni = 0; ni < 8; ni++)
+                        {
                             ncnt += ns[ni] ? 1 : 0;
-
-                        if (ncnt == 1)//1 szomszed -> endpoint
+                        }
+                        if (ncnt == 1)  //1 szomszed -> endpoint
+                        {
                             endPoints.Add(new Point(i, j));
-                        else if (ncnt > 2)//tobb mint 2 szomszed -> crossing point
+                        }
+                        else if (ncnt > 2)  //tobb mint 2 szomszed -> crossing point
+                        {
                             crossingPoints.Add(new Point(i, j/*, ncnt*/));
+                        }
                     }
+                }
                 Progress = (int)(i / (double)(w - 1) * 100);
             }
 

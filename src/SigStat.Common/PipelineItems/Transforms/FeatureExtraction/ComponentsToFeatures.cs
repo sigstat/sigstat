@@ -40,10 +40,14 @@ namespace SigStat.Common.Transforms
                 {
                     xs.Add(p.X);
                     ys.Add(p.Y);
-                    if (p == c[0])//direkt nem equals(), hanem ==
+                    if (p == c[0])  //direkt nem equals(), hanem ==
+                    {
                         pendown.Add(false);
+                    }
                     else
+                    {
                         pendown.Add(true);
+                    }
                 }
                 Progress += (int)(1.0 / components.Count * 100);
             }

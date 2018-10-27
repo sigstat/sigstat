@@ -48,17 +48,23 @@ namespace SigStat.Common.Transforms
             int h = image.Size().Height;
 
             if (binThreshold != null && (binThreshold < 0 || binThreshold > 1))
+            {
                 Log(LogLevel.Warn, $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
+            }
 
-            if (binThreshold == null)//find threshold if not specified
+            if (binThreshold == null)   //find threshold if not specified
+            {
                 binThreshold = IterativeThreshold(image, 0.008);
+            }
 
             //binarize
             bool[,] b = new bool[w, h];
             for (int i = 0; i < w; i++)
             {
                 for (int j = 0; j < h; j++)
-                    b[i, h-j-1] = (Level(image[i, j]) > binThreshold);
+                {
+                    b[i, h - j - 1] = (Level(image[i, j]) > binThreshold);
+                }
                 Progress += (int)((1.0 / w)*100);
             }
             Log(LogLevel.Info, "Binarization done.");
@@ -86,6 +92,7 @@ namespace SigStat.Common.Transforms
                 double foreground = 0;
                 int fCnt = 0;
                 for (int i = 0; i < w; i++)
+                {
                     for (int j = 0; j < h; j++)
                     {
                         double level = Level(image[i, j]);
@@ -100,6 +107,7 @@ namespace SigStat.Common.Transforms
                             fCnt++;
                         }
                     }
+                }
                 background /= bCnt;//avg
                 foreground /= fCnt;//avg
                 prevThreshold = nextThreshold;
@@ -125,9 +133,13 @@ namespace SigStat.Common.Transforms
             //    level = b - (r + g) / 2.0;//ez nem nagyon mukodik
             //else
             if (foregroundType == ForegroundType.Dark)
+            {
                 level = 1.0 - (r + g + b) / 3.0;
+            }
             else //if (t == ForegroundType.Bright)
+            {
                 level = (r + g + b) / 3.0;
+            }
             return level;
         }
     }

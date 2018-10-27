@@ -67,8 +67,10 @@ namespace SigStat.Common.Transforms
                 }
                 else
                 {
-                    if(points.Count>0)
+                    if (points.Count > 0)
+                    {
                         DrawLines(img, points);
+                    }
                     points = new List<PointF>();
                     points.Add(ToImageCoords(xs[i], ys[i]));
                 }
@@ -78,9 +80,12 @@ namespace SigStat.Common.Transforms
 
             bool[,] b = new bool[w, h];
             for (int x = 0; x < w; x++)
+            {
                 for (int y = 0; y < h; y++)
+                {
                     b[x, y] = (img[x, y] == fg);
-
+                }
+            }
             signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
             Log(LogLevel.Info, "Rasterization done.");

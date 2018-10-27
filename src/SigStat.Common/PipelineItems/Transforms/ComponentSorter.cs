@@ -25,12 +25,18 @@ namespace SigStat.Common.Transforms
         ((a, b) =>
         {
             if (a[0].X < b[0].X)
+            {
                 return -1;
+            }
             if (a[0].X > b[0].X)
+            {
                 return 1;
+            }
             //x ugyanaz.. ritka de lehet, akkor y
             if (a[0].Y <= b[0].Y)
+            {
                 return -1;
+            }
             return 1;
         });
 
@@ -41,8 +47,12 @@ namespace SigStat.Common.Transforms
 
             //egyenkent megforditjuk ha kell (balrol jobbra megy kb)
             foreach (List<PointF> component in components)
-                if (component[0].X > component[component.Count - 1].X)//OTLET: ide lehetne valami epsilon kornyezetet beallitani, hasznos pl ha B betu alja tul visszalog
+            {
+                if (component[0].X > component[component.Count - 1].X)  //OTLET: ide lehetne valami epsilon kornyezetet beallitani, hasznos pl ha B betu alja tul visszalog
+                {
                     component.Reverse();
+                }
+            }
 
             //kezdo pontok szerint rendez
             //sections.Sort(kezdo_x);

@@ -32,7 +32,9 @@ namespace SigStat.Common.Transforms
             var crossingPoints = signature.GetFeature(FeatureDescriptor<List<Point>>.Descriptor("CrossingPoints"));
 
             if (samplingResolution < 1)
+            {
                 Log(LogLevel.Warn, $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
+            }
 
             //TODO: megtalalni a vegpont nelkulieket (pl. perfekt O betu), ebbol egy pontot hozzaadni a crossingpointokhoz es jo lesz
 
@@ -44,7 +46,9 @@ namespace SigStat.Common.Transforms
 
 
             foreach (var endings in crossings)
+            {
                 endPoints.AddRange(endings);
+            }
             Progress = 33;
             Log(LogLevel.Debug, $"{crossings.Count} crossings found.");
 
@@ -83,7 +87,9 @@ namespace SigStat.Common.Transforms
                 {
                     var m = crgroup[im];
                     for (int i = -1; i < 2; i++)//3x3 neighbourhood
+                    {
                         for (int j = -1; j < 2; j++)
+                        {
                             if (b[m.X + i, m.Y + j] && !(i == 0 && j == 0))
                             {
                                 bool isNeighbourCrossingPoint = false;
@@ -99,8 +105,12 @@ namespace SigStat.Common.Transforms
                                     }
                                 }
                                 if (!isNeighbourCrossingPoint)
+                                {
                                     newEndpoints.Add(new Point(m.X + i, m.Y + j));
+                                }
                             }
+                        }
+                    }
                 }
 
                 crossings.Add(newEndpoints);
@@ -188,8 +198,10 @@ namespace SigStat.Common.Transforms
                         section.Add(new Point(p.X, p.Y));
                     }
                 }
-                if(section.Count>0)//x db pontnal rovidebb sectionoket felejtsuk el, jo esellyel csak szukites hibaja
+                if (section.Count > 0)  //x db pontnal rovidebb sectionoket felejtsuk el, jo esellyel csak szukites hibaja
+                {
                     sectionlist.Add(section);
+                }
             }
 
             return sectionlist;
@@ -200,12 +212,16 @@ namespace SigStat.Common.Transforms
             Point nextp = new Point(-1, -1);
             //TODO: itt lehetne vmi prioritast bevezetni, pl. hogy prevp ellentetes iranyat vizsgaljuk eloszor (csak gyorsasag miatt)
             for (int i = -1; i < 2; i++)
+            {
                 for (int j = -1; j < 2; j++)
+                {
                     if (b[p.X + i, p.Y + j] && !prevp.Equals(new Point(p.X + i, p.Y + j)) && !(i == 0 && j == 0))
                     {//van szomszed, nem onnan jottunk, es nem onmaga
                         nextp = new Point(p.X + i, p.Y + j);
                         return (p, nextp);
                     }
+                }
+            }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
             Log(LogLevel.Warn, $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
@@ -231,13 +247,17 @@ namespace SigStat.Common.Transforms
                     for (int iE = 0; iE < crossings[iC].Count; iE++)
                     {
                         if (crossings[iC][iE].Equals(sFirst))
+                        {
                             First = true;
+                        }
                         else if (crossings[iC][iE].Equals(sLast))
+                        {
                             First = false;
+                        }
                         if (First != null)
                         {
                             conn.Add((sectionlist[iS], First.Value));
-                            //crossings[iC].RemoveAt(iE--);//
+                            //crossings[iC].RemoveAt(iE--);
                             break;
                         }
                     }

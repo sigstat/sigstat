@@ -52,7 +52,7 @@ namespace Alairas.Common
         {
             // TODO: optimalizálni
             List<List<Point>> result = new List<List<Point>>();
-            Dictionary<int, byte> colors = new Dictionary<int, byte>()
+            Dictionary<int, byte> colors = new Dictionary<int, byte>
             {
                 {0,0}
             };
@@ -117,18 +117,24 @@ namespace Alairas.Common
             foreach (var pair in pairs)
             {
                 if (!envelopes.Contains(pair.E1) || !envelopes.Contains(pair.E2))
+                {
                     continue;
+                }
 
                 var intersect = pair.E1.Select(p => p.X).Intersect(pair.E2.Select(p => p.X)).ToList();
                 if (intersect.Count == 0)
+                {
                     continue;
+                }
                 int x1 = intersect.Min();
                 int x2 = intersect.Max();
                 var intersectCount = intersect.Count;
 
                 // 50% fölötti átfedésre lövünk csak
                 if (intersectCount < pair.E1.Count / 2 && intersectCount < pair.E2.Count / 2)
+                {
                     continue;
+                }
 
                 // A felsőt töröljük ===> Ez az ékezeteket akarta törölni, de néhány szüvegben vannak alsó ékezetek is
                 //double y1 = pair.E1.Where(p => x1 <= p.X && p.X <= x2).Select(p => p.Y).Average();
@@ -138,9 +144,14 @@ namespace Alairas.Common
 
                 int length1 = Math.Abs(pair.E1.Last().X - pair.E1.First().X);
                 int length2 = Math.Abs(pair.E2.Last().X - pair.E2.First().X);
-                if (length1 > length2) envelopes.Remove(pair.E2);
-                else envelopes.Remove(pair.E1);
-
+                if (length1 > length2)
+                {
+                    envelopes.Remove(pair.E2);
+                }
+                else
+                {
+                    envelopes.Remove(pair.E1);
+                }
 
 
             }
@@ -163,7 +174,9 @@ namespace Alairas.Common
             int numPoints = points.Count;
             // Ha nincs elég pont az egyenes illestéshez akkor null-t adunk vissza. <-- FONTOS
             if (numPoints < 2)
+            {
                 return null;
+            }
 
             double sumX, sumY, sumXX, sumYY, sumXY;
             double a, b;        // az featureAndOriginaties(x) = a + b*x egyenes együtthatói

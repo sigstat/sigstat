@@ -26,7 +26,9 @@ namespace SigStat.Common.Transforms
         {
             //default output is the input
             if (OutputFeatures == null)
+            {
                 OutputFeatures = InputFeatures;
+            }
 
             if (InputFeatures[0].IsCollection)//we must treat this separately
             {

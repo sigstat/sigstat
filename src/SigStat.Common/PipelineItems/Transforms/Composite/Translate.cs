@@ -19,7 +19,7 @@ namespace SigStat.Common.Transforms
         /// <param name="yAdd">Value to translate <see cref="Features.Y"/> by.</param>
         public Translate(double xAdd, double yAdd)
         {
-            Items = new List<ITransformation>()
+            Items = new List<ITransformation>
             {
                 new AddConst(xAdd).Input(Features.X),
                 new AddConst(yAdd).Input(Features.Y),

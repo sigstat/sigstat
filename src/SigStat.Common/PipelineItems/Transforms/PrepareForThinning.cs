@@ -19,12 +19,19 @@ namespace SigStat.Common.Transforms
             int w = b.GetLength(0);
             int h = b.GetLength(1);
 
-            for (int x = 1; x < w-1; x++)
-                for (int y = 1; y < h-1; y++)
-                    if(b[x,y]==false)
+            for (int x = 1; x < w - 1; x++)
+            {
+                for (int y = 1; y < h - 1; y++)
+                {
+                    if (b[x, y] == false)
+                    {
                         if (NeighbourhoodCount(b, x, y) > 6)
+                        {
                             b[x, y] = true;
-
+                        }
+                    }
+                }
+            }
             //TODO: ehelyett Dilate, Erode lehet
 
             signature.SetFeature(OutputFeatures[0], b);
