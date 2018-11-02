@@ -18,7 +18,7 @@ namespace SigStat.Common.Transforms
         public Trim(int framewidth)
         {
             this.framewidth = framewidth;
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Trimmed"));
+            this.Output(FeatureDescriptor.Get<bool[,]>("Trimmed"));
         }
 
         /// <inheritdoc/>

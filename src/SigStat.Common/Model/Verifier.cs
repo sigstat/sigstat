@@ -156,7 +156,7 @@ namespace SigStat.Common.Model
                 return new Verifier()
                 {
                     TransformPipeline = new TangentExtraction(),
-                    ClassifierPipeline = new DTWClassifier() { FeatureDescriptor<List<double>>.Descriptor("Tangent") }
+                    ClassifierPipeline = new DTWClassifier() { FeatureDescriptor.Get<List<double>>("Tangent") }
                 };
             }
         }

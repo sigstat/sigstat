@@ -15,7 +15,7 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="TangentExtraction"/> class. </summary>
         public TangentExtraction()
         {
-            this.Output(FeatureDescriptor<List<double>>.Descriptor("Tangent"));
+            this.Output(FeatureDescriptor.Get<List<double>>("Tangent"));
         }
 
         /// <inheritdoc/>

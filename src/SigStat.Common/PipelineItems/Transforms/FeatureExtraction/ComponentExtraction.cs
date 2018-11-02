@@ -21,15 +21,15 @@ namespace SigStat.Common.Transforms
         public ComponentExtraction(int samplingResolution)
         {
             this.samplingResolution = samplingResolution;
-            this.Output(FeatureDescriptor<List<List<PointF>>>.Descriptor("Components"));
+            this.Output(FeatureDescriptor.Get<List<List<PointF>>>("Components"));
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            b = signature.GetFeature(FeatureDescriptor<bool[,]>.Descriptor("Skeleton"));
-            var endPoints = signature.GetFeature(FeatureDescriptor<List<Point>>.Descriptor("EndPoints"));
-            var crossingPoints = signature.GetFeature(FeatureDescriptor<List<Point>>.Descriptor("CrossingPoints"));
+            b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
+            var endPoints = signature.GetFeature(FeatureDescriptor.Get<List<Point>>("EndPoints"));
+            var crossingPoints = signature.GetFeature(FeatureDescriptor.Get<List<Point>>("CrossingPoints"));
 
             if (samplingResolution < 1)
             {

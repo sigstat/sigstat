@@ -21,89 +21,45 @@ namespace SigStat.Sample
 
         public static class MyFeatures
         {
-            //Define the features of your signature model
-            public static FeatureDescriptor<bool[,]> Binarized = FeatureDescriptor<bool[,]>.Descriptor("Binarized");
-            public static FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor<bool[,]>.Descriptor("Skeleton");
-            public static FeatureDescriptor<List<double>> Tangent = FeatureDescriptor<List<double>>.Descriptor("Tangent");
+            public static readonly FeatureDescriptor<List<Loop>> Loop = FeatureDescriptor.Get<List<Loop>>("Loop");
+            public static FeatureDescriptor<bool[,]> Binarized = FeatureDescriptor.Get<bool[,]>("Binarized");
+            public static FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor.Get<bool[,]>("Skeleton");
+            public static FeatureDescriptor<List<double>> Tangent = FeatureDescriptor.Get<List<double>>("Tangent");
         }
 
         struct OnlinePoint { public int X; public int Y; public int Pressure; }
 
-        class MySignature : Signature
-        {
-            //public List<Loop> Loops { get { return (List<Loop>)this["Loop"]; } set { this["Loop"] = value; } }
+        //class MySignature : Signature
+        //{
+        //    public List<Loop> Loops { get { return GetFeature(Features.Loop); } set { SetFeature(Features.Loop, value); } }
+        //    public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
 
-            //public List<Loop> Loops2 { get { return GetFeature<List<Loop>>(Features.Loop.Key); } set { this[Features.Loop.Key] = value; } }
-            
-            // Preferált:
-            public List<Loop> Loops3 { get { return GetFeature(Features.Loop); } set { SetFeature(Features.Loop, value); } }
-
-            //public List<Loop> Loops4 { get { return GetFeatures<Loop>(); } set { SetFeatures(value); } }
-
-
-            //public List<OnlinePoint> OnlinePoints { get { return GetFeature<List<OnlinePoint>>(); } set { SetFeature(value); } }
-            //public List<OnlinePoint> OnlinePoints2 { get { return GetFeatures<OnlinePoint>(); } set { SetFeatures(value); } }
-
-            public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
-
-            public bool[,] Binarized { get { return GetFeature(MyFeatures.Binarized); } set { SetFeature(MyFeatures.Binarized, value); } }
-            public List<double> Tangent { get { return GetFeature(MyFeatures.Tangent); } set { SetFeature(MyFeatures.Tangent, value); } }
-
-        }
+        //    public bool[,] Binarized { get { return GetFeature(MyFeatures.Binarized); } set { SetFeature(MyFeatures.Binarized, value); } }
+        //    public List<double> Tangent { get { return GetFeature(MyFeatures.Tangent); } set { SetFeature(MyFeatures.Tangent, value); } }
+        //}
 
         public static void Main(string[] args)
         {
             Console.WriteLine("SigStat library sample");
-            Directory.CreateDirectory("Logs");
-            int menuitem = 0;
-            do
-            {
-                Console.WriteLine("Choose a demo: ");
-                Console.WriteLine(" - 1. Signature demo");
-                Console.WriteLine(" - 2. Online Signature -> Image");
-                Console.WriteLine(" - 3. Offline Database Generation");
-                Console.WriteLine(" - 4. Offline Verifier");
-                Console.WriteLine(" - 5. Online Verifier");
-                Console.WriteLine(" - 6. Online Benchmark");
-                Console.WriteLine(" - 0. Exit");
-                if (!int.TryParse(Console.ReadKey().KeyChar.ToString(), out menuitem))
-                    menuitem = 0;
-                Console.WriteLine();
-                switch (menuitem)
-                {
-                    case 1:
-                        SignatureDemo();
-                        break;
-                    case 2:
-                        OnlineToImage();
-                        break;
-                    case 3:
-                        GenerateOfflineDatabase();
-                        break;
-                    case 4:
-                        OfflineVerifierDemo();
-                        break;
-                    case 5:
-                        OnlineVerifierDemo();
-                        break;
-                    case 6:
-                        OnlineVerifierBenchmarkDemo();
-                        break;
-                    default:
-                        break;
-                }
-            } while (menuitem != 0);
+
+            SignatureDemo();
+            OnlineToImage();
+            GenerateOfflineDatabase();
+            OfflineVerifierDemo();
+            OnlineVerifierDemo();
+            OnlineVerifierBenchmarkDemo();
+
         }
 
         public static void SignatureDemo()
         {
-            //TODO: ezt a reszt redberakni, csak a preferred way maradjon
+            Signature sig = new Signature();
+            sig.ID = "Demo";
+            sig.Origin = Origin.Genuine;
 
-            MySignature sig = new MySignature() { ID = "Demo", Origin = Origin.Genuine };
-            //var sampleLoops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
+            var seriesX = new List<double> { 1, 2, 1, 1, 2, 3, 4, 5 };
+            var sampleLoops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
 
-            // Generikus függvény + Típus
-            //sig["Loop"] = sampleLoops;
             //sig["X"] = new List<double>() { 1, 2, 3 };
             //sig["Bounds"] = new RectangleF();
 
@@ -113,7 +69,7 @@ namespace SigStat.Sample
             //var xt = sig.GetFeature(Features.X);
             //sig.GetFeatures<Loop>();
 
-            
+
 
             //Loop loop = sig.GetFeature<Loop>(1);
             //List<Loop> loops = sig.GetFeatures<Loop>();
@@ -201,7 +157,7 @@ namespace SigStat.Sample
             verifier.Train(s);
 
             //TODO: ha mar Verifier demo, akkor Test()-et is hasznaljuk..
-            ImageSaver.Save(s1,  @"GeneratedOfflineImage.png");
+            ImageSaver.Save(s1, @"GeneratedOfflineImage.png");
             debugLogger.Stop();
         }
 
@@ -212,7 +168,7 @@ namespace SigStat.Sample
                 new FileStream($@"Logs\OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
                 LogConsole);
 
-            var timer1 = FeatureDescriptor<DateTime>.Descriptor("Timer1");
+            var timer1 = FeatureDescriptor.Get<DateTime>("Timer1");
 
             var verifier = new Verifier()
             {
@@ -249,7 +205,7 @@ namespace SigStat.Sample
                     },
                     {
                         (new DTWClassifier(){
-                            FeatureDescriptor<List<double>>.Descriptor("Tangent")//Features.Tangent
+                            FeatureDescriptor.Get<List<double>>("Tangent")//Features.Tangent
                         }, 0.55)
                     },
                     //{
@@ -265,8 +221,8 @@ namespace SigStat.Sample
             verifier.ProgressChanged += ProgressPrimary;
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            var signers = new List<Signer>(loader.EnumerateSigners(p=>p.ID=="01"));//Load the first signer only
-             
+            var signers = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"));//Load the first signer only
+
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);
             verifier.Train(references);
 
@@ -312,7 +268,7 @@ namespace SigStat.Sample
                 LogConsole);
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            Signature s1 = loader.EnumerateSigners(p=>(p.ID=="10")).ToList()[0].Signatures[10];//signer 10, signature 10
+            Signature s1 = loader.EnumerateSigners(p => (p.ID == "10")).ToList()[0].Signatures[10];//signer 10, signature 10
 
             var tfs = new SequentialTransformPipeline
             {
@@ -356,15 +312,15 @@ namespace SigStat.Sample
             };
             pipeline.Logger = warnLogger;//only log warnings and errors
 
-            for(int i = 0; i<signers.Count;i++)
+            for (int i = 0; i < signers.Count; i++)
             {
                 for (int j = 0; j < signers[i].Signatures.Count; j++)
                 {
                     pipeline.Transform(signers[i].Signatures[j]);
-                    ImageSaver.Save(signers[i].Signatures[j], path + $"U{i+1}S{j+1}.png");
+                    ImageSaver.Save(signers[i].Signatures[j], path + $"U{i + 1}S{j + 1}.png");
                     ProgressSecondary(null, (int)(j / (double)signers[i].Signatures.Count * 100.0));
                 }
-                Console.WriteLine($"Signer{signers[i].ID} ({i+1}/{signers.Count}) signature images generated.");
+                Console.WriteLine($"Signer{signers[i].ID} ({i + 1}/{signers.Count}) signature images generated.");
                 ProgressPrimary(null, (int)(i / (double)signers.Count * 100.0));
             }
 

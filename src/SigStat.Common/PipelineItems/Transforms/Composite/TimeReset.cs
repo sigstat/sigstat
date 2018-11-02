@@ -22,7 +22,7 @@ namespace SigStat.Common.Transforms
         /// <summary>Initializes a new instance of the <see cref="TimeReset"/> class.</summary>
         public TimeReset()
         {
-            var negMin = FeatureDescriptor<List<double>>.Descriptor("NegMin");//TODO: ideiglenes dolgokat vhogy torolni
+            var negMin = FeatureDescriptor.Get<List<double>>("NegMin");//TODO: ideiglenes dolgokat vhogy torolni
             Items = new List<ITransformation>
             {
                 new Extrema().Input(Features.T),//find minimum

@@ -18,7 +18,7 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="ComponentsToFeatures"/> class. </summary>
         public ComponentsToFeatures()
         {
-            componentsFeature = FeatureDescriptor<List<List<PointF>>>.Descriptor("Components");
+            componentsFeature = FeatureDescriptor.Get<List<List<PointF>>>("Components");
             this.Output(
                 Features.X,
                 Features.Y,

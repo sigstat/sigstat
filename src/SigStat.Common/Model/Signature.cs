@@ -57,18 +57,26 @@ namespace SigStat.Common
             }
         }
 
-        //ezt nem lehet..
-        /*public T this<T>[FeatureDescriptor<T> featureDescriptor]
+        /// <summary>
+        /// Initializes a signature instance
+        /// </summary>
+        public Signature()
         {
-            get
-            {
-                return (T)features[featureDescriptor.Key];
-            }
-            set
-            {
-                features[featureDescriptor.Key] = value;
-            }
-        }*/
+
+        }
+
+        /// <summary>
+        /// Initializes a signature instance with the given properties
+        /// </summary>
+        /// <param name="signatureID"></param>
+        /// <param name="origin"></param>
+        /// <param name="signer"></param>
+        public Signature(string signatureID, Origin origin = Origin.Unknown, Signer signer = null)
+        {
+            ID = signatureID;
+            Origin = origin;
+            Signer = signer;
+        }
 
         /// <summary>
         /// Gets the specified feature.
@@ -116,7 +124,7 @@ namespace SigStat.Common
         /// <returns>A collection of <see cref="FeatureDescriptor"/>s.</returns>
         public IEnumerable<FeatureDescriptor> GetFeatureDescriptors()
         {
-            return features.Keys.Select(k => FeatureDescriptor.GetDescriptor(k));
+            return features.Keys.Select(k => FeatureDescriptor.Get(k));
         }
 
         /*/// <summary>
@@ -175,20 +183,33 @@ namespace SigStat.Common
             return values.ToList();
         }
 
+        /// <summary>
+        /// Returns true if the signature contains the specified feature
+        /// </summary>
+        /// <param name="featureDescriptor"></param>
+        /// <returns></returns>
         public bool HasFeature(FeatureDescriptor featureDescriptor)
         {
             return features.ContainsKey(featureDescriptor.Key);
         }
 
+        /// <summary>
+        /// Returns true if the signature contains the specified feature
+        /// </summary>
+        /// <param name="featureKey"></param>
+        /// <returns></returns>
         public bool HasFeature(string featureKey)
         {
             return features.ContainsKey(featureKey);
         }
 
-
+        /// <summary>
+        /// Returns a string representation of the signature
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return ID;
+            return ID??"";
         }
 
 

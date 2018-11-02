@@ -16,7 +16,7 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="OnePixelThinning"/> class. </summary>
         public OnePixelThinning()
         {
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("OnePixelThinningResult"));
+            this.Output(FeatureDescriptor.Get<bool[,]>("OnePixelThinningResult"));
         }
 
         /// <inheritdoc/>

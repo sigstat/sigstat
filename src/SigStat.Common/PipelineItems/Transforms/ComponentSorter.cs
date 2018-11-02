@@ -17,7 +17,7 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="ComponentSorter"/> class. </summary>
         public ComponentSorter()
         {
-            componentsFeature = FeatureDescriptor<List<List<PointF>>>.Descriptor("Components");
+            componentsFeature = FeatureDescriptor.Get<List<List<PointF>>>("Components");
             this.Output(componentsFeature);
         }
 

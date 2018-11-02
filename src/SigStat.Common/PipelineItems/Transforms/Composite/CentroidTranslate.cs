@@ -32,7 +32,7 @@ namespace SigStat.Common.Transforms
                     Features.Y
                 },
                 new Multiply(-1.0),
-                new Translate(FeatureDescriptor<List<double>>.Descriptor("Centroid")).Input(Features.X, Features.Y)
+                new Translate(FeatureDescriptor.Get<List<double>>("Centroid")).Input(Features.X, Features.Y)
             };
 
             this.Output(Features.X, Features.Y);

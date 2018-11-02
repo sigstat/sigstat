@@ -37,7 +37,7 @@ namespace SigStat.Common.Transforms
         {
             this.foregroundType = foregroundType;
             this.binThreshold = binThreshold;
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
+            this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
         }
 
         /// <inheritdoc/>

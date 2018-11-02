@@ -38,7 +38,7 @@ namespace SigStat.Common.Transforms
             this.h = resolutionY;
             this.penWidth = penWidth;
             pen = new Pen<Byte4>(fg, penWidth);
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
+            this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
         }
 
         /// <inheritdoc/>

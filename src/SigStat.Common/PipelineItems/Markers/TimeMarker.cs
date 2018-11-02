@@ -14,7 +14,7 @@ namespace SigStat.Common.PipelineItems.Markers
         /// <summary>Starts a timer to measure completion time of following transforms.</summary>
         public TimeMarkerStart()
         {
-            this.Output(FeatureDescriptor<DateTime>.Descriptor("DefaultTimer"));
+            this.Output(FeatureDescriptor.Get<DateTime>("DefaultTimer"));
         }
 
         /// <inheritdoc/>
@@ -33,7 +33,7 @@ namespace SigStat.Common.PipelineItems.Markers
         /// <summary>Stops a timer to measure completion time of previous transforms.</summary>
         public TimeMarkerStop()
         {
-            this.Output(FeatureDescriptor<DateTime>.Descriptor("DefaultTimer"));
+            this.Output(FeatureDescriptor.Get<DateTime>("DefaultTimer"));
         }
 
         /// <inheritdoc/>

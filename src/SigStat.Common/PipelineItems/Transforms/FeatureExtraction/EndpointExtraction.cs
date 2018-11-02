@@ -17,15 +17,15 @@ namespace SigStat.Common.Transforms
         public EndpointExtraction()
         {
             this.Output(
-                FeatureDescriptor<List<Point>>.Descriptor("EndPoints"),
-                FeatureDescriptor<List<Point>>.Descriptor("CrossingPoints")
+                FeatureDescriptor.Get<List<Point>>("EndPoints"),
+                FeatureDescriptor.Get<List<Point>>("CrossingPoints")
             );
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            bool[,] b = signature.GetFeature(FeatureDescriptor<bool[,]>.Descriptor("Skeleton"));
+            bool[,] b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
 
             var endPoints = new List<Point>();
             var crossingPoints = new List<Point/*, int ncnt*/>();

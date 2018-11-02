@@ -16,7 +16,7 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="HSCPThinning"/> class. </summary>
         public HSCPThinning()
         {
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("HSCPThinningResult"));
+            this.Output(FeatureDescriptor.Get<bool[,]>("HSCPThinningResult"));
         }
 
         /// <inheritdoc/>

@@ -13,13 +13,13 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public static class Svc2004
     {
-        public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor<List<int>>.Descriptor("Svc2004.X");
-        public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Y");
-        public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor<List<int>>.Descriptor("Svc2004.t");
-        public static readonly FeatureDescriptor<List<int>> Button = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Button");
-        public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Azimuth");
-        public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Altitude");
-        public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor<List<int>>.Descriptor("Svc2004.Pressure");
+        public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("Svc2004.X");
+        public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("Svc2004.Y");
+        public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("Svc2004.t");
+        public static readonly FeatureDescriptor<List<int>> Button = FeatureDescriptor.Get<List<int>>("Svc2004.Button");
+        public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor.Get<List<int>>("Svc2004.Azimuth");
+        public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor.Get<List<int>>("Svc2004.Altitude");
+        public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("Svc2004.Pressure");
     }
 
     /// <summary>

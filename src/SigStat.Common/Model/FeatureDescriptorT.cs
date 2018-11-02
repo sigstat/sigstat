@@ -13,20 +13,30 @@ namespace SigStat.Common
         private FeatureDescriptor(string name, string key, Type featureType) : base(name, key, featureType) { }
         private FeatureDescriptor(string name, string key) : base(name, key, typeof(T)) { }
 
+        private static object syncRoot = new object();
+
         /// <summary>
-        /// Get the <see cref="FeatureDescriptor{T}"/> of <paramref name="key"/>.
-        /// If the key is not used yet, create one.
-        /// This is the preferred way.
+        /// Gets the <see cref="FeatureDescriptor{T}"/> specified by <paramref name="key"/>.
+        /// If the key is not registered yet, a new <see cref="FeatureDescriptor{T}"/> is automatically created with the given key and type.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static FeatureDescriptor<T> Descriptor(string key)
+        public new static FeatureDescriptor<T> Get(string key)
         {
+            //TODO: Currently the management of FeatureDescriptors is blurred beween FeatureDescriptor and FeatureDescriptor<T> classes
+            //      although we need both of them, the responsibility should be celarly separated
             if (descriptors.ContainsKey(key))
                 return (FeatureDescriptor<T>)descriptors[key];
-            //TODO: log info new descriptor created
-            return new FeatureDescriptor<T>(key, key);//ha meg nincs ilyen, akkor csinalunk
+
+            lock(syncRoot)
+            {
+                if (descriptors.ContainsKey(key))
+                    return (FeatureDescriptor<T>)descriptors[key];
+                //TODO: log info new descriptor created
+                //QUESTION: should we always autocreate feature descriptors? How do we pass a Name parameter to a new descriptor?
+                
+                return new FeatureDescriptor<T>(key, key); ;
+            }
         }
+
 
     }
 }

@@ -10,7 +10,7 @@ namespace SigStat.Common.Transforms
     {
         public PrepareForThinning()
         {
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Prepared"));
+            this.Output(FeatureDescriptor.Get<bool[,]>("Prepared"));
         }
 
         public void Transform(Signature signature)

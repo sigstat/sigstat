@@ -17,7 +17,7 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="Map"/> class with specified settings. </summary>
         public Normalize()
         {
-            this.Output(FeatureDescriptor<List<double>>.Descriptor("NormalizationResult"));
+            this.Output(FeatureDescriptor.Get<List<double>>("NormalizationResult"));
         }
 
         /// <inheritdoc/>

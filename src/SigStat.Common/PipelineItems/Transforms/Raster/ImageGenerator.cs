@@ -46,7 +46,7 @@ namespace SigStat.Common.Transforms
             {
                 OutputFeatures = new List<FeatureDescriptor> {
                     InputFeatures[0],
-                    FeatureDescriptor<Image<Rgba32>>.Descriptor(InputFeatures[0].Name + "Image")
+                    FeatureDescriptor.Get<Image<Rgba32>>(InputFeatures[0].Name + "Image")
                 };
             }
             bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);

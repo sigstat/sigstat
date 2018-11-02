@@ -19,8 +19,8 @@ namespace SigStat.Common.Transforms
         public Extrema()
         {
             this.Output(
-                FeatureDescriptor<List<double>>.Descriptor("Min"),
-                FeatureDescriptor<List<double>>.Descriptor("Max")
+                FeatureDescriptor.Get<List<double>>("Min"),
+                FeatureDescriptor.Get<List<double>>("Max")
             );
         }
 

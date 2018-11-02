@@ -24,7 +24,7 @@ namespace SigStat.Common.Transforms
             this.v0 = minVal;
             this.v1 = maxVal;
 
-            this.Output(FeatureDescriptor<List<double>>.Descriptor("MapResult"));
+            this.Output(FeatureDescriptor.Get<List<double>>("MapResult"));
         }
 
         /// <inheritdoc/>

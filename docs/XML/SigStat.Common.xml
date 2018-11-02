@@ -651,10 +651,10 @@
             </summary>
         </member>
         <member name="P:SigStat.Common.FeatureDescriptor.Name">
-            <summary> Gets or sets the name of the feature. </summary>
+            <summary> Gets or sets a human readable name of the feature. </summary>
         </member>
         <member name="P:SigStat.Common.FeatureDescriptor.Key">
-            <summary> Gets or sets the key of the feature. </summary>
+            <summary> Gets the unique key of the feature. </summary>
         </member>
         <member name="P:SigStat.Common.FeatureDescriptor.FeatureType">
             <summary> Gets or sets the type of the feature. </summary>
@@ -674,10 +674,18 @@
             <param name="key"></param>
             <param name="featureType"></param>
         </member>
-        <member name="M:SigStat.Common.FeatureDescriptor.GetDescriptor(System.String)">
+        <member name="M:SigStat.Common.FeatureDescriptor.Get(System.String)">
             <summary>
             Gets the <see cref="T:SigStat.Common.FeatureDescriptor"/> specified by <paramref name="key"/>.
-            Throws error if key not found.
+            Throws <see cref="T:System.Collections.Generic.KeyNotFoundException"/> exception if there is no descriptor registered with the given key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.FeatureDescriptor.Get``1(System.String)">
+            <summary>
+            Gets the <see cref="T:SigStat.Common.FeatureDescriptor`1"/> specified by <paramref name="key"/>.
+            If the key is not registered yet, a new <see cref="T:SigStat.Common.FeatureDescriptor`1"/> is automatically created with the given key and type.
             </summary>
             <param name="key"></param>
             <returns></returns>
@@ -688,14 +696,11 @@
             </summary>
             <typeparam name="T">Type of the feature.</typeparam>
         </member>
-        <member name="M:SigStat.Common.FeatureDescriptor`1.Descriptor(System.String)">
+        <member name="M:SigStat.Common.FeatureDescriptor`1.Get(System.String)">
             <summary>
-            Get the <see cref="T:SigStat.Common.FeatureDescriptor`1"/> of <paramref name="key"/>.
-            If the key is not used yet, create one.
-            This is the preferred way.
+            Gets the <see cref="T:SigStat.Common.FeatureDescriptor`1"/> specified by <paramref name="key"/>.
+            If the key is not registered yet, a new <see cref="T:SigStat.Common.FeatureDescriptor`1"/> is automatically created with the given key and type.
             </summary>
-            <param name="key"></param>
-            <returns></returns>
         </member>
         <member name="T:SigStat.Common.Origin">
             <summary>Represents our knowledge on the origin of a signature. </summary>
@@ -736,6 +741,19 @@
             </summary>
             <param name="featureDescriptor"></param>
             <returns>The feature object without cast.</returns>
+        </member>
+        <member name="M:SigStat.Common.Signature.#ctor">
+            <summary>
+            Initializes a signature instance
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Signature.#ctor(System.String,SigStat.Common.Origin,SigStat.Common.Signer)">
+            <summary>
+            Initializes a signature instance with the given properties
+            </summary>
+            <param name="signatureID"></param>
+            <param name="origin"></param>
+            <param name="signer"></param>
         </member>
         <member name="M:SigStat.Common.Signature.GetFeature``1(System.String)">
             <summary>
@@ -779,6 +797,26 @@
             <param name="fs">List of features to aggregate.</param>
             <returns>Aggregated feature value</returns>
         </member>
+        <member name="M:SigStat.Common.Signature.HasFeature(SigStat.Common.FeatureDescriptor)">
+            <summary>
+            Returns true if the signature contains the specified feature
+            </summary>
+            <param name="featureDescriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Signature.HasFeature(System.String)">
+            <summary>
+            Returns true if the signature contains the specified feature
+            </summary>
+            <param name="featureKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Signature.ToString">
+            <summary>
+            Returns a string representation of the signature
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.Signer">
             <summary>
             Represents a person as a <see cref="P:SigStat.Common.Signer.ID"/> and a list of <see cref="P:SigStat.Common.Signer.Signatures"/>.
@@ -802,7 +840,7 @@
         </member>
         <member name="M:SigStat.Common.Vector.Equals(System.Object)">
             <summary>
-            Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
+            Két vektor akkor egyenlõ, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
             mutatnak és hosszuk is megegyezik. 
             </summary>
             <param name="obj"></param>
@@ -810,12 +848,12 @@
         </member>
         <member name="M:SigStat.Common.Vector.GetNormal">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Elofrgatja a vektort 90 fokkal a kezdõpontja körül az óramutató járásával megegyezõ irányba
             </summary>
         </member>
         <member name="M:SigStat.Common.Vector.GetNormal(System.Double)">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Elofrgatja a vektort 90 fokkal a kezdõpontja körül az óramutató járásával megegyezõ irányba
             </summary>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.DTWClassifier">
