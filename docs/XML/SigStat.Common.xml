@@ -690,6 +690,12 @@
             <param name="key"></param>
             <returns></returns>
         </member>
+        <member name="M:SigStat.Common.FeatureDescriptor.ToString">
+            <summary>
+            Returns a string represenatation of the FeatureDescriptor
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.FeatureDescriptor`1">
             <summary>
             Represents a feature with the type <typeparamref name="T"/>
@@ -784,9 +790,16 @@
         </member>
         <member name="M:SigStat.Common.Signature.SetFeature``1(SigStat.Common.FeatureDescriptor,``0)">
             <summary>
-            Sets the specified feature. This is the preferred way.
+            Sets the specified feature. 
             </summary>
             <param name="featureDescriptor">The feature to put the new value in.</param>
+            <param name="feature">The value to set.</param>
+        </member>
+        <member name="M:SigStat.Common.Signature.SetFeature``1(System.String,``0)">
+            <summary>
+            Sets the specified feature. 
+            </summary>
+            <param name="featureKey">The unique key of the feature.</param>
             <param name="feature">The value to set.</param>
         </member>
         <member name="M:SigStat.Common.Signature.GetAggregateFeature(System.Collections.Generic.List{SigStat.Common.FeatureDescriptor})">

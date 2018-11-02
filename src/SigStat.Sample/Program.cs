@@ -29,74 +29,75 @@ namespace SigStat.Sample
 
         struct OnlinePoint { public int X; public int Y; public int Pressure; }
 
-        //class MySignature : Signature
-        //{
-        //    public List<Loop> Loops { get { return GetFeature(Features.Loop); } set { SetFeature(Features.Loop, value); } }
-        //    public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
+        class MySignature : Signature
+        {
+            public List<Loop> Loops { get { return GetFeature(MyFeatures.Loop); } set { SetFeature(MyFeatures.Loop, value); } }
+            public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
 
-        //    public bool[,] Binarized { get { return GetFeature(MyFeatures.Binarized); } set { SetFeature(MyFeatures.Binarized, value); } }
-        //    public List<double> Tangent { get { return GetFeature(MyFeatures.Tangent); } set { SetFeature(MyFeatures.Tangent, value); } }
-        //}
+            public bool[,] Binarized { get { return GetFeature(MyFeatures.Binarized); } set { SetFeature(MyFeatures.Binarized, value); } }
+            public List<double> Tangent { get { return GetFeature(MyFeatures.Tangent); } set { SetFeature(MyFeatures.Tangent, value); } }
+
+        }
 
         public static void Main(string[] args)
         {
             Console.WriteLine("SigStat library sample");
 
             SignatureDemo();
-            OnlineToImage();
-            GenerateOfflineDatabase();
-            OfflineVerifierDemo();
-            OnlineVerifierDemo();
-            OnlineVerifierBenchmarkDemo();
+            //OnlineToImage();
+            //GenerateOfflineDatabase();
+            //OfflineVerifierDemo();
+            //OnlineVerifierDemo();
+            //OnlineVerifierBenchmarkDemo();
 
         }
 
         public static void SignatureDemo()
         {
+            // Create a signature instance and initialize main properties
             Signature sig = new Signature();
             sig.ID = "Demo";
             sig.Origin = Origin.Genuine;
 
+            // Set/Get feature value, using a string key
+            sig["Height"] = 5;
+            var height = (int)sig["Height"];
+
+            // Set/Get feature value, using a generic method and a sting key
+            sig.SetFeature<int>("Height", 5);
+            height = sig.GetFeature<int>("Height");
+
+            // Register a feature descriptor
+            FeatureDescriptor<int> heightDescriptor = FeatureDescriptor.Get<int>("Height");
+
+            // Set/Get feature value, using a generic feature descriptor
+            // Note that no casting is required!
+            sig.SetFeature(heightDescriptor, 5);
+            height = sig.GetFeature(heightDescriptor);
+
+            // Define more complex feature values
             var seriesX = new List<double> { 1, 2, 1, 1, 2, 3, 4, 5 };
-            var sampleLoops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
+            var loops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
 
-            //sig["X"] = new List<double>() { 1, 2, 3 };
-            //sig["Bounds"] = new RectangleF();
+            // Reusing feature descriptors (see MyFeatures class for details)
+            sig.SetFeature(MyFeatures.Loop, loops);
+            loops = sig.GetFeature(MyFeatures.Loop);
 
-            //var f1 = (List<Loop>)sig["Loop"];
-            //sig.GetFeature<List<double>>("X");
-            //sig.GetFeature<RectangleF>("Bounds");
-            //var xt = sig.GetFeature(Features.X);
-            //sig.GetFeatures<Loop>();
+            // Wrap features into properties, see (MySignature class for details)
+            MySignature mySig = new MySignature();
+            mySig.Loops = loops;
+            loops = mySig.Loops;
 
-
-
-            //Loop loop = sig.GetFeature<Loop>(1);
-            //List<Loop> loops = sig.GetFeatures<Loop>();
-
-            // Tulajdonságokkal + ID
-            //sig["Loop"] = new List<Loop>();
-            //loops = (List<Loop>)sig["Loop"];
-
-            // Generikus függvény + ID
-            //sig.SetFeatures(new List<Loop>());
-            //loops = sig.GetFeature(Features.Loop);
-            //loops = sig.GetFeatures<Loop>();
-            //var loop6 = sig.GetFeature<Loop>(6);
-
-            // Erősen típusos burkolóval
-            //sig.Loops = sampleLoops;
-            //loops = sig.Loops;
-
+            // Enumerate all the features in a signature
             foreach (var descriptor in sig.GetFeatureDescriptors())
             {
-                Console.WriteLine($"Name: {descriptor.Name}, Key: {descriptor.Key}");
                 if (!descriptor.IsCollection)
                 {
-                    Console.WriteLine(sig[descriptor]);
+                    Console.WriteLine($"{descriptor.Name}: {sig[descriptor]}");
                 }
                 else
                 {
+                    Console.WriteLine($"{descriptor}:");
                     var items = (IList)sig[descriptor];
                     for (int i = 0; i < items.Count; i++)
                     {

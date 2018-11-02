@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace SigStat.Common
@@ -16,7 +17,7 @@ namespace SigStat.Common
         /// <summary> Gets or sets the type of the feature. </summary>
         public Type FeatureType { get; set; }
 
-
+        private static object syncRoot = new object();
 
         /// <summary> Gets whether the type of the feature is List. </summary>
         public bool IsCollection
@@ -50,6 +51,18 @@ namespace SigStat.Common
             descriptors.Add(key, this);
         }
 
+        public static bool IsRegistered(string featureKey)
+        {
+            return descriptors.ContainsKey(featureKey);
+        }
+
+        public static FeatureDescriptor Register(string featureKey, Type type)
+        {
+            var fdType = typeof(FeatureDescriptor<>).MakeGenericType(type);
+            var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
+            return (FeatureDescriptor)get.Invoke(null, new object[] { featureKey });
+        }
+
         /// <summary>
         /// Gets the <see cref="FeatureDescriptor"/> specified by <paramref name="key"/>.
         /// Throws <see cref="KeyNotFoundException"/> exception if there is no descriptor registered with the given key.
@@ -76,6 +89,15 @@ namespace SigStat.Common
                 return (FeatureDescriptor<T>)descriptors[key];
             //TODO: log info new descriptor created
             return FeatureDescriptor<T>.Get(key);
+        }
+
+        /// <summary>
+        /// Returns a string represenatation of the FeatureDescriptor
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"{Name} ({Key})";
         }
 
     }

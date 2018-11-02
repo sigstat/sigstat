@@ -35,6 +35,8 @@ namespace SigStat.Common
             }
             set
             {
+                // The approach below ensures, that the feature descriptor is registered on first use
+                FeatureDescriptor.Register(featureKey, value.GetType());
                 features[featureKey] = value;
             }
         }
@@ -147,13 +149,24 @@ namespace SigStat.Common
         }*/
 
         /// <summary>
-        /// Sets the specified feature. This is the preferred way.
+        /// Sets the specified feature. 
         /// </summary>
         /// <param name="featureDescriptor">The feature to put the new value in.</param>
         /// <param name="feature">The value to set.</param>
         public void SetFeature<T>(FeatureDescriptor featureDescriptor, T feature)
         {
             features[featureDescriptor.Key] = feature;
+        }
+        /// <summary>
+        /// Sets the specified feature. 
+        /// </summary>
+        /// <param name="featureKey">The unique key of the feature.</param>
+        /// <param name="feature">The value to set.</param>
+        public void SetFeature<T>(string featureKey, T feature)
+        {
+            //Ensure, that the FeatureDescriptor is registered
+            FeatureDescriptor.Get<T>(featureKey);
+            features[featureKey] = feature;
         }
 
         /// <summary>
