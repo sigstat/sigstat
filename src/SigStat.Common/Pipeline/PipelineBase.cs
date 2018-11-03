@@ -14,9 +14,9 @@ namespace SigStat.Common
     public abstract class PipelineBase
     {
         /// <inheritdoc/>
-        public List<FeatureDescriptor> InputFeatures { get; set; }
+        public List<FeatureDescriptor> InputFeatures { get; set; } = new List<FeatureDescriptor>();
         /// <inheritdoc/>
-        public List<FeatureDescriptor> OutputFeatures { get; set; }
+        public List<FeatureDescriptor> OutputFeatures { get; set; } = new List<FeatureDescriptor>();
 
         /// <inheritdoc/>
         public Logger Logger { get; set; }

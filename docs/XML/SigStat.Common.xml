@@ -378,7 +378,14 @@
         <member name="M:SigStat.Common.Loaders.ImageLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
         </member>
-        <member name="M:SigStat.Common.Loaders.ImageLoader.LoadSignature(SigStat.Common.Signature,System.String)">
+        <member name="M:SigStat.Common.Loaders.ImageLoader.LoadSignature(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Loaders.ImageLoader.LoadImage(SigStat.Common.Signature,System.String)">
             <summary>
             Load one image.
             </summary>
@@ -1347,6 +1354,29 @@
             <param name="t1"></param>
             <param name="t">0.0f to 1.0f</param>
             <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Transforms.Resize">
+            <summary>
+            Resizes the image to a specified width and height
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Transforms.Resize.Width">
+            <summary>
+            The new width. Leave it as null, if you do not want to explicitly specify a given width
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Transforms.Resize.Height">
+            <summary>
+            The new height. Leave it as null, if you do not want to explicitly specify a given height
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Transforms.Resize.ResizeFunction">
+            <summary>
+            Set a resize function if you want to dynamically calculate the new width and height of the image
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Resize.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Transforms.Trim">
             <summary>

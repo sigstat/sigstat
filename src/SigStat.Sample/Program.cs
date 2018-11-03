@@ -43,12 +43,15 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
-            SignatureDemo();
+            //SignatureDemo();
+            TransformationPipeline();
             //OnlineToImage();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();
             //OnlineVerifierBenchmarkDemo();
+            Console.WriteLine("Press <<Enter>> to exit.");
+            Console.ReadLine();
 
         }
 
@@ -108,11 +111,40 @@ namespace SigStat.Sample
 
         }
 
+        static void TransformationPipeline()
+        {
+            Signature signature = ImageLoader.LoadSignature(@"Databases\Offline\Images\004_e_001.png");
+            
+            // Initialize a transformation using object initializer
+            var resize = new Resize()
+            {
+                Width = 40,
+                InputFeatures = { Features.Image },
+                OutputFeatures = { Features.Image }
+            };
+            // Perform transformation
+            resize.Transform(signature);
+
+            // Initialize a transformation using fluent syntax
+            var binarization = new Binarization().Input(Features.Image).Output(MyFeatures.Binarized);
+
+            // Perform transformation
+            binarization.Transform(signature);
+
+            // Consume results
+            var binaryImage = signature.GetFeature(MyFeatures.Binarized);
+            WriteToConsole(binaryImage);
+
+        }
+
+      
+
         /// <summary>
         /// Read signature from image, extract features, generate new image
         /// </summary>
         static void OfflineVerifierDemo()
         {
+
             Logger debugLogger = new Logger(
                 LogLevel.Debug,
                 new FileStream($@"Logs\OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
@@ -149,8 +181,7 @@ namespace SigStat.Sample
             };
             verifier.ProgressChanged += ProgressPrimary;
 
-            Signature s1 = new Signature();
-            ImageLoader.LoadSignature(s1, @"Databases\Offline\Images\U1S1.png");
+            Signature s1 = ImageLoader.LoadSignature(@"Databases\Offline\Images\U1S1.png");
             s1.Origin = Origin.Genuine;
             Signer s = new Signer();
             s.Signatures.Add(s1);
@@ -372,6 +403,17 @@ namespace SigStat.Sample
         public static void SetTitleProgress()
         {
             Console.Title = $"Progress: {primaryP}% | Sub-progress: {secondaryP}%";
+        }
+        private static void WriteToConsole(bool[,] arr)
+        {
+            for (int y = 0; y < arr.GetLength(1); y += 2)
+            {
+                for (int x = 0; x < arr.GetLength(0); x++)
+                {
+                    Console.Write(arr[x, arr.GetLength(1) - y - 1] ? "o" : " ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

@@ -31,4 +31,10 @@
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Databases\Offline\Images\004_e_001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

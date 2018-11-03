@@ -65,7 +65,7 @@ namespace SigStat.Common.Loaders
                         Signer = signer,
                         ID = signatureFile.SignatureID
                     };
-                    LoadSignature(signature, signatureFile.File);
+                    LoadImage(signature, signatureFile.File);
                     signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
                     signer.Signatures.Add(signature);
                 }
@@ -75,11 +75,28 @@ namespace SigStat.Common.Loaders
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static Signature LoadSignature(string file)
+        {
+            Signature signature = new Signature()
+            {
+                ID = Path.GetFileNameWithoutExtension(file),
+                Origin = Origin.Unknown
+            };
+            LoadImage(signature, file);
+            return signature;
+
+        }
+
+        /// <summary>
         /// Load one image.
         /// </summary>
         /// <param name="signature">The signature that receives the new <see cref="Features.Image"/></param>
         /// <param name="file">File path to the image to be loaded.</param>
-        public static void LoadSignature(Signature signature, string file)
+        protected static void LoadImage(Signature signature, string file)
         {
             Image<Rgba32> image = Image.Load(file);
             signature.SetFeature(Features.Image, image);
