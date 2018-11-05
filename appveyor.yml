@@ -25,6 +25,8 @@ environment:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
 before_build:
 - cmd: nuget restore
+- choco install opencover.portable
+- choco install codecov
 #after_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
