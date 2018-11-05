@@ -25,10 +25,11 @@ namespace SigStat.Common.Transforms
         public void Transform(Signature signature)
         {
             //default output is the input
-            if (OutputFeatures == null)
+            if (OutputFeatures == null || OutputFeatures.Count == 0)
             {
-                OutputFeatures = InputFeatures;
+                OutputFeatures = new List<FeatureDescriptor>() { InputFeatures[0] };
             }
+
 
             if (InputFeatures[0].IsCollection)//we must treat this separately
             {

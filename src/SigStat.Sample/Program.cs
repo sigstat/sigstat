@@ -43,7 +43,7 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
-            //SignatureDemo();
+            SignatureDemo();
             TransformationPipeline();
             //OnlineToImage();
             //GenerateOfflineDatabase();
@@ -113,31 +113,45 @@ namespace SigStat.Sample
 
         static void TransformationPipeline()
         {
-            Signature signature = ImageLoader.LoadSignature(@"Databases\Offline\Images\004_e_001.png");
-            
+            Signature offlineSignature = ImageLoader.LoadSignature(@"Databases\Offline\Images\004_e_001.png");
+
             // Initialize a transformation using object initializer
             var resize = new Resize()
             {
-                Width = 40,
+                Width = 60,
                 InputFeatures = { Features.Image },
                 OutputFeatures = { Features.Image }
             };
             // Perform transformation
-            resize.Transform(signature);
+            resize.Transform(offlineSignature);
 
             // Initialize a transformation using fluent syntax
             var binarization = new Binarization().Input(Features.Image).Output(MyFeatures.Binarized);
 
             // Perform transformation
-            binarization.Transform(signature);
+            binarization.Transform(offlineSignature);
 
             // Consume results
-            var binaryImage = signature.GetFeature(MyFeatures.Binarized);
+            var binaryImage = offlineSignature.GetFeature(MyFeatures.Binarized);
             WriteToConsole(binaryImage);
 
+            // Create signature with online features
+            Signature sig = new Signature("Demo");
+            sig.SetFeature(Features.X, new List<double> { 1, 1, 2, 2, 2, 2, 1, 1 });
+            var x = sig.GetFeature(Features.X);
+            Console.WriteLine(string.Join(", ", x));
+
+            // Connect a series of transformations into a pipeline
+            SequentialTransformPipeline pipeline = new SequentialTransformPipeline()
+            {
+                new Multiply(2).Input(Features.X),
+                new AddConst(3), // no need to specify input, it will work with the output of the previos transformation
+            };
+
+            pipeline.Transform(sig);
+            Console.WriteLine(string.Join(", ", x));
         }
 
-      
 
         /// <summary>
         /// Read signature from image, extract features, generate new image
@@ -410,7 +424,7 @@ namespace SigStat.Sample
             {
                 for (int x = 0; x < arr.GetLength(0); x++)
                 {
-                    Console.Write(arr[x, arr.GetLength(1) - y - 1] ? "o" : " ");
+                    Console.Write(arr[x, arr.GetLength(1) - y - 1] ? "." : " ");
                 }
                 Console.WriteLine();
             }

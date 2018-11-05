@@ -67,18 +67,16 @@ namespace SigStat.Common.Pipeline
         /// <param name="signature">Signature to execute transform on.</param>
         public void Transform(Signature signature)
         {
-            for (i = 0; i < Items.Count; i++)
+            if (Items == null || Items.Count == 0)
+                return;
+            // Do the first transformation
+            Items[0].Transform(signature);
+
+            for (i = 1; i < Items.Count; i++)
             {
-                //TODO: try
-                //{
-                if (Items[i].InputFeatures == null && i > 0)//pass previously calculated features if input not specified
-                    Items[i].InputFeatures = Items[i - 1].OutputFeatures;
+                if (Items[i].InputFeatures == null || Items[i].InputFeatures.Count==0)//pass previously calculated features if input not specified
+                    Items[i].InputFeatures = new List<FeatureDescriptor>(Items[i - 1].OutputFeatures);
                 Items[i].Transform(signature);
-                //}
-                //catch (Exception exc)
-                //{
-                //    throw PipelineException("Error while executing {pipelineItem.Type} with signature {sig.ToString()}", exc);
-                //}
             }
         }
     }

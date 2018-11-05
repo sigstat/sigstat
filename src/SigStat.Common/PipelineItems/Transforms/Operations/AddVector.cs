@@ -33,8 +33,11 @@ namespace SigStat.Common.Transforms
         public void Transform(Signature signature)
         {
             //default output is the input
-            if (OutputFeatures == null)
-                OutputFeatures = InputFeatures;
+            if (OutputFeatures == null || OutputFeatures.Count == 0)
+            {
+                OutputFeatures = new List<FeatureDescriptor>() { InputFeatures[0] };
+            }
+
 
             var vector = signature.GetFeature(vectorFeature);
 
