@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigStat.WpfSample", "src\SigStat.WpfSample\SigStat.WpfSample.csproj", "{6B99105D-B34E-4E83-918C-F85F44595EA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigStat.Common.Test", "test\SigStat.Common.Test\SigStat.Common.Test.csproj", "{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{6B99105D-B34E-4E83-918C-F85F44595EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B99105D-B34E-4E83-918C-F85F44595EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B99105D-B34E-4E83-918C-F85F44595EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
