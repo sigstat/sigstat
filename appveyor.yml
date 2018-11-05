@@ -36,3 +36,6 @@ deploy:
   api_key:
     secure: Lt06yKCteORxJGN1HKZz3WbzQXLDHsRiuJCXTVKOM9DAAC7ZR/Lr9OI4BsOHrguh
 
+test_script:
+- OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
+- codecov -f "results.xml"
