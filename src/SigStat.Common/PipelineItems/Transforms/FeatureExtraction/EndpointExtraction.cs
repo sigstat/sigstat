@@ -28,7 +28,7 @@ namespace SigStat.Common.Transforms
             //bool[,] b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>(InputFeatures[0].Key));
 
             bool[,] b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
-
+             
             var endPoints = new List<Point>();
             var crossingPoints = new List<Point/*, int ncnt*/>();
             int w = b.GetLength(0);
