@@ -6,8 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using SigStat.Common;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Binarization;
-using SixLabors.ImageSharp.Processing.Filters;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SigStat.Common.Helpers;

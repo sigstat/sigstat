@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Text;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Transforms;
 using SixLabors.Primitives;
 using SigStat.Common.Helpers;
 
