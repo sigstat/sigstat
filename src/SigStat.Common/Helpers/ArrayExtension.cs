@@ -29,10 +29,16 @@ namespace SigStat.Common
         {
             int max = int.MinValue;
             for (int i = 0; i < array.GetLength(0); i++)
-                for (int j = 0; j < array.GetLength(1); j++)
             {
-                if (max < array[i, j]) max = array[i, j];
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (max < array[i, j])
+                    {
+                        max = array[i, j];
+                    }
+                }
             }
+
             return max;
         }
 
@@ -81,7 +87,9 @@ namespace SigStat.Common
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
                     if (array[i, j] == value)
+                    {
                         return new Tuple<int, int>(i, j);
+                    }
                 }
             return null;
         }

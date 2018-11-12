@@ -6,6 +6,10 @@ namespace SigStat.Common.Helpers
 {
     public class ConfigurationHelper
     {
+        protected ConfigurationHelper()
+        {
+        }
+
         public static Configuration Load()
         {
             return null;

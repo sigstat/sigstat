@@ -15,8 +15,8 @@ namespace SigStat.Common.Algorithms
         /// </summary>
         public bool? ResultChanged { get; private set; } = null;
 
-        PatternMatching3x3 m1;
-        PatternMatching3x3 m2;
+        readonly PatternMatching3x3 m1;
+        readonly PatternMatching3x3 m2;
 
         public OnePixelThinningStep()
         {

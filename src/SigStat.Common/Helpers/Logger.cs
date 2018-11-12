@@ -29,23 +29,26 @@ namespace SigStat.Common.Helpers
         /// <summary>
         /// Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries.
         /// </summary>
-        public bool StoreEntries { get; set; } = false;
+        public bool StoreEntries { get; set; }
         /// <summary>
         /// A list where Entries are stored if <see cref="StoreEntries"/> is enabled.
         /// </summary>
-        public List<LogEntry> Entries = new List<LogEntry>();//ez maradhat sima list, mert csak 1 consumer van
+        private List<LogEntry> entries = new List<LogEntry>();//ez maradhat sima list, mert csak 1 consumer van
 
-        ConcurrentDictionary<string, object> objectEntries = new ConcurrentDictionary<string, object>();
+        readonly ConcurrentDictionary<string, object> objectEntries = new ConcurrentDictionary<string, object>();
         public IReadOnlyDictionary<string, object> ObjectEntries { get { return objectEntries; } }
 
         /// <summary>
         /// Gets or sets the filtering level. Entries above this level will be ignored.
         /// </summary>
-        public LogLevel FilteringLevel = LogLevel.Error;
-        private StreamWriter sw;
+        private LogLevel filteringLevel = LogLevel.Error;
+        private readonly StreamWriter sw;
         private Action<LogLevel, string> OutputAction { get; }
+        public LogLevel FilteringLevel { get => filteringLevel; set => filteringLevel = value; }
+        public List<LogEntry> Entries { get => entries; set => entries = value; }
+
         //The default collection type for BlockingCollection<T> is ConcurrentQueue<T>
-        private BlockingCollection<LogEntry> queue = new BlockingCollection<LogEntry>();
+        private readonly BlockingCollection<LogEntry> queue = new BlockingCollection<LogEntry>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class.
@@ -214,13 +217,13 @@ namespace SigStat.Common.Helpers
     public class LogEntry
     {
         /// <summary>Exact date and time of the entry's creation.</summary>
-        public readonly DateTime Timestamp;
+        private readonly DateTime Timestamp;
         /// <summary>Log level of the entry.</summary>
         public readonly LogLevel Level;
         /// <summary>Reference of the object that created the entry.</summary>
-        public readonly object Sender;
+        private readonly object Sender;
         /// <summary>Main content of the entry.</summary>
-        public readonly string Message;
+        private readonly string Message;
 
         /// <remark>
         /// The constructor is internal, as only the <see cref="Logger"/> may create new entries.

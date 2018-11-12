@@ -155,24 +155,6 @@ namespace SigStat.Common.Algorithms
             return cost;
         }
 
-        /*
-        /// <summary>
-        /// Mask of the shortest path
-        /// </summary>
-        /// <returns></returns>
-        public bool[,] genPathArray()
-        {
-            if (forwardPath == null)
-                Compute();
-
-            bool[,] img = new bool[s1.Length, s2.Length];
-            foreach ((int x,int y) step in forwardPath)
-            {
-                img[step.x, step.y] = true;
-            }
-            return img;
-        }*/
-
         /// <summary>
         /// Calculates distance between two points.
         /// Distance method can be set in ctor.

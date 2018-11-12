@@ -175,12 +175,12 @@
             Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Helpers.Logger.Entries">
+        <member name="F:SigStat.Common.Helpers.Logger.entries">
             <summary>
             A list where Entries are stored if <see cref="P:SigStat.Common.Helpers.Logger.StoreEntries"/> is enabled.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Helpers.Logger.FilteringLevel">
+        <member name="F:SigStat.Common.Helpers.Logger.filteringLevel">
             <summary>
             Gets or sets the filtering level. Entries above this level will be ignored.
             </summary>
@@ -236,7 +236,7 @@
         </member>
         <member name="M:SigStat.Common.Helpers.Logger.EnqueueEntry(SigStat.Common.Helpers.LogLevel,System.Object,System.String)">
             <summary>
-            Enqueue a new log entry with specified level. The entry is filtered through <see cref="F:SigStat.Common.Helpers.Logger.FilteringLevel"/>.
+            Enqueue a new log entry with specified level. The entry is filtered through <see cref="P:SigStat.Common.Helpers.Logger.FilteringLevel"/>.
             </summary>
             <param name="messageLevel">Log level of the entry.</param>
             <param name="sender">The object who sent the log. Usually provide [this].</param>

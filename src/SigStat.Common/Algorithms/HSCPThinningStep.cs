@@ -39,14 +39,6 @@ namespace SigStat.Common.Algorithms
                     {
                         bool[] nbs = Neighbourhood(b, i, j);
 
-                        /*if ((nbs[2] && nbs[6] && deletable[i + 1, j]) || //fuggoleges
-                           (nbs[0] && nbs[4] && deletable[i, j + 1]) || //vizszintes
-                           (deletable[i + 1, j] && deletable[i + 1, j + 1] && deletable[i, j + 1]))
-                        {
-                            o[i, j] = true;
-
-                        }*/
-
                         //proba: masik iranyok is
                         if ((nbs[2] && nbs[6] && (deletable[i - 1, j] || deletable[i + 1, j])) || //fuggoleges szomszedok vannak
                             (nbs[0] && nbs[4] && (deletable[i, j - 1] || deletable[i, j + 1])) || //vizszintes szomszedok vannak

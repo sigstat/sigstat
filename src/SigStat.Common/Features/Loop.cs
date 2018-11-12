@@ -12,10 +12,6 @@ namespace SigStat.Common
 
         public List<PointF> Points { get; set; }
 
-        static Loop()
-        {
-        }
-
         public override string ToString()
         {
             return "Loop " + Center;
