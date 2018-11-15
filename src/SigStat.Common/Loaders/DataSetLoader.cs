@@ -16,11 +16,18 @@ namespace SigStat.Common.Loaders
         protected void Log(LogLevel level, string message)
         {
             if (Logger != null)
+            {
                 Logger.EnqueueEntry(level, this, message);
+            }
         }
 
         /// <inheritdoc/>
-        public abstract IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null);
+        public IEnumerable<Signer> EnumerateSigners()
+        {
+            return EnumerateSigners(null);
+        }
+        /// <inheritdoc/>
+        public abstract IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter);
 
     }
 }

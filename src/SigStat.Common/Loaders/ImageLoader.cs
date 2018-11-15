@@ -37,14 +37,16 @@ namespace SigStat.Common.Loaders
                 File = file;
                 var parts = Path.GetFileNameWithoutExtension(file).Replace("U", "").Split('S');
                 if (parts.Length != 2)
+                {
                     throw new InvalidOperationException("Invalid file format. All signature files should be in 'U__S__.png' format");
+                }
                 SignerID = parts[0].PadLeft(2, '0');
                 SignatureID = parts[1].PadLeft(2, '0');
             }
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null)
+        public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
             Log(LogLevel.Info, "Enumerating signers started.");
             var signatureGroups = Directory.EnumerateFiles(DatabasePath, "U*S*.png")
@@ -54,13 +56,15 @@ namespace SigStat.Common.Loaders
 
             foreach (var group in signatureGroups)
             {
-                Signer signer = new Signer() { ID = group.Key };
+                Signer signer = new Signer { ID = group.Key };
 
                 if (signerFilter != null && !signerFilter(signer))
+                {
                     continue;
+                }
                 foreach (var signatureFile in group)
                 {
-                    Signature signature = new Signature()
+                    Signature signature = new Signature
                     {
                         Signer = signer,
                         ID = signatureFile.SignatureID

@@ -347,6 +347,9 @@
         <member name="M:SigStat.Common.Loaders.DataSetLoader.Log(SigStat.Common.Helpers.LogLevel,System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:SigStat.Common.Loaders.DataSetLoader.EnumerateSigners">
+            <inheritdoc/>
+        </member>
         <member name="M:SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
         </member>

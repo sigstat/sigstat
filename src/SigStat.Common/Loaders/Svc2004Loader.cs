@@ -39,7 +39,9 @@ namespace SigStat.Common.Loaders
                 string name = file.Split('/').Last();//handle if file is in zip directory
                 var parts = Path.GetFileNameWithoutExtension(name).Replace("U", "").Split('S');
                 if (parts.Length != 2)
+                {
                     throw new InvalidOperationException("Invalid file format. All signature files should be in 'U__S__.txt' format");
+                }
                 SignerID = parts[0].PadLeft(2, '0');
                 SignatureID = parts[1].PadLeft(2, '0');
             }
@@ -49,13 +51,21 @@ namespace SigStat.Common.Loaders
         private bool StandardFeatures { get; }
         public Predicate<Signer> SignerFilter { get; set; }
 
+
+        public Svc2004Loader(string databasePath, bool standardFeatures)
+        {
+            DatabasePath = databasePath;
+            StandardFeatures = standardFeatures;
+            SignerFilter = null;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
         /// </summary>
         /// <param name="databasePath">File path to a .zip file containing Svc2004 signatures.</param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter"></param>
-        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
@@ -63,7 +73,7 @@ namespace SigStat.Common.Loaders
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter = null)
+        public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
             signerFilter = signerFilter ?? SignerFilter ;
 
@@ -75,13 +85,15 @@ namespace SigStat.Common.Loaders
                 Log(LogLevel.Debug, signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
-                    Signer signer = new Signer() { ID = group.Key };
+                    Signer signer = new Signer { ID = group.Key };
 
                     if (signerFilter != null && !signerFilter(signer))
+                    {
                         continue;
+                    }
                     foreach (var signatureFile in group)
                     {
-                        Signature signature = new Signature()
+                        Signature signature = new Signature
                         {
                             Signer = signer,
                             ID = signatureFile.SignatureID
@@ -100,36 +112,6 @@ namespace SigStat.Common.Loaders
             }
             Log(LogLevel.Info, "Enumerating signers finished.");
         }
-
-        /*
-        public override IEnumerable<Signer> EnumerateSigners(Predicate<string> signerFilter = null)
-        {
-            Log(LogLevel.Info, "Enumerating signers started.");
-            var signatureGroups = Directory.EnumerateFiles(DatabasePath, "U*S*.txt")
-                .Select(f => new SignatureFile(f))
-                .GroupBy(sf => sf.SignerID);
-
-
-            foreach (var group in signatureGroups)
-            {
-                if (signerFilter != null && !signerFilter(group.Key))
-                    continue;
-                Signer signer = new Signer() { ID = group.Key };
-                foreach (var signatureFile in group)
-                {
-                    Signature signature = new Signature()
-                    {
-                        Signer = signer,
-                        ID = signatureFile.SignatureID
-                    };
-                    LoadSignature(signature, signatureFile.File, StandardFeatures);
-                    signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
-                    signer.Signatures.Add(signature);
-                }
-                yield return signer;
-            }
-            Log(LogLevel.Info, "Enumerating signers finished.");
-        }*/
 
         /// <summary>
         /// Loads one signature from specified file path.
