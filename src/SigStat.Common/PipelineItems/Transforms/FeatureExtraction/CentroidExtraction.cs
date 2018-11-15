@@ -16,7 +16,6 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="CentroidExtraction"/> class. </summary>
         public CentroidExtraction()
         {
-            //this.Input(Features.X, Features.X);
             InputFeatures = new List<FeatureDescriptor>();
             this.Output(FeatureDescriptor.Get<List<double>>("Centroid"));
         }

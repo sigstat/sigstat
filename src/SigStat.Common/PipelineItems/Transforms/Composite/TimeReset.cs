@@ -14,11 +14,6 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class TimeReset : SequentialTransformPipeline
     {
-        private new void Add(ITransformation newitem)
-        {
-            //TODO erre jobbat kitalalni, pl. pipeline ososztaly
-        }
-
         /// <summary>Initializes a new instance of the <see cref="TimeReset"/> class.</summary>
         public TimeReset()
         {

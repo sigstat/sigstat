@@ -34,7 +34,6 @@ namespace Alairas.Common
                 });
                 var envelopes = GetComponentLowerEnvelopes(tmp);
                 RemoveOverlapingEnvelopes(envelopes);
-                //signature.SetFeatures<Baseline>(envelopes.Select(env => GetLineOfBestFit(env)).Where(e => e != null).ToList());
             }
         }
 
@@ -46,7 +45,7 @@ namespace Alairas.Common
         /// </summary>
         /// <param name="bmp"></param>
         /// <returns></returns>
-        public List<List<Point>> GetComponentLowerEnvelopes(Image<Rgba32> image)
+        public static List<List<Point>> GetComponentLowerEnvelopes(Image<Rgba32> image)
         {
             // TODO: optimalizálni
             List<List<Point>> result = new List<List<Point>>();
@@ -123,9 +122,7 @@ namespace Alairas.Common
                 if (intersect.Count == 0)
                 {
                     continue;
-                }
-                int x1 = intersect.Min();
-                int x2 = intersect.Max();
+                }          
                 var intersectCount = intersect.Count;
 
                 // 50% fölötti átfedésre lövünk csak
@@ -135,11 +132,7 @@ namespace Alairas.Common
                 }
 
                 // A felsőt töröljük ===> Ez az ékezeteket akarta törölni, de néhány szüvegben vannak alsó ékezetek is
-                //double y1 = pair.E1.Where(p => x1 <= p.X && p.X <= x2).Select(p => p.Y).Average();
-                //double y2 = pair.E2.Where(p => x1 <= p.X && p.X <= x2).Select(p => p.Y).Average();
-                //if (y1 < y2) envelopes.Remove(pair.E1);
-                //else envelopes.Remove(pair.E2);
-
+                
                 int length1 = Math.Abs(pair.E1.Last().X - pair.E1.First().X);
                 int length2 = Math.Abs(pair.E2.Last().X - pair.E2.First().X);
                 if (length1 > length2)
@@ -194,15 +187,6 @@ namespace Alairas.Common
                 b = ((double)numPoints * sumXY - sumY * sumX) /
                     ((double)numPoints * sumXX - sumX * sumX);
                 a = (sumY - b * sumX) / (double)numPoints;
-
-                // mivel jelenleg semmiféle vizsgálatot nem csinálok a becslés hibájára ez itt felesleges
-                //double sx = b * (sumXY - sumX * sumY / (double)numPoints);
-                //double sy2 = sumYY - sumY * sumY / (double)numPoints;
-                //double sy = sy2 - sx;
-
-                //coefD = sx / sy2;
-                //coefC = Math.Sqrt(coefD);
-                //stdError = Math.Sqrt(sy / (double)(numPoints - 2));
             }
             else
             {
@@ -217,26 +201,5 @@ namespace Alairas.Common
         {
             Transform(input);
         }
-
-
-
-
-        //protected virtual void DrawDebugImage(Signature sig, Bitmap bmp)
-        //{
-        //    using (Graphics g = Graphics.FromImage(bmp))
-        //    {
-
-        //        int i = 0;
-        //        foreach (Vector v in sig.BaseLines)
-        //        {
-        //            g.DrawString("" + i, new Font(FontFamily.GenericMonospace, 10, GraphicsUnit.Pixel), Brushes.Black, new Point(i * 10, 0));
-        //            g.DrawLine(Pens.Green, new Point(i * 10 + 5, 10), new Point(v.X + v.Vx / 2, v.Y + v.Vy / 2));
-        //            g.DrawLine(Pens.Red, new Point(v.X, v.Y), new Point(v.X + v.Vx, v.Y + v.Vy));
-        //            i++;
-        //        }
-        //    }
-        //}
-
-
     }
 }

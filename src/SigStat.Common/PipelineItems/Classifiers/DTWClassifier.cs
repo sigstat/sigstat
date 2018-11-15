@@ -61,13 +61,6 @@ namespace SigStat.Common.PipelineItems.Classifiers
             return cost;
 
         }
-
-        /*public void Train(IEnumerable<Signature> signatures)
-        {
-            training.Clear();
-            training.AddRange(signatures);
-            //TODO: calculate limit, etc. here
-        }*/
-
+        //TODO: calculate limit, etc. here
     }
 }

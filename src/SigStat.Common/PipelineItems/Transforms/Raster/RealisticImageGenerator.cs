@@ -60,21 +60,9 @@ namespace SigStat.Common.Transforms
             img.Mutate(ctx => ctx.Fill(bg));
 
             int len = xs.Count;
-            List<IPath> paths = new List<IPath>();
             List<PointF> points = new List<PointF>();
             for (int i = 0; i < len; i++)
             {
-                /*if (pendowns[i])
-                {
-                    points.Add(ToImageCoords(xs[i], ys[i]));
-                }
-                else
-                {
-                    if (points.Count > 0)
-                        DrawLines(img, points);
-                    points = new List<PointF>();
-                    points.Add(ToImageCoords(xs[i], ys[i]));
-                }*/
                 points.Add(ToImageCoords(xs[i], ys[i]));
                 Progress = (int)(i / (double)len * 90);
             }
@@ -133,8 +121,7 @@ namespace SigStat.Common.Transforms
                             Rgba32 color = fg;
                             float darker = 0.8f + 0.2f * (1 - Lerp((float)ps[i], (float)ps[i + 1], t));//color depends on pressure
                             color.R = (byte)(tierDarken * darker * fg.R);
-                            color.G = (byte)(tierDarken * darker * fg.G);
-                            //color.B = (byte)(darker * fg.B);
+                            color.G = (byte)(tierDarken * darker * fg.G);                            
 
                             float ellipseRadius = scale * tierRadius;
                             p.X -= ellipseRadius / 2.0f;
@@ -156,7 +143,7 @@ namespace SigStat.Common.Transforms
         /// <param name="t1"></param>
         /// <param name="t">0.0f to 1.0f</param>
         /// <returns></returns>
-        private float Lerp(float t0, float t1, float t)
+        private static float Lerp(float t0, float t1, float t)
         {
             return (1 - t) * t0 + t * t1;
         }

@@ -38,7 +38,7 @@ namespace SigStat.Common.Transforms
             Progress = 100;
         }
 
-        private int NeighbourhoodCount(bool[,] b, int i, int j)
+        private static int NeighbourhoodCount(bool[,] b, int i, int j)
         {
             bool[] tmp = {
                 b[i+1, j],

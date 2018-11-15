@@ -128,15 +128,12 @@ namespace SigStat.Common.Transforms
             double r = c.R / 255.0;
             double g = c.G / 255.0;
             double b = c.B / 255.0;
-            double level;
-            //if (t == ForegroundType.Blue)//kek sulyozas ( es hatter feher)
-            //    level = b - (r + g) / 2.0;//ez nem nagyon mukodik
-            //else
+            double level;            
             if (foregroundType == ForegroundType.Dark)
             {
                 level = 1.0 - (r + g + b) / 3.0;
             }
-            else //if (t == ForegroundType.Bright)
+            else
             {
                 level = (r + g + b) / 3.0;
             }

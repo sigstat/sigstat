@@ -72,7 +72,6 @@ namespace SigStat.Common.Transforms
         /// <returns>List of crossings (1 crossing: List of endpoints)</returns>
         private List<List<Point>> SplitCrossings(List<Point> crs)
         {
-            //bool[,] d = b.Clone() as bool[,];
             List<List<Point>> crossings = new List<List<Point>>();
             while (crs.Count > 0)
             {
@@ -118,7 +117,7 @@ namespace SigStat.Common.Transforms
             return crossings;
         }
 
-        private List<List<Point>> UniteCloseCrossings(List<List<Point>> crossings, int epsilon)
+        private static List<List<Point>> UniteCloseCrossings(List<List<Point>> crossings, int epsilon)
         {
             List<PointF> cMids = new List<PointF>();
             for (int iC = 0; iC < crossings.Count; iC++)
@@ -158,25 +157,25 @@ namespace SigStat.Common.Transforms
         {
             List<List<Point>> sectionlist = new List<List<Point>>();
 
-            Point p = new Point(-1, -1);
+            Point currp;
             Point prevp = new Point(-1, -1);
             while (endPoints.Count > 0)
             {
                 List<Point> section = new List<Point>();
-                p = endPoints[0];//egy endpointbol indulunk
+                currp = endPoints[0];//egy endpointbol indulunk
                 endPoints.RemoveAt(0);
-                section.Add(new Point(p.X, p.Y));
+                section.Add(new Point(currp.X, currp.Y));
                 int nextsample = samplingResolution;
 
                 bool end = false;
                 while (!end)
                 {
-                    (prevp, p) = Step(prevp, p);
+                    (prevp, currp) = Step(prevp, currp);
 
                     //isEndpoint()
                     for (int i = 0; i < endPoints.Count; i++)
                     {//TODO: azt is eszlelni, ha korbe korbe erunk, pl. perfekt O betu
-                        if (p.Equals(endPoints[i]))
+                        if (currp.Equals(endPoints[i]))
                         {
                             //kivesszuk a listabol, hogy ne jarjuk be 2x a szakaszt
                             endPoints.RemoveAt(i);
@@ -184,7 +183,7 @@ namespace SigStat.Common.Transforms
                             break;
                         }
                     }
-                    if (!end && prevp.Equals(p))
+                    if (!end && prevp.Equals(currp))
                     {
                         end = true;//ritka eset amikor nincs szomszed
                         section.Remove(prevp);
@@ -195,7 +194,7 @@ namespace SigStat.Common.Transforms
                     if (nextsample == 0 || end)
                     {//idonkent, vagy amikor szakaszveghez erunk: uj mintavetel
                         nextsample = samplingResolution;
-                        section.Add(new Point(p.X, p.Y));
+                        section.Add(new Point(currp.X, currp.Y));
                     }
                 }
                 if (section.Count > 0)  //x db pontnal rovidebb sectionoket felejtsuk el, jo esellyel csak szukites hibaja
@@ -209,7 +208,7 @@ namespace SigStat.Common.Transforms
 
         private (Point p, Point nextp) Step(Point prevp, Point p)
         {
-            Point nextp = new Point(-1, -1);
+            Point nextp;
             //TODO: itt lehetne vmi prioritast bevezetni, pl. hogy prevp ellentetes iranyat vizsgaljuk eloszor (csak gyorsasag miatt)
             for (int i = -1; i < 2; i++)
             {
@@ -238,9 +237,6 @@ namespace SigStat.Common.Transforms
                 List<(List<Point> Data, bool First)> conn = new List<(List<Point>, bool)>();//kigyujtjuk az adott crossinghoz tartozo szakaszokat
                 for (int iS = 0; iS < sectionlist.Count; iS++)
                 {
-                    /*if (sectionlist[iS].Count < 4)
-                        continue;//tul rovid, elengedjuk*/
-
                     Point sFirst = sectionlist[iS][0];
                     Point sLast = sectionlist[iS][sectionlist[iS].Count - 1];
                     bool? First = null;
@@ -257,7 +253,6 @@ namespace SigStat.Common.Transforms
                         if (First != null)
                         {
                             conn.Add((sectionlist[iS], First.Value));
-                            //crossings[iC].RemoveAt(iE--);
                             break;
                         }
                     }
@@ -269,8 +264,7 @@ namespace SigStat.Common.Transforms
                 {
                     int prevDisti = Math.Min(3, conn[iP].Data.Count - 1);//TODO: ez fuggjon a resolutiontol
                     Point endpos1 = conn[iP].First ? conn[iP].Data[0] : conn[iP].Data[conn[iP].Data.Count - 1];
-                    Point prevpos1 = conn[iP].First ? conn[iP].Data[0 + prevDisti] : conn[iP].Data[conn[iP].Data.Count - 1 - prevDisti];
-                    // double a1 = Math.Atan2(endpos1.Y - mid.y, endpos1.X - mid.x);
+                    Point prevpos1 = conn[iP].First ? conn[iP].Data[0 + prevDisti] : conn[iP].Data[conn[iP].Data.Count - 1 - prevDisti];                   
                     double a1 = Math.Atan2(endpos1.Y - prevpos1.Y, endpos1.X - prevpos1.X);
                     for (int jP = iP + 1; jP < conn.Count; jP++)
                     {
@@ -278,7 +272,6 @@ namespace SigStat.Common.Transforms
                         int prevDistj = Math.Min(3, conn[jP].Data.Count - 1);//TODO: ez fuggjon a resolutiontol
                         Point endpos2 = conn[jP].First ? conn[jP].Data[0] : conn[jP].Data[conn[jP].Data.Count - 1];
                         Point prevpos2 = conn[jP].First ? conn[jP].Data[0 + prevDistj] : conn[jP].Data[conn[jP].Data.Count - 1 - prevDistj];
-                        //double a2 = Math.Atan2(mid.y - endpos2.Y, mid.x - endpos2.X);
                         double a2 = Math.Atan2(prevpos2.Y - endpos2.Y, prevpos2.X - endpos2.X);
                         double diff = Math.Abs(AngleDiff(a1, a2));
                         while (diffs.ContainsKey(diff))
@@ -361,16 +354,10 @@ namespace SigStat.Common.Transforms
             return componentlist;
         }
 
-        private double AngleDiff(double a1, double a2)
+        private static double AngleDiff(double a1, double a2)
         {
             //https://stackoverflow.com/questions/1878907/the-smallest-difference-between-2-angles
             return Math.Atan2(Math.Sin(a2 - a1), Math.Cos(a2 - a1));
-
-            //return Math.Min((2.0 * Math.PI) - abs(a2 - a1), abs(a2 - a1)); //gyorsabb de rondabb
-
-            //gabor:
-            //double diff = Math.abs(a2 - a1);
-            //diff = diff > Math.PI ? Math.abs(Math.PI*2.0 - diff) : diff;
         }
 
     }

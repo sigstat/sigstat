@@ -18,8 +18,8 @@ namespace SigStat.Common.Transforms
     public class ImageGenerator : PipelineBase, ITransformation
     {
         private readonly bool writeToFile;
-        Rgba32 fg;
-        Rgba32 bg;
+        readonly Rgba32 fg;
+        readonly Rgba32 bg;
 
         /// <summary> Initializes a new instance of the <see cref="ImageGenerator"/> class with default settings: skip file writing, Blue ink on white paper. </summary>
         public ImageGenerator() : this(false, Rgba32.LightBlue, Rgba32.White) { }
@@ -34,8 +34,7 @@ namespace SigStat.Common.Transforms
         {
             this.writeToFile = writeToFile;
             fg = foregroundColor;
-            bg = backgroundColor;
-            //this.Output(Features.Image);
+            bg = backgroundColor;           
         }
 
         /// <inheritdoc/>

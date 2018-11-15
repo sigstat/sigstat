@@ -23,10 +23,10 @@ namespace SigStat.Common.Transforms
         private readonly int w;
         private readonly int h;
         private readonly float penWidth;
-        private Byte4 fg = new Byte4(0, 0, 0, 255);
-        private Byte4 bg = new Byte4(255, 255, 255, 255);
-        private GraphicsOptions noAA = new GraphicsOptions(false);//aa kikapcs, mert binarisan dolgozunk es ne legyenek szakadasok
-        private Pen<Byte4> pen;
+        private readonly Byte4 fg = new Byte4(0, 0, 0, 255);
+        private readonly Byte4 bg = new Byte4(255, 255, 255, 255);
+        private readonly GraphicsOptions noAA = new GraphicsOptions(false);//aa kikapcs, mert binarisan dolgozunk es ne legyenek szakadasok
+        private readonly Pen<Byte4> pen;
 
         /// <summary> Initializes a new instance of the <see cref="BinaryRasterizer"/> class with specified raster size and pen width. </summary>
         /// <param name="resolutionX">Raster width.</param>
@@ -47,9 +47,6 @@ namespace SigStat.Common.Transforms
             List<double> xs = signature.GetFeature(Features.X);
             List<double> ys = signature.GetFeature(Features.Y);
             List<bool> pendowns = signature.GetFeature(Features.Button);
-            List<double> ps = signature.GetFeature(Features.Pressure);
-            List<double> alts = signature.GetFeature(Features.Altitude);
-            List<double> azs = signature.GetFeature(Features.Azimuth);
             //+ egyeb ami kellhet
 
             //TODO: X,Y legyen normalizalva, normalizaljuk ha nincs, ahhoz kell az Extrema, ..

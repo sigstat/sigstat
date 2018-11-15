@@ -80,15 +80,6 @@ namespace Alairas.Common
             signature.SetFeature(Features.Cog, cog);
             signature.SetFeature(Features.TrimmedBounds, new Rectangle(left, top, right - left, bottom - top));
 
-            //// Mark trimmed bounds
-            //Graphics.FromImage(img.Bitmap).DrawRectangle(new Pen(Color.Red), sig.TrimmedBounds);
-            //// Mark COG
-            //Graphics.FromImage(img.Bitmap).DrawEllipse(new Pen(Color.Red),
-            //    sig.Cog.X - 3, sig.Cog.Y - 3, 6, 6);
-
-            //sig.SetImage("debug_Statistics", img.Bitmap);
-            //DoProgressChanged(100);
-
         }
 
         public void Run(Signature input)

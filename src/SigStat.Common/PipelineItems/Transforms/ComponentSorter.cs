@@ -21,25 +21,6 @@ namespace SigStat.Common.Transforms
             this.Output(componentsFeature);
         }
 
-        Comparison<List<PointF>> kezdo_x = new Comparison<List<PointF>>
-        ((a, b) =>
-        {
-            if (a[0].X < b[0].X)
-            {
-                return -1;
-            }
-            if (a[0].X > b[0].X)
-            {
-                return 1;
-            }
-            //x ugyanaz.. ritka de lehet, akkor y
-            if (a[0].Y <= b[0].Y)
-            {
-                return -1;
-            }
-            return 1;
-        });
-
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
@@ -53,12 +34,6 @@ namespace SigStat.Common.Transforms
                     component.Reverse();
                 }
             }
-
-            //kezdo pontok szerint rendez
-            //sections.Sort(kezdo_x);
-            //balfelso ponttol valo tavolsag szerint rendez
-            //sections.Sort(balfelso);
-
 
             //sorbamegyunk es egyik utan a kovetkezo az lesz amelyik a legkozelebb van
             List<List<PointF>> sorted = new List<List<PointF>>();
@@ -92,7 +67,7 @@ namespace SigStat.Common.Transforms
         /// Calculates distance between two components by comparing last and first points.
         /// Components that are left behind are in advantage.
         /// </summary>
-        private double Distance(List<PointF> curr, List<PointF> next)
+        private static double Distance(List<PointF> curr, List<PointF> next)
         {
             double cx = curr[curr.Count - 1].X;//mostani vege
             double cy = curr[curr.Count - 1].Y;
@@ -102,7 +77,7 @@ namespace SigStat.Common.Transforms
             //csel: elonyt adunk a hatra maradt szakaszoknak
             if (nx < cx)
             {//kozelebb tesszuk
-                nx = cx;// (nx + cx) / 2.0;
+                nx = cx;
                 ny = (ny + cy) / 2.0;
             }
 

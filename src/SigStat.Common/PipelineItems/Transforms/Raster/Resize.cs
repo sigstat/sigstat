@@ -38,7 +38,9 @@ namespace SigStat.Common.Transforms
 
             // Dispose old image if not needed anymore
             if (InputFeatures[0] == OutputFeatures[0])
+            {
                 image.Dispose();
+            }
 
             signature.SetFeature(OutputFeatures[0], newImage);
             Log(LogLevel.Info, "Resizing done.");
@@ -49,20 +51,30 @@ namespace SigStat.Common.Transforms
         {
             // Check exclusive arguments for invalid combinations
             if (Width == null && Height == null && ResizeFunction == null)
+            {
                 throw new ArgumentNullException($"{Width} and {Height} and {ResizeFunction} can not be all null.");
+            }
             if ((Width != null || Height != null) && ResizeFunction != null)
+            {
                 throw new ArgumentNullException($"Do not set {Width} or {Height} if you want to use {ResizeFunction}.");
+            }
 
             // Use the ResizeFunction
             if (Width == null && Height == null && ResizeFunction != null)
+            {
                 return ResizeFunction(image);
+            }
 
             // Resize and keep aspect ratio
             var originalSize = image.Size();
             if (Width != null && Height == null)
+            {
                 Height = Width * originalSize.Height / originalSize.Width;
+            }
             if (Height != null && Width == null)
+            {
                 Width = Height * originalSize.Width / originalSize.Height;
+            }
 
             // Resize
             return new Size(Width.Value, Height.Value);

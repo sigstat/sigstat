@@ -32,7 +32,7 @@ namespace SigStat.Common.Transforms
         /// <param name="vectorFeature">Feature to translate X and Y by.</param>
         public Translate(FeatureDescriptor<List<double>> vectorFeature)
         {
-            Items = new List<ITransformation>()
+            Items = new List<ITransformation>
             {
                 new AddVector(vectorFeature).Input(Features.X, Features.Y)
             };

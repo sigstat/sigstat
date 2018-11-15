@@ -41,7 +41,7 @@ namespace SigStat.Common.Transforms
             //default output is the input
             if (OutputFeatures == null || OutputFeatures.Count ==0)
             {
-                OutputFeatures = new List<FeatureDescriptor>() { InputFeatures[0] };
+                OutputFeatures = new List<FeatureDescriptor> { InputFeatures[0] };
             }
 
             if (InputFeatures[0].IsCollection)

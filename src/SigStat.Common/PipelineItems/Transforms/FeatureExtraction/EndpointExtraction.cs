@@ -25,8 +25,6 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //bool[,] b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>(InputFeatures[0].Key));
-
             bool[,] b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
              
             var endPoints = new List<Point>();

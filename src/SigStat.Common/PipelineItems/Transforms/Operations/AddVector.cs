@@ -35,7 +35,7 @@ namespace SigStat.Common.Transforms
             //default output is the input
             if (OutputFeatures == null || OutputFeatures.Count == 0)
             {
-                OutputFeatures = new List<FeatureDescriptor>() { InputFeatures[0] };
+                OutputFeatures = new List<FeatureDescriptor> { InputFeatures[0] };
             }
 
 
@@ -43,13 +43,17 @@ namespace SigStat.Common.Transforms
 
             int dim = vector.Count;
             if ((InputFeatures.Count) != dim)
+            {
                 Log(LogLevel.Error, "Dimension mismatch");
+            }
 
             for (int iF = 0; iF < dim; iF++)
             {
                 var listFeature = signature.GetFeature<List<double>>(InputFeatures[iF]);
                 for (int i = 0; i < listFeature.Count; i++)
+                {
                     listFeature[i] += vector[iF];
+                }
                 signature.SetFeature(OutputFeatures[iF], listFeature);
                 Progress += 100 / dim;
             }
