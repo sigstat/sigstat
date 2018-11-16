@@ -28,6 +28,7 @@ environment:
 before_build:
 - cmd: nuget restore
 - choco install opencover.portable
+- choco install codecov
 #after_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
@@ -41,7 +42,6 @@ deploy:
 
 test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
-- pip install codecov
 - codecov -f "results.xml" -r "sigstat/sigstat" -v
 
 #on_success:
