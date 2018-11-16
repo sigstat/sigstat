@@ -118,7 +118,7 @@ namespace SigStat.WpfSample
             string transformPipelineElementsNames = "";
             foreach (var featureFilter in Common.Configuration.TestInputFeatures)
             {
-                IClassifier classifier = GetClassifier(featureFilter);
+                Model.IClassifier classifier = GetClassifier(featureFilter);
                 
                 transformPipelineElementsNames = "";
                 var transformPipeline = new SequentialTransformPipeline() { new DerivedSvc2004FeatureExtractor() };
@@ -179,9 +179,9 @@ namespace SigStat.WpfSample
             Process.Start(fileName);
         }
 
-        private IClassifier GetClassifier(List<FeatureDescriptor> featureFilter)
+        private Model.IClassifier GetClassifier(List<FeatureDescriptor> featureFilter)
         {
-            IClassifier classifier = new TimeFilterClassifier();
+            Model.IClassifier classifier = new TimeFilterClassifier();
             if (!IsTimeFilterSelected)
             {
                 switch (SelectedClassifier)
