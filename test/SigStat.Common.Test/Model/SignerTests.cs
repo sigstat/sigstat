@@ -4,7 +4,7 @@ using SigStat.Common.Model;
 namespace SigStat.Common.Test.Model
 {
     [TestClass]
-    public class SignerTest
+    public class SignerTests
     {
         [TestMethod]
         public void TestGetterSetter()
