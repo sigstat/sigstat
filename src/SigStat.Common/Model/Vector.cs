@@ -94,7 +94,7 @@ namespace SigStat.Common
         public int Y2
         {
             get { return y + vy; }
-            set { vy = value - vy; }
+            set { vy = value - y; }
         }
 
         [XmlIgnore]
@@ -287,11 +287,13 @@ namespace SigStat.Common
             {
                 X = p.X;
                 Y = p.Y;
+                pointsAdded++;
             }
             else if (pointsAdded == 1)
             {
                 X2 = p.X;
                 Y2 = p.Y;
+                pointsAdded++;
             }
             else throw new InvalidOperationException("Csak két pont adható egy vektorhoz");
 
