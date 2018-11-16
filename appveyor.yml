@@ -42,7 +42,7 @@ deploy:
 
 test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
-- codecov -f "results.xml" -r "sigstat/sigstat" -v
+- codecov -f "results.xml" -r "sigstat/sigstat"
 
 #on_success:
 #- git config --global credential.helper store
