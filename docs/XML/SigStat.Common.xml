@@ -863,7 +863,7 @@
         </member>
         <member name="M:SigStat.Common.Vector.Equals(System.Object)">
             <summary>
-            Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
+            Két vektor akkor egyenlõ, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
             mutatnak és hosszuk is megegyezik. 
             </summary>
             <param name="obj"></param>
@@ -871,12 +871,12 @@
         </member>
         <member name="M:SigStat.Common.Vector.GetNormal">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Elofrgatja a vektort 90 fokkal a kezdõpontja körül az óramutató járásával megegyezõ irányba
             </summary>
         </member>
         <member name="M:SigStat.Common.Vector.GetNormal(System.Double)">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Elofrgatja a vektort 90 fokkal a kezdõpontja körül az óramutató járásával megegyezõ irányba
             </summary>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.DTWClassifier">
@@ -1428,6 +1428,35 @@
             <param name="caller"></param>
             <param name="outputFeatures"></param>
             <returns>The caller.</returns>
+        </member>
+        <member name="T:SigStat.Common.Pipeline.IClassificationModel">
+            <summary>
+            Analyzes signatures based on their similiarity to the trained model
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Pipeline.IClassificationModel.Test(SigStat.Common.Signature)">
+            <summary>
+            Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.
+            <list type="bullet">
+            <item>0: non-match</item>
+            <item>0.5: inconclusive</item>
+            <item>1: match</item>
+            </list>
+            </summary>
+            <param name="signature"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Pipeline.IClassifier">
+            <summary>
+            Trains classification models based on reference signatures
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Pipeline.IClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <summary>
+            Trains a model based on the signatures and returns the trained model
+            </summary>
+            <param name="signatures"></param>
+            <returns></returns>
         </member>
         <member name="T:SigStat.Common.Pipeline.IPipelineIO">
             <summary>

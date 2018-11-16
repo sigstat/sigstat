@@ -45,6 +45,7 @@ namespace SigStat.Sample
 
             SignatureDemo();
             TransformationPipeline();
+            Classifier();
             //OnlineToImage();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
@@ -150,6 +151,13 @@ namespace SigStat.Sample
 
             pipeline.Transform(sig);
             Console.WriteLine(string.Join(", ", x));
+        }
+
+        static void Classifier()
+        {
+            IClassifier classifier = null;
+            IClassificationModel model = classifier.Train(null);
+            model.Test(null);
         }
 
 
