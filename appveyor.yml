@@ -54,5 +54,6 @@ on_success:
 - git clone https://github.com/sigstat/sigstat.wiki.git
 - C:\projects\sigstat\docs\generator\MarkdownGenerator.exe C:\projects\sigstat\src\SigStat.Common\bin\Release\netstandard2.0\SigStat.Common.dll "C:\projects\wiki\SigStat.wiki"
 - cd SigStat.wiki
+- git add .
 - git commit -am "Commiting wiki changes"
 - git push
