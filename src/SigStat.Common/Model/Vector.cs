@@ -18,8 +18,8 @@ namespace SigStat.Common
         public enum VectorPointKind { Start, End }
         public class VectorPoint 
         {
-            private Vector vector;
-            private VectorPointKind kind;
+            private readonly Vector vector;
+            private readonly VectorPointKind kind;
 
             public VectorPoint(Vector vector, VectorPointKind kind)
             {
@@ -29,14 +29,54 @@ namespace SigStat.Common
 
             public int X
             {
-                get { if (kind == VectorPointKind.Start) return vector.X; else return vector.X2; }
-                set { if (kind == VectorPointKind.Start) vector.X = value; else vector.X2 = value; }
+                get
+                {
+                    if (kind == VectorPointKind.Start)
+                    {
+                        return vector.X;
+                    }
+                    else
+                    {
+                        return vector.X2;
+                    }
+                }
+                set
+                {
+                    if (kind == VectorPointKind.Start)
+                    {
+                        vector.X = value;
+                    }
+                    else
+                    {
+                        vector.X2 = value;
+                    }
+                }
             }
 
             public int Y
             {
-                get { if (kind == VectorPointKind.Start) return vector.Y; else return vector.Y2; }
-                set { if (kind == VectorPointKind.Start) vector.Y = value; else vector.Y2 = value; }
+                get
+                {
+                    if (kind == VectorPointKind.Start)
+                    {
+                        return vector.Y;
+                    }
+                    else
+                    {
+                        return vector.Y2;
+                    }
+                }
+                set
+                {
+                    if (kind == VectorPointKind.Start)
+                    {
+                        vector.Y = value;
+                    }
+                    else
+                    {
+                        vector.Y2 = value;
+                    }
+                }
 
             }
 
@@ -145,17 +185,37 @@ namespace SigStat.Common
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
+            if (obj == null)
+            {
+                return false;
+            }
 
-            if (this.GetType() != obj.GetType()) return false;
-
+            if (this.GetType() != obj.GetType())
+            {
+                return false;
+            }
 
             Vector other = (Vector)obj;
 
-            if (!X.Equals(other.X)) return false;
-            if (!Y.Equals(other.Y)) return false;
-            if (!Vx.Equals(other.Vx)) return false;
-            if (!Vy.Equals(other.Vy)) return false;
+            if (!X.Equals(other.X))
+            {
+                return false;
+            }
+
+            if (!Y.Equals(other.Y))
+            {
+                return false;
+            }
+
+            if (!Vx.Equals(other.Vx))
+            {
+                return false;
+            }
+
+            if (!Vy.Equals(other.Vy))
+            {
+                return false;
+            }
 
             return true;
         }
@@ -163,14 +223,20 @@ namespace SigStat.Common
         public static bool operator ==(Vector v1, Vector v2)
         {
             if (object.ReferenceEquals(v1, null))
+            {
                 return object.ReferenceEquals(v2, null);
+            }
+
             return v1.Equals(v2);
         }
 
         public static bool operator !=(Vector v1, Vector v2)
         {
             if (object.ReferenceEquals(v1, null))
+            {
                 return !object.ReferenceEquals(v2, null);
+            }
+
             return !v1.Equals(v2);
         }
 
@@ -193,7 +259,7 @@ namespace SigStat.Common
 
         public double GetLength()
         {
-            return (double)Math.Sqrt(Vx * Vx + Vy * Vy);
+            return Math.Sqrt(Vx * Vx + Vy * Vy);
         }
 
         public double Angle
@@ -212,15 +278,30 @@ namespace SigStat.Common
                 // Ha függõleges a vektor
                 if (double.IsInfinity(M))
                 {
-                    if (vy < 0) vy = -(int)Math.Abs(value);
-                    else vy = (int)Math.Abs(value);
+                    if (vy < 0)
+                    {
+                        vy = -(int)Math.Abs(value);
+                    }
+                    else
+                    {
+                        vy = (int)Math.Abs(value);
+                    }
+
                     return;
                 }
                 double newVx = Math.Sqrt(value * value / (1 + M * M));
                 double newVy = (M * newVx);
                 // A gyökvonás miatt az elõjelek nem biztos, hogy stimmelnek
-                if (Math.Sign(newVx) != Math.Sign(vx)) newVx = -newVx;
-                if (Math.Sign(newVy) != Math.Sign(vy)) newVy = -newVy;
+                if (Math.Sign(newVx) != Math.Sign(vx))
+                {
+                    newVx = -newVx;
+                }
+
+                if (Math.Sign(newVy) != Math.Sign(vy))
+                {
+                    newVy = -newVy;
+                }
+
                 vx = (int)newVx;
                 vy = (int)newVy;
             }
@@ -280,7 +361,7 @@ namespace SigStat.Common
             }
         }
 
-        int pointsAdded = 0;
+        int pointsAdded;
         public void Add(Point p)
         {
             if (pointsAdded == 0)
@@ -295,8 +376,10 @@ namespace SigStat.Common
                 Y2 = p.Y;
                 pointsAdded++;
             }
-            else throw new InvalidOperationException("Csak két pont adható egy vektorhoz");
-
+            else
+            {
+                throw new InvalidOperationException("Csak két pont adható egy vektorhoz");
+            }
         }
 
 

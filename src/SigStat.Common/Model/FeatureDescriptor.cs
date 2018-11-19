@@ -17,8 +17,6 @@ namespace SigStat.Common
         /// <summary> Gets or sets the type of the feature. </summary>
         public Type FeatureType { get; set; }
 
-        private static object syncRoot = new object();
-
         /// <summary> Gets whether the type of the feature is List. </summary>
         public bool IsCollection
         {
@@ -72,7 +70,10 @@ namespace SigStat.Common
         public static FeatureDescriptor Get(string key)
         {
             if (descriptors.TryGetValue(key, out var descriptor))
+            {
                 return descriptor;
+            }
+
             throw new KeyNotFoundException($"There is no FeatureDescriptor registered with key: {descriptor}");
         }
 
@@ -86,7 +87,9 @@ namespace SigStat.Common
         public static FeatureDescriptor<T> Get<T>(string key)
         {
             if (descriptors.ContainsKey(key))
+            {
                 return (FeatureDescriptor<T>)descriptors[key];
+            }
             //TODO: log info new descriptor created
             return FeatureDescriptor<T>.Get(key);
         }

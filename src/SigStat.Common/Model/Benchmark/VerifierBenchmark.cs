@@ -33,7 +33,7 @@ namespace SigStat.Common.Model
     //TODO: document ThresholdResult
     public class ThresholdResult: Result
     {
-        public readonly double Threshold;
+        private readonly double Threshold;
 
         public ThresholdResult(string signer, double frr, double far, double aer, double threshold)
             : base(signer, frr, far, aer)
@@ -63,9 +63,9 @@ namespace SigStat.Common.Model
     public class VerifierBenchmark : ILogger, IProgress
     {
         /// <summary> The loader to take care of <see cref="Signature"/> database loading. </summary>
-        public IDataSetLoader Loader;
+        private IDataSetLoader loader;
         /// <summary> Defines the sampling strategy for the benchmark. </summary>
-        public Sampler Sampler;
+        private Sampler sampler;
 
         private Verifier _verifier;
         /// <summary> Gets or sets the <see cref="Model.Verifier"/> to be benchmarked. </summary>
@@ -97,6 +97,10 @@ namespace SigStat.Common.Model
         private int _progress;
         /// <inheritdoc/>
         public int Progress { get => _progress; set { _progress = value; ProgressChanged?.Invoke(this, value); } }
+
+        public IDataSetLoader Loader { get => loader; set => loader = value; }
+        public Sampler Sampler { get => sampler; set => sampler = value; }
+
         /// <inheritdoc/>
         public event EventHandler<int> ProgressChanged;
 
@@ -116,7 +120,7 @@ namespace SigStat.Common.Model
         /// </summary>
         public VerifierBenchmark()
         {
-            Verifier = null; // Verifier.BasicVerifier;
+            Verifier = null;
             Sampler = Sampler.BasicSampler;
         }
 
@@ -124,7 +128,7 @@ namespace SigStat.Common.Model
         /// Asynchronously execute the benchmarking process.
         /// </summary>
         /// <returns></returns>
-        public async Task<int> ExecuteAsync()
+        public static async Task<int> ExecuteAsync()
         {
             throw new NotImplementedException();
         }
@@ -150,7 +154,6 @@ namespace SigStat.Common.Model
                 List<Signature> references = Sampler.SampleReferences();
                 List<Signature> genuineTests = Sampler.SampleGenuineTests();
                 List<Signature> forgeryTests = Sampler.SampleForgeryTests();
-                //catch: Log.Error("nem volt eleg alairas a benchmarkhoz");
 
                 Verifier.Train(references);
 
@@ -190,8 +193,7 @@ namespace SigStat.Common.Model
                 farAcc += FAR;
                 results.Add(new Result(signers[i].ID, FRR, FAR, AER));
 
-                //if(i%10==0)
-                    Progress = (int)(i / (double)(signers.Count - 1) * 100.0);
+                Progress = (int)(i / (double)(signers.Count - 1) * 100.0);
             }
 
             double frrFinal = frrAcc / signers.Count;

@@ -110,16 +110,6 @@ namespace SigStat.Common
             return (T)features[featureDescriptor.Key];
         }
 
-        /*public T GetFeature<T>()
-        {
-            return (T)features[FeatureDescriptor.GetKey<T>()];
-        }*/
-
-        /*public T GetFeature<T>(int index)
-        {
-            return ((List<T>)features[FeatureDescriptor.GetKey<T>()])[index];
-        }*/
-
         /// <summary>
         /// Gets a collection of <see cref="FeatureDescriptor"/>s that are used in this signature.
         /// </summary>
@@ -128,25 +118,6 @@ namespace SigStat.Common
         {
             return features.Keys.Select(k => FeatureDescriptor.Get(k));
         }
-
-        /*/// <summary>
-        /// Gets a list of <see cref="FeatureDescriptor"/>s of given type <typeparamref name="T"/> that are used in this signature.
-        /// </summary>
-        /// <returns>A list of <see cref="FeatureDescriptor"/>s.</returns>
-        public List<T> GetFeatures<T>()
-        {
-            return (features.TryGetValue(FeatureDescriptor.GetKey<T>(), out var result)) ? result as List<T> : null;
-        }*/
-
-        /*public void SetFeature<T>(T feature)
-        {
-            features[FeatureDescriptor.GetKey(feature.GetType())] = feature;
-        }*/
-
-        /*public void SetFeatures<T>(List<T> feature)
-        {
-            features[FeatureDescriptor.GetKey<T>()] = feature;
-        }*/
 
         /// <summary>
         /// Sets the specified feature. 
@@ -183,7 +154,9 @@ namespace SigStat.Common
             //TODO: exception if: fs[0].len != fs[1].len
             values = new double[len][];
             for (int i = 0; i < len; i++)
+            {
                 values[i] = new double[fs.Count];//dim
+            }
 
             for (int iF = 0; iF < fs.Count; iF++)
             {

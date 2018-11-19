@@ -31,9 +31,15 @@ namespace SigStat.Common.Model
                 var oldLogger = _log;
                 _log = value;
                 if(_tp != null)
+                {
                     _tp.Logger = _log;
-                if(_cp != null)
+                }
+
+                if (_cp != null)
+                {
                     _cp.Logger = _log;
+                }
+
                 LoggerChanged(oldLogger, _log);
             }
         }
@@ -45,7 +51,9 @@ namespace SigStat.Common.Model
         protected void Log(LogLevel level, string message)
         {
             if (_log != null)
+            {
                 _log.EnqueueEntry(level, this, message);
+            }
         }
 
         private int _progress;
@@ -97,7 +105,9 @@ namespace SigStat.Common.Model
             genuines.ForEach((sig) =>
             {
                 if (sig.Origin != Origin.Genuine)
+                {
                     Log(LogLevel.Warn, $"Training with a non-genuine signature. ID: {sig.ID}");
+                }
             });
 
             genuines.ForEach((sig) =>
@@ -132,8 +142,7 @@ namespace SigStat.Common.Model
             for (int i = 0; i < genuines.Count; i++)
             {
                 vals[i] = ClassifierPipeline.Pair(sig, genuines[i]);
-                //if(i%10==0)
-                    Progress = (int)(i / (double)(genuines.Count - 1) * 100.0);
+                Progress = (int)(i / (double)(genuines.Count - 1) * 100.0);
             }
             double avg = vals.Average();
             Log(LogLevel.Debug, $"Verification SignatureID {sig.ID} result: { (avg < limit ? Origin.Genuine : Origin.Forged) }");
@@ -153,10 +162,10 @@ namespace SigStat.Common.Model
         {
             get
             {
-                return new Verifier()
+                return new Verifier
                 {
                     TransformPipeline = new TangentExtraction(),
-                    ClassifierPipeline = new DTWClassifier() { FeatureDescriptor.Get<List<double>>("Tangent") }
+                    ClassifierPipeline = new DTWClassifier { FeatureDescriptor.Get<List<double>>("Tangent") }
                 };
             }
         }

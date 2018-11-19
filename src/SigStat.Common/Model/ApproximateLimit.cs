@@ -52,7 +52,10 @@ namespace SigStat.Common.Model
             //calc standard deviation
             double dev = 0;
             foreach (double v in pairingResults)
+            {
                 dev += Math.Pow(v - avg, 2);
+            }
+
             dev = Math.Sqrt(dev / (pairingResults.Count - 1));
 
             //limit = average + deviation

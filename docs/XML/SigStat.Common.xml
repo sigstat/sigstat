@@ -546,10 +546,10 @@
         <member name="T:SigStat.Common.Model.VerifierBenchmark">
             <summary> Benchmarking class to test error rates of a <see cref="T:SigStat.Common.Model.Verifier"/> </summary>
         </member>
-        <member name="F:SigStat.Common.Model.VerifierBenchmark.Loader">
+        <member name="F:SigStat.Common.Model.VerifierBenchmark.loader">
             <summary> The loader to take care of <see cref="T:SigStat.Common.Signature"/> database loading. </summary>
         </member>
-        <member name="F:SigStat.Common.Model.VerifierBenchmark.Sampler">
+        <member name="F:SigStat.Common.Model.VerifierBenchmark.sampler">
             <summary> Defines the sampling strategy for the benchmark. </summary>
         </member>
         <member name="P:SigStat.Common.Model.VerifierBenchmark.Verifier">

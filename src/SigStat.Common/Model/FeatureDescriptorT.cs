@@ -24,16 +24,20 @@ namespace SigStat.Common
             //TODO: Currently the management of FeatureDescriptors is blurred beween FeatureDescriptor and FeatureDescriptor<T> classes
             //      although we need both of them, the responsibility should be celarly separated
             if (descriptors.TryGetValue(key, out var featureDescriptor))
+            {
                 return (FeatureDescriptor<T>)featureDescriptor;
+            }
 
-            lock(syncRoot)
+            lock (syncRoot)
             {
                 if (descriptors.TryGetValue(key, out featureDescriptor))
+                {
                     return (FeatureDescriptor<T>)featureDescriptor;
+                }
                 //TODO: log info new descriptor created
                 //QUESTION: should we always autocreate feature descriptors? How do we pass a Name parameter to a new descriptor?
 
-                return new FeatureDescriptor<T>(key, key); ;
+                return new FeatureDescriptor<T>(key, key);
             }
         }
 

@@ -64,10 +64,7 @@ namespace SigStat.Common.Model
         /// <returns>Genuine reference signatures to train on.</returns>
         public List<Signature> SampleReferences()
         {
-            var r =  references(signatures);
-            /*foreach (var s in r)
-                signatures.Remove(s);*/
-            return r;
+            return references(signatures);
         }
 
         /// <summary>
