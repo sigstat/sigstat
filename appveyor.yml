@@ -19,8 +19,8 @@ dotnet_csproj:
   file_version: '{version}'
 
 environment:
-  #access_token:
-    #secure: 8EBPJ6pb6LgYW9QXlRlEFEXMpIJhmblSvB6SOMDxJjx5Y88hDRSVhCU6tfdEjNx4
+  access_token:
+    secure: 8EBPJ6pb6LgYW9QXlRlEFEXMpIJhmblSvB6SOMDxJjx5Y88hDRSVhCU6tfdEjNx4
   MYGET_KEY:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
   NUGET_KEY:
