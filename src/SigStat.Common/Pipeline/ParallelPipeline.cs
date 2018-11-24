@@ -15,7 +15,7 @@ namespace SigStat.Common.Pipeline
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run parallel.</summary>
-        public List<ITransformation> Items = new List<ITransformation>();
+        private List<ITransformation> items = new List<ITransformation>();
 
         private Logger _logger;
         /// <summary>Passes Logger to child items as well.</summary>
@@ -32,6 +32,8 @@ namespace SigStat.Common.Pipeline
         /// <summary>Gets the minimum progess of all the child items.</summary>
         public new int Progress { get { return Items.Min((i) => i.Progress); } }
 
+        public List<ITransformation> Items { get => items; set => items = value; }
+
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()
         {
@@ -45,7 +47,10 @@ namespace SigStat.Common.Pipeline
         public void Add(ITransformation newItem)
         {
             if (_logger != null)
+            {
                 newItem.Logger = _logger;
+            }
+
             newItem.ProgressChanged += (o,p) => OnProgressChanged(p);
             Items.Add(newItem);
         }
@@ -60,7 +65,10 @@ namespace SigStat.Common.Pipeline
         {
             Parallel.ForEach(Items, (i) => {
                 if (i.InputFeatures == null)//pass previously calculated features if input not specified
+                {
                     i.InputFeatures = this.InputFeatures;
+                }
+
                 i.Transform(signature);
                 });
 
@@ -68,8 +76,9 @@ namespace SigStat.Common.Pipeline
             //Add the new item's output to output
             OutputFeatures = new List<FeatureDescriptor>();
             foreach (var item in Items)
+            {
                 OutputFeatures.AddRange(item.OutputFeatures);
-
+            }
         }
     }
 }

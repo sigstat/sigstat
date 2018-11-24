@@ -228,7 +228,6 @@ namespace SigStat.Common.Model
                 List<Signature> references = localSampler.SampleReferences();
                 List<Signature> genuineTests = localSampler.SampleGenuineTests();
                 List<Signature> forgeryTests = localSampler.SampleForgeryTests();
-                //catch: Log.Error("nem volt eleg alairas a benchmarkhoz");
 
                 Verifier localVerifier = new Verifier(Verifier);
                 localVerifier.Train(references);

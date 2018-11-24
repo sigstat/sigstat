@@ -30,7 +30,7 @@ namespace Alairas.Common
                     //ctx.Dilatation()
                     //ctx.Erosion()
                     //ctx.Erosion()
-                    //ctx.LabelConnectedComponents();
+                    //ctx.LabelConnectedComponents()
                 });
                 var envelopes = GetComponentLowerEnvelopes(tmp);
                 RemoveOverlapingEnvelopes(envelopes);
@@ -172,7 +172,12 @@ namespace Alairas.Common
             double sumX, sumY, sumXX, sumYY, sumXY;
             double a, b;        // az featureAndOriginaties(x) = a + b*x egyenes együtthatói
 
-            sumX = sumY = sumXX = sumYY = sumXY = 0;
+            sumX = 0;
+            sumY = 0;
+            sumXX = 0;
+            sumYY = 0;
+            sumXY = 0;
+
             foreach (Point p in points)
             {
                 sumX += p.X;
@@ -190,7 +195,8 @@ namespace Alairas.Common
             }
             else
             {
-                a = b = 0.0;
+                a = 0.0;
+                b = 0.0;
             }
 
             return new Baseline(points[0].X, (int)(a + b * points[0].X), points[numPoints - 1].X - points[0].X, (int)(a + b * points[numPoints - 1].X) - (int)(a + b * points[0].X));

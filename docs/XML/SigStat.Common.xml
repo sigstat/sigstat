@@ -1479,7 +1479,7 @@
             <para>Default Pipeline Output: Range of all the Item outputs.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items">
+        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.items">
             <summary>List of transforms to be run parallel.</summary>
         </member>
         <member name="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Logger">
@@ -1499,7 +1499,7 @@
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
+            Executes transform <see cref="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
             Passes input features for each.
             Output is a range of all the Item outputs.
             </summary>
@@ -1511,7 +1511,7 @@
             <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
+        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.items">
             <summary>List of transforms to be run in sequence.</summary>
         </member>
         <member name="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Logger">
@@ -1528,7 +1528,7 @@
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
+            Executes transform <see cref="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
             Passes input features for each.
             Output is the output of the last Item in the sequence.
             </summary>

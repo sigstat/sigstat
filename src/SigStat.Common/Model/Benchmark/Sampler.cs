@@ -74,8 +74,7 @@ namespace SigStat.Common.Model
         public List<Signature> SampleGenuineTests()
         {
             var g = genuineTests(signatures);
-            /*foreach (var s in g)
-                signatures.Remove(s);*/
+            
             return g;
         }
 

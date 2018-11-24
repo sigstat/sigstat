@@ -149,7 +149,7 @@ namespace SigStat.Common
             var i = (result.IndexOf(start)+ offset) % 8;
             if (i == -1)
             {
-                throw new Exception("Invalid start point");
+                throw new ArgumentException("Invalid start point");
             }
 
             if (i == 0)

@@ -16,7 +16,7 @@ namespace SigStat.Common.Pipeline
     public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run in sequence.</summary>
-        public List<ITransformation> Items = new List<ITransformation>();
+        private List<ITransformation> items = new List<ITransformation>();
 
         private Logger _logger;
         /// <summary>Passes Logger to child items as well.</summary>
@@ -29,6 +29,8 @@ namespace SigStat.Common.Pipeline
                 Items.ForEach(i => i.Logger = _logger);
             }
         }
+
+        public List<ITransformation> Items { get => items; set => items = value; }
 
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()
@@ -43,13 +45,18 @@ namespace SigStat.Common.Pipeline
         public void Add(ITransformation newItem)
         {
             if (_logger != null)
+            {
                 newItem.Logger = _logger;
+            }
+
             newItem.ProgressChanged += ((o, p) => CalcProgress(i,p));
             Items.Add(newItem);
 
             //Set sequence output to last item's output (if given)
             if(newItem.OutputFeatures!=null)
+            {
                 this.Output(newItem.OutputFeatures.ToArray());
+            }
         }
 
         private void CalcProgress(int i, int p)
@@ -68,14 +75,19 @@ namespace SigStat.Common.Pipeline
         public void Transform(Signature signature)
         {
             if (Items == null || Items.Count == 0)
+            {
                 return;
+            }
             // Do the first transformation
             Items[0].Transform(signature);
 
             for (i = 1; i < Items.Count; i++)
             {
                 if (Items[i].InputFeatures == null || Items[i].InputFeatures.Count==0)//pass previously calculated features if input not specified
+                {
                     Items[i].InputFeatures = new List<FeatureDescriptor>(Items[i - 1].OutputFeatures);
+                }
+
                 Items[i].Transform(signature);
             }
         }

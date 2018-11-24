@@ -29,7 +29,9 @@ namespace SigStat.Common
         protected void Log(LogLevel level, string message)
         {
             if (Logger != null)
+            {
                 Logger.EnqueueEntry(level, this, message);
+            }
         }
 
         private int _progress = 0;
@@ -38,7 +40,11 @@ namespace SigStat.Common
             get => _progress;
             protected set {
                 if (_progress == value)
-                    return; _progress = value;
+                {
+                    return;
+                }
+
+                _progress = value;
                 ProgressChanged?.Invoke(this, value);
             }
         }
