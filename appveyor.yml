@@ -27,8 +27,8 @@ environment:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
 before_build:
 - cmd: nuget restore
-#- choco install opencover.portable
-#- choco install codecov
+- choco install opencover.portable
+- choco install codecov
 #after_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
@@ -41,8 +41,8 @@ deploy:
    secure: Lt06yKCteORxJGN1HKZz3WbzQXLDHsRiuJCXTVKOM9DAAC7ZR/Lr9OI4BsOHrguh
 
 test_script:
-#- OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
-#- codecov -f "results.xml" -r "sigstat/sigstat"
+- OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
+- codecov -f "results.xml" -r "sigstat/sigstat"
 
 on_success:
 - git config --global credential.helper store
