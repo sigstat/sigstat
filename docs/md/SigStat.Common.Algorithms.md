@@ -1,6 +1,6 @@
 ## `Dtw`
 
-Dynamic Time Warping algorithm
+Dynamic Time Warping algorithm teszt komment 1
 ```csharp
 public class SigStat.Common.Algorithms.Dtw
 
