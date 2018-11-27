@@ -41,4 +41,8 @@
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0004" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Debug (&quot;$(SolutionDir)docs\generator\MarkdownGenerator.exe&quot; &quot;$(SolutionDir)src\SigStat.Common\bin\Debug\netstandard2.0\SigStat.Common.dll&quot; &quot;$(SolutionDir)docs\md&quot;)" />
+  </Target>
+
 </Project>
