@@ -55,6 +55,6 @@ on_success:
 - C:\projects\sigstat\docs\generator\MarkdownGenerator.exe C:\projects\sigstat\src\SigStat.Common\bin\Release\netstandard2.0\SigStat.Common.dll "C:\projects\wiki\SigStat.wiki"
 - echo All | xcopy C:\projects\sigstat\docs\md\_Sidebar.md C:\projects\wiki\SigStat.wiki
 - cd SigStat.wiki
-- git add .
+- git add -A
 - git diff-index --quiet HEAD || git commit -am "Commiting wiki changes"
 - git push
