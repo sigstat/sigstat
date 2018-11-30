@@ -19,7 +19,6 @@ dotnet_csproj:
   file_version: '{version}'
 
 environment:
-    nodejs_version: "6"
   #access_token:
    # secure: NuXJPvfbtEJEsj358sMDapkR5DWHUt46ftc5sHll0zQkLMhc/N7zVGpLYZc0wCPC
   MYGET_KEY:
@@ -27,7 +26,7 @@ environment:
   NUGET_KEY:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
 install:
-    - ps: Install-Product node $env:nodejs_version
+    - ps: Install-Product node "6"
     - npm install -g github-wikito-converter
     - npm install -g html-pdf
 before_build:
