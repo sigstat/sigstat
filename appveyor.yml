@@ -25,15 +25,14 @@ environment:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
   NUGET_KEY:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
-    
-install:
-- ps: Install-Product node 6
-- npm install -g github-wikito-converter
-- npm install -g html-pdf
+
 before_build:
 - cmd: nuget restore
 - choco install opencover.portable
 - choco install codecov
+- ps: Install-Product node 6
+- npm install -g github-wikito-converter
+- npm install -g html-pdf
 #after_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
