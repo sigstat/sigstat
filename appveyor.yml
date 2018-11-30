@@ -65,6 +65,6 @@ on_success:
 - cd C:\projects\sigstat\docs
 - gwtc C:\projects\wiki\SigStat.wiki
 - html-pdf documentation.html documentation.pdf
-- git add .
-- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
-- git push
+#- git add .
+#- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
+#- git push
