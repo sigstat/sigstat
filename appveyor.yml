@@ -49,7 +49,7 @@ test_script:
 - codecov -f "results.xml" -r "sigstat/sigstat"
 
 skip_commits:
-   message: PDF
+   files: docs/*
 
 on_success:
 - git config --global credential.helper store
