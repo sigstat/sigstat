@@ -19,12 +19,17 @@ dotnet_csproj:
   file_version: '{version}'
 
 environment:
+    nodejs_version: "6"
   #access_token:
    # secure: NuXJPvfbtEJEsj358sMDapkR5DWHUt46ftc5sHll0zQkLMhc/N7zVGpLYZc0wCPC
   MYGET_KEY:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
   NUGET_KEY:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
+install:
+    - ps: Install-Product node $env:nodejs_version
+    - npm install -g github-wikito-converter
+    - npm install -g html-pdf
 before_build:
 - cmd: nuget restore
 - choco install opencover.portable
