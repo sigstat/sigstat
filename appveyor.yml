@@ -56,15 +56,15 @@ on_success:
 - md C:\projects\wiki
 - cd C:\projects\wiki
 - git clone https://github.com/sigstat/sigstat.wiki.git
-- cd C:\projects\sigstat\docs
-- gwtc C:\projects\wiki\SigStat.wiki
-- html-pdf documentation.html documentation.pdf
-- git add .
-- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
-- git push
 - C:\projects\sigstat\docs\generator\MarkdownGenerator.exe C:\projects\sigstat\src\SigStat.Common\bin\Release\netstandard2.0\SigStat.Common.dll "C:\projects\wiki\SigStat.wiki"
 - echo All | xcopy C:\projects\sigstat\docs\md\_Sidebar.md C:\projects\wiki\SigStat.wiki
 - cd C:\projects\wiki\SigStat.wiki
 - git add -A
 - git diff-index --quiet HEAD || git commit -am "Commiting wiki changes"
+- git push
+- cd C:\projects\sigstat\docs
+- gwtc C:\projects\wiki\SigStat.wiki
+- html-pdf documentation.html documentation.pdf
+- git add .
+- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
 - git push
