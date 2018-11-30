@@ -48,8 +48,8 @@ test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
 - codecov -f "results.xml" -r "sigstat/sigstat"
 
-only_commits:
-    message: /wiki/
+skip_commits:
+    message: PDF
 
 on_success:
 - git config --global credential.helper store
@@ -69,5 +69,5 @@ on_success:
 - gwtc C:\projects\wiki\SigStat.wiki
 - html-pdf documentation.html documentation.pdf
 - git add .
-- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
+- git diff-index --quiet HEAD || git commit -am "PDF"
 - git push
