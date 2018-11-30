@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
     <!-- Version info will be overwriten by the publish process -->
-    <Version>0.1.0</Version>
+    <Version>0.1.175</Version>
     <Authors>Bence Kovari</Authors>
     <Company>Bence Kovari</Company>
     <PackageLicenseUrl>https://github.com/bmeaut/sigstat/blob/master/LICENSE.md</PackageLicenseUrl>
@@ -15,30 +15,24 @@
     <Copyright>Copyright 2018</Copyright>
     <PackageTags>Signature;verification;offline;online</PackageTags>
   </PropertyGroup>
-  
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
   </PropertyGroup>
-  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>default</LangVersion>
     <DocumentationFile>..\..\docs\XML\SigStat.Common.xml</DocumentationFile>
   </PropertyGroup>
-  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>..\..\docs\XML\SigStat.Common.xml</DocumentationFile>
   </PropertyGroup>
-  
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Accord.Math" Version="3.8.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0004" />
   </ItemGroup>
-
 </Project>
