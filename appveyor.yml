@@ -48,6 +48,9 @@ test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
 - codecov -f "results.xml" -r "sigstat/sigstat"
 
+only_commits:
+    message: /wiki/
+
 on_success:
 - git config --global credential.helper store
 - ps: Add-Content "$HOME\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
@@ -60,11 +63,11 @@ on_success:
 - echo All | xcopy C:\projects\sigstat\docs\md\_Sidebar.md C:\projects\wiki\SigStat.wiki
 - cd C:\projects\wiki\SigStat.wiki
 - git add -A
-- git diff-index --quiet HEAD || git commit -am "Commiting wiki changes"
+- git diff-index --quiet HEAD || git commit -am "wiki"
 - git push
 - cd C:\projects\sigstat\docs
 - gwtc C:\projects\wiki\SigStat.wiki
 - html-pdf documentation.html documentation.pdf
-#- git add .
-#- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
-#- git push
+- git add .
+- git diff-index --quiet HEAD || git commit -am "Commiting PDF changes"
+- git push
