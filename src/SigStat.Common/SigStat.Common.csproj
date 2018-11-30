@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
     <!-- Version info will be overwriten by the publish process -->
-    <Version>0.1.173</Version>
+    <Version>0.1.174</Version>
     <Authors>Bence Kovari</Authors>
     <Company>Bence Kovari</Company>
     <PackageLicenseUrl>https://github.com/bmeaut/sigstat/blob/master/LICENSE.md</PackageLicenseUrl>
