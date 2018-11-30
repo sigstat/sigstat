@@ -4,6 +4,7 @@ branches:
   - master
 image: Visual Studio 2017
 configuration: Release
+skip_tags: true
 #assembly_info:
 #  patch: true
 #  file: '**\AssemblyInfo.*'
