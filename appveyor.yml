@@ -25,6 +25,10 @@ environment:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
   NUGET_KEY:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
+    
+only_commits:
+  files: 
+    - src\SigStat.Common
 
 before_build:
 - cmd: nuget restore
@@ -47,11 +51,6 @@ deploy:
 test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
 - codecov -f "results.xml" -r "sigstat/sigstat"
-
-skip_commits:
-   files: 
-   - '**/*.html'
-   - '**/*.pdf'
 
 on_success:
 - git config --global credential.helper store
