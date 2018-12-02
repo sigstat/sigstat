@@ -25,11 +25,7 @@ environment:
     secure: b+lrnLDBMVds0RmnoyuVqVYz5sjgqSeY/AhWn+iTT7/+jaa4VaHihRpFaHWRs8AN
   NUGET_KEY:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
-    
-only_commits:
-  files: 
-    - src\SigStat.Common
-    
+  
 skip_commits:  
     message: /PDF/   
 
