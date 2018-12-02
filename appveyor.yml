@@ -29,7 +29,9 @@ environment:
 only_commits:
   files: 
     - src\SigStat.Common
-   message: /PDF/   
+    
+skip_commits:  
+    message: /PDF/   
 
 before_build:
 - cmd: nuget restore
