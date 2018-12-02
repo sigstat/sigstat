@@ -29,6 +29,7 @@ environment:
 only_commits:
   files: 
     - src\SigStat.Common
+   message: /PDF/   
 
 before_build:
 - cmd: nuget restore
@@ -52,7 +53,7 @@ test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
 - codecov -f "results.xml" -r "sigstat/sigstat"
 
-on_success:
+after_build:
 - git config --global credential.helper store
 - ps: Add-Content "$HOME\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 - git config --global user.email "hargitomi97@gmail.com"
