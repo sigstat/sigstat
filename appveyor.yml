@@ -51,7 +51,7 @@ test_script:
 - OpenCover.Console.exe -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test \"test\SigStat.Common.Test\" --configuration Release" -filter:"+[SigStat.Common*]* -[SigStat.Common.Test*]*" -oldStyle -register:user
 - codecov -f "results.xml" -r "sigstat/sigstat"
 
-after_build:
+on_success:
 - git config --global credential.helper store
 - ps: Add-Content "$HOME\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 - git config --global user.email "hargitomi97@gmail.com"
@@ -69,6 +69,6 @@ after_build:
 - gwtc C:\projects\wiki\SigStat.wiki
 - html-pdf documentation.html documentation.pdf
 - rm documentation.html
-- git add .
-- git diff-index --quiet HEAD || git commit -am "PDF"
-- git push
+#- git add .
+#- git diff-index --quiet HEAD || git commit -am "PDF"
+#- git push
