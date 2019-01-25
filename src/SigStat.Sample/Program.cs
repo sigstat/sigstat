@@ -175,7 +175,7 @@ namespace SigStat.Sample
             var verifier = new Verifier()
             {
                 Logger = debugLogger,
-                TransformPipeline = new SequentialTransformPipeline
+                Pipeline = new SequentialTransformPipeline
                 {
                     new Binarization().Input(Features.Image),
                     new Trim(5),
@@ -199,7 +199,7 @@ namespace SigStat.Sample
                     new ApproximateOnlineFeatures(),
                     new RealisticImageGenerator(1280, 720),
                 },
-                ClassifierPipeline = new DTWClassifier()
+                Classifier = new DTWClassifier()
             };
             verifier.ProgressChanged += ProgressPrimary;
 
@@ -227,7 +227,7 @@ namespace SigStat.Sample
             var verifier = new Verifier()
             {
                 Logger = debugLogger,
-                TransformPipeline = new SequentialTransformPipeline
+                Pipeline = new SequentialTransformPipeline
                 {
                     new TimeMarkerStart().Output(timer1),
                     new ParallelTransformPipeline
@@ -244,7 +244,7 @@ namespace SigStat.Sample
                     new TimeMarkerStop().Output(timer1),
                     new LogMarker(LogLevel.Info).Input(timer1),
                 },
-                ClassifierPipeline = new WeightedClassifier
+                Classifier = new WeightedClassifier
                 {
                     {
                         (new DTWClassifier(Accord.Math.Distance.Manhattan){

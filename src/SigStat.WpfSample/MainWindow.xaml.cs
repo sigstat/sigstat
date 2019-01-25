@@ -134,7 +134,7 @@ namespace SigStat.WpfSample
                     Sampler = IsOptiClass ? MySampler.AllReferences : MySampler.Basic,
                     Verifier = new MyVerifier(classifier)
                     {
-                        TransformPipeline = transformPipeline
+                        Pipeline = transformPipeline
                     },
                     Logger = logger,
                 };

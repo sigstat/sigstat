@@ -14,7 +14,7 @@ namespace SigStat.Common.Pipeline
         /// </summary>
         /// <param name="signatures"></param>
         /// <returns></returns>
-        IClassificationModel Train(List<Signature> signatures);
+        ISignerModel Train(List<Signature> signatures);
     }
 
    

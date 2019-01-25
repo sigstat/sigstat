@@ -19,12 +19,12 @@ namespace SigStat.Common.Test.Model
         {
             var v1 = new Verifier();
             Assert.IsNotNull(v1);
-            Assert.IsNotNull(v1.ClassifierPipeline);
-            Assert.IsNotNull(v1.TransformPipeline);
+            Assert.IsNotNull(v1.Classifier);
+            Assert.IsNotNull(v1.Pipeline);
 
             var v2 = new Verifier(v1);
-            Assert.AreSame(v2.TransformPipeline, v1.TransformPipeline);
-            Assert.AreSame(v2.ClassifierPipeline, v1.ClassifierPipeline);
+            Assert.AreSame(v2.Pipeline, v1.Pipeline);
+            Assert.AreSame(v2.Classifier, v1.Classifier);
         }
 
         [TestMethod]

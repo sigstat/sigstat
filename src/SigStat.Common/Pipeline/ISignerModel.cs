@@ -7,7 +7,7 @@ namespace SigStat.Common.Pipeline
     /// <summary>
     /// Analyzes signatures based on their similiarity to the trained model
     /// </summary>
-    public interface IClassificationModel
+    public interface ISignerModel
     {
         /// <summary>
         /// Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.
