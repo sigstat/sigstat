@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using SigStat.Common.Loaders;
 using System.Linq;
 using SigStat.Common.Helpers;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Model;
 
-namespace SigStat.Common.Model
+namespace SigStat.Common
 {
     /// <summary>Contains the benchmark results of a single <see cref="Common.Signer"/></summary>
     public class Result
@@ -30,19 +32,6 @@ namespace SigStat.Common.Model
         }
     }
 
-    //TODO: document ThresholdResult
-    public class ThresholdResult: Result
-    {
-        private readonly double Threshold;
-
-        public ThresholdResult(string signer, double frr, double far, double aer, double threshold)
-            : base(signer, frr, far, aer)
-        {
-            Threshold = threshold;
-        }
-
-    }
-
     /// <summary>Contains the benchmark results of every <see cref="Common.Signer"/> and the summarized final results.</summary>
     public struct BenchmarkResults
     {
@@ -60,63 +49,62 @@ namespace SigStat.Common.Model
     }
 
     /// <summary> Benchmarking class to test error rates of a <see cref="Model.Verifier"/> </summary>
-    public class VerifierBenchmark : ILogger, IProgress
+    public class VerifierBenchmark: ILoggerObject
     {
+        readonly EventId benchmarkEvent = SigStatEvents.BenchmarkEvent;
+
         /// <summary> The loader to take care of <see cref="Signature"/> database loading. </summary>
         private IDataSetLoader loader;
         /// <summary> Defines the sampling strategy for the benchmark. </summary>
         private Sampler sampler;
 
-        private Verifier _verifier;
+        private Verifier verifier;
         /// <summary> Gets or sets the <see cref="Model.Verifier"/> to be benchmarked. </summary>
-        public Verifier Verifier { get => _verifier;
+        public Verifier Verifier { get => verifier;
             set {
-                _verifier = value;
-                if (_verifier!=null)
+                verifier = value;
+                if (verifier!=null)
                 {
-                    _verifier.Logger = Logger;
+                    verifier.Logger = Logger;
                 }
             }
         }
 
-        private Logger _log;//TODO: ezzel kezdeni valamit: mivel ez nem pipeline item, ezert nem akartam a PipelineBase-bol szarmaztatni, ami implementalja az ILogger-t.
-        /// <summary> Gets or sets the attached <see cref="Helpers.Logger"/> object used to log messages. Hands it over to the verifier. </summary>
-        public Logger Logger
+        private ILogger logger;
+        /// <summary> Gets or sets the attached <see cref="ILogger"/> object used to log messages. Hands it over to the verifier. </summary>
+        public ILogger Logger
         {
-            get => _log;
+            get => logger;
             set
             {
-                _log = value;
+                logger = value;
                 if (Verifier != null)
                 {
-                    Verifier.Logger = _log;
+                    Verifier.Logger = logger;
                 }
             }
         }
 
-        private int _progress;
+        private int progress;
         /// <inheritdoc/>
-        public int Progress { get => _progress; set { _progress = value; ProgressChanged?.Invoke(this, value); } }
+        public int Progress { get => progress; set { progress = value; ProgressChanged?.Invoke(this, value); } }
 
+        /// <summary>
+        /// The loader that will provide the database for benchmarking
+        /// </summary>
         public IDataSetLoader Loader { get => loader; set => loader = value; }
+        /// <summary>
+        /// The <see cref="Common.Sampler"/> to be used for benchmarking
+        /// </summary>
         public Sampler Sampler { get => sampler; set => sampler = value; }
 
         /// <inheritdoc/>
         public event EventHandler<int> ProgressChanged;
 
-        /// <inheritdoc/>
-        protected void Log(LogLevel level, string message)
-        {
-            if (_log != null)
-            {
-                _log.EnqueueEntry(level, this, message);
-            }
-        }
-
+     
         /// <summary>
         /// Initializes a new instance of the <see cref="VerifierBenchmark"/> class.
-        /// Sets the <see cref="Model.Verifier"/> to be the <see cref="Verifier.BasicVerifier"/>.
-        /// Sets the <see cref="Model.Sampler"/> to be the <see cref="Sampler.BasicSampler"/>.
+        /// Sets the <see cref="Common.Sampler"/> to be the <see cref="Sampler.BasicSampler"/>.
         /// </summary>
         public VerifierBenchmark()
         {
@@ -125,31 +113,22 @@ namespace SigStat.Common.Model
         }
 
         /// <summary>
-        /// Asynchronously execute the benchmarking process.
-        /// </summary>
-        /// <returns></returns>
-        public static async Task<int> ExecuteAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Synchronously execute the benchmarking process.
         /// </summary>
         /// <returns></returns>
         public BenchmarkResults Execute()
         {
-            Log(LogLevel.Info, "Benchmark execution started.");
+            Logger?.LogInformation("Benchmark execution started.");
             var results = new List<Result>();
             double farAcc = 0;
             double frrAcc = 0;
 
-            Log(LogLevel.Info, "Loading data..");
+            Logger?.LogInformation("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
-            Log(LogLevel.Info, signers.Count + " signers found. Benchmarking..");
+            Logger?.LogInformation($"{signers.Count} signers found. Benchmarking..");
             for(int i = 0; i < signers.Count; i++)
             {
-                Log(LogLevel.Info, $"Benchmarking Signer ID {signers[i].ID} ({i+1}/{signers.Count})");
+                this.Log($"Benchmarking Signer ID {signers[i].ID} ({i+1}/{signers.Count})");
                 Sampler.Init(signers[i]);
                 List<Signature> references = Sampler.SampleReferences();
                 List<Signature> genuineTests = Sampler.SampleGenuineTests();
@@ -162,7 +141,7 @@ namespace SigStat.Common.Model
                 int nFalseReject = 0;
                 foreach (Signature genuine in genuineTests)
                 {
-                    if (!Verifier.Test(genuine))
+                    if (Verifier.Test(genuine)<=0.5)
                     {
                         nFalseReject++;//eredeti alairast hamisnak hisz
                     }
@@ -175,7 +154,7 @@ namespace SigStat.Common.Model
                 int nFalseAccept = 0;
                 foreach (Signature forgery in forgeryTests)
                 {
-                    if (Verifier.Test(forgery))
+                    if (Verifier.Test(forgery)>0.5)
                     {
                         nFalseAccept++;//hamis alairast eredetinek hisz
                     }
@@ -185,7 +164,7 @@ namespace SigStat.Common.Model
 
                 //AER: average error rate
                 double AER = (FRR + FAR) / 2.0;
-                Log(LogLevel.Debug, $"AER for Signer ID {signers[i].ID}: {AER}");
+                this.Trace($"AER for Signer ID {signers[i].ID}: {AER}");
 
                 //EER definicio fix: ez az az ertek amikor FAR==FRR
 
@@ -200,8 +179,8 @@ namespace SigStat.Common.Model
             double farFinal = farAcc / signers.Count;
             double aerFinal = (frrFinal + farFinal) / 2.0;
 
-            Log(LogLevel.Info, "Benchmark execution finished.");
-            Log(LogLevel.Debug, $"AER: {aerFinal}");
+            Logger?.LogInformation("Benchmark execution finished.");
+            Logger?.LogTrace( $"AER: {aerFinal}");
             return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
         }
 
@@ -211,33 +190,32 @@ namespace SigStat.Common.Model
         /// <returns></returns>
         public BenchmarkResults ExecuteParallel()
         {
-            Log(LogLevel.Info, "Parallel benchmark execution started.");
+            Logger?.LogInformation("Parallel benchmark execution started.");
             var results = new List<Result>();
             double farAcc = 0;
             double frrAcc = 0;
 
-            Log(LogLevel.Info, "Loading data..");
+            Logger?.LogInformation("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners(null));
-            Log(LogLevel.Info, signers.Count + " signers found. Benchmarking..");
+            Logger?.LogInformation($"{signers.Count} signers found. Benchmarking..");
             double parallelProgress = 0;
             Parallel.ForEach(signers, iSigner =>
             {
-                Log(LogLevel.Info, $"Benchmarking Signer ID {iSigner.ID}");
+                Logger?.LogInformation($"Benchmarking Signer ID {iSigner.ID}");
                 Sampler localSampler = new Sampler(Sampler);
                 localSampler.Init(iSigner);//parhuzamositas miatt kell kulon sampler mindenkinek
                 List<Signature> references = localSampler.SampleReferences();
                 List<Signature> genuineTests = localSampler.SampleGenuineTests();
                 List<Signature> forgeryTests = localSampler.SampleForgeryTests();
 
-                Verifier localVerifier = new Verifier(Verifier);
-                localVerifier.Train(references);
+                Verifier.Train(references);
 
                 //FRR: false rejection rate
                 //FRR = elutasított eredeti / összes eredeti
                 int nFalseReject = 0;
                 foreach (Signature genuine in genuineTests)
                 {
-                    if (!localVerifier.Test(genuine))
+                    if (Verifier.Test(genuine)<=0.5)
                     {
                         nFalseReject++;//eredeti alairast hamisnak hisz
                     }
@@ -250,7 +228,7 @@ namespace SigStat.Common.Model
                 int nFalseAccept = 0;
                 foreach (Signature forgery in forgeryTests)
                 {
-                    if (localVerifier.Test(forgery))
+                    if (Verifier.Test(forgery)>0.5)
                     {
                         nFalseAccept++;//hamis alairast eredetinek hisz
                     }
@@ -260,7 +238,7 @@ namespace SigStat.Common.Model
 
                 //AER: average error rate
                 double AER = (FRR + FAR) / 2.0;
-                Log(LogLevel.Debug, $"AER for Signer ID {iSigner.ID}: {AER}");
+                Logger?.LogTrace($"AER for Signer ID {iSigner.ID}: {AER}");
 
                 //EER definicio fix: ez az az ertek amikor FAR==FRR
 
@@ -277,10 +255,11 @@ namespace SigStat.Common.Model
             double aerFinal = (frrFinal + farFinal) / 2.0;
 
             Progress = 100;
-            Log(LogLevel.Info, "Benchmark execution finished.");
-            Log(LogLevel.Debug, $"AER: {aerFinal}");
+            Logger?.LogInformation("Benchmark execution finished.");
+            Logger?.LogTrace( $"AER: {aerFinal}");
             return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
         }
+
 
 
     }

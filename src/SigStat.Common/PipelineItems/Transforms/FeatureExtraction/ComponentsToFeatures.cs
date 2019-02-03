@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -49,14 +50,12 @@ namespace SigStat.Common.Transforms
                         pendown.Add(true);
                     }
                 }
-                Progress += (int)(1.0 / components.Count * 100);
             }
 
             signature.SetFeature(OutputFeatures[0], xs);
             signature.SetFeature(OutputFeatures[1], ys);
             signature.SetFeature(OutputFeatures[2], pendown);
-            Progress = 100;
-            Log(LogLevel.Info, $"X,Y,Button features extracted. Length: {xs.Count}");
+            Logger.LogInformation($"X,Y,Button features extracted. Length: {xs.Count}");
 
         }
     }

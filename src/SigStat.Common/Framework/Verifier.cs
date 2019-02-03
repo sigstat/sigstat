@@ -1,4 +1,6 @@
-﻿using SigStat.Common.Helpers;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.Transforms;
@@ -14,22 +16,29 @@ namespace SigStat.Common.Model
     /// </summary>
     public class Verifier
     {
+        private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
+
         private SequentialTransformPipeline pipeline;
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
-        public SequentialTransformPipeline Pipeline { get => pipeline; set { pipeline = value; pipeline.Logger = Logger; } }
+        public SequentialTransformPipeline Pipeline { get => pipeline; set { pipeline = value;  } }
 
         private IClassifier classifier;
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
-        public IClassifier Classifier { get => classifier; set { classifier = value; classifier.Logger = Logger; } }
+        public IClassifier Classifier { get => classifier; set { classifier = value; } }
+
+        /// <summary> Gets or sets the class responsible for logging</summary>
+        public ILogger Logger { get; set; }
 
         private ISignerModel model;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Verifier"/> class, with empty pipelines and no <see cref="SigStat.Common.Helpers.Logger"/>.
+        /// Initializes a new instance of the <see cref="Verifier"/> class
         /// </summary>
-        public Verifier()
+        /// <param name="logger">Initializes the Logger property of the <see cref="Verifier"/></param>
+        public Verifier(ILogger logger = null)
         {
-            Pipeline = new SequentialTransformPipeline();
-            Classifier = new DTWClassifier();
+            this.Logger = logger;
+            Logger.LogTrace(VerifierEvent, "Verifier created");
         }
 
         /// <summary>
@@ -43,19 +52,19 @@ namespace SigStat.Common.Model
         {
             if (signatures.Any(s => s.Origin != Origin.Genuine))
             {
-                //Log(LogLevel.Warn, $"Training with a non-genuine signature. ID: {sig.ID}");
+                //Logger.LogWarning( $"Training with a non-genuine signature. ID: {sig.ID}");
             }
 
             foreach (var sig in signatures)
             {
                 Pipeline.Transform(sig);
             }
-            //Log(LogLevel.Debug, "Signatures transformed.");
+            //Logger.LogTrace( "Signatures transformed.");
 
             model = Classifier.Train(signatures);
 
-            //Log(LogLevel.Debug, $"Limit approximation: {limit}");
-            //Log(LogLevel.Info, "Training finished.");
+            //Logger.LogTrace( $"Limit approximation: {limit}");
+            //Logger.LogInformation( "Training finished.");
 
         }
 
@@ -66,12 +75,12 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
-            //Log(LogLevel.Info, $"Verification SignatureID {sig.ID} in progress.");
+            Logger.LogInformation(VerifierEvent, "Verifying 'signature {signature}'.", signature.ID);
 
             Pipeline.Transform(signature);
-            //Log(LogLevel.Debug, "Signature transformed. Classifying..");
+            Logger.LogInformation(VerifierEvent, "'Signature {signature}' transformed.", signature.ID);
 
-            return model.Test(signature);
+            var result = classifier.Test(model,signature);
             //double[] vals = new double[genuines.Count];
             //for (int i = 0; i < genuines.Count; i++)
             //{
@@ -79,9 +88,10 @@ namespace SigStat.Common.Model
             //    Progress = (int)(i / (double)(genuines.Count - 1) * 100.0);
             //}
             //double avg = vals.Average();
-            //Log(LogLevel.Debug, $"Verification SignatureID {sig.ID} result: { (avg < limit ? Origin.Genuine : Origin.Forged) }");
-            //Log(LogLevel.Info, $"Verification SignatureID {sig.ID}  finished.");
+            Logger.LogInformation(VerifierEvent, "Verification result for signature '{signature}': {result}", signature.ID, result);
+            //Logger.LogInformation( $"Verification SignatureID {sig.ID}  finished.");
             //return avg < limit;
+            return result;
         }
     }
 }

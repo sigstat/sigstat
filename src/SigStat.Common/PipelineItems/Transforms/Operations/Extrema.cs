@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -32,7 +33,7 @@ namespace SigStat.Common.Transforms
             double min = values.Min();
             double max = values.Max();
 
-            Log(LogLevel.Debug, $"SigID: {signature.ID} FeatureName: {InputFeatures[0].Name} Min: {min} Max: {max}");
+            Logger.LogTrace($"SigID: {signature.ID} FeatureName: {InputFeatures[0].Name} Min: {min} Max: {max}");
 
             signature.SetFeature(OutputFeatures[0], new List<double> { min });//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
             signature.SetFeature(OutputFeatures[1], new List<double> { max });

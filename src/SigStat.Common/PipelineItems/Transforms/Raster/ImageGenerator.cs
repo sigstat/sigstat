@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -72,11 +73,11 @@ namespace SigStat.Common.Transforms
                 string signerString = (signature.Signer!=null) ? signature.Signer.ID : "Null";
                 string filename = $"U_{signerString}_S_{signature.ID?? "Null"}_{OutputFeatures[1].Name}.png";
                 img.SaveAsPng(File.Create(filename));
-                Log(LogLevel.Info, $"Image saved: {filename}");
+                Logger.LogInformation( $"Image saved: {filename}");
             }
 
             Progress = 100;
-            Log(LogLevel.Info, $"Image generation from binary raster done.");
+            Logger.LogInformation( $"Image generation from binary raster done.");
         }
     }
 }

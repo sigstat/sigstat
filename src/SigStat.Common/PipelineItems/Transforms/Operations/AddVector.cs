@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -44,7 +45,7 @@ namespace SigStat.Common.Transforms
             int dim = vector.Count;
             if ((InputFeatures.Count) != dim)
             {
-                Log(LogLevel.Error, "Dimension mismatch");
+                Logger.LogError("Dimension mismatch");
             }
 
             for (int iF = 0; iF < dim; iF++)

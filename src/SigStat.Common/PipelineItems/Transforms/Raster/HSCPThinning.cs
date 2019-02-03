@@ -3,6 +3,7 @@ using SigStat.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -33,7 +34,7 @@ namespace SigStat.Common.Transforms
             }
             signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
-            Log(LogLevel.Info, $"HSCP thinning steps applied {stepCnt} times.");
+            Logger.LogInformation( $"HSCP thinning steps applied {stepCnt} times.");
         }
         
     }

@@ -4,6 +4,7 @@ using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -49,7 +50,7 @@ namespace SigStat.Common.Transforms
 
             if (binThreshold != null && (binThreshold < 0 || binThreshold > 1))
             {
-                Log(LogLevel.Warn, $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
+                Logger.LogWarning( $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
             }
 
             if (binThreshold == null)   //find threshold if not specified
@@ -67,7 +68,7 @@ namespace SigStat.Common.Transforms
                 }
                 Progress += (int)((1.0 / w)*100);
             }
-            Log(LogLevel.Info, "Binarization done.");
+            Logger.LogInformation( "Binarization done.");
             signature.SetFeature(OutputFeatures[0], b);
             Progress = 100;
         }
@@ -114,7 +115,7 @@ namespace SigStat.Common.Transforms
                 nextThreshold = ((background + foreground) / 2.0);
             }
 
-            Log(LogLevel.Debug, $"Binarization threshold: {nextThreshold}");
+            Logger.LogTrace( $"Binarization threshold: {nextThreshold}");
             return nextThreshold;
         }
 

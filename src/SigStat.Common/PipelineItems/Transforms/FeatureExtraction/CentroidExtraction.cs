@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -42,12 +43,10 @@ namespace SigStat.Common.Transforms
                 var values = signature.GetFeature<List<double>>(f);
                 double avg = values.Average();
                 c.Add(avg);
-                Progress += 100 / InputFeatures.Count;
             }
 
             signature.SetFeature(OutputFeatures[0], c);
-            Progress = 100;
-            Log(LogLevel.Info, "Centroid extraction done.");
+            Logger.LogInformation("Centroid extraction done.");
         }
     }
 }

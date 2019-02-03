@@ -1,10 +1,10 @@
-﻿using SigStat.Common;
+﻿using Microsoft.Extensions.Logging.Console;
+using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
-using SigStat.Common.PipelineItems.Markers;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
@@ -26,8 +26,6 @@ namespace SigStat.Sample
             public static FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor.Get<bool[,]>("Skeleton");
             public static FeatureDescriptor<List<double>> Tangent = FeatureDescriptor.Get<List<double>>("Tangent");
         }
-
-        struct OnlinePoint { public int X; public int Y; public int Pressure; }
 
         class MySignature : Signature
         {
@@ -79,9 +77,8 @@ namespace SigStat.Sample
             sig.SetFeature(heightDescriptor, 5);
             height = sig.GetFeature(heightDescriptor);
 
-            // Define more complex feature values
-            var seriesX = new List<double> { 1, 2, 1, 1, 2, 3, 4, 5 };
-            var loops = new List<Loop>() { new Loop() { Center = new PointF(1, 1) }, new Loop() { Center = new PointF(3, 3) } };
+            // Define complex feature values
+            var loops = new List<Loop>() { new Loop(1,1), new Loop(3,3) };
 
             // Reusing feature descriptors (see MyFeatures class for details)
             sig.SetFeature(MyFeatures.Loop, loops);
@@ -155,9 +152,9 @@ namespace SigStat.Sample
 
         static void Classifier()
         {
-            IClassifier classifier = null;
-            IClassificationModel model = classifier.Train(null);
-            model.Test(null);
+            IClassifier classifier = new DtwClassifier();
+            ISignerModel model = classifier.Train(null);
+            classifier.Test(model, null);
         }
 
 
@@ -167,19 +164,13 @@ namespace SigStat.Sample
         static void OfflineVerifierDemo()
         {
 
-            Logger debugLogger = new Logger(
-                LogLevel.Debug,
-                new FileStream($@"Logs\OfflineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
-                LogConsole);
 
-            var verifier = new Verifier()
+            var verifier = new Verifier(new SimpleConsoleLogger())
             {
-                Logger = debugLogger,
                 Pipeline = new SequentialTransformPipeline
                 {
                     new Binarization().Input(Features.Image),
                     new Trim(5),
-                    new PrepareForThinning(),
                     new ImageGenerator(true),
                     new HSCPThinning(),
                     new ImageGenerator(true),
@@ -199,37 +190,30 @@ namespace SigStat.Sample
                     new ApproximateOnlineFeatures(),
                     new RealisticImageGenerator(1280, 720),
                 },
-                Classifier = new DTWClassifier()
+                Classifier = null
             };
-            verifier.ProgressChanged += ProgressPrimary;
 
             Signature s1 = ImageLoader.LoadSignature(@"Databases\Offline\Images\U1S1.png");
             s1.Origin = Origin.Genuine;
             Signer s = new Signer();
             s.Signatures.Add(s1);
 
-            verifier.Train(s);
+            verifier.Train(new List<Signature>{ s1 });
 
             //TODO: ha mar Verifier demo, akkor Test()-et is hasznaljuk..
             ImageSaver.Save(s1, @"GeneratedOfflineImage.png");
-            debugLogger.Stop();
         }
 
         static void OnlineVerifierDemo()
         {
-            Logger debugLogger = new Logger(
-                LogLevel.Debug,
-                new FileStream($@"Logs\OnlineDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
-                LogConsole);
+
 
             var timer1 = FeatureDescriptor.Get<DateTime>("Timer1");
 
-            var verifier = new Verifier()
+            var verifier = new Verifier(new SimpleConsoleLogger())
             {
-                Logger = debugLogger,
                 Pipeline = new SequentialTransformPipeline
                 {
-                    new TimeMarkerStart().Output(timer1),
                     new ParallelTransformPipeline
                     {
                         new Normalize().Input(Features.Pressure),
@@ -241,25 +225,26 @@ namespace SigStat.Sample
                     new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
-                    new TimeMarkerStop().Output(timer1),
-                    new LogMarker(LogLevel.Info).Input(timer1),
+
                 },
                 Classifier = new WeightedClassifier
                 {
                     {
-                        (new DTWClassifier(Accord.Math.Distance.Manhattan){
-                            Features.X,
-                            Features.Y
-                        }, 0.15)
+                        (new DtwClassifier(Accord.Math.Distance.Manhattan)
+                        {
+                            InputFeatures ={ Features.X, Features.Y }
+                        },
+                           0.15)
                     },
                     {
-                        (new DTWClassifier(){
-                            Features.Pressure
+                        (new DtwClassifier(){
+                            InputFeatures ={ Features.Pressure }
                         }, 0.3)
                     },
                     {
-                        (new DTWClassifier(){
-                            FeatureDescriptor.Get<List<double>>("Tangent")//Features.Tangent
+                        (new DtwClassifier(){
+                            InputFeatures ={
+                            FeatureDescriptor.Get<List<double>>("Tangent") }//Features.Tangent
                         }, 0.55)
                     },
                     //{
@@ -272,7 +257,6 @@ namespace SigStat.Sample
                     //}
                 }
             };
-            verifier.ProgressChanged += ProgressPrimary;
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"));//Load the first signer only
@@ -282,33 +266,28 @@ namespace SigStat.Sample
 
             Signature questioned1 = signers[0].Signatures[0];
             Signature questioned2 = signers[0].Signatures[25];
-            bool isGenuine1 = verifier.Test(questioned1);//true
-            bool isGenuine2 = verifier.Test(questioned2);//false
-            debugLogger.Stop();
+            bool isGenuine1 = verifier.Test(questioned1)>0.5;//true
+            bool isGenuine2 = verifier.Test(questioned2)>0.5;//false
         }
 
         static void OnlineVerifierBenchmarkDemo()
         {
-            Logger debugLogger = new Logger(
-                LogLevel.Debug,
-                new FileStream($@"Logs\OnlineBenchmark_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
-                LogConsole);
 
             var benchmark = new VerifierBenchmark()
             {
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
-                Verifier = Verifier.BasicVerifier,
+                Verifier = null,//new BasicVerifier(),
                 Sampler = Sampler.BasicSampler,
-                Logger = debugLogger,
+                Logger = new SimpleConsoleLogger(),
             };
 
             benchmark.ProgressChanged += ProgressPrimary;
-            benchmark.Verifier.ProgressChanged += ProgressSecondary;
+            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
             //var result = await benchmark.ExecuteAsync();
             var result = benchmark.ExecuteParallel();
 
-            debugLogger.Stop();
+            //debugLogger.Stop();
 
             //result.SignerResults...
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
@@ -316,11 +295,6 @@ namespace SigStat.Sample
 
         static void OnlineToImage()
         {
-            Logger debugLogger = new Logger(
-                LogLevel.Debug,
-                new FileStream($@"Logs\OnlineToImageDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
-                LogConsole);
-
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             Signature s1 = loader.EnumerateSigners(p => (p.ID == "10")).ToList()[0].Signatures[10];//signer 10, signature 10
 
@@ -333,23 +307,16 @@ namespace SigStat.Sample
                 },
                 new RealisticImageGenerator(1280, 720)
             };
-            tfs.Logger = debugLogger;
-            tfs.ProgressChanged += ProgressPrimary;
+            tfs.Logger = new SimpleConsoleLogger();
             tfs.Transform(s1);
 
             ImageSaver.Save(s1, @"GeneratedOnlineImage.png");
-            debugLogger.Stop();
         }
 
         static void GenerateOfflineDatabase()
         {
             string path = @"Databases\Offline\Generated\";
             Directory.CreateDirectory(path);
-
-            Logger warnLogger = new Logger(
-                LogLevel.Warn,
-                new FileStream($@"Logs\OfflineDatabaseDemo_{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.log", FileMode.Create),
-                LogConsole);
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             List<Signer> signers = loader.EnumerateSigners(null).ToList();
@@ -364,7 +331,7 @@ namespace SigStat.Sample
                 new ApproximateOnlineFeatures(),
                 new RealisticImageGenerator(1280, 720),
             };
-            pipeline.Logger = warnLogger;//only log warnings and errors
+            pipeline.Logger = new SimpleConsoleLogger();
 
             for (int i = 0; i < signers.Count; i++)
             {
@@ -381,34 +348,10 @@ namespace SigStat.Sample
 
         }
 
-        public static void LogConsole(LogLevel l, string message)
-        {
-            switch (l)
-            {
-                case LogLevel.Fatal:
-                case LogLevel.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case LogLevel.Warn:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case LogLevel.Info:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-                case LogLevel.Debug:
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    break;
-                default:
-                    break;
-            }
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.Gray;
-        }
 
-        public static void ProgressConsole(object sender, int progress)
-        {
-            Console.WriteLine($"{sender.ToString()} Progress: {progress}%");
-        }
+
+
+
 
         static int primaryP = 0;
         static int secondaryP = 0;

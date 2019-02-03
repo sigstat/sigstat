@@ -5,133 +5,34 @@ using System.Text;
 
 namespace SigStat.Common
 {
+
+    /// <summary>
+    /// Helper methods for processing arrays
+    /// </summary>
     public static class ArrayExtension
     {
-        public static void SetRow<T>(this T[,] array, int y, T value)
-        {
-            for (int x = 0; x < array.GetLength(0); x++)
-            {
-                array[x, y] = value;
-            }
-        }
-
-
-        public static void SetColumn<T>(this T[,] array, int x, T value)
-        {
-            for (int y = 0; y < array.GetLength(1); y++)
-            {
-                array[x, y] = value;
-            }
-        }
-
-
-        public static int Max(this int[,] array)
-        {
-            int max = int.MinValue;
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (max < array[i, j])
-                    {
-                        max = array[i, j];
-                    }
-                }
-            }
-
-            return max;
-        }
-
-        public static byte Max(this byte[,] array)
-        {
-            byte max = byte.MinValue;
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (max < array[i, j])
-                    {
-                        max = array[i, j];
-                    }
-                }
-            }
-
-            return max;
-        }
-
-        public static double Max(this double[,] array)
-        {
-            double max = double.MinValue;
-            for (int i = 0; i < array.GetLength(0); i++)
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (max < array[i, j])
-                    {
-                        max = array[i, j];
-                    }
-                }
-            return max;
-        }
-        public static Tuple<int,int> IndexOf(this int[,] array, int value)
-        {
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (array[i, j] == value)
-                    {
-                        return new Tuple<int, int>(i, j);
-                    }
-                }
-            }
-
-            return null;
-        }
-        public static Tuple<int, int> IndexOf(this double[,] array, double value)
-        {
-            for (int i = 0; i < array.GetLength(0); i++)
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    if (array[i, j] == value)
-                    {
-                        return new Tuple<int, int>(i, j);
-                    }
-                }
-            return null;
-        }
-        public static int IndexOf<T>(this T[] array, T value)
-        {
-            return Array.IndexOf(array, value);
-        }
-
         /// <summary>
-        /// Performs a given action on all items of the array and returns the original array.
+        /// Enumerates all values in a two dimensional array
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="array"></param>
-        /// <param name="action"></param>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array">The array to enumerate</param>
         /// <returns></returns>
-        public static T[] ForEach<T>(this T[] array, Action<T> action)
+        public static IEnumerable<T> GetValues<T>(this T[,] array)
         {
-            for (int i = 0; i < array.Length; i++)
-            {
-                action(array[i]);
-            }
-            return array;
-
+            for (int i = 0; i < array.GetLength(0); i++)
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    yield return array[i, j];
+                }
         }
-
-        public static T[][] CreateNested<T>(int length1, int length2)
-        {
-            T[][] result = new T[length1][];
-            for (int i = 0; i < length1; i++)
-            {
-                result[i] = new T[length2];
-            }
-
-            return result;
-        }
-
+      
+        /// <summary>
+        /// Sets all values in a two dimensional array to <paramref name="value"/>
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array">Array</param>
+        /// <param name="value">New value for the array elements</param>
+        /// <returns>A reference to <paramref name="array"/> (allows chaining)</returns>
         public static T[,] SetValues<T>(this T[,] array, T value)
         {
             for (int x = 0; x < array.GetLength(0); x++)
@@ -144,64 +45,110 @@ namespace SigStat.Common
             return array;
         }
 
-        public static IEnumerable<T> GetRow<T>(this T[,] array, int rowIndex)
+        /// <summary>
+        /// Calculates the sum of the values in the given sub-array
+        /// </summary>
+        /// <param name="array">A two dimensional array with double values</param>
+        /// <param name="x1">First index of the starting point for the region to summarize</param>
+        /// <param name="y1">Second index of the starting point for the region to summarize</param>
+        /// <param name="x2">First index of the endpoint for the region to summarize</param>
+        /// <param name="y2">Second index of the endpoint for the region to summarize</param>
+        /// <returns></returns>
+        internal static double Sum(this double[,] array, int x1, int y1, int x2, int y2)
         {
-            for (int col = 0; col < array.GetLength(1); col++)
+            double sum = 0;
+            for (int x = x1; x <= x2; x++)
             {
-                yield return array[rowIndex, col];
-            }
-        }
-
-        public static IEnumerable<T> GetColumn<T>(this T[,] array, int colIndex)
-        {
-            for (int row = 0; row < array.GetLength(0); row++)
-            {
-                yield return array[row, colIndex];
-            }
-        }
-
-        public static T[,] GetPart<T>(this T[,] source, int startIndex1, int startIndex2, int length1, int length2)
-        {
-            var result = new T[length1, length2];
-            for (int i1 = 0; i1 < length1; i1++)
-            {
-                for (int i2 = 0; i2 < length2; i2++)
+                for (int y = y1; y <= y2; y++)
                 {
-                    result[i1, i2] = source[startIndex1 + i1, startIndex2 + i2];
+                    sum += array[x, y];
                 }
             }
 
-            return result;
+            return sum;
+        }
+
+        /// <summary>
+        /// Returns the sum of column values in a two dimensional array
+        /// </summary>
+        /// <param name="array">A two dimensional array with double values</param>
+        /// <param name="column">The column, to sum</param>
+        /// <returns></returns>
+        internal static double SumCol(this double[,] array, int column)
+        {
+            int height = array.GetLength(1);
+            return Sum(array, column, 0, column, height - 1);
+        }
+
+        /// <summary>
+        /// Returns the sum of row values in a two dimensional array
+        /// </summary>
+        /// <param name="array">A two dimensional array with double values</param>
+        /// <param name="row">The row, to sum</param>
+        internal static double SumRow(this double[,] array, int row)
+        {
+            int width = array.GetLength(0);
+            return Sum(array, 0, row, width - 1, row);
         }
 
 
-        static Random random = new Random();
-        public static T[] Shuffle<T>(this T[] array)
+        /// <summary>
+        /// Calculates the center of gravity, assuming that each cell contains
+        /// a weight value
+        /// </summary>
+        /// <param name="weightMartix"></param>
+        /// <returns></returns>
+        public static (int x, int y) GetCog(this double[,] weightMartix)
         {
-            T[] retArray = new T[array.Length];
-            array.CopyTo(retArray, 0);
+            //TODO: Implementation may be simplified
+            // Search for k
+            // k =  SUM(Fn*kn)/SUM(Fn)
 
-            
-            for (int i = 0; i < array.Length; i += 1)
+            int width = weightMartix.GetLength(0);
+            int height = weightMartix.GetLength(1);
+            int resultX = width / 2;
+            int resultY = height / 2; // tihs will bechanged
+
+            // let's calculate ky
+            double sumFk = 0;
+            double sumF = 0;
+            for (int y = 0; y < height; y++)
             {
-                int swapIndex = random.Next(i, array.Length);
-                if (swapIndex != i)
+                double sumTmp = 0;
+                for (int x = 0; x < width; x++)
                 {
-                    T temp = retArray[i];
-                    retArray[i] = retArray[swapIndex];
-                    retArray[swapIndex] = temp;
+                    sumTmp += weightMartix[x, y];
                 }
+                sumF += sumTmp;
+                sumFk += sumTmp * y;
             }
 
-            return retArray;
-        }
+            if (sumF > 0)
+            {
+                resultY = Convert.ToInt32(sumFk / sumF);
+            }
 
-        public static T[] Clone<T>(this T[] array)
-        {
-            T[] clone=new T[array.Length];
-            array.CopyTo(clone, 0);
-            return clone;
-        }
 
+            // let's calculate ky
+            sumFk = 0;
+            sumF = 0;
+            for (int x = 0; x < width; x++)
+            {
+                double sumTmp = 0;
+                for (int y = 0; y < height; y++)
+                {
+                    sumTmp += weightMartix[x, y];
+                }
+                sumF += sumTmp;
+                sumFk += sumTmp * x;
+            }
+
+            if (sumF > 0)
+            {
+                resultX = Convert.ToInt32(sumFk / sumF);
+            }
+
+            return (resultX, resultY);
+        }
     }
 }

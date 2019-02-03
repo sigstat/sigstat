@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -70,7 +71,7 @@ namespace SigStat.Common.Transforms
             signature.SetFeature(OutputFeatures[1], crossingPoints);
 
             Progress = 100;
-            Log(LogLevel.Info, $"Endpoint extraction done. {endPoints.Count} endpoints and {crossingPoints.Count} crossingpoints found.");
+            Logger.LogInformation($"Endpoint extraction done. {endPoints.Count} endpoints and {crossingPoints.Count} crossingpoints found.");
         }
     }
 }

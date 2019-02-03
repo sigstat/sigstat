@@ -16,21 +16,7 @@ namespace SigStat.Common.Pipeline
     public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run in sequence.</summary>
-        private List<ITransformation> items = new List<ITransformation>();
-
-        private Logger _logger;
-        /// <summary>Passes Logger to child items as well.</summary>
-        public new Logger Logger
-        {
-            get => _logger;
-            set
-            {
-                _logger = value;
-                Items.ForEach(i => i.Logger = _logger);
-            }
-        }
-
-        public List<ITransformation> Items { get => items; set => items = value; }
+        public List<ITransformation> Items { get; set; }
 
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()
@@ -39,17 +25,11 @@ namespace SigStat.Common.Pipeline
         }
 
         /// <summary>
-        /// Add new transform to the list. Pass <see cref="Logger"/> and set up Progress event.
+        /// Add new transform to the list. 
         /// </summary>
         /// <param name="newItem"></param>
         public void Add(ITransformation newItem)
         {
-            if (_logger != null)
-            {
-                newItem.Logger = _logger;
-            }
-
-            newItem.ProgressChanged += ((o, p) => CalcProgress(i,p));
             Items.Add(newItem);
 
             //Set sequence output to last item's output (if given)
@@ -59,13 +39,8 @@ namespace SigStat.Common.Pipeline
             }
         }
 
-        private void CalcProgress(int i, int p)
-        {
-            double m = p / 100.0;
-            Progress = (int)((i*(1-m)+(i+1)*m) / (Items.Count) * 100.0);
-        }
+     
 
-        int i=0;
         /// <summary>
         /// Executes transform <see cref="Items"/> in sequence.
         /// Passes input features for each.
@@ -81,7 +56,7 @@ namespace SigStat.Common.Pipeline
             // Do the first transformation
             Items[0].Transform(signature);
 
-            for (i = 1; i < Items.Count; i++)
+            for (int i = 1; i < Items.Count; i++)
             {
                 if (Items[i].InputFeatures == null || Items[i].InputFeatures.Count==0)//pass previously calculated features if input not specified
                 {

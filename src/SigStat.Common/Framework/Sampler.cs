@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace SigStat.Common.Model
+namespace SigStat.Common
 {
     /// <summary>
     /// Takes samples from a set of <see cref="Signature"/>s by given sampling strategies.

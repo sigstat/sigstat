@@ -17,20 +17,7 @@ namespace SigStat.Common.Pipeline
         /// <summary>List of transforms to be run parallel.</summary>
         private List<ITransformation> items = new List<ITransformation>();
 
-        private Logger _logger;
-        /// <summary>Passes Logger to child items as well.</summary>
-        public new Logger Logger
-        {
-            get => _logger;
-            set
-            {
-                _logger = value;
-                Items.ForEach(i => i.Logger = _logger);
-            }
-        }
-
         /// <summary>Gets the minimum progess of all the child items.</summary>
-        public new int Progress { get { return Items.Min((i) => i.Progress); } }
 
         public List<ITransformation> Items { get => items; set => items = value; }
 
@@ -41,17 +28,11 @@ namespace SigStat.Common.Pipeline
         }
 
         /// <summary>
-        /// Add new transform to the list. Pass <see cref="Logger"/> and set up Progress event.
+        /// Add new transform to the list. 
         /// </summary>
         /// <param name="newItem"></param>
         public void Add(ITransformation newItem)
         {
-            if (_logger != null)
-            {
-                newItem.Logger = _logger;
-            }
-
-            newItem.ProgressChanged += (o,p) => OnProgressChanged(p);
             Items.Add(newItem);
         }
 

@@ -2,13 +2,12 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Drawing;
-using SixLabors.ImageSharp.Processing.Drawing.Pens;
 using SixLabors.Primitives;
 using SixLabors.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -73,7 +72,7 @@ namespace SigStat.Common.Transforms
 
             signature.SetFeature(OutputFeatures[0], img);
             Progress = 100;
-            Log(LogLevel.Info, "Realistic image generation done.");
+            Logger.LogInformation( "Realistic image generation done.");
         }
 
         private PointF ToImageCoords(double x, double y)

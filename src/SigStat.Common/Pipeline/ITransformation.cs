@@ -10,7 +10,7 @@ namespace SigStat.Common
     /// <summary>
     /// Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
     /// </summary>
-    public interface ITransformation : ILogger, IProgress, IPipelineIO
+    public interface ITransformation : IPipelineIO
     {
         /// <summary>
         /// Executes the transform on the <paramref name="signature"/> parameter.

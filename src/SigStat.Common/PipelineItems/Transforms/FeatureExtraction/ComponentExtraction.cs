@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -33,7 +34,7 @@ namespace SigStat.Common.Transforms
 
             if (samplingResolution < 1)
             {
-                Log(LogLevel.Warn, $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
+                Logger.LogWarning( $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
             }
 
             //TODO: megtalalni a vegpont nelkulieket (pl. perfekt O betu), ebbol egy pontot hozzaadni a crossingpointokhoz es jo lesz
@@ -49,19 +50,16 @@ namespace SigStat.Common.Transforms
             {
                 endPoints.AddRange(endings);
             }
-            Progress = 33;
-            Log(LogLevel.Debug, $"{crossings.Count} crossings found.");
+            Logger.LogTrace($"{crossings.Count} crossings found.");
 
             var sectionlist = Trace(endPoints);
-            Log(LogLevel.Debug, $"{sectionlist.Count} sections found");
-            Progress = 66;
+            Logger.LogTrace($"{sectionlist.Count} sections found");
             //megvannak a sectionok, de meg ossze kell oket kotni a crossingoknal
 
             var componentlist = JoinSections(sectionlist, crossings);
 
             signature.SetFeature(OutputFeatures[0], componentlist);
-            Progress = 100;
-            Log(LogLevel.Info, $"Component extraction done. {componentlist.Count} components found.");
+            Logger.LogInformation( $"Component extraction done. {componentlist.Count} components found.");
         }
 
         /// <summary>
@@ -223,7 +221,7 @@ namespace SigStat.Common.Transforms
             }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
-            Log(LogLevel.Warn, $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
+            Logger.LogWarning( $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
             return (prevp/*ez most p*/, p);
         }
 

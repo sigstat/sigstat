@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -30,11 +31,11 @@ namespace SigStat.Common.Transforms
 
             if (framewidth < 0)
             {
-                Log(LogLevel.Warn, $"Negative frame width {framewidth}, this will result in data loss.");
+                Logger.LogWarning( $"Negative frame width {framewidth}, this will result in data loss.");
             }
             if (framewidth > w / 2 || framewidth > h / 2)
             {
-                Log(LogLevel.Warn, $"Too large frame width {framewidth}, this will result in empty raster.");
+                Logger.LogWarning( $"Too large frame width {framewidth}, this will result in empty raster.");
             }
 
             int x0 = 0;
@@ -53,7 +54,6 @@ namespace SigStat.Common.Transforms
                     }
                 }
             }
-            Progress = 25;
             //right
             for (int x = w - 1; x >= 0 && (x1 == w); x--)
             {
@@ -65,7 +65,6 @@ namespace SigStat.Common.Transforms
                     }
                 }
             }
-            Progress = 50;
             //top
             for (int y = 0; y < h && (y0 == 0); y++)
             {
@@ -77,7 +76,6 @@ namespace SigStat.Common.Transforms
                     }
                 }
             }
-            Progress = 75;
             //bottom
             for (int y = h - 1; y >= 0 && (y1 == h); y--)
             {
@@ -100,8 +98,7 @@ namespace SigStat.Common.Transforms
             }
 
             signature.SetFeature(OutputFeatures[0], o);
-            Progress = 100;
-            Log(LogLevel.Info, $"Trimming done. New resolution: {x1-x0}x{y1-y0} px");
+            Logger.LogInformation($"Trimming done. New resolution: {x1-x0}x{y1-y0} px");
         }
 
     }

@@ -5,9 +5,7 @@ using System.Text;
 using SigStat.Common;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Drawing;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing.Drawing.Pens;
 using SixLabors.Primitives;
 using SigStat.Common.Helpers;
 
@@ -18,6 +16,7 @@ namespace Alairas.Common
     /// </summary>
     public class SimpleRenderingTransformation : PipelineBase, ITransformation
     {
+        /// <inheritdoc></inheritdoc>
         public void Transform(Signature signature)
         {
             // Read required features
@@ -55,10 +54,6 @@ namespace Alairas.Common
             
         }
 
-        public void Run(Signature input)
-        {
-            Transform(input);
-        }
 
     }
 }

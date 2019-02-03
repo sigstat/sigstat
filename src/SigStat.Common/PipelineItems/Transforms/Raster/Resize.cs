@@ -7,6 +7,7 @@ using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.Primitives;
 using SigStat.Common.Helpers;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Transforms
 {
@@ -43,7 +44,7 @@ namespace SigStat.Common.Transforms
             }
 
             signature.SetFeature(OutputFeatures[0], newImage);
-            Log(LogLevel.Info, "Resizing done.");
+            Logger.LogInformation( "Resizing done.");
             Progress = 100;
         }
 
