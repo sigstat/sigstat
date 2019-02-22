@@ -38,6 +38,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
     {
         private readonly Func<double[], double[], double> distanceMethod;
 
+        [Input]
+        public List<FeatureDescriptor> InputFeatures;
+
         /// <summary>Initializes a new instance of the <see cref="DtwClassifier"/> class with the default Manhattan distance method.</summary>
         public DtwClassifier() : this(Accord.Math.Distance.Manhattan)
         {
@@ -47,7 +50,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public DtwClassifier(Func<double[], double[], double> distanceMethod)
         {
             this.distanceMethod = distanceMethod;
-            InputFeatures = new List<FeatureDescriptor>();
+            InputFeatures = new List<FeatureDescriptor>();//
         }
 
         /// <inheridoc/>

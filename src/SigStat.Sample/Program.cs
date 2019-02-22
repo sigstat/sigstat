@@ -117,14 +117,18 @@ namespace SigStat.Sample
             var resize = new Resize()
             {
                 Width = 60,
-                InputFeatures = { Features.Image },
-                OutputFeatures = { Features.Image }
+                InputImage = Features.Image,
+                OutputImage = Features.Image
             };
             // Perform transformation
             resize.Transform(offlineSignature);
 
             // Initialize a transformation using fluent syntax
-            var binarization = new Binarization().Input(Features.Image).Output(MyFeatures.Binarized);
+            var binarization = new Binarization()
+            {
+                InputImage=Features.Image,
+                OutputMask=MyFeatures.Binarized
+            };
 
             // Perform transformation
             binarization.Transform(offlineSignature);
@@ -142,7 +146,7 @@ namespace SigStat.Sample
             // Connect a series of transformations into a pipeline
             SequentialTransformPipeline pipeline = new SequentialTransformPipeline()
             {
-                new Multiply(2).Input(Features.X),
+                new Multiply(2) { InputList = Features.X },
                 new AddConst(3), // no need to specify input, it will work with the output of the previos transformation
             };
 
@@ -169,12 +173,14 @@ namespace SigStat.Sample
             {
                 Pipeline = new SequentialTransformPipeline
                 {
-                    new Binarization().Input(Features.Image),
+                    new Binarization(){
+                        InputImage = Features.Image
+                    },
                     new Trim(5),
                     new ImageGenerator(true),
                     new HSCPThinning(),
                     new ImageGenerator(true),
-                    new OnePixelThinning().Output(MyFeatures.Skeleton),//output Skeletonba, mert az Extraction onnan szedi
+                    new OnePixelThinning() { Output = MyFeatures.Skeleton },//output Skeletonba, mert az Extraction onnan szedi
                     new ImageGenerator(true),
                     //new BaselineExtraction(),
                     //new LoopExtraction(),
@@ -184,8 +190,8 @@ namespace SigStat.Sample
                     new ComponentsToFeatures(),
                     new ParallelTransformPipeline
                     {
-                        new Normalize().Input(Features.X),
-                        new Normalize().Input(Features.Y)
+                        new Normalize() { Input = Features.X },
+                        new Normalize() { Input = Features.Y }
                     },
                     new ApproximateOnlineFeatures(),
                     new RealisticImageGenerator(1280, 720),
@@ -216,9 +222,9 @@ namespace SigStat.Sample
                 {
                     new ParallelTransformPipeline
                     {
-                        new Normalize().Input(Features.Pressure),
-                        new Map(0, 1).Input(Features.X),
-                        new Map(0, 1).Input(Features.Y),
+                        new Normalize() { Input = Features.Pressure },
+                        new Map(0, 1) { Input = Features.X },
+                        new Map(0, 1) { Input = Features.Y },
                         new TimeReset(),
                     },
                     new CentroidTranslate(),//is a sequential pipeline of other building blocks
@@ -302,8 +308,8 @@ namespace SigStat.Sample
             {
                 new ParallelTransformPipeline
                 {
-                    new Normalize().Input(Features.X),
-                    new Normalize().Input(Features.Y)
+                    new Normalize() { Input = Features.X },
+                    new Normalize() { Input = Features.Y }
                 },
                 new RealisticImageGenerator(1280, 720)
             };
@@ -325,8 +331,8 @@ namespace SigStat.Sample
             {
                 new ParallelTransformPipeline
                 {
-                    new Normalize().Input(Features.X),
-                    new Normalize().Input(Features.Y)
+                    new Normalize() { Input = Features.X },
+                    new Normalize() { Input = Features.Y }
                 },
                 new ApproximateOnlineFeatures(),
                 new RealisticImageGenerator(1280, 720),

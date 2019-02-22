@@ -1319,12 +1319,6 @@
             <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Multiply"/> class with specified settings. </summary>
             <param name="byConst">The value to multiply the input feature by.</param>
         </member>
-        <member name="M:SigStat.Common.Transforms.Multiply.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Transforms.Multiply.Add(SigStat.Common.FeatureDescriptor)">
-            <inheritdoc/>
-        </member>
         <member name="M:SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1335,9 +1329,6 @@
             <para>Default Pipeline Output: (List{double}) NormalizationResult</para>
             </summary>
             <remarks> This is a specific case of the <see cref="T:SigStat.Common.Transforms.Map"/> transform. </remarks>
-        </member>
-        <member name="M:SigStat.Common.Transforms.Normalize.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Map"/> class with specified settings. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.Normalize.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1444,9 +1435,6 @@
             <para>Pipeline Input type: bool[,]</para>
             <para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.OnePixelThinning.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.OnePixelThinning"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.OnePixelThinning.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1591,7 +1579,7 @@
             <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
             </summary>
         </member>
-        <member name="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
+        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
             <summary>List of transforms to be run in sequence.</summary>
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.GetEnumerator">
@@ -1605,7 +1593,7 @@
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
+            Executes transform <see cref="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
             Passes input features for each.
             Output is the output of the last Item in the sequence.
             </summary>

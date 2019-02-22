@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace SigStat.Common.Pipeline
@@ -13,9 +14,12 @@ namespace SigStat.Common.Pipeline
         /// List of features to be used as input.
         /// </summary>
         List<FeatureDescriptor> InputFeatures { get; set; }
+        List<FeatureDescriptor> GetInputFeatures();
+        List<(FeatureDescriptor, FieldInfo, AutoSetMode)> GetInputFeatures2();
         /// <summary>
         /// List of features to be used as output.
         /// </summary>
         List<FeatureDescriptor> OutputFeatures { get; set; }
+        List<FeatureDescriptor> GetOutputFeatures();
     }
 }

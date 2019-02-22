@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,16 +15,16 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class OnePixelThinning : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="OnePixelThinning"/> class. </summary>
-        public OnePixelThinning()
-        {
-            this.Output(FeatureDescriptor.Get<bool[,]>("OnePixelThinningResult"));
-        }
+        [Input]
+        public FeatureDescriptor<bool[,]> Input;
+
+        [Output("OnePixelThinningResult")]
+        public FeatureDescriptor<bool[,]> Output;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
+            var b = signature.GetFeature(Input);
             Progress = 50;
             int stepCnt = 0;
             OnePixelThinningStep algo = new OnePixelThinningStep();
@@ -32,7 +33,7 @@ namespace SigStat.Common.Transforms
                 b = algo.Scan(b);
                 stepCnt++;
             }
-            signature.SetFeature(OutputFeatures[0], b);
+            signature.SetFeature(Output, b);
             Progress = 100;
             Logger.LogInformation( $"One pixel thinning steps applied {stepCnt} times.");
         }

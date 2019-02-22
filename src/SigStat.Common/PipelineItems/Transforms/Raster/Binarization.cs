@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -15,6 +16,7 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class Binarization : PipelineBase, ITransformation
     {
+
         /// <summary> Represents the type of the input image. </summary>
         public enum ForegroundType
         {
@@ -38,19 +40,25 @@ namespace SigStat.Common.Transforms
         {
             this.foregroundType = foregroundType;
             this.binThreshold = binThreshold;
-            this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
+            //this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
         }
+
+        [Input]
+        public FeatureDescriptor<Image<Rgba32>> InputImage;
+
+        [Output("Binarized")]
+        public FeatureDescriptor<bool[,]> OutputMask;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            Image<Rgba32> image = signature.GetFeature<Image<Rgba32>>(InputFeatures[0]);
+            Image<Rgba32> image = signature.GetFeature(InputImage);
             int w = image.Size().Width;
             int h = image.Size().Height;
 
             if (binThreshold != null && (binThreshold < 0 || binThreshold > 1))
             {
-                Logger.LogWarning( $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
+                Logger?.LogWarning( $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
             }
 
             if (binThreshold == null)   //find threshold if not specified
@@ -68,8 +76,8 @@ namespace SigStat.Common.Transforms
                 }
                 Progress += (int)((1.0 / w)*100);
             }
-            Logger.LogInformation( "Binarization done.");
-            signature.SetFeature(OutputFeatures[0], b);
+            Logger?.LogInformation( "Binarization done.");
+            signature.SetFeature(OutputMask, b);
             Progress = 100;
         }
 
@@ -115,7 +123,7 @@ namespace SigStat.Common.Transforms
                 nextThreshold = ((background + foreground) / 2.0);
             }
 
-            Logger.LogTrace( $"Binarization threshold: {nextThreshold}");
+            Logger?.LogTrace( $"Binarization threshold: {nextThreshold}");
             return nextThreshold;
         }
 
