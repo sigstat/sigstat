@@ -7,7 +7,7 @@ public class SigStat.Common.Helpers.ConfigurationHelper
 
 ###### Static Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Configuration` | Load() |  | 
 
@@ -22,7 +22,7 @@ public interface SigStat.Common.Helpers.ILogger
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. | 
 
@@ -37,14 +37,14 @@ public interface SigStat.Common.Helpers.IProgress
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Int32` | Progress | Gets the current progress in percentage. | 
 
 
 ###### Events
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `EventHandler<Int32>` | ProgressChanged | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
 
@@ -59,14 +59,14 @@ public class SigStat.Common.Helpers.LogEntry
 
 ###### Fields
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `LogLevel` | Level | Log level of the entry. | 
 
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `String` | ToString() | Format the contained data to string, divided by tab characters.  Use this to display the entry in the console. | 
 
@@ -81,7 +81,7 @@ public class SigStat.Common.Helpers.Logger
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<LogEntry>` | Entries |  | 
 | `LogLevel` | FilteringLevel |  | 
@@ -91,7 +91,7 @@ public class SigStat.Common.Helpers.Logger
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Debug(Object, String) | Enqueue a debug level log entry. | 
 | `void` | EnqueueEntry(LogLevel, Object, String) | Enqueue a new log entry with specified level. The entry is filtered through `SigStat.Common.Helpers.Logger.FilteringLevel`. | 
@@ -114,7 +114,7 @@ public enum SigStat.Common.Helpers.LogLevel
 
 Enum
 
-| Value | Name | Summary | 
+| <sub>Value</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `0` | Off | Completely turn off logging. | 
 | `1` | Fatal | Represents a fatal error level log. | 

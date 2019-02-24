@@ -8,7 +8,7 @@ public class SigStat.Common.Model.ApproximateLimit
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Double` | Calculate(List<Signature>) | Calculate the limit by pairing each signature.  Limit = AverageCost + StdDeviation. | 
 
@@ -23,7 +23,7 @@ public struct SigStat.Common.Model.BenchmarkResults
 
 ###### Fields
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Result` | FinalResult | Summarized, final result of the benchmark execution. | 
 | `List<Result>` | SignerResults | List that contains the `SigStat.Common.Model.Result`s for each `SigStat.Common.Signer` | 
@@ -39,7 +39,7 @@ public class SigStat.Common.Model.Result
 
 ###### Fields
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Double` | Aer | Average Error Rate | 
 | `Double` | Far | False Acceptance Rate | 
@@ -57,7 +57,7 @@ public class SigStat.Common.Model.Sampler
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Init(Signer) | Initialize the Sampler with a Signer's Signatures. | 
 | `void` | Init(List<Signature>) | Initialize the Sampler with a Signer's Signatures. | 
@@ -68,7 +68,7 @@ public class SigStat.Common.Model.Sampler
 
 ###### Static Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Sampler` | BasicSampler | Default sampler for SVC2004 database.  10 references, 10 genuine tests, 10 forged tests | 
 
@@ -92,7 +92,7 @@ public class SigStat.Common.Model.Verifier
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IClassification` | ClassifierPipeline | Gets or sets the classifier pipeline. Hands over the Logger object. | 
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the pipelines. | 
@@ -102,14 +102,14 @@ public class SigStat.Common.Model.Verifier
 
 ###### Events
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Log(LogLevel, String) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
 | `void` | LoggerChanged(Logger, Logger) |  | 
@@ -120,7 +120,7 @@ public class SigStat.Common.Model.Verifier
 
 ###### Static Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Verifier` | BasicVerifier | Basic `SigStat.Common.Model.Verifier` model with DTW classification of tangent features. | 
 
@@ -136,7 +136,7 @@ public class SigStat.Common.Model.VerifierBenchmark
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IDataSetLoader` | Loader |  | 
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the verifier. | 
@@ -147,14 +147,14 @@ public class SigStat.Common.Model.VerifierBenchmark
 
 ###### Events
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `BenchmarkResults` | Execute() | Synchronously execute the benchmarking process. | 
 | `BenchmarkResults` | ExecuteParallel() | Parallel execute the benchmarking process. | 
@@ -163,7 +163,7 @@ public class SigStat.Common.Model.VerifierBenchmark
 
 ###### Static Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Task<Int32>` | ExecuteAsync() | Asynchronously execute the benchmarking process. | 
 

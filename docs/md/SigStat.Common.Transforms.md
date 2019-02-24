@@ -9,7 +9,7 @@ public class SigStat.Common.Transforms.AddConst
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -25,7 +25,7 @@ public class SigStat.Common.Transforms.AddVector
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -41,7 +41,7 @@ public class SigStat.Common.Transforms.ApproximateOnlineFeatures
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -57,7 +57,7 @@ public class SigStat.Common.Transforms.Binarization
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -73,7 +73,7 @@ public class SigStat.Common.Transforms.BinaryRasterizer
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -89,7 +89,7 @@ public class SigStat.Common.Transforms.CentroidExtraction
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Add(FeatureDescriptor<List<Double>>) |  | 
 | `IEnumerator` | GetEnumerator() |  | 
@@ -116,7 +116,7 @@ public class SigStat.Common.Transforms.ComponentExtraction
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -132,7 +132,7 @@ public class SigStat.Common.Transforms.ComponentSorter
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -148,7 +148,7 @@ public class SigStat.Common.Transforms.ComponentsToFeatures
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -164,7 +164,7 @@ public class SigStat.Common.Transforms.EndpointExtraction
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -180,7 +180,7 @@ public class SigStat.Common.Transforms.Extrema
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -196,7 +196,7 @@ public class SigStat.Common.Transforms.HSCPThinning
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -212,7 +212,7 @@ public class SigStat.Common.Transforms.ImageGenerator
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -228,7 +228,7 @@ public class SigStat.Common.Transforms.Map
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -244,7 +244,7 @@ public class SigStat.Common.Transforms.Multiply
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Add(FeatureDescriptor) |  | 
 | `IEnumerator` | GetEnumerator() |  | 
@@ -262,7 +262,7 @@ public class SigStat.Common.Transforms.Normalize
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -278,7 +278,7 @@ public class SigStat.Common.Transforms.OnePixelThinning
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -293,7 +293,7 @@ public class SigStat.Common.Transforms.PrepareForThinning
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -309,7 +309,7 @@ public class SigStat.Common.Transforms.RealisticImageGenerator
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -325,7 +325,7 @@ public class SigStat.Common.Transforms.Resize
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Nullable<Int32>` | Height | The new height. Leave it as null, if you do not want to explicitly specify a given height | 
 | `Func<Image<Rgba32>, Size>` | ResizeFunction | Set a resize function if you want to dynamically calculate the new width and height of the image | 
@@ -334,7 +334,7 @@ public class SigStat.Common.Transforms.Resize
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -350,7 +350,7 @@ public class SigStat.Common.Transforms.TangentExtraction
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 
@@ -384,7 +384,7 @@ public class SigStat.Common.Transforms.Trim
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Transform(Signature) |  | 
 

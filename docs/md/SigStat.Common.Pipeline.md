@@ -8,7 +8,7 @@ public interface SigStat.Common.Pipeline.IClassificationModel
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Double` | Test(Signature) | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
 
@@ -23,7 +23,7 @@ public interface SigStat.Common.Pipeline.IClassifier
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IClassificationModel` | Train(List<Signature>) | Trains a model based on the signatures and returns the trained model | 
 
@@ -38,7 +38,7 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<FeatureDescriptor>` | InputFeatures | List of features to be used as input. | 
 | `List<FeatureDescriptor>` | OutputFeatures | List of features to be used as output. | 
@@ -55,7 +55,7 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<ITransformation>` | Items |  | 
 | `Logger` | Logger | Passes Logger to child items as well. | 
@@ -64,7 +64,7 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Add(ITransformation) | Add new transform to the list. Pass `SigStat.Common.Pipeline.ParallelTransformPipeline.Logger` and set up Progress event. | 
 | `IEnumerator` | GetEnumerator() |  | 
@@ -82,7 +82,7 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<ITransformation>` | Items |  | 
 | `Logger` | Logger | Passes Logger to child items as well. | 
@@ -90,7 +90,7 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Add(ITransformation) | Add new transform to the list. Pass `SigStat.Common.Pipeline.SequentialTransformPipeline.Logger` and set up Progress event. | 
 | `IEnumerator` | GetEnumerator() |  | 

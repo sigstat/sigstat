@@ -9,14 +9,14 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Logger` | Logger |  | 
 
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IEnumerable<Signer>` | EnumerateSigners() |  | 
 | `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) |  | 
@@ -33,7 +33,7 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IEnumerable<Signer>` | EnumerateSigners() | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
 | `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
@@ -50,14 +50,14 @@ public class SigStat.Common.Loaders.ImageLoader
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) |  | 
 
 
 ###### Static Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | LoadImage(Signature, String) | Load one image. | 
 | `Signature` | LoadSignature(String) |  | 
@@ -73,7 +73,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 
 ###### Static Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Save(Signature, String) | Saves a png image file to the specified ``. | 
 
@@ -88,7 +88,7 @@ public static class SigStat.Common.Loaders.Svc2004
 
 ###### Static Fields
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `FeatureDescriptor<List<Int32>>` | Altitude |  | 
 | `FeatureDescriptor<List<Int32>>` | Azimuth |  | 
@@ -110,21 +110,21 @@ public class SigStat.Common.Loaders.Svc2004Loader
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Predicate<Signer>` | SignerFilter |  | 
 
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) |  | 
 
 
 ###### Static Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | LoadSignature(Signature, String, Boolean) | Loads one signature from specified file path. | 
 | `void` | LoadSignature(Signature, Stream, Boolean) | Loads one signature from specified file path. | 

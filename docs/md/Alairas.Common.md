@@ -8,7 +8,7 @@ public class Alairas.Common.BaseLineExtraction
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Run(Signature) |  | 
 | `void` | Transform(Signature) |  | 
@@ -16,7 +16,7 @@ public class Alairas.Common.BaseLineExtraction
 
 ###### Static Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<List<Point>>` | GetComponentLowerEnvelopes(Image<Rgba32>) | Extracts lower envelope for each component | 
 | `Baseline` | GetLineOfBestFit(List<Point>) | Megkeresi a megadott pontokra legjobban illeszkedő egyenest. Képes még ennek az egyenesnek különböző  hibamértékeinek kiszámítására, azonban jelenleg ezzel nem foglalkozom, hiszen ebben a speciális esetben  szinte biztosan elég jól illeszkedő egyenest kapunk eredményül.  Az algorimus kimenete nem egy egyenes, hanem egy egy vektor, mely az egyenes egy szakasza. Felteszem,  hogy a pontok X koordináta szerint rendezettek, így az első és utolsó pont X koordinátája közötti  szakaszt adom vissza az egyenesből.  Azaz:  Paraméterként egy előzőleg megtalált komponenst kap, kimenete pedig az adott komponens alapvonala. | 
@@ -32,7 +32,7 @@ public class Alairas.Common.BasicMetadataExtraction
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Run(Signature) |  | 
 | `void` | Transform(Signature) |  | 
@@ -40,7 +40,7 @@ public class Alairas.Common.BasicMetadataExtraction
 
 ###### Static Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Double` | Trim |  | 
 
@@ -56,7 +56,7 @@ public class Alairas.Common.SimpleRenderingTransformation
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Run(Signature) |  | 
 | `void` | Transform(Signature) |  | 

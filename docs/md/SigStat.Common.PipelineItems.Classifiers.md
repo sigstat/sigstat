@@ -9,7 +9,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Add(FeatureDescriptor) |  | 
 | `IEnumerator` | GetEnumerator() |  | 
@@ -27,21 +27,21 @@ public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
 
 ###### Fields
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<ValueTuple<IClassification, Double>>` | Items | List of classifiers and belonging weights. | 
 
 
 ###### Properties
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Logger` | Logger | Gets or sets the Logger. Passes it to child Items as well. | 
 
 
 ###### Methods
 
-| Type | Name | Summary | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `void` | Add(ValueTuple<IClassification, Double>) | Add a new classifier with given weight to the list of items. | 
 | `IEnumerator` | GetEnumerator() |  | 
