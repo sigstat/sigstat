@@ -93,14 +93,14 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Debug(`Object`, `String`) | Enqueue a debug level log entry. | 
-| `void` | EnqueueEntry(`LogLevel`, `Object`, `String`) | Enqueue a new log entry with specified level. The entry is filtered through `SigStat.Common.Helpers.Logger.FilteringLevel`. | 
-| `void` | Error(`Object`, `String`) | Enqueue an error level log entry. | 
-| `void` | Fatal(`Object`, `String`) | Enqueue a fatal level log entry. | 
-| `void` | Info(`Object`, `String`) | Enqueue an information level log entry. | 
-| `void` | Info(`Object`, `String`, `Object`) | Enqueue an information level log entry. | 
+| `void` | Debug(Object, String) | Enqueue a debug level log entry. | 
+| `void` | EnqueueEntry(LogLevel, Object, String) | Enqueue a new log entry with specified level. The entry is filtered through `SigStat.Common.Helpers.Logger.FilteringLevel`. | 
+| `void` | Error(Object, String) | Enqueue an error level log entry. | 
+| `void` | Fatal(Object, String) | Enqueue a fatal level log entry. | 
+| `void` | Info(Object, String) | Enqueue an information level log entry. | 
+| `void` | Info(Object, String, Object) | Enqueue an information level log entry. | 
 | `void` | Stop() | Stop accepting entries, flush the queue and stop the consuming thread. | 
-| `void` | Warn(`Object`, `String`) | Enqueue a warning level log entry. | 
+| `void` | Warn(Object, String) | Enqueue a warning level log entry. | 
 
 
 ## `LogLevel`

@@ -19,8 +19,8 @@ Methods
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `IEnumerable<Signer>` | EnumerateSigners() |  | 
-| `IEnumerable<Signer>` | EnumerateSigners(`Predicate<Signer>`) |  | 
-| `void` | Log(`LogLevel`, `String`) |  | 
+| `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) |  | 
+| `void` | Log(LogLevel, String) |  | 
 
 
 ## `IDataSetLoader`
@@ -36,7 +36,7 @@ Methods
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `IEnumerable<Signer>` | EnumerateSigners() | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
-| `IEnumerable<Signer>` | EnumerateSigners(`Predicate<Signer>`) | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
+| `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
 
 
 ## `ImageLoader`
@@ -52,15 +52,15 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `IEnumerable<Signer>` | EnumerateSigners(`Predicate<Signer>`) |  | 
+| `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) |  | 
 
 
 Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | LoadImage(`Signature`, `String`) | Load one image. | 
-| `Signature` | LoadSignature(`String`) |  | 
+| `void` | LoadImage(Signature, String) | Load one image. | 
+| `Signature` | LoadSignature(String) |  | 
 
 
 ## `ImageSaver`
@@ -75,7 +75,7 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Save(`Signature`, `String`) | Saves a png image file to the specified ``. | 
+| `void` | Save(Signature, String) | Saves a png image file to the specified ``. | 
 
 
 ## `Svc2004`
@@ -119,14 +119,14 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `IEnumerable<Signer>` | EnumerateSigners(`Predicate<Signer>`) |  | 
+| `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) |  | 
 
 
 Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | LoadSignature(`Signature`, `String`, `Boolean`) | Loads one signature from specified file path. | 
-| `void` | LoadSignature(`Signature`, `Stream`, `Boolean`) | Loads one signature from specified file path. | 
+| `void` | LoadSignature(Signature, String, Boolean) | Loads one signature from specified file path. | 
+| `void` | LoadSignature(Signature, Stream, Boolean) | Loads one signature from specified file path. | 
 
 

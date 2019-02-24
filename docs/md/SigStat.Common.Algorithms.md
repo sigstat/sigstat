@@ -17,7 +17,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Double` | Compute(`Double[][]`, `Double[][]`) | Generate shortest path between the two sequences. | 
+| `Double` | Compute(Double[][], Double[][]) | Generate shortest path between the two sequences. | 
 
 
 ## `DtwPy`
@@ -31,8 +31,8 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Double` | Dtw(`IEnumerable<P>`, `IEnumerable<P>`, `Func<P, P, Double>`) |  | 
-| `Double` | EuclideanDistance(`Double[]`, `Double[]`) |  | 
+| `Double` | Dtw(IEnumerable<P>, IEnumerable<P>, Func<P, P, Double>) |  | 
+| `Double` | EuclideanDistance(Double[], Double[]) |  | 
 
 
 ## `HSCPThinningStep`
@@ -54,7 +54,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Boolean[,]` | Scan(`Boolean[,]`) | Does one step of the thinning. Call it iteratively while ResultChanged. | 
+| `Boolean[,]` | Scan(Boolean[,]) | Does one step of the thinning. Call it iteratively while ResultChanged. | 
 
 
 ## `PatternMatching3x3`
@@ -69,7 +69,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Boolean` | Match(`Boolean[,]`) | Match the 3x3 input with the 3x3 pattern. | 
-| `Boolean` | RotMatch(`Boolean[,]`) | Match the 3x3 input with the 3x3 pattern from all 4 directions. | 
+| `Boolean` | Match(Boolean[,]) | Match the 3x3 input with the 3x3 pattern. | 
+| `Boolean` | RotMatch(Boolean[,]) | Match the 3x3 input with the 3x3 pattern from all 4 directions. | 
 
 
