@@ -1,4 +1,4 @@
-### `ApproximateLimit`
+#### `ApproximateLimit`
 
 Used to approximate the classification limit in the training process.
 ```csharp
@@ -13,7 +13,7 @@ public class SigStat.Common.Model.ApproximateLimit
 | `Double` | Calculate(List<Signature>) | Calculate the limit by pairing each signature.  Limit = AverageCost + StdDeviation. | 
 
 
-### `BenchmarkResults`
+#### `BenchmarkResults`
 
 Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
 ```csharp
@@ -29,7 +29,7 @@ public struct SigStat.Common.Model.BenchmarkResults
 | `List<Result>` | SignerResults | List that contains the `SigStat.Common.Model.Result`s for each `SigStat.Common.Signer` | 
 
 
-### `Result`
+#### `Result`
 
 Contains the benchmark results of a single `SigStat.Common.Signer`
 ```csharp
@@ -47,7 +47,7 @@ public class SigStat.Common.Model.Result
 | `String` | Signer | Identifier of the `SigStat.Common.Model.Result.Signer` | 
 
 
-### `Sampler`
+#### `Sampler`
 
 Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.Model.VerifierBenchmark`
 ```csharp
@@ -73,7 +73,7 @@ public class SigStat.Common.Model.Sampler
 | `Sampler` | BasicSampler | Default sampler for SVC2004 database.  10 references, 10 genuine tests, 10 forged tests | 
 
 
-### `ThresholdResult`
+#### `ThresholdResult`
 
 ```csharp
 public class SigStat.Common.Model.ThresholdResult
@@ -81,7 +81,7 @@ public class SigStat.Common.Model.ThresholdResult
 
 ```
 
-### `Verifier`
+#### `Verifier`
 
 Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
 ```csharp
@@ -125,7 +125,7 @@ public class SigStat.Common.Model.Verifier
 | `Verifier` | BasicVerifier | Basic `SigStat.Common.Model.Verifier` model with DTW classification of tangent features. | 
 
 
-### `VerifierBenchmark`
+#### `VerifierBenchmark`
 
 Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
 ```csharp

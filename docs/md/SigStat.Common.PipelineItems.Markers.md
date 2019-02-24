@@ -1,4 +1,4 @@
-### `LogMarker`
+#### `LogMarker`
 
 Logs the Pipeline Input. Useful for logging TimeMarker results.  <para>Default Pipeline Output: -</para>
 ```csharp
@@ -14,7 +14,7 @@ public class SigStat.Common.PipelineItems.Markers.LogMarker
 | `void` | Transform(Signature) |  | 
 
 
-### `TimeMarkerStart`
+#### `TimeMarkerStart`
 
 Starts a timer to measure completion time of following transforms.  <para>Default Pipeline Output: (`System.DateTime`) DefaultTimer</para>
 ```csharp
@@ -30,7 +30,7 @@ public class SigStat.Common.PipelineItems.Markers.TimeMarkerStart
 | `void` | Transform(Signature) |  | 
 
 
-### `TimeMarkerStop`
+#### `TimeMarkerStop`
 
 Stops a timer to measure completion time of previous transforms.  <para>Default Pipeline Output: (`System.DateTime`) DefaultTimer</para>
 ```csharp

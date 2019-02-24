@@ -1,4 +1,4 @@
-### `Dtw`
+#### `Dtw`
 
 Dynamic Time Warping algorithm - test if still works
 ```csharp
@@ -20,7 +20,7 @@ public class SigStat.Common.Algorithms.Dtw
 | `Double` | Compute(Double[][], Double[][]) | Generate shortest path between the two sequences. | 
 
 
-### `DtwPy`
+#### `DtwPy`
 
 ```csharp
 public static class SigStat.Common.Algorithms.DtwPy
@@ -35,7 +35,7 @@ public static class SigStat.Common.Algorithms.DtwPy
 | `Double` | EuclideanDistance(Double[], Double[]) |  | 
 
 
-### `HSCPThinningStep`
+#### `HSCPThinningStep`
 
 HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
 ```csharp
@@ -57,7 +57,7 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 | `Boolean[,]` | Scan(Boolean[,]) | Does one step of the thinning. Call it iteratively while ResultChanged. | 
 
 
-### `PatternMatching3x3`
+#### `PatternMatching3x3`
 
 Binary 3x3 pattern matcher with rotating option.
 ```csharp

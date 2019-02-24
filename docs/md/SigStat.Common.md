@@ -1,4 +1,4 @@
-### `ArrayExtension`
+#### `ArrayExtension`
 
 ```csharp
 public static class SigStat.Common.ArrayExtension
@@ -27,7 +27,7 @@ public static class SigStat.Common.ArrayExtension
 | `T[]` | Shuffle(this T[]) |  | 
 
 
-### `Baseline`
+#### `Baseline`
 
 ```csharp
 public class SigStat.Common.Baseline
@@ -49,7 +49,7 @@ public class SigStat.Common.Baseline
 | `String` | ToString() |  | 
 
 
-### `Configuration`
+#### `Configuration`
 
 ```csharp
 public class SigStat.Common.Configuration
@@ -64,7 +64,7 @@ public class SigStat.Common.Configuration
 | `Lazy<Configuration>` | Default |  | 
 
 
-### `DataSet`
+#### `DataSet`
 
 ```csharp
 public class SigStat.Common.DataSet
@@ -78,7 +78,7 @@ public class SigStat.Common.DataSet
 | `List<Signer>` | Signers |  | 
 
 
-### `FeatureAttribute`
+#### `FeatureAttribute`
 
 ```csharp
 public class SigStat.Common.FeatureAttribute
@@ -93,7 +93,7 @@ public class SigStat.Common.FeatureAttribute
 | `String` | FeatureKey |  | 
 
 
-### `FeatureDescriptor`
+#### `FeatureDescriptor`
 
 Represents a feature with name and type.
 ```csharp
@@ -135,7 +135,7 @@ public class SigStat.Common.FeatureDescriptor
 | `FeatureDescriptor` | Register(String, Type) |  | 
 
 
-### `FeatureDescriptor<T>`
+#### `FeatureDescriptor<T>`
 
 Represents a feature with the type `type`
 ```csharp
@@ -151,7 +151,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 | `FeatureDescriptor<T>` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
 
 
-### `Features`
+#### `Features`
 
 Standard set of features.
 ```csharp
@@ -178,7 +178,7 @@ public static class SigStat.Common.Features
 | `FeatureDescriptor<List<Double>>` | Y |  | 
 
 
-### `IClassification`
+#### `IClassification`
 
 Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
 ```csharp
@@ -194,7 +194,7 @@ public interface SigStat.Common.IClassification
 | `Double` | Pair(Signature, Signature) | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
 
 
-### `IClassificationMethods`
+#### `IClassificationMethods`
 
 Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.
 ```csharp
@@ -210,7 +210,7 @@ public static class SigStat.Common.IClassificationMethods
 | `IClassification` | Output(this IClassification, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
 
 
-### `ITransformation`
+#### `ITransformation`
 
 Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
 ```csharp
@@ -226,7 +226,7 @@ public interface SigStat.Common.ITransformation
 | `void` | Transform(Signature) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
-### `ITransformationMethods`
+#### `ITransformationMethods`
 
 Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.
 ```csharp
@@ -242,7 +242,7 @@ public static class SigStat.Common.ITransformationMethods
 | `ITransformation` | Output(this ITransformation, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
 
 
-### `Loop`
+#### `Loop`
 
 ```csharp
 public class SigStat.Common.Loop
@@ -265,7 +265,7 @@ public class SigStat.Common.Loop
 | `String` | ToString() |  | 
 
 
-### `MathHelper`
+#### `MathHelper`
 
 ```csharp
 public static class SigStat.Common.MathHelper
@@ -279,7 +279,7 @@ public static class SigStat.Common.MathHelper
 | `Double` | Min(Double, Double, Double) | Returns the smallest of the three double parameters | 
 
 
-### `Matrix`
+#### `Matrix`
 
 ```csharp
 public static class SigStat.Common.Matrix
@@ -304,7 +304,7 @@ public static class SigStat.Common.Matrix
 | `T[]` | SetValues(this T[], Func<T, T>) |  | 
 
 
-### `Origin`
+#### `Origin`
 
 Represents our knowledge on the origin of a signature.
 ```csharp
@@ -322,7 +322,7 @@ Enum
 | `2` | Forged | The `SigStat.Common.Signature` is a forgery. | 
 
 
-### `PipelineBase`
+#### `PipelineBase`
 
 TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.
 ```csharp
@@ -355,7 +355,7 @@ public abstract class SigStat.Common.PipelineBase
 | `void` | OnProgressChanged(Int32) | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
 
 
-### `Signature`
+#### `Signature`
 
 Represents a signature as a collection of features, containing the data that flows in the pipeline.
 ```csharp
@@ -390,7 +390,7 @@ public class SigStat.Common.Signature
 | `String` | ToString() | Returns a string representation of the signature | 
 
 
-### `Signer`
+#### `Signer`
 
 Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.
 ```csharp
@@ -406,7 +406,7 @@ public class SigStat.Common.Signer
 | `List<Signature>` | Signatures | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
 
 
-### `Vector`
+#### `Vector`
 
 ```csharp
 public class SigStat.Common.Vector

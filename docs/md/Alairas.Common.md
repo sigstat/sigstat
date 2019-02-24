@@ -1,4 +1,4 @@
-### `BaseLineExtraction`
+#### `BaseLineExtraction`
 
 ```csharp
 public class Alairas.Common.BaseLineExtraction
@@ -22,7 +22,7 @@ public class Alairas.Common.BaseLineExtraction
 | `Baseline` | GetLineOfBestFit(List<Point>) | Megkeresi a megadott pontokra legjobban illeszkedő egyenest. Képes még ennek az egyenesnek különböző  hibamértékeinek kiszámítására, azonban jelenleg ezzel nem foglalkozom, hiszen ebben a speciális esetben  szinte biztosan elég jól illeszkedő egyenest kapunk eredményül.  Az algorimus kimenete nem egy egyenes, hanem egy egy vektor, mely az egyenes egy szakasza. Felteszem,  hogy a pontok X koordináta szerint rendezettek, így az első és utolsó pont X koordinátája közötti  szakaszt adom vissza az egyenesből.  Azaz:  Paraméterként egy előzőleg megtalált komponenst kap, kimenete pedig az adott komponens alapvonala. | 
 
 
-### `BasicMetadataExtraction`
+#### `BasicMetadataExtraction`
 
 ```csharp
 public class Alairas.Common.BasicMetadataExtraction
@@ -45,7 +45,7 @@ public class Alairas.Common.BasicMetadataExtraction
 | `Double` | Trim |  | 
 
 
-### `SimpleRenderingTransformation`
+#### `SimpleRenderingTransformation`
 
 Renders an image of the signature based on the available online information (X,Y,Dpi)
 ```csharp

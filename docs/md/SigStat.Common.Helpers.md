@@ -1,4 +1,4 @@
-### `ConfigurationHelper`
+#### `ConfigurationHelper`
 
 ```csharp
 public class SigStat.Common.Helpers.ConfigurationHelper
@@ -12,7 +12,7 @@ public class SigStat.Common.Helpers.ConfigurationHelper
 | `Configuration` | Load() |  | 
 
 
-### `ILogger`
+#### `ILogger`
 
 Enables logging by exposing a `SigStat.Common.Helpers.Logger` property.
 ```csharp
@@ -27,7 +27,7 @@ public interface SigStat.Common.Helpers.ILogger
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. | 
 
 
-### `IProgress`
+#### `IProgress`
 
 Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.
 ```csharp
@@ -49,7 +49,7 @@ public interface SigStat.Common.Helpers.IProgress
 | `EventHandler<Int32>` | ProgressChanged | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
 
 
-### `LogEntry`
+#### `LogEntry`
 
 Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.
 ```csharp
@@ -71,7 +71,7 @@ public class SigStat.Common.Helpers.LogEntry
 | `String` | ToString() | Format the contained data to string, divided by tab characters.  Use this to display the entry in the console. | 
 
 
-### `Logger`
+#### `Logger`
 
 A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 ```csharp
@@ -103,7 +103,7 @@ public class SigStat.Common.Helpers.Logger
 | `void` | Warn(Object, String) | Enqueue a warning level log entry. | 
 
 
-### `LogLevel`
+#### `LogLevel`
 
 Represents the level of log.  Lowest level: Off.  Highest level: Debug.
 ```csharp

@@ -1,4 +1,4 @@
-### `DTWClassifier`
+#### `DTWClassifier`
 
 Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
 ```csharp
@@ -16,7 +16,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
 | `Double` | Pair(Signature, Signature) | Aggregates the input features and executes the `SigStat.Common.Algorithms.Dtw` algorithm. | 
 
 
-### `WeightedClassifier`
+#### `WeightedClassifier`
 
 Classifies Signatures by weighing other Classifier results.
 ```csharp

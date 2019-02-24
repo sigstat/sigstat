@@ -1,4 +1,4 @@
-### `DataSetLoader`
+#### `DataSetLoader`
 
 Abstract loader class to inherit from. Implements ILogger.
 ```csharp
@@ -23,7 +23,7 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 | `void` | Log(LogLevel, String) |  | 
 
 
-### `IDataSetLoader`
+#### `IDataSetLoader`
 
 Exposes a function to enable loading collections of `SigStat.Common.Signer`s.  Base abstract class: `SigStat.Common.Loaders.DataSetLoader`.
 ```csharp
@@ -39,7 +39,7 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 | `IEnumerable<Signer>` | EnumerateSigners(Predicate<Signer>) | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
 
 
-### `ImageLoader`
+#### `ImageLoader`
 
 DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but finds png images.
 ```csharp
@@ -63,7 +63,7 @@ public class SigStat.Common.Loaders.ImageLoader
 | `Signature` | LoadSignature(String) |  | 
 
 
-### `ImageSaver`
+#### `ImageSaver`
 
 Get the `SigStat.Common.Features.Image` of a `SigStat.Common.Signature` and save it as png file.
 ```csharp
@@ -78,7 +78,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 | `void` | Save(Signature, String) | Saves a png image file to the specified ``. | 
 
 
-### `Svc2004`
+#### `Svc2004`
 
 Set of features containing raw data loaded from SVC2004-format database.
 ```csharp
@@ -99,7 +99,7 @@ public static class SigStat.Common.Loaders.Svc2004
 | `FeatureDescriptor<List<Int32>>` | Y |  | 
 
 
-### `Svc2004Loader`
+#### `Svc2004Loader`
 
 Loads SVC2004-format database from .zip
 ```csharp
