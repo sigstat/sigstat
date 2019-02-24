@@ -26,16 +26,16 @@ environment:
   NUGET_KEY:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
   
-skip_commits:  
-    message: /PDF/   
+#skip_commits:  
+#   message: /PDF/   
 
 before_build:
 - cmd: nuget restore
 - choco install opencover.portable
 - choco install codecov
-- ps: Install-Product node 6
-- npm install -g github-wikito-converter
-- npm install -g html-pdf
+#- ps: Install-Product node 6
+#- npm install -g github-wikito-converter
+#- npm install -g html-pdf
 #after_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
@@ -60,15 +60,15 @@ on_success:
 - cd C:\projects\wiki
 - git clone https://github.com/sigstat/sigstat.wiki.git
 - C:\projects\sigstat\docs\generator\MarkdownGenerator.exe C:\projects\sigstat\src\SigStat.Common\bin\Release\netstandard2.0\SigStat.Common.dll "C:\projects\wiki\SigStat.wiki"
-- echo All | xcopy C:\projects\sigstat\docs\md\_Sidebar.md C:\projects\wiki\SigStat.wiki
+#- echo All | xcopy C:\projects\sigstat\docs\md\_Sidebar.md C:\projects\wiki\SigStat.wiki
 - cd C:\projects\wiki\SigStat.wiki
 - git add -A
 - git diff-index --quiet HEAD || git commit -am "wiki"
 - git push
-- cd C:\projects\sigstat\docs
-- gwtc C:\projects\wiki\SigStat.wiki
-- html-pdf documentation.html documentation.pdf
-- rm documentation.html
+#- cd C:\projects\sigstat\docs
+#- gwtc C:\projects\wiki\SigStat.wiki
+#- html-pdf documentation.html documentation.pdf
+#- rm documentation.html
 #- git add .
 #- git diff-index --quiet HEAD || git commit -am "PDF"
 #- git push
