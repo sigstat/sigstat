@@ -9,7 +9,7 @@ public class SigStat.Common.Model.ApproximateLimit
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Calculate(List<Signature>) | Calculate the limit by pairing each signature.  Limit = AverageCost + StdDeviation. | 
 
 
@@ -24,7 +24,7 @@ public struct SigStat.Common.Model.BenchmarkResults
 ###### Fields
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Result` | FinalResult | Summarized, final result of the benchmark execution. | 
 | `List<Result>` | SignerResults | List that contains the `SigStat.Common.Model.Result`s for each `SigStat.Common.Signer` | 
 
@@ -40,7 +40,7 @@ public class SigStat.Common.Model.Result
 ###### Fields
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Aer | Average Error Rate | 
 | `Double` | Far | False Acceptance Rate | 
 | `Double` | Frr | False Rejection Rate | 
@@ -58,7 +58,7 @@ public class SigStat.Common.Model.Sampler
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `void` | Init(Signer) | Initialize the Sampler with a Signer's Signatures. | 
 | `void` | Init(List<Signature>) | Initialize the Sampler with a Signer's Signatures. | 
 | `List<Signature>` | SampleForgeryTests() | Samples a batch of forged signatures to test on. | 
@@ -69,7 +69,7 @@ public class SigStat.Common.Model.Sampler
 ###### Static Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Sampler` | BasicSampler | Default sampler for SVC2004 database.  10 references, 10 genuine tests, 10 forged tests | 
 
 
@@ -93,7 +93,7 @@ public class SigStat.Common.Model.Verifier
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `IClassification` | ClassifierPipeline | Gets or sets the classifier pipeline. Hands over the Logger object. | 
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the pipelines. | 
 | `Int32` | Progress |  | 
@@ -103,14 +103,14 @@ public class SigStat.Common.Model.Verifier
 ###### Events
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `void` | Log(LogLevel, String) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
 | `void` | LoggerChanged(Logger, Logger) |  | 
 | `Boolean` | Test(Signature) | Verifies the genuinity of ``. | 
@@ -121,7 +121,7 @@ public class SigStat.Common.Model.Verifier
 ###### Static Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Verifier` | BasicVerifier | Basic `SigStat.Common.Model.Verifier` model with DTW classification of tangent features. | 
 
 
@@ -137,7 +137,7 @@ public class SigStat.Common.Model.VerifierBenchmark
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `IDataSetLoader` | Loader |  | 
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the verifier. | 
 | `Int32` | Progress |  | 
@@ -148,14 +148,14 @@ public class SigStat.Common.Model.VerifierBenchmark
 ###### Events
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `BenchmarkResults` | Execute() | Synchronously execute the benchmarking process. | 
 | `BenchmarkResults` | ExecuteParallel() | Parallel execute the benchmarking process. | 
 | `void` | Log(LogLevel, String) |  | 
@@ -164,7 +164,7 @@ public class SigStat.Common.Model.VerifierBenchmark
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Task<Int32>` | ExecuteAsync() | Asynchronously execute the benchmarking process. | 
 
 

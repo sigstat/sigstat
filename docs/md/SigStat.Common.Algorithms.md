@@ -9,14 +9,14 @@ public class SigStat.Common.Algorithms.Dtw
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `List<ValueTuple<Int32, Int32>>` | ForwardPath | Gets the list of points representing the shortest path. | 
 
 
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Compute(Double[][], Double[][]) | Generate shortest path between the two sequences. | 
 
 
@@ -30,7 +30,7 @@ public static class SigStat.Common.Algorithms.DtwPy
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Dtw(IEnumerable<P>, IEnumerable<P>, Func<P, P, Double>) |  | 
 | `Double` | EuclideanDistance(Double[], Double[]) |  | 
 
@@ -46,14 +46,14 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Nullable<Boolean>` | ResultChanged | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
 
 
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Boolean[,]` | Scan(Boolean[,]) | Does one step of the thinning. Call it iteratively while ResultChanged. | 
 
 
@@ -68,7 +68,7 @@ public class SigStat.Common.Algorithms.PatternMatching3x3
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Boolean` | Match(Boolean[,]) | Match the 3x3 input with the 3x3 pattern. | 
 | `Boolean` | RotMatch(Boolean[,]) | Match the 3x3 input with the 3x3 pattern from all 4 directions. | 
 

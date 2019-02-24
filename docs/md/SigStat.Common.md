@@ -8,7 +8,7 @@ public static class SigStat.Common.ArrayExtension
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `T[]` | Clone(this T[]) |  | 
 | `T[][]` | CreateNested(Int32, Int32) |  | 
 | `T[]` | ForEach(this T[], Action<T>) | Performs a given action on all items of the array and returns the original array. | 
@@ -37,7 +37,7 @@ public class SigStat.Common.Baseline
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `PointF` | End |  | 
 | `PointF` | Start |  | 
 
@@ -45,7 +45,7 @@ public class SigStat.Common.Baseline
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | ToString() |  | 
 
 
@@ -59,7 +59,7 @@ public class SigStat.Common.Configuration
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | DatabaseFolder |  | 
 | `Lazy<Configuration>` | Default |  | 
 
@@ -74,7 +74,7 @@ public class SigStat.Common.DataSet
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `List<Signer>` | Signers |  | 
 
 
@@ -89,7 +89,7 @@ public class SigStat.Common.FeatureAttribute
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | FeatureKey |  | 
 
 
@@ -104,7 +104,7 @@ public class SigStat.Common.FeatureDescriptor
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Type` | FeatureType | Gets or sets the type of the feature. | 
 | `Boolean` | IsCollection | Gets whether the type of the feature is List. | 
 | `String` | Key | Gets the unique key of the feature. | 
@@ -114,21 +114,21 @@ public class SigStat.Common.FeatureDescriptor
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | ToString() | Returns a string represenatation of the FeatureDescriptor | 
 
 
 ###### Static Fields
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Dictionary<String, FeatureDescriptor>` | descriptors | The static dictionary of all descriptors. | 
 
 
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `FeatureDescriptor` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
 | `FeatureDescriptor<T>` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
 | `Boolean` | IsRegistered(String) |  | 
@@ -147,7 +147,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `FeatureDescriptor<T>` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
 
 
@@ -162,7 +162,7 @@ public static class SigStat.Common.Features
 ###### Static Fields
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `IReadOnlyList<FeatureDescriptor>` | All |  | 
 | `FeatureDescriptor<List<Double>>` | Altitude |  | 
 | `FeatureDescriptor<List<Double>>` | Azimuth |  | 
@@ -190,7 +190,7 @@ public interface SigStat.Common.IClassification
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Pair(Signature, Signature) | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
 
 
@@ -205,7 +205,7 @@ public static class SigStat.Common.IClassificationMethods
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `IClassification` | Input(this IClassification, FeatureDescriptor[]) | Sets the InputFeatures in a convenient way. | 
 | `IClassification` | Output(this IClassification, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
 
@@ -222,7 +222,7 @@ public interface SigStat.Common.ITransformation
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `void` | Transform(Signature) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
@@ -237,7 +237,7 @@ public static class SigStat.Common.ITransformationMethods
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `ITransformation` | Input(this ITransformation, FeatureDescriptor[]) | Sets the InputFeatures in a convenient way. | 
 | `ITransformation` | Output(this ITransformation, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
 
@@ -252,7 +252,7 @@ public class SigStat.Common.Loop
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `RectangleF` | Bounds |  | 
 | `PointF` | Center |  | 
 | `List<PointF>` | Points |  | 
@@ -261,7 +261,7 @@ public class SigStat.Common.Loop
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | ToString() |  | 
 
 
@@ -275,7 +275,7 @@ public static class SigStat.Common.MathHelper
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Min(Double, Double, Double) | Returns the smallest of the three double parameters | 
 
 
@@ -289,7 +289,7 @@ public static class SigStat.Common.Matrix
 ###### Static Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `E[,]` | Evaluate(T[,], ItemEvaluator<E, T>) |  | 
 | `T[,]` | FromTableRows(IEnumerable<DataRow>, Int32, Int32) | Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé.  Az átalakítás során ignoreColumns oszlopot és ignoreRows sort  figyelmen kívül hagy. | 
 | `Point` | GetCog(Double[,]) |  | 
@@ -316,7 +316,7 @@ public enum SigStat.Common.Origin
 Enum
 
 | Value | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `0` | Unknown | Use this in practice before a signature is verified. | 
 | `1` | Genuine | The `SigStat.Common.Signature`'s origin is verified to be from `SigStat.Common.Signature.Signer` | 
 | `2` | Forged | The `SigStat.Common.Signature` is a forgery. | 
@@ -333,7 +333,7 @@ public abstract class SigStat.Common.PipelineBase
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `List<FeatureDescriptor>` | InputFeatures |  | 
 | `Logger` | Logger |  | 
 | `List<FeatureDescriptor>` | OutputFeatures |  | 
@@ -343,14 +343,14 @@ public abstract class SigStat.Common.PipelineBase
 ###### Events
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `void` | Log(LogLevel, String) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
 | `void` | OnProgressChanged(Int32) | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
 
@@ -366,7 +366,7 @@ public class SigStat.Common.Signature
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | ID | An identifier for the Signature. Keep it unique to be useful for logs. | 
 | `Object` | Item | Gets or sets the specified feature. | 
 | `Object` | Item | Gets or sets the specified feature. | 
@@ -377,7 +377,7 @@ public class SigStat.Common.Signature
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `List<Double[]>` | GetAggregateFeature(List<FeatureDescriptor>) | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
 | `T` | GetFeature(String) | Gets the specified feature. | 
 | `T` | GetFeature(FeatureDescriptor<T>) | Gets the specified feature. | 
@@ -401,7 +401,7 @@ public class SigStat.Common.Signer
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `String` | ID | An identifier for the Signer. Keep it unique to be useful for logs. | 
 | `List<Signature>` | Signatures | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
 
@@ -416,7 +416,7 @@ public class SigStat.Common.Vector
 ###### Properties
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `Double` | Angle |  | 
 | `Double` | B |  | 
 | `Rectangle` | BoundingRectangle |  | 
@@ -438,7 +438,7 @@ public class SigStat.Common.Vector
 ###### Methods
 
 | Type | Name | Summary | 
-| --- | --- | --- | 
+| ---- | ---- | ---- | 
 | `void` | Add(Point) |  | 
 | `Vector` | Clone() |  | 
 | `Boolean` | Equals(Object) | Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba  mutatnak és hosszuk is megegyezik. | 
