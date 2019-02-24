@@ -1,11 +1,11 @@
-## `ArrayExtension`
+### `ArrayExtension`
 
 ```csharp
 public static class SigStat.Common.ArrayExtension
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -27,14 +27,14 @@ Static Methods
 | `T[]` | Shuffle(this T[]) |  | 
 
 
-## `Baseline`
+### `Baseline`
 
 ```csharp
 public class SigStat.Common.Baseline
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -42,21 +42,21 @@ Properties
 | `PointF` | Start |  | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `String` | ToString() |  | 
 
 
-## `Configuration`
+### `Configuration`
 
 ```csharp
 public class SigStat.Common.Configuration
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -64,21 +64,21 @@ Properties
 | `Lazy<Configuration>` | Default |  | 
 
 
-## `DataSet`
+### `DataSet`
 
 ```csharp
 public class SigStat.Common.DataSet
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `List<Signer>` | Signers |  | 
 
 
-## `FeatureAttribute`
+### `FeatureAttribute`
 
 ```csharp
 public class SigStat.Common.FeatureAttribute
@@ -86,14 +86,14 @@ public class SigStat.Common.FeatureAttribute
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `String` | FeatureKey |  | 
 
 
-## `FeatureDescriptor`
+### `FeatureDescriptor`
 
 Represents a feature with name and type.
 ```csharp
@@ -101,7 +101,7 @@ public class SigStat.Common.FeatureDescriptor
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -111,21 +111,21 @@ Properties
 | `String` | Name | Gets or sets a human readable name of the feature. | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `String` | ToString() | Returns a string represenatation of the FeatureDescriptor | 
 
 
-Static Fields
+###### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Dictionary<String, FeatureDescriptor>` | descriptors | The static dictionary of all descriptors. | 
 
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -135,7 +135,7 @@ Static Methods
 | `FeatureDescriptor` | Register(String, Type) |  | 
 
 
-## `FeatureDescriptor<T>`
+### `FeatureDescriptor<T>`
 
 Represents a feature with the type `type`
 ```csharp
@@ -144,14 +144,14 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `FeatureDescriptor<T>` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
 
 
-## `Features`
+### `Features`
 
 Standard set of features.
 ```csharp
@@ -159,7 +159,7 @@ public static class SigStat.Common.Features
 
 ```
 
-Static Fields
+###### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -178,7 +178,7 @@ Static Fields
 | `FeatureDescriptor<List<Double>>` | Y |  | 
 
 
-## `IClassification`
+### `IClassification`
 
 Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
 ```csharp
@@ -187,14 +187,14 @@ public interface SigStat.Common.IClassification
 
 ```
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Double` | Pair(Signature, Signature) | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
 
 
-## `IClassificationMethods`
+### `IClassificationMethods`
 
 Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.
 ```csharp
@@ -202,7 +202,7 @@ public static class SigStat.Common.IClassificationMethods
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -210,7 +210,7 @@ Static Methods
 | `IClassification` | Output(this IClassification, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
 
 
-## `ITransformation`
+### `ITransformation`
 
 Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
 ```csharp
@@ -219,14 +219,14 @@ public interface SigStat.Common.ITransformation
 
 ```
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `void` | Transform(Signature) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
-## `ITransformationMethods`
+### `ITransformationMethods`
 
 Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.
 ```csharp
@@ -234,7 +234,7 @@ public static class SigStat.Common.ITransformationMethods
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -242,14 +242,14 @@ Static Methods
 | `ITransformation` | Output(this ITransformation, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
 
 
-## `Loop`
+### `Loop`
 
 ```csharp
 public class SigStat.Common.Loop
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -258,35 +258,35 @@ Properties
 | `List<PointF>` | Points |  | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `String` | ToString() |  | 
 
 
-## `MathHelper`
+### `MathHelper`
 
 ```csharp
 public static class SigStat.Common.MathHelper
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Double` | Min(Double, Double, Double) | Returns the smallest of the three double parameters | 
 
 
-## `Matrix`
+### `Matrix`
 
 ```csharp
 public static class SigStat.Common.Matrix
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -304,7 +304,7 @@ Static Methods
 | `T[]` | SetValues(this T[], Func<T, T>) |  | 
 
 
-## `Origin`
+### `Origin`
 
 Represents our knowledge on the origin of a signature.
 ```csharp
@@ -322,7 +322,7 @@ Enum
 | `2` | Forged | The `SigStat.Common.Signature` is a forgery. | 
 
 
-## `PipelineBase`
+### `PipelineBase`
 
 TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.
 ```csharp
@@ -330,7 +330,7 @@ public abstract class SigStat.Common.PipelineBase
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -340,14 +340,14 @@ Properties
 | `Int32` | Progress |  | 
 
 
-Events
+###### Events
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -355,7 +355,7 @@ Methods
 | `void` | OnProgressChanged(Int32) | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
 
 
-## `Signature`
+### `Signature`
 
 Represents a signature as a collection of features, containing the data that flows in the pipeline.
 ```csharp
@@ -363,7 +363,7 @@ public class SigStat.Common.Signature
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -374,7 +374,7 @@ Properties
 | `Signer` | Signer | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -390,7 +390,7 @@ Methods
 | `String` | ToString() | Returns a string representation of the signature | 
 
 
-## `Signer`
+### `Signer`
 
 Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.
 ```csharp
@@ -398,7 +398,7 @@ public class SigStat.Common.Signer
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -406,14 +406,14 @@ Properties
 | `List<Signature>` | Signatures | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
 
 
-## `Vector`
+### `Vector`
 
 ```csharp
 public class SigStat.Common.Vector
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -435,7 +435,7 @@ Properties
 | `Int32` | Y2 |  | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 

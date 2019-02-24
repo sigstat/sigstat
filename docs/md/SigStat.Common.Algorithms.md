@@ -1,4 +1,4 @@
-## `Dtw`
+### `Dtw`
 
 Dynamic Time Warping algorithm - test if still works
 ```csharp
@@ -6,28 +6,28 @@ public class SigStat.Common.Algorithms.Dtw
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `List<ValueTuple<Int32, Int32>>` | ForwardPath | Gets the list of points representing the shortest path. | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Double` | Compute(Double[][], Double[][]) | Generate shortest path between the two sequences. | 
 
 
-## `DtwPy`
+### `DtwPy`
 
 ```csharp
 public static class SigStat.Common.Algorithms.DtwPy
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -35,7 +35,7 @@ Static Methods
 | `Double` | EuclideanDistance(Double[], Double[]) |  | 
 
 
-## `HSCPThinningStep`
+### `HSCPThinningStep`
 
 HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
 ```csharp
@@ -43,21 +43,21 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Nullable<Boolean>` | ResultChanged | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Boolean[,]` | Scan(Boolean[,]) | Does one step of the thinning. Call it iteratively while ResultChanged. | 
 
 
-## `PatternMatching3x3`
+### `PatternMatching3x3`
 
 Binary 3x3 pattern matcher with rotating option.
 ```csharp
@@ -65,7 +65,7 @@ public class SigStat.Common.Algorithms.PatternMatching3x3
 
 ```
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 

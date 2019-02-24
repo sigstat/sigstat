@@ -1,18 +1,18 @@
-## `ConfigurationHelper`
+### `ConfigurationHelper`
 
 ```csharp
 public class SigStat.Common.Helpers.ConfigurationHelper
 
 ```
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Configuration` | Load() |  | 
 
 
-## `ILogger`
+### `ILogger`
 
 Enables logging by exposing a `SigStat.Common.Helpers.Logger` property.
 ```csharp
@@ -20,14 +20,14 @@ public interface SigStat.Common.Helpers.ILogger
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. | 
 
 
-## `IProgress`
+### `IProgress`
 
 Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.
 ```csharp
@@ -35,21 +35,21 @@ public interface SigStat.Common.Helpers.IProgress
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Int32` | Progress | Gets the current progress in percentage. | 
 
 
-Events
+###### Events
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `EventHandler<Int32>` | ProgressChanged | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
 
 
-## `LogEntry`
+### `LogEntry`
 
 Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.
 ```csharp
@@ -57,21 +57,21 @@ public class SigStat.Common.Helpers.LogEntry
 
 ```
 
-Fields
+###### Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `LogLevel` | Level | Log level of the entry. | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `String` | ToString() | Format the contained data to string, divided by tab characters.  Use this to display the entry in the console. | 
 
 
-## `Logger`
+### `Logger`
 
 A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 ```csharp
@@ -79,7 +79,7 @@ public class SigStat.Common.Helpers.Logger
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -89,7 +89,7 @@ Properties
 | `Boolean` | StoreEntries | Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries. | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -103,7 +103,7 @@ Methods
 | `void` | Warn(Object, String) | Enqueue a warning level log entry. | 
 
 
-## `LogLevel`
+### `LogLevel`
 
 Represents the level of log.  Lowest level: Off.  Highest level: Debug.
 ```csharp

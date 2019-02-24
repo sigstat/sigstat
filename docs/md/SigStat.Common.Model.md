@@ -1,4 +1,4 @@
-## `ApproximateLimit`
+### `ApproximateLimit`
 
 Used to approximate the classification limit in the training process.
 ```csharp
@@ -6,14 +6,14 @@ public class SigStat.Common.Model.ApproximateLimit
 
 ```
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Double` | Calculate(List<Signature>) | Calculate the limit by pairing each signature.  Limit = AverageCost + StdDeviation. | 
 
 
-## `BenchmarkResults`
+### `BenchmarkResults`
 
 Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
 ```csharp
@@ -21,7 +21,7 @@ public struct SigStat.Common.Model.BenchmarkResults
 
 ```
 
-Fields
+###### Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -29,7 +29,7 @@ Fields
 | `List<Result>` | SignerResults | List that contains the `SigStat.Common.Model.Result`s for each `SigStat.Common.Signer` | 
 
 
-## `Result`
+### `Result`
 
 Contains the benchmark results of a single `SigStat.Common.Signer`
 ```csharp
@@ -37,7 +37,7 @@ public class SigStat.Common.Model.Result
 
 ```
 
-Fields
+###### Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -47,7 +47,7 @@ Fields
 | `String` | Signer | Identifier of the `SigStat.Common.Model.Result.Signer` | 
 
 
-## `Sampler`
+### `Sampler`
 
 Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.Model.VerifierBenchmark`
 ```csharp
@@ -55,7 +55,7 @@ public class SigStat.Common.Model.Sampler
 
 ```
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -66,14 +66,14 @@ Methods
 | `List<Signature>` | SampleReferences() | Samples a batch of genuine reference signatures to train on. | 
 
 
-Static Properties
+###### Static Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Sampler` | BasicSampler | Default sampler for SVC2004 database.  10 references, 10 genuine tests, 10 forged tests | 
 
 
-## `ThresholdResult`
+### `ThresholdResult`
 
 ```csharp
 public class SigStat.Common.Model.ThresholdResult
@@ -81,7 +81,7 @@ public class SigStat.Common.Model.ThresholdResult
 
 ```
 
-## `Verifier`
+### `Verifier`
 
 Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
 ```csharp
@@ -90,7 +90,7 @@ public class SigStat.Common.Model.Verifier
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -100,14 +100,14 @@ Properties
 | `ITransformation` | TransformPipeline | Gets or sets the transform pipeline. Hands over the Logger object. | 
 
 
-Events
+###### Events
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -118,14 +118,14 @@ Methods
 | `void` | Train(List<Signature>) | Trains the verifier with `SigStat.Common.Signer.Signatures` having `SigStat.Common.Origin.Genuine` property. | 
 
 
-Static Properties
+###### Static Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `Verifier` | BasicVerifier | Basic `SigStat.Common.Model.Verifier` model with DTW classification of tangent features. | 
 
 
-## `VerifierBenchmark`
+### `VerifierBenchmark`
 
 Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
 ```csharp
@@ -134,7 +134,7 @@ public class SigStat.Common.Model.VerifierBenchmark
 
 ```
 
-Properties
+###### Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -145,14 +145,14 @@ Properties
 | `Verifier` | Verifier | Gets or sets the `SigStat.Common.Model.Verifier` to be benchmarked. | 
 
 
-Events
+###### Events
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | `EventHandler<Int32>` | ProgressChanged |  | 
 
 
-Methods
+###### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
@@ -161,7 +161,7 @@ Methods
 | `void` | Log(LogLevel, String) |  | 
 
 
-Static Methods
+###### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
