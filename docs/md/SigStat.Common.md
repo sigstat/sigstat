@@ -38,8 +38,8 @@ public class SigStat.Common.Baseline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `PointF` | End |  | 
-| `PointF` | Start |  | 
+| `PointF` | <sub>End</sub> |  | 
+| `PointF` | <sub>Start</sub> |  | 
 
 
 ###### Methods
@@ -60,8 +60,8 @@ public class SigStat.Common.Configuration
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | DatabaseFolder |  | 
-| `Lazy<Configuration>` | Default |  | 
+| `String` | <sub>DatabaseFolder</sub> |  | 
+| `Lazy<Configuration>` | <sub>Default</sub> |  | 
 
 
 #### `DataSet`
@@ -75,7 +75,7 @@ public class SigStat.Common.DataSet
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<Signer>` | Signers |  | 
+| `List<Signer>` | <sub>Signers</sub> |  | 
 
 
 #### `FeatureAttribute`
@@ -90,12 +90,12 @@ public class SigStat.Common.FeatureAttribute
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | FeatureKey |  | 
+| `String` | <sub>FeatureKey</sub> |  | 
 
 
 #### `FeatureDescriptor`
 
-<sub>Represents a feature with name and type.</sub>
+Represents a feature with name and type.
 ```csharp
 public class SigStat.Common.FeatureDescriptor
 
@@ -105,10 +105,10 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Type` | FeatureType | Gets or sets the type of the feature. | 
-| `Boolean` | IsCollection | Gets whether the type of the feature is List. | 
-| `String` | Key | Gets the unique key of the feature. | 
-| `String` | Name | Gets or sets a human readable name of the feature. | 
+| `Type` | <sub>FeatureType</sub> | Gets or sets the type of the feature. | 
+| `Boolean` | <sub>IsCollection</sub> | Gets whether the type of the feature is List. | 
+| `String` | <sub>Key</sub> | Gets the unique key of the feature. | 
+| `String` | <sub>Name</sub> | Gets or sets a human readable name of the feature. | 
 
 
 ###### Methods
@@ -122,7 +122,7 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Dictionary<String, FeatureDescriptor>` | descriptors | The static dictionary of all descriptors. | 
+| `Dictionary<String, FeatureDescriptor>` | <sub>descriptors</sub> | The static dictionary of all descriptors. | 
 
 
 ###### Static Methods
@@ -137,7 +137,7 @@ public class SigStat.Common.FeatureDescriptor
 
 #### `FeatureDescriptor<T>`
 
-<sub>Represents a feature with the type `type`</sub>
+Represents a feature with the type `type`
 ```csharp
 public class SigStat.Common.FeatureDescriptor<T>
     : FeatureDescriptor
@@ -153,7 +153,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 #### `Features`
 
-<sub>Standard set of features.</sub>
+Standard set of features.
 ```csharp
 public static class SigStat.Common.Features
 
@@ -163,24 +163,24 @@ public static class SigStat.Common.Features
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IReadOnlyList<FeatureDescriptor>` | All |  | 
-| `FeatureDescriptor<List<Double>>` | Altitude |  | 
-| `FeatureDescriptor<List<Double>>` | Azimuth |  | 
-| `FeatureDescriptor<RectangleF>` | Bounds |  | 
-| `FeatureDescriptor<List<Boolean>>` | Button |  | 
-| `FeatureDescriptor<Point>` | Cog |  | 
-| `FeatureDescriptor<Int32>` | Dpi |  | 
-| `FeatureDescriptor<Image<Rgba32>>` | Image |  | 
-| `FeatureDescriptor<List<Double>>` | Pressure |  | 
-| `FeatureDescriptor<List<Double>>` | T |  | 
-| `FeatureDescriptor<Rectangle>` | TrimmedBounds |  | 
-| `FeatureDescriptor<List<Double>>` | X |  | 
-| `FeatureDescriptor<List<Double>>` | Y |  | 
+| `IReadOnlyList<FeatureDescriptor>` | <sub>All</sub> |  | 
+| `FeatureDescriptor<List<Double>>` | <sub>Altitude</sub> |  | 
+| `FeatureDescriptor<List<Double>>` | <sub>Azimuth</sub> |  | 
+| `FeatureDescriptor<RectangleF>` | <sub>Bounds</sub> |  | 
+| `FeatureDescriptor<List<Boolean>>` | <sub>Button</sub> |  | 
+| `FeatureDescriptor<Point>` | <sub>Cog</sub> |  | 
+| `FeatureDescriptor<Int32>` | <sub>Dpi</sub> |  | 
+| `FeatureDescriptor<Image<Rgba32>>` | <sub>Image</sub> |  | 
+| `FeatureDescriptor<List<Double>>` | <sub>Pressure</sub> |  | 
+| `FeatureDescriptor<List<Double>>` | <sub>T</sub> |  | 
+| `FeatureDescriptor<Rectangle>` | <sub>TrimmedBounds</sub> |  | 
+| `FeatureDescriptor<List<Double>>` | <sub>X</sub> |  | 
+| `FeatureDescriptor<List<Double>>` | <sub>Y</sub> |  | 
 
 
 #### `IClassification`
 
-<sub>Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.</sub>
+Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
 ```csharp
 public interface SigStat.Common.IClassification
     : ILogger, IProgress, IPipelineIO
@@ -196,7 +196,7 @@ public interface SigStat.Common.IClassification
 
 #### `IClassificationMethods`
 
-<sub>Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.</sub>
+Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.
 ```csharp
 public static class SigStat.Common.IClassificationMethods
 
@@ -212,7 +212,7 @@ public static class SigStat.Common.IClassificationMethods
 
 #### `ITransformation`
 
-<sub>Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.</sub>
+Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
 ```csharp
 public interface SigStat.Common.ITransformation
     : ILogger, IProgress, IPipelineIO
@@ -228,7 +228,7 @@ public interface SigStat.Common.ITransformation
 
 #### `ITransformationMethods`
 
-<sub>Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.</sub>
+Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.
 ```csharp
 public static class SigStat.Common.ITransformationMethods
 
@@ -253,9 +253,9 @@ public class SigStat.Common.Loop
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `RectangleF` | Bounds |  | 
-| `PointF` | Center |  | 
-| `List<PointF>` | Points |  | 
+| `RectangleF` | <sub>Bounds</sub> |  | 
+| `PointF` | <sub>Center</sub> |  | 
+| `List<PointF>` | <sub>Points</sub> |  | 
 
 
 ###### Methods
@@ -306,7 +306,7 @@ public static class SigStat.Common.Matrix
 
 #### `Origin`
 
-<sub>Represents our knowledge on the origin of a signature.</sub>
+Represents our knowledge on the origin of a signature.
 ```csharp
 public enum SigStat.Common.Origin
     : Enum, IComparable, IFormattable, IConvertible
@@ -324,7 +324,7 @@ Enum
 
 #### `PipelineBase`
 
-<sub>TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.</sub>
+TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.
 ```csharp
 public abstract class SigStat.Common.PipelineBase
 
@@ -334,17 +334,17 @@ public abstract class SigStat.Common.PipelineBase
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<FeatureDescriptor>` | InputFeatures |  | 
-| `Logger` | Logger |  | 
-| `List<FeatureDescriptor>` | OutputFeatures |  | 
-| `Int32` | Progress |  | 
+| `List<FeatureDescriptor>` | <sub>InputFeatures</sub> |  | 
+| `Logger` | <sub>Logger</sub> |  | 
+| `List<FeatureDescriptor>` | <sub>OutputFeatures</sub> |  | 
+| `Int32` | <sub>Progress</sub> |  | 
 
 
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `EventHandler<Int32>` | ProgressChanged |  | 
+| `EventHandler<Int32>` | <sub>ProgressChanged</sub> |  | 
 
 
 ###### Methods
@@ -357,7 +357,7 @@ public abstract class SigStat.Common.PipelineBase
 
 #### `Signature`
 
-<sub>Represents a signature as a collection of features, containing the data that flows in the pipeline.</sub>
+Represents a signature as a collection of features, containing the data that flows in the pipeline.
 ```csharp
 public class SigStat.Common.Signature
 
@@ -367,11 +367,11 @@ public class SigStat.Common.Signature
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | ID | An identifier for the Signature. Keep it unique to be useful for logs. | 
-| `Object` | Item | Gets or sets the specified feature. | 
-| `Object` | Item | Gets or sets the specified feature. | 
-| `Origin` | Origin | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
-| `Signer` | Signer | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
+| `String` | <sub>ID</sub> | An identifier for the Signature. Keep it unique to be useful for logs. | 
+| `Object` | <sub>Item</sub> | Gets or sets the specified feature. | 
+| `Object` | <sub>Item</sub> | Gets or sets the specified feature. | 
+| `Origin` | <sub>Origin</sub> | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
+| `Signer` | <sub>Signer</sub> | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
 
 
 ###### Methods
@@ -392,7 +392,7 @@ public class SigStat.Common.Signature
 
 #### `Signer`
 
-<sub>Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.</sub>
+Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.
 ```csharp
 public class SigStat.Common.Signer
 
@@ -402,8 +402,8 @@ public class SigStat.Common.Signer
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | ID | An identifier for the Signer. Keep it unique to be useful for logs. | 
-| `List<Signature>` | Signatures | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
+| `String` | <sub>ID</sub> | An identifier for the Signer. Keep it unique to be useful for logs. | 
+| `List<Signature>` | <sub>Signatures</sub> | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
 
 
 #### `Vector`
@@ -417,22 +417,22 @@ public class SigStat.Common.Vector
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Angle |  | 
-| `Double` | B |  | 
-| `Rectangle` | BoundingRectangle |  | 
-| `Rectangle` | Bounds |  | 
-| `Point` | COG |  | 
-| `Point` | End |  | 
-| `Double` | Length |  | 
-| `Point` | Location |  | 
-| `Double` | M |  | 
-| `Point` | Start |  | 
-| `Int32` | Vx |  | 
-| `Int32` | Vy |  | 
-| `Int32` | X |  | 
-| `Int32` | X2 |  | 
-| `Int32` | Y |  | 
-| `Int32` | Y2 |  | 
+| `Double` | <sub>Angle</sub> |  | 
+| `Double` | <sub>B</sub> |  | 
+| `Rectangle` | <sub>BoundingRectangle</sub> |  | 
+| `Rectangle` | <sub>Bounds</sub> |  | 
+| `Point` | <sub>COG</sub> |  | 
+| `Point` | <sub>End</sub> |  | 
+| `Double` | <sub>Length</sub> |  | 
+| `Point` | <sub>Location</sub> |  | 
+| `Double` | <sub>M</sub> |  | 
+| `Point` | <sub>Start</sub> |  | 
+| `Int32` | <sub>Vx</sub> |  | 
+| `Int32` | <sub>Vy</sub> |  | 
+| `Int32` | <sub>X</sub> |  | 
+| `Int32` | <sub>X2</sub> |  | 
+| `Int32` | <sub>Y</sub> |  | 
+| `Int32` | <sub>Y2</sub> |  | 
 
 
 ###### Methods

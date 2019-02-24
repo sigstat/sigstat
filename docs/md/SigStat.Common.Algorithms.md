@@ -1,6 +1,6 @@
 #### `Dtw`
 
-<sub>Dynamic Time Warping algorithm - test if still works</sub>
+Dynamic Time Warping algorithm - test if still works
 ```csharp
 public class SigStat.Common.Algorithms.Dtw
 
@@ -10,7 +10,7 @@ public class SigStat.Common.Algorithms.Dtw
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ValueTuple<Int32, Int32>>` | ForwardPath | Gets the list of points representing the shortest path. | 
+| `List<ValueTuple<Int32, Int32>>` | <sub>ForwardPath</sub> | Gets the list of points representing the shortest path. | 
 
 
 ###### Methods
@@ -37,7 +37,7 @@ public static class SigStat.Common.Algorithms.DtwPy
 
 #### `HSCPThinningStep`
 
-<sub>HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf</sub>
+HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
 ```csharp
 public class SigStat.Common.Algorithms.HSCPThinningStep
 
@@ -47,7 +47,7 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Nullable<Boolean>` | ResultChanged | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
+| `Nullable<Boolean>` | <sub>ResultChanged</sub> | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
 
 
 ###### Methods
@@ -59,7 +59,7 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 
 #### `PatternMatching3x3`
 
-<sub>Binary 3x3 pattern matcher with rotating option.</sub>
+Binary 3x3 pattern matcher with rotating option.
 ```csharp
 public class SigStat.Common.Algorithms.PatternMatching3x3
 

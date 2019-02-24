@@ -1,6 +1,6 @@
 #### `IClassificationModel`
 
-<sub>Analyzes signatures based on their similiarity to the trained model</sub>
+Analyzes signatures based on their similiarity to the trained model
 ```csharp
 public interface SigStat.Common.Pipeline.IClassificationModel
 
@@ -15,7 +15,7 @@ public interface SigStat.Common.Pipeline.IClassificationModel
 
 #### `IClassifier`
 
-<sub>Trains classification models based on reference signatures</sub>
+Trains classification models based on reference signatures
 ```csharp
 public interface SigStat.Common.Pipeline.IClassifier
 
@@ -30,7 +30,7 @@ public interface SigStat.Common.Pipeline.IClassifier
 
 #### `IPipelineIO`
 
-<sub>Gives ability to get or set (rewire) a pipeline item's default input and output features.</sub>
+Gives ability to get or set (rewire) a pipeline item's default input and output features.
 ```csharp
 public interface SigStat.Common.Pipeline.IPipelineIO
 
@@ -40,13 +40,13 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<FeatureDescriptor>` | InputFeatures | List of features to be used as input. | 
-| `List<FeatureDescriptor>` | OutputFeatures | List of features to be used as output. | 
+| `List<FeatureDescriptor>` | <sub>InputFeatures</sub> | List of features to be used as input. | 
+| `List<FeatureDescriptor>` | <sub>OutputFeatures</sub> | List of features to be used as output. | 
 
 
 #### `ParallelTransformPipeline`
 
-<sub>Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para></sub>
+Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para>
 ```csharp
 public class SigStat.Common.Pipeline.ParallelTransformPipeline
     : PipelineBase, IEnumerable, ITransformation, ILogger, IProgress, IPipelineIO
@@ -57,9 +57,9 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ITransformation>` | Items |  | 
-| `Logger` | Logger | Passes Logger to child items as well. | 
-| `Int32` | Progress | Gets the minimum progess of all the child items. | 
+| `List<ITransformation>` | <sub>Items</sub> |  | 
+| `Logger` | <sub>Logger</sub> | Passes Logger to child items as well. | 
+| `Int32` | <sub>Progress</sub> | Gets the minimum progess of all the child items. | 
 
 
 ###### Methods
@@ -73,7 +73,7 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 #### `SequentialTransformPipeline`
 
-<sub>Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para></sub>
+Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
 ```csharp
 public class SigStat.Common.Pipeline.SequentialTransformPipeline
     : PipelineBase, IEnumerable, ITransformation, ILogger, IProgress, IPipelineIO
@@ -84,8 +84,8 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ITransformation>` | Items |  | 
-| `Logger` | Logger | Passes Logger to child items as well. | 
+| `List<ITransformation>` | <sub>Items</sub> |  | 
+| `Logger` | <sub>Logger</sub> | Passes Logger to child items as well. | 
 
 
 ###### Methods

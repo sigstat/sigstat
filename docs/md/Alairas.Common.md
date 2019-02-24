@@ -42,12 +42,12 @@ public class Alairas.Common.BasicMetadataExtraction
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Trim |  | 
+| `Double` | <sub>Trim</sub> |  | 
 
 
 #### `SimpleRenderingTransformation`
 
-<sub>Renders an image of the signature based on the available online information (X,Y,Dpi)</sub>
+Renders an image of the signature based on the available online information (X,Y,Dpi)
 ```csharp
 public class Alairas.Common.SimpleRenderingTransformation
     : PipelineBase, ITransformation, ILogger, IProgress, IPipelineIO

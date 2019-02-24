@@ -1,6 +1,6 @@
 #### `ApproximateLimit`
 
-<sub>Used to approximate the classification limit in the training process.</sub>
+Used to approximate the classification limit in the training process.
 ```csharp
 public class SigStat.Common.Model.ApproximateLimit
 
@@ -15,7 +15,7 @@ public class SigStat.Common.Model.ApproximateLimit
 
 #### `BenchmarkResults`
 
-<sub>Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.</sub>
+Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
 ```csharp
 public struct SigStat.Common.Model.BenchmarkResults
 
@@ -25,13 +25,13 @@ public struct SigStat.Common.Model.BenchmarkResults
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Result` | FinalResult | Summarized, final result of the benchmark execution. | 
-| `List<Result>` | SignerResults | List that contains the `SigStat.Common.Model.Result`s for each `SigStat.Common.Signer` | 
+| `Result` | <sub>FinalResult</sub> | Summarized, final result of the benchmark execution. | 
+| `List<Result>` | <sub>SignerResults</sub> | List that contains the `SigStat.Common.Model.Result`s for each `SigStat.Common.Signer` | 
 
 
 #### `Result`
 
-<sub>Contains the benchmark results of a single `SigStat.Common.Signer`</sub>
+Contains the benchmark results of a single `SigStat.Common.Signer`
 ```csharp
 public class SigStat.Common.Model.Result
 
@@ -41,15 +41,15 @@ public class SigStat.Common.Model.Result
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Aer | Average Error Rate | 
-| `Double` | Far | False Acceptance Rate | 
-| `Double` | Frr | False Rejection Rate | 
-| `String` | Signer | Identifier of the `SigStat.Common.Model.Result.Signer` | 
+| `Double` | <sub>Aer</sub> | Average Error Rate | 
+| `Double` | <sub>Far</sub> | False Acceptance Rate | 
+| `Double` | <sub>Frr</sub> | False Rejection Rate | 
+| `String` | <sub>Signer</sub> | Identifier of the `SigStat.Common.Model.Result.Signer` | 
 
 
 #### `Sampler`
 
-<sub>Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.Model.VerifierBenchmark`</sub>
+Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.Model.VerifierBenchmark`
 ```csharp
 public class SigStat.Common.Model.Sampler
 
@@ -70,7 +70,7 @@ public class SigStat.Common.Model.Sampler
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Sampler` | BasicSampler | Default sampler for SVC2004 database.  10 references, 10 genuine tests, 10 forged tests | 
+| `Sampler` | <sub>BasicSampler</sub> | Default sampler for SVC2004 database.  10 references, 10 genuine tests, 10 forged tests | 
 
 
 #### `ThresholdResult`
@@ -83,7 +83,7 @@ public class SigStat.Common.Model.ThresholdResult
 
 #### `Verifier`
 
-<sub>Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.</sub>
+Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
 ```csharp
 public class SigStat.Common.Model.Verifier
     : ILogger, IProgress
@@ -94,17 +94,17 @@ public class SigStat.Common.Model.Verifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IClassification` | ClassifierPipeline | Gets or sets the classifier pipeline. Hands over the Logger object. | 
-| `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the pipelines. | 
-| `Int32` | Progress |  | 
-| `ITransformation` | TransformPipeline | Gets or sets the transform pipeline. Hands over the Logger object. | 
+| `IClassification` | <sub>ClassifierPipeline</sub> | Gets or sets the classifier pipeline. Hands over the Logger object. | 
+| `Logger` | <sub>Logger</sub> | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the pipelines. | 
+| `Int32` | <sub>Progress</sub> |  | 
+| `ITransformation` | <sub>TransformPipeline</sub> | Gets or sets the transform pipeline. Hands over the Logger object. | 
 
 
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `EventHandler<Int32>` | ProgressChanged |  | 
+| `EventHandler<Int32>` | <sub>ProgressChanged</sub> |  | 
 
 
 ###### Methods
@@ -122,12 +122,12 @@ public class SigStat.Common.Model.Verifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Verifier` | BasicVerifier | Basic `SigStat.Common.Model.Verifier` model with DTW classification of tangent features. | 
+| `Verifier` | <sub>BasicVerifier</sub> | Basic `SigStat.Common.Model.Verifier` model with DTW classification of tangent features. | 
 
 
 #### `VerifierBenchmark`
 
-<sub>Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`</sub>
+Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
 ```csharp
 public class SigStat.Common.Model.VerifierBenchmark
     : ILogger, IProgress
@@ -138,18 +138,18 @@ public class SigStat.Common.Model.VerifierBenchmark
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IDataSetLoader` | Loader |  | 
-| `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the verifier. | 
-| `Int32` | Progress |  | 
-| `Sampler` | Sampler |  | 
-| `Verifier` | Verifier | Gets or sets the `SigStat.Common.Model.Verifier` to be benchmarked. | 
+| `IDataSetLoader` | <sub>Loader</sub> |  | 
+| `Logger` | <sub>Logger</sub> | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. Hands it over to the verifier. | 
+| `Int32` | <sub>Progress</sub> |  | 
+| `Sampler` | <sub>Sampler</sub> |  | 
+| `Verifier` | <sub>Verifier</sub> | Gets or sets the `SigStat.Common.Model.Verifier` to be benchmarked. | 
 
 
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `EventHandler<Int32>` | ProgressChanged |  | 
+| `EventHandler<Int32>` | <sub>ProgressChanged</sub> |  | 
 
 
 ###### Methods

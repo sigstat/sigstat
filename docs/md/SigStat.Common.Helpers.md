@@ -14,7 +14,7 @@ public class SigStat.Common.Helpers.ConfigurationHelper
 
 #### `ILogger`
 
-<sub>Enables logging by exposing a `SigStat.Common.Helpers.Logger` property.</sub>
+Enables logging by exposing a `SigStat.Common.Helpers.Logger` property.
 ```csharp
 public interface SigStat.Common.Helpers.ILogger
 
@@ -24,12 +24,12 @@ public interface SigStat.Common.Helpers.ILogger
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Logger` | Logger | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. | 
+| `Logger` | <sub>Logger</sub> | Gets or sets the attached `SigStat.Common.Helpers.Logger` object used to log messages. | 
 
 
 #### `IProgress`
 
-<sub>Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.</sub>
+Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.
 ```csharp
 public interface SigStat.Common.Helpers.IProgress
 
@@ -39,19 +39,19 @@ public interface SigStat.Common.Helpers.IProgress
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Int32` | Progress | Gets the current progress in percentage. | 
+| `Int32` | <sub>Progress</sub> | Gets the current progress in percentage. | 
 
 
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `EventHandler<Int32>` | ProgressChanged | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
+| `EventHandler<Int32>` | <sub>ProgressChanged</sub> | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
 
 
 #### `LogEntry`
 
-<sub>Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.</sub>
+Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.
 ```csharp
 public class SigStat.Common.Helpers.LogEntry
 
@@ -61,7 +61,7 @@ public class SigStat.Common.Helpers.LogEntry
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `LogLevel` | Level | Log level of the entry. | 
+| `LogLevel` | <sub>Level</sub> | Log level of the entry. | 
 
 
 ###### Methods
@@ -73,7 +73,7 @@ public class SigStat.Common.Helpers.LogEntry
 
 #### `Logger`
 
-<sub>A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.</sub>
+A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 ```csharp
 public class SigStat.Common.Helpers.Logger
 
@@ -83,10 +83,10 @@ public class SigStat.Common.Helpers.Logger
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<LogEntry>` | Entries |  | 
-| `LogLevel` | FilteringLevel |  | 
-| `IReadOnlyDictionary<String, Object>` | ObjectEntries |  | 
-| `Boolean` | StoreEntries | Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries. | 
+| `List<LogEntry>` | <sub>Entries</sub> |  | 
+| `LogLevel` | <sub>FilteringLevel</sub> |  | 
+| `IReadOnlyDictionary<String, Object>` | <sub>ObjectEntries</sub> |  | 
+| `Boolean` | <sub>StoreEntries</sub> | Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries. | 
 
 
 ###### Methods
@@ -105,7 +105,7 @@ public class SigStat.Common.Helpers.Logger
 
 #### `LogLevel`
 
-<sub>Represents the level of log.  Lowest level: Off.  Highest level: Debug.</sub>
+Represents the level of log.  Lowest level: Off.  Highest level: Debug.
 ```csharp
 public enum SigStat.Common.Helpers.LogLevel
     : Enum, IComparable, IFormattable, IConvertible

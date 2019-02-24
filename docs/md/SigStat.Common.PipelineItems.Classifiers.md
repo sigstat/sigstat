@@ -1,6 +1,6 @@
 #### `DTWClassifier`
 
-<sub>Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.</sub>
+Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
     : PipelineBase, IClassification, ILogger, IProgress, IPipelineIO, IEnumerable
@@ -18,7 +18,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
 
 #### `WeightedClassifier`
 
-<sub>Classifies Signatures by weighing other Classifier results.</sub>
+Classifies Signatures by weighing other Classifier results.
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
     : PipelineBase, IEnumerable, IClassification, ILogger, IProgress, IPipelineIO
@@ -29,14 +29,14 @@ public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ValueTuple<IClassification, Double>>` | Items | List of classifiers and belonging weights. | 
+| `List<ValueTuple<IClassification, Double>>` | <sub>Items</sub> | List of classifiers and belonging weights. | 
 
 
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Logger` | Logger | Gets or sets the Logger. Passes it to child Items as well. | 
+| `Logger` | <sub>Logger</sub> | Gets or sets the Logger. Passes it to child Items as well. | 
 
 
 ###### Methods
