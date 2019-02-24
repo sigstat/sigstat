@@ -5,7 +5,7 @@ using System.Text;
 namespace SigStat.Common.Algorithms
 {
     /// <summary>
-    /// Dynamic Time Warping algorithm - test if still works
+    /// Dynamic Time Warping algorithm - test if still works2
     /// </summary>
     public class Dtw
     {
