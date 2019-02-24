@@ -9,22 +9,22 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `T[]` | Clone(this `T[]` array) |  | 
-| `T[][]` | CreateNested(`Int32` length1, `Int32` length2) |  | 
-| `T[]` | ForEach(this `T[]` array, `Action<T>` action) | Performs a given action on all items of the array and returns the original array. | 
-| `IEnumerable<T>` | GetColumn(this `T[,]` array, `Int32` colIndex) |  | 
-| `T[,]` | GetPart(this `T[,]` source, `Int32` startIndex1, `Int32` startIndex2, `Int32` length1, `Int32` length2) |  | 
-| `IEnumerable<T>` | GetRow(this `T[,]` array, `Int32` rowIndex) |  | 
-| `Tuple<Int32, Int32>` | IndexOf(this `Int32[,]` array, `Int32` value) |  | 
-| `Tuple<Int32, Int32>` | IndexOf(this `Double[,]` array, `Double` value) |  | 
-| `Int32` | IndexOf(this `T[]` array, `T` value) |  | 
-| `Int32` | Max(this `Int32[,]` array) |  | 
-| `Byte` | Max(this `Byte[,]` array) |  | 
-| `Double` | Max(this `Double[,]` array) |  | 
-| `void` | SetColumn(this `T[,]` array, `Int32` x, `T` value) |  | 
-| `void` | SetRow(this `T[,]` array, `Int32` y, `T` value) |  | 
-| `T[,]` | SetValues(this `T[,]` array, `T` value) |  | 
-| `T[]` | Shuffle(this `T[]` array) |  | 
+| `T[]` | Clone(this `T[]`array) |  | 
+| `T[][]` | CreateNested(`Int32`length1, `Int32`length2) |  | 
+| `T[]` | ForEach(this `T[]`array, `Action<T>`action) | Performs a given action on all items of the array and returns the original array. | 
+| `IEnumerable<T>` | GetColumn(this `T[,]`array, `Int32`colIndex) |  | 
+| `T[,]` | GetPart(this `T[,]`source, `Int32`startIndex1, `Int32`startIndex2, `Int32`length1, `Int32`length2) |  | 
+| `IEnumerable<T>` | GetRow(this `T[,]`array, `Int32`rowIndex) |  | 
+| `Tuple<Int32, Int32>` | IndexOf(this `Int32[,]`array, `Int32`value) |  | 
+| `Tuple<Int32, Int32>` | IndexOf(this `Double[,]`array, `Double`value) |  | 
+| `Int32` | IndexOf(this `T[]`array, `T`value) |  | 
+| `Int32` | Max(this `Int32[,]`array) |  | 
+| `Byte` | Max(this `Byte[,]`array) |  | 
+| `Double` | Max(this `Double[,]`array) |  | 
+| `void` | SetColumn(this `T[,]`array, `Int32`x, `T`value) |  | 
+| `void` | SetRow(this `T[,]`array, `Int32`y, `T`value) |  | 
+| `T[,]` | SetValues(this `T[,]`array, `T`value) |  | 
+| `T[]` | Shuffle(this `T[]`array) |  | 
 
 
 ## `Baseline`
@@ -129,10 +129,10 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `FeatureDescriptor` | Get(`String` key) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `FeatureDescriptor<T>` | Get(`String` key) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `Boolean` | IsRegistered(`String` featureKey) |  | 
-| `FeatureDescriptor` | Register(`String` featureKey, `Type` type) |  | 
+| `FeatureDescriptor` | Get(`String`key) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
+| `FeatureDescriptor<T>` | Get(`String`key) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
+| `Boolean` | IsRegistered(`String`featureKey) |  | 
+| `FeatureDescriptor` | Register(`String`featureKey, `Type`type) |  | 
 
 
 ## `FeatureDescriptor<T>`
@@ -148,7 +148,7 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `FeatureDescriptor<T>` | Get(`String` key) | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
+| `FeatureDescriptor<T>` | Get(`String`key) | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
 
 
 ## `Features`
@@ -191,7 +191,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Double` | Pair(`Signature` signature1, `Signature` signature2) | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
+| `Double` | Pair(`Signature`signature1, `Signature`signature2) | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
 
 
 ## `IClassificationMethods`
@@ -206,8 +206,8 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `IClassification` | Input(this `IClassification` caller, `FeatureDescriptor[]` inputFeatures) | Sets the InputFeatures in a convenient way. | 
-| `IClassification` | Output(this `IClassification` caller, `FeatureDescriptor[]` outputFeatures) | Sets the OutputFeatures in a convenient way. | 
+| `IClassification` | Input(this `IClassification`caller, `FeatureDescriptor[]`inputFeatures) | Sets the InputFeatures in a convenient way. | 
+| `IClassification` | Output(this `IClassification`caller, `FeatureDescriptor[]`outputFeatures) | Sets the OutputFeatures in a convenient way. | 
 
 
 ## `ITransformation`
@@ -223,7 +223,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
+| `void` | Transform(`Signature`signature) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
 ## `ITransformationMethods`
@@ -238,8 +238,8 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `ITransformation` | Input(this `ITransformation` caller, `FeatureDescriptor[]` inputFeatures) | Sets the InputFeatures in a convenient way. | 
-| `ITransformation` | Output(this `ITransformation` caller, `FeatureDescriptor[]` outputFeatures) | Sets the OutputFeatures in a convenient way. | 
+| `ITransformation` | Input(this `ITransformation`caller, `FeatureDescriptor[]`inputFeatures) | Sets the InputFeatures in a convenient way. | 
+| `ITransformation` | Output(this `ITransformation`caller, `FeatureDescriptor[]`outputFeatures) | Sets the OutputFeatures in a convenient way. | 
 
 
 ## `Loop`
@@ -276,7 +276,7 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Double` | Min(`Double` d1, `Double` d2, `Double` d3) | Returns the smallest of the three double parameters | 
+| `Double` | Min(`Double`d1, `Double`d2, `Double`d3) | Returns the smallest of the three double parameters | 
 
 
 ## `Matrix`
@@ -290,18 +290,18 @@ Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `E[,]` | Evaluate(`T[,]` matrix, `ItemEvaluator<E, T>` evaluator) |  | 
-| `T[,]` | FromTableRows(`IEnumerable<DataRow>` rows, `Int32` ignoreColumns, `Int32` ignoreRows) | Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé.  Az átalakítás során ignoreColumns oszlopot és ignoreRows sort  figyelmen kívül hagy. | 
-| `Point` | GetCog(`Double[,]` weightMartix) |  | 
-| `IEnumerable<Point>` | GetNeighbourPixels(this `Point` p) |  | 
-| `IEnumerable<Point>` | GetNeighbours(this `Point` p, `Point` start, `Int32` offset) |  | 
-| `Double` | GetSum(`Double[,]` matrix, `Int32` x1, `Int32` y1, `Int32` x2, `Int32` y2) |  | 
-| `Double` | GetSumCol(`Double[,]` matrix, `Int32` col) |  | 
-| `Double` | GetSumRow(`Double[,]` matrix, `Int32` row) |  | 
-| `Boolean[,]` | Invert(this `Boolean[,]` array) | returns a copy of the array with inverted values | 
-| `Byte[,]` | Neighbours(`T[,]` matrix, `T` emptyValue) | returns a same sized matrix with each item showing the neighbour count for the given position. | 
-| `T[]` | SetValues(this `T[]` array, `T` value) |  | 
-| `T[]` | SetValues(this `T[]` array, `Func<T, T>` transformation) |  | 
+| `E[,]` | Evaluate(`T[,]`matrix, `ItemEvaluator<E, T>`evaluator) |  | 
+| `T[,]` | FromTableRows(`IEnumerable<DataRow>`rows, `Int32`ignoreColumns, `Int32`ignoreRows) | Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé.  Az átalakítás során ignoreColumns oszlopot és ignoreRows sort  figyelmen kívül hagy. | 
+| `Point` | GetCog(`Double[,]`weightMartix) |  | 
+| `IEnumerable<Point>` | GetNeighbourPixels(this `Point`p) |  | 
+| `IEnumerable<Point>` | GetNeighbours(this `Point`p, `Point`start, `Int32`offset) |  | 
+| `Double` | GetSum(`Double[,]`matrix, `Int32`x1, `Int32`y1, `Int32`x2, `Int32`y2) |  | 
+| `Double` | GetSumCol(`Double[,]`matrix, `Int32`col) |  | 
+| `Double` | GetSumRow(`Double[,]`matrix, `Int32`row) |  | 
+| `Boolean[,]` | Invert(this `Boolean[,]`array) | returns a copy of the array with inverted values | 
+| `Byte[,]` | Neighbours(`T[,]`matrix, `T`emptyValue) | returns a same sized matrix with each item showing the neighbour count for the given position. | 
+| `T[]` | SetValues(this `T[]`array, `T`value) |  | 
+| `T[]` | SetValues(this `T[]`array, `Func<T, T>`transformation) |  | 
 
 
 ## `Origin`
@@ -351,8 +351,8 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Log(`LogLevel` level, `String` message) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
-| `void` | OnProgressChanged(`Int32` v) | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
+| `void` | Log(`LogLevel`level, `String`message) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
+| `void` | OnProgressChanged(`Int32`v) | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
 
 
 ## `Signature`
@@ -378,15 +378,15 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `List<Double[]>` | GetAggregateFeature(`List<FeatureDescriptor>` fs) | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
-| `T` | GetFeature(`String` featureKey) | Gets the specified feature. | 
-| `T` | GetFeature(`FeatureDescriptor<T>` featureDescriptor) | Gets the specified feature. | 
-| `T` | GetFeature(`FeatureDescriptor` featureDescriptor) | Gets the specified feature. | 
+| `List<Double[]>` | GetAggregateFeature(`List<FeatureDescriptor>`fs) | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
+| `T` | GetFeature(`String`featureKey) | Gets the specified feature. | 
+| `T` | GetFeature(`FeatureDescriptor<T>`featureDescriptor) | Gets the specified feature. | 
+| `T` | GetFeature(`FeatureDescriptor`featureDescriptor) | Gets the specified feature. | 
 | `IEnumerable<FeatureDescriptor>` | GetFeatureDescriptors() | Gets a collection of `SigStat.Common.FeatureDescriptor`s that are used in this signature. | 
-| `Boolean` | HasFeature(`FeatureDescriptor` featureDescriptor) | Returns true if the signature contains the specified feature | 
-| `Boolean` | HasFeature(`String` featureKey) | Returns true if the signature contains the specified feature | 
-| `void` | SetFeature(`FeatureDescriptor` featureDescriptor, `T` feature) | Sets the specified feature. | 
-| `void` | SetFeature(`String` featureKey, `T` feature) | Sets the specified feature. | 
+| `Boolean` | HasFeature(`FeatureDescriptor`featureDescriptor) | Returns true if the signature contains the specified feature | 
+| `Boolean` | HasFeature(`String`featureKey) | Returns true if the signature contains the specified feature | 
+| `void` | SetFeature(`FeatureDescriptor`featureDescriptor, `T`feature) | Sets the specified feature. | 
+| `void` | SetFeature(`String`featureKey, `T`feature) | Sets the specified feature. | 
 | `String` | ToString() | Returns a string representation of the signature | 
 
 
@@ -439,14 +439,14 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`Point` p) |  | 
+| `void` | Add(`Point`p) |  | 
 | `Vector` | Clone() |  | 
-| `Boolean` | Equals(`Object` obj) | Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba  mutatnak és hosszuk is megegyezik. | 
+| `Boolean` | Equals(`Object`obj) | Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba  mutatnak és hosszuk is megegyezik. | 
 | `IEnumerator<VectorPoint>` | GetEnumerator() |  | 
 | `Int32` | GetHashCode() |  | 
 | `Double` | GetLength() |  | 
 | `Vector` | GetNormal() | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
-| `Vector` | GetNormal(`Double` length) | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
+| `Vector` | GetNormal(`Double`length) | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
 | `String` | ToMatlabString() |  | 
 | `String` | ToString() |  | 
 

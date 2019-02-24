@@ -11,9 +11,9 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`FeatureDescriptor` f) |  | 
+| `void` | Add(`FeatureDescriptor`f) |  | 
 | `IEnumerator` | GetEnumerator() |  | 
-| `Double` | Pair(`Signature` signature1, `Signature` signature2) | Aggregates the input features and executes the `SigStat.Common.Algorithms.Dtw` algorithm. | 
+| `Double` | Pair(`Signature`signature1, `Signature`signature2) | Aggregates the input features and executes the `SigStat.Common.Algorithms.Dtw` algorithm. | 
 
 
 ## `WeightedClassifier`
@@ -43,8 +43,8 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`ValueTuple<IClassification, Double>` newItem) | Add a new classifier with given weight to the list of items. | 
+| `void` | Add(`ValueTuple<IClassification, Double>`newItem) | Add a new classifier with given weight to the list of items. | 
 | `IEnumerator` | GetEnumerator() |  | 
-| `Double` | Pair(`Signature` signature1, `Signature` signature2) | Execute each classifier in the list and weigh returned costs. | 
+| `Double` | Pair(`Signature`signature1, `Signature`signature2) | Execute each classifier in the list and weigh returned costs. | 
 
 

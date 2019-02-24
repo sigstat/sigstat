@@ -11,7 +11,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `TimeMarkerStart`
@@ -27,7 +27,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `TimeMarkerStop`
@@ -43,6 +43,6 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 

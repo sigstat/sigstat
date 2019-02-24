@@ -10,7 +10,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Double` | Calculate(`List<Signature>` sigs) | Calculate the limit by pairing each signature.  Limit = AverageCost + StdDeviation. | 
+| `Double` | Calculate(`List<Signature>`sigs) | Calculate the limit by pairing each signature.  Limit = AverageCost + StdDeviation. | 
 
 
 ## `BenchmarkResults`
@@ -59,8 +59,8 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Init(`Signer` s) | Initialize the Sampler with a Signer's Signatures. | 
-| `void` | Init(`List<Signature>` s) | Initialize the Sampler with a Signer's Signatures. | 
+| `void` | Init(`Signer`s) | Initialize the Sampler with a Signer's Signatures. | 
+| `void` | Init(`List<Signature>`s) | Initialize the Sampler with a Signer's Signatures. | 
 | `List<Signature>` | SampleForgeryTests() | Samples a batch of forged signatures to test on. | 
 | `List<Signature>` | SampleGenuineTests() | Samples a batch of genuine signatures to test on. | 
 | `List<Signature>` | SampleReferences() | Samples a batch of genuine reference signatures to train on. | 
@@ -111,11 +111,11 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Log(`LogLevel` level, `String` message) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
-| `void` | LoggerChanged(`Logger` oldLogger, `Logger` newLogger) |  | 
-| `Boolean` | Test(`Signature` sig) | Verifies the genuinity of ``. | 
-| `void` | Train(`Signer` signer) | Trains the verifier with `SigStat.Common.Signer.Signatures` having `SigStat.Common.Origin.Genuine` property. | 
-| `void` | Train(`List<Signature>` sigs) | Trains the verifier with `SigStat.Common.Signer.Signatures` having `SigStat.Common.Origin.Genuine` property. | 
+| `void` | Log(`LogLevel`level, `String`message) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
+| `void` | LoggerChanged(`Logger`oldLogger, `Logger`newLogger) |  | 
+| `Boolean` | Test(`Signature`sig) | Verifies the genuinity of ``. | 
+| `void` | Train(`Signer`signer) | Trains the verifier with `SigStat.Common.Signer.Signatures` having `SigStat.Common.Origin.Genuine` property. | 
+| `void` | Train(`List<Signature>`sigs) | Trains the verifier with `SigStat.Common.Signer.Signatures` having `SigStat.Common.Origin.Genuine` property. | 
 
 
 Static Properties
@@ -158,7 +158,7 @@ Methods
 | --- | --- | --- | 
 | `BenchmarkResults` | Execute() | Synchronously execute the benchmarking process. | 
 | `BenchmarkResults` | ExecuteParallel() | Parallel execute the benchmarking process. | 
-| `void` | Log(`LogLevel` level, `String` message) |  | 
+| `void` | Log(`LogLevel`level, `String`message) |  | 
 
 
 Static Methods

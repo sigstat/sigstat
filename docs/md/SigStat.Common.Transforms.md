@@ -11,7 +11,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `AddVector`
@@ -27,7 +27,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `ApproximateOnlineFeatures`
@@ -43,7 +43,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `Binarization`
@@ -59,7 +59,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `BinaryRasterizer`
@@ -75,7 +75,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `CentroidExtraction`
@@ -91,9 +91,9 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`FeatureDescriptor<List<Double>>` newitem) |  | 
+| `void` | Add(`FeatureDescriptor<List<Double>>`newitem) |  | 
 | `IEnumerator` | GetEnumerator() |  | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `CentroidTranslate`
@@ -118,7 +118,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `ComponentSorter`
@@ -134,7 +134,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `ComponentsToFeatures`
@@ -150,7 +150,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `EndpointExtraction`
@@ -166,7 +166,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `Extrema`
@@ -182,7 +182,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `HSCPThinning`
@@ -198,7 +198,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `ImageGenerator`
@@ -214,7 +214,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `Map`
@@ -230,7 +230,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `Multiply`
@@ -246,9 +246,9 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`FeatureDescriptor` newItem) |  | 
+| `void` | Add(`FeatureDescriptor`newItem) |  | 
 | `IEnumerator` | GetEnumerator() |  | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `Normalize`
@@ -264,7 +264,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `OnePixelThinning`
@@ -280,7 +280,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `PrepareForThinning`
@@ -295,7 +295,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `RealisticImageGenerator`
@@ -311,7 +311,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `Resize`
@@ -336,7 +336,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `TangentExtraction`
@@ -352,7 +352,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
 ## `TimeReset`
@@ -386,6 +386,6 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Transform(`Signature` signature) |  | 
+| `void` | Transform(`Signature`signature) |  | 
 
 
