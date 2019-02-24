@@ -18,12 +18,19 @@ namespace SigStat.Common.Pipeline
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class Output : System.Attribute
     {
-        //public FeatureDescriptor Default;
-        string Default;
+        public string Default;
+        //public Type Type;//ezzel is lehetne force-olni a tipus megadasat
+
         public Output(string Default)
         {
             this.Default = Default;
         }
+
+        public Output()
+        {
+            this.Default = null;//-> temporary
+        }
+
     }
 
     //Ötlet: 3. Attributenak felvehetjuk: InputOutput

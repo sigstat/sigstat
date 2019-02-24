@@ -1,4 +1,5 @@
 ﻿using SigStat.Common.Helpers;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,17 +13,20 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class TangentExtraction : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="TangentExtraction"/> class. </summary>
-        public TangentExtraction()
-        {
-            this.Output(FeatureDescriptor.Get<List<double>>("Tangent"));
-        }
+        [Input]
+        FeatureDescriptor<List<double>> X = Features.X;
+
+        [Input]
+        FeatureDescriptor<List<double>> Y = Features.Y;
+
+        [Output("Tangent")]
+        FeatureDescriptor<List<double>> OutputTangent;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            var xs = signature.GetFeature(Features.X);
-            var ys = signature.GetFeature(Features.Y);
+            var xs = signature.GetFeature(X);
+            var ys = signature.GetFeature(Y);
 
             List<double> res = new List<double>();
             for (int i = 1; i < xs.Count - 2; i++)
@@ -35,7 +39,7 @@ namespace SigStat.Common.Transforms
             res.Insert(0, res[0]);//elso
             res.Add(res[res.Count - 1]);//utolso
             res.Add(res[res.Count - 1]);//utolso
-            signature.SetFeature(OutputFeatures[0], res);
+            signature.SetFeature(OutputTangent, res);
             Progress = 100;
         }
     }

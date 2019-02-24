@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,23 +15,22 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class ComponentsToFeatures : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<List<List<PointF>>> componentsFeature;
+        [Input]
+        FeatureDescriptor<List<List<PointF>>> InputComponents;
 
-        /// <summary> Initializes a new instance of the <see cref="ComponentsToFeatures"/> class. </summary>
-        public ComponentsToFeatures()
-        {
-            componentsFeature = FeatureDescriptor.Get<List<List<PointF>>>("Components");
-            this.Output(
-                Features.X,
-                Features.Y,
-                Features.Button
-                );
-        }
+        [Output("X")]
+        FeatureDescriptor<List<double>> X;
+
+        [Output("Y")]
+        FeatureDescriptor<List<double>> Y;
+
+        [Output("Button")]
+        FeatureDescriptor<List<double>> Button;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            var components = signature.GetFeature(componentsFeature);
+            var components = signature.GetFeature(InputComponents);
 
             List<double> xs = new List<double>();
             List<double> ys = new List<double>();
@@ -52,9 +52,9 @@ namespace SigStat.Common.Transforms
                 }
             }
 
-            signature.SetFeature(OutputFeatures[0], xs);
-            signature.SetFeature(OutputFeatures[1], ys);
-            signature.SetFeature(OutputFeatures[2], pendown);
+            signature.SetFeature(X, xs);
+            signature.SetFeature(Y, ys);
+            signature.SetFeature(Button, pendown);
             Logger.LogInformation($"X,Y,Button features extracted. Length: {xs.Count}");
 
         }

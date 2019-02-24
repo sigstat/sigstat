@@ -9,6 +9,7 @@ using SixLabors.Primitives;
 using SigStat.Common.Helpers;
 using SixLabors.Shapes;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -19,6 +20,18 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class BinaryRasterizer : PipelineBase, ITransformation
     {
+        [Input]
+        public FeatureDescriptor<List<double>> InputX = Features.X;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputY = Features.Y;
+
+        [Input]
+        public FeatureDescriptor<List<bool>> InputButton = Features.Button;
+
+        [Output("Binarized")]
+        public FeatureDescriptor<bool[,]> Output;
+
         private readonly int w;
         private readonly int h;
         private readonly float penWidth;
@@ -37,15 +50,14 @@ namespace SigStat.Common.Transforms
             this.h = resolutionY;
             this.penWidth = penWidth;
             pen = new Pen<Byte4>(fg, penWidth);
-            this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            List<double> xs = signature.GetFeature(Features.X);
-            List<double> ys = signature.GetFeature(Features.Y);
-            List<bool> pendowns = signature.GetFeature(Features.Button);
+            List<double> xs = signature.GetFeature(InputX);
+            List<double> ys = signature.GetFeature(InputY);
+            List<bool> pendowns = signature.GetFeature(InputButton);
             //+ egyeb ami kellhet
 
             //TODO: X,Y legyen normalizalva, normalizaljuk ha nincs, ahhoz kell az Extrema, ..
@@ -82,7 +94,7 @@ namespace SigStat.Common.Transforms
                     b[x, y] = (img[x, y] == fg);
                 }
             }
-            signature.SetFeature(OutputFeatures[0], b);
+            signature.SetFeature(Output, b);
             Progress = 100;
             Logger.LogInformation( "Rasterization done.");
         }

@@ -1094,9 +1094,6 @@
             <para>Default Pipeline Output: (bool[,]) Components</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.ComponentSorter.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentSorter"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.ComponentSorter.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1150,9 +1147,6 @@
             <para>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.ApproximateOnlineFeatures.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ApproximateOnlineFeatures"/> class.</summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.ApproximateOnlineFeatures.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1161,15 +1155,6 @@
             Extracts the Centroid (aka. Center Of Gravity) of the input features.
             <para> Default Pipeline Output: (List{double}) Centroid. </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.CentroidExtraction"/> class. </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.Add(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
-            <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Transforms.CentroidExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1210,9 +1195,6 @@
             <para>Default Pipeline Output: X, Y, Button <see cref="T:SigStat.Common.Features"/></para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.ComponentsToFeatures.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentsToFeatures"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.ComponentsToFeatures.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1223,9 +1205,6 @@
             <para>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints </para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.EndpointExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.EndpointExtraction"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1235,9 +1214,6 @@
             <para>Default Pipeline Input: X, Y <see cref="T:SigStat.Common.Features"/></para>
             <para>Default Pipeline Output: (List{double})  Tangent </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.TangentExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.TangentExtraction"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.TangentExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1286,9 +1262,6 @@
             <remarks>
             Output features are lists, containing only one value each.
             </remarks>
-        </member>
-        <member name="M:SigStat.Common.Transforms.Extrema.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Extrema"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.Extrema.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1397,9 +1370,6 @@
             <para>Pipeline Input type: bool[,]</para>
             <para>Default Pipeline Output: (bool[,]) HSCPThinningResult </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.HSCPThinning.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.HSCPThinning"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.HSCPThinning.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1524,21 +1494,6 @@
             <param name="model">The model aquired from the <see cref="M:SigStat.Common.Pipeline.IClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})"/> method</param>
             <returns></returns>
         </member>
-        <member name="T:SigStat.Common.Pipeline.IPipelineIO">
-            <summary>
-            Gives ability to get or set (rewire) a pipeline item's default input and output features.
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.IPipelineIO.InputFeatures">
-            <summary>
-            List of features to be used as input.
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.IPipelineIO.OutputFeatures">
-            <summary>
-            List of features to be used as output.
-            </summary>
-        </member>
         <member name="T:SigStat.Common.Pipeline.ISignerModel">
             <summary>
             Analyzes signatures based on their similiarity to the trained model
@@ -1550,11 +1505,8 @@
             <para>Default Pipeline Output: Range of all the Item outputs.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.items">
+        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items">
             <summary>List of transforms to be run parallel.</summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Items">
-            <summary>Gets the minimum progess of all the child items.</summary>
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.GetEnumerator">
             <inheritdoc/>
@@ -1567,7 +1519,7 @@
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
+            Executes transform <see cref="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
             Passes input features for each.
             Output is a range of all the Item outputs.
             </summary>
@@ -1611,38 +1563,11 @@
             </summary>
             <param name="signature">The <see cref="T:SigStat.Common.Signature"/> with a set of features to be transformed.</param>
         </member>
-        <member name="T:SigStat.Common.ITransformationMethods">
-            <summary>
-            Extension methods for <see cref="T:SigStat.Common.ITransformation"/> for convenient IO rewiring.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.ITransformationMethods.Input(SigStat.Common.ITransformation,SigStat.Common.FeatureDescriptor[])">
-            <summary>
-            Sets the InputFeatures in a convenient way.
-            </summary>
-            <param name="caller"></param>
-            <param name="inputFeatures"></param>
-            <returns>The caller.</returns>
-        </member>
-        <member name="M:SigStat.Common.ITransformationMethods.Output(SigStat.Common.ITransformation,SigStat.Common.FeatureDescriptor[])">
-            <summary>
-            Sets the OutputFeatures in a convenient way.
-            </summary>
-            <param name="caller"></param>
-            <param name="outputFeatures"></param>
-            <returns>The caller.</returns>
-        </member>
         <member name="T:SigStat.Common.PipelineBase">
             <summary>
             TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.
             IProgress, ILogger, IPipelineIO default implementacioja.
             </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineBase.InputFeatures">
-            <inheritdoc/>
-        </member>
-        <member name="P:SigStat.Common.PipelineBase.OutputFeatures">
-            <inheritdoc/>
         </member>
         <member name="P:SigStat.Common.PipelineBase.Logger">
             <inheritdoc/>

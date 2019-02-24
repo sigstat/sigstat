@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Pipeline;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,11 +13,14 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class ApproximateOnlineFeatures : PipelineBase, ITransformation
     {
-        /// <summary>Initializes a new instance of the <see cref="ApproximateOnlineFeatures"/> class.</summary>
-        public ApproximateOnlineFeatures()
-        {
-            this.Output(Features.Pressure, Features.Altitude, Features.Azimuth);
-        }
+        [Output("Pressure")]
+        FeatureDescriptor<List<double>> OutputPressure = Features.Pressure;
+
+        [Output("Altitude")]
+        FeatureDescriptor<List<double>> OutputAltitude = Features.Altitude;
+
+        [Output("Azimuth")]
+        FeatureDescriptor<List<double>> OutputAzimuth = Features.Azimuth;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
@@ -27,9 +31,9 @@ namespace SigStat.Common.Transforms
             {
                 defaultValues.Add(0.5);
             }
-            signature.SetFeature(Features.Pressure, defaultValues);
-            signature.SetFeature(Features.Altitude, defaultValues);
-            signature.SetFeature(Features.Azimuth, defaultValues);
+            signature.SetFeature(OutputPressure, defaultValues);
+            signature.SetFeature(OutputAltitude, defaultValues);
+            signature.SetFeature(OutputAzimuth, defaultValues);
 
             //TODO: ez csak tmp. Valamit kitalalni
 

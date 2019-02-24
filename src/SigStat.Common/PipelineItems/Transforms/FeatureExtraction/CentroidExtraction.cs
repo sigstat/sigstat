@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -12,40 +13,26 @@ namespace SigStat.Common.Transforms
     /// Extracts the Centroid (aka. Center Of Gravity) of the input features.
     /// <para> Default Pipeline Output: (List{double}) Centroid. </para>
     /// </summary>
-    public class CentroidExtraction : PipelineBase, IEnumerable, ITransformation
+    public class CentroidExtraction : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="CentroidExtraction"/> class. </summary>
-        public CentroidExtraction()
-        {
-            InputFeatures = new List<FeatureDescriptor>();
-            this.Output(FeatureDescriptor.Get<List<double>>("Centroid"));
-        }
+        [Input]
+        public List<FeatureDescriptor<List<double>>> Inputs;
 
-
-        /// <inheritdoc/>
-        public IEnumerator GetEnumerator()
-        {
-            return InputFeatures.GetEnumerator();
-        }
-
-        /// <inheritdoc/>
-        public void Add(FeatureDescriptor<List<double>> newitem)
-        {
-            InputFeatures.Add(newitem);
-        }
+        [Output("Centroid")]
+        public FeatureDescriptor<List<double>> OutputCentroid;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            List<double> c = new List<double>(InputFeatures.Count);
-            foreach (var f in InputFeatures)
+            List<double> c = new List<double>(Inputs.Count);
+            foreach (var f in Inputs)
             {
-                var values = signature.GetFeature<List<double>>(f);
+                var values = signature.GetFeature(f);
                 double avg = values.Average();
                 c.Add(avg);
             }
 
-            signature.SetFeature(OutputFeatures[0], c);
+            signature.SetFeature(OutputCentroid, c);
             Logger.LogInformation("Centroid extraction done.");
         }
     }

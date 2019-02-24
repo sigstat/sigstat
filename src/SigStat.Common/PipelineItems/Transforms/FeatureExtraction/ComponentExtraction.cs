@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,6 +15,19 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class ComponentExtraction : PipelineBase, ITransformation
     {
+
+        [Input]
+        public FeatureDescriptor<bool[,]> Skeleton;
+
+        [Input]
+        public FeatureDescriptor<List<Point>> EndPoints;
+
+        [Input]
+        public FeatureDescriptor<List<Point>> CrossingPoints;
+
+        [Output("Components")]
+        public FeatureDescriptor<List<List<PointF>>> OutputComponents;
+
         private readonly int samplingResolution;
         private bool[,] b;
 
@@ -22,15 +36,14 @@ namespace SigStat.Common.Transforms
         public ComponentExtraction(int samplingResolution)
         {
             this.samplingResolution = samplingResolution;
-            this.Output(FeatureDescriptor.Get<List<List<PointF>>>("Components"));
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
-            var endPoints = signature.GetFeature(FeatureDescriptor.Get<List<Point>>("EndPoints"));
-            var crossingPoints = signature.GetFeature(FeatureDescriptor.Get<List<Point>>("CrossingPoints"));
+            b = signature.GetFeature(Skeleton);
+            var endPoints = signature.GetFeature(EndPoints);
+            var crossingPoints = signature.GetFeature(CrossingPoints);
 
             if (samplingResolution < 1)
             {
@@ -58,7 +71,7 @@ namespace SigStat.Common.Transforms
 
             var componentlist = JoinSections(sectionlist, crossings);
 
-            signature.SetFeature(OutputFeatures[0], componentlist);
+            signature.SetFeature(OutputComponents, componentlist);
             Logger.LogInformation( $"Component extraction done. {componentlist.Count} components found.");
         }
 

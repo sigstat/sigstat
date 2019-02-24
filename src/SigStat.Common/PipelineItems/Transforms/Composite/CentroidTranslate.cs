@@ -16,22 +16,28 @@ namespace SigStat.Common.Transforms
     /// <remarks>This is a special case of <see cref="Translate"/></remarks>
     public class CentroidTranslate : SequentialTransformPipeline
     {
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputX = Features.X;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputY = Features.Y;
+
+        [Output("X")]
+        public FeatureDescriptor<List<double>> OutputX = Features.X;
+
+        [Output("Y")]
+        public FeatureDescriptor<List<double>> OutputY = Features.Y;
+
         /// <summary> Initializes a new instance of the <see cref="CentroidTranslate"/> class.</summary>
         public CentroidTranslate()
         {
             Items = new List<ITransformation>
             {
-                new CentroidExtraction
-                {
-                    Features.X,
-                    Features.Y
-                },
+                new CentroidExtraction { Inputs = {InputX, InputY } },
                 new Multiply(-1.0),
-                new Translate(FeatureDescriptor.Get<List<double>>("Centroid")).Input(Features.X, Features.Y)
+                new Translate(FeatureDescriptor.Get<List<double>>("Centroid"))
             };
-
-            this.Output(Features.X, Features.Y);
-
         }
 
     }

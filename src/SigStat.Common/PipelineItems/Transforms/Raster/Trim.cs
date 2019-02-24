@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,19 +14,25 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class Trim : PipelineBase, ITransformation
     {
+
+        [Input]
+        public FeatureDescriptor<bool[,]> Input;
+
+        [Output("Trimmed")]
+        public FeatureDescriptor<bool[,]> Output;
+
         private readonly int framewidth;
 
         /// <param name="framewidth">Leave a border around the trimmed area. framewidth > 0</param>
         public Trim(int framewidth)
         {
             this.framewidth = framewidth;
-            this.Output(FeatureDescriptor.Get<bool[,]>("Trimmed"));
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            bool[,] input = signature.GetFeature<bool[,]>(InputFeatures[0]);
+            bool[,] input = signature.GetFeature(Input);
             int w = input.GetLength(0);
             int h = input.GetLength(1);
 
@@ -97,7 +104,7 @@ namespace SigStat.Common.Transforms
                 }
             }
 
-            signature.SetFeature(OutputFeatures[0], o);
+            signature.SetFeature(Output, o);
             Logger.LogInformation($"Trimming done. New resolution: {x1-x0}x{y1-y0} px");
         }
 

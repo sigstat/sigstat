@@ -15,17 +15,30 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class Translate : SequentialTransformPipeline
     {
+        [Input]
+        public FeatureDescriptor<List<double>> InputX = Features.X;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputY = Features.Y;
+
+        [Output("X")]
+        public FeatureDescriptor<List<double>> OutputX = Features.X;
+
+        [Output("Y")]
+        public FeatureDescriptor<List<double>> OutputY = Features.Y;
+
+
         /// <param name="xAdd">Value to translate <see cref="Features.X"/> by.</param>
         /// <param name="yAdd">Value to translate <see cref="Features.Y"/> by.</param>
         public Translate(double xAdd, double yAdd)
         {
+            OutputX = InputX;
+            OutputY = InputY;
             Items = new List<ITransformation>
             {
-                new AddConst(xAdd).Input(Features.X),
-                new AddConst(yAdd).Input(Features.Y),
+                new AddConst(xAdd) { InputList = InputX },
+                new AddConst(yAdd) { InputList = InputY },
             };
-
-            this.Output(Features.X, Features.Y);
 
         }
 
@@ -34,10 +47,8 @@ namespace SigStat.Common.Transforms
         {
             Items = new List<ITransformation>
             {
-                new AddVector(vectorFeature).Input(Features.X, Features.Y)
+                new AddVector(vectorFeature) { Inputs = { Features.X, Features.Y } }
             };
-
-            this.Output(Features.X, Features.Y);
 
         }
     }

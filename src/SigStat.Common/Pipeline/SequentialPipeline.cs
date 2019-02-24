@@ -18,6 +18,8 @@ namespace SigStat.Common.Pipeline
     {
         /// <summary>List of transforms to be run in sequence.</summary>
         public List<ITransformation> Items = new List<ITransformation>();
+        public override List<PipelineInput> PipelineInputs { get => Items[0].PipelineInputs; }
+        public override List<PipelineOutput> PipelineOutputs { get => Items.Last().PipelineOutputs; }
 
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()
@@ -31,45 +33,9 @@ namespace SigStat.Common.Pipeline
         /// <param name="newItem"></param>
         public void Add(ITransformation newItem)
         {
-
-            //Set sequence output to last item's output (if given)
-            /*if(newItem.OutputFeatures!=null)
-            {
-                this.Output(newItem.OutputFeatures.ToArray());
-            }*///do this on demand
-
-
-
-            //Auto set inputs
-            if (Items.Count > 0)
-            {
-                var outputs = Items.Last().GetOutputFeatures();
-                var inputs = newItem.GetInputFeatures2();
-                for (int i = 0; i < inputs.Count; i++)
-                {
-                    FeatureDescriptor fd = inputs[i].Item1;//TODO: Tuple lecserel
-                    FieldInfo prop = inputs[i].Item2;
-                    AutoSetMode asm = inputs[i].Item3;
-                    if (asm == AutoSetMode.Always || (asm == AutoSetMode.IfNull && fd == null))
-                        prop.SetValue(newItem, outputs[i]);
-
-                }
-            }
-
             Items.Add(newItem);
+            //itt most semmi ellenorzes nincsen, de lehetne
         }
-
-        public override List<FeatureDescriptor> GetOutputFeatures()
-        {
-            return Items.Last().GetOutputFeatures();
-        }
-
-        public override List<FeatureDescriptor> GetInputFeatures()
-        {
-            return Items.First().GetInputFeatures();
-        }
-
-
 
         /// <summary>
         /// Executes transform <see cref="Items"/> in sequence.
@@ -88,11 +54,13 @@ namespace SigStat.Common.Pipeline
 
             for (int i = 1; i < Items.Count; i++)
             {
-                /*if (Items[i].InputFeatures == null || Items[i].InputFeatures.Count==0)//pass previously calculated features if input not specified
+                var outputs = Items[i - 1].PipelineOutputs;
+                var inputs = Items[i].PipelineInputs;
+                for (int ii = 0; ii < inputs.Count; ii++)
                 {
-                    Items[i].InputFeatures = new List<FeatureDescriptor>(Items[i - 1].OutputFeatures);
-                }*/
-                
+                    if (inputs[ii].AutoSetMode == AutoSetMode.Always || (inputs[ii].AutoSetMode == AutoSetMode.IfNull && inputs[ii].FD == null))
+                        inputs[ii].FD = outputs[ii].FD;
+                }
 
                 Items[i].Transform(signature);
             }

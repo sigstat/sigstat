@@ -5,21 +5,55 @@ using System.Text;
 
 namespace SigStat.Common.Pipeline
 {
-    /// <summary>
-    /// Gives ability to get or set (rewire) a pipeline item's default input and output features.
-    /// </summary>
     public interface IPipelineIO
     {
-        /// <summary>
-        /// List of features to be used as input.
-        /// </summary>
-        List<FeatureDescriptor> InputFeatures { get; set; }
-        List<FeatureDescriptor> GetInputFeatures();
-        List<(FeatureDescriptor, FieldInfo, AutoSetMode)> GetInputFeatures2();
-        /// <summary>
-        /// List of features to be used as output.
-        /// </summary>
-        List<FeatureDescriptor> OutputFeatures { get; set; }
-        List<FeatureDescriptor> GetOutputFeatures();
+        List<PipelineInput> PipelineInputs { get; }
+
+        List<PipelineOutput> PipelineOutputs { get; }
     }
+
+    public class PipelineInput
+    {
+        public FeatureDescriptor FD {
+            get => (FeatureDescriptor)FI.GetValue(PipelineItem);
+            set => FI.SetValue(PipelineItem, value);
+        }
+
+        public AutoSetMode AutoSetMode
+        {
+            get => FI.GetCustomAttribute<Input>().AutoSetMode;
+        }
+
+        private object PipelineItem;
+        private FieldInfo FI;
+
+        public PipelineInput(object PipelineItem, FieldInfo FI)
+        {
+            this.PipelineItem = PipelineItem;
+            this.FI = FI;
+        }
+
+    }
+
+    public class PipelineOutput
+    {
+        public FeatureDescriptor FD
+        {
+            get => (FeatureDescriptor)FI.GetValue(PipelineItem);
+            set => FI.SetValue(PipelineItem, value);
+        }
+        public bool IsTemporary => FI.GetCustomAttribute<Output>().Default == null;
+        public string Default => FI.GetCustomAttribute<Output>().Default;
+
+        private object PipelineItem;
+        private FieldInfo FI;
+
+        public PipelineOutput(object PipelineItem, FieldInfo FI)
+        {
+            this.PipelineItem = PipelineItem;
+            this.FI = FI;
+        }
+
+    }
+
 }

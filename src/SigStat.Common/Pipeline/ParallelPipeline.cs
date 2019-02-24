@@ -15,11 +15,9 @@ namespace SigStat.Common.Pipeline
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run parallel.</summary>
-        private List<ITransformation> items = new List<ITransformation>();
-
-        /// <summary>Gets the minimum progess of all the child items.</summary>
-
-        public List<ITransformation> Items { get => items; set => items = value; }
+        public List<ITransformation> Items = new List<ITransformation>();
+        public override List<PipelineInput> PipelineInputs { get => Items.SelectMany(i=>i.PipelineInputs).ToList(); }
+        public override List<PipelineOutput> PipelineOutputs { get => Items.SelectMany(i => i.PipelineOutputs).ToList(); }
 
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()
@@ -45,21 +43,8 @@ namespace SigStat.Common.Pipeline
         public void Transform(Signature signature)
         {
             Parallel.ForEach(Items, (i) => {
-                if (i.InputFeatures == null)//pass previously calculated features if input not specified
-                {
-                    i.InputFeatures = this.InputFeatures;
-                }
-
                 i.Transform(signature);
-                });
-
-
-            //Add the new item's output to output
-            OutputFeatures = new List<FeatureDescriptor>();
-            foreach (var item in Items)
-            {
-                OutputFeatures.AddRange(item.OutputFeatures);
-            }
+            });
         }
     }
 }

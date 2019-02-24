@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Pipeline;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -12,19 +13,16 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class ComponentSorter : PipelineBase, ITransformation
     {
-        private readonly FeatureDescriptor<List<List<PointF>>> componentsFeature;
+        [Input]
+        public FeatureDescriptor<List<List<PointF>>> Input;
 
-        /// <summary> Initializes a new instance of the <see cref="ComponentSorter"/> class. </summary>
-        public ComponentSorter()
-        {
-            componentsFeature = FeatureDescriptor.Get<List<List<PointF>>>("Components");
-            this.Output(componentsFeature);
-        }
+        [Output("Components")]
+        public FeatureDescriptor<List<List<PointF>>> Output;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            var components = signature.GetFeature(componentsFeature);
+            var components = signature.GetFeature(Input);
 
             //egyenkent megforditjuk ha kell (balrol jobbra megy kb)
             foreach (List<PointF> component in components)
@@ -59,7 +57,7 @@ namespace SigStat.Common.Transforms
                 components.RemoveAt(minindex);
             }
 
-            signature.SetFeature(OutputFeatures[0], sorted);
+            signature.SetFeature(Output, sorted);
 
         }
 

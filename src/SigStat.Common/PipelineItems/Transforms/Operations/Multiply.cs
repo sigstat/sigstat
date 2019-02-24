@@ -18,14 +18,14 @@ namespace SigStat.Common.Transforms
     {
         private readonly double byConst;
 
-        [Input]
-        public FeatureDescriptor<double> InputValue;
+        //[Input(AutoSetMode = AutoSetMode.Never)]
+        //public FeatureDescriptor<double> InputValue;
 
         [Input]
         public FeatureDescriptor<List<double>> InputList;
 
-        [Output("MultiplyResult")]
-        public FeatureDescriptor Output;
+        [Output]
+        public FeatureDescriptor<List<double>> Output;
 
         /// <summary> Initializes a new instance of the <see cref="Multiply"/> class with specified settings. </summary>
         /// <param name="byConst">The value to multiply the input feature by.</param>
@@ -48,16 +48,8 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //default output is the input
-            if (Output == null)
-            {
-                if(InputValue!=null)
-                    Output = InputValue;
-                if(InputList!=null)
-                    Output = InputList;
-            }
 
-            if (InputList!=null)
+            //if (InputList!=null)
             {
                 var values = signature.GetFeature(InputList);
                 for (int i = 0; i < values.Count; i++)
@@ -66,12 +58,12 @@ namespace SigStat.Common.Transforms
                 }
                 signature.SetFeature(Output, values);
             }
-            else
+            /*else
             {
                 var values = signature.GetFeature(InputValue);
                 values = values * byConst;
                 signature.SetFeature(Output, values);
-            }
+            }*/
 
             Progress = 100;
         }

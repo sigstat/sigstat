@@ -43,9 +43,9 @@ namespace SigStat.Sample
 
             SignatureDemo();
             TransformationPipeline();
-            Classifier();
-            //OnlineToImage();
-            //GenerateOfflineDatabase();
+            //Classifier();
+            OnlineToImage();
+            GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();
             //OnlineVerifierBenchmarkDemo();
@@ -147,7 +147,7 @@ namespace SigStat.Sample
             SequentialTransformPipeline pipeline = new SequentialTransformPipeline()
             {
                 new Multiply(2) { InputList = Features.X },
-                new AddConst(3), // no need to specify input, it will work with the output of the previos transformation
+                new AddConst(3), // no need to specify input, it will work with the output of the previous transformation
             };
 
             pipeline.Transform(sig);

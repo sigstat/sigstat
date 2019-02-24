@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,19 +15,19 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class EndpointExtraction : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="EndpointExtraction"/> class. </summary>
-        public EndpointExtraction()
-        {
-            this.Output(
-                FeatureDescriptor.Get<List<Point>>("EndPoints"),
-                FeatureDescriptor.Get<List<Point>>("CrossingPoints")
-            );
-        }
+        [Input]
+        public FeatureDescriptor<bool[,]> Skeleton;
+
+        [Output("EndPoints")]
+        public FeatureDescriptor<List<Point>> OutputEndpoints;
+
+        [Output("CrossingPoints")]
+        public FeatureDescriptor<List<Point>> OutputCrossingPoints;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            bool[,] b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
+            bool[,] b = signature.GetFeature(Skeleton);
              
             var endPoints = new List<Point>();
             var crossingPoints = new List<Point/*, int ncnt*/>();
@@ -67,8 +68,8 @@ namespace SigStat.Common.Transforms
                 Progress = (int)(i / (double)(w - 1) * 100);
             }
 
-            signature.SetFeature(OutputFeatures[0], endPoints);
-            signature.SetFeature(OutputFeatures[1], crossingPoints);
+            signature.SetFeature(OutputEndpoints, endPoints);
+            signature.SetFeature(OutputCrossingPoints, crossingPoints);
 
             Progress = 100;
             Logger.LogInformation($"Endpoint extraction done. {endPoints.Count} endpoints and {crossingPoints.Count} crossingpoints found.");

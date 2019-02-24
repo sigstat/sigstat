@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -20,6 +21,28 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class RealisticImageGenerator : PipelineBase, ITransformation
     {
+
+        [Input]
+        FeatureDescriptor<List<double>> X = Features.X;
+
+        [Input]
+        FeatureDescriptor<List<double>> Y = Features.Y;
+
+        [Input]
+        FeatureDescriptor<List<bool>> Button = Features.Button;
+
+        [Input]
+        FeatureDescriptor<List<double>> Pressure = Features.Pressure;
+
+        [Input]
+        FeatureDescriptor<List<double>> Altitude = Features.Altitude;
+
+        [Input]
+        FeatureDescriptor<List<double>> Azimuth = Features.Azimuth;
+
+        [Output("RealisticImage")]
+        FeatureDescriptor<Image<Rgba32>> OutputImage = Features.Image;
+
         private readonly int w;
         private readonly int h;
         private readonly float penScale;
@@ -41,18 +64,17 @@ namespace SigStat.Common.Transforms
             w = resolutionX;
             h = resolutionY;
             penScale = Math.Min(w,h) / 300 + 0.5f;
-            this.Output(Features.Image);
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            xs = signature.GetFeature(Features.X);
-            ys = signature.GetFeature(Features.Y);
-            pendowns = signature.GetFeature(Features.Button);
-            ps = signature.GetFeature(Features.Pressure);
-            alts = signature.GetFeature(Features.Altitude);
-            azs = signature.GetFeature(Features.Azimuth);
+            xs = signature.GetFeature(X);
+            ys = signature.GetFeature(Y);
+            pendowns = signature.GetFeature(Button);
+            ps = signature.GetFeature(Pressure);
+            alts = signature.GetFeature(Altitude);
+            azs = signature.GetFeature(Azimuth);
             //+ egyeb ami kellhet
 
             Image<Rgba32> img = new Image<Rgba32>(w, h);
@@ -70,9 +92,9 @@ namespace SigStat.Common.Transforms
 
 
 
-            signature.SetFeature(OutputFeatures[0], img);
+            signature.SetFeature(OutputImage, img);
             Progress = 100;
-            Logger.LogInformation( "Realistic image generation done.");
+            Logger?.LogInformation( "Realistic image generation done.");
         }
 
         private PointF ToImageCoords(double x, double y)

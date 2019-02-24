@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -18,6 +19,12 @@ namespace SigStat.Common.Transforms
     /// </example>
     public class AddVector : PipelineBase, ITransformation
     {
+        [Input]
+        public List<FeatureDescriptor<List<double>>> Inputs;
+
+        [Output("AddVectorOutputs")]
+        public List<FeatureDescriptor<List<double>>> Outputs;
+
         private readonly FeatureDescriptor<List<double>> vectorFeature;
 
         /// <summary>
@@ -33,29 +40,22 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //default output is the input
-            if (OutputFeatures == null || OutputFeatures.Count == 0)
-            {
-                OutputFeatures = new List<FeatureDescriptor> { InputFeatures[0] };
-            }
-
-
             var vector = signature.GetFeature(vectorFeature);
 
             int dim = vector.Count;
-            if ((InputFeatures.Count) != dim)
+            if ((Inputs.Count) != dim)
             {
                 Logger.LogError("Dimension mismatch");
             }
 
             for (int iF = 0; iF < dim; iF++)
             {
-                var listFeature = signature.GetFeature<List<double>>(InputFeatures[iF]);
+                var listFeature = signature.GetFeature(Inputs[iF]);
                 for (int i = 0; i < listFeature.Count; i++)
                 {
                     listFeature[i] += vector[iF];
                 }
-                signature.SetFeature(OutputFeatures[iF], listFeature);
+                signature.SetFeature(Outputs[iF], listFeature);
                 Progress += 100 / dim;
             }
 
