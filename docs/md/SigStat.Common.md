@@ -95,7 +95,7 @@ public class SigStat.Common.FeatureAttribute
 
 #### `FeatureDescriptor`
 
-Represents a feature with name and type.
+<sub>Represents a feature with name and type.</sub>
 ```csharp
 public class SigStat.Common.FeatureDescriptor
 
@@ -137,7 +137,7 @@ public class SigStat.Common.FeatureDescriptor
 
 #### `FeatureDescriptor<T>`
 
-Represents a feature with the type `type`
+<sub>Represents a feature with the type `type`</sub>
 ```csharp
 public class SigStat.Common.FeatureDescriptor<T>
     : FeatureDescriptor
@@ -153,7 +153,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 #### `Features`
 
-Standard set of features.
+<sub>Standard set of features.</sub>
 ```csharp
 public static class SigStat.Common.Features
 
@@ -180,7 +180,7 @@ public static class SigStat.Common.Features
 
 #### `IClassification`
 
-Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
+<sub>Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.</sub>
 ```csharp
 public interface SigStat.Common.IClassification
     : ILogger, IProgress, IPipelineIO
@@ -196,7 +196,7 @@ public interface SigStat.Common.IClassification
 
 #### `IClassificationMethods`
 
-Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.
+<sub>Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.</sub>
 ```csharp
 public static class SigStat.Common.IClassificationMethods
 
@@ -212,7 +212,7 @@ public static class SigStat.Common.IClassificationMethods
 
 #### `ITransformation`
 
-Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
+<sub>Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.</sub>
 ```csharp
 public interface SigStat.Common.ITransformation
     : ILogger, IProgress, IPipelineIO
@@ -228,7 +228,7 @@ public interface SigStat.Common.ITransformation
 
 #### `ITransformationMethods`
 
-Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.
+<sub>Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.</sub>
 ```csharp
 public static class SigStat.Common.ITransformationMethods
 
@@ -306,7 +306,7 @@ public static class SigStat.Common.Matrix
 
 #### `Origin`
 
-Represents our knowledge on the origin of a signature.
+<sub>Represents our knowledge on the origin of a signature.</sub>
 ```csharp
 public enum SigStat.Common.Origin
     : Enum, IComparable, IFormattable, IConvertible
@@ -324,7 +324,7 @@ Enum
 
 #### `PipelineBase`
 
-TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.
+<sub>TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.</sub>
 ```csharp
 public abstract class SigStat.Common.PipelineBase
 
@@ -357,7 +357,7 @@ public abstract class SigStat.Common.PipelineBase
 
 #### `Signature`
 
-Represents a signature as a collection of features, containing the data that flows in the pipeline.
+<sub>Represents a signature as a collection of features, containing the data that flows in the pipeline.</sub>
 ```csharp
 public class SigStat.Common.Signature
 
@@ -392,7 +392,7 @@ public class SigStat.Common.Signature
 
 #### `Signer`
 
-Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.
+<sub>Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.</sub>
 ```csharp
 public class SigStat.Common.Signer
 

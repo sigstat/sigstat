@@ -1,6 +1,6 @@
 #### `DataSetLoader`
 
-Abstract loader class to inherit from. Implements ILogger.
+<sub>Abstract loader class to inherit from. Implements ILogger.</sub>
 ```csharp
 public abstract class SigStat.Common.Loaders.DataSetLoader
     : IDataSetLoader, ILogger
@@ -25,7 +25,7 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 
 #### `IDataSetLoader`
 
-Exposes a function to enable loading collections of `SigStat.Common.Signer`s.  Base abstract class: `SigStat.Common.Loaders.DataSetLoader`.
+<sub>Exposes a function to enable loading collections of `SigStat.Common.Signer`s.  Base abstract class: `SigStat.Common.Loaders.DataSetLoader`.</sub>
 ```csharp
 public interface SigStat.Common.Loaders.IDataSetLoader
 
@@ -41,7 +41,7 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 
 #### `ImageLoader`
 
-DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but finds png images.
+<sub>DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but finds png images.</sub>
 ```csharp
 public class SigStat.Common.Loaders.ImageLoader
     : DataSetLoader, IDataSetLoader, ILogger
@@ -65,7 +65,7 @@ public class SigStat.Common.Loaders.ImageLoader
 
 #### `ImageSaver`
 
-Get the `SigStat.Common.Features.Image` of a `SigStat.Common.Signature` and save it as png file.
+<sub>Get the `SigStat.Common.Features.Image` of a `SigStat.Common.Signature` and save it as png file.</sub>
 ```csharp
 public static class SigStat.Common.Loaders.ImageSaver
 
@@ -80,7 +80,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 
 #### `Svc2004`
 
-Set of features containing raw data loaded from SVC2004-format database.
+<sub>Set of features containing raw data loaded from SVC2004-format database.</sub>
 ```csharp
 public static class SigStat.Common.Loaders.Svc2004
 
@@ -101,7 +101,7 @@ public static class SigStat.Common.Loaders.Svc2004
 
 #### `Svc2004Loader`
 
-Loads SVC2004-format database from .zip
+<sub>Loads SVC2004-format database from .zip</sub>
 ```csharp
 public class SigStat.Common.Loaders.Svc2004Loader
     : DataSetLoader, IDataSetLoader, ILogger

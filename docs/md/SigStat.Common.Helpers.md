@@ -14,7 +14,7 @@ public class SigStat.Common.Helpers.ConfigurationHelper
 
 #### `ILogger`
 
-Enables logging by exposing a `SigStat.Common.Helpers.Logger` property.
+<sub>Enables logging by exposing a `SigStat.Common.Helpers.Logger` property.</sub>
 ```csharp
 public interface SigStat.Common.Helpers.ILogger
 
@@ -29,7 +29,7 @@ public interface SigStat.Common.Helpers.ILogger
 
 #### `IProgress`
 
-Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.
+<sub>Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.</sub>
 ```csharp
 public interface SigStat.Common.Helpers.IProgress
 
@@ -51,7 +51,7 @@ public interface SigStat.Common.Helpers.IProgress
 
 #### `LogEntry`
 
-Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.
+<sub>Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.</sub>
 ```csharp
 public class SigStat.Common.Helpers.LogEntry
 
@@ -73,7 +73,7 @@ public class SigStat.Common.Helpers.LogEntry
 
 #### `Logger`
 
-A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+<sub>A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.</sub>
 ```csharp
 public class SigStat.Common.Helpers.Logger
 
@@ -105,7 +105,7 @@ public class SigStat.Common.Helpers.Logger
 
 #### `LogLevel`
 
-Represents the level of log.  Lowest level: Off.  Highest level: Debug.
+<sub>Represents the level of log.  Lowest level: Off.  Highest level: Debug.</sub>
 ```csharp
 public enum SigStat.Common.Helpers.LogLevel
     : Enum, IComparable, IFormattable, IConvertible

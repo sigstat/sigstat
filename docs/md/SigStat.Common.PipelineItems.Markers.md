@@ -1,6 +1,6 @@
 #### `LogMarker`
 
-Logs the Pipeline Input. Useful for logging TimeMarker results.  <para>Default Pipeline Output: -</para>
+<sub>Logs the Pipeline Input. Useful for logging TimeMarker results.  <para>Default Pipeline Output: -</para></sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Markers.LogMarker
     : PipelineBase, ITransformation, ILogger, IProgress, IPipelineIO
@@ -16,7 +16,7 @@ public class SigStat.Common.PipelineItems.Markers.LogMarker
 
 #### `TimeMarkerStart`
 
-Starts a timer to measure completion time of following transforms.  <para>Default Pipeline Output: (`System.DateTime`) DefaultTimer</para>
+<sub>Starts a timer to measure completion time of following transforms.  <para>Default Pipeline Output: (`System.DateTime`) DefaultTimer</para></sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Markers.TimeMarkerStart
     : PipelineBase, ITransformation, ILogger, IProgress, IPipelineIO
@@ -32,7 +32,7 @@ public class SigStat.Common.PipelineItems.Markers.TimeMarkerStart
 
 #### `TimeMarkerStop`
 
-Stops a timer to measure completion time of previous transforms.  <para>Default Pipeline Output: (`System.DateTime`) DefaultTimer</para>
+<sub>Stops a timer to measure completion time of previous transforms.  <para>Default Pipeline Output: (`System.DateTime`) DefaultTimer</para></sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Markers.TimeMarkerStop
     : PipelineBase, ITransformation, ILogger, IProgress, IPipelineIO

@@ -1,6 +1,6 @@
 #### `IClassificationModel`
 
-Analyzes signatures based on their similiarity to the trained model
+<sub>Analyzes signatures based on their similiarity to the trained model</sub>
 ```csharp
 public interface SigStat.Common.Pipeline.IClassificationModel
 
@@ -15,7 +15,7 @@ public interface SigStat.Common.Pipeline.IClassificationModel
 
 #### `IClassifier`
 
-Trains classification models based on reference signatures
+<sub>Trains classification models based on reference signatures</sub>
 ```csharp
 public interface SigStat.Common.Pipeline.IClassifier
 
@@ -30,7 +30,7 @@ public interface SigStat.Common.Pipeline.IClassifier
 
 #### `IPipelineIO`
 
-Gives ability to get or set (rewire) a pipeline item's default input and output features.
+<sub>Gives ability to get or set (rewire) a pipeline item's default input and output features.</sub>
 ```csharp
 public interface SigStat.Common.Pipeline.IPipelineIO
 
@@ -46,7 +46,7 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 #### `ParallelTransformPipeline`
 
-Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para>
+<sub>Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para></sub>
 ```csharp
 public class SigStat.Common.Pipeline.ParallelTransformPipeline
     : PipelineBase, IEnumerable, ITransformation, ILogger, IProgress, IPipelineIO
@@ -73,7 +73,7 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 #### `SequentialTransformPipeline`
 
-Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
+<sub>Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para></sub>
 ```csharp
 public class SigStat.Common.Pipeline.SequentialTransformPipeline
     : PipelineBase, IEnumerable, ITransformation, ILogger, IProgress, IPipelineIO

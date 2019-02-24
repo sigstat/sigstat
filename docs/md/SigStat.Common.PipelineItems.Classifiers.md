@@ -1,6 +1,6 @@
 #### `DTWClassifier`
 
-Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
+<sub>Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.</sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
     : PipelineBase, IClassification, ILogger, IProgress, IPipelineIO, IEnumerable
@@ -18,7 +18,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
 
 #### `WeightedClassifier`
 
-Classifies Signatures by weighing other Classifier results.
+<sub>Classifies Signatures by weighing other Classifier results.</sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
     : PipelineBase, IEnumerable, IClassification, ILogger, IProgress, IPipelineIO

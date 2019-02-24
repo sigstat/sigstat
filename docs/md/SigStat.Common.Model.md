@@ -1,6 +1,6 @@
 #### `ApproximateLimit`
 
-Used to approximate the classification limit in the training process.
+<sub>Used to approximate the classification limit in the training process.</sub>
 ```csharp
 public class SigStat.Common.Model.ApproximateLimit
 
@@ -15,7 +15,7 @@ public class SigStat.Common.Model.ApproximateLimit
 
 #### `BenchmarkResults`
 
-Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
+<sub>Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.</sub>
 ```csharp
 public struct SigStat.Common.Model.BenchmarkResults
 
@@ -31,7 +31,7 @@ public struct SigStat.Common.Model.BenchmarkResults
 
 #### `Result`
 
-Contains the benchmark results of a single `SigStat.Common.Signer`
+<sub>Contains the benchmark results of a single `SigStat.Common.Signer`</sub>
 ```csharp
 public class SigStat.Common.Model.Result
 
@@ -49,7 +49,7 @@ public class SigStat.Common.Model.Result
 
 #### `Sampler`
 
-Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.Model.VerifierBenchmark`
+<sub>Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.Model.VerifierBenchmark`</sub>
 ```csharp
 public class SigStat.Common.Model.Sampler
 
@@ -83,7 +83,7 @@ public class SigStat.Common.Model.ThresholdResult
 
 #### `Verifier`
 
-Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
+<sub>Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.</sub>
 ```csharp
 public class SigStat.Common.Model.Verifier
     : ILogger, IProgress
@@ -127,7 +127,7 @@ public class SigStat.Common.Model.Verifier
 
 #### `VerifierBenchmark`
 
-Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
+<sub>Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`</sub>
 ```csharp
 public class SigStat.Common.Model.VerifierBenchmark
     : ILogger, IProgress
