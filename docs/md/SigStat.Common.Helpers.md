@@ -9,7 +9,7 @@ public class SigStat.Common.Helpers.ConfigurationHelper
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Configuration` | Load() |  | 
+| `Configuration` | <sub>Load()</sub> |  | 
 
 
 #### `ILogger`
@@ -68,7 +68,7 @@ public class SigStat.Common.Helpers.LogEntry
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | ToString() | Format the contained data to string, divided by tab characters.  Use this to display the entry in the console. | 
+| `String` | <sub>ToString()</sub> | Format the contained data to string, divided by tab characters.  Use this to display the entry in the console. | 
 
 
 #### `Logger`
@@ -93,14 +93,14 @@ public class SigStat.Common.Helpers.Logger
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Debug(Object, String) | Enqueue a debug level log entry. | 
-| `void` | EnqueueEntry(LogLevel, Object, String) | Enqueue a new log entry with specified level. The entry is filtered through `SigStat.Common.Helpers.Logger.FilteringLevel`. | 
-| `void` | Error(Object, String) | Enqueue an error level log entry. | 
-| `void` | Fatal(Object, String) | Enqueue a fatal level log entry. | 
-| `void` | Info(Object, String) | Enqueue an information level log entry. | 
-| `void` | Info(Object, String, Object) | Enqueue an information level log entry. | 
-| `void` | Stop() | Stop accepting entries, flush the queue and stop the consuming thread. | 
-| `void` | Warn(Object, String) | Enqueue a warning level log entry. | 
+| `void` | <sub>Debug(Object, String)</sub> | Enqueue a debug level log entry. | 
+| `void` | <sub>EnqueueEntry(LogLevel, Object, String)</sub> | Enqueue a new log entry with specified level. The entry is filtered through `SigStat.Common.Helpers.Logger.FilteringLevel`. | 
+| `void` | <sub>Error(Object, String)</sub> | Enqueue an error level log entry. | 
+| `void` | <sub>Fatal(Object, String)</sub> | Enqueue a fatal level log entry. | 
+| `void` | <sub>Info(Object, String)</sub> | Enqueue an information level log entry. | 
+| `void` | <sub>Info(Object, String, Object)</sub> | Enqueue an information level log entry. | 
+| `void` | <sub>Stop()</sub> | Stop accepting entries, flush the queue and stop the consuming thread. | 
+| `void` | <sub>Warn(Object, String)</sub> | Enqueue a warning level log entry. | 
 
 
 #### `LogLevel`

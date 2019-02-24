@@ -9,22 +9,22 @@ public static class SigStat.Common.ArrayExtension
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `T[]` | Clone(this T[]) |  | 
-| `T[][]` | CreateNested(Int32, Int32) |  | 
-| `T[]` | ForEach(this T[], Action<T>) | Performs a given action on all items of the array and returns the original array. | 
-| `IEnumerable<T>` | GetColumn(this T[,], Int32) |  | 
-| `T[,]` | GetPart(this T[,], Int32, Int32, Int32, Int32) |  | 
-| `IEnumerable<T>` | GetRow(this T[,], Int32) |  | 
-| `Tuple<Int32, Int32>` | IndexOf(this Int32[,], Int32) |  | 
-| `Tuple<Int32, Int32>` | IndexOf(this Double[,], Double) |  | 
-| `Int32` | IndexOf(this T[], T) |  | 
-| `Int32` | Max(this Int32[,]) |  | 
-| `Byte` | Max(this Byte[,]) |  | 
-| `Double` | Max(this Double[,]) |  | 
-| `void` | SetColumn(this T[,], Int32, T) |  | 
-| `void` | SetRow(this T[,], Int32, T) |  | 
-| `T[,]` | SetValues(this T[,], T) |  | 
-| `T[]` | Shuffle(this T[]) |  | 
+| `T[]` | <sub>Clone(this T[])</sub> |  | 
+| `T[][]` | <sub>CreateNested(Int32, Int32)</sub> |  | 
+| `T[]` | <sub>ForEach(this T[], Action<T>)</sub> | Performs a given action on all items of the array and returns the original array. | 
+| `IEnumerable<T>` | <sub>GetColumn(this T[,], Int32)</sub> |  | 
+| `T[,]` | <sub>GetPart(this T[,], Int32, Int32, Int32, Int32)</sub> |  | 
+| `IEnumerable<T>` | <sub>GetRow(this T[,], Int32)</sub> |  | 
+| `Tuple<Int32, Int32>` | <sub>IndexOf(this Int32[,], Int32)</sub> |  | 
+| `Tuple<Int32, Int32>` | <sub>IndexOf(this Double[,], Double)</sub> |  | 
+| `Int32` | <sub>IndexOf(this T[], T)</sub> |  | 
+| `Int32` | <sub>Max(this Int32[,])</sub> |  | 
+| `Byte` | <sub>Max(this Byte[,])</sub> |  | 
+| `Double` | <sub>Max(this Double[,])</sub> |  | 
+| `void` | <sub>SetColumn(this T[,], Int32, T)</sub> |  | 
+| `void` | <sub>SetRow(this T[,], Int32, T)</sub> |  | 
+| `T[,]` | <sub>SetValues(this T[,], T)</sub> |  | 
+| `T[]` | <sub>Shuffle(this T[])</sub> |  | 
 
 
 #### `Baseline`
@@ -46,7 +46,7 @@ public class SigStat.Common.Baseline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | ToString() |  | 
+| `String` | <sub>ToString()</sub> |  | 
 
 
 #### `Configuration`
@@ -115,7 +115,7 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | ToString() | Returns a string represenatation of the FeatureDescriptor | 
+| `String` | <sub>ToString()</sub> | Returns a string represenatation of the FeatureDescriptor | 
 
 
 ###### Static Fields
@@ -129,10 +129,10 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `FeatureDescriptor` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `FeatureDescriptor<T>` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `Boolean` | IsRegistered(String) |  | 
-| `FeatureDescriptor` | Register(String, Type) |  | 
+| `FeatureDescriptor` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
+| `FeatureDescriptor<T>` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
+| `Boolean` | <sub>IsRegistered(String)</sub> |  | 
+| `FeatureDescriptor` | <sub>Register(String, Type)</sub> |  | 
 
 
 #### `FeatureDescriptor<T>`
@@ -148,7 +148,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `FeatureDescriptor<T>` | Get(String) | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
+| `FeatureDescriptor<T>` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
 
 
 #### `Features`
@@ -191,7 +191,7 @@ public interface SigStat.Common.IClassification
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Pair(Signature, Signature) | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
+| `Double` | <sub>Pair(Signature, Signature)</sub> | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
 
 
 #### `IClassificationMethods`
@@ -206,8 +206,8 @@ public static class SigStat.Common.IClassificationMethods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IClassification` | Input(this IClassification, FeatureDescriptor[]) | Sets the InputFeatures in a convenient way. | 
-| `IClassification` | Output(this IClassification, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
+| `IClassification` | <sub>Input(this IClassification, FeatureDescriptor[])</sub> | Sets the InputFeatures in a convenient way. | 
+| `IClassification` | <sub>Output(this IClassification, FeatureDescriptor[])</sub> | Sets the OutputFeatures in a convenient way. | 
 
 
 #### `ITransformation`
@@ -223,7 +223,7 @@ public interface SigStat.Common.ITransformation
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Transform(Signature) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
+| `void` | <sub>Transform(Signature)</sub> | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
 #### `ITransformationMethods`
@@ -238,8 +238,8 @@ public static class SigStat.Common.ITransformationMethods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `ITransformation` | Input(this ITransformation, FeatureDescriptor[]) | Sets the InputFeatures in a convenient way. | 
-| `ITransformation` | Output(this ITransformation, FeatureDescriptor[]) | Sets the OutputFeatures in a convenient way. | 
+| `ITransformation` | <sub>Input(this ITransformation, FeatureDescriptor[])</sub> | Sets the InputFeatures in a convenient way. | 
+| `ITransformation` | <sub>Output(this ITransformation, FeatureDescriptor[])</sub> | Sets the OutputFeatures in a convenient way. | 
 
 
 #### `Loop`
@@ -262,7 +262,7 @@ public class SigStat.Common.Loop
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | ToString() |  | 
+| `String` | <sub>ToString()</sub> |  | 
 
 
 #### `MathHelper`
@@ -276,7 +276,7 @@ public static class SigStat.Common.MathHelper
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Min(Double, Double, Double) | Returns the smallest of the three double parameters | 
+| `Double` | <sub>Min(Double, Double, Double)</sub> | Returns the smallest of the three double parameters | 
 
 
 #### `Matrix`
@@ -290,18 +290,18 @@ public static class SigStat.Common.Matrix
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `E[,]` | Evaluate(T[,], ItemEvaluator<E, T>) |  | 
-| `T[,]` | FromTableRows(IEnumerable<DataRow>, Int32, Int32) | Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé.  Az átalakítás során ignoreColumns oszlopot és ignoreRows sort  figyelmen kívül hagy. | 
-| `Point` | GetCog(Double[,]) |  | 
-| `IEnumerable<Point>` | GetNeighbourPixels(this Point) |  | 
-| `IEnumerable<Point>` | GetNeighbours(this Point, Point, Int32) |  | 
-| `Double` | GetSum(Double[,], Int32, Int32, Int32, Int32) |  | 
-| `Double` | GetSumCol(Double[,], Int32) |  | 
-| `Double` | GetSumRow(Double[,], Int32) |  | 
-| `Boolean[,]` | Invert(this Boolean[,]) | returns a copy of the array with inverted values | 
-| `Byte[,]` | Neighbours(T[,], T) | returns a same sized matrix with each item showing the neighbour count for the given position. | 
-| `T[]` | SetValues(this T[], T) |  | 
-| `T[]` | SetValues(this T[], Func<T, T>) |  | 
+| `E[,]` | <sub>Evaluate(T[,], ItemEvaluator<E, T>)</sub> |  | 
+| `T[,]` | <sub>FromTableRows(IEnumerable<DataRow>, Int32, Int32)</sub> | Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé.  Az átalakítás során ignoreColumns oszlopot és ignoreRows sort  figyelmen kívül hagy. | 
+| `Point` | <sub>GetCog(Double[,])</sub> |  | 
+| `IEnumerable<Point>` | <sub>GetNeighbourPixels(this Point)</sub> |  | 
+| `IEnumerable<Point>` | <sub>GetNeighbours(this Point, Point, Int32)</sub> |  | 
+| `Double` | <sub>GetSum(Double[,], Int32, Int32, Int32, Int32)</sub> |  | 
+| `Double` | <sub>GetSumCol(Double[,], Int32)</sub> |  | 
+| `Double` | <sub>GetSumRow(Double[,], Int32)</sub> |  | 
+| `Boolean[,]` | <sub>Invert(this Boolean[,])</sub> | returns a copy of the array with inverted values | 
+| `Byte[,]` | <sub>Neighbours(T[,], T)</sub> | returns a same sized matrix with each item showing the neighbour count for the given position. | 
+| `T[]` | <sub>SetValues(this T[], T)</sub> |  | 
+| `T[]` | <sub>SetValues(this T[], Func<T, T>)</sub> |  | 
 
 
 #### `Origin`
@@ -351,8 +351,8 @@ public abstract class SigStat.Common.PipelineBase
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Log(LogLevel, String) | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
-| `void` | OnProgressChanged(Int32) | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
+| `void` | <sub>Log(LogLevel, String)</sub> | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
+| `void` | <sub>OnProgressChanged(Int32)</sub> | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
 
 
 #### `Signature`
@@ -378,16 +378,16 @@ public class SigStat.Common.Signature
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<Double[]>` | GetAggregateFeature(List<FeatureDescriptor>) | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
-| `T` | GetFeature(String) | Gets the specified feature. | 
-| `T` | GetFeature(FeatureDescriptor<T>) | Gets the specified feature. | 
-| `T` | GetFeature(FeatureDescriptor) | Gets the specified feature. | 
-| `IEnumerable<FeatureDescriptor>` | GetFeatureDescriptors() | Gets a collection of `SigStat.Common.FeatureDescriptor`s that are used in this signature. | 
-| `Boolean` | HasFeature(FeatureDescriptor) | Returns true if the signature contains the specified feature | 
-| `Boolean` | HasFeature(String) | Returns true if the signature contains the specified feature | 
-| `void` | SetFeature(FeatureDescriptor, T) | Sets the specified feature. | 
-| `void` | SetFeature(String, T) | Sets the specified feature. | 
-| `String` | ToString() | Returns a string representation of the signature | 
+| `List<Double[]>` | <sub>GetAggregateFeature(List<FeatureDescriptor>)</sub> | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
+| `T` | <sub>GetFeature(String)</sub> | Gets the specified feature. | 
+| `T` | <sub>GetFeature(FeatureDescriptor<T>)</sub> | Gets the specified feature. | 
+| `T` | <sub>GetFeature(FeatureDescriptor)</sub> | Gets the specified feature. | 
+| `IEnumerable<FeatureDescriptor>` | <sub>GetFeatureDescriptors()</sub> | Gets a collection of `SigStat.Common.FeatureDescriptor`s that are used in this signature. | 
+| `Boolean` | <sub>HasFeature(FeatureDescriptor)</sub> | Returns true if the signature contains the specified feature | 
+| `Boolean` | <sub>HasFeature(String)</sub> | Returns true if the signature contains the specified feature | 
+| `void` | <sub>SetFeature(FeatureDescriptor, T)</sub> | Sets the specified feature. | 
+| `void` | <sub>SetFeature(String, T)</sub> | Sets the specified feature. | 
+| `String` | <sub>ToString()</sub> | Returns a string representation of the signature | 
 
 
 #### `Signer`
@@ -439,15 +439,15 @@ public class SigStat.Common.Vector
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Add(Point) |  | 
-| `Vector` | Clone() |  | 
-| `Boolean` | Equals(Object) | Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba  mutatnak és hosszuk is megegyezik. | 
-| `IEnumerator<VectorPoint>` | GetEnumerator() |  | 
-| `Int32` | GetHashCode() |  | 
-| `Double` | GetLength() |  | 
-| `Vector` | GetNormal() | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
-| `Vector` | GetNormal(Double) | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
-| `String` | ToMatlabString() |  | 
-| `String` | ToString() |  | 
+| `void` | <sub>Add(Point)</sub> |  | 
+| `Vector` | <sub>Clone()</sub> |  | 
+| `Boolean` | <sub>Equals(Object)</sub> | Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba  mutatnak és hosszuk is megegyezik. | 
+| `IEnumerator<VectorPoint>` | <sub>GetEnumerator()</sub> |  | 
+| `Int32` | <sub>GetHashCode()</sub> |  | 
+| `Double` | <sub>GetLength()</sub> |  | 
+| `Vector` | <sub>GetNormal()</sub> | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
+| `Vector` | <sub>GetNormal(Double)</sub> | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
+| `String` | <sub>ToMatlabString()</sub> |  | 
+| `String` | <sub>ToString()</sub> |  | 
 
 

@@ -11,7 +11,7 @@ public class SigStat.Common.PipelineItems.Markers.LogMarker
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Transform(Signature) |  | 
+| `void` | <sub>Transform(Signature)</sub> |  | 
 
 
 #### `TimeMarkerStart`
@@ -27,7 +27,7 @@ public class SigStat.Common.PipelineItems.Markers.TimeMarkerStart
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Transform(Signature) |  | 
+| `void` | <sub>Transform(Signature)</sub> |  | 
 
 
 #### `TimeMarkerStop`
@@ -43,6 +43,6 @@ public class SigStat.Common.PipelineItems.Markers.TimeMarkerStop
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Transform(Signature) |  | 
+| `void` | <sub>Transform(Signature)</sub> |  | 
 
 

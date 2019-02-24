@@ -11,9 +11,9 @@ public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Add(FeatureDescriptor) |  | 
-| `IEnumerator` | GetEnumerator() |  | 
-| `Double` | Pair(Signature, Signature) | Aggregates the input features and executes the `SigStat.Common.Algorithms.Dtw` algorithm. | 
+| `void` | <sub>Add(FeatureDescriptor)</sub> |  | 
+| `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
+| `Double` | <sub>Pair(Signature, Signature)</sub> | Aggregates the input features and executes the `SigStat.Common.Algorithms.Dtw` algorithm. | 
 
 
 #### `WeightedClassifier`
@@ -43,8 +43,8 @@ public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | Add(ValueTuple<IClassification, Double>) | Add a new classifier with given weight to the list of items. | 
-| `IEnumerator` | GetEnumerator() |  | 
-| `Double` | Pair(Signature, Signature) | Execute each classifier in the list and weigh returned costs. | 
+| `void` | <sub>Add(ValueTuple<IClassification, Double>)</sub> | Add a new classifier with given weight to the list of items. | 
+| `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
+| `Double` | <sub>Pair(Signature, Signature)</sub> | Execute each classifier in the list and weigh returned costs. | 
 
 

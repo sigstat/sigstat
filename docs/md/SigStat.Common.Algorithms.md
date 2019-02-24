@@ -17,7 +17,7 @@ public class SigStat.Common.Algorithms.Dtw
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Compute(Double[][], Double[][]) | Generate shortest path between the two sequences. | 
+| `Double` | <sub>Compute(Double[][], Double[][])</sub> | Generate shortest path between the two sequences. | 
 
 
 #### `DtwPy`
@@ -31,8 +31,8 @@ public static class SigStat.Common.Algorithms.DtwPy
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | Dtw(IEnumerable<P>, IEnumerable<P>, Func<P, P, Double>) |  | 
-| `Double` | EuclideanDistance(Double[], Double[]) |  | 
+| `Double` | <sub>Dtw(IEnumerable<P>, IEnumerable<P>, Func<P, P, Double>)</sub> |  | 
+| `Double` | <sub>EuclideanDistance(Double[], Double[])</sub> |  | 
 
 
 #### `HSCPThinningStep`
@@ -54,7 +54,7 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Boolean[,]` | Scan(Boolean[,]) | Does one step of the thinning. Call it iteratively while ResultChanged. | 
+| `Boolean[,]` | <sub>Scan(Boolean[,])</sub> | Does one step of the thinning. Call it iteratively while ResultChanged. | 
 
 
 #### `PatternMatching3x3`
@@ -69,7 +69,7 @@ public class SigStat.Common.Algorithms.PatternMatching3x3
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Boolean` | Match(Boolean[,]) | Match the 3x3 input with the 3x3 pattern. | 
-| `Boolean` | RotMatch(Boolean[,]) | Match the 3x3 input with the 3x3 pattern from all 4 directions. | 
+| `Boolean` | <sub>Match(Boolean[,])</sub> | Match the 3x3 input with the 3x3 pattern. | 
+| `Boolean` | <sub>RotMatch(Boolean[,])</sub> | Match the 3x3 input with the 3x3 pattern from all 4 directions. | 
 
 
