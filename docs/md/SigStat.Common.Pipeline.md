@@ -10,7 +10,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Double` | Test(`Signature`signature) | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
+| `Double` | Test(`Signature`) | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
 
 
 ## `IClassifier`
@@ -25,7 +25,7 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `IClassificationModel` | Train(`List<Signature>`signatures) | Trains a model based on the signatures and returns the trained model | 
+| `IClassificationModel` | Train(`List<Signature>`) | Trains a model based on the signatures and returns the trained model | 
 
 
 ## `IPipelineIO`
@@ -66,9 +66,9 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`ITransformation`newItem) | Add new transform to the list. Pass `SigStat.Common.Pipeline.ParallelTransformPipeline.Logger` and set up Progress event. | 
+| `void` | Add(`ITransformation`) | Add new transform to the list. Pass `SigStat.Common.Pipeline.ParallelTransformPipeline.Logger` and set up Progress event. | 
 | `IEnumerator` | GetEnumerator() |  | 
-| `void` | Transform(`Signature`signature) | Executes transform `SigStat.Common.Pipeline.ParallelTransformPipeline.Items` parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
+| `void` | Transform(`Signature`) | Executes transform `SigStat.Common.Pipeline.ParallelTransformPipeline.Items` parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
 
 
 ## `SequentialTransformPipeline`
@@ -92,8 +92,8 @@ Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Add(`ITransformation`newItem) | Add new transform to the list. Pass `SigStat.Common.Pipeline.SequentialTransformPipeline.Logger` and set up Progress event. | 
+| `void` | Add(`ITransformation`) | Add new transform to the list. Pass `SigStat.Common.Pipeline.SequentialTransformPipeline.Logger` and set up Progress event. | 
 | `IEnumerator` | GetEnumerator() |  | 
-| `void` | Transform(`Signature`signature) | Executes transform `SigStat.Common.Pipeline.SequentialTransformPipeline.Items` in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
+| `void` | Transform(`Signature`) | Executes transform `SigStat.Common.Pipeline.SequentialTransformPipeline.Items` in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
 
 
