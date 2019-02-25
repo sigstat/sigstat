@@ -17,13 +17,13 @@ namespace SigStat.Common.Transforms
     {
 
         [Input]
-        public FeatureDescriptor<bool[,]> Skeleton;
+        public FeatureDescriptor<bool[,]> Skeleton;// = FeatureDescriptor<bool[,]>.Get("Skeleton");
 
         [Input]
-        public FeatureDescriptor<List<Point>> EndPoints;
+        public FeatureDescriptor<List<Point>> EndPoints;// = FeatureDescriptor<List<Point>>.Get("EndPoints");
 
         [Input]
-        public FeatureDescriptor<List<Point>> CrossingPoints;
+        public FeatureDescriptor<List<Point>> CrossingPoints;// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
 
         [Output("Components")]
         public FeatureDescriptor<List<List<PointF>>> OutputComponents;
@@ -47,7 +47,7 @@ namespace SigStat.Common.Transforms
 
             if (samplingResolution < 1)
             {
-                Logger.LogWarning( $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
+                Logger?.LogWarning( $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
             }
 
             //TODO: megtalalni a vegpont nelkulieket (pl. perfekt O betu), ebbol egy pontot hozzaadni a crossingpointokhoz es jo lesz
@@ -63,16 +63,16 @@ namespace SigStat.Common.Transforms
             {
                 endPoints.AddRange(endings);
             }
-            Logger.LogTrace($"{crossings.Count} crossings found.");
+            Logger?.LogTrace($"{crossings.Count} crossings found.");
 
             var sectionlist = Trace(endPoints);
-            Logger.LogTrace($"{sectionlist.Count} sections found");
+            Logger?.LogTrace($"{sectionlist.Count} sections found");
             //megvannak a sectionok, de meg ossze kell oket kotni a crossingoknal
 
             var componentlist = JoinSections(sectionlist, crossings);
 
             signature.SetFeature(OutputComponents, componentlist);
-            Logger.LogInformation( $"Component extraction done. {componentlist.Count} components found.");
+            Logger?.LogInformation( $"Component extraction done. {componentlist.Count} components found.");
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace SigStat.Common.Transforms
             }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
-            Logger.LogWarning( $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
+            Logger?.LogWarning( $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
             return (prevp/*ez most p*/, p);
         }
 

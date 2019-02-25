@@ -18,11 +18,9 @@ namespace SigStat.Common.Pipeline
             get => (FeatureDescriptor)FI.GetValue(PipelineItem);
             set => FI.SetValue(PipelineItem, value);
         }
-
-        public AutoSetMode AutoSetMode
-        {
-            get => FI.GetCustomAttribute<Input>().AutoSetMode;
-        }
+        public AutoSetMode AutoSetMode => FI.GetCustomAttribute<Input>().AutoSetMode;
+        public Type Type => FI.FieldType.GetGenericArguments()[0];
+        public string FieldName => FI.Name;
 
         private object PipelineItem;
         private FieldInfo FI;
@@ -44,6 +42,7 @@ namespace SigStat.Common.Pipeline
         }
         public bool IsTemporary => FI.GetCustomAttribute<Output>().Default == null;
         public string Default => FI.GetCustomAttribute<Output>().Default;
+        public Type Type => FI.FieldType.GetGenericArguments()[0];
 
         private object PipelineItem;
         private FieldInfo FI;

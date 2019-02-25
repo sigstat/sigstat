@@ -77,13 +77,13 @@ namespace SigStat.Common.Transforms
             if(writeToFile)
             {
                 string signerString = (signature.Signer!=null) ? signature.Signer.ID : "Null";
-                string filename = $"U_{signerString}_S_{signature.ID?? "Null"}_{OutputImage.Name}.png";
+                string filename = $"{signature.ID?? "Null"}_{Input.Name}.png";
                 img.SaveAsPng(File.Create(filename));
-                Logger.LogInformation( $"Image saved: {filename}");
+                Logger?.LogInformation( $"Image saved: {filename}");
             }
 
             Progress = 100;
-            Logger.LogInformation( $"Image generation from binary raster done.");
+            Logger?.LogInformation( $"Image generation from binary raster done.");
         }
     }
 }

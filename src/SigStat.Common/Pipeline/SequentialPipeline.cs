@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Pipeline
 {
@@ -59,7 +60,14 @@ namespace SigStat.Common.Pipeline
                 for (int ii = 0; ii < inputs.Count; ii++)
                 {
                     if (inputs[ii].AutoSetMode == AutoSetMode.Always || (inputs[ii].AutoSetMode == AutoSetMode.IfNull && inputs[ii].FD == null))
-                        inputs[ii].FD = outputs[ii].FD;
+                        inputs[ii].FD = outputs.FirstOrDefault(po => po.Type == inputs[ii].Type && !inputs.Any(pi => pi.FD == po.FD))?.FD;//elso, ami passzol es meg nem hasznaltuk
+                                                                                                                                          //inputs[ii].FD = outputs[ii].FD;//old method
+                    if (inputs[ii].FD == null)
+                    {
+                        Exception ex = new /*SigStatPipelineAutoWiring*/Exception($"Autowiring pipeline io failed, please provide an input to '{inputs[ii].FieldName}' of '{Items[i].ToString()}'");
+                        Logger?.LogError(ex, "Autowiring Exception");
+                        //throw ex;
+                    }
                 }
 
                 Items[i].Transform(signature);

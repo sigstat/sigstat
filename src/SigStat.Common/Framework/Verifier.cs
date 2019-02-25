@@ -20,7 +20,14 @@ namespace SigStat.Common.Model
 
         private SequentialTransformPipeline pipeline;
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
-        public SequentialTransformPipeline Pipeline { get => pipeline; set { pipeline = value;  } }
+        public SequentialTransformPipeline Pipeline { get => pipeline;
+            set
+            {
+                pipeline = value;
+                if (pipeline.Logger == null)
+                    pipeline.Logger = this.Logger;
+            }
+        }
 
         private IClassifier classifier;
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
@@ -38,7 +45,7 @@ namespace SigStat.Common.Model
         public Verifier(ILogger logger = null)
         {
             this.Logger = logger;
-            Logger.LogTrace(VerifierEvent, "Verifier created");
+            Logger?.LogTrace(VerifierEvent, "Verifier created");
         }
 
         /// <summary>
@@ -52,19 +59,22 @@ namespace SigStat.Common.Model
         {
             if (signatures.Any(s => s.Origin != Origin.Genuine))
             {
-                //Logger.LogWarning( $"Training with a non-genuine signature. ID: {sig.ID}");
+                //Logger?.LogWarning( $"Training with a non-genuine signature. ID: {sig.ID}");
             }
 
             foreach (var sig in signatures)
             {
                 Pipeline.Transform(sig);
             }
-            //Logger.LogTrace( "Signatures transformed.");
+            //Logger?.LogTrace( "Signatures transformed.");
 
-            model = Classifier.Train(signatures);
+            if (Classifier == null)
+                Logger?.LogError(VerifierEvent, "No Classifier attached to the Verifier", this);
+            else
+                model = Classifier.Train(signatures);
 
-            //Logger.LogTrace( $"Limit approximation: {limit}");
-            //Logger.LogInformation( "Training finished.");
+            //Logger?.LogTrace( $"Limit approximation: {limit}");
+            //Logger?.LogInformation( "Training finished.");
 
         }
 
@@ -75,10 +85,10 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
-            Logger.LogInformation(VerifierEvent, "Verifying 'signature {signature}'.", signature.ID);
+            Logger?.LogInformation(VerifierEvent, "Verifying 'signature {signature}'.", signature.ID);
 
             Pipeline.Transform(signature);
-            Logger.LogInformation(VerifierEvent, "'Signature {signature}' transformed.", signature.ID);
+            Logger?.LogInformation(VerifierEvent, "'Signature {signature}' transformed.", signature.ID);
 
             var result = classifier.Test(model,signature);
             //double[] vals = new double[genuines.Count];
@@ -88,8 +98,8 @@ namespace SigStat.Common.Model
             //    Progress = (int)(i / (double)(genuines.Count - 1) * 100.0);
             //}
             //double avg = vals.Average();
-            Logger.LogInformation(VerifierEvent, "Verification result for signature '{signature}': {result}", signature.ID, result);
-            //Logger.LogInformation( $"Verification SignatureID {sig.ID}  finished.");
+            Logger?.LogInformation(VerifierEvent, "Verification result for signature '{signature}': {result}", signature.ID, result);
+            //Logger?.LogInformation( $"Verification SignatureID {sig.ID}  finished.");
             //return avg < limit;
             return result;
         }

@@ -45,7 +45,7 @@ namespace SigStat.Common.Transforms
             int dim = vector.Count;
             if ((Inputs.Count) != dim)
             {
-                Logger.LogError("Dimension mismatch");
+                Logger?.LogError("Dimension mismatch");
             }
 
             for (int iF = 0; iF < dim; iF++)

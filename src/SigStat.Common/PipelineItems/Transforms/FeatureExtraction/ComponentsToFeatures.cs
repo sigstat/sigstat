@@ -16,16 +16,16 @@ namespace SigStat.Common.Transforms
     public class ComponentsToFeatures : PipelineBase, ITransformation
     {
         [Input]
-        FeatureDescriptor<List<List<PointF>>> InputComponents;
+        public FeatureDescriptor<List<List<PointF>>> InputComponents;
 
         [Output("X")]
-        FeatureDescriptor<List<double>> X;
+        public FeatureDescriptor<List<double>> X;
 
         [Output("Y")]
-        FeatureDescriptor<List<double>> Y;
+        public FeatureDescriptor<List<double>> Y;
 
         [Output("Button")]
-        FeatureDescriptor<List<double>> Button;
+        public FeatureDescriptor<List<bool>> Button;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
@@ -55,7 +55,7 @@ namespace SigStat.Common.Transforms
             signature.SetFeature(X, xs);
             signature.SetFeature(Y, ys);
             signature.SetFeature(Button, pendown);
-            Logger.LogInformation($"X,Y,Button features extracted. Length: {xs.Count}");
+            Logger?.LogInformation($"X,Y,Button features extracted. Length: {xs.Count}");
 
         }
     }

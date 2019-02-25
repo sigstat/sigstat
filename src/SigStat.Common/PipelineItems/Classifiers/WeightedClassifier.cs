@@ -38,8 +38,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
             //{
             //    score += Items[i].classifier.Pair(signature1, signature2) * Items[i].weight;
             //}
-            //Logger.LogInformation($"Paired SigID {signature1.ID} with SigID {signature2.ID}");
-            //Logger.LogTrace($"Pairing result of SigID {signature1.ID} with SigID {signature2.ID}: {score}");
+            //Logger?.LogInformation($"Paired SigID {signature1.ID} with SigID {signature2.ID}");
+            //Logger?.LogTrace($"Pairing result of SigID {signature1.ID} with SigID {signature2.ID}: {score}");
             //return score;
             throw new NotImplementedException();
         }

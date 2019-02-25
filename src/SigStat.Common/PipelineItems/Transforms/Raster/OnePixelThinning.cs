@@ -35,7 +35,7 @@ namespace SigStat.Common.Transforms
             }
             signature.SetFeature(Output, b);
             Progress = 100;
-            Logger.LogInformation( $"One pixel thinning steps applied {stepCnt} times.");
+            Logger?.LogInformation( $"One pixel thinning steps applied {stepCnt} times.");
         }
     }
 }

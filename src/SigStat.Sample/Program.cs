@@ -41,13 +41,13 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
-            SignatureDemo();
-            TransformationPipeline();
+            //SignatureDemo();
+            //TransformationPipeline();
             //Classifier();
-            OnlineToImage();
-            GenerateOfflineDatabase();
+            //OnlineToImage();
+            //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
-            //OnlineVerifierDemo();
+            OnlineVerifierDemo();
             //OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
@@ -109,6 +109,15 @@ namespace SigStat.Sample
 
         }
 
+        static void DatabaseLoaderDemo(out List<Signature> genuines, out Signature challenge)
+        {
+            //Load signatures from local database
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"))[0];//Load the first signer only
+            genuines = signer.Signatures.Where(s => s.Origin == Origin.Genuine).ToList();
+            challenge = genuines[0];
+        }
+
         static void TransformationPipeline()
         {
             Signature offlineSignature = ImageLoader.LoadSignature(@"Databases\Offline\Images\004_e_001.png");
@@ -156,9 +165,16 @@ namespace SigStat.Sample
 
         static void Classifier()
         {
-            IClassifier classifier = new DtwClassifier();
-            ISignerModel model = classifier.Train(null);
-            classifier.Test(model, null);
+            DatabaseLoaderDemo(out var genuines, out var challenge);
+
+            IClassifier classifier = new DtwClassifier()
+            {
+                InputFeatures = { Features.X, Features.Y, Features.T }
+            };
+            ISignerModel model = classifier.Train(genuines);//Train on genuine signatures
+            var result = classifier.Test(model, challenge);
+
+            Console.WriteLine("Classification result: " + (result>0.5?"Genuine":"Forged") );
         }
 
 
@@ -167,8 +183,6 @@ namespace SigStat.Sample
         /// </summary>
         static void OfflineVerifierDemo()
         {
-
-
             var verifier = new Verifier(new SimpleConsoleLogger())
             {
                 Pipeline = new SequentialTransformPipeline
@@ -180,12 +194,12 @@ namespace SigStat.Sample
                     new ImageGenerator(true),
                     new HSCPThinning(),
                     new ImageGenerator(true),
-                    new OnePixelThinning() { Output = MyFeatures.Skeleton },//output Skeletonba, mert az Extraction onnan szedi
+                    new OnePixelThinning() { Output = MyFeatures.Skeleton },
                     new ImageGenerator(true),
                     //new BaselineExtraction(),
                     //new LoopExtraction(),
                     new EndpointExtraction(),
-                    new ComponentExtraction(5),
+                    new ComponentExtraction(5) { Skeleton = MyFeatures.Skeleton },
                     new ComponentSorter(),
                     new ComponentsToFeatures(),
                     new ParallelTransformPipeline
@@ -205,16 +219,14 @@ namespace SigStat.Sample
             s.Signatures.Add(s1);
 
             verifier.Train(new List<Signature>{ s1 });
-
+            
             //TODO: ha mar Verifier demo, akkor Test()-et is hasznaljuk..
             ImageSaver.Save(s1, @"GeneratedOfflineImage.png");
         }
 
         static void OnlineVerifierDemo()
         {
-
-
-            var timer1 = FeatureDescriptor.Get<DateTime>("Timer1");
+            var timer1 = FeatureDescriptor.Register("Timer1", typeof(DateTime));//TODO: <DateTime> template-tel mukodjon
 
             var verifier = new Verifier(new SimpleConsoleLogger())
             {
@@ -225,7 +237,7 @@ namespace SigStat.Sample
                         new Normalize() { Input = Features.Pressure },
                         new Map(0, 1) { Input = Features.X },
                         new Map(0, 1) { Input = Features.Y },
-                        new TimeReset(),
+                        //new TimeReset(),
                     },
                     new CentroidTranslate(),//is a sequential pipeline of other building blocks
                     new TangentExtraction(),

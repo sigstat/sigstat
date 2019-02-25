@@ -32,11 +32,12 @@ namespace SigStat.Common.Transforms
         /// <summary> Initializes a new instance of the <see cref="CentroidTranslate"/> class.</summary>
         public CentroidTranslate()
         {
+            var C = FeatureDescriptor<List<double>>.Get("Centroid");//TODO: Register()
             Items = new List<ITransformation>
             {
-                new CentroidExtraction { Inputs = {InputX, InputY } },
+                new CentroidExtraction { Inputs = {InputX, InputY }, OutputCentroid=C },
                 new Multiply(-1.0),
-                new Translate(FeatureDescriptor.Get<List<double>>("Centroid"))
+                new Translate(C) { OutputX = OutputX, OutputY = OutputY }
             };
         }
 
