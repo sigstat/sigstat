@@ -96,7 +96,7 @@ namespace SigStat.Common.Transforms
             }
             signature.SetFeature(Output, b);
             Progress = 100;
-            Logger?.LogInformation( "Rasterization done.");
+            this.Log( "Rasterization done.");
         }
 
         private PointF ToImageCoords(double x, double y)

@@ -72,7 +72,7 @@ namespace SigStat.Common.Transforms
             signature.SetFeature(OutputCrossingPoints, crossingPoints);
 
             Progress = 100;
-            Logger?.LogInformation($"Endpoint extraction done. {endPoints.Count} endpoints and {crossingPoints.Count} crossingpoints found.");
+            this.Log($"Endpoint extraction done. {endPoints.Count} endpoints and {crossingPoints.Count} crossingpoints found.");
         }
     }
 }

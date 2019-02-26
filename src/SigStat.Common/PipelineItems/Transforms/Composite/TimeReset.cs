@@ -28,7 +28,7 @@ namespace SigStat.Common.Transforms
             {
                 new Extrema(),//find minimum
                 new Multiply(-1.0) { Output = negMin },//negate
-                new AddVector(negMin) { Inputs = { Input } },//add the negated value
+                new AddVector(negMin) { Inputs =  { Input }  },//add the negated value
             };
         }
 

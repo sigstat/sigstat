@@ -21,11 +21,13 @@ namespace SigStat.Common.Transforms
     {
         [Input]
         public List<FeatureDescriptor<List<double>>> Inputs;
+        public FeatureDescriptor<List<List<double>>> InputsFD;//aggregated
 
         [Output("AddVectorOutputs")]
         public List<FeatureDescriptor<List<double>>> Outputs;
+        public FeatureDescriptor<List<List<double>>> OutputsFD;
 
-        private readonly FeatureDescriptor<List<double>> vectorFeature;
+        private readonly FeatureDescriptor<List<double>> vectorFeature;//aggregated
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddVector"/> class with a vector feature.
@@ -41,24 +43,27 @@ namespace SigStat.Common.Transforms
         public void Transform(Signature signature)
         {
             var vector = signature.GetFeature(vectorFeature);
+            var inputfeatures = signature.GetFeature(InputsFD);
+            var outputfeatures = new List<List<double>>();
 
             int dim = vector.Count;
-            if ((Inputs.Count) != dim)
+            if ((inputfeatures.Count) != dim)
             {
-                Logger?.LogError("Dimension mismatch");
+                this.Error("Dimension mismatch");
             }
 
             for (int iF = 0; iF < dim; iF++)
             {
-                var listFeature = signature.GetFeature(Inputs[iF]);
+                var listFeature = inputfeatures[iF];
                 for (int i = 0; i < listFeature.Count; i++)
                 {
                     listFeature[i] += vector[iF];
                 }
-                signature.SetFeature(Outputs[iF], listFeature);
+                outputfeatures.Add(listFeature);
                 Progress += 100 / dim;
             }
 
+            signature.SetFeature(OutputsFD, outputfeatures);
             Progress = 100;
         }
 

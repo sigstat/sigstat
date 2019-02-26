@@ -49,7 +49,7 @@ namespace SigStat.Common.Loaders
         /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-            Logger?.LogInformation("Enumerating signers started.");
+            this.Log("Enumerating signers started.");
             var signatureGroups = Directory.EnumerateFiles(DatabasePath, "U*S*.png")
                 .Select(f => new SignatureFile(f))
                 .GroupBy(sf => sf.SignerID);
@@ -76,7 +76,7 @@ namespace SigStat.Common.Loaders
                 }
                 yield return signer;
             }
-            Logger?.LogInformation("Enumerating signers finished.");
+            this.Log("Enumerating signers finished.");
         }
 
         /// <summary>

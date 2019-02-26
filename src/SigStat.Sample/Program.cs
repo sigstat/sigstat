@@ -47,8 +47,8 @@ namespace SigStat.Sample
             //OnlineToImage();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
-            OnlineVerifierDemo();
-            //OnlineVerifierBenchmarkDemo();
+            //OnlineVerifierDemo();
+            OnlineVerifierBenchmarkDemo();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -210,7 +210,7 @@ namespace SigStat.Sample
                     new ApproximateOnlineFeatures(),
                     new RealisticImageGenerator(1280, 720),
                 },
-                Classifier = null
+                Classifier = new WeightedClassifier()
             };
 
             Signature s1 = ImageLoader.LoadSignature(@"Databases\Offline\Images\U1S1.png");
@@ -239,8 +239,8 @@ namespace SigStat.Sample
                         new Map(0, 1) { Input = Features.Y },
                         //new TimeReset(),
                     },
-                    new CentroidTranslate(),//is a sequential pipeline of other building blocks
-                    new TangentExtraction(),
+                    //new CentroidTranslate(),//is a sequential pipeline of other building blocks
+                    //new TangentExtraction(),
                     /*new AlignmentNormalization(Alignment.Origin),
                     new Paper13FeatureExtractor(),*/
 
@@ -250,19 +250,18 @@ namespace SigStat.Sample
                     {
                         (new DtwClassifier(Accord.Math.Distance.Manhattan)
                         {
-                            InputFeatures ={ Features.X, Features.Y }
+                            InputFeatures = { Features.X, Features.Y }
                         },
                            0.15)
                     },
                     {
                         (new DtwClassifier(){
-                            InputFeatures ={ Features.Pressure }
+                            InputFeatures = { Features.Pressure }
                         }, 0.3)
                     },
                     {
                         (new DtwClassifier(){
-                            InputFeatures ={
-                            FeatureDescriptor.Get<List<double>>("Tangent") }//Features.Tangent
+                            InputFeatures = { MyFeatures.Tangent }
                         }, 0.55)
                     },
                     //{
@@ -294,20 +293,21 @@ namespace SigStat.Sample
             var benchmark = new VerifierBenchmark()
             {
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
-                Verifier = null,//new BasicVerifier(),
-                Sampler = Sampler.BasicSampler,
+                Verifier = new Verifier() {
+                    Pipeline = new SequentialTransformPipeline {
+                        { new TangentExtraction() }
+                    },
+                    Classifier = new DtwClassifier() { InputFeatures = new List<FeatureDescriptor>() { MyFeatures.Tangent } }
+                },
+                Sampler = new SVC2004Sampler(),
                 Logger = new SimpleConsoleLogger(),
             };
 
             benchmark.ProgressChanged += ProgressPrimary;
             //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
-            //var result = await benchmark.ExecuteAsync();
-            var result = benchmark.ExecuteParallel();
+            var result = benchmark.Execute();
 
-            //debugLogger.Stop();
-
-            //result.SignerResults...
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 

@@ -29,13 +29,21 @@ namespace SigStat.Common
             PipelineOutputs = this.GetType().GetFields()
                 .Where(field => Attribute.IsDefined(field, typeof(Output)))
                 .Select(field => {
-                    var val = (FeatureDescriptor)field.GetValue(this);
+                    var val = field.GetValue(this);
                     if (val == null)
                     {
                         var attr = (Output)Attribute.GetCustomAttribute(field, typeof(Output));
-                        var fdType = field.FieldType.GetGenericArguments()[0];
-                        field.SetValue(this, FeatureDescriptor.Register(attr.Default ?? 
-                            $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{field.Name}" , fdType));
+                        var fdType = field.FieldType;
+                        if (!(fdType.GetGenericTypeDefinition() == typeof(List<>)))
+                        {
+                            field.SetValue(this, FeatureDescriptor.Register(attr.Default ??
+                                $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{field.Name}", fdType.GetGenericArguments()[0]));
+                        }
+                        else
+                        {//List of Features
+                            throw new NotImplementedException();
+                            //TODO: bajbajbajbajbajbaj
+                        }
                     }
                     return new PipelineOutput(this, field);
                 }).ToList();

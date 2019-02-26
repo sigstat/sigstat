@@ -15,6 +15,7 @@ namespace SigStat.Common
         private readonly Func<List<Signature>, List<Signature>> genuineTests;
         private readonly Func<List<Signature>, List<Signature>> forgeryTests;
         private List<Signature> signatures;
+        public int BatchSize { get; set; }
 
         /// <summary>
         /// Initialize a new instance of the <see cref="Sampler"/> class based on the <paramref name="s"/> parameter's strategy.
@@ -33,11 +34,12 @@ namespace SigStat.Common
         /// <param name="references">Strategy to sample genuine signatures to be used for training.</param>
         /// <param name="genuineTests">Strategy to sample genuine signatures to be used for testing.</param>
         /// <param name="forgeryTests">Strategy to sample forged signatures to be used for testing.</param>
-        public Sampler(Func<List<Signature>, List<Signature>> references, Func<List<Signature>, List<Signature>> genuineTests, Func<List<Signature>, List<Signature>> forgeryTests)
+        public Sampler(Func<List<Signature>, List<Signature>> references, Func<List<Signature>, List<Signature>> genuineTests, Func<List<Signature>, List<Signature>> forgeryTests, int batchSize=10)
         {
             this.references = references;
             this.genuineTests = genuineTests;
             this.forgeryTests = forgeryTests;
+            BatchSize = batchSize;
         }
 
         /// <summary>
@@ -47,6 +49,15 @@ namespace SigStat.Common
         public void Init(Signer s)
         {
             Init(s.Signatures);
+        }
+
+        /// <summary>
+        /// Initialize the Sampler with a Signer's Signatures.
+        /// </summary>
+        /// <param name="s">Signer to sample Signatures from.</param>
+        public void Init(List<Signer> s)
+        {
+            Init(s.SelectMany(q=>q.Signatures).ToList());
         }
 
         /// <summary>
@@ -62,19 +73,21 @@ namespace SigStat.Common
         /// Samples a batch of genuine reference signatures to train on.
         /// </summary>
         /// <returns>Genuine reference signatures to train on.</returns>
-        public List<Signature> SampleReferences()
+        public List<Signature> SampleReferences(Func<List<Signature>, List<Signature>> prefilter)
         {
-            return references(signatures);
+            var r = references(prefilter(signatures)).Take(BatchSize).ToList();
+            //signatures = signatures.Except(r).ToList();//TODO hasznalt mintakat ne hasznaljuk ujra
+            return r;
         }
 
         /// <summary>
-        /// Samples a batch of genuine signatures to test on.
+        /// Samples a batch of genuine test signatures to test on.
         /// </summary>
         /// <returns>Genuine signatures to test on.</returns>
-        public List<Signature> SampleGenuineTests()
+        public List<Signature> SampleGenuineTests(Func<List<Signature>, List<Signature>> prefilter)
         {
-            var g = genuineTests(signatures);
-            
+            var g = genuineTests(prefilter(signatures)).Skip(BatchSize).Take(BatchSize).ToList();
+            //signatures = signatures.Except(g).ToList();//TODO hasznalt mintakat ne hasznaljuk ujra
             return g;
         }
 
@@ -82,29 +95,22 @@ namespace SigStat.Common
         /// Samples a batch of forged signatures to test on.
         /// </summary>
         /// <returns>Forged signatures to test on.</returns>
-        public List<Signature> SampleForgeryTests()
+        public List<Signature> SampleForgeryTests(Func<List<Signature>, List<Signature>> prefilter)
         {
-            var f = forgeryTests(signatures);
-            /*foreach (var s in f)
-                signatures.Remove(s);*/
+            var f = forgeryTests(prefilter(signatures)).Take(BatchSize).ToList();
+            //signatures=signatures.Except(f).ToList();//TODO hasznalt mintakat ne hasznaljuk ujra
             return f;
         }
-
-        /// <summary>
-        /// Default sampler for SVC2004 database.
-        /// 10 references, 10 genuine tests, 10 forged tests
-        /// </summary>
-        public static Sampler BasicSampler
-        {
-            get
-            {
-                // TODO: remove or generalize
-                return new Sampler(
-                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
-                    (sl) => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
-                    (sl) => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList()
-                    );
-            }
-        }
     }
+
+    public class SVC2004Sampler : Sampler
+    {
+        public SVC2004Sampler() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList(),
+            10)
+        { }
+    }
+
 }

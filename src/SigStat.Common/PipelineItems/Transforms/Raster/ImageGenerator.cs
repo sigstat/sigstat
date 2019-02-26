@@ -79,11 +79,11 @@ namespace SigStat.Common.Transforms
                 string signerString = (signature.Signer!=null) ? signature.Signer.ID : "Null";
                 string filename = $"{signature.ID?? "Null"}_{Input.Name}.png";
                 img.SaveAsPng(File.Create(filename));
-                Logger?.LogInformation( $"Image saved: {filename}");
+                this.Log( $"Image saved: {filename}");
             }
 
             Progress = 100;
-            Logger?.LogInformation( $"Image generation from binary raster done.");
+            this.Log( $"Image generation from binary raster done.");
         }
     }
 }

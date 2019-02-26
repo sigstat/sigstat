@@ -49,7 +49,7 @@ namespace SigStat.Common
     }
 
     /// <summary> Benchmarking class to test error rates of a <see cref="Model.Verifier"/> </summary>
-    public class VerifierBenchmark: ILoggerObject
+    public class VerifierBenchmark : ILoggerObject
     {
         readonly EventId benchmarkEvent = SigStatEvents.BenchmarkEvent;
 
@@ -101,163 +101,105 @@ namespace SigStat.Common
         /// <inheritdoc/>
         public event EventHandler<int> ProgressChanged;
 
-     
+
         /// <summary>
         /// Initializes a new instance of the <see cref="VerifierBenchmark"/> class.
-        /// Sets the <see cref="Common.Sampler"/> to be the <see cref="Sampler.BasicSampler"/>.
+        /// Sets the <see cref="Common.Sampler"/> to the default <see cref="SVC2004Sampler"/>.
         /// </summary>
         public VerifierBenchmark()
         {
             Verifier = null;
-            Sampler = Sampler.BasicSampler;
+            Sampler = new SVC2004Sampler();
         }
 
+        private double farAcc = 0;
+        private double frrAcc = 0;
+        private double pCnt = 0;
+
         /// <summary>
-        /// Synchronously execute the benchmarking process.
+        /// Execute the benchmarking process.
         /// </summary>
         /// <returns></returns>
-        public BenchmarkResults Execute()
+        public BenchmarkResults Execute(bool ParallelMode = true)
         {
-            Logger?.LogInformation("Benchmark execution started.");
+            this.Log($"Benchmark execution started. Parallel mode: {ParallelMode.ToString()}");
             var results = new List<Result>();
-            double farAcc = 0;
-            double frrAcc = 0;
+            farAcc = 0;
+            frrAcc = 0;
+            pCnt = 0;
 
-            Logger?.LogInformation("Loading data..");
+            this.Log("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
-            Logger?.LogInformation($"{signers.Count} signers found. Benchmarking..");
-            for(int i = 0; i < signers.Count; i++)
+            Sampler.Init(signers);
+            this.Log($"{signers.Count} signers found. Benchmarking..");
+            
+            if (ParallelMode)
             {
-                this.Log($"Benchmarking Signer ID {signers[i].ID} ({i+1}/{signers.Count})");
-                Sampler.Init(signers[i]);
-                List<Signature> references = Sampler.SampleReferences();
-                List<Signature> genuineTests = Sampler.SampleGenuineTests();
-                List<Signature> forgeryTests = Sampler.SampleForgeryTests();
-
-                Verifier.Train(references);
-
-                //FRR: false rejection rate
-                //FRR = elutasított eredeti / összes eredeti
-                int nFalseReject = 0;
-                foreach (Signature genuine in genuineTests)
-                {
-                    if (Verifier.Test(genuine)<=0.5)
-                    {
-                        nFalseReject++;//eredeti alairast hamisnak hisz
-                    }
-                }
-
-                double FRR = nFalseReject / (double)genuineTests.Count;
-
-                //FAR: false acceptance rate
-                //FAR = elfogadott hamis / összes hamis
-                int nFalseAccept = 0;
-                foreach (Signature forgery in forgeryTests)
-                {
-                    if (Verifier.Test(forgery)>0.5)
-                    {
-                        nFalseAccept++;//hamis alairast eredetinek hisz
-                    }
-                }
-
-                double FAR = nFalseAccept / (double)forgeryTests.Count;
-
-                //AER: average error rate
-                double AER = (FRR + FAR) / 2.0;
-                this.Trace($"AER for Signer ID {signers[i].ID}: {AER}");
-
-                //EER definicio fix: ez az az ertek amikor FAR==FRR
-
-                frrAcc += FRR;
-                farAcc += FAR;
-                results.Add(new Result(signers[i].ID, FRR, FAR, AER));
-
-                Progress = (int)(i / (double)(signers.Count - 1) * 100.0);
+                //Parallel.ForEach(signers, a=>benchmarkSigner(a));
+                results = signers.AsParallel().SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
+            }
+            else
+            {
+                //signers.ForEach(iSigner => benchmarkSigner(iSigner));
+                results = signers.SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
 
             double frrFinal = frrAcc / signers.Count;
             double farFinal = farAcc / signers.Count;
             double aerFinal = (frrFinal + farFinal) / 2.0;
 
-            Logger?.LogInformation("Benchmark execution finished.");
-            Logger?.LogTrace( $"AER: {aerFinal}");
-            return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
+            Progress = 100;
+            var r = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
+            this.Log("Benchmark execution finished.", r);
+            return r;
         }
 
-        /// <summary>
-        /// Parallel execute the benchmarking process.
-        /// </summary>
-        /// <returns></returns>
-        public BenchmarkResults ExecuteParallel()
+        private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
-            Logger?.LogInformation("Parallel benchmark execution started.");
-            var results = new List<Result>();
-            double farAcc = 0;
-            double frrAcc = 0;
+            this.Log($"Benchmarking Signer ID {iSigner.ID}");
+            Func<List<Signature>, List<Signature>> signerSelector = (l) => l.Where(s => s.Signer == iSigner).ToList();
+            List<Signature> references = Sampler.SampleReferences(signerSelector);
+            List<Signature> genuineTests = Sampler.SampleGenuineTests(signerSelector);
+            List<Signature> forgeryTests = Sampler.SampleForgeryTests(signerSelector);
 
-            Logger?.LogInformation("Loading data..");
-            var signers = new List<Signer>(Loader.EnumerateSigners(null));
-            Logger?.LogInformation($"{signers.Count} signers found. Benchmarking..");
-            double parallelProgress = 0;
-            Parallel.ForEach(signers, iSigner =>
+            Verifier.Train(references);
+
+            //FRR: false rejection rate
+            //FRR = elutasított eredeti / összes eredeti
+            int nFalseReject = 0;
+            foreach (Signature genuine in genuineTests)
             {
-                Logger?.LogInformation($"Benchmarking Signer ID {iSigner.ID}");
-                Sampler localSampler = new Sampler(Sampler);
-                localSampler.Init(iSigner);//parhuzamositas miatt kell kulon sampler mindenkinek
-                List<Signature> references = localSampler.SampleReferences();
-                List<Signature> genuineTests = localSampler.SampleGenuineTests();
-                List<Signature> forgeryTests = localSampler.SampleForgeryTests();
-
-                Verifier.Train(references);
-
-                //FRR: false rejection rate
-                //FRR = elutasított eredeti / összes eredeti
-                int nFalseReject = 0;
-                foreach (Signature genuine in genuineTests)
+                if (Verifier.Test(genuine) <= 0.5)
                 {
-                    if (Verifier.Test(genuine)<=0.5)
-                    {
-                        nFalseReject++;//eredeti alairast hamisnak hisz
-                    }
+                    nFalseReject++;//eredeti alairast hamisnak hisz
                 }
+            }
+            double FRR = nFalseReject / (double)genuineTests.Count;
 
-                double FRR = nFalseReject / (double)genuineTests.Count;
-
-                //FAR: false acceptance rate
-                //FAR = elfogadott hamis / összes hamis
-                int nFalseAccept = 0;
-                foreach (Signature forgery in forgeryTests)
+            //FAR: false acceptance rate
+            //FAR = elfogadott hamis / összes hamis
+            int nFalseAccept = 0;
+            foreach (Signature forgery in forgeryTests)
+            {
+                if (Verifier.Test(forgery) > 0.5)
                 {
-                    if (Verifier.Test(forgery)>0.5)
-                    {
-                        nFalseAccept++;//hamis alairast eredetinek hisz
-                    }
+                    nFalseAccept++;//hamis alairast eredetinek hisz
                 }
+            }
+            double FAR = nFalseAccept / (double)forgeryTests.Count;
 
-                double FAR = nFalseAccept / (double)forgeryTests.Count;
+            //AER: average error rate
+            double AER = (FRR + FAR) / 2.0;
+            this.Trace($"AER for Signer ID {iSigner.ID}: {AER}");
 
-                //AER: average error rate
-                double AER = (FRR + FAR) / 2.0;
-                Logger?.LogTrace($"AER for Signer ID {iSigner.ID}: {AER}");
+            //EER definicio fix: ez az az ertek amikor FAR==FRR
 
-                //EER definicio fix: ez az az ertek amikor FAR==FRR
+            frrAcc += FRR;
+            farAcc += FAR;
 
-                frrAcc += FRR;
-                farAcc += FAR;
-                results.Add(new Result(iSigner.ID, FRR, FAR, AER));
-
-                parallelProgress += 1.0 / (double)(signers.Count - 1);
-                Progress = (int)(parallelProgress * 100);//TODO: atterni doublere, hogy ne kelljen kulon valtozot szamolni
-            });
-
-            double frrFinal = frrAcc / signers.Count;
-            double farFinal = farAcc / signers.Count;
-            double aerFinal = (frrFinal + farFinal) / 2.0;
-
-            Progress = 100;
-            Logger?.LogInformation("Benchmark execution finished.");
-            Logger?.LogTrace( $"AER: {aerFinal}");
-            return new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
+            pCnt += 1.0 / (cntSigners - 1);
+            Progress = (int)(pCnt * 100);
+            yield return new Result(iSigner.ID, FRR, FAR, AER);
         }
 
 

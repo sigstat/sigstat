@@ -14,9 +14,9 @@ namespace SigStat.Common.Model
     /// <summary>
     /// Uses pipelines to transform, train on, and classify <see cref="Signature"/> objects.
     /// </summary>
-    public class Verifier
+    public class Verifier : ILoggerObject
     {
-        private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
+        //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
 
         private SequentialTransformPipeline pipeline;
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
@@ -29,14 +29,12 @@ namespace SigStat.Common.Model
             }
         }
 
-        private IClassifier classifier;
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
-        public IClassifier Classifier { get => classifier; set { classifier = value; } }
+        public IClassifier Classifier { get; set; }
+        public ISignerModel SignerModel { get; set; }
 
         /// <summary> Gets or sets the class responsible for logging</summary>
         public ILogger Logger { get; set; }
-
-        private ISignerModel model;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Verifier"/> class
@@ -45,7 +43,7 @@ namespace SigStat.Common.Model
         public Verifier(ILogger logger = null)
         {
             this.Logger = logger;
-            Logger?.LogTrace(VerifierEvent, "Verifier created");
+            this.Trace("Verifier created");
         }
 
         /// <summary>
@@ -59,22 +57,21 @@ namespace SigStat.Common.Model
         {
             if (signatures.Any(s => s.Origin != Origin.Genuine))
             {
-                //Logger?.LogWarning( $"Training with a non-genuine signature. ID: {sig.ID}");
+                //this.Warn( $"Training with a non-genuine signature.");
             }
 
             foreach (var sig in signatures)
             {
                 Pipeline.Transform(sig);
             }
-            //Logger?.LogTrace( "Signatures transformed.");
+            this.Trace("Signatures transformed.");
 
             if (Classifier == null)
-                Logger?.LogError(VerifierEvent, "No Classifier attached to the Verifier", this);
+                this.Error("No Classifier attached to the Verifier", this);
             else
-                model = Classifier.Train(signatures);
+                SignerModel = Classifier.Train(signatures);
 
-            //Logger?.LogTrace( $"Limit approximation: {limit}");
-            //Logger?.LogInformation( "Training finished.");
+            this.Log("Training finished.");
 
         }
 
@@ -85,22 +82,18 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
-            Logger?.LogInformation(VerifierEvent, "Verifying 'signature {signature}'.", signature.ID);
+            this.Log("Verifying 'signature {signature}'.", signature.ID);
 
             Pipeline.Transform(signature);
-            Logger?.LogInformation(VerifierEvent, "'Signature {signature}' transformed.", signature.ID);
 
-            var result = classifier.Test(model,signature);
-            //double[] vals = new double[genuines.Count];
-            //for (int i = 0; i < genuines.Count; i++)
-            //{
-            //    vals[i] = Classifier.Pair(sig, genuines[i]);
-            //    Progress = (int)(i / (double)(genuines.Count - 1) * 100.0);
-            //}
-            //double avg = vals.Average();
-            Logger?.LogInformation(VerifierEvent, "Verification result for signature '{signature}': {result}", signature.ID, result);
-            //Logger?.LogInformation( $"Verification SignatureID {sig.ID}  finished.");
-            //return avg < limit;
+            this.Log("'Signature {signature}' transformed.", signature.ID);
+
+            if (SignerModel == null)
+                this.Error("Signer model not available. Train or provide a model for verification.");
+
+            var result = Classifier.Test(SignerModel, signature);
+
+            this.Log("Verification result for signature '{signature}': {result}", signature.ID, result);
             return result;
         }
     }

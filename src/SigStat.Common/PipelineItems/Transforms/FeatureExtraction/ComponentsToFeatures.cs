@@ -55,7 +55,7 @@ namespace SigStat.Common.Transforms
             signature.SetFeature(X, xs);
             signature.SetFeature(Y, ys);
             signature.SetFeature(Button, pendown);
-            Logger?.LogInformation($"X,Y,Button features extracted. Length: {xs.Count}");
+            this.Log($"X,Y,Button features extracted. Length: {xs.Count}");
 
         }
     }

@@ -47,7 +47,7 @@ namespace SigStat.Common.Transforms
 
             if (samplingResolution < 1)
             {
-                Logger?.LogWarning( $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
+                this.Warn("Invalid sampling resolution {samplingResolution}. It must be a positive integer.", samplingResolution);
             }
 
             //TODO: megtalalni a vegpont nelkulieket (pl. perfekt O betu), ebbol egy pontot hozzaadni a crossingpointokhoz es jo lesz
@@ -63,16 +63,16 @@ namespace SigStat.Common.Transforms
             {
                 endPoints.AddRange(endings);
             }
-            Logger?.LogTrace($"{crossings.Count} crossings found.");
+            this.Trace("{crossingsCount} crossings found.", crossings.Count);
 
             var sectionlist = Trace(endPoints);
-            Logger?.LogTrace($"{sectionlist.Count} sections found");
+            this.Trace("{sectionlist} sections found", sectionlist.Count);
             //megvannak a sectionok, de meg ossze kell oket kotni a crossingoknal
 
             var componentlist = JoinSections(sectionlist, crossings);
 
             signature.SetFeature(OutputComponents, componentlist);
-            Logger?.LogInformation( $"Component extraction done. {componentlist.Count} components found.");
+            this.Log("Component extraction done. {componentlistCount} components found.", componentlist.Count);
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace SigStat.Common.Transforms
             }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
-            Logger?.LogWarning( $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
+            this.Warn("Section tracing: 1-pixel section found at ({p.X}, {p.Y})", p.X, p.Y);
             return (prevp/*ez most p*/, p);
         }
 

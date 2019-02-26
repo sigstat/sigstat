@@ -343,7 +343,7 @@
             </summary>
             <param name="s">A Sampler to copy.</param>
         </member>
-        <member name="M:SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+        <member name="M:SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Int32)">
             <summary>
             Initialize a new instance of the <see cref="T:SigStat.Common.Sampler"/> class by given sampling strategies.
             </summary>
@@ -357,35 +357,35 @@
             </summary>
             <param name="s">Signer to sample Signatures from.</param>
         </member>
+        <member name="M:SigStat.Common.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signer})">
+            <summary>
+            Initialize the Sampler with a Signer's Signatures.
+            </summary>
+            <param name="s">Signer to sample Signatures from.</param>
+        </member>
         <member name="M:SigStat.Common.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signature})">
             <summary>
             Initialize the Sampler with a list of Signatures.
             </summary>
             <param name="s">List of Signatures to take samples from.</param>
         </member>
-        <member name="M:SigStat.Common.Sampler.SampleReferences">
+        <member name="M:SigStat.Common.Sampler.SampleReferences(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
             <summary>
             Samples a batch of genuine reference signatures to train on.
             </summary>
             <returns>Genuine reference signatures to train on.</returns>
         </member>
-        <member name="M:SigStat.Common.Sampler.SampleGenuineTests">
+        <member name="M:SigStat.Common.Sampler.SampleGenuineTests(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
             <summary>
-            Samples a batch of genuine signatures to test on.
+            Samples a batch of genuine test signatures to test on.
             </summary>
             <returns>Genuine signatures to test on.</returns>
         </member>
-        <member name="M:SigStat.Common.Sampler.SampleForgeryTests">
+        <member name="M:SigStat.Common.Sampler.SampleForgeryTests(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
             <summary>
             Samples a batch of forged signatures to test on.
             </summary>
             <returns>Forged signatures to test on.</returns>
-        </member>
-        <member name="P:SigStat.Common.Sampler.BasicSampler">
-            <summary>
-            Default sampler for SVC2004 database.
-            10 references, 10 genuine tests, 10 forged tests
-            </summary>
         </member>
         <member name="T:SigStat.Common.SigStatEvents">
             <summary>
@@ -496,18 +496,12 @@
         <member name="M:SigStat.Common.VerifierBenchmark.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:SigStat.Common.VerifierBenchmark"/> class.
-            Sets the <see cref="T:SigStat.Common.Sampler"/> to be the <see cref="P:SigStat.Common.Sampler.BasicSampler"/>.
+            Sets the <see cref="T:SigStat.Common.Sampler"/> to the default <see cref="T:SigStat.Common.SVC2004Sampler"/>.
             </summary>
         </member>
-        <member name="M:SigStat.Common.VerifierBenchmark.Execute">
+        <member name="M:SigStat.Common.VerifierBenchmark.Execute(System.Boolean)">
             <summary>
-            Synchronously execute the benchmarking process.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.VerifierBenchmark.ExecuteParallel">
-            <summary>
-            Parallel execute the benchmarking process.
+            Execute the benchmarking process.
             </summary>
             <returns></returns>
         </member>

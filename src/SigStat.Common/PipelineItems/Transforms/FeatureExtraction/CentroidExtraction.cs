@@ -21,6 +21,11 @@ namespace SigStat.Common.Transforms
         [Output("Centroid")]
         public FeatureDescriptor<List<double>> OutputCentroid;
 
+        public CentroidExtraction()
+        {
+
+        }
+
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
@@ -33,7 +38,7 @@ namespace SigStat.Common.Transforms
             }
 
             signature.SetFeature(OutputCentroid, c);
-            Logger?.LogInformation("Centroid extraction done.");
+            this.Log("Centroid extraction done.");
         }
     }
 }

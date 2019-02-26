@@ -58,7 +58,7 @@ namespace SigStat.Common.Transforms
 
             if (binThreshold != null && (binThreshold < 0 || binThreshold > 1))
             {
-                Logger?.LogWarning( $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
+                this.Warn("Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0", binThreshold);
             }
 
             if (binThreshold == null)   //find threshold if not specified
@@ -76,7 +76,7 @@ namespace SigStat.Common.Transforms
                 }
                 Progress += (int)((1.0 / w)*100);
             }
-            Logger?.LogInformation( "Binarization done.");
+            this.Log( "Binarization done.");
             signature.SetFeature(OutputMask, b);
             Progress = 100;
         }
@@ -123,7 +123,7 @@ namespace SigStat.Common.Transforms
                 nextThreshold = ((background + foreground) / 2.0);
             }
 
-            Logger?.LogTrace( $"Binarization threshold: {nextThreshold}");
+            this.Trace("Binarization threshold: {nextThreshold}", nextThreshold);
             return nextThreshold;
         }
 
