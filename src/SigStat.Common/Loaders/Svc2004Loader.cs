@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq;
 using SigStat.Common.Helpers;
 using System.IO.Compression;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Loaders
 {
@@ -13,12 +14,33 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public static class Svc2004
     {
+        /// <summary>
+        /// X cooridnates from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("Svc2004.X");
+        /// <summary>
+        /// X cooridnates from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("Svc2004.Y");
+        /// <summary>
+        /// X cooridnates from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("Svc2004.t");
+        /// <summary>
+        /// Y cooridnates from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> Button = FeatureDescriptor.Get<List<int>>("Svc2004.Button");
+        /// <summary>
+        /// Button values from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor.Get<List<int>>("Svc2004.Azimuth");
+        /// <summary>
+        /// Altitude values from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> Altitude = FeatureDescriptor.Get<List<int>>("Svc2004.Altitude");
+        /// <summary>
+        /// Pressure values from the online signature imported from the SVC2004 database
+        /// </summary>
         public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("Svc2004.Pressure");
     }
 
@@ -49,23 +71,25 @@ namespace SigStat.Common.Loaders
 
         private string DatabasePath { get; set; }
         private bool StandardFeatures { get; }
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
         public Predicate<Signer> SignerFilter { get; set; }
 
 
-        public Svc2004Loader(string databasePath, bool standardFeatures)
-        {
-            DatabasePath = databasePath;
-            StandardFeatures = standardFeatures;
-            SignerFilter = null;
-        }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
         /// </summary>
-        /// <param name="databasePath">File path to a .zip file containing Svc2004 signatures.</param>
-        /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
-        /// <param name="signerFilter"></param>
-        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
+        /// <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+        /// <list type="bullet">
+        /// <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+        /// <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+        /// </list></param>
+        /// <param name="standardFeatures">Convert loaded data (<see cref="Svc2004"/>) to standard <see cref="Features"/>.</param>
+        /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
+        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
@@ -75,14 +99,15 @@ namespace SigStat.Common.Loaders
         /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
+            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
             signerFilter = signerFilter ?? SignerFilter ;
 
-            Log(LogLevel.Info, "Enumerating signers started.");
+            this.Log("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
             {
                 //cut names if the files are in directories
                 var signatureGroups = zip.Entries.Where(f=>f.Name.EndsWith(".TXT")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
-                Log(LogLevel.Debug, signatureGroups.Count().ToString() + " signers found in database");
+                this.Trace(signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
                     Signer signer = new Signer { ID = group.Key };
@@ -110,7 +135,7 @@ namespace SigStat.Common.Loaders
                     yield return signer;
                 }
             }
-            Log(LogLevel.Info, "Enumerating signers finished.");
+            this.Log("Enumerating signers finished.");
         }
 
         /// <summary>

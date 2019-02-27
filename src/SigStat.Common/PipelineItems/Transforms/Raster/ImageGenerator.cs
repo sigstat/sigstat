@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -17,6 +19,14 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class ImageGenerator : PipelineBase, ITransformation
     {
+        [Input]
+        public FeatureDescriptor<bool[,]> Input;
+        [Output("Binarized")]
+        public FeatureDescriptor<bool[,]> Output;//TODO: InputOutput
+
+        [Output("Image")]
+        public FeatureDescriptor<Image<Rgba32>> OutputImage;
+
         private readonly bool writeToFile;
         readonly Rgba32 fg;
         readonly Rgba32 bg;
@@ -41,14 +51,11 @@ namespace SigStat.Common.Transforms
         public void Transform(Signature signature)
         {
             //default output is '{input}', '{input}Image'
-            if (OutputFeatures == null)
-            {
-                OutputFeatures = new List<FeatureDescriptor> {
-                    InputFeatures[0],
-                    FeatureDescriptor.Get<Image<Rgba32>>(InputFeatures[0].Name + "Image")
-                };
-            }
-            bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
+            Output = Input;
+            if (OutputImage == null)
+                OutputImage = FeatureDescriptor<Image<Rgba32>>.Get(Input.Name+"Image");//TODO: <T> template-es Register()
+
+            bool[,] b = signature.GetFeature(Input);
             int w = b.GetLength(0);
             int h = b.GetLength(1);
 
@@ -65,18 +72,18 @@ namespace SigStat.Common.Transforms
                 Progress = (int)(x / (double)w * 95);
             }
 
-            signature.SetFeature(OutputFeatures[1], img);
+            signature.SetFeature(OutputImage, img);
 
             if(writeToFile)
             {
                 string signerString = (signature.Signer!=null) ? signature.Signer.ID : "Null";
-                string filename = $"U_{signerString}_S_{signature.ID?? "Null"}_{OutputFeatures[1].Name}.png";
+                string filename = $"{signature.ID?? "Null"}_{Input.Name}.png";
                 img.SaveAsPng(File.Create(filename));
-                Log(LogLevel.Info, $"Image saved: {filename}");
+                this.Log( $"Image saved: {filename}");
             }
 
             Progress = 100;
-            Log(LogLevel.Info, $"Image generation from binary raster done.");
+            this.Log( $"Image generation from binary raster done.");
         }
     }
 }

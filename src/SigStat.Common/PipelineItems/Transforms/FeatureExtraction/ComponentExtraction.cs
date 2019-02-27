@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,6 +15,19 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class ComponentExtraction : PipelineBase, ITransformation
     {
+
+        [Input]
+        public FeatureDescriptor<bool[,]> Skeleton;// = FeatureDescriptor<bool[,]>.Get("Skeleton");
+
+        [Input]
+        public FeatureDescriptor<List<Point>> EndPoints;// = FeatureDescriptor<List<Point>>.Get("EndPoints");
+
+        [Input]
+        public FeatureDescriptor<List<Point>> CrossingPoints;// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
+
+        [Output("Components")]
+        public FeatureDescriptor<List<List<PointF>>> OutputComponents;
+
         private readonly int samplingResolution;
         private bool[,] b;
 
@@ -21,19 +36,18 @@ namespace SigStat.Common.Transforms
         public ComponentExtraction(int samplingResolution)
         {
             this.samplingResolution = samplingResolution;
-            this.Output(FeatureDescriptor.Get<List<List<PointF>>>("Components"));
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            b = signature.GetFeature(FeatureDescriptor.Get<bool[,]>("Skeleton"));
-            var endPoints = signature.GetFeature(FeatureDescriptor.Get<List<Point>>("EndPoints"));
-            var crossingPoints = signature.GetFeature(FeatureDescriptor.Get<List<Point>>("CrossingPoints"));
+            b = signature.GetFeature(Skeleton);
+            var endPoints = signature.GetFeature(EndPoints);
+            var crossingPoints = signature.GetFeature(CrossingPoints);
 
             if (samplingResolution < 1)
             {
-                Log(LogLevel.Warn, $"Invalid sampling resolution {samplingResolution}. It must be a positive integer.");
+                this.Warn("Invalid sampling resolution {samplingResolution}. It must be a positive integer.", samplingResolution);
             }
 
             //TODO: megtalalni a vegpont nelkulieket (pl. perfekt O betu), ebbol egy pontot hozzaadni a crossingpointokhoz es jo lesz
@@ -49,19 +63,16 @@ namespace SigStat.Common.Transforms
             {
                 endPoints.AddRange(endings);
             }
-            Progress = 33;
-            Log(LogLevel.Debug, $"{crossings.Count} crossings found.");
+            this.Trace("{crossingsCount} crossings found.", crossings.Count);
 
             var sectionlist = Trace(endPoints);
-            Log(LogLevel.Debug, $"{sectionlist.Count} sections found");
-            Progress = 66;
+            this.Trace("{sectionlist} sections found", sectionlist.Count);
             //megvannak a sectionok, de meg ossze kell oket kotni a crossingoknal
 
             var componentlist = JoinSections(sectionlist, crossings);
 
-            signature.SetFeature(OutputFeatures[0], componentlist);
-            Progress = 100;
-            Log(LogLevel.Info, $"Component extraction done. {componentlist.Count} components found.");
+            signature.SetFeature(OutputComponents, componentlist);
+            this.Log("Component extraction done. {componentlistCount} components found.", componentlist.Count);
         }
 
         /// <summary>
@@ -223,7 +234,7 @@ namespace SigStat.Common.Transforms
             }
 
             //ide akkor erhetunk, ha egy pixelnek nincs egyaltalan szomszedja. akkor ez a szakasz ennyibol all
-            Log(LogLevel.Warn, $"Section tracing: 1-pixel section found at ({p.X}, {p.Y})");
+            this.Warn("Section tracing: 1-pixel section found at ({p.X}, {p.Y})", p.X, p.Y);
             return (prevp/*ez most p*/, p);
         }
 

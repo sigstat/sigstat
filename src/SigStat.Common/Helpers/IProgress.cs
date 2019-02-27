@@ -18,8 +18,5 @@ namespace SigStat.Common.Helpers
         /// Gets the current progress in percentage.
         /// </summary>
         int Progress { get; }
-
-        //TODO: C# 8.0 default interface implementation, PipelineBase helyett.
-
     }
 }

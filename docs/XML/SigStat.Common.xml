@@ -40,6 +40,30 @@
             <param name="p2">Point 2</param>
             <returns>Distance between <paramref name="p1"/> and <paramref name="p2"/></returns>
         </member>
+        <member name="T:SigStat.Common.Algorithms.DtwPy">
+            <summary>
+            A simple implementation of the DTW algorithm.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwPy.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
+            <summary>
+            Calculates the distance between two time sequences
+            </summary>
+            <typeparam name="P">the type of data points</typeparam>
+            <param name="sequence1">time sequence 1</param>
+            <param name="sequence2">time sequence 2</param>
+            <param name="distance">a function to calculate the distance between two points</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwPy.EuclideanDistance(System.Double[],System.Double[])">
+            <summary>
+            Calculates the euclidean distance of two vectors
+            </summary>
+            <param name="vector1">vector1</param>
+            <param name="vector2">vector2</param>
+            <returns></returns>
+            <remarks>The two vectors must have the same length</remarks>
+        </member>
         <member name="T:SigStat.Common.Algorithms.HSCPThinningStep">
             <summary>
             HSCP thinning algorithm
@@ -114,29 +138,428 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:SigStat.Common.Baseline">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:SigStat.Common.Baseline.Start">
+            <summary>
+            Starting point of the baseline
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Baseline.End">
+            <summary>
+            Endpoint of the baseline
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Baseline.#ctor">
+            <summary>
+            Initializes a Baseline instance
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Baseline.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a Baseline instance with the given startpoint and endpoint
+            </summary>
+            <param name="x1">x coordinate for the start point</param>
+            <param name="y1">y coordinate for the start point</param>
+            <param name="x2">x coordinate for the endpoint</param>
+            <param name="y2">y coordinate for the endpoint</param>
+        </member>
+        <member name="M:SigStat.Common.Baseline.ToString">
+            <summary>
+            Returns a string representation of the baseline
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.Features">
             <summary>
             Standard set of features.
             </summary>
         </member>
-        <member name="M:SigStat.Common.ArrayExtension.ForEach``1(``0[],System.Action{``0})">
+        <member name="F:SigStat.Common.Features.Bounds">
             <summary>
-            Performs a given action on all items of the array and returns the original array.
+            Actual bounds of the signature
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="array"></param>
-            <param name="action"></param>
+        </member>
+        <member name="F:SigStat.Common.Features.TrimmedBounds">
+            <summary>
+            Represents the main body of the signature <see cref="T:SigStat.Common.BasicMetadataExtraction"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Dpi">
+            <summary>
+            Dots per inch
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.X">
+            <summary>
+            X coordinates of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Y">
+            <summary>
+            Y coordinates of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.T">
+            <summary>
+            Timestamps for online signatures
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Button">
+            <summary>
+            Pen position of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Azimuth">
+            <summary>
+            Azimuth of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Altitude">
+            <summary>
+            Altitude of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Pressure">
+            <summary>
+            Pressure of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Image">
+            <summary>
+            The visaul representation of a signature
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.Cog">
+            <summary>
+            Center of gravity in a signature
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Features.All">
+            <summary>
+            Returns a readonly list of all <see cref="T:SigStat.Common.FeatureDescriptor"/>s defined in <see cref="T:SigStat.Common.Features"/>
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Loop">
+            <summary>
+            Represents a loop in a signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loop.Center">
+            <summary>
+            The geometrical center of the looop
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loop.Bounds">
+            <summary>
+            The bounding rectangle of the loop
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loop.Points">
+            <summary>
+            A list of defining points of the loop
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loop.#ctor">
+            <summary>
+            Creates a <see cref="T:SigStat.Common.Loop"/> instance
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loop.#ctor(System.Single,System.Single)">
+            <summary>
+            Creates a <see cref="T:SigStat.Common.Loop"/> instance and initializes the <see cref="P:SigStat.Common.Loop.Center"/> property
+            </summary>
+            <param name="centerX"></param>
+            <param name="centerY"></param>
+        </member>
+        <member name="M:SigStat.Common.Loop.ToString">
+            <summary>
+            Returns a string representation of the loop
+            </summary>
             <returns></returns>
         </member>
-        <member name="T:SigStat.Common.Helpers.ILogger">
+        <member name="T:SigStat.Common.ILoggerObject">
             <summary>
-            Enables logging by exposing a <see cref="T:SigStat.Common.Helpers.Logger"/> property.
+            Represents a type, that contains an ILogger property that can be used to perform logging.
             </summary>
         </member>
-        <member name="P:SigStat.Common.Helpers.ILogger.Logger">
+        <member name="P:SigStat.Common.ILoggerObject.Logger">
             <summary>
-            Gets or sets the attached <see cref="T:SigStat.Common.Helpers.Logger"/> object used to log messages.
+            Gets or sets the ILogger implementation used to perform logging 
             </summary>
+        </member>
+        <member name="T:SigStat.Common.ILoggerObjectExtensions">
+            <summary>
+            ILoggerObject extension methods for common scenarios.
+            </summary>
+            <remarks>
+            Note to framework developers: you may extend this class with additional overloads if they are required
+            </remarks>
+        </member>
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.Error(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+            <summary>
+            Formats and writes an error log message.
+            </summary>
+            <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+            <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.Log(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+            <summary>
+            Formats and writes an informational log message.
+            </summary>
+            <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+            <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.Warn(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+            <summary>
+            Formats and writes an warning log message.
+            </summary>
+            <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+            <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.Trace(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+            <summary>
+            Formats and writes a trace log message.
+            </summary>
+            <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+            <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="T:SigStat.Common.Sampler">
+            <summary>
+            Takes samples from a set of <see cref="T:SigStat.Common.Signature"/>s by given sampling strategies.
+            Use this to fine-tune the <see cref="T:SigStat.Common.VerifierBenchmark"/>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Sampler.#ctor(SigStat.Common.Sampler)">
+            <summary>
+            Initialize a new instance of the <see cref="T:SigStat.Common.Sampler"/> class based on the <paramref name="s"/> parameter's strategy.
+            </summary>
+            <param name="s">A Sampler to copy.</param>
+        </member>
+        <member name="M:SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Int32)">
+            <summary>
+            Initialize a new instance of the <see cref="T:SigStat.Common.Sampler"/> class by given sampling strategies.
+            </summary>
+            <param name="references">Strategy to sample genuine signatures to be used for training.</param>
+            <param name="genuineTests">Strategy to sample genuine signatures to be used for testing.</param>
+            <param name="forgeryTests">Strategy to sample forged signatures to be used for testing.</param>
+        </member>
+        <member name="M:SigStat.Common.Sampler.Init(SigStat.Common.Signer)">
+            <summary>
+            Initialize the Sampler with a Signer's Signatures.
+            </summary>
+            <param name="s">Signer to sample Signatures from.</param>
+        </member>
+        <member name="M:SigStat.Common.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signer})">
+            <summary>
+            Initialize the Sampler with a Signer's Signatures.
+            </summary>
+            <param name="s">Signer to sample Signatures from.</param>
+        </member>
+        <member name="M:SigStat.Common.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <summary>
+            Initialize the Sampler with a list of Signatures.
+            </summary>
+            <param name="s">List of Signatures to take samples from.</param>
+        </member>
+        <member name="M:SigStat.Common.Sampler.SampleReferences(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+            <summary>
+            Samples a batch of genuine reference signatures to train on.
+            </summary>
+            <returns>Genuine reference signatures to train on.</returns>
+        </member>
+        <member name="M:SigStat.Common.Sampler.SampleGenuineTests(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+            <summary>
+            Samples a batch of genuine test signatures to test on.
+            </summary>
+            <returns>Genuine signatures to test on.</returns>
+        </member>
+        <member name="M:SigStat.Common.Sampler.SampleForgeryTests(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+            <summary>
+            Samples a batch of forged signatures to test on.
+            </summary>
+            <returns>Forged signatures to test on.</returns>
+        </member>
+        <member name="T:SigStat.Common.SigStatEvents">
+            <summary>
+            Standard event identifiers used by the SigStat system
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.SigStatEvents.BenchmarkEvent">
+            <summary>
+            Events originating from a benchmark
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.SigStatEvents.VerifierEvent">
+            <summary>
+            Events originating from a verifier
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Model.Verifier">
+            <summary>
+            Uses pipelines to transform, train on, and classify <see cref="T:SigStat.Common.Signature"/> objects.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.Pipeline">
+            <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.Classifier">
+            <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.Verifier.Logger">
+            <summary> Gets or sets the class responsible for logging</summary>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.#ctor(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class
+            </summary>
+            <param name="logger">Initializes the Logger property of the <see cref="T:SigStat.Common.Model.Verifier"/></param>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <summary>
+            Trains the verifier with a list of signatures. Uses the <see cref="P:SigStat.Common.Model.Verifier.Pipeline"/> to extract features,
+            and <see cref="P:SigStat.Common.Model.Verifier.Classifier"/> to find an optimized limit.
+            </summary>
+            <param name="signatures">The list of signatures to train on.</param>
+            <remarks>Note that <paramref name="signatures"/> may contain both genuine and forged signatures.
+            It's up to the classifier, whether it takes advantage of both classes</remarks>
+        </member>
+        <member name="M:SigStat.Common.Model.Verifier.Test(SigStat.Common.Signature)">
+            <summary>
+            Verifies the genuinity of <paramref name="signature"/>.
+            </summary>
+            <param name="signature"></param>
+            <returns>True if <paramref name="signature"/> passes the verification test.</returns>
+        </member>
+        <member name="T:SigStat.Common.Result">
+            <summary>Contains the benchmark results of a single <see cref="T:SigStat.Common.Signer"/></summary>
+        </member>
+        <member name="F:SigStat.Common.Result.Signer">
+            <summary>Identifier of the <see cref="F:SigStat.Common.Result.Signer"/></summary>
+        </member>
+        <member name="F:SigStat.Common.Result.Frr">
+            <summary>False Rejection Rate</summary>
+        </member>
+        <member name="F:SigStat.Common.Result.Far">
+            <summary>False Acceptance Rate</summary>
+        </member>
+        <member name="F:SigStat.Common.Result.Aer">
+            <summary>Average Error Rate</summary>
+        </member>
+        <member name="T:SigStat.Common.BenchmarkResults">
+            <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
+        </member>
+        <member name="F:SigStat.Common.BenchmarkResults.SignerResults">
+            <summary>List that contains the <see cref="T:SigStat.Common.Result"/>s for each <see cref="T:SigStat.Common.Signer"/></summary>
+        </member>
+        <member name="F:SigStat.Common.BenchmarkResults.FinalResult">
+            <summary>Summarized, final result of the benchmark execution.</summary>
+        </member>
+        <member name="T:SigStat.Common.VerifierBenchmark">
+            <summary> Benchmarking class to test error rates of a <see cref="T:SigStat.Common.Model.Verifier"/> </summary>
+        </member>
+        <member name="F:SigStat.Common.VerifierBenchmark.loader">
+            <summary> The loader to take care of <see cref="T:SigStat.Common.Signature"/> database loading. </summary>
+        </member>
+        <member name="F:SigStat.Common.VerifierBenchmark.sampler">
+            <summary> Defines the sampling strategy for the benchmark. </summary>
+        </member>
+        <member name="P:SigStat.Common.VerifierBenchmark.Verifier">
+            <summary> Gets or sets the <see cref="T:SigStat.Common.Model.Verifier"/> to be benchmarked. </summary>
+        </member>
+        <member name="P:SigStat.Common.VerifierBenchmark.Logger">
+            <summary> Gets or sets the attached <see cref="T:Microsoft.Extensions.Logging.ILogger"/> object used to log messages. Hands it over to the verifier. </summary>
+        </member>
+        <member name="P:SigStat.Common.VerifierBenchmark.Progress">
+            <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.VerifierBenchmark.Loader">
+            <summary>
+            The loader that will provide the database for benchmarking
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.VerifierBenchmark.Sampler">
+            <summary>
+            The <see cref="T:SigStat.Common.Sampler"/> to be used for benchmarking
+            </summary>
+        </member>
+        <member name="E:SigStat.Common.VerifierBenchmark.ProgressChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.VerifierBenchmark.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.VerifierBenchmark"/> class.
+            Sets the <see cref="T:SigStat.Common.Sampler"/> to the default <see cref="T:SigStat.Common.SVC2004Sampler"/>.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.VerifierBenchmark.Execute(System.Boolean)">
+            <summary>
+            Execute the benchmarking process.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.ArrayExtension">
+            <summary>
+            Helper methods for processing arrays
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.GetValues``1(``0[0:,0:])">
+            <summary>
+            Enumerates all values in a two dimensional array
+            </summary>
+            <typeparam name="T">Array type</typeparam>
+            <param name="array">The array to enumerate</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.SetValues``1(``0[0:,0:],``0)">
+            <summary>
+            Sets all values in a two dimensional array to <paramref name="value"/>
+            </summary>
+            <typeparam name="T">Array type</typeparam>
+            <param name="array">Array</param>
+            <param name="value">New value for the array elements</param>
+            <returns>A reference to <paramref name="array"/> (allows chaining)</returns>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.Sum(System.Double[0:,0:],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Calculates the sum of the values in the given sub-array
+            </summary>
+            <param name="array">A two dimensional array with double values</param>
+            <param name="x1">First index of the starting point for the region to summarize</param>
+            <param name="y1">Second index of the starting point for the region to summarize</param>
+            <param name="x2">First index of the endpoint for the region to summarize</param>
+            <param name="y2">Second index of the endpoint for the region to summarize</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.SumCol(System.Double[0:,0:],System.Int32)">
+            <summary>
+            Returns the sum of column values in a two dimensional array
+            </summary>
+            <param name="array">A two dimensional array with double values</param>
+            <param name="column">The column, to sum</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.SumRow(System.Double[0:,0:],System.Int32)">
+            <summary>
+            Returns the sum of row values in a two dimensional array
+            </summary>
+            <param name="array">A two dimensional array with double values</param>
+            <param name="row">The row, to sum</param>
+        </member>
+        <member name="M:SigStat.Common.ArrayExtension.GetCog(System.Double[0:,0:])">
+            <summary>
+            Calculates the center of gravity, assuming that each cell contains
+            a weight value
+            </summary>
+            <param name="weightMartix"></param>
+            <returns></returns>
         </member>
         <member name="T:SigStat.Common.Helpers.IProgress">
             <summary>
@@ -153,7 +576,7 @@
             Gets the current progress in percentage.
             </summary>
         </member>
-        <member name="T:SigStat.Common.Helpers.Logger">
+        <member name="T:SigStat.Common.Helpers.SimpleConsoleLogger">
             <summary>
             A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
             </summary>
@@ -170,136 +593,35 @@
             </code>
             </example>
         </member>
-        <member name="P:SigStat.Common.Helpers.Logger.StoreEntries">
+        <member name="P:SigStat.Common.Helpers.SimpleConsoleLogger.LogLevel">
             <summary>
-            Enable or disable the storing of log entries. This can come useful for filtering by certain type of entries.
+            All events below this level will be filtered
             </summary>
         </member>
-        <member name="F:SigStat.Common.Helpers.Logger.entries">
+        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.#ctor">
             <summary>
-            A list where Entries are stored if <see cref="P:SigStat.Common.Helpers.Logger.StoreEntries"/> is enabled.
+            Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
             </summary>
         </member>
-        <member name="F:SigStat.Common.Helpers.Logger.filteringLevel">
+        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
             <summary>
-            Gets or sets the filtering level. Entries above this level will be ignored.
+            Initializes an instance of SimpleConsoleLogger with a custom LogLevel
             </summary>
+            <param name="logLevel">initial value for LogLevel</param>
         </member>
-        <member name="M:SigStat.Common.Helpers.Logger.#ctor(SigStat.Common.Helpers.LogLevel,System.IO.Stream,System.Action{SigStat.Common.Helpers.LogLevel,System.String})">
+        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.BeginScope``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.MathHelper">
             <summary>
-            Initializes a new instance of the <see cref="T:SigStat.Common.Helpers.Logger"/> class.
+            Common mathematical functions used by the SigStat framework
             </summary>
-            <param name="filteringLevel">Entries above this level will be ignored.</param>
-            <param name="outputStream">A stream to write consumed entries to. For example a FileStream pointing to the log archives.</param>
-            <param name="outputAction">An action to perform when an entry is consumed. Use this for instant gui display of messages.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.#ctor(SigStat.Common.Helpers.LogLevel)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SigStat.Common.Helpers.Logger"/> class, and rewire the default Console IO.
-            </summary>
-            <param name="filteringLevel">Entries above this level will be ignored.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.Fatal(System.Object,System.String)">
-            <summary>
-            Enqueue a fatal level log entry.
-            </summary>
-            <param name="sender">The object who sent the log. Usually provide [this].</param>
-            <param name="message">Main content of the log entry.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.Error(System.Object,System.String)">
-            <summary>
-            Enqueue an error level log entry.
-            </summary>
-            <param name="sender">The object who sent the log. Usually provide [this].</param>
-            <param name="message">Main content of the log entry.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.Warn(System.Object,System.String)">
-            <summary>
-            Enqueue a warning level log entry.
-            </summary>
-            <param name="sender">The object who sent the log. Usually provide [this].</param>
-            <param name="message">Main content of the log entry.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.Info(System.Object,System.String)">
-            <summary>
-            Enqueue an information level log entry.
-            </summary>
-            <param name="sender">The object who sent the log. Usually provide [this].</param>
-            <param name="message">Main content of the log entry.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.Debug(System.Object,System.String)">
-            <summary>
-            Enqueue a debug level log entry.
-            </summary>
-            <param name="sender">The object who sent the log. Usually provide [this].</param>
-            <param name="message">Main content of the log entry.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.EnqueueEntry(SigStat.Common.Helpers.LogLevel,System.Object,System.String)">
-            <summary>
-            Enqueue a new log entry with specified level. The entry is filtered through <see cref="P:SigStat.Common.Helpers.Logger.FilteringLevel"/>.
-            </summary>
-            <param name="messageLevel">Log level of the entry.</param>
-            <param name="sender">The object who sent the log. Usually provide [this].</param>
-            <param name="message">Main content of the log entry.</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Logger.Stop">
-            <summary>
-            Stop accepting entries, flush the queue and stop the consuming thread.
-            </summary>
-        </member>
-        <member name="T:SigStat.Common.Helpers.LogLevel">
-            <summary>
-            Represents the level of log.
-            Lowest level: Off.
-            Highest level: Debug.
-            </summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogLevel.Off">
-            <summary>Completely turn off logging.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogLevel.Fatal">
-            <summary>Represents a fatal error level log.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogLevel.Error">
-            <summary>Represents an error level log.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogLevel.Warn">
-            <summary>Represents a warning level log.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogLevel.Info">
-            <summary>Represents an information level log.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogLevel.Debug">
-            <summary>Represents a debug level log.</summary>
-        </member>
-        <member name="T:SigStat.Common.Helpers.LogEntry">
-            <summary>
-            Represents a single entry of the log, consisting of a timestamp, a level, a sender and the message.
-            </summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogEntry.Timestamp">
-            <summary>Exact date and time of the entry's creation.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogEntry.Level">
-            <summary>Log level of the entry.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogEntry.Sender">
-            <summary>Reference of the object that created the entry.</summary>
-        </member>
-        <member name="F:SigStat.Common.Helpers.LogEntry.Message">
-            <summary>Main content of the entry.</summary>
-        </member>
-        <member name="M:SigStat.Common.Helpers.LogEntry.#ctor(System.DateTime,SigStat.Common.Helpers.LogLevel,System.Object,System.String)">
-            <remark>
-            The constructor is internal, as only the <see cref="T:SigStat.Common.Helpers.Logger"/> may create new entries.
-            </remark>
-        </member>
-        <member name="M:SigStat.Common.Helpers.LogEntry.ToString">
-            <summary>
-            Format the contained data to string, divided by tab characters.
-            Use this to display the entry in the console.
-            </summary>
-            <returns>String result.</returns>
         </member>
         <member name="M:SigStat.Common.MathHelper.Min(System.Double,System.Double,System.Double)">
             <summary>
@@ -310,41 +632,12 @@
             <param name="d3"></param>
             <returns></returns>
         </member>
-        <member name="M:SigStat.Common.Matrix.Invert(System.Boolean[0:,0:])">
-            <summary>
-            returns a copy of the array with inverted values
-            </summary>
-            <param name="array"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Matrix.Neighbours``1(``0[0:,0:],``0)">
-            <summary>
-            returns a same sized matrix with each item showing the neighbour count for the given position.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="matrix"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Matrix.FromTableRows``1(System.Collections.Generic.IEnumerable{System.Data.DataRow},System.Int32,System.Int32)">
-            <summary>
-            Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé. 
-            Az átalakítás során ignoreColumns oszlopot és ignoreRows sort
-            figyelmen kívül hagy.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="rows"></param>
-            <param name="ignoreColumns"></param>
-            <returns></returns>
-        </member>
         <member name="T:SigStat.Common.Loaders.DataSetLoader">
             <summary>
             Abstract loader class to inherit from. Implements ILogger.
             </summary>
         </member>
         <member name="P:SigStat.Common.Loaders.DataSetLoader.Logger">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Loaders.DataSetLoader.Log(SigStat.Common.Helpers.LogLevel,System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Loaders.DataSetLoader.EnumerateSigners">
@@ -359,9 +652,15 @@
             Base abstract class: <see cref="T:SigStat.Common.Loaders.DataSetLoader"/>.
             </summary>
         </member>
+        <member name="M:SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners">
+            <summary>
+            Enumerates all signers of the database
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <summary>
-            Loads the database and returns the collection of <see cref="T:SigStat.Common.Signer"/>s that match the <paramref name="signerFilter"/>.
+            Enumerates all <see cref="T:SigStat.Common.Signer"/>s that match the <paramref name="signerFilter"/>.
             </summary>
             <param name="signerFilter">Filter to specify which Signers to load. Example: (p=>p=="01")</param>
             <returns>Collection of <see cref="T:SigStat.Common.Signer"/>s that match the <paramref name="signerFilter"/></returns>
@@ -412,18 +711,62 @@
             Set of features containing raw data loaded from SVC2004-format database.
             </summary>
         </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.X">
+            <summary>
+            X cooridnates from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.Y">
+            <summary>
+            X cooridnates from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.T">
+            <summary>
+            X cooridnates from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.Button">
+            <summary>
+            Y cooridnates from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.Azimuth">
+            <summary>
+            Button values from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.Altitude">
+            <summary>
+            Altitude values from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.Pressure">
+            <summary>
+            Pressure values from the online signature imported from the SVC2004 database
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Loaders.Svc2004Loader">
             <summary>
             Loads SVC2004-format database from .zip
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.Svc2004Loader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.Svc2004Loader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
             <summary>
             Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.Svc2004Loader"/> class with specified database.
             </summary>
-            <param name="databasePath">File path to a .zip file containing Svc2004 signatures.</param>
-            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
-            <param name="signerFilter"></param>
+            <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+            <list type="bullet">
+            <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+            <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+            </list></param>
+            <param name="standardFeatures">Convert loaded data (<see cref="T:SigStat.Common.Loaders.Svc2004"/>) to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter">Sets the <see cref="P:SigStat.Common.Loaders.Svc2004Loader.SignerFilter"/> property</param>
         </member>
         <member name="M:SigStat.Common.Loaders.Svc2004Loader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
@@ -443,217 +786,6 @@
             <param name="signature">Signature to write features to.</param>
             <param name="stream">Stream to read svc2004 data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
-        </member>
-        <member name="T:SigStat.Common.Model.ApproximateLimit">
-            <summary>
-            Used to approximate the classification limit in the training process.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Model.ApproximateLimit.#ctor(SigStat.Common.IClassification)">
-            <summary>
-            Initialize a new instance of the <see cref="T:SigStat.Common.Model.ApproximateLimit"/> class.
-            </summary>
-            <param name="pipeline">The classification pipeline to be used for calculation.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.ApproximateLimit.Calculate(System.Collections.Generic.List{SigStat.Common.Signature})">
-            <summary>
-            Calculate the limit by pairing each signature.
-            Limit = AverageCost + StdDeviation.
-            </summary>
-            <param name="sigs">List of genuine signatures</param>
-            <returns>Approximate limit.</returns>
-        </member>
-        <member name="T:SigStat.Common.Model.Sampler">
-            <summary>
-            Takes samples from a set of <see cref="T:SigStat.Common.Signature"/>s by given sampling strategies.
-            Use this to fine-tune the <see cref="T:SigStat.Common.Model.VerifierBenchmark"/>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.#ctor(SigStat.Common.Model.Sampler)">
-            <summary>
-            Initialize a new instance of the <see cref="T:SigStat.Common.Model.Sampler"/> class based on the <paramref name="s"/> parameter's strategy.
-            </summary>
-            <param name="s">A Sampler to copy.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
-            <summary>
-            Initialize a new instance of the <see cref="T:SigStat.Common.Model.Sampler"/> class by given sampling strategies.
-            </summary>
-            <param name="references">Strategy to sample genuine signatures to be used for training.</param>
-            <param name="genuineTests">Strategy to sample genuine signatures to be used for testing.</param>
-            <param name="forgeryTests">Strategy to sample forged signatures to be used for testing.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.Init(SigStat.Common.Signer)">
-            <summary>
-            Initialize the Sampler with a Signer's Signatures.
-            </summary>
-            <param name="s">Signer to sample Signatures from.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signature})">
-            <summary>
-            Initialize the Sampler with a list of Signatures.
-            </summary>
-            <param name="s">List of Signatures to take samples from.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.SampleReferences">
-            <summary>
-            Samples a batch of genuine reference signatures to train on.
-            </summary>
-            <returns>Genuine reference signatures to train on.</returns>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.SampleGenuineTests">
-            <summary>
-            Samples a batch of genuine signatures to test on.
-            </summary>
-            <returns>Genuine signatures to test on.</returns>
-        </member>
-        <member name="M:SigStat.Common.Model.Sampler.SampleForgeryTests">
-            <summary>
-            Samples a batch of forged signatures to test on.
-            </summary>
-            <returns>Forged signatures to test on.</returns>
-        </member>
-        <member name="P:SigStat.Common.Model.Sampler.BasicSampler">
-            <summary>
-            Default sampler for SVC2004 database.
-            10 references, 10 genuine tests, 10 forged tests
-            </summary>
-        </member>
-        <member name="T:SigStat.Common.Model.Result">
-            <summary>Contains the benchmark results of a single <see cref="T:SigStat.Common.Signer"/></summary>
-        </member>
-        <member name="F:SigStat.Common.Model.Result.Signer">
-            <summary>Identifier of the <see cref="F:SigStat.Common.Model.Result.Signer"/></summary>
-        </member>
-        <member name="F:SigStat.Common.Model.Result.Frr">
-            <summary>False Rejection Rate</summary>
-        </member>
-        <member name="F:SigStat.Common.Model.Result.Far">
-            <summary>False Acceptance Rate</summary>
-        </member>
-        <member name="F:SigStat.Common.Model.Result.Aer">
-            <summary>Average Error Rate</summary>
-        </member>
-        <member name="T:SigStat.Common.Model.BenchmarkResults">
-            <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
-        </member>
-        <member name="F:SigStat.Common.Model.BenchmarkResults.SignerResults">
-            <summary>List that contains the <see cref="T:SigStat.Common.Model.Result"/>s for each <see cref="T:SigStat.Common.Signer"/></summary>
-        </member>
-        <member name="F:SigStat.Common.Model.BenchmarkResults.FinalResult">
-            <summary>Summarized, final result of the benchmark execution.</summary>
-        </member>
-        <member name="T:SigStat.Common.Model.VerifierBenchmark">
-            <summary> Benchmarking class to test error rates of a <see cref="T:SigStat.Common.Model.Verifier"/> </summary>
-        </member>
-        <member name="F:SigStat.Common.Model.VerifierBenchmark.loader">
-            <summary> The loader to take care of <see cref="T:SigStat.Common.Signature"/> database loading. </summary>
-        </member>
-        <member name="F:SigStat.Common.Model.VerifierBenchmark.sampler">
-            <summary> Defines the sampling strategy for the benchmark. </summary>
-        </member>
-        <member name="P:SigStat.Common.Model.VerifierBenchmark.Verifier">
-            <summary> Gets or sets the <see cref="T:SigStat.Common.Model.Verifier"/> to be benchmarked. </summary>
-        </member>
-        <member name="P:SigStat.Common.Model.VerifierBenchmark.Logger">
-            <summary> Gets or sets the attached <see cref="T:SigStat.Common.Helpers.Logger"/> object used to log messages. Hands it over to the verifier. </summary>
-        </member>
-        <member name="P:SigStat.Common.Model.VerifierBenchmark.Progress">
-            <inheritdoc/>
-        </member>
-        <member name="E:SigStat.Common.Model.VerifierBenchmark.ProgressChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Model.VerifierBenchmark.Log(SigStat.Common.Helpers.LogLevel,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Model.VerifierBenchmark.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SigStat.Common.Model.VerifierBenchmark"/> class.
-            Sets the <see cref="T:SigStat.Common.Model.Verifier"/> to be the <see cref="P:SigStat.Common.Model.Verifier.BasicVerifier"/>.
-            Sets the <see cref="T:SigStat.Common.Model.Sampler"/> to be the <see cref="P:SigStat.Common.Model.Sampler.BasicSampler"/>.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Model.VerifierBenchmark.ExecuteAsync">
-            <summary>
-            Asynchronously execute the benchmarking process.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Model.VerifierBenchmark.Execute">
-            <summary>
-            Synchronously execute the benchmarking process.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Model.VerifierBenchmark.ExecuteParallel">
-            <summary>
-            Parallel execute the benchmarking process.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SigStat.Common.Model.Verifier">
-            <summary>
-            Uses pipelines to transform, train on, and classify <see cref="T:SigStat.Common.Signature"/> objects.
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Model.Verifier.TransformPipeline">
-            <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
-        </member>
-        <member name="P:SigStat.Common.Model.Verifier.ClassifierPipeline">
-            <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
-        </member>
-        <member name="P:SigStat.Common.Model.Verifier.Logger">
-            <summary> Gets or sets the attached <see cref="T:SigStat.Common.Helpers.Logger"/> object used to log messages. Hands it over to the pipelines. </summary>
-        </member>
-        <member name="M:SigStat.Common.Model.Verifier.Log(SigStat.Common.Helpers.LogLevel,System.String)">
-            <summary>
-            Enqueues a new log entry to be consumed by the attached <see cref="T:SigStat.Common.Helpers.Logger"/>. Use this when developing new pipeline items.
-            </summary>
-            <param name="level">Specifies the level of the entry. Higher levels than the <see cref="T:SigStat.Common.Helpers.Logger"/>'s filter level will be ignored.</param>
-            <param name="message">The main content of the log entry.</param>
-        </member>
-        <member name="P:SigStat.Common.Model.Verifier.Progress">
-            <inheritdoc/>
-        </member>
-        <member name="E:SigStat.Common.Model.Verifier.ProgressChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Model.Verifier.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class, with empty pipelines and no <see cref="T:SigStat.Common.Helpers.Logger"/>.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Model.Verifier.#ctor(SigStat.Common.Model.Verifier)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class with the properties of <paramref name="v"/>.
-            </summary>
-            <param name="v">An instance of the <see cref="T:SigStat.Common.Model.Verifier"/> class.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Verifier.Train(SigStat.Common.Signer)">
-            <summary>
-            Trains the verifier with <see cref="P:SigStat.Common.Signer.Signatures"/> having <see cref="F:SigStat.Common.Origin.Genuine"/> property.
-            </summary>
-            <param name="signer">The signer with genuine signatures.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Verifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
-            <summary>
-            Trains the verifier with a list of signatures. Uses the <see cref="P:SigStat.Common.Model.Verifier.TransformPipeline"/> to extract features,
-            and <see cref="P:SigStat.Common.Model.Verifier.ClassifierPipeline"/> to find an optimized limit.
-            </summary>
-            <param name="sigs">The list of signatures to train on.</param>
-        </member>
-        <member name="M:SigStat.Common.Model.Verifier.Test(SigStat.Common.Signature)">
-            <summary>
-            Verifies the genuinity of <paramref name="sig"/>.
-            </summary>
-            <param name="sig"></param>
-            <returns>True if <paramref name="sig"/> passes the verification test.</returns>
-        </member>
-        <member name="P:SigStat.Common.Model.Verifier.BasicVerifier">
-            <summary>
-            Basic <see cref="T:SigStat.Common.Model.Verifier"/> model with DTW classification of tangent features.
-            </summary>
         </member>
         <member name="T:SigStat.Common.FeatureDescriptor">
             <summary>
@@ -683,6 +815,24 @@
             <param name="name"></param>
             <param name="key"></param>
             <param name="featureType"></param>
+        </member>
+        <member name="M:SigStat.Common.FeatureDescriptor.IsRegistered(System.String)">
+            <summary>
+            Returns true, if there is a FeatureDescriptor registered with the given key
+            </summary>
+            <param name="featureKey">The key to search for</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.FeatureDescriptor.Register(System.String,System.Type)">
+            <summary>
+            Registers a new <see cref="T:SigStat.Common.FeatureDescriptor"/> with a given key.
+            If the FeatureDescriptor is allready registered, this function will
+            return a reference to the originally registered FeatureDescriptor.
+            to the a
+            </summary>
+            <param name="featureKey">The key for identifying the FeatureDescriptor</param>
+            <param name="type">The type of the actual feature values represented by <see cref="T:SigStat.Common.FeatureDescriptor"/></param>
+            <returns>A reference to the registered <see cref="T:SigStat.Common.FeatureDescriptor"/> instance</returns>
         </member>
         <member name="M:SigStat.Common.FeatureDescriptor.Get(System.String)">
             <summary>
@@ -856,54 +1006,59 @@
             (Their origin is not constrained to be genuine.)
             </summary>
         </member>
-        <member name="T:SigStat.Common.Vector">
+        <member name="T:SigStat.Common.BasicMetadataExtraction">
             <summary>
-            
+            Extracts basic statistical signature (like <see cref="F:SigStat.Common.Features.Bounds"/> or <see cref="F:SigStat.Common.Features.Cog"/>) information from an Image
             </summary>
         </member>
-        <member name="M:SigStat.Common.Vector.Equals(System.Object)">
+        <member name="P:SigStat.Common.BasicMetadataExtraction.Trim">
             <summary>
-            Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba
-            mutatnak és hosszuk is megegyezik. 
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Vector.GetNormal">
-            <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Represents theratio of significant pixels that should be trimmed
+            from each side while calculating <see cref="F:SigStat.Common.Features.TrimmedBounds"/>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Vector.GetNormal(System.Double)">
+        <member name="M:SigStat.Common.BasicMetadataExtraction.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel">
             <summary>
-            Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba
+            Represents a trained model for <see cref="T:SigStat.Common.PipelineItems.Classifiers.DtwClassifier"/>
             </summary>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Classifiers.DTWClassifier">
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.GenuineSignatures">
+            <summary>
+            A list a of genuine signatures used for training
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.Threshold">
+            <summary>
+            A threshold, that will be used for classification. Signatures with
+            an average DTW distance from the genuines above this threshold will
+            be classified as forgeries
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.DistanceMatrix">
+            <summary>
+            DTW distance matrix of the genuine signatures
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.DtwClassifier">
             <summary>
             Classifies Signatures with the <see cref="T:SigStat.Common.Algorithms.Dtw"/> algorithm.
             </summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.DTWClassifier.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Classifiers.DTWClassifier"/> class with the default Manhattan distance method.</summary>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Classifiers.DtwClassifier"/> class with the default Manhattan distance method.</summary>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.DTWClassifier.#ctor(System.Func{System.Double[],System.Double[],System.Double})">
-            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Classifiers.DTWClassifier"/> class with a specified distance method.</summary>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.#ctor(System.Func{System.Double[],System.Double[],System.Double})">
+            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Classifiers.DtwClassifier"/> class with a specified distance method.</summary>
              <param name="distanceMethod">Accord.Math.Distance.*</param>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.DTWClassifier.GetEnumerator">
-            <inheritdoc/>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <inheridoc/>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.DTWClassifier.Add(SigStat.Common.FeatureDescriptor)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.DTWClassifier.Pair(SigStat.Common.Signature,SigStat.Common.Signature)">
-            <summary>
-            Aggregates the input features and executes the <see cref="T:SigStat.Common.Algorithms.Dtw"/> algorithm.
-            </summary>
-            <param name="signature1"></param>
-            <param name="signature2"></param>
-            <returns>Cost between <paramref name="signature1"/> and <paramref name="signature2"/></returns>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
+            <inheridoc/>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier">
             <summary>
@@ -913,62 +1068,18 @@
         <member name="F:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Items">
             <summary>List of classifiers and belonging weights.</summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Logger">
-            <summary>Gets or sets the Logger. Passes it to child Items as well.</summary>
-        </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Add(System.ValueTuple{SigStat.Common.IClassification,System.Double})">
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Add(System.ValueTuple{SigStat.Common.Pipeline.IClassifier,System.Double})">
             <summary>Add a new classifier with given weight to the list of items.</summary>
             <param name="newItem">Classifier with belonging weight.</param>
         </member>
-        <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Pair(SigStat.Common.Signature,SigStat.Common.Signature)">
-            <summary>
-            Execute each classifier in the list and weigh returned costs.
-            </summary>
-            <param name="signature1"></param>
-            <param name="signature2"></param>
-            <returns>Weighted cost between <paramref name="signature1"/> and <paramref name="signature2"/></returns>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <inheridoc/>
         </member>
-        <member name="T:SigStat.Common.PipelineItems.Markers.LogMarker">
-            <summary>
-            Logs the Pipeline Input. Useful for logging TimeMarker results.
-            <para>Default Pipeline Output: -</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Markers.LogMarker.#ctor(SigStat.Common.Helpers.LogLevel)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Markers.LogMarker"/> class with specified log level.
-            </summary>
-            <param name="level">The level to log the message at.</param>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Markers.LogMarker.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Markers.TimeMarkerStart">
-            <summary>
-            Starts a timer to measure completion time of following transforms.
-            <para>Default Pipeline Output: (<see cref="T:System.DateTime"/>) DefaultTimer</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Markers.TimeMarkerStart.#ctor">
-            <summary>Starts a timer to measure completion time of following transforms.</summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Markers.TimeMarkerStart.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Markers.TimeMarkerStop">
-            <summary>
-            Stops a timer to measure completion time of previous transforms.
-            <para>Default Pipeline Output: (<see cref="T:System.DateTime"/>) DefaultTimer</para>
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Markers.TimeMarkerStop.#ctor">
-            <summary>Stops a timer to measure completion time of previous transforms.</summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Markers.TimeMarkerStop.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
+            <inheridoc/>
         </member>
         <member name="T:SigStat.Common.Transforms.ComponentSorter">
             <summary>
@@ -976,9 +1087,6 @@
             <para>Default Pipeline Input: (bool[,]) Components</para>
             <para>Default Pipeline Output: (bool[,]) Components</para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.ComponentSorter.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentSorter"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.ComponentSorter.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1033,9 +1141,6 @@
             <para>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth</para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.ApproximateOnlineFeatures.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ApproximateOnlineFeatures"/> class.</summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.ApproximateOnlineFeatures.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1044,15 +1149,6 @@
             Extracts the Centroid (aka. Center Of Gravity) of the input features.
             <para> Default Pipeline Output: (List{double}) Centroid. </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.CentroidExtraction"/> class. </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Transforms.CentroidExtraction.Add(SigStat.Common.FeatureDescriptor{System.Collections.Generic.List{System.Double}})">
-            <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Transforms.CentroidExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1093,9 +1189,6 @@
             <para>Default Pipeline Output: X, Y, Button <see cref="T:SigStat.Common.Features"/></para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.ComponentsToFeatures.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.ComponentsToFeatures"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.ComponentsToFeatures.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1106,9 +1199,6 @@
             <para>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints </para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.EndpointExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.EndpointExtraction"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1118,9 +1208,6 @@
             <para>Default Pipeline Input: X, Y <see cref="T:SigStat.Common.Features"/></para>
             <para>Default Pipeline Output: (List{double})  Tangent </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.TangentExtraction.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.TangentExtraction"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.TangentExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1170,9 +1257,6 @@
             Output features are lists, containing only one value each.
             </remarks>
         </member>
-        <member name="M:SigStat.Common.Transforms.Extrema.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Extrema"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.Extrema.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1202,12 +1286,6 @@
             <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Multiply"/> class with specified settings. </summary>
             <param name="byConst">The value to multiply the input feature by.</param>
         </member>
-        <member name="M:SigStat.Common.Transforms.Multiply.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Transforms.Multiply.Add(SigStat.Common.FeatureDescriptor)">
-            <inheritdoc/>
-        </member>
         <member name="M:SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1218,9 +1296,6 @@
             <para>Default Pipeline Output: (List{double}) NormalizationResult</para>
             </summary>
             <remarks> This is a specific case of the <see cref="T:SigStat.Common.Transforms.Map"/> transform. </remarks>
-        </member>
-        <member name="M:SigStat.Common.Transforms.Normalize.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Map"/> class with specified settings. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.Normalize.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1290,9 +1365,6 @@
             <para>Default Pipeline Output: (bool[,]) HSCPThinningResult </para>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Transforms.HSCPThinning.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.HSCPThinning"/> class. </summary>
-        </member>
         <member name="M:SigStat.Common.Transforms.HSCPThinning.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1327,9 +1399,6 @@
             <para>Pipeline Input type: bool[,]</para>
             <para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
             </summary>
-        </member>
-        <member name="M:SigStat.Common.Transforms.OnePixelThinning.#ctor">
-            <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.OnePixelThinning"/> class. </summary>
         </member>
         <member name="M:SigStat.Common.Transforms.OnePixelThinning.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
@@ -1394,58 +1463,6 @@
         <member name="M:SigStat.Common.Transforms.Trim.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
-        <member name="T:SigStat.Common.IClassification">
-            <summary>
-            Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.IClassification.Pair(SigStat.Common.Signature,SigStat.Common.Signature)">
-            <summary>
-            Executes the classification by pairing the parameters.
-            This function gets called by the pipeline.
-            </summary>
-            <param name="signature1">The <see cref="T:SigStat.Common.Signature"/> with a set of features to classify by.</param>
-            <param name="signature2">The <see cref="T:SigStat.Common.Signature"/> with a set of features to classify by.</param>
-            <returns>Cost between the two signatures</returns>
-        </member>
-        <member name="T:SigStat.Common.IClassificationMethods">
-            <summary>
-            Extension methods for <see cref="T:SigStat.Common.IClassification"/> for convenient IO rewiring.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.IClassificationMethods.Input(SigStat.Common.IClassification,SigStat.Common.FeatureDescriptor[])">
-            <summary>
-            Sets the InputFeatures in a convenient way.
-            </summary>
-            <param name="caller"></param>
-            <param name="inputFeatures"></param>
-            <returns>The caller.</returns>
-        </member>
-        <member name="M:SigStat.Common.IClassificationMethods.Output(SigStat.Common.IClassification,SigStat.Common.FeatureDescriptor[])">
-            <summary>
-            Sets the OutputFeatures in a convenient way.
-            </summary>
-            <param name="caller"></param>
-            <param name="outputFeatures"></param>
-            <returns>The caller.</returns>
-        </member>
-        <member name="T:SigStat.Common.Pipeline.IClassificationModel">
-            <summary>
-            Analyzes signatures based on their similiarity to the trained model
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Pipeline.IClassificationModel.Test(SigStat.Common.Signature)">
-            <summary>
-            Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.
-            <list type="bullet">
-            <item>0: non-match</item>
-            <item>0.5: inconclusive</item>
-            <item>1: match</item>
-            </list>
-            </summary>
-            <param name="signature"></param>
-            <returns></returns>
-        </member>
         <member name="T:SigStat.Common.Pipeline.IClassifier">
             <summary>
             Trains classification models based on reference signatures
@@ -1458,19 +1475,22 @@
             <param name="signatures"></param>
             <returns></returns>
         </member>
-        <member name="T:SigStat.Common.Pipeline.IPipelineIO">
+        <member name="M:SigStat.Common.Pipeline.IClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <summary>
-            Gives ability to get or set (rewire) a pipeline item's default input and output features.
+            Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.
+            <list type="bullet">
+            <item>0: non-match</item>
+            <item>0.5: inconclusive</item>
+            <item>1: match</item>
+            </list>
             </summary>
+            <param name="signature">The signature to test</param>
+            <param name="model">The model aquired from the <see cref="M:SigStat.Common.Pipeline.IClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})"/> method</param>
+            <returns></returns>
         </member>
-        <member name="P:SigStat.Common.Pipeline.IPipelineIO.InputFeatures">
+        <member name="T:SigStat.Common.Pipeline.ISignerModel">
             <summary>
-            List of features to be used as input.
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.IPipelineIO.OutputFeatures">
-            <summary>
-            List of features to be used as output.
+            Analyzes signatures based on their similiarity to the trained model
             </summary>
         </member>
         <member name="T:SigStat.Common.Pipeline.ParallelTransformPipeline">
@@ -1479,27 +1499,21 @@
             <para>Default Pipeline Output: Range of all the Item outputs.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.items">
+        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items">
             <summary>List of transforms to be run parallel.</summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Logger">
-            <summary>Passes Logger to child items as well.</summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Progress">
-            <summary>Gets the minimum progess of all the child items.</summary>
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.Add(SigStat.Common.ITransformation)">
             <summary>
-            Add new transform to the list. Pass <see cref="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Logger"/> and set up Progress event.
+            Add new transform to the list. 
             </summary>
             <param name="newItem"></param>
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
+            Executes transform <see cref="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
             Passes input features for each.
             Output is a range of all the Item outputs.
             </summary>
@@ -1511,24 +1525,21 @@
             <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.items">
+        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
             <summary>List of transforms to be run in sequence.</summary>
-        </member>
-        <member name="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Logger">
-            <summary>Passes Logger to child items as well.</summary>
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.Add(SigStat.Common.ITransformation)">
             <summary>
-            Add new transform to the list. Pass <see cref="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Logger"/> and set up Progress event.
+            Add new transform to the list. 
             </summary>
             <param name="newItem"></param>
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
+            Executes transform <see cref="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
             Passes input features for each.
             Output is the output of the last Item in the sequence.
             </summary>
@@ -1546,93 +1557,35 @@
             </summary>
             <param name="signature">The <see cref="T:SigStat.Common.Signature"/> with a set of features to be transformed.</param>
         </member>
-        <member name="T:SigStat.Common.ITransformationMethods">
-            <summary>
-            Extension methods for <see cref="T:SigStat.Common.ITransformation"/> for convenient IO rewiring.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.ITransformationMethods.Input(SigStat.Common.ITransformation,SigStat.Common.FeatureDescriptor[])">
-            <summary>
-            Sets the InputFeatures in a convenient way.
-            </summary>
-            <param name="caller"></param>
-            <param name="inputFeatures"></param>
-            <returns>The caller.</returns>
-        </member>
-        <member name="M:SigStat.Common.ITransformationMethods.Output(SigStat.Common.ITransformation,SigStat.Common.FeatureDescriptor[])">
-            <summary>
-            Sets the OutputFeatures in a convenient way.
-            </summary>
-            <param name="caller"></param>
-            <param name="outputFeatures"></param>
-            <returns>The caller.</returns>
-        </member>
         <member name="T:SigStat.Common.PipelineBase">
             <summary>
             TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.
             IProgress, ILogger, IPipelineIO default implementacioja.
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineBase.InputFeatures">
-            <inheritdoc/>
-        </member>
-        <member name="P:SigStat.Common.PipelineBase.OutputFeatures">
-            <inheritdoc/>
-        </member>
         <member name="P:SigStat.Common.PipelineBase.Logger">
             <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.PipelineBase.Log(SigStat.Common.Helpers.LogLevel,System.String)">
-            <summary>
-            Enqueues a new log entry to be consumed by the attached <see cref="T:SigStat.Common.Helpers.Logger"/>. Use this when developing new pipeline items.
-            </summary>
-            <param name="level">Specifies the level of the entry. Higher levels than the <see cref="T:SigStat.Common.Helpers.Logger"/>'s filter level will be ignored.</param>
-            <param name="message">The main content of the log entry.</param>
         </member>
         <member name="P:SigStat.Common.PipelineBase.Progress">
             <inheritdoc/>
         </member>
         <member name="E:SigStat.Common.PipelineBase.ProgressChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.PipelineBase.OnProgressChanged(System.Int32)">
             <summary>
-            Used to raise base class event in derived classes.
-            See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>.
+            The event is raised whenever the value of <see cref="P:SigStat.Common.PipelineBase.Progress"/> changes
             </summary>
-            <param name="v"></param>
         </member>
-        <member name="M:Alairas.Common.BaseLineExtraction.GetComponentLowerEnvelopes(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})">
+        <member name="M:SigStat.Common.PipelineBase.OnProgressChanged">
             <summary>
-            Extracts lower envelope for each component
+            Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
-            <param name="bmp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Alairas.Common.BaseLineExtraction.RemoveOverlapingEnvelopes(System.Collections.Generic.List{System.Collections.Generic.List{System.Drawing.Point}})">
-            <summary>
-            Eltávolítja az egymás fölött lévő komponensek közül a felsőket, amennyiben az átfedés mértéke legalább 50%
-            </summary>
-            <param name="envelopes"></param>
-            <remarks>Az eltávolított komponensek függhetnek a feldolgozás sorrendjétől, így több, egymást kölcsönösen átfedő komponens esetén előfordulhat, hogy hibás eredményt kapunk.</remarks>
-        </member>
-        <member name="M:Alairas.Common.BaseLineExtraction.GetLineOfBestFit(System.Collections.Generic.List{System.Drawing.Point})">
-            <summary>
-            Megkeresi a megadott pontokra legjobban illeszkedő egyenest. Képes még ennek az egyenesnek különböző 
-            hibamértékeinek kiszámítására, azonban jelenleg ezzel nem foglalkozom, hiszen ebben a speciális esetben
-            szinte biztosan elég jól illeszkedő egyenest kapunk eredményül.
-            Az algorimus kimenete nem egy egyenes, hanem egy egy vektor, mely az egyenes egy szakasza. Felteszem,
-            hogy a pontok X koordináta szerint rendezettek, így az első és utolsó pont X koordinátája közötti
-            szakaszt adom vissza az egyenesből.
-            Azaz:
-            Paraméterként egy előzőleg megtalált komponenst kap, kimenete pedig az adott komponens alapvonala.
-            </summary>
-            <param name="points">A pontok, melyre az egyenest illeszteni szeretnénk.</param>
         </member>
         <member name="T:Alairas.Common.SimpleRenderingTransformation">
             <summary>
             Renders an image of the signature based on the available online information (X,Y,Dpi)
             </summary>
+        </member>
+        <member name="M:Alairas.Common.SimpleRenderingTransformation.Transform(SigStat.Common.Signature)">
+            <inheritdoc></inheritdoc>
         </member>
     </members>
 </doc>

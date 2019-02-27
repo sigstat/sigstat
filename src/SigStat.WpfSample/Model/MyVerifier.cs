@@ -26,27 +26,19 @@ namespace SigStat.WpfSample.Model
         {
             foreach (var sig in signatures)
             {
-                TransformPipeline.Transform(sig);
+                Pipeline.Transform(sig);
             }
             Classifier.Train(signatures);
         }
 
-        public override bool Test(Signature sig)
+        public override double Test(Signature sig)
         {
-            TransformPipeline.Transform(sig);
+            Pipeline.Transform(sig);
 
-            return Classifier.Test(sig)>0.5;
+            return Classifier.Test(sig);
         }
 
-        protected override void LoggerChanged(Logger oldLogger, Logger newLogger)
-        {
-            if (Classifier!=null)
-            {
-                Classifier.Logger = newLogger;
-            }
 
-
-        }
 
     }
 }

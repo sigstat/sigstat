@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Helpers;
+﻿using Microsoft.Extensions.Logging;
+using SigStat.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,19 +9,11 @@ namespace SigStat.Common.Loaders
     /// <summary>
     /// Abstract loader class to inherit from. Implements ILogger.
     /// </summary>
-    public abstract class DataSetLoader : IDataSetLoader, ILogger
+    public abstract class DataSetLoader : IDataSetLoader, ILoggerObject
     {
         /// <inheritdoc/>
-        public Logger Logger { get; set; }
-        /// <inheritdoc/>
-        protected void Log(LogLevel level, string message)
-        {
-            if (Logger != null)
-            {
-                Logger.EnqueueEntry(level, this, message);
-            }
-        }
-
+        public ILogger Logger { get; set; }
+       
         /// <inheritdoc/>
         public IEnumerable<Signer> EnumerateSigners()
         {

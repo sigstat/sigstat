@@ -20,6 +20,8 @@ using System.Diagnostics;
 using SigStat.Common.Pipeline;
 using SigStat.Common.Transforms;
 using System.Collections;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace SigStat.WpfSample
 {
@@ -111,7 +113,7 @@ namespace SigStat.WpfSample
                 StatisticsProgressBar.Visibility = Visibility.Visible;
             });
 
-            var logger = new Logger(LogLevel.Debug, null, Log);
+            ConsoleLogger logger = null; // new ConsoleLogger( LogLevel.Debug, null, Log);
             var benchmarkResults = new Dictionary<List<FeatureDescriptor>, BenchmarkResults>(Common.Configuration.TestInputFeatures.Length);
 
            
@@ -134,7 +136,7 @@ namespace SigStat.WpfSample
                     Sampler = IsOptiClass ? MySampler.AllReferences : MySampler.Basic,
                     Verifier = new MyVerifier(classifier)
                     {
-                        TransformPipeline = transformPipeline
+                        Pipeline = transformPipeline
                     },
                     Logger = logger,
                 };

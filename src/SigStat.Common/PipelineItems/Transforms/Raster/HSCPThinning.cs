@@ -3,6 +3,8 @@ using SigStat.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,16 +15,16 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class HSCPThinning : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="HSCPThinning"/> class. </summary>
-        public HSCPThinning()
-        {
-            this.Output(FeatureDescriptor.Get<bool[,]>("HSCPThinningResult"));
-        }
+        [Input]
+        public FeatureDescriptor<bool[,]> Input;
+
+        [Output("HSCPThinningResult")]
+        public FeatureDescriptor<bool[,]> Output;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            bool[,] b = signature.GetFeature<bool[,]>(InputFeatures[0]);
+            bool[,] b = signature.GetFeature(Input);
             Progress = 50;
             int stepCnt = 0;
             HSCPThinningStep algo = new HSCPThinningStep();
@@ -31,9 +33,9 @@ namespace SigStat.Common.Transforms
                 b = algo.Scan(b);
                 stepCnt++;
             }
-            signature.SetFeature(OutputFeatures[0], b);
+            signature.SetFeature(Output, b);
             Progress = 100;
-            Log(LogLevel.Info, $"HSCP thinning steps applied {stepCnt} times.");
+            this.Log( $"HSCP thinning steps applied {stepCnt} times.");
         }
         
     }

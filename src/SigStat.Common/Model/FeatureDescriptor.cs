@@ -49,11 +49,25 @@ namespace SigStat.Common
             descriptors.Add(key, this);
         }
 
+        /// <summary>
+        /// Returns true, if there is a FeatureDescriptor registered with the given key
+        /// </summary>
+        /// <param name="featureKey">The key to search for</param>
+        /// <returns></returns>
         public static bool IsRegistered(string featureKey)
         {
             return descriptors.ContainsKey(featureKey);
         }
 
+        /// <summary>
+        /// Registers a new <see cref="FeatureDescriptor"/> with a given key.
+        /// If the FeatureDescriptor is allready registered, this function will
+        /// return a reference to the originally registered FeatureDescriptor.
+        /// to the a
+        /// </summary>
+        /// <param name="featureKey">The key for identifying the FeatureDescriptor</param>
+        /// <param name="type">The type of the actual feature values represented by <see cref=" FeatureDescriptor"/></param>
+        /// <returns>A reference to the registered <see cref="FeatureDescriptor"/> instance</returns>
         public static FeatureDescriptor Register(string featureKey, Type type)
         {
             var fdType = typeof(FeatureDescriptor<>).MakeGenericType(type);

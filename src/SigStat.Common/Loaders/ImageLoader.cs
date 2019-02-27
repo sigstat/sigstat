@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Loaders
 {
@@ -48,7 +49,7 @@ namespace SigStat.Common.Loaders
         /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-            Log(LogLevel.Info, "Enumerating signers started.");
+            this.Log("Enumerating signers started.");
             var signatureGroups = Directory.EnumerateFiles(DatabasePath, "U*S*.png")
                 .Select(f => new SignatureFile(f))
                 .GroupBy(sf => sf.SignerID);
@@ -75,7 +76,7 @@ namespace SigStat.Common.Loaders
                 }
                 yield return signer;
             }
-            Log(LogLevel.Info, "Enumerating signers finished.");
+            this.Log("Enumerating signers finished.");
         }
 
         /// <summary>

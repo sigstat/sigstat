@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SigStat.Common
 {
+    /// <summary>
+    /// Common mathematical functions used by the SigStat framework
+    /// </summary>
     public static class MathHelper
     {
         /// <summary>

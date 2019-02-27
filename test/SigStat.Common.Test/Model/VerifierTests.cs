@@ -14,18 +14,7 @@ namespace SigStat.Common.Test.Model
     [TestClass]
     public class VerifierTests
     {
-       [TestMethod]
-       public void TestConstructors()
-        {
-            var v1 = new Verifier();
-            Assert.IsNotNull(v1);
-            Assert.IsNotNull(v1.ClassifierPipeline);
-            Assert.IsNotNull(v1.TransformPipeline);
-
-            var v2 = new Verifier(v1);
-            Assert.AreSame(v2.TransformPipeline, v1.TransformPipeline);
-            Assert.AreSame(v2.ClassifierPipeline, v1.ClassifierPipeline);
-        }
+      
 
         [TestMethod]
         public void TestTrain()
@@ -39,11 +28,6 @@ namespace SigStat.Common.Test.Model
             //TODO: The sample code is not working yet.
         }
 
-        [TestMethod]
-        public void TestBasicVerifier()
-        {
-            var v = Verifier.BasicVerifier;
-            Assert.IsNotNull(v);
-        }
+
     }
 }
