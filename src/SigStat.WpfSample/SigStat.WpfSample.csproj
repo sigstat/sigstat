@@ -304,7 +304,7 @@
     <Compile Include="Model\IClassifier.cs" />
     <Compile Include="Model\OptimalDTWClassifier.cs" />
     <Compile Include="Model\OptimalFusedScoreClassifier.cs" />
-    <Compile Include="Model\MyVerifier.cs" />
+    <!--<Compile Include="Model\MyVerifier.cs" />-->
     <Compile Include="Model\Svc2004Normalize.cs" />
     <Compile Include="Model\TimeFilterClassifier.cs" />
     <Compile Include="Model\CompositeTimeFilterClassifier.cs" />
