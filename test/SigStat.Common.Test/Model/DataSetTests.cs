@@ -1,20 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using System;
+//using System.Collections.Generic;
+//using System.Data;
+//using System.Text;
 
-namespace SigStat.Common.Test.Model
-{
-    [TestClass]
-    public class DataSetTests
-    {
+//namespace SigStat.Common.Test.Model
+//{
+//    [TestClass]
+//    public class DataSetTests
+//    {
 
-        [TestMethod]
-        public void TestGetterSetter()
-        {
-            DataSet ds = new DataSet();
+//        [TestMethod]
+//        public void TestGetterSetter()
+//        {
+//            DataSet ds = new DataSet();
 
-            Assert.IsNotNull(ds.Signers);
-        }
-    }
-}
+//            Assert.IsNotNull(ds.Signers);
+//        }
+//    }
+//}
