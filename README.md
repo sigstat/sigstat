@@ -26,7 +26,7 @@ Signature verification plays a very important role in our lives. Companies and o
 
 # How to use our project
 To use this project, you need to have **.NET Framework 4.7.2** up and running!
-For full declaration of each class please visit our [wiki](https://github.com/hargitomi97/sigstat/wiki) site!
+For full declaration of each class please visit our [wiki](https://github.com/sigstat/sigstat/wiki) site!
 
 # Included NuGet Packages 
 
