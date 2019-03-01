@@ -16,7 +16,7 @@ namespace SigStat.WpfSample.Model
         {
             foreach (var fd in DerivableSvc2004Features.All)
             {
-                //Add(new Normalize().Input(fd).Output(fd));
+                Add(new Normalize().Input(fd).Output(fd));
             }
         }
     }

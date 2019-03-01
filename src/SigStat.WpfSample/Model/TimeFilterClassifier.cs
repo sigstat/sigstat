@@ -38,7 +38,7 @@ namespace SigStat.WpfSample.Model
                     minTime = sigTime;
             }
 
-            //Logger.Info(this, signatures[0].Signer.ID + "-maxTime", debugInfo);
+            Logger.Info(this, signatures[0].Signer.ID + "-maxTime", debugInfo);
 
 
             threshold = maxTime + (maxTime - minTime);// + 2.5 * (maxTime - minTime);
@@ -48,11 +48,11 @@ namespace SigStat.WpfSample.Model
 
         public override double Test(Signature signature)
         {
-            //var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-maxTime"];
+            var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-maxTime"];
 
             var sigTime = signature.GetFeature(Features.T).Max() - signature.GetFeature(Features.T).Min();
 
-            //debugInfo.Add(new object[] { signature.ID, sigTime });
+            debugInfo.Add(new object[] { signature.ID, sigTime });
 
             return CalculateTestResult(sigTime,threshold);
         }
