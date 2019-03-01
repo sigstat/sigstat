@@ -27,14 +27,14 @@ namespace SigStat.WpfSample.Model
             }
         }
 
-        public override Logger Logger {
+        /*public override Logger Logger {
             set
             {
                 base.Logger = value;
                 MainClassifier.Logger = value;
                 TimeFilterClassifier.Logger = value;
             }
-        }
+        }*/
 
         public CompositeTimeFilterClassifier(IClassifier mainClassifier)
         {

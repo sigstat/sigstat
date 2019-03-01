@@ -12,7 +12,7 @@ namespace SigStat.WpfSample.Model
     {
         public virtual string Name => GetType().Name;
 
-        public virtual Logger Logger { get; set; }
+        //public virtual Logger Logger { get; set; }
 
         public abstract double Test(Signature signature);
 

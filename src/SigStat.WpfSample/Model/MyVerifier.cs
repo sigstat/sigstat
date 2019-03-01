@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Model
 {
-    public class MyVerifier: Verifier
+    /*public class MyVerifier: Verifier
     {
         public IClassifier Classifier { get; set; }
 
-        public MyVerifier(IClassifier classifier)
-        {
-            Classifier = classifier;
-        }
+        //public MyVerifier(IClassifier classifier)
+        //{
+         //   Classifier = classifier;
+        //}
 
         public override void Train(List<Signature> signatures)
         {
@@ -40,5 +40,5 @@ namespace SigStat.WpfSample.Model
 
 
 
-    }
+    }*/
 }

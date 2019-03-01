@@ -194,7 +194,7 @@ namespace SigStat.WpfSample.Helpers
             ws.Cells["A1:D1"].AutoFitColumns();
         }
 
-        public static void SetFusedScoreAutomaticClassificationThresholdTestRow(ExcelWorksheet ws, ThresholdResult result)
+        /*public static void SetFusedScoreAutomaticClassificationThresholdTestRow(ExcelWorksheet ws, ThresholdResult result)
         {
             int signerIndex = Convert.ToInt32(result.Signer);
             int lineIndex = signerIndex + 1;
@@ -204,7 +204,7 @@ namespace SigStat.WpfSample.Helpers
             ws.Cells["D" + lineIndex].Value = result.Aer;
 
             ws.Cells["A" + lineIndex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-        }
+        }*/
 
         public static void SetFusedScoreAutomaticClassificationThresholdTestSummary(ExcelWorksheet ws, int lineIndex)
         {

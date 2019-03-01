@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.WpfSample.Model
 {
-    public interface IClassifier: ILogger
+    public interface IClassifier//: ILogger
     {
         string Name { get; }
         double Train(List<Signature> signatures);

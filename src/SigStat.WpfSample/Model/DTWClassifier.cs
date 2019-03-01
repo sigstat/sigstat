@@ -76,14 +76,14 @@ namespace SigStat.WpfSample.Model
             double dev = Measures.StandardDeviation(costs.ToArray(), false);
             threshold = avg + 0.8 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni
 
-            Logger.Info(this, signatures[0].Signer.ID + "-dtwclassifier-distances", debugInfo);
+            //Logger.Info(this, signatures[0].Signer.ID + "-dtwclassifier-distances", debugInfo);
 
             return threshold;
         }
 
         public override double Test(Signature signature)
         {
-            var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-dtwclassifier-distances"];
+            //var debugInfo = (List<object[]>)Logger.ObjectEntries[signature.Signer.ID + "-dtwclassifier-distances"];
             var debugRow = new object[originals.Count + 1];
             debugRow[0] = signature.ID;
 
@@ -95,7 +95,7 @@ namespace SigStat.WpfSample.Model
                 avgDist += dist;
                 debugRow[originals.IndexOf(original) + 1] = dist;
             }
-            debugInfo.Add(debugRow);
+            //debugInfo.Add(debugRow);
 
             avgDist /= originals.Count;
 
