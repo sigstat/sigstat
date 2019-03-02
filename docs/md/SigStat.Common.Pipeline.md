@@ -10,9 +10,9 @@ Enum
 
 | <sub>Value</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `0` | IfNull |  | 
-| `1` | Always |  | 
-| `2` | Never |  | 
+| 0 | IfNull |  | 
+| 1 | Always |  | 
+| 2 | Never |  | 
 
 
 #### `IClassifier`
@@ -27,8 +27,8 @@ public interface SigStat.Common.Pipeline.IClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | <sub>Test(ISignerModel, Signature)</sub> | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
-| `ISignerModel` | <sub>Train(List<Signature>)</sub> | Trains a model based on the signatures and returns the trained model | 
+| Double | <sub>Test(ISignerModel, Signature)</sub> | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
+| ISignerModel | <sub>Train(List<Signature>)</sub> | Trains a model based on the signatures and returns the trained model | 
 
 
 #### `Input`
@@ -43,7 +43,7 @@ public class SigStat.Common.Pipeline.Input
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `AutoSetMode` | <sub>AutoSetMode</sub> |  | 
+| AutoSetMode | <sub>AutoSetMode</sub> |  | 
 
 
 #### `IPipelineIO`
@@ -57,8 +57,8 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
-| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
+| List<PipelineInput> | <sub>PipelineInputs</sub> |  | 
+| List<PipelineOutput> | <sub>PipelineOutputs</sub> |  | 
 
 
 #### `ISignerModel`
@@ -81,7 +81,7 @@ public class SigStat.Common.Pipeline.Output
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | <sub>Default</sub> |  | 
+| String | <sub>Default</sub> |  | 
 
 
 #### `ParallelTransformPipeline`
@@ -97,24 +97,24 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ITransformation>` | <sub>Items</sub> | List of transforms to be run parallel. | 
+| List<ITransformation> | <sub>Items</sub> | List of transforms to be run parallel. | 
 
 
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
-| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
+| List<PipelineInput> | <sub>PipelineInputs</sub> |  | 
+| List<PipelineOutput> | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Add(ITransformation)</sub> | Add new transform to the list. | 
-| `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
-| `void` | <sub>Transform(Signature)</sub> | Executes transform `SigStat.Common.Pipeline.ParallelTransformPipeline.Items` parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
+| void | <sub>Add(ITransformation)</sub> | Add new transform to the list. | 
+| IEnumerator | <sub>GetEnumerator()</sub> |  | 
+| void | <sub>Transform(Signature)</sub> | Executes transform `SigStat.Common.Pipeline.ParallelTransformPipeline.Items` parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
 
 
 #### `PipelineInput`
@@ -128,11 +128,11 @@ public class SigStat.Common.Pipeline.PipelineInput
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `AutoSetMode` | <sub>AutoSetMode</sub> |  | 
-| `Object` | <sub>FD</sub> |  | 
-| `String` | <sub>FieldName</sub> |  | 
-| `Boolean` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
-| `Type` | <sub>Type</sub> |  | 
+| AutoSetMode | <sub>AutoSetMode</sub> |  | 
+| Object | <sub>FD</sub> |  | 
+| String | <sub>FieldName</sub> |  | 
+| Boolean | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| Type | <sub>Type</sub> |  | 
 
 
 #### `PipelineOutput`
@@ -146,12 +146,12 @@ public class SigStat.Common.Pipeline.PipelineOutput
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | <sub>Default</sub> |  | 
-| `Object` | <sub>FD</sub> |  | 
-| `String` | <sub>FieldName</sub> |  | 
-| `Boolean` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
-| `Boolean` | <sub>IsTemporary</sub> |  | 
-| `Type` | <sub>Type</sub> |  | 
+| String | <sub>Default</sub> |  | 
+| Object | <sub>FD</sub> |  | 
+| String | <sub>FieldName</sub> |  | 
+| Boolean | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| Boolean | <sub>IsTemporary</sub> |  | 
+| Type | <sub>Type</sub> |  | 
 
 
 #### `SequentialTransformPipeline`
@@ -167,23 +167,23 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ITransformation>` | <sub>Items</sub> | List of transforms to be run in sequence. | 
+| List<ITransformation> | <sub>Items</sub> | List of transforms to be run in sequence. | 
 
 
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
-| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
+| List<PipelineInput> | <sub>PipelineInputs</sub> |  | 
+| List<PipelineOutput> | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Add(ITransformation)</sub> | Add new transform to the list. | 
-| `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
-| `void` | <sub>Transform(Signature)</sub> | Executes transform `SigStat.Common.Pipeline.SequentialTransformPipeline.Items` in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
+| void | <sub>Add(ITransformation)</sub> | Add new transform to the list. | 
+| IEnumerator | <sub>GetEnumerator()</sub> |  | 
+| void | <sub>Transform(Signature)</sub> | Executes transform `SigStat.Common.Pipeline.SequentialTransformPipeline.Items` in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
 
 

@@ -11,15 +11,15 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `ILogger` | <sub>Logger</sub> |  | 
+| ILogger | <sub>Logger</sub> |  | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners()</sub> |  | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
+| IEnumerable<Signer> | <sub>EnumerateSigners()</sub> |  | 
+| IEnumerable<Signer> | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 #### `IDataSetLoader`
@@ -34,8 +34,8 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners()</sub> | Enumerates all signers of the database | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> | Enumerates all signers of the database | 
+| IEnumerable<Signer> | <sub>EnumerateSigners()</sub> | Enumerates all signers of the database | 
+| IEnumerable<Signer> | <sub>EnumerateSigners(Predicate<Signer>)</sub> | Enumerates all signers of the database | 
 
 
 #### `ImageLoader`
@@ -51,15 +51,15 @@ public class SigStat.Common.Loaders.ImageLoader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
+| IEnumerable<Signer> | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>LoadImage(Signature, String)</sub> | Load one image. | 
-| `Signature` | <sub>LoadSignature(String)</sub> |  | 
+| void | <sub>LoadImage(Signature, String)</sub> | Load one image. | 
+| Signature | <sub>LoadSignature(String)</sub> |  | 
 
 
 #### `ImageSaver`
@@ -74,7 +74,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Save(Signature, String)</sub> | Saves a png image file to the specified ``. | 
+| void | <sub>Save(Signature, String)</sub> | Saves a png image file to the specified ``. | 
 
 
 #### `Svc2004`
@@ -89,13 +89,13 @@ public static class SigStat.Common.Loaders.Svc2004
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Altitude</sub> | Altitude values from the online signature imported from the SVC2004 database | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Azimuth</sub> | Button values from the online signature imported from the SVC2004 database | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Button</sub> | Y cooridnates from the online signature imported from the SVC2004 database | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Pressure</sub> | Pressure values from the online signature imported from the SVC2004 database | 
-| `FeatureDescriptor<List<Int32>>` | <sub>T</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
-| `FeatureDescriptor<List<Int32>>` | <sub>X</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Y</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>Altitude</sub> | Altitude values from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>Azimuth</sub> | Button values from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>Button</sub> | Y cooridnates from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>Pressure</sub> | Pressure values from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>T</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>X</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
+| FeatureDescriptor<List<Int32>> | <sub>Y</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
 
 
 #### `Svc2004Loader`
@@ -111,21 +111,21 @@ public class SigStat.Common.Loaders.Svc2004Loader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Predicate<Signer>` | <sub>SignerFilter</sub> | Ignores any signers during the loading, that do not match the predicate | 
+| Predicate<Signer> | <sub>SignerFilter</sub> | Ignores any signers during the loading, that do not match the predicate | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
+| IEnumerable<Signer> | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>LoadSignature(Signature, String, Boolean)</sub> | Loads one signature from specified file path. | 
-| `void` | <sub>LoadSignature(Signature, Stream, Boolean)</sub> | Loads one signature from specified file path. | 
+| void | <sub>LoadSignature(Signature, String, Boolean)</sub> | Loads one signature from specified file path. | 
+| void | <sub>LoadSignature(Signature, Stream, Boolean)</sub> | Loads one signature from specified file path. | 
 
 

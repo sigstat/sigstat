@@ -11,6 +11,6 @@ public class Alairas.Common.SimpleRenderingTransformation
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Transform(Signature)</sub> |  | 
+| void | <sub>Transform(Signature)</sub> |  | 
 
 
