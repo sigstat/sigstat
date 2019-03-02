@@ -10,14 +10,14 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>ILogger</sub>` | <sub>Logger</sub> |  | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners()</sub> |  | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
@@ -33,7 +33,7 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners()</sub> | Enumerates all signers of the database | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> | Enumerates all signers of the database | 
 
@@ -50,14 +50,14 @@ public class SigStat.Common.Loaders.ImageLoader
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>void</sub>` | <sub>LoadImage(Signature, String)</sub> | Load one image. | 
 | `<sub>Signature</sub>` | <sub>LoadSignature(String)</sub> |  | 
 
@@ -73,7 +73,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>void</sub>` | <sub>Save(Signature, String)</sub> | Saves a png image file to the specified ``. | 
 
 
@@ -88,7 +88,7 @@ public static class SigStat.Common.Loaders.Svc2004
 ###### Static Fields
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>FeatureDescriptor<List<Int32>></sub>` | <sub>Altitude</sub> | Altitude values from the online signature imported from the SVC2004 database | 
 | `<sub>FeatureDescriptor<List<Int32>></sub>` | <sub>Azimuth</sub> | Button values from the online signature imported from the SVC2004 database | 
 | `<sub>FeatureDescriptor<List<Int32>></sub>` | <sub>Button</sub> | Y cooridnates from the online signature imported from the SVC2004 database | 
@@ -110,21 +110,21 @@ public class SigStat.Common.Loaders.Svc2004Loader
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>Predicate<Signer></sub>` | <sub>SignerFilter</sub> | Ignores any signers during the loading, that do not match the predicate | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
+| --- | --- | --- | 
 | `<sub>void</sub>` | <sub>LoadSignature(Signature, String, Boolean)</sub> | Loads one signature from specified file path. | 
 | `<sub>void</sub>` | <sub>LoadSignature(Signature, Stream, Boolean)</sub> | Loads one signature from specified file path. | 
 
