@@ -16,7 +16,7 @@
 title: sigStat
 email: info@sigstat.org
 description: An open source framework for signature verification
-baseurl: "http://sigstat.org/landing.html" # the subpath of your site, e.g. /blog
+baseurl: "http://sigstat.org/" # the subpath of your site, e.g. /blog
 url: "http://sigstat.org/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb #https://twitter.com/sigstatorg?
 github_username:  jekyll #isgstat?
