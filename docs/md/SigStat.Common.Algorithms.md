@@ -10,7 +10,7 @@ public class SigStat.Common.Algorithms.Dtw
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>ForwardPath</sub> | Gets the list of points representing the shortest path. | 
+| `Property` | <sub>ForwardPath</sub> | Gets the list of points representing the shortest path. | 
 
 
 ###### Methods
@@ -48,7 +48,7 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>ResultChanged</sub> | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
+| `Property` | <sub>ResultChanged</sub> | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
 
 
 ###### Methods

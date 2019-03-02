@@ -456,9 +456,9 @@ public class SigStat.Common.Transforms.Resize
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>Height</sub> | The new height. Leave it as null, if you do not want to explicitly specify a given height | 
-| `` | <sub>ResizeFunction</sub> | Set a resize function if you want to dynamically calculate the new width and height of the image | 
-| `` | <sub>Width</sub> | The new width. Leave it as null, if you do not want to explicitly specify a given width | 
+| `Property` | <sub>Height</sub> | The new height. Leave it as null, if you do not want to explicitly specify a given height | 
+| `Property` | <sub>ResizeFunction</sub> | Set a resize function if you want to dynamically calculate the new width and height of the image | 
+| `Property` | <sub>Width</sub> | The new width. Leave it as null, if you do not want to explicitly specify a given width | 
 
 
 ###### Methods

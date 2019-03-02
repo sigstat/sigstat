@@ -29,8 +29,8 @@ public class SigStat.Common.Baseline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>End</sub> | Endpoint of the baseline | 
-| `` | <sub>Start</sub> | Starting point of the baseline | 
+| `Property` | <sub>End</sub> | Endpoint of the baseline | 
+| `Property` | <sub>Start</sub> | Starting point of the baseline | 
 
 
 ###### Methods
@@ -91,10 +91,10 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>FeatureType</sub> | Gets or sets the type of the feature. | 
-| `` | <sub>IsCollection</sub> | Gets whether the type of the feature is List. | 
-| `` | <sub>Key</sub> | Gets the unique key of the feature. | 
-| `` | <sub>Name</sub> | Gets or sets a human readable name of the feature. | 
+| `Property` | <sub>FeatureType</sub> | Gets or sets the type of the feature. | 
+| `Property` | <sub>IsCollection</sub> | Gets whether the type of the feature is List. | 
+| `Property` | <sub>Key</sub> | Gets the unique key of the feature. | 
+| `Property` | <sub>Name</sub> | Gets or sets a human readable name of the feature. | 
 
 
 ###### Methods
@@ -176,7 +176,7 @@ public interface SigStat.Common.ILoggerObject
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>Logger</sub> | Gets or sets the ILogger implementation used to perform logging | 
+| `Property` | <sub>Logger</sub> | Gets or sets the ILogger implementation used to perform logging | 
 
 
 #### `ILoggerObjectExtensions`
@@ -225,9 +225,9 @@ public class SigStat.Common.Loop
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>Bounds</sub> | The bounding rectangle of the loop | 
-| `` | <sub>Center</sub> | The geometrical center of the looop | 
-| `` | <sub>Points</sub> | A list of defining points of the loop | 
+| `Property` | <sub>Bounds</sub> | The bounding rectangle of the loop | 
+| `Property` | <sub>Center</sub> | The geometrical center of the looop | 
+| `Property` | <sub>Points</sub> | A list of defining points of the loop | 
 
 
 ###### Methods
@@ -283,10 +283,10 @@ public abstract class SigStat.Common.PipelineBase
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>Logger</sub> |  | 
-| `` | <sub>PipelineInputs</sub> |  | 
-| `` | <sub>PipelineOutputs</sub> |  | 
-| `` | <sub>Progress</sub> |  | 
+| `Property` | <sub>Logger</sub> |  | 
+| `Property` | <sub>PipelineInputs</sub> |  | 
+| `Property` | <sub>PipelineOutputs</sub> |  | 
+| `Property` | <sub>Progress</sub> |  | 
 
 
 ###### Events
@@ -333,7 +333,7 @@ public class SigStat.Common.Sampler
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>BatchSize</sub> |  | 
+| `Property` | <sub>BatchSize</sub> |  | 
 
 
 ###### Methods
@@ -360,11 +360,11 @@ public class SigStat.Common.Signature
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>ID</sub> | An identifier for the Signature. Keep it unique to be useful for logs. | 
-| `` | <sub>Item</sub> | Gets or sets the specified feature. | 
-| `` | <sub>Item</sub> | Gets or sets the specified feature. | 
-| `` | <sub>Origin</sub> | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
-| `` | <sub>Signer</sub> | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
+| `Property` | <sub>ID</sub> | An identifier for the Signature. Keep it unique to be useful for logs. | 
+| `Property` | <sub>Item</sub> | Gets or sets the specified feature. | 
+| `Property` | <sub>Item</sub> | Gets or sets the specified feature. | 
+| `Property` | <sub>Origin</sub> | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
+| `Property` | <sub>Signer</sub> | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
 
 
 ###### Methods
@@ -395,8 +395,8 @@ public class SigStat.Common.Signer
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>ID</sub> | An identifier for the Signer. Keep it unique to be useful for logs. | 
-| `` | <sub>Signatures</sub> | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
+| `Property` | <sub>ID</sub> | An identifier for the Signer. Keep it unique to be useful for logs. | 
+| `Property` | <sub>Signatures</sub> | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
 
 
 #### `SVC2004Sampler`

@@ -11,10 +11,10 @@ public class SigStat.Common.Model.Verifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>Classifier</sub> | Gets or sets the classifier pipeline. Hands over the Logger object. | 
-| `` | <sub>Logger</sub> | Gets or sets the class responsible for logging | 
-| `` | <sub>Pipeline</sub> | Gets or sets the transform pipeline. Hands over the Logger object. | 
-| `` | <sub>SignerModel</sub> |  | 
+| `Property` | <sub>Classifier</sub> | Gets or sets the classifier pipeline. Hands over the Logger object. | 
+| `Property` | <sub>Logger</sub> | Gets or sets the class responsible for logging | 
+| `Property` | <sub>Pipeline</sub> | Gets or sets the transform pipeline. Hands over the Logger object. | 
+| `Property` | <sub>SignerModel</sub> |  | 
 
 
 ###### Methods

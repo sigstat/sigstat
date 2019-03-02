@@ -57,8 +57,8 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>PipelineInputs</sub> |  | 
-| `` | <sub>PipelineOutputs</sub> |  | 
+| `Property` | <sub>PipelineInputs</sub> |  | 
+| `Property` | <sub>PipelineOutputs</sub> |  | 
 
 
 #### `ISignerModel`
@@ -104,8 +104,8 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>PipelineInputs</sub> |  | 
-| `` | <sub>PipelineOutputs</sub> |  | 
+| `Property` | <sub>PipelineInputs</sub> |  | 
+| `Property` | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods
@@ -128,11 +128,11 @@ public class SigStat.Common.Pipeline.PipelineInput
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>AutoSetMode</sub> |  | 
-| `` | <sub>FD</sub> |  | 
-| `` | <sub>FieldName</sub> |  | 
-| `` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
-| `` | <sub>Type</sub> |  | 
+| `Property` | <sub>AutoSetMode</sub> |  | 
+| `Property` | <sub>FD</sub> |  | 
+| `Property` | <sub>FieldName</sub> |  | 
+| `Property` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| `Property` | <sub>Type</sub> |  | 
 
 
 #### `PipelineOutput`
@@ -146,12 +146,12 @@ public class SigStat.Common.Pipeline.PipelineOutput
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>Default</sub> |  | 
-| `` | <sub>FD</sub> |  | 
-| `` | <sub>FieldName</sub> |  | 
-| `` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
-| `` | <sub>IsTemporary</sub> |  | 
-| `` | <sub>Type</sub> |  | 
+| `Property` | <sub>Default</sub> |  | 
+| `Property` | <sub>FD</sub> |  | 
+| `Property` | <sub>FieldName</sub> |  | 
+| `Property` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| `Property` | <sub>IsTemporary</sub> |  | 
+| `Property` | <sub>Type</sub> |  | 
 
 
 #### `SequentialTransformPipeline`
@@ -174,8 +174,8 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `` | <sub>PipelineInputs</sub> |  | 
-| `` | <sub>PipelineOutputs</sub> |  | 
+| `Property` | <sub>PipelineInputs</sub> |  | 
+| `Property` | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods
