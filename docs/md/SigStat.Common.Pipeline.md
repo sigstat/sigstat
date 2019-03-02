@@ -1,16 +1,18 @@
-#### `IClassificationModel`
+#### `AutoSetMode`
 
-Analyzes signatures based on their similiarity to the trained model
 ```csharp
-public interface SigStat.Common.Pipeline.IClassificationModel
+public enum SigStat.Common.Pipeline.AutoSetMode
+    : Enum, IComparable, IFormattable, IConvertible
 
 ```
 
-###### Methods
+Enum
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Value</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | <sub>Test(Signature)</sub> | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
+| `0` | IfNull |  | 
+| `1` | Always |  | 
+| `2` | Never |  | 
 
 
 #### `IClassifier`
@@ -25,23 +27,53 @@ public interface SigStat.Common.Pipeline.IClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IClassificationModel` | <sub>Train(List<Signature>)</sub> | Trains a model based on the signatures and returns the trained model | 
+| `Double` | <sub>Test(ISignerModel, Signature)</sub> | Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.  <list type="bullet"><item>0: non-match</item><item>0.5: inconclusive</item><item>1: match</item></list> | 
+| `ISignerModel` | <sub>Train(List<Signature>)</sub> | Trains a model based on the signatures and returns the trained model | 
+
+
+#### `Input`
+
+```csharp
+public class SigStat.Common.Pipeline.Input
+    : Attribute, _Attribute
+
+```
+
+###### Fields
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `AutoSetMode` | <sub>AutoSetMode</sub> |  | 
 
 
 #### `IPipelineIO`
 
-Gives ability to get or set (rewire) a pipeline item's default input and output features.
 ```csharp
 public interface SigStat.Common.Pipeline.IPipelineIO
 
 ```
 
-###### Properties
+#### `ISignerModel`
+
+Analyzes signatures based on their similiarity to the trained model
+```csharp
+public interface SigStat.Common.Pipeline.ISignerModel
+
+```
+
+#### `Output`
+
+```csharp
+public class SigStat.Common.Pipeline.Output
+    : Attribute, _Attribute
+
+```
+
+###### Fields
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<FeatureDescriptor>` | <sub>InputFeatures</sub> | List of features to be used as input. | 
-| `List<FeatureDescriptor>` | <sub>OutputFeatures</sub> | List of features to be used as output. | 
+| `String` | <sub>Default</sub> |  | 
 
 
 #### `ParallelTransformPipeline`
@@ -49,50 +81,61 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para>
 ```csharp
 public class SigStat.Common.Pipeline.ParallelTransformPipeline
-    : PipelineBase, IEnumerable, ITransformation, ILogger, IProgress, IPipelineIO
+    : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, ITransformation
 
 ```
 
-###### Properties
+###### Fields
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ITransformation>` | <sub>Items</sub> |  | 
-| `Logger` | <sub>Logger</sub> | Passes Logger to child items as well. | 
-| `Int32` | <sub>Progress</sub> | Gets the minimum progess of all the child items. | 
+| `List<ITransformation>` | <sub>Items</sub> | List of transforms to be run parallel. | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Add(ITransformation)</sub> | Add new transform to the list. Pass `SigStat.Common.Pipeline.ParallelTransformPipeline.Logger` and set up Progress event. | 
+| `void` | <sub>Add(ITransformation)</sub> | Add new transform to the list. | 
 | `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
 | `void` | <sub>Transform(Signature)</sub> | Executes transform `SigStat.Common.Pipeline.ParallelTransformPipeline.Items` parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
 
+
+#### `PipelineInput`
+
+```csharp
+public class SigStat.Common.Pipeline.PipelineInput
+
+```
+
+#### `PipelineOutput`
+
+```csharp
+public class SigStat.Common.Pipeline.PipelineOutput
+
+```
 
 #### `SequentialTransformPipeline`
 
 Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
 ```csharp
 public class SigStat.Common.Pipeline.SequentialTransformPipeline
-    : PipelineBase, IEnumerable, ITransformation, ILogger, IProgress, IPipelineIO
+    : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, ITransformation
 
 ```
 
-###### Properties
+###### Fields
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ITransformation>` | <sub>Items</sub> |  | 
-| `Logger` | <sub>Logger</sub> | Passes Logger to child items as well. | 
+| `List<ITransformation>` | <sub>Items</sub> | List of transforms to be run in sequence. | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Add(ITransformation)</sub> | Add new transform to the list. Pass `SigStat.Common.Pipeline.SequentialTransformPipeline.Logger` and set up Progress event. | 
+| `void` | <sub>Add(ITransformation)</sub> | Add new transform to the list. | 
 | `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
 | `void` | <sub>Transform(Signature)</sub> | Executes transform `SigStat.Common.Pipeline.SequentialTransformPipeline.Items` in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
 

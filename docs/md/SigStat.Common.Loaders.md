@@ -3,16 +3,9 @@
 Abstract loader class to inherit from. Implements ILogger.
 ```csharp
 public abstract class SigStat.Common.Loaders.DataSetLoader
-    : IDataSetLoader, ILogger
+    : IDataSetLoader, ILoggerObject
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Logger` | <sub>Logger</sub> |  | 
-
 
 ###### Methods
 
@@ -20,7 +13,6 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 | ---- | ---- | ---- | 
 | `IEnumerable<Signer>` | <sub>EnumerateSigners()</sub> |  | 
 | `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
-| `void` | <sub>Log(LogLevel, String)</sub> |  | 
 
 
 #### `IDataSetLoader`
@@ -35,8 +27,8 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners()</sub> | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
-| `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> | Loads the database and returns the collection of `SigStat.Common.Signer`s that match the ``. | 
+| `IEnumerable<Signer>` | <sub>EnumerateSigners()</sub> | Enumerates all signers of the database | 
+| `IEnumerable<Signer>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> | Enumerates all signers of the database | 
 
 
 #### `ImageLoader`
@@ -44,7 +36,7 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but finds png images.
 ```csharp
 public class SigStat.Common.Loaders.ImageLoader
-    : DataSetLoader, IDataSetLoader, ILogger
+    : DataSetLoader, IDataSetLoader, ILoggerObject
 
 ```
 
@@ -90,13 +82,13 @@ public static class SigStat.Common.Loaders.Svc2004
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Altitude</sub> |  | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Azimuth</sub> |  | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Button</sub> |  | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Pressure</sub> |  | 
-| `FeatureDescriptor<List<Int32>>` | <sub>T</sub> |  | 
-| `FeatureDescriptor<List<Int32>>` | <sub>X</sub> |  | 
-| `FeatureDescriptor<List<Int32>>` | <sub>Y</sub> |  | 
+| `FeatureDescriptor<List<Int32>>` | <sub>Altitude</sub> | Altitude values from the online signature imported from the SVC2004 database | 
+| `FeatureDescriptor<List<Int32>>` | <sub>Azimuth</sub> | Button values from the online signature imported from the SVC2004 database | 
+| `FeatureDescriptor<List<Int32>>` | <sub>Button</sub> | Y cooridnates from the online signature imported from the SVC2004 database | 
+| `FeatureDescriptor<List<Int32>>` | <sub>Pressure</sub> | Pressure values from the online signature imported from the SVC2004 database | 
+| `FeatureDescriptor<List<Int32>>` | <sub>T</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
+| `FeatureDescriptor<List<Int32>>` | <sub>X</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
+| `FeatureDescriptor<List<Int32>>` | <sub>Y</sub> | X cooridnates from the online signature imported from the SVC2004 database | 
 
 
 #### `Svc2004Loader`
@@ -104,16 +96,9 @@ public static class SigStat.Common.Loaders.Svc2004
 Loads SVC2004-format database from .zip
 ```csharp
 public class SigStat.Common.Loaders.Svc2004Loader
-    : DataSetLoader, IDataSetLoader, ILogger
+    : DataSetLoader, IDataSetLoader, ILoggerObject
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Predicate<Signer>` | <sub>SignerFilter</sub> |  | 
-
 
 ###### Methods
 

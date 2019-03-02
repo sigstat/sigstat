@@ -1,27 +1,9 @@
-#### `DTWClassifier`
+#### `DtwClassifier`
 
 Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
 ```csharp
-public class SigStat.Common.PipelineItems.Classifiers.DTWClassifier
-    : PipelineBase, IClassification, ILogger, IProgress, IPipelineIO, IEnumerable
-
-```
-
-###### Methods
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `void` | <sub>Add(FeatureDescriptor)</sub> |  | 
-| `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
-| `Double` | <sub>Pair(Signature, Signature)</sub> | Aggregates the input features and executes the `SigStat.Common.Algorithms.Dtw` algorithm. | 
-
-
-#### `WeightedClassifier`
-
-Classifies Signatures by weighing other Classifier results.
-```csharp
-public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
-    : PipelineBase, IEnumerable, IClassification, ILogger, IProgress, IPipelineIO
+public class SigStat.Common.PipelineItems.Classifiers.DtwClassifier
+    : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IClassifier
 
 ```
 
@@ -29,22 +11,57 @@ public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<ValueTuple<IClassification, Double>>` | <sub>Items</sub> | List of classifiers and belonging weights. | 
-
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Logger` | <sub>Logger</sub> | Gets or sets the Logger. Passes it to child Items as well. | 
+| `List<FeatureDescriptor>` | <sub>InputFeatures</sub> |  | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Add(ValueTuple<IClassification, Double>)</sub> | Add a new classifier with given weight to the list of items. | 
+| `Double` | <sub>Test(ISignerModel, Signature)</sub> |  | 
+| `ISignerModel` | <sub>Train(List<Signature>)</sub> |  | 
+
+
+#### `DtwSignerModel`
+
+Represents a trained model for `SigStat.Common.PipelineItems.Classifiers.DtwClassifier`
+```csharp
+public class SigStat.Common.PipelineItems.Classifiers.DtwSignerModel
+    : ISignerModel
+
+```
+
+###### Fields
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `Double[,]` | <sub>DistanceMatrix</sub> | DTW distance matrix of the genuine signatures | 
+| `Double` | <sub>Threshold</sub> | A threshold, that will be used for classification. Signatures with  an average DTW distance from the genuines above this threshold will  be classified as forgeries | 
+
+
+#### `WeightedClassifier`
+
+Classifies Signatures by weighing other Classifier results.
+```csharp
+public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
+    : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, IClassifier
+
+```
+
+###### Fields
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `List<ValueTuple<IClassifier, Double>>` | <sub>Items</sub> | List of classifiers and belonging weights. | 
+
+
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `void` | <sub>Add(ValueTuple<IClassifier, Double>)</sub> | Add a new classifier with given weight to the list of items. | 
 | `IEnumerator` | <sub>GetEnumerator()</sub> |  | 
-| `Double` | <sub>Pair(Signature, Signature)</sub> | Execute each classifier in the list and weigh returned costs. | 
+| `Double` | <sub>Test(ISignerModel, Signature)</sub> |  | 
+| `ISignerModel` | <sub>Train(List<Signature>)</sub> |  | 
 
 

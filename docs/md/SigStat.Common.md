@@ -1,5 +1,6 @@
 #### `ArrayExtension`
 
+Helper methods for processing arrays
 ```csharp
 public static class SigStat.Common.ArrayExtension
 
@@ -9,22 +10,12 @@ public static class SigStat.Common.ArrayExtension
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `T[]` | <sub>Clone(this T[])</sub> |  | 
-| `T[][]` | <sub>CreateNested(Int32, Int32)</sub> |  | 
-| `T[]` | <sub>ForEach(this T[], Action<T>)</sub> | Performs a given action on all items of the array and returns the original array. | 
-| `IEnumerable<T>` | <sub>GetColumn(this T[,], Int32)</sub> |  | 
-| `T[,]` | <sub>GetPart(this T[,], Int32, Int32, Int32, Int32)</sub> |  | 
-| `IEnumerable<T>` | <sub>GetRow(this T[,], Int32)</sub> |  | 
-| `Tuple<Int32, Int32>` | <sub>IndexOf(this Int32[,], Int32)</sub> |  | 
-| `Tuple<Int32, Int32>` | <sub>IndexOf(this Double[,], Double)</sub> |  | 
-| `Int32` | <sub>IndexOf(this T[], T)</sub> |  | 
-| `Int32` | <sub>Max(this Int32[,])</sub> |  | 
-| `Byte` | <sub>Max(this Byte[,])</sub> |  | 
-| `Double` | <sub>Max(this Double[,])</sub> |  | 
-| `void` | <sub>SetColumn(this T[,], Int32, T)</sub> |  | 
-| `void` | <sub>SetRow(this T[,], Int32, T)</sub> |  | 
-| `T[,]` | <sub>SetValues(this T[,], T)</sub> |  | 
-| `T[]` | <sub>Shuffle(this T[])</sub> |  | 
+| `ValueTuple<Int32, Int32>` | <sub>GetCog(this Double[,])</sub> | Calculates the center of gravity, assuming that each cell contains  a weight value | 
+| `IEnumerable<T>` | <sub>GetValues(this T[,])</sub> | Enumerates all values in a two dimensional array | 
+| `T[,]` | <sub>SetValues(this T[,], T)</sub> | Sets all values in a two dimensional array to `` | 
+| `Double` | <sub>Sum(this Double[,], Int32, Int32, Int32, Int32)</sub> | Calculates the sum of the values in the given sub-array | 
+| `Double` | <sub>SumCol(this Double[,], Int32)</sub> | Returns the sum of column values in a two dimensional array | 
+| `Double` | <sub>SumRow(this Double[,], Int32)</sub> | Returns the sum of row values in a two dimensional array | 
 
 
 #### `Baseline`
@@ -34,63 +25,50 @@ public class SigStat.Common.Baseline
 
 ```
 
-###### Properties
+###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `PointF` | <sub>End</sub> |  | 
-| `PointF` | <sub>Start</sub> |  | 
+| `String` | <sub>ToString()</sub> | Returns a string representation of the baseline | 
 
+
+#### `BasicMetadataExtraction`
+
+Extracts basic statistical signature (like `SigStat.Common.Features.Bounds` or `SigStat.Common.Features.Cog`) information from an Image
+```csharp
+public class SigStat.Common.BasicMetadataExtraction
+    : PipelineBase, ILoggerObject, IProgress, IPipelineIO, ITransformation
+
+```
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | <sub>ToString()</sub> |  | 
+| `void` | <sub>Transform(Signature)</sub> |  | 
 
 
-#### `Configuration`
-
-```csharp
-public class SigStat.Common.Configuration
-
-```
-
-###### Properties
+###### Static Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | <sub>DatabaseFolder</sub> |  | 
-| `Lazy<Configuration>` | <sub>Default</sub> |  | 
+| `Double` | <sub>Trim</sub> | Represents theratio of significant pixels that should be trimmed  from each side while calculating `SigStat.Common.Features.TrimmedBounds` | 
 
 
-#### `DataSet`
+#### `BenchmarkResults`
 
+Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
 ```csharp
-public class SigStat.Common.DataSet
+public struct SigStat.Common.BenchmarkResults
 
 ```
 
-###### Properties
+###### Fields
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `List<Signer>` | <sub>Signers</sub> |  | 
-
-
-#### `FeatureAttribute`
-
-```csharp
-public class SigStat.Common.FeatureAttribute
-    : Attribute, _Attribute
-
-```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `String` | <sub>FeatureKey</sub> |  | 
+| `Result` | <sub>FinalResult</sub> | Summarized, final result of the benchmark execution. | 
+| `List<Result>` | <sub>SignerResults</sub> | List that contains the `SigStat.Common.Result`s for each `SigStat.Common.Signer` | 
 
 
 #### `FeatureDescriptor`
@@ -100,16 +78,6 @@ Represents a feature with name and type.
 public class SigStat.Common.FeatureDescriptor
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Type` | <sub>FeatureType</sub> | Gets or sets the type of the feature. | 
-| `Boolean` | <sub>IsCollection</sub> | Gets whether the type of the feature is List. | 
-| `String` | <sub>Key</sub> | Gets the unique key of the feature. | 
-| `String` | <sub>Name</sub> | Gets or sets a human readable name of the feature. | 
-
 
 ###### Methods
 
@@ -131,8 +99,8 @@ public class SigStat.Common.FeatureDescriptor
 | ---- | ---- | ---- | 
 | `FeatureDescriptor` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
 | `FeatureDescriptor<T>` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `Boolean` | <sub>IsRegistered(String)</sub> |  | 
-| `FeatureDescriptor` | <sub>Register(String, Type)</sub> |  | 
+| `Boolean` | <sub>IsRegistered(String)</sub> | Returns true, if there is a FeatureDescriptor registered with the given key | 
+| `FeatureDescriptor` | <sub>Register(String, Type)</sub> | Registers a new `SigStat.Common.FeatureDescriptor` with a given key.  If the FeatureDescriptor is allready registered, this function will  return a reference to the originally registered FeatureDescriptor.  to the a | 
 
 
 #### `FeatureDescriptor<T>`
@@ -163,42 +131,34 @@ public static class SigStat.Common.Features
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IReadOnlyList<FeatureDescriptor>` | <sub>All</sub> |  | 
-| `FeatureDescriptor<List<Double>>` | <sub>Altitude</sub> |  | 
-| `FeatureDescriptor<List<Double>>` | <sub>Azimuth</sub> |  | 
-| `FeatureDescriptor<RectangleF>` | <sub>Bounds</sub> |  | 
-| `FeatureDescriptor<List<Boolean>>` | <sub>Button</sub> |  | 
-| `FeatureDescriptor<Point>` | <sub>Cog</sub> |  | 
-| `FeatureDescriptor<Int32>` | <sub>Dpi</sub> |  | 
-| `FeatureDescriptor<Image<Rgba32>>` | <sub>Image</sub> |  | 
-| `FeatureDescriptor<List<Double>>` | <sub>Pressure</sub> |  | 
-| `FeatureDescriptor<List<Double>>` | <sub>T</sub> |  | 
-| `FeatureDescriptor<Rectangle>` | <sub>TrimmedBounds</sub> |  | 
-| `FeatureDescriptor<List<Double>>` | <sub>X</sub> |  | 
-| `FeatureDescriptor<List<Double>>` | <sub>Y</sub> |  | 
+| `IReadOnlyList<FeatureDescriptor>` | <sub>All</sub> | Returns a readonly list of all `SigStat.Common.FeatureDescriptor`s defined in `SigStat.Common.Features` | 
+| `FeatureDescriptor<List<Double>>` | <sub>Altitude</sub> | Altitude of an online signature as a function of `SigStat.Common.Features.T` | 
+| `FeatureDescriptor<List<Double>>` | <sub>Azimuth</sub> | Azimuth of an online signature as a function of `SigStat.Common.Features.T` | 
+| `FeatureDescriptor<RectangleF>` | <sub>Bounds</sub> | Actual bounds of the signature | 
+| `FeatureDescriptor<List<Boolean>>` | <sub>Button</sub> | Pen position of an online signature as a function of `SigStat.Common.Features.T` | 
+| `FeatureDescriptor<Point>` | <sub>Cog</sub> | Center of gravity in a signature | 
+| `FeatureDescriptor<Int32>` | <sub>Dpi</sub> | Dots per inch | 
+| `FeatureDescriptor<Image<Rgba32>>` | <sub>Image</sub> | The visaul representation of a signature | 
+| `FeatureDescriptor<List<Double>>` | <sub>Pressure</sub> | Pressure of an online signature as a function of `SigStat.Common.Features.T` | 
+| `FeatureDescriptor<List<Double>>` | <sub>T</sub> | Timestamps for online signatures | 
+| `FeatureDescriptor<Rectangle>` | <sub>TrimmedBounds</sub> | Represents the main body of the signature `SigStat.Common.BasicMetadataExtraction` | 
+| `FeatureDescriptor<List<Double>>` | <sub>X</sub> | X coordinates of an online signature as a function of `SigStat.Common.Features.T` | 
+| `FeatureDescriptor<List<Double>>` | <sub>Y</sub> | Y coordinates of an online signature as a function of `SigStat.Common.Features.T` | 
 
 
-#### `IClassification`
+#### `ILoggerObject`
 
-Allows implementing a pipeline classifier item capable of logging, progress tracking and IO rewiring.
+Represents a type, that contains an ILogger property that can be used to perform logging.
 ```csharp
-public interface SigStat.Common.IClassification
-    : ILogger, IProgress, IPipelineIO
+public interface SigStat.Common.ILoggerObject
 
 ```
 
-###### Methods
+#### `ILoggerObjectExtensions`
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Double` | <sub>Pair(Signature, Signature)</sub> | Executes the classification by pairing the parameters.  This function gets called by the pipeline. | 
-
-
-#### `IClassificationMethods`
-
-Extension methods for `SigStat.Common.IClassification` for convenient IO rewiring.
+ILoggerObject extension methods for common scenarios.
 ```csharp
-public static class SigStat.Common.IClassificationMethods
+public static class SigStat.Common.ILoggerObjectExtensions
 
 ```
 
@@ -206,8 +166,10 @@ public static class SigStat.Common.IClassificationMethods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `IClassification` | <sub>Input(this IClassification, FeatureDescriptor[])</sub> | Sets the InputFeatures in a convenient way. | 
-| `IClassification` | <sub>Output(this IClassification, FeatureDescriptor[])</sub> | Sets the OutputFeatures in a convenient way. | 
+| `void` | <sub>Error(this ILoggerObject, String, Object[])</sub> | Formats and writes an error log message. | 
+| `void` | <sub>Log(this ILoggerObject, String, Object[])</sub> | Formats and writes an informational log message. | 
+| `void` | <sub>Trace(this ILoggerObject, String, Object[])</sub> | Formats and writes a trace log message. | 
+| `void` | <sub>Warn(this ILoggerObject, String, Object[])</sub> | Formats and writes an warning log message. | 
 
 
 #### `ITransformation`
@@ -215,7 +177,7 @@ public static class SigStat.Common.IClassificationMethods
 Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
 ```csharp
 public interface SigStat.Common.ITransformation
-    : ILogger, IProgress, IPipelineIO
+    : IPipelineIO
 
 ```
 
@@ -226,47 +188,24 @@ public interface SigStat.Common.ITransformation
 | `void` | <sub>Transform(Signature)</sub> | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
-#### `ITransformationMethods`
-
-Extension methods for `SigStat.Common.ITransformation` for convenient IO rewiring.
-```csharp
-public static class SigStat.Common.ITransformationMethods
-
-```
-
-###### Static Methods
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `ITransformation` | <sub>Input(this ITransformation, FeatureDescriptor[])</sub> | Sets the InputFeatures in a convenient way. | 
-| `ITransformation` | <sub>Output(this ITransformation, FeatureDescriptor[])</sub> | Sets the OutputFeatures in a convenient way. | 
-
-
 #### `Loop`
 
+Represents a loop in a signature
 ```csharp
 public class SigStat.Common.Loop
 
 ```
 
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `RectangleF` | <sub>Bounds</sub> |  | 
-| `PointF` | <sub>Center</sub> |  | 
-| `List<PointF>` | <sub>Points</sub> |  | 
-
-
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `String` | <sub>ToString()</sub> |  | 
+| `String` | <sub>ToString()</sub> | Returns a string representation of the loop | 
 
 
 #### `MathHelper`
 
+Common mathematical functions used by the SigStat framework
 ```csharp
 public static class SigStat.Common.MathHelper
 
@@ -277,31 +216,6 @@ public static class SigStat.Common.MathHelper
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `Double` | <sub>Min(Double, Double, Double)</sub> | Returns the smallest of the three double parameters | 
-
-
-#### `Matrix`
-
-```csharp
-public static class SigStat.Common.Matrix
-
-```
-
-###### Static Methods
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `E[,]` | <sub>Evaluate(T[,], ItemEvaluator<E, T>)</sub> |  | 
-| `T[,]` | <sub>FromTableRows(IEnumerable<DataRow>, Int32, Int32)</sub> | Egy DataRow gyüjteményt átalakít egy kétdimenziós tömbbé.  Az átalakítás során ignoreColumns oszlopot és ignoreRows sort  figyelmen kívül hagy. | 
-| `Point` | <sub>GetCog(Double[,])</sub> |  | 
-| `IEnumerable<Point>` | <sub>GetNeighbourPixels(this Point)</sub> |  | 
-| `IEnumerable<Point>` | <sub>GetNeighbours(this Point, Point, Int32)</sub> |  | 
-| `Double` | <sub>GetSum(Double[,], Int32, Int32, Int32, Int32)</sub> |  | 
-| `Double` | <sub>GetSumCol(Double[,], Int32)</sub> |  | 
-| `Double` | <sub>GetSumRow(Double[,], Int32)</sub> |  | 
-| `Boolean[,]` | <sub>Invert(this Boolean[,])</sub> | returns a copy of the array with inverted values | 
-| `Byte[,]` | <sub>Neighbours(T[,], T)</sub> | returns a same sized matrix with each item showing the neighbour count for the given position. | 
-| `T[]` | <sub>SetValues(this T[], T)</sub> |  | 
-| `T[]` | <sub>SetValues(this T[], Func<T, T>)</sub> |  | 
 
 
 #### `Origin`
@@ -327,32 +241,60 @@ Enum
 TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.
 ```csharp
 public abstract class SigStat.Common.PipelineBase
+    : ILoggerObject, IProgress, IPipelineIO
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `List<FeatureDescriptor>` | <sub>InputFeatures</sub> |  | 
-| `Logger` | <sub>Logger</sub> |  | 
-| `List<FeatureDescriptor>` | <sub>OutputFeatures</sub> |  | 
-| `Int32` | <sub>Progress</sub> |  | 
-
 
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `EventHandler<Int32>` | <sub>ProgressChanged</sub> |  | 
+| `EventHandler<Int32>` | <sub>ProgressChanged</sub> | The event is raised whenever the value of `SigStat.Common.PipelineBase.Progress` changes | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `void` | <sub>Log(LogLevel, String)</sub> | Enqueues a new log entry to be consumed by the attached `SigStat.Common.Helpers.Logger`. Use this when developing new pipeline items. | 
-| `void` | <sub>OnProgressChanged(Int32)</sub> | Used to raise base class event in derived classes.  See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>. | 
+| `void` | <sub>OnProgressChanged()</sub> | Raises the `SigStat.Common.PipelineBase.ProgressChanged` event | 
+
+
+#### `Result`
+
+Contains the benchmark results of a single `SigStat.Common.Signer`
+```csharp
+public class SigStat.Common.Result
+
+```
+
+###### Fields
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `Double` | <sub>Aer</sub> | Average Error Rate | 
+| `Double` | <sub>Far</sub> | False Acceptance Rate | 
+| `Double` | <sub>Frr</sub> | False Rejection Rate | 
+| `String` | <sub>Signer</sub> | Identifier of the `SigStat.Common.Result.Signer` | 
+
+
+#### `Sampler`
+
+Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.VerifierBenchmark`
+```csharp
+public class SigStat.Common.Sampler
+
+```
+
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `void` | <sub>Init(Signer)</sub> | Initialize the Sampler with a Signer's Signatures. | 
+| `void` | <sub>Init(List<Signer>)</sub> | Initialize the Sampler with a Signer's Signatures. | 
+| `void` | <sub>Init(List<Signature>)</sub> | Initialize the Sampler with a Signer's Signatures. | 
+| `List<Signature>` | <sub>SampleForgeryTests(Func<List<Signature>, List<Signature>>)</sub> | Samples a batch of forged signatures to test on. | 
+| `List<Signature>` | <sub>SampleGenuineTests(Func<List<Signature>, List<Signature>>)</sub> | Samples a batch of genuine test signatures to test on. | 
+| `List<Signature>` | <sub>SampleReferences(Func<List<Signature>, List<Signature>>)</sub> | Samples a batch of genuine reference signatures to train on. | 
 
 
 #### `Signature`
@@ -362,17 +304,6 @@ Represents a signature as a collection of features, containing the data that flo
 public class SigStat.Common.Signature
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `String` | <sub>ID</sub> | An identifier for the Signature. Keep it unique to be useful for logs. | 
-| `Object` | <sub>Item</sub> | Gets or sets the specified feature. | 
-| `Object` | <sub>Item</sub> | Gets or sets the specified feature. | 
-| `Origin` | <sub>Origin</sub> | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
-| `Signer` | <sub>Signer</sub> | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
-
 
 ###### Methods
 
@@ -398,56 +329,11 @@ public class SigStat.Common.Signer
 
 ```
 
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `String` | <sub>ID</sub> | An identifier for the Signer. Keep it unique to be useful for logs. | 
-| `List<Signature>` | <sub>Signatures</sub> | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
-
-
-#### `Vector`
+#### `SVC2004Sampler`
 
 ```csharp
-public class SigStat.Common.Vector
+public class SigStat.Common.SVC2004Sampler
+    : Sampler
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Double` | <sub>Angle</sub> |  | 
-| `Double` | <sub>B</sub> |  | 
-| `Rectangle` | <sub>BoundingRectangle</sub> |  | 
-| `Rectangle` | <sub>Bounds</sub> |  | 
-| `Point` | <sub>COG</sub> |  | 
-| `Point` | <sub>End</sub> |  | 
-| `Double` | <sub>Length</sub> |  | 
-| `Point` | <sub>Location</sub> |  | 
-| `Double` | <sub>M</sub> |  | 
-| `Point` | <sub>Start</sub> |  | 
-| `Int32` | <sub>Vx</sub> |  | 
-| `Int32` | <sub>Vy</sub> |  | 
-| `Int32` | <sub>X</sub> |  | 
-| `Int32` | <sub>X2</sub> |  | 
-| `Int32` | <sub>Y</sub> |  | 
-| `Int32` | <sub>Y2</sub> |  | 
-
-
-###### Methods
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `void` | <sub>Add(Point)</sub> |  | 
-| `Vector` | <sub>Clone()</sub> |  | 
-| `Boolean` | <sub>Equals(Object)</sub> | Két vektor akkor egyenlő, ha ugyanabból a pontból indulnak ki és ugyanabban az irányba  mutatnak és hosszuk is megegyezik. | 
-| `IEnumerator<VectorPoint>` | <sub>GetEnumerator()</sub> |  | 
-| `Int32` | <sub>GetHashCode()</sub> |  | 
-| `Double` | <sub>GetLength()</sub> |  | 
-| `Vector` | <sub>GetNormal()</sub> | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
-| `Vector` | <sub>GetNormal(Double)</sub> | Elofrgatja a vektort 90 fokkal a kezdőpontja körül az óramutató járásával megegyező irányba | 
-| `String` | <sub>ToMatlabString()</sub> |  | 
-| `String` | <sub>ToString()</sub> |  | 
-
 

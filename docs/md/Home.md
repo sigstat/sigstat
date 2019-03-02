@@ -2,32 +2,29 @@
 
 ## [Alairas.Common](Alairas.Common)
 
-- [`BaseLineExtraction`](Alairas.Common#baselineextraction)
-- [`BasicMetadataExtraction`](Alairas.Common#basicmetadataextraction)
 - [`SimpleRenderingTransformation`](Alairas.Common#simplerenderingtransformation)
 
 ## [SigStat.Common](SigStat.Common)
 
 - [`ArrayExtension`](SigStat.Common#arrayextension)
 - [`Baseline`](SigStat.Common#baseline)
-- [`Configuration`](SigStat.Common#configuration)
-- [`DataSet`](SigStat.Common#dataset)
-- [`FeatureAttribute`](SigStat.Common#featureattribute)
+- [`BasicMetadataExtraction`](SigStat.Common#basicmetadataextraction)
+- [`BenchmarkResults`](SigStat.Common#benchmarkresults)
 - [`FeatureDescriptor`](SigStat.Common#featuredescriptor)
 - [`FeatureDescriptor<T>`](SigStat.Common#featuredescriptort)
 - [`Features`](SigStat.Common#features)
-- [`IClassification`](SigStat.Common#iclassification)
-- [`IClassificationMethods`](SigStat.Common#iclassificationmethods)
+- [`ILoggerObject`](SigStat.Common#iloggerobject)
+- [`ILoggerObjectExtensions`](SigStat.Common#iloggerobjectextensions)
 - [`ITransformation`](SigStat.Common#itransformation)
-- [`ITransformationMethods`](SigStat.Common#itransformationmethods)
 - [`Loop`](SigStat.Common#loop)
 - [`MathHelper`](SigStat.Common#mathhelper)
-- [`Matrix`](SigStat.Common#matrix)
 - [`Origin`](SigStat.Common#origin)
 - [`PipelineBase`](SigStat.Common#pipelinebase)
+- [`Result`](SigStat.Common#result)
+- [`Sampler`](SigStat.Common#sampler)
 - [`Signature`](SigStat.Common#signature)
 - [`Signer`](SigStat.Common#signer)
-- [`Vector`](SigStat.Common#vector)
+- [`SVC2004Sampler`](SigStat.Common#svc2004sampler)
 
 ## [SigStat.Common.Algorithms](SigStat.Common.Algorithms)
 
@@ -38,12 +35,7 @@
 
 ## [SigStat.Common.Helpers](SigStat.Common.Helpers)
 
-- [`ConfigurationHelper`](SigStat.Common.Helpers#configurationhelper)
-- [`ILogger`](SigStat.Common.Helpers#ilogger)
 - [`IProgress`](SigStat.Common.Helpers#iprogress)
-- [`LogEntry`](SigStat.Common.Helpers#logentry)
-- [`Logger`](SigStat.Common.Helpers#logger)
-- [`LogLevel`](SigStat.Common.Helpers#loglevel)
 
 ## [SigStat.Common.Loaders](SigStat.Common.Loaders)
 
@@ -56,32 +48,26 @@
 
 ## [SigStat.Common.Model](SigStat.Common.Model)
 
-- [`ApproximateLimit`](SigStat.Common.Model#approximatelimit)
-- [`BenchmarkResults`](SigStat.Common.Model#benchmarkresults)
-- [`Result`](SigStat.Common.Model#result)
-- [`Sampler`](SigStat.Common.Model#sampler)
-- [`ThresholdResult`](SigStat.Common.Model#thresholdresult)
 - [`Verifier`](SigStat.Common.Model#verifier)
-- [`VerifierBenchmark`](SigStat.Common.Model#verifierbenchmark)
 
 ## [SigStat.Common.Pipeline](SigStat.Common.Pipeline)
 
-- [`IClassificationModel`](SigStat.Common.Pipeline#iclassificationmodel)
+- [`AutoSetMode`](SigStat.Common.Pipeline#autosetmode)
 - [`IClassifier`](SigStat.Common.Pipeline#iclassifier)
+- [`Input`](SigStat.Common.Pipeline#input)
 - [`IPipelineIO`](SigStat.Common.Pipeline#ipipelineio)
+- [`ISignerModel`](SigStat.Common.Pipeline#isignermodel)
+- [`Output`](SigStat.Common.Pipeline#output)
 - [`ParallelTransformPipeline`](SigStat.Common.Pipeline#paralleltransformpipeline)
+- [`PipelineInput`](SigStat.Common.Pipeline#pipelineinput)
+- [`PipelineOutput`](SigStat.Common.Pipeline#pipelineoutput)
 - [`SequentialTransformPipeline`](SigStat.Common.Pipeline#sequentialtransformpipeline)
 
 ## [SigStat.Common.PipelineItems.Classifiers](SigStat.Common.PipelineItems.Classifiers)
 
-- [`DTWClassifier`](SigStat.Common.PipelineItems.Classifiers#dtwclassifier)
+- [`DtwClassifier`](SigStat.Common.PipelineItems.Classifiers#dtwclassifier)
+- [`DtwSignerModel`](SigStat.Common.PipelineItems.Classifiers#dtwsignermodel)
 - [`WeightedClassifier`](SigStat.Common.PipelineItems.Classifiers#weightedclassifier)
-
-## [SigStat.Common.PipelineItems.Markers](SigStat.Common.PipelineItems.Markers)
-
-- [`LogMarker`](SigStat.Common.PipelineItems.Markers#logmarker)
-- [`TimeMarkerStart`](SigStat.Common.PipelineItems.Markers#timemarkerstart)
-- [`TimeMarkerStop`](SigStat.Common.PipelineItems.Markers#timemarkerstop)
 
 ## [SigStat.Common.Transforms](SigStat.Common.Transforms)
 
@@ -103,7 +89,6 @@
 - [`Multiply`](SigStat.Common.Transforms#multiply)
 - [`Normalize`](SigStat.Common.Transforms#normalize)
 - [`OnePixelThinning`](SigStat.Common.Transforms#onepixelthinning)
-- [`PrepareForThinning`](SigStat.Common.Transforms#prepareforthinning)
 - [`RealisticImageGenerator`](SigStat.Common.Transforms#realisticimagegenerator)
 - [`Resize`](SigStat.Common.Transforms#resize)
 - [`TangentExtraction`](SigStat.Common.Transforms#tangentextraction)

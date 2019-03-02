@@ -1,17 +1,10 @@
 #### `Dtw`
 
-Dynamic Time Warping algorithm - test if still works
+Dynamic Time Warping algorithm - test
 ```csharp
 public class SigStat.Common.Algorithms.Dtw
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `List<ValueTuple<Int32, Int32>>` | <sub>ForwardPath</sub> | Gets the list of points representing the shortest path. | 
-
 
 ###### Methods
 
@@ -22,6 +15,7 @@ public class SigStat.Common.Algorithms.Dtw
 
 #### `DtwPy`
 
+A simple implementation of the DTW algorithm.
 ```csharp
 public static class SigStat.Common.Algorithms.DtwPy
 
@@ -31,8 +25,8 @@ public static class SigStat.Common.Algorithms.DtwPy
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Double` | <sub>Dtw(IEnumerable<P>, IEnumerable<P>, Func<P, P, Double>)</sub> |  | 
-| `Double` | <sub>EuclideanDistance(Double[], Double[])</sub> |  | 
+| `Double` | <sub>Dtw(IEnumerable<P>, IEnumerable<P>, Func<P, P, Double>)</sub> | Calculates the distance between two time sequences | 
+| `Double` | <sub>EuclideanDistance(Double[], Double[])</sub> | Calculates the euclidean distance of two vectors | 
 
 
 #### `HSCPThinningStep`
@@ -42,13 +36,6 @@ HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pd
 public class SigStat.Common.Algorithms.HSCPThinningStep
 
 ```
-
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| ---- | ---- | ---- | 
-| `Nullable<Boolean>` | <sub>ResultChanged</sub> | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
-
 
 ###### Methods
 
