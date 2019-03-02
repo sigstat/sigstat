@@ -40,6 +40,7 @@ before_build:
 #- cmd: dotnet pack -c Release src/SigStat.Common/SigStat.Common.csproj
 build:
   publish_nuget: true
+  project: /src/SigStat.Common
   verbosity: normal
 deploy:
 - provider: NuGet
