@@ -19,7 +19,7 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners()</sub> |  | 
-| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(`Predicate<Signer>`)</sub> |  | 
+| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 #### `IDataSetLoader`
@@ -35,7 +35,7 @@ public interface SigStat.Common.Loaders.IDataSetLoader
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners()</sub> | Enumerates all signers of the database | 
-| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(`Predicate<Signer>`)</sub> | Enumerates all signers of the database | 
+| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> | Enumerates all signers of the database | 
 
 
 #### `ImageLoader`
@@ -51,15 +51,15 @@ public class SigStat.Common.Loaders.ImageLoader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(`Predicate<Signer>`)</sub> |  | 
+| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>LoadImage(`Signature`, `String`)</sub> | Load one image. | 
-| `<sub>Signature</sub>` | <sub>LoadSignature(`String`)</sub> |  | 
+| `<sub>void</sub>` | <sub>LoadImage(Signature, String)</sub> | Load one image. | 
+| `<sub>Signature</sub>` | <sub>LoadSignature(String)</sub> |  | 
 
 
 #### `ImageSaver`
@@ -74,7 +74,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Save(`Signature`, `String`)</sub> | Saves a png image file to the specified ``. | 
+| `<sub>void</sub>` | <sub>Save(Signature, String)</sub> | Saves a png image file to the specified ``. | 
 
 
 #### `Svc2004`
@@ -118,14 +118,14 @@ public class SigStat.Common.Loaders.Svc2004Loader
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(`Predicate<Signer>`)</sub> |  | 
+| `<sub>IEnumerable<Signer></sub>` | <sub>EnumerateSigners(Predicate<Signer>)</sub> |  | 
 
 
 ###### Static Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>LoadSignature(`Signature`, `String`, `Boolean`)</sub> | Loads one signature from specified file path. | 
-| `<sub>void</sub>` | <sub>LoadSignature(`Signature`, `Stream`, `Boolean`)</sub> | Loads one signature from specified file path. | 
+| `<sub>void</sub>` | <sub>LoadSignature(Signature, String, Boolean)</sub> | Loads one signature from specified file path. | 
+| `<sub>void</sub>` | <sub>LoadSignature(Signature, Stream, Boolean)</sub> | Loads one signature from specified file path. | 
 
 
