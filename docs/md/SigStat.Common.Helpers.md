@@ -10,14 +10,14 @@ public interface SigStat.Common.Helpers.IProgress
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| <sub>Int32</sub> | <sub>Progress</sub> | Gets the current progress in percentage. | 
+| `<sub>Int32</sub>` | <sub>Progress</sub> | Gets the current progress in percentage. | 
 
 
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| <sub>EventHandler<Int32></sub> | <sub>ProgressChanged</sub> | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
+| `<sub>EventHandler<Int32></sub>` | <sub>ProgressChanged</sub> | Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed. | 
 
 
 #### `SimpleConsoleLogger`
@@ -33,15 +33,15 @@ public class SigStat.Common.Helpers.SimpleConsoleLogger
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| <sub>LogLevel</sub> | <sub>LogLevel</sub> | All events below this level will be filtered | 
+| `<sub>LogLevel</sub>` | <sub>LogLevel</sub> | All events below this level will be filtered | 
 
 
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| <sub>IDisposable</sub> | <sub>BeginScope(TState)</sub> |  | 
-| <sub>Boolean</sub> | <sub>IsEnabled(LogLevel)</sub> |  | 
-| <sub>void</sub> | <sub>Log(LogLevel, EventId, TState, Exception, Func<TState, Exception, String>)</sub> |  | 
+| `<sub>IDisposable</sub>` | <sub>BeginScope(TState)</sub> |  | 
+| `<sub>Boolean</sub>` | <sub>IsEnabled(LogLevel)</sub> |  | 
+| `<sub>void</sub>` | <sub>Log(LogLevel, EventId, TState, Exception, Func<TState, Exception, String>)</sub> |  | 
 
 
