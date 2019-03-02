@@ -29,8 +29,8 @@ public class SigStat.Common.Baseline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>End</sub> | Endpoint of the baseline | 
-| `Property` | <sub>Start</sub> | Starting point of the baseline | 
+| `PointF` | <sub>End</sub> | Endpoint of the baseline | 
+| `PointF` | <sub>Start</sub> | Starting point of the baseline | 
 
 
 ###### Methods
@@ -91,10 +91,10 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>FeatureType</sub> | Gets or sets the type of the feature. | 
-| `Property` | <sub>IsCollection</sub> | Gets whether the type of the feature is List. | 
-| `Property` | <sub>Key</sub> | Gets the unique key of the feature. | 
-| `Property` | <sub>Name</sub> | Gets or sets a human readable name of the feature. | 
+| `Type` | <sub>FeatureType</sub> | Gets or sets the type of the feature. | 
+| `Boolean` | <sub>IsCollection</sub> | Gets whether the type of the feature is List. | 
+| `String` | <sub>Key</sub> | Gets the unique key of the feature. | 
+| `String` | <sub>Name</sub> | Gets or sets a human readable name of the feature. | 
 
 
 ###### Methods
@@ -176,7 +176,7 @@ public interface SigStat.Common.ILoggerObject
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>Logger</sub> | Gets or sets the ILogger implementation used to perform logging | 
+| `ILogger` | <sub>Logger</sub> | Gets or sets the ILogger implementation used to perform logging | 
 
 
 #### `ILoggerObjectExtensions`
@@ -225,9 +225,9 @@ public class SigStat.Common.Loop
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>Bounds</sub> | The bounding rectangle of the loop | 
-| `Property` | <sub>Center</sub> | The geometrical center of the looop | 
-| `Property` | <sub>Points</sub> | A list of defining points of the loop | 
+| `RectangleF` | <sub>Bounds</sub> | The bounding rectangle of the loop | 
+| `PointF` | <sub>Center</sub> | The geometrical center of the looop | 
+| `List<PointF>` | <sub>Points</sub> | A list of defining points of the loop | 
 
 
 ###### Methods
@@ -283,10 +283,10 @@ public abstract class SigStat.Common.PipelineBase
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>Logger</sub> |  | 
-| `Property` | <sub>PipelineInputs</sub> |  | 
-| `Property` | <sub>PipelineOutputs</sub> |  | 
-| `Property` | <sub>Progress</sub> |  | 
+| `ILogger` | <sub>Logger</sub> |  | 
+| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
+| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
+| `Int32` | <sub>Progress</sub> |  | 
 
 
 ###### Events
@@ -333,7 +333,7 @@ public class SigStat.Common.Sampler
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>BatchSize</sub> |  | 
+| `Int32` | <sub>BatchSize</sub> |  | 
 
 
 ###### Methods
@@ -360,11 +360,11 @@ public class SigStat.Common.Signature
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>ID</sub> | An identifier for the Signature. Keep it unique to be useful for logs. | 
-| `Property` | <sub>Item</sub> | Gets or sets the specified feature. | 
-| `Property` | <sub>Item</sub> | Gets or sets the specified feature. | 
-| `Property` | <sub>Origin</sub> | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
-| `Property` | <sub>Signer</sub> | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
+| `String` | <sub>ID</sub> | An identifier for the Signature. Keep it unique to be useful for logs. | 
+| `Object` | <sub>Item</sub> | Gets or sets the specified feature. | 
+| `Object` | <sub>Item</sub> | Gets or sets the specified feature. | 
+| `Origin` | <sub>Origin</sub> | Represents our knowledge on the origin of the signature. `SigStat.Common.Origin.Unknown` may be used in practice before it is verified. | 
+| `Signer` | <sub>Signer</sub> | A reference to the `SigStat.Common.Signer` who this signature belongs to. (The origin is not constrained to be genuine.) | 
 
 
 ###### Methods
@@ -395,8 +395,24 @@ public class SigStat.Common.Signer
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>ID</sub> | An identifier for the Signer. Keep it unique to be useful for logs. | 
-| `Property` | <sub>Signatures</sub> | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
+| `String` | <sub>ID</sub> | An identifier for the Signer. Keep it unique to be useful for logs. | 
+| `List<Signature>` | <sub>Signatures</sub> | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
+
+
+#### `SigStatEvents`
+
+Standard event identifiers used by the SigStat system
+```csharp
+public static class SigStat.Common.SigStatEvents
+
+```
+
+###### Static Fields
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `EventId` | <sub>BenchmarkEvent</sub> | Events originating from a benchmark | 
+| `EventId` | <sub>VerifierEvent</sub> | Events originating from a verifier | 
 
 
 #### `SVC2004Sampler`
@@ -406,4 +422,38 @@ public class SigStat.Common.SVC2004Sampler
     : Sampler
 
 ```
+
+#### `VerifierBenchmark`
+
+Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
+```csharp
+public class SigStat.Common.VerifierBenchmark
+    : ILoggerObject
+
+```
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `IDataSetLoader` | <sub>Loader</sub> | The loader that will provide the database for benchmarking | 
+| `ILogger` | <sub>Logger</sub> | Gets or sets the attached `Microsoft.Extensions.Logging.ILogger` object used to log messages. Hands it over to the verifier. | 
+| `Int32` | <sub>Progress</sub> |  | 
+| `Sampler` | <sub>Sampler</sub> | The `SigStat.Common.Sampler` to be used for benchmarking | 
+| `Verifier` | <sub>Verifier</sub> | Gets or sets the `SigStat.Common.Model.Verifier` to be benchmarked. | 
+
+
+###### Events
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `EventHandler<Int32>` | <sub>ProgressChanged</sub> |  | 
+
+
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `BenchmarkResults` | <sub>Execute(Boolean=True)</sub> | Execute the benchmarking process. | 
+
 

@@ -43,7 +43,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwSignerModel
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>GenuineSignatures</sub> | A list a of genuine signatures used for training | 
+| `List<Double[][]>` | <sub>GenuineSignatures</sub> | A list a of genuine signatures used for training | 
 
 
 #### `WeightedClassifier`

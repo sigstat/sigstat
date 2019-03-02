@@ -24,7 +24,9 @@
 - [`Sampler`](SigStat.Common#sampler)
 - [`Signature`](SigStat.Common#signature)
 - [`Signer`](SigStat.Common#signer)
+- [`SigStatEvents`](SigStat.Common#sigstatevents)
 - [`SVC2004Sampler`](SigStat.Common#svc2004sampler)
+- [`VerifierBenchmark`](SigStat.Common#verifierbenchmark)
 
 ## [SigStat.Common.Algorithms](SigStat.Common.Algorithms)
 
@@ -36,6 +38,7 @@
 ## [SigStat.Common.Helpers](SigStat.Common.Helpers)
 
 - [`IProgress`](SigStat.Common.Helpers#iprogress)
+- [`SimpleConsoleLogger`](SigStat.Common.Helpers#simpleconsolelogger)
 
 ## [SigStat.Common.Loaders](SigStat.Common.Loaders)
 

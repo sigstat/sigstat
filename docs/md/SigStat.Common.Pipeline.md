@@ -57,8 +57,8 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>PipelineInputs</sub> |  | 
-| `Property` | <sub>PipelineOutputs</sub> |  | 
+| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
+| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
 
 
 #### `ISignerModel`
@@ -104,8 +104,8 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>PipelineInputs</sub> |  | 
-| `Property` | <sub>PipelineOutputs</sub> |  | 
+| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
+| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods
@@ -128,11 +128,11 @@ public class SigStat.Common.Pipeline.PipelineInput
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>AutoSetMode</sub> |  | 
-| `Property` | <sub>FD</sub> |  | 
-| `Property` | <sub>FieldName</sub> |  | 
-| `Property` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
-| `Property` | <sub>Type</sub> |  | 
+| `AutoSetMode` | <sub>AutoSetMode</sub> |  | 
+| `Object` | <sub>FD</sub> |  | 
+| `String` | <sub>FieldName</sub> |  | 
+| `Boolean` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| `Type` | <sub>Type</sub> |  | 
 
 
 #### `PipelineOutput`
@@ -146,12 +146,12 @@ public class SigStat.Common.Pipeline.PipelineOutput
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>Default</sub> |  | 
-| `Property` | <sub>FD</sub> |  | 
-| `Property` | <sub>FieldName</sub> |  | 
-| `Property` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
-| `Property` | <sub>IsTemporary</sub> |  | 
-| `Property` | <sub>Type</sub> |  | 
+| `String` | <sub>Default</sub> |  | 
+| `Object` | <sub>FD</sub> |  | 
+| `String` | <sub>FieldName</sub> |  | 
+| `Boolean` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| `Boolean` | <sub>IsTemporary</sub> |  | 
+| `Type` | <sub>Type</sub> |  | 
 
 
 #### `SequentialTransformPipeline`
@@ -174,8 +174,8 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `Property` | <sub>PipelineInputs</sub> |  | 
-| `Property` | <sub>PipelineOutputs</sub> |  | 
+| `List<PipelineInput>` | <sub>PipelineInputs</sub> |  | 
+| `List<PipelineOutput>` | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods
