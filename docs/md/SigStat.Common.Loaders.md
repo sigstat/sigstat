@@ -7,6 +7,13 @@ public abstract class SigStat.Common.Loaders.DataSetLoader
 
 ```
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>Logger</sub> |  | 
+
+
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
@@ -99,6 +106,13 @@ public class SigStat.Common.Loaders.Svc2004Loader
     : DataSetLoader, IDataSetLoader, ILoggerObject
 
 ```
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>SignerFilter</sub> | Ignores any signers during the loading, that do not match the predicate | 
+
 
 ###### Methods
 

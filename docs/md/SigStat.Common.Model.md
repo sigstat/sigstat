@@ -7,6 +7,16 @@ public class SigStat.Common.Model.Verifier
 
 ```
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>Classifier</sub> | Gets or sets the classifier pipeline. Hands over the Logger object. | 
+| `` | <sub>Logger</sub> | Gets or sets the class responsible for logging | 
+| `` | <sub>Pipeline</sub> | Gets or sets the transform pipeline. Hands over the Logger object. | 
+| `` | <sub>SignerModel</sub> |  | 
+
+
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 

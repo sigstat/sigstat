@@ -39,6 +39,13 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwSignerModel
 | `Double` | <sub>Threshold</sub> | A threshold, that will be used for classification. Signatures with  an average DTW distance from the genuines above this threshold will  be classified as forgeries | 
 
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>GenuineSignatures</sub> | A list a of genuine signatures used for training | 
+
+
 #### `WeightedClassifier`
 
 Classifies Signatures by weighing other Classifier results.

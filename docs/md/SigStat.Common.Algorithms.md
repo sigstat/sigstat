@@ -6,6 +6,13 @@ public class SigStat.Common.Algorithms.Dtw
 
 ```
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>ForwardPath</sub> | Gets the list of points representing the shortest path. | 
+
+
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
@@ -36,6 +43,13 @@ HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pd
 public class SigStat.Common.Algorithms.HSCPThinningStep
 
 ```
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>ResultChanged</sub> | Gets whether the last `SigStat.Common.Algorithms.HSCPThinningStep.Scan(System.Boolean[0:,0:])` call was effective. | 
+
 
 ###### Methods
 

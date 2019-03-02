@@ -53,6 +53,14 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 ```
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>PipelineInputs</sub> |  | 
+| `` | <sub>PipelineOutputs</sub> |  | 
+
+
 #### `ISignerModel`
 
 Analyzes signatures based on their similiarity to the trained model
@@ -92,6 +100,14 @@ public class SigStat.Common.Pipeline.ParallelTransformPipeline
 | `List<ITransformation>` | <sub>Items</sub> | List of transforms to be run parallel. | 
 
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>PipelineInputs</sub> |  | 
+| `` | <sub>PipelineOutputs</sub> |  | 
+
+
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
@@ -108,12 +124,35 @@ public class SigStat.Common.Pipeline.PipelineInput
 
 ```
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>AutoSetMode</sub> |  | 
+| `` | <sub>FD</sub> |  | 
+| `` | <sub>FieldName</sub> |  | 
+| `` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| `` | <sub>Type</sub> |  | 
+
+
 #### `PipelineOutput`
 
 ```csharp
 public class SigStat.Common.Pipeline.PipelineOutput
 
 ```
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>Default</sub> |  | 
+| `` | <sub>FD</sub> |  | 
+| `` | <sub>FieldName</sub> |  | 
+| `` | <sub>IsCollectionOfFeatureDescriptors</sub> |  | 
+| `` | <sub>IsTemporary</sub> |  | 
+| `` | <sub>Type</sub> |  | 
+
 
 #### `SequentialTransformPipeline`
 
@@ -129,6 +168,14 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
 | `List<ITransformation>` | <sub>Items</sub> | List of transforms to be run in sequence. | 
+
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>PipelineInputs</sub> |  | 
+| `` | <sub>PipelineOutputs</sub> |  | 
 
 
 ###### Methods

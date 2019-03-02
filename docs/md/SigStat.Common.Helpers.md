@@ -6,6 +6,13 @@ public interface SigStat.Common.Helpers.IProgress
 
 ```
 
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| ---- | ---- | ---- | 
+| `` | <sub>Progress</sub> | Gets the current progress in percentage. | 
+
+
 ###### Events
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
