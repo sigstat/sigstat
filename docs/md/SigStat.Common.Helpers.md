@@ -40,8 +40,8 @@ public class SigStat.Common.Helpers.SimpleConsoleLogger
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>IDisposable</sub>` | <sub>BeginScope(TState)</sub> |  | 
-| `<sub>Boolean</sub>` | <sub>IsEnabled(LogLevel)</sub> |  | 
-| `<sub>void</sub>` | <sub>Log(LogLevel, EventId, TState, Exception, Func<TState, Exception, String>)</sub> |  | 
+| `<sub>IDisposable</sub>` | <sub>BeginScope(`TState`)</sub> |  | 
+| `<sub>Boolean</sub>` | <sub>IsEnabled(`LogLevel`)</sub> |  | 
+| `<sub>void</sub>` | <sub>Log(`LogLevel`, `EventId`, `TState`, `Exception`, `Func<TState, Exception, String>`)</sub> |  | 
 
 

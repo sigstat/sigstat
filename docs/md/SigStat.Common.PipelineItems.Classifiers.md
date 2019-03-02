@@ -18,8 +18,8 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>Double</sub>` | <sub>Test(ISignerModel, Signature)</sub> |  | 
-| `<sub>ISignerModel</sub>` | <sub>Train(List<Signature>)</sub> |  | 
+| `<sub>Double</sub>` | <sub>Test(`ISignerModel`, `Signature`)</sub> |  | 
+| `<sub>ISignerModel</sub>` | <sub>Train(`List<Signature>`)</sub> |  | 
 
 
 #### `DtwSignerModel`
@@ -66,9 +66,9 @@ public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Add(ValueTuple<IClassifier, Double>)</sub> | Add a new classifier with given weight to the list of items. | 
+| `<sub>void</sub>` | <sub>Add(`ValueTuple<IClassifier, Double>`)</sub> | Add a new classifier with given weight to the list of items. | 
 | `<sub>IEnumerator</sub>` | <sub>GetEnumerator()</sub> |  | 
-| `<sub>Double</sub>` | <sub>Test(ISignerModel, Signature)</sub> |  | 
-| `<sub>ISignerModel</sub>` | <sub>Train(List<Signature>)</sub> |  | 
+| `<sub>Double</sub>` | <sub>Test(`ISignerModel`, `Signature`)</sub> |  | 
+| `<sub>ISignerModel</sub>` | <sub>Train(`List<Signature>`)</sub> |  | 
 
 

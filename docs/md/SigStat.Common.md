@@ -10,12 +10,12 @@ public static class SigStat.Common.ArrayExtension
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>ValueTuple<Int32, Int32></sub>` | <sub>GetCog(this Double[,])</sub> | Calculates the center of gravity, assuming that each cell contains  a weight value | 
-| `<sub>IEnumerable<T></sub>` | <sub>GetValues(this T[,])</sub> | Enumerates all values in a two dimensional array | 
-| `<sub>T[,]</sub>` | <sub>SetValues(this T[,], T)</sub> | Sets all values in a two dimensional array to `` | 
-| `<sub>Double</sub>` | <sub>Sum(this Double[,], Int32, Int32, Int32, Int32)</sub> | Calculates the sum of the values in the given sub-array | 
-| `<sub>Double</sub>` | <sub>SumCol(this Double[,], Int32)</sub> | Returns the sum of column values in a two dimensional array | 
-| `<sub>Double</sub>` | <sub>SumRow(this Double[,], Int32)</sub> | Returns the sum of row values in a two dimensional array | 
+| `<sub>ValueTuple<Int32, Int32></sub>` | <sub>GetCog(this `Double[,]`)</sub> | Calculates the center of gravity, assuming that each cell contains  a weight value | 
+| `<sub>IEnumerable<T></sub>` | <sub>GetValues(this `T[,]`)</sub> | Enumerates all values in a two dimensional array | 
+| `<sub>T[,]</sub>` | <sub>SetValues(this `T[,]`, `T`)</sub> | Sets all values in a two dimensional array to `` | 
+| `<sub>Double</sub>` | <sub>Sum(this `Double[,]`, `Int32`, `Int32`, `Int32`, `Int32`)</sub> | Calculates the sum of the values in the given sub-array | 
+| `<sub>Double</sub>` | <sub>SumCol(this `Double[,]`, `Int32`)</sub> | Returns the sum of column values in a two dimensional array | 
+| `<sub>Double</sub>` | <sub>SumRow(this `Double[,]`, `Int32`)</sub> | Returns the sum of row values in a two dimensional array | 
 
 
 #### `Baseline`
@@ -53,7 +53,7 @@ public class SigStat.Common.BasicMetadataExtraction
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 ###### Static Properties
@@ -115,10 +115,10 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>FeatureDescriptor</sub>` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `<sub>FeatureDescriptor<T></sub>` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
-| `<sub>Boolean</sub>` | <sub>IsRegistered(String)</sub> | Returns true, if there is a FeatureDescriptor registered with the given key | 
-| `<sub>FeatureDescriptor</sub>` | <sub>Register(String, Type)</sub> | Registers a new `SigStat.Common.FeatureDescriptor` with a given key.  If the FeatureDescriptor is allready registered, this function will  return a reference to the originally registered FeatureDescriptor.  to the a | 
+| `<sub>FeatureDescriptor</sub>` | <sub>Get(`String`)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
+| `<sub>FeatureDescriptor<T></sub>` | <sub>Get(`String`)</sub> | Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key. | 
+| `<sub>Boolean</sub>` | <sub>IsRegistered(`String`)</sub> | Returns true, if there is a FeatureDescriptor registered with the given key | 
+| `<sub>FeatureDescriptor</sub>` | <sub>Register(`String`, `Type`)</sub> | Registers a new `SigStat.Common.FeatureDescriptor` with a given key.  If the FeatureDescriptor is allready registered, this function will  return a reference to the originally registered FeatureDescriptor.  to the a | 
 
 
 #### `FeatureDescriptor<T>`
@@ -134,7 +134,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>FeatureDescriptor<T></sub>` | <sub>Get(String)</sub> | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
+| `<sub>FeatureDescriptor<T></sub>` | <sub>Get(`String`)</sub> | Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type. | 
 
 
 #### `Features`
@@ -191,10 +191,10 @@ public static class SigStat.Common.ILoggerObjectExtensions
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Error(this ILoggerObject, String, Object[])</sub> | Formats and writes an error log message. | 
-| `<sub>void</sub>` | <sub>Log(this ILoggerObject, String, Object[])</sub> | Formats and writes an informational log message. | 
-| `<sub>void</sub>` | <sub>Trace(this ILoggerObject, String, Object[])</sub> | Formats and writes a trace log message. | 
-| `<sub>void</sub>` | <sub>Warn(this ILoggerObject, String, Object[])</sub> | Formats and writes an warning log message. | 
+| `<sub>void</sub>` | <sub>Error(this `ILoggerObject`, `String`, `Object[]`)</sub> | Formats and writes an error log message. | 
+| `<sub>void</sub>` | <sub>Log(this `ILoggerObject`, `String`, `Object[]`)</sub> | Formats and writes an informational log message. | 
+| `<sub>void</sub>` | <sub>Trace(this `ILoggerObject`, `String`, `Object[]`)</sub> | Formats and writes a trace log message. | 
+| `<sub>void</sub>` | <sub>Warn(this `ILoggerObject`, `String`, `Object[]`)</sub> | Formats and writes an warning log message. | 
 
 
 #### `ITransformation`
@@ -210,7 +210,7 @@ public interface SigStat.Common.ITransformation
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
 
 
 #### `Loop`
@@ -249,7 +249,7 @@ public static class SigStat.Common.MathHelper
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>Double</sub>` | <sub>Min(Double, Double, Double)</sub> | Returns the smallest of the three double parameters | 
+| `<sub>Double</sub>` | <sub>Min(`Double`, `Double`, `Double`)</sub> | Returns the smallest of the three double parameters | 
 
 
 #### `Origin`
@@ -340,12 +340,12 @@ public class SigStat.Common.Sampler
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Init(Signer)</sub> | Initialize the Sampler with a Signer's Signatures. | 
-| `<sub>void</sub>` | <sub>Init(List<Signer>)</sub> | Initialize the Sampler with a Signer's Signatures. | 
-| `<sub>void</sub>` | <sub>Init(List<Signature>)</sub> | Initialize the Sampler with a Signer's Signatures. | 
-| `<sub>List<Signature></sub>` | <sub>SampleForgeryTests(Func<List<Signature>, List<Signature>>)</sub> | Samples a batch of forged signatures to test on. | 
-| `<sub>List<Signature></sub>` | <sub>SampleGenuineTests(Func<List<Signature>, List<Signature>>)</sub> | Samples a batch of genuine test signatures to test on. | 
-| `<sub>List<Signature></sub>` | <sub>SampleReferences(Func<List<Signature>, List<Signature>>)</sub> | Samples a batch of genuine reference signatures to train on. | 
+| `<sub>void</sub>` | <sub>Init(`Signer`)</sub> | Initialize the Sampler with a Signer's Signatures. | 
+| `<sub>void</sub>` | <sub>Init(`List<Signer>`)</sub> | Initialize the Sampler with a Signer's Signatures. | 
+| `<sub>void</sub>` | <sub>Init(`List<Signature>`)</sub> | Initialize the Sampler with a Signer's Signatures. | 
+| `<sub>List<Signature></sub>` | <sub>SampleForgeryTests(`Func<List<Signature>, List<Signature>>`)</sub> | Samples a batch of forged signatures to test on. | 
+| `<sub>List<Signature></sub>` | <sub>SampleGenuineTests(`Func<List<Signature>, List<Signature>>`)</sub> | Samples a batch of genuine test signatures to test on. | 
+| `<sub>List<Signature></sub>` | <sub>SampleReferences(`Func<List<Signature>, List<Signature>>`)</sub> | Samples a batch of genuine reference signatures to train on. | 
 
 
 #### `Signature`
@@ -371,15 +371,15 @@ public class SigStat.Common.Signature
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>List<Double[]></sub>` | <sub>GetAggregateFeature(List<FeatureDescriptor>)</sub> | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
-| `<sub>T</sub>` | <sub>GetFeature(String)</sub> | Gets the specified feature. | 
-| `<sub>T</sub>` | <sub>GetFeature(FeatureDescriptor<T>)</sub> | Gets the specified feature. | 
-| `<sub>T</sub>` | <sub>GetFeature(FeatureDescriptor)</sub> | Gets the specified feature. | 
+| `<sub>List<Double[]></sub>` | <sub>GetAggregateFeature(`List<FeatureDescriptor>`)</sub> | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
+| `<sub>T</sub>` | <sub>GetFeature(`String`)</sub> | Gets the specified feature. | 
+| `<sub>T</sub>` | <sub>GetFeature(`FeatureDescriptor<T>`)</sub> | Gets the specified feature. | 
+| `<sub>T</sub>` | <sub>GetFeature(`FeatureDescriptor`)</sub> | Gets the specified feature. | 
 | `<sub>IEnumerable<FeatureDescriptor></sub>` | <sub>GetFeatureDescriptors()</sub> | Gets a collection of `SigStat.Common.FeatureDescriptor`s that are used in this signature. | 
-| `<sub>Boolean</sub>` | <sub>HasFeature(FeatureDescriptor)</sub> | Returns true if the signature contains the specified feature | 
-| `<sub>Boolean</sub>` | <sub>HasFeature(String)</sub> | Returns true if the signature contains the specified feature | 
-| `<sub>void</sub>` | <sub>SetFeature(FeatureDescriptor, T)</sub> | Sets the specified feature. | 
-| `<sub>void</sub>` | <sub>SetFeature(String, T)</sub> | Sets the specified feature. | 
+| `<sub>Boolean</sub>` | <sub>HasFeature(`FeatureDescriptor`)</sub> | Returns true if the signature contains the specified feature | 
+| `<sub>Boolean</sub>` | <sub>HasFeature(`String`)</sub> | Returns true if the signature contains the specified feature | 
+| `<sub>void</sub>` | <sub>SetFeature(`FeatureDescriptor`, `T`)</sub> | Sets the specified feature. | 
+| `<sub>void</sub>` | <sub>SetFeature(`String`, `T`)</sub> | Sets the specified feature. | 
 | `<sub>String</sub>` | <sub>ToString()</sub> | Returns a string representation of the signature | 
 
 
@@ -454,6 +454,6 @@ public class SigStat.Common.VerifierBenchmark
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>BenchmarkResults</sub>` | <sub>Execute(Boolean = True)</sub> | Execute the benchmarking process. | 
+| `<sub>BenchmarkResults</sub>` | <sub>Execute(`Boolean` = True)</sub> | Execute the benchmarking process. | 
 
 

@@ -19,7 +19,7 @@ public class SigStat.Common.Transforms.AddConst
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `AddVector`
@@ -45,7 +45,7 @@ public class SigStat.Common.Transforms.AddVector
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `ApproximateOnlineFeatures`
@@ -61,7 +61,7 @@ public class SigStat.Common.Transforms.ApproximateOnlineFeatures
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `Binarization`
@@ -85,7 +85,7 @@ public class SigStat.Common.Transforms.Binarization
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `BinaryRasterizer`
@@ -111,7 +111,7 @@ public class SigStat.Common.Transforms.BinaryRasterizer
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `CentroidExtraction`
@@ -135,7 +135,7 @@ public class SigStat.Common.Transforms.CentroidExtraction
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `CentroidTranslate`
@@ -180,7 +180,7 @@ public class SigStat.Common.Transforms.ComponentExtraction
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `ComponentSorter`
@@ -204,7 +204,7 @@ public class SigStat.Common.Transforms.ComponentSorter
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `ComponentsToFeatures`
@@ -230,7 +230,7 @@ public class SigStat.Common.Transforms.ComponentsToFeatures
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `EndpointExtraction`
@@ -255,7 +255,7 @@ public class SigStat.Common.Transforms.EndpointExtraction
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `Extrema`
@@ -271,7 +271,7 @@ public class SigStat.Common.Transforms.Extrema
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `HSCPThinning`
@@ -295,7 +295,7 @@ public class SigStat.Common.Transforms.HSCPThinning
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `ImageGenerator`
@@ -320,7 +320,7 @@ public class SigStat.Common.Transforms.ImageGenerator
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `Map`
@@ -344,7 +344,7 @@ public class SigStat.Common.Transforms.Map
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `Multiply`
@@ -368,7 +368,7 @@ public class SigStat.Common.Transforms.Multiply
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `Normalize`
@@ -392,7 +392,7 @@ public class SigStat.Common.Transforms.Normalize
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `OnePixelThinning`
@@ -416,7 +416,7 @@ public class SigStat.Common.Transforms.OnePixelThinning
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `RealisticImageGenerator`
@@ -432,7 +432,7 @@ public class SigStat.Common.Transforms.RealisticImageGenerator
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `Resize`
@@ -465,7 +465,7 @@ public class SigStat.Common.Transforms.Resize
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `TangentExtraction`
@@ -490,7 +490,7 @@ public class SigStat.Common.Transforms.TangentExtraction
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
 #### `TimeReset`
@@ -542,6 +542,6 @@ public class SigStat.Common.Transforms.Trim
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | ---- | ---- | ---- | 
-| `<sub>void</sub>` | <sub>Transform(Signature)</sub> |  | 
+| `<sub>void</sub>` | <sub>Transform(`Signature`)</sub> |  | 
 
 
