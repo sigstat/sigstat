@@ -284,30 +284,31 @@
             <Button Name="GoDTWButton" Content="Run DTW" Click="GoDTWButton_Click" Margin="5 0" />
         </StackPanel>
 
-        <materialDesign:ColorZone Mode="PrimaryDark" Margin="0 0 0 0" >
-            <GroupBox Header="Verifier tester" FontWeight="Bold">
-                <StackPanel>
-                    <GroupBox Header="Transformation settings" Padding="5 5 0 0"
+        <StackPanel>
+            <materialDesign:ColorZone Mode="PrimaryDark" Margin="0 0 0 0"  >
+                <GroupBox Header="Verifier tester" FontWeight="Bold" >
+                    <StackPanel>
+                        <GroupBox Header="Transformation settings" Padding="5 5 0 0"
                               FontWeight="DemiBold" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
-                        <Grid Margin="0 0 5 5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            <Grid Margin="0 0 5 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                            
-                            <CheckBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Name="NormalizationCheckBox"
+
+                                <CheckBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Name="NormalizationCheckBox"
                                  Content="Normalization" 
                                  Style="{StaticResource FeatureSelectorStyle}"
                                     IsChecked="{Binding IsNormalizationSelected}"
                                  IsEnabled="{Binding ElementName=CentroidCheckBox, Path=IsChecked, Converter={StaticResource BoolInverterConverter}}">
-                                <!--<CheckBox.IsChecked>
+                                    <!--<CheckBox.IsChecked>
                                     <MultiBinding Converter="{StaticResource BoolMultiAndConverter}">
                                         <Binding Path="IsNormalizationSelected" />
                                         <Binding Path="IsBiasSelected" />
@@ -316,13 +317,13 @@
                                         </MultiBinding.ConverterParameter>
                                     </MultiBinding>
                                 </CheckBox.IsChecked>-->
-                            </CheckBox>
-                            <CheckBox Grid.Row="1" Grid.Column="1" Name="CentroidCheckBox"
+                                </CheckBox>
+                                <CheckBox Grid.Row="1" Grid.Column="1" Name="CentroidCheckBox"
                                  Content="Centroid" 
                                  Style="{StaticResource FeatureSelectorStyle}"
                                  IsChecked="{Binding IsCentroidSelected}"
                                  IsEnabled="{Binding ElementName=NormalizationCheckBox, Path=IsChecked, Converter={StaticResource BoolInverterConverter}}">
-                                <!--<CheckBox.IsChecked>
+                                    <!--<CheckBox.IsChecked>
                                     <MultiBinding Converter="{StaticResource BoolMultiAndConverter}" >
                                         <Binding Path="IsBiasSelected" />
                                         <Binding Path="IsNormalizationSelected"/>
@@ -331,103 +332,113 @@
                                         </MultiBinding.ConverterParameter>
                                     </MultiBinding>
                                 </CheckBox.IsChecked>-->
-                            </CheckBox>
-                            <CheckBox Grid.Row="1" Grid.Column="2" Name="CenteringCheckBox"
+                                </CheckBox>
+                                <CheckBox Grid.Row="1" Grid.Column="2" Name="CenteringCheckBox"
                                  Content="Centering" 
                                  Style="{StaticResource FeatureSelectorStyle}"
                                  IsChecked="{Binding IsCenteringSelected}"
                                  IsEnabled="{Binding ElementName=NormalizationCheckBox, Path=IsChecked, Converter={StaticResource BoolInverterConverter}}">
-                            </CheckBox>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Classifier settings" Padding="5 5 0 0"
+                                </CheckBox>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Classifier settings" Padding="5 5 0 0"
                               FontWeight="DemiBold" materialDesign:ColorZoneAssist.Mode="PrimaryDark">
-                        <Grid Margin="0 0 5 5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                            <Grid Margin="0 0 5 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                            <CheckBox Grid.Row="0" Grid.Column="0"
+                                <CheckBox Grid.Row="0" Grid.Column="0"
                             Content="Optimal classification" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsOptiClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <CheckBox Grid.Row="1" Grid.Column="0" Name="TimeFilterCheckbox"
+                                <CheckBox Grid.Row="1" Grid.Column="0" Name="TimeFilterCheckbox"
                                 Content="Time filter" 
                                 Style="{StaticResource FeatureSelectorStyle}"
                                 IsChecked="{Binding IsTimeFilterSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <RadioButton Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" GroupName="ClassifierType" Name="DTWRadioButton" 
+                                <RadioButton Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" GroupName="ClassifierType" Name="DTWRadioButton" 
                                  Content="Classification based on DTW" Style="{StaticResource MaterialDesignRadioButton}"
                                  IsChecked="{Binding SelectedClassifier, Converter={StaticResource RadioButtonClassifierCheckedConverter}, 
                                  ConverterParameter={x:Static helpers:ClassifierType.DTW}}"/>
-                            <RadioButton Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                <RadioButton Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                             GroupName="ClassifierType" 
                                  Content="Classification based on FusedScore"  Style="{StaticResource MaterialDesignRadioButton}"
                                  IsChecked="{Binding SelectedClassifier, Converter={StaticResource RadioButtonClassifierCheckedConverter}, 
                                  ConverterParameter={x:Static helpers:ClassifierType.FusedScore}}"/>
-                            <CheckBox Grid.Row="2" Grid.Column="0"
+                                <CheckBox Grid.Row="2" Grid.Column="0"
                             Content="NDtw" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsNDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
-                            <CheckBox Grid.Row="2" Grid.Column="1"
+                                <CheckBox Grid.Row="2" Grid.Column="1"
                             Content="DtwPy" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsDtwPySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
-                            <!--<CheckBox Grid.Row="2" Grid.Column="1"
+                                <!--<CheckBox Grid.Row="2" Grid.Column="1"
                             Content="FrameworkDtw" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsFrameworkDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>-->
-                            <CheckBox Grid.Row="2" Grid.Column="2"
+                                <CheckBox Grid.Row="2" Grid.Column="2"
                             Content="MyDtw" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsMyDtwSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=DTWRadioButton, Path=IsChecked}"/>
-                            <!--<CheckBox Grid.Row="3" Grid.Column="0" 
+                                <!--<CheckBox Grid.Row="3" Grid.Column="0" 
                             Content="CompositeClassifier" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsCompositeClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=TimeFilterCheckbox, Path=IsChecked}"/>-->
-                            <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
                             Content="WeightedClassifier" 
                               Style="{StaticResource FeatureSelectorStyle}"
                               IsChecked="{Binding IsWeightedClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEnabled="{Binding ElementName=TimeFilterCheckbox, Path=IsChecked}"/>
 
-                        </Grid>
-                    </GroupBox>
-                    <StackPanel Orientation="Horizontal" Height="Auto">
-                        <StackPanel Width="255">
-                            <TextBlock Name="StatisticsMessagesTextBlock" Margin="5" Width="Auto" TextWrapping="Wrap" Foreground="White"/>
-                            <ProgressBar Name="StatisticsProgressBar" Margin="5" Width="220" Height="10"
+                            </Grid>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal" Height="Auto">
+                            <StackPanel Width="255">
+                                <TextBlock Name="StatisticsMessagesTextBlock" Margin="5" Width="Auto" TextWrapping="Wrap" Foreground="White"/>
+                                <ProgressBar Name="StatisticsProgressBar" Margin="5" Width="220" Height="10"
                              Value="{Binding ProgressValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Visibility="Hidden" materialDesign:TransitionAssist.DisableTransitions="True"
                              HorizontalAlignment="Left" Foreground="{StaticResource PrimaryHueMidBrush}"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <Button Name="OkForAll" Content="Create table" Background="{StaticResource PrimaryHueMidBrush}"
+                            </StackPanel>
+                            <StackPanel>
+                                <Button Name="OkForAll" Content="Create table" Background="{StaticResource PrimaryHueMidBrush}"
                             HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"  Click="OkForAll_Click"/>
-                            <!--<Button Name="OpenStatistics" Content="Recent table" Background="{StaticResource PrimaryHueMidBrush}"
+                                <!--<Button Name="OpenStatistics" Content="Recent table" Background="{StaticResource PrimaryHueMidBrush}"
                             HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"  Click="OpenStatistics_Click"/>-->
-                        </StackPanel>
+                            </StackPanel>
 
-                    </StackPanel>
-                    <!--<Button Content="Create debug table" Background="{StaticResource PrimaryHueMidBrush}"
+                        </StackPanel>
+                        <!--<Button Content="Create debug table" Background="{StaticResource PrimaryHueMidBrush}"
                             VerticalAlignment="Center" Margin="5"  Click="CreateDebugTables_Click"/>-->
+                    </StackPanel>
+                </GroupBox>
+
+            </materialDesign:ColorZone>
+            <GroupBox Name="PreprocessingTransformationTester" Header="Preprocessing transformation tester">
+                <StackPanel>
+                    <ComboBox Name="TransformationChooserComboBox" 
+                              ItemsSource="{Binding Transformations}" 
+                              SelectedIndex="0" Margin="5"/>
+                    <Button Name="TestTransformationButton" Content="Test transformation" Click="TestTransformationButton_Click" />
                 </StackPanel>
             </GroupBox>
-        </materialDesign:ColorZone>
+        </StackPanel>
     </StackPanel>
 
 </Window>

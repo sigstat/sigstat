@@ -24,6 +24,16 @@ namespace SigStat.WpfSample.Model
 
         public override void Train(List<Signature> signatures)
         {
+            // TODO: előbb minden végén a feature extraction
+            //var SVC2004FeatureExtraction;
+            //bool isFeatureExtractionIncluded = false;
+            //if (TransformPipeline.GetType() == typeof(SequentialTransformPipeline))
+            //{
+            //    var seqTranformPipeline = TransformPipeline as SequentialTransformPipeline;
+            //    var i = seqTranformPipeline.Items.FindIndex(t => t.GetType() == typeof(DerivedSvc2004FeatureExtractor));
+            //    var transform = seqTranformPipeline.Items.ElementAt(i);
+            //    seqTranformPipeline.Items.RemoveAt(i);
+            //}
             foreach (var sig in signatures)
             {
                 TransformPipeline.Transform(sig);

@@ -52,10 +52,16 @@ namespace SigStat.WpfSample.Model
 
         public override double Test(Signature signature)
         {
-            if (TimeFilterClassifier.Test(signature)<0.5)
-                return 0;
+            //if (TimeFilterClassifier.Test(signature)<0.5) //TODO: szigorúságot állítani
+            //    return 0;
+            //else
+            //    return MainClassifier.Test(signature);
+            var timeDecision = TimeFilterClassifier.Test(signature);
+            var mainDecision = MainClassifier.Test(signature);
+            if (timeDecision > 0.4 && mainDecision > 0.5)
+                return 0.5 * timeDecision + 0.5 * mainDecision;
             else
-                return MainClassifier.Test(signature);
+                return 0;
         }
 
    

@@ -63,7 +63,7 @@ namespace SigStat.WpfSample.Model
             avg /= n;
 
             double dev = Measures.StandardDeviation(costs.ToArray(), false);
-            threshold = avg + 0.3 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni 
+            threshold = avg + 0.8 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni 
 
             Logger.Info(this, signatures[0].Signer.ID + "-fusclassifier-distances", debugInfo);
 

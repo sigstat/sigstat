@@ -33,9 +33,10 @@ namespace SigStat.WpfSample.Model
         //TODO: return érték használatra kívül még nem alkalmas, értelmetlen
         public override double Train(List<Signature> signatures)
         {
+            var timeClassifierWeight = 1 - MainClassifierWeight;
             var timeTreshold = TimeFilterClassifier.Train(signatures);
             var mainThreshold = MainClassifier.Train(signatures);
-            return timeTreshold + mainThreshold;
+            return timeClassifierWeight * timeTreshold + MainClassifierWeight * mainThreshold;
         }
 
         public override double Test(Signature signature)
@@ -45,7 +46,7 @@ namespace SigStat.WpfSample.Model
 
             var timeClassifierWeight = 1 - MainClassifierWeight;
 
-            return 0.5 * timeDecision + 0.5 * mainDecision;
+            return timeClassifierWeight * timeDecision + MainClassifierWeight * mainDecision;
 
             //return ((MainClassifierWeight * mainDecision) + (timeClassifierWeight * timeDecision)) >= 0.5;
 

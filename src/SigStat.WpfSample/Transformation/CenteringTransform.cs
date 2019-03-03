@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigStat.WpfSample.Model
+namespace SigStat.WpfSample.Transformation
 {
     //Fanni-féle megvalósítás
     internal class CenteringTransform : PipelineBase, ITransformation

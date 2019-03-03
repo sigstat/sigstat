@@ -43,6 +43,7 @@ namespace SigStat.WpfSample.Model
             originals = signatures;
             List<double> costs = new List<double>(originals.Count);
             double avg = 0;
+            double max = -1;
             int n = 0;
 
             List<object[]> debugInfo = new List<object[]>();
@@ -66,6 +67,7 @@ namespace SigStat.WpfSample.Model
                     debugRow[j + 1] = cost;
                     avg += cost;
                     costs.Add(cost);
+                    if(cost > max) { max = cost; }
 
                     n++;
                 }
@@ -74,7 +76,7 @@ namespace SigStat.WpfSample.Model
 
             avg /= n;
             double dev = Measures.StandardDeviation(costs.ToArray(), false);
-            threshold = avg + 0.8 * dev; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni
+            threshold = avg  + 0.8 * dev; // + Math.Abs(avg - max) / 2 ; //TODO: rendesen beállítani, valami adaptívabbat kitaláltni
 
             Logger.Info(this, signatures[0].Signer.ID + "-dtwclassifier-distances", debugInfo);
 

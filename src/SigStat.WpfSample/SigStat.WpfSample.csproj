@@ -221,6 +221,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Transformation\NormalizeRotation.cs" />
+    <Compile Include="Transformation\OriginType.cs" />
+    <Compile Include="Transformation\Resample.cs" />
+    <Compile Include="Transformation\Scale.cs" />
+    <Compile Include="Transformation\Translate.cs" />
+    <Compile Include="Transformation\UniformScale.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -259,7 +265,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\CenteringTransform.cs" />
+    <Compile Include="Transformation\CenteringTransform.cs" />
     <Compile Include="Model\ClassifierBase.cs" />
     <Compile Include="Model\DTWClassifier.cs" />
     <Compile Include="Model\DerivedSvc2004FeatureExtractor.cs" />
