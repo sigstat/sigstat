@@ -5,8 +5,19 @@ using System.Text;
 using SigStat.Common;
 namespace SigStat.Common.Algorithms
 {
+    /// <summary>
+    /// A simple implementation of the DTW algorithm.
+    /// </summary>
     public static class DtwPy
     {
+        /// <summary>
+        /// Calculates the distance between two time sequences
+        /// </summary>
+        /// <typeparam name="P">the type of data points</typeparam>
+        /// <param name="sequence1">time sequence 1</param>
+        /// <param name="sequence2">time sequence 2</param>
+        /// <param name="distance">a function to calculate the distance between two points</param>
+        /// <returns></returns>
         public static double Dtw<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance)
         {
             // TODO: optimalizálás
@@ -48,15 +59,25 @@ namespace SigStat.Common.Algorithms
             return dtw[n-1, m-1];
         }
 
-        public static double EuclideanDistance(double[] p1, double[] p2)
+
+        /// <summary>
+        /// Calculates the euclidean distance of two vectors
+        /// </summary>
+        /// <param name="vector1">vector1</param>
+        /// <param name="vector2">vector2</param>
+        /// <returns></returns>
+        /// <remarks>The two vectors must have the same length</remarks>
+        public static double EuclideanDistance(double[] vector1, double[] vector2)
         {
-            if (p1.Length != p2.Length)
+            if (vector1.Length != vector2.Length)
+            {
                 throw new ArgumentException();
+            }
 
             double sum = 0;
-            for (int i = 0; i < p1.Length; i++)
+            for (int i = 0; i < vector1.Length; i++)
             {
-                double dist = p1[i] - p2[i];
+                double dist = vector1[i] - vector2[i];
                 sum += dist*dist;
             }
             return Math.Sqrt(sum);

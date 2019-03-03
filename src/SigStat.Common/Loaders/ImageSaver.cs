@@ -11,7 +11,7 @@ namespace SigStat.Common.Loaders
     /// <summary>
     /// Get the <see cref="Features.Image"/> of a <see cref="Signature"/> and save it as png file.
     /// </summary>
-    public class ImageSaver
+    public static class ImageSaver
     {
         /// <summary>
         /// Saves a png image file to the specified <paramref name="path"/>.

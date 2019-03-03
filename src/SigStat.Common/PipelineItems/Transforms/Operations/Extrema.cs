@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -15,27 +17,27 @@ namespace SigStat.Common.Transforms
     /// </remarks>
     public class Extrema : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="Extrema"/> class. </summary>
-        public Extrema()
-        {
-            this.Output(
-                FeatureDescriptor<List<double>>.Descriptor("Min"),
-                FeatureDescriptor<List<double>>.Descriptor("Max")
-            );
-        }
+        [Input]
+        FeatureDescriptor<List<double>> Input;
+
+        [Output("Min")]
+        FeatureDescriptor<List<double>> OutputMin;
+
+        [Output("Max")]
+        FeatureDescriptor<List<double>> OutputMax;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);
+            List<double> values = signature.GetFeature<List<double>>(Input);
             //find min and max values
             double min = values.Min();
             double max = values.Max();
 
-            Log(LogLevel.Debug, $"SigID: {signature.ID} FeatureName: {InputFeatures[0].Name} Min: {min} Max: {max}");
+            this.Trace("SigID: {signature.ID} FeatureName: {Input.Name} Min: {min} Max: {max}", signature.ID, Input.Name, min, max);
 
-            signature.SetFeature(OutputFeatures[0], new List<double> { min });//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
-            signature.SetFeature(OutputFeatures[1], new List<double> { max });
+            signature.SetFeature(OutputMin, new List<double> { min });//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
+            signature.SetFeature(OutputMax, new List<double> { max });
             Progress = 100;
         }
     }

@@ -35,6 +35,8 @@ namespace SigStat.Common
             }
             set
             {
+                // The approach below ensures, that the feature descriptor is registered on first use
+                FeatureDescriptor.Register(featureKey, value.GetType());
                 features[featureKey] = value;
             }
         }
@@ -57,18 +59,26 @@ namespace SigStat.Common
             }
         }
 
-        //ezt nem lehet..
-        /*public T this<T>[FeatureDescriptor<T> featureDescriptor]
+        /// <summary>
+        /// Initializes a signature instance
+        /// </summary>
+        public Signature()
         {
-            get
-            {
-                return (T)features[featureDescriptor.Key];
-            }
-            set
-            {
-                features[featureDescriptor.Key] = value;
-            }
-        }*/
+
+        }
+
+        /// <summary>
+        /// Initializes a signature instance with the given properties
+        /// </summary>
+        /// <param name="signatureID"></param>
+        /// <param name="origin"></param>
+        /// <param name="signer"></param>
+        public Signature(string signatureID, Origin origin = Origin.Unknown, Signer signer = null)
+        {
+            ID = signatureID;
+            Origin = origin;
+            Signer = signer;
+        }
 
         /// <summary>
         /// Gets the specified feature.
@@ -100,52 +110,34 @@ namespace SigStat.Common
             return (T)features[featureDescriptor.Key];
         }
 
-        /*public T GetFeature<T>()
-        {
-            return (T)features[FeatureDescriptor.GetKey<T>()];
-        }*/
-
-        /*public T GetFeature<T>(int index)
-        {
-            return ((List<T>)features[FeatureDescriptor.GetKey<T>()])[index];
-        }*/
-
         /// <summary>
         /// Gets a collection of <see cref="FeatureDescriptor"/>s that are used in this signature.
         /// </summary>
         /// <returns>A collection of <see cref="FeatureDescriptor"/>s.</returns>
         public IEnumerable<FeatureDescriptor> GetFeatureDescriptors()
         {
-            return features.Keys.Select(k => FeatureDescriptor.GetDescriptor(k));
+            return features.Keys.Select(k => FeatureDescriptor.Get(k));
         }
 
-        /*/// <summary>
-        /// Gets a list of <see cref="FeatureDescriptor"/>s of given type <typeparamref name="T"/> that are used in this signature.
-        /// </summary>
-        /// <returns>A list of <see cref="FeatureDescriptor"/>s.</returns>
-        public List<T> GetFeatures<T>()
-        {
-            return (features.TryGetValue(FeatureDescriptor.GetKey<T>(), out var result)) ? result as List<T> : null;
-        }*/
-
-        /*public void SetFeature<T>(T feature)
-        {
-            features[FeatureDescriptor.GetKey(feature.GetType())] = feature;
-        }*/
-
-        /*public void SetFeatures<T>(List<T> feature)
-        {
-            features[FeatureDescriptor.GetKey<T>()] = feature;
-        }*/
-
         /// <summary>
-        /// Sets the specified feature. This is the preferred way.
+        /// Sets the specified feature. 
         /// </summary>
         /// <param name="featureDescriptor">The feature to put the new value in.</param>
         /// <param name="feature">The value to set.</param>
         public void SetFeature<T>(FeatureDescriptor featureDescriptor, T feature)
         {
             features[featureDescriptor.Key] = feature;
+        }
+        /// <summary>
+        /// Sets the specified feature. 
+        /// </summary>
+        /// <param name="featureKey">The unique key of the feature.</param>
+        /// <param name="feature">The value to set.</param>
+        public void SetFeature<T>(string featureKey, T feature)
+        {
+            //Ensure, that the FeatureDescriptor is registered
+            FeatureDescriptor.Get<T>(featureKey);
+            features[featureKey] = feature;
         }
 
         /// <summary>
@@ -162,7 +154,9 @@ namespace SigStat.Common
             //TODO: exception if: fs[0].len != fs[1].len
             values = new double[len][];
             for (int i = 0; i < len; i++)
+            {
                 values[i] = new double[fs.Count];//dim
+            }
 
             for (int iF = 0; iF < fs.Count; iF++)
             {
@@ -175,20 +169,33 @@ namespace SigStat.Common
             return values.ToList();
         }
 
+        /// <summary>
+        /// Returns true if the signature contains the specified feature
+        /// </summary>
+        /// <param name="featureDescriptor"></param>
+        /// <returns></returns>
         public bool HasFeature(FeatureDescriptor featureDescriptor)
         {
             return features.ContainsKey(featureDescriptor.Key);
         }
 
+        /// <summary>
+        /// Returns true if the signature contains the specified feature
+        /// </summary>
+        /// <param name="featureKey"></param>
+        /// <returns></returns>
         public bool HasFeature(string featureKey)
         {
             return features.ContainsKey(featureKey);
         }
 
-
+        /// <summary>
+        /// Returns a string representation of the signature
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return ID;
+            return ID??"";
         }
 
 

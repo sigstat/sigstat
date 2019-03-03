@@ -2,13 +2,13 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Drawing;
-using SixLabors.ImageSharp.Processing.Drawing.Pens;
 using SixLabors.Primitives;
 using SixLabors.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -21,6 +21,28 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class RealisticImageGenerator : PipelineBase, ITransformation
     {
+
+        [Input]
+        FeatureDescriptor<List<double>> X = Features.X;
+
+        [Input]
+        FeatureDescriptor<List<double>> Y = Features.Y;
+
+        [Input]
+        FeatureDescriptor<List<bool>> Button = Features.Button;
+
+        [Input]
+        FeatureDescriptor<List<double>> Pressure = Features.Pressure;
+
+        [Input]
+        FeatureDescriptor<List<double>> Altitude = Features.Altitude;
+
+        [Input]
+        FeatureDescriptor<List<double>> Azimuth = Features.Azimuth;
+
+        [Output("RealisticImage")]
+        FeatureDescriptor<Image<Rgba32>> OutputImage = Features.Image;
+
         private readonly int w;
         private readonly int h;
         private readonly float penScale;
@@ -42,39 +64,26 @@ namespace SigStat.Common.Transforms
             w = resolutionX;
             h = resolutionY;
             penScale = Math.Min(w,h) / 300 + 0.5f;
-            this.Output(Features.Image);
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            xs = signature.GetFeature(Features.X);
-            ys = signature.GetFeature(Features.Y);
-            pendowns = signature.GetFeature(Features.Button);
-            ps = signature.GetFeature(Features.Pressure);
-            alts = signature.GetFeature(Features.Altitude);
-            azs = signature.GetFeature(Features.Azimuth);
+            xs = signature.GetFeature(X);
+            ys = signature.GetFeature(Y);
+            pendowns = signature.GetFeature(Button);
+            ps = signature.GetFeature(Pressure);
+            alts = signature.GetFeature(Altitude);
+            azs = signature.GetFeature(Azimuth);
             //+ egyeb ami kellhet
 
             Image<Rgba32> img = new Image<Rgba32>(w, h);
             img.Mutate(ctx => ctx.Fill(bg));
 
             int len = xs.Count;
-            List<IPath> paths = new List<IPath>();
             List<PointF> points = new List<PointF>();
             for (int i = 0; i < len; i++)
             {
-                /*if (pendowns[i])
-                {
-                    points.Add(ToImageCoords(xs[i], ys[i]));
-                }
-                else
-                {
-                    if (points.Count > 0)
-                        DrawLines(img, points);
-                    points = new List<PointF>();
-                    points.Add(ToImageCoords(xs[i], ys[i]));
-                }*/
                 points.Add(ToImageCoords(xs[i], ys[i]));
                 Progress = (int)(i / (double)len * 90);
             }
@@ -83,9 +92,9 @@ namespace SigStat.Common.Transforms
 
 
 
-            signature.SetFeature(OutputFeatures[0], img);
+            signature.SetFeature(OutputImage, img);
             Progress = 100;
-            Log(LogLevel.Info, "Realistic image generation done.");
+            this.Log( "Realistic image generation done.");
         }
 
         private PointF ToImageCoords(double x, double y)
@@ -118,7 +127,9 @@ namespace SigStat.Common.Transforms
                         PointF iP = points[i];
                         PointF jP = points[i + 1];
                         if (!pendowns[i + 1])
+                        {
                             continue;
+                        }
                         //kb mennyit kell a ket pont koze rajzolni: tavolsaguktol fugg
                         float step = 1.5f / (Math.Abs(iP.X - jP.X) + Math.Abs(iP.Y - jP.Y));//lehetne euclidean is de minek es draga
                         for (float t = 0.0f; t <= 1.0f; t += step)
@@ -131,8 +142,7 @@ namespace SigStat.Common.Transforms
                             Rgba32 color = fg;
                             float darker = 0.8f + 0.2f * (1 - Lerp((float)ps[i], (float)ps[i + 1], t));//color depends on pressure
                             color.R = (byte)(tierDarken * darker * fg.R);
-                            color.G = (byte)(tierDarken * darker * fg.G);
-                            //color.B = (byte)(darker * fg.B);
+                            color.G = (byte)(tierDarken * darker * fg.G);                            
 
                             float ellipseRadius = scale * tierRadius;
                             p.X -= ellipseRadius / 2.0f;
@@ -154,7 +164,7 @@ namespace SigStat.Common.Transforms
         /// <param name="t1"></param>
         /// <param name="t">0.0f to 1.0f</param>
         /// <returns></returns>
-        private float Lerp(float t0, float t1, float t)
+        private static float Lerp(float t0, float t1, float t)
         {
             return (1 - t) * t0 + t * t1;
         }

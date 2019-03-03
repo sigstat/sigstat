@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace SigStat.Common
 {
@@ -11,52 +13,72 @@ namespace SigStat.Common
     /// TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.
     /// IProgress, ILogger, IPipelineIO default implementacioja.
     /// </summary>
-    public abstract class PipelineBase
+    public abstract class PipelineBase : ILoggerObject, IProgress, IPipelineIO
     {
-        /// <inheritdoc/>
-        public List<FeatureDescriptor> InputFeatures { get; set; }
-        /// <inheritdoc/>
-        public List<FeatureDescriptor> OutputFeatures { get; set; }
+        public virtual List<PipelineInput> PipelineInputs { get; private set; }
+        public virtual List<PipelineOutput> PipelineOutputs { get; private set; }
 
-        /// <inheritdoc/>
-        public Logger Logger { get; set; }
-
-        /// <summary>
-        /// Enqueues a new log entry to be consumed by the attached <see cref="Helpers.Logger"/>. Use this when developing new pipeline items.
-        /// </summary>
-        /// <param name="level">Specifies the level of the entry. Higher levels than the <see cref="Helpers.Logger"/>'s filter level will be ignored.</param>
-        /// <param name="message">The main content of the log entry.</param>
-        protected void Log(LogLevel level, string message)
+        public PipelineBase()
         {
-            if (Logger != null)
-                Logger.EnqueueEntry(level, this, message);
+            //init io
+            PipelineInputs = this.GetType().GetFields()
+                .Where(field => Attribute.IsDefined(field, typeof(Input)))
+                .Select(field => new PipelineInput(this, field))
+                .ToList();
+
+            PipelineOutputs = this.GetType().GetFields()
+                .Where(field => Attribute.IsDefined(field, typeof(Output)))
+                .Select(field => {
+                    var val = field.GetValue(this);
+                    if (val == null)
+                    {
+                        var attr = (Output)Attribute.GetCustomAttribute(field, typeof(Output));
+                        var fdType = field.FieldType;
+                        if (!(fdType.GetGenericTypeDefinition() == typeof(List<>)))
+                        {
+                            field.SetValue(this, FeatureDescriptor.Register(attr.Default ??
+                                $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{field.Name}", fdType.GetGenericArguments()[0]));
+                        }
+                        else
+                        {//List of Features
+                            throw new NotImplementedException();
+                            //TODO: bajbajbajbajbajbaj
+                        }
+                    }
+                    return new PipelineOutput(this, field);
+                }).ToList();
         }
 
-        private int _progress = 0;
         /// <inheritdoc/>
-        public int Progress {
-            get => _progress;
-            protected set {
-                if (_progress == value)
-                    return; _progress = value;
-                ProgressChanged?.Invoke(this, value);
+        public ILogger Logger { get; set; }
+
+        private int progress = 0;
+        /// <inheritdoc/>
+        public int Progress
+        {
+            get { return progress; }
+            protected set
+            {
+                if (progress == value)
+                    return;
+                progress = value;
+                OnProgressChanged();
             }
         }
-        /// <inheritdoc/>
+
+
+        /// <summary>
+        /// The event is raised whenever the value of <see cref="Progress"/> changes
+        /// </summary>
         public event EventHandler<int> ProgressChanged;
 
-        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes
         /// <summary>
-        /// Used to raise base class event in derived classes.
-        /// See explanation: <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-raise-base-class-events-in-derived-classes">Event docs link</see>.
+        /// Raises the <see cref="ProgressChanged"/> event
         /// </summary>
-        /// <param name="v"></param>
-        public void OnProgressChanged(int v)
+        protected virtual void OnProgressChanged()
         {
-            //ez sem fog kelleni default interface implementacioval.
-            ProgressChanged?.Invoke(this, v);
+            ProgressChanged?.Invoke(this, Progress);
         }
-
     }
 
 

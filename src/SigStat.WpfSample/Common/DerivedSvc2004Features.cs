@@ -22,19 +22,19 @@ namespace SigStat.WpfSample.Common
 
     public static class DerivedSvc2004Features
     {
-        public static readonly FeatureDescriptor<List<double>> FODX = FeatureDescriptor<List<double>>.Descriptor("FODX");
-        public static readonly FeatureDescriptor<List<double>> FODY = FeatureDescriptor<List<double>>.Descriptor("FODY");
-        public static readonly FeatureDescriptor<List<double>> FODAzimuth = FeatureDescriptor<List<double>>.Descriptor("FODAzimuth");
-        public static readonly FeatureDescriptor<List<double>> FODAltitude = FeatureDescriptor<List<double>>.Descriptor("FODAltitude");
-        public static readonly FeatureDescriptor<List<double>> FODPressure = FeatureDescriptor<List<double>>.Descriptor("FODPressure");
-        public static readonly FeatureDescriptor<List<double>> SODX = FeatureDescriptor<List<double>>.Descriptor("SODX");
-        public static readonly FeatureDescriptor<List<double>> SODY = FeatureDescriptor<List<double>>.Descriptor("SODY");
-        public static readonly FeatureDescriptor<List<double>> SineMeasure = FeatureDescriptor<List<double>>.Descriptor("SineMeasure");
-        public static readonly FeatureDescriptor<List<double>> CosineMeasure = FeatureDescriptor<List<double>>.Descriptor("CosineMeasure");
-        public static readonly FeatureDescriptor<List<double>> LengthBasedFO = FeatureDescriptor<List<double>>.Descriptor("LengthBasedFO");
-        public static readonly FeatureDescriptor<List<double>> LengthBasedSO = FeatureDescriptor<List<double>>.Descriptor("LengthBasedSO");
-        public static readonly FeatureDescriptor<List<double>> Velocity = FeatureDescriptor<List<double>>.Descriptor("Velocity");
-        public static readonly FeatureDescriptor<List<double>> Acceleration = FeatureDescriptor<List<double>>.Descriptor("Acceleration");
+        public static readonly FeatureDescriptor<List<double>> FODX = FeatureDescriptor.Get<List<double>>("FODX");
+        public static readonly FeatureDescriptor<List<double>> FODY = FeatureDescriptor.Get<List<double>>("FODY");
+        public static readonly FeatureDescriptor<List<double>> FODAzimuth = FeatureDescriptor.Get<List<double>>("FODAzimuth");
+        public static readonly FeatureDescriptor<List<double>> FODAltitude = FeatureDescriptor.Get<List<double>>("FODAltitude");
+        public static readonly FeatureDescriptor<List<double>> FODPressure = FeatureDescriptor.Get<List<double>>("FODPressure");
+        public static readonly FeatureDescriptor<List<double>> SODX = FeatureDescriptor.Get<List<double>>("SODX");
+        public static readonly FeatureDescriptor<List<double>> SODY = FeatureDescriptor.Get<List<double>>("SODY");
+        public static readonly FeatureDescriptor<List<double>> SineMeasure = FeatureDescriptor.Get<List<double>>("SineMeasure");
+        public static readonly FeatureDescriptor<List<double>> CosineMeasure = FeatureDescriptor.Get<List<double>>("CosineMeasure");
+        public static readonly FeatureDescriptor<List<double>> LengthBasedFO = FeatureDescriptor.Get<List<double>>("LengthBasedFO");
+        public static readonly FeatureDescriptor<List<double>> LengthBasedSO = FeatureDescriptor.Get<List<double>>("LengthBasedSO");
+        public static readonly FeatureDescriptor<List<double>> Velocity = FeatureDescriptor.Get<List<double>>("Velocity");
+        public static readonly FeatureDescriptor<List<double>> Acceleration = FeatureDescriptor.Get<List<double>>("Acceleration");
 
         public static readonly IReadOnlyList<FeatureDescriptor> All =
            typeof(DerivedSvc2004Features).GetFields(BindingFlags.Public | BindingFlags.Static).Select(fi => fi.GetValue(null)).OfType<FeatureDescriptor>().ToList();

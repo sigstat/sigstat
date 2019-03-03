@@ -1,4 +1,5 @@
 ﻿using SigStat.Common.Helpers;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,12 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class Map : PipelineBase, ITransformation
     {
+        [Input]
+        public FeatureDescriptor<List<double>> Input;
+
+        [Output("MapResult")]
+        public FeatureDescriptor<List<double>> Output;
+
         private readonly double v0;
         private readonly double v1;
 
@@ -23,14 +30,12 @@ namespace SigStat.Common.Transforms
         {
             this.v0 = minVal;
             this.v1 = maxVal;
-
-            this.Output(FeatureDescriptor<List<double>>.Descriptor("MapResult"));
         }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);
+            var values = signature.GetFeature(Input);
 
             //find min and max values
             double min = values.Min();
@@ -44,7 +49,7 @@ namespace SigStat.Common.Transforms
                 Progress += 100 / values.Count;
             }
 
-            signature.SetFeature(OutputFeatures[0], values);
+            signature.SetFeature(Output, values);
 
         }
 

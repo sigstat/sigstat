@@ -1,4 +1,5 @@
 ﻿using SigStat.Common.Helpers;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,16 @@ namespace SigStat.Common.Transforms
     /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
     public class Normalize : PipelineBase, ITransformation
     {
-        /// <summary> Initializes a new instance of the <see cref="Map"/> class with specified settings. </summary>
-        public Normalize()
-        {
-            this.Output(FeatureDescriptor<List<double>>.Descriptor("NormalizationResult"));
-        }
+        [Input]
+        public FeatureDescriptor<List<double>> Input;
+
+        [Output("NormalizationResult")]
+        public FeatureDescriptor<List<double>> Output;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]).ToList();
+            var values = signature.GetFeature(Input);
 
             //find min and max values
             double min = values.Min();
@@ -36,7 +37,7 @@ namespace SigStat.Common.Transforms
                 Progress += 100 / values.Count;
             }
 
-            signature.SetFeature(OutputFeatures[0], values);
+            signature.SetFeature(Output, values);
         }
 
     }

@@ -4,6 +4,8 @@ using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
+using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,6 +16,7 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class Binarization : PipelineBase, ITransformation
     {
+
         /// <summary> Represents the type of the input image. </summary>
         public enum ForegroundType
         {
@@ -37,32 +40,44 @@ namespace SigStat.Common.Transforms
         {
             this.foregroundType = foregroundType;
             this.binThreshold = binThreshold;
-            this.Output(FeatureDescriptor<bool[,]>.Descriptor("Binarized"));
+            //this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
         }
+
+        [Input]
+        public FeatureDescriptor<Image<Rgba32>> InputImage;
+
+        [Output("Binarized")]
+        public FeatureDescriptor<bool[,]> OutputMask;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            Image<Rgba32> image = signature.GetFeature<Image<Rgba32>>(InputFeatures[0]);
+            Image<Rgba32> image = signature.GetFeature(InputImage);
             int w = image.Size().Width;
             int h = image.Size().Height;
 
             if (binThreshold != null && (binThreshold < 0 || binThreshold > 1))
-                Log(LogLevel.Warn, $"Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0");
+            {
+                this.Warn("Binarization Threshold is set to an invalid value: {binThreshold}. The valid range is from 0.0 to 1.0", binThreshold);
+            }
 
-            if (binThreshold == null)//find threshold if not specified
+            if (binThreshold == null)   //find threshold if not specified
+            {
                 binThreshold = IterativeThreshold(image, 0.008);
+            }
 
             //binarize
             bool[,] b = new bool[w, h];
             for (int i = 0; i < w; i++)
             {
                 for (int j = 0; j < h; j++)
-                    b[i, h-j-1] = (Level(image[i, j]) > binThreshold);
+                {
+                    b[i, h - j - 1] = (Level(image[i, j]) > binThreshold);
+                }
                 Progress += (int)((1.0 / w)*100);
             }
-            Log(LogLevel.Info, "Binarization done.");
-            signature.SetFeature(OutputFeatures[0], b);
+            this.Log( "Binarization done.");
+            signature.SetFeature(OutputMask, b);
             Progress = 100;
         }
 
@@ -86,6 +101,7 @@ namespace SigStat.Common.Transforms
                 double foreground = 0;
                 int fCnt = 0;
                 for (int i = 0; i < w; i++)
+                {
                     for (int j = 0; j < h; j++)
                     {
                         double level = Level(image[i, j]);
@@ -100,13 +116,14 @@ namespace SigStat.Common.Transforms
                             fCnt++;
                         }
                     }
+                }
                 background /= bCnt;//avg
                 foreground /= fCnt;//avg
                 prevThreshold = nextThreshold;
                 nextThreshold = ((background + foreground) / 2.0);
             }
 
-            Log(LogLevel.Debug, $"Binarization threshold: {nextThreshold}");
+            this.Trace("Binarization threshold: {nextThreshold}", nextThreshold);
             return nextThreshold;
         }
 
@@ -120,14 +137,15 @@ namespace SigStat.Common.Transforms
             double r = c.R / 255.0;
             double g = c.G / 255.0;
             double b = c.B / 255.0;
-            double level;
-            //if (t == ForegroundType.Blue)//kek sulyozas ( es hatter feher)
-            //    level = b - (r + g) / 2.0;//ez nem nagyon mukodik
-            //else
+            double level;            
             if (foregroundType == ForegroundType.Dark)
+            {
                 level = 1.0 - (r + g + b) / 3.0;
-            else //if (t == ForegroundType.Bright)
+            }
+            else
+            {
                 level = (r + g + b) / 3.0;
+            }
             return level;
         }
     }

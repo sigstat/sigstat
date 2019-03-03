@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SigStat.Common
 {
+    /// <summary>
+    /// Common mathematical functions used by the SigStat framework
+    /// </summary>
     public static class MathHelper
     {
         /// <summary>
@@ -18,16 +21,24 @@ namespace SigStat.Common
             if (d1 < d2)
             {
                 if (d1 < d3)
+                {
                     return d1;
+                }
                 else
+                {
                     return d3;
+                }
             }
             else
             {
                 if (d3 < d2)
+                {
                     return d3;
+                }
                 else
+                {
                     return d2;
+                }
             }
         }
     }

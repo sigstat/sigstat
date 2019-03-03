@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Pipeline;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,15 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class AddConst : PipelineBase, ITransformation
     {
+        [Input]
+        public FeatureDescriptor<List<double>> InputList;
+
+        //[Input(AutoSetMode = AutoSetMode.Never)]
+        //public FeatureDescriptor<double> InputValue;
+
+        [Output]
+        public FeatureDescriptor<List<double>> Output;
+
         private readonly double addValue;
 
         /// <summary>
@@ -24,26 +34,22 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //default output is the input
-            if (OutputFeatures == null)
-                OutputFeatures = InputFeatures;
-
-            if (InputFeatures[0].IsCollection)//we must treat this separately
+            if (InputList!=null)
             {
-                List<double> values = signature.GetFeature<List<double>>(InputFeatures[0]);
+                List<double> values = signature.GetFeature(InputList);
                 for (int i = 0; i < values.Count; i++)
                 {
                     values[i] = values[i] + addValue;
                     Progress += 100 / values.Count;
                 }
-                signature.SetFeature(OutputFeatures[0], values);
+                signature.SetFeature(Output, values);
             }
-            else
+            /*else
             {
-                double value = signature.GetFeature<double>(InputFeatures[0]);
+                double value = signature.GetFeature(InputValue);
                 value = value + addValue;
-                signature.SetFeature(OutputFeatures[0], value);
-            }
+                signature.SetFeature(Output, value);
+            }*/
 
             Progress = 100;
         }

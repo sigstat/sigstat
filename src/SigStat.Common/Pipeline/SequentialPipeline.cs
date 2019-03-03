@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Common.Pipeline
 {
@@ -17,18 +19,8 @@ namespace SigStat.Common.Pipeline
     {
         /// <summary>List of transforms to be run in sequence.</summary>
         public List<ITransformation> Items = new List<ITransformation>();
-
-        private Logger _logger;
-        /// <summary>Passes Logger to child items as well.</summary>
-        public new Logger Logger
-        {
-            get => _logger;
-            set
-            {
-                _logger = value;
-                Items.ForEach(i => i.Logger = _logger);
-            }
-        }
+        public override List<PipelineInput> PipelineInputs { get => Items[0].PipelineInputs; }
+        public override List<PipelineOutput> PipelineOutputs { get => Items.Last().PipelineOutputs; }
 
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()
@@ -37,28 +29,15 @@ namespace SigStat.Common.Pipeline
         }
 
         /// <summary>
-        /// Add new transform to the list. Pass <see cref="Logger"/> and set up Progress event.
+        /// Add new transform to the list. 
         /// </summary>
         /// <param name="newItem"></param>
         public void Add(ITransformation newItem)
         {
-            if (_logger != null)
-                newItem.Logger = _logger;
-            newItem.ProgressChanged += ((o, p) => CalcProgress(i,p));
             Items.Add(newItem);
-
-            //Set sequence output to last item's output (if given)
-            if(newItem.OutputFeatures!=null)
-                this.Output(newItem.OutputFeatures.ToArray());
+            //itt most semmi ellenorzes nincsen, de lehetne
         }
 
-        private void CalcProgress(int i, int p)
-        {
-            double m = p / 100.0;
-            Progress = (int)((i*(1-m)+(i+1)*m) / (Items.Count) * 100.0);
-        }
-
-        int i=0;
         /// <summary>
         /// Executes transform <see cref="Items"/> in sequence.
         /// Passes input features for each.
@@ -67,18 +46,31 @@ namespace SigStat.Common.Pipeline
         /// <param name="signature">Signature to execute transform on.</param>
         public void Transform(Signature signature)
         {
-            for (i = 0; i < Items.Count; i++)
+            if (Items == null || Items.Count == 0)
             {
-                //TODO: try
-                //{
-                if (Items[i].InputFeatures == null && i > 0)//pass previously calculated features if input not specified
-                    Items[i].InputFeatures = Items[i - 1].OutputFeatures;
+                return;
+            }
+            // Do the first transformation
+            Items[0].Transform(signature);
+
+            for (int i = 1; i < Items.Count; i++)
+            {
+                var outputs = Items[i - 1].PipelineOutputs;
+                var inputs = Items[i].PipelineInputs;
+                for (int ii = 0; ii < inputs.Count; ii++)
+                {
+                    if (inputs[ii].AutoSetMode == AutoSetMode.Always || (inputs[ii].AutoSetMode == AutoSetMode.IfNull && inputs[ii].FD == null))
+                        inputs[ii].FD = outputs.FirstOrDefault(po => po.Type == inputs[ii].Type && !inputs.Any(pi => pi.FD == po.FD))?.FD;//elso, ami passzol es meg nem hasznaltuk
+                                                                                                                                          //inputs[ii].FD = outputs[ii].FD;//old method
+                    if (inputs[ii].FD == null)
+                    {
+                        //Exception ex = new /*SigStatPipelineAutoWiring*/Exception($"Autowiring pipeline io failed, please provide an input to '{inputs[ii].FieldName}' of '{Items[i].ToString()}'");
+                        this.Error("Autowiring pipeline io failed, please provide an input to '{fieldName}' of '{item}'", inputs[ii].FieldName, Items[i].ToString());
+                        //throw ex;
+                    }
+                }
+
                 Items[i].Transform(signature);
-                //}
-                //catch (Exception exc)
-                //{
-                //    throw PipelineException("Error while executing {pipelineItem.Type} with signature {sig.ToString()}", exc);
-                //}
             }
         }
     }

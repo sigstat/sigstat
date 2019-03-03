@@ -14,20 +14,22 @@ namespace SigStat.Common.Transforms
     /// </summary>
     public class TimeReset : SequentialTransformPipeline
     {
-        private new void Add(ITransformation newitem) { }//TODO erre jobbat kitalalni, pl. pipeline ososztaly
+        [Input]
+        FeatureDescriptor<List<double>> Input = Features.T;
+
+        [Output("T")]
+        FeatureDescriptor<List<double>> Output = Features.T;
 
         /// <summary>Initializes a new instance of the <see cref="TimeReset"/> class.</summary>
         public TimeReset()
         {
-            var negMin = FeatureDescriptor<List<double>>.Descriptor("NegMin");//TODO: ideiglenes dolgokat vhogy torolni
-            Items = new List<ITransformation>()
+            var negMin = FeatureDescriptor.Get<List<double>>("NegMin");//TODO: ideiglenes dolgokat vhogy torolni
+            Items = new List<ITransformation>
             {
-                new Extrema().Input(Features.T),//find minimum
-                new Multiply(-1.0).Output(negMin, null),//negate
-                new AddVector(negMin).Input(Features.T),//add the negated value
+                new Extrema(),//find minimum
+                new Multiply(-1.0) { Output = negMin },//negate
+                new AddVector(negMin) { Inputs =  { Input }  },//add the negated value
             };
-
-            this.Output(Features.T);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using SigStat.Common;
 using SigStat.Common.Model;
 using System;
 using System.Collections;

@@ -85,7 +85,7 @@ namespace SigStat.WpfSample.Common
                 }
 
 
-                FeatureDescriptor<List<double>> fodFeatureDescriptor = FeatureDescriptor<List<double>>.Descriptor(fodFeatureKey);
+                FeatureDescriptor<List<double>> fodFeatureDescriptor = FeatureDescriptor.Get<List<double>>(fodFeatureKey);
                 Signature.SetFeature(fodFeatureDescriptor, firstOrderDiff);
 
                 return firstOrderDiff;
@@ -113,7 +113,7 @@ namespace SigStat.WpfSample.Common
                 //Lista kipótlása az utolsó számított értékkel
                 secondOrderDiff.Add(secondOrderDiff[firstOrderDiff.Count - 2]);
 
-                FeatureDescriptor<List<double>> sodFeatureDescriptor = FeatureDescriptor<List<double>>.Descriptor(sodFeatureKey);
+                FeatureDescriptor<List<double>> sodFeatureDescriptor = FeatureDescriptor.Get<List<double>>(sodFeatureKey);
                 Signature.SetFeature(sodFeatureDescriptor, secondOrderDiff);
 
                 return secondOrderDiff;
