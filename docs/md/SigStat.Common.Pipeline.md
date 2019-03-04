@@ -10,9 +10,9 @@ Enum
 
 | <sub>Value</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>0</sub> | IfNull | <sub></sub> | 
-| <sub>1</sub> | Always | <sub></sub> | 
-| <sub>2</sub> | Never | <sub></sub> | 
+| <sub>0</sub> | <sub>IfNull</sub> | <sub></sub> | 
+| <sub>1</sub> | <sub>Always</sub> | <sub></sub> | 
+| <sub>2</sub> | <sub>Never</sub> | <sub></sub> | 
 
 
 #### `IClassifier`

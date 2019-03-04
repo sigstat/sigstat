@@ -265,9 +265,9 @@ Enum
 
 | <sub>Value</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>0</sub> | Unknown | <sub>Use this in practice before a signature is verified.</sub> | 
-| <sub>1</sub> | Genuine | <sub>The `SigStat.Common.Signature`'s origin is verified to be from `SigStat.Common.Signature.Signer`</sub> | 
-| <sub>2</sub> | Forged | <sub>The `SigStat.Common.Signature` is a forgery.</sub> | 
+| <sub>0</sub> | <sub>Unknown</sub> | <sub>Use this in practice before a signature is verified.</sub> | 
+| <sub>1</sub> | <sub>Genuine</sub> | <sub>The `SigStat.Common.Signature`'s origin is verified to be from `SigStat.Common.Signature.Signer`</sub> | 
+| <sub>2</sub> | <sub>Forged</sub> | <sub>The `SigStat.Common.Signature` is a forgery.</sub> | 
 
 
 #### `PipelineBase`
