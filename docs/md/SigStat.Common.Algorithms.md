@@ -1,6 +1,6 @@
 #### `Dtw`
 
-Dynamic Time Warping algorithm - test comment
+<sub>Dynamic Time Warping algorithm - test comment</sub>
 ```csharp
 public class SigStat.Common.Algorithms.Dtw
 
@@ -22,7 +22,7 @@ public class SigStat.Common.Algorithms.Dtw
 
 #### `DtwPy`
 
-A simple implementation of the DTW algorithm.
+<sub>A simple implementation of the DTW algorithm.</sub>
 ```csharp
 public static class SigStat.Common.Algorithms.DtwPy
 
@@ -38,7 +38,7 @@ public static class SigStat.Common.Algorithms.DtwPy
 
 #### `HSCPThinningStep`
 
-HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf
+<sub>HSCP thinning algorithm  http://www.ppgia.pucpr.br/~facon/Afinamento/1987holt.pdf</sub>
 ```csharp
 public class SigStat.Common.Algorithms.HSCPThinningStep
 
@@ -60,7 +60,7 @@ public class SigStat.Common.Algorithms.HSCPThinningStep
 
 #### `PatternMatching3x3`
 
-Binary 3x3 pattern matcher with rotating option.
+<sub>Binary 3x3 pattern matcher with rotating option.</sub>
 ```csharp
 public class SigStat.Common.Algorithms.PatternMatching3x3
 

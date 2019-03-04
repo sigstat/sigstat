@@ -1,6 +1,6 @@
 #### `Verifier`
 
-Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
+<sub>Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.</sub>
 ```csharp
 public class SigStat.Common.Model.Verifier
     : ILoggerObject

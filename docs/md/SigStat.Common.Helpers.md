@@ -1,6 +1,6 @@
 #### `IProgress`
 
-Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.
+<sub>Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.</sub>
 ```csharp
 public interface SigStat.Common.Helpers.IProgress
 
@@ -37,7 +37,7 @@ public class SigStat.Common.Helpers.SerializationHelper
 
 #### `SimpleConsoleLogger`
 
-A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+<sub>A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.</sub>
 ```csharp
 public class SigStat.Common.Helpers.SimpleConsoleLogger
     : ILogger

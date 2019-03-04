@@ -1,6 +1,6 @@
 #### `ArrayExtension`
 
-Helper methods for processing arrays
+<sub>Helper methods for processing arrays</sub>
 ```csharp
 public static class SigStat.Common.ArrayExtension
 
@@ -42,7 +42,7 @@ public class SigStat.Common.Baseline
 
 #### `BasicMetadataExtraction`
 
-Extracts basic statistical signature (like `SigStat.Common.Features.Bounds` or `SigStat.Common.Features.Cog`) information from an Image
+<sub>Extracts basic statistical signature (like `SigStat.Common.Features.Bounds` or `SigStat.Common.Features.Cog`) information from an Image</sub>
 ```csharp
 public class SigStat.Common.BasicMetadataExtraction
     : PipelineBase, ILoggerObject, IProgress, IPipelineIO, ITransformation
@@ -65,7 +65,7 @@ public class SigStat.Common.BasicMetadataExtraction
 
 #### `BenchmarkResults`
 
-Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
+<sub>Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.</sub>
 ```csharp
 public struct SigStat.Common.BenchmarkResults
 
@@ -81,7 +81,7 @@ public struct SigStat.Common.BenchmarkResults
 
 #### `FeatureDescriptor`
 
-Represents a feature with name and type.
+<sub>Represents a feature with name and type.</sub>
 ```csharp
 public class SigStat.Common.FeatureDescriptor
 
@@ -123,7 +123,7 @@ public class SigStat.Common.FeatureDescriptor
 
 #### `FeatureDescriptor<T>`
 
-Represents a feature with the type <type`T`
+<sub>Represents a feature with the type <type`T`</sub>
 ```csharp
 public class SigStat.Common.FeatureDescriptor<T>
     : FeatureDescriptor
@@ -139,7 +139,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 #### `Features`
 
-Standard set of features.
+<sub>Standard set of features.</sub>
 ```csharp
 public static class SigStat.Common.Features
 
@@ -166,7 +166,7 @@ public static class SigStat.Common.Features
 
 #### `ILoggerObject`
 
-Represents a type, that contains an ILogger property that can be used to perform logging.
+<sub>Represents a type, that contains an ILogger property that can be used to perform logging.</sub>
 ```csharp
 public interface SigStat.Common.ILoggerObject
 
@@ -181,7 +181,7 @@ public interface SigStat.Common.ILoggerObject
 
 #### `ILoggerObjectExtensions`
 
-ILoggerObject extension methods for common scenarios.
+<sub>ILoggerObject extension methods for common scenarios.</sub>
 ```csharp
 public static class SigStat.Common.ILoggerObjectExtensions
 
@@ -199,7 +199,7 @@ public static class SigStat.Common.ILoggerObjectExtensions
 
 #### `ITransformation`
 
-Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
+<sub>Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.</sub>
 ```csharp
 public interface SigStat.Common.ITransformation
     : IPipelineIO
@@ -215,7 +215,7 @@ public interface SigStat.Common.ITransformation
 
 #### `Loop`
 
-Represents a loop in a signature
+<sub>Represents a loop in a signature</sub>
 ```csharp
 public class SigStat.Common.Loop
 
@@ -239,7 +239,7 @@ public class SigStat.Common.Loop
 
 #### `MathHelper`
 
-Common mathematical functions used by the SigStat framework
+<sub>Common mathematical functions used by the SigStat framework</sub>
 ```csharp
 public static class SigStat.Common.MathHelper
 
@@ -254,7 +254,7 @@ public static class SigStat.Common.MathHelper
 
 #### `Origin`
 
-Represents our knowledge on the origin of a signature.
+<sub>Represents our knowledge on the origin of a signature.</sub>
 ```csharp
 public enum SigStat.Common.Origin
     : Enum, IComparable, IFormattable, IConvertible
@@ -272,7 +272,7 @@ Enum
 
 #### `PipelineBase`
 
-TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.
+<sub>TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.</sub>
 ```csharp
 public abstract class SigStat.Common.PipelineBase
     : ILoggerObject, IProgress, IPipelineIO
@@ -305,7 +305,7 @@ public abstract class SigStat.Common.PipelineBase
 
 #### `Result`
 
-Contains the benchmark results of a single `SigStat.Common.Signer`
+<sub>Contains the benchmark results of a single `SigStat.Common.Signer`</sub>
 ```csharp
 public class SigStat.Common.Result
 
@@ -323,7 +323,7 @@ public class SigStat.Common.Result
 
 #### `Sampler`
 
-Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.VerifierBenchmark`
+<sub>Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.VerifierBenchmark`</sub>
 ```csharp
 public class SigStat.Common.Sampler
 
@@ -350,7 +350,7 @@ public class SigStat.Common.Sampler
 
 #### `Signature`
 
-Represents a signature as a collection of features, containing the data that flows in the pipeline.
+<sub>Represents a signature as a collection of features, containing the data that flows in the pipeline.</sub>
 ```csharp
 public class SigStat.Common.Signature
 
@@ -385,7 +385,7 @@ public class SigStat.Common.Signature
 
 #### `Signer`
 
-Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.
+<sub>Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.</sub>
 ```csharp
 public class SigStat.Common.Signer
 
@@ -401,7 +401,7 @@ public class SigStat.Common.Signer
 
 #### `SigStatEvents`
 
-Standard event identifiers used by the SigStat system
+<sub>Standard event identifiers used by the SigStat system</sub>
 ```csharp
 public static class SigStat.Common.SigStatEvents
 
@@ -425,7 +425,7 @@ public class SigStat.Common.SVC2004Sampler
 
 #### `VerifierBenchmark`
 
-Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
+<sub>Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`</sub>
 ```csharp
 public class SigStat.Common.VerifierBenchmark
     : ILoggerObject

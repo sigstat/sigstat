@@ -17,7 +17,7 @@ Enum
 
 #### `IClassifier`
 
-Trains classification models based on reference signatures
+<sub>Trains classification models based on reference signatures</sub>
 ```csharp
 public interface SigStat.Common.Pipeline.IClassifier
 
@@ -63,7 +63,7 @@ public interface SigStat.Common.Pipeline.IPipelineIO
 
 #### `ISignerModel`
 
-Analyzes signatures based on their similiarity to the trained model
+<sub>Analyzes signatures based on their similiarity to the trained model</sub>
 ```csharp
 public interface SigStat.Common.Pipeline.ISignerModel
 
@@ -86,7 +86,7 @@ public class SigStat.Common.Pipeline.Output
 
 #### `ParallelTransformPipeline`
 
-Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para>
+<sub>Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para></sub>
 ```csharp
 public class SigStat.Common.Pipeline.ParallelTransformPipeline
     : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, ITransformation
@@ -156,7 +156,7 @@ public class SigStat.Common.Pipeline.PipelineOutput
 
 #### `SequentialTransformPipeline`
 
-Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
+<sub>Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para></sub>
 ```csharp
 public class SigStat.Common.Pipeline.SequentialTransformPipeline
     : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, ITransformation

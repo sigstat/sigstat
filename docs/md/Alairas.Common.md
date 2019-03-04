@@ -1,6 +1,6 @@
 #### `SimpleRenderingTransformation`
 
-Renders an image of the signature based on the available online information (X,Y,Dpi)
+<sub>Renders an image of the signature based on the available online information (X,Y,Dpi)</sub>
 ```csharp
 public class Alairas.Common.SimpleRenderingTransformation
     : PipelineBase, ILoggerObject, IProgress, IPipelineIO, ITransformation
