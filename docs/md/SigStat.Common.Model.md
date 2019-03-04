@@ -21,7 +21,7 @@ public class SigStat.Common.Model.Verifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>Double</sub> | <sub>Test(Signature)</sub> | <sub>Verifies the genuinity of ``.</sub> | 
+| <sub>Double</sub> | <sub>Test(Signature)</sub> | <sub>Verifies the genuinity of `signature`.</sub> | 
 | <sub>void</sub> | <sub>Train(List<Signature>)</sub> | <sub>Trains the verifier with a list of signatures. Uses the `SigStat.Common.Model.Verifier.Pipeline` to extract features,  and `SigStat.Common.Model.Verifier.Classifier` to find an optimized limit.</sub> | 
 
 

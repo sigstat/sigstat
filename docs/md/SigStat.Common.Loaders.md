@@ -74,7 +74,7 @@ public static class SigStat.Common.Loaders.ImageSaver
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>void</sub> | <sub>Save(Signature, String)</sub> | <sub>Saves a png image file to the specified ``.</sub> | 
+| <sub>void</sub> | <sub>Save(Signature, String)</sub> | <sub>Saves a png image file to the specified `path`.</sub> | 
 
 
 #### `Svc2004`

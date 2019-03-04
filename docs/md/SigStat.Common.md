@@ -12,7 +12,7 @@ public static class SigStat.Common.ArrayExtension
 | --- | --- | --- | 
 | <sub>ValueTuple<Int32, Int32></sub> | <sub>GetCog(this Double[,])</sub> | <sub>Calculates the center of gravity, assuming that each cell contains  a weight value</sub> | 
 | <sub>IEnumerable<T></sub> | <sub>GetValues(this T[,])</sub> | <sub>Enumerates all values in a two dimensional array</sub> | 
-| <sub>T[,]</sub> | <sub>SetValues(this T[,], T)</sub> | <sub>Sets all values in a two dimensional array to ``</sub> | 
+| <sub>T[,]</sub> | <sub>SetValues(this T[,], T)</sub> | <sub>Sets all values in a two dimensional array to `value`</sub> | 
 | <sub>Double</sub> | <sub>Sum(this Double[,], Int32, Int32, Int32, Int32)</sub> | <sub>Calculates the sum of the values in the given sub-array</sub> | 
 | <sub>Double</sub> | <sub>SumCol(this Double[,], Int32)</sub> | <sub>Returns the sum of column values in a two dimensional array</sub> | 
 | <sub>Double</sub> | <sub>SumRow(this Double[,], Int32)</sub> | <sub>Returns the sum of row values in a two dimensional array</sub> | 
@@ -115,15 +115,15 @@ public class SigStat.Common.FeatureDescriptor
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>FeatureDescriptor</sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key.</sub> | 
-| <sub>FeatureDescriptor<T></sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor` specified by ``.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key.</sub> | 
+| <sub>FeatureDescriptor</sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor` specified by `key`.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key.</sub> | 
+| <sub>FeatureDescriptor<T></sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor` specified by `key`.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key.</sub> | 
 | <sub>Boolean</sub> | <sub>IsRegistered(String)</sub> | <sub>Returns true, if there is a FeatureDescriptor registered with the given key</sub> | 
 | <sub>FeatureDescriptor</sub> | <sub>Register(String, Type)</sub> | <sub>Registers a new `SigStat.Common.FeatureDescriptor` with a given key.  If the FeatureDescriptor is allready registered, this function will  return a reference to the originally registered FeatureDescriptor.  to the a</sub> | 
 
 
 #### `FeatureDescriptor<T>`
 
-Represents a feature with the type `type`
+Represents a feature with the type <type`T`
 ```csharp
 public class SigStat.Common.FeatureDescriptor<T>
     : FeatureDescriptor
@@ -134,7 +134,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>FeatureDescriptor<T></sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor`1` specified by ``.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type.</sub> | 
+| <sub>FeatureDescriptor<T></sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor`1` specified by `key`.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type.</sub> | 
 
 
 #### `Features`
@@ -210,7 +210,7 @@ public interface SigStat.Common.ITransformation
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub>Executes the transform on the `` parameter.  This function gets called by the pipeline.</sub> | 
+| <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub>Executes the transform on the `signature` parameter.  This function gets called by the pipeline.</sub> | 
 
 
 #### `Loop`
