@@ -311,9 +311,18 @@ public class SigStat.Common.Transforms.ImageGenerator
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
+| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
+
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>Rgba32</sub> | <sub>BackgroundColor</sub> | <sub></sub> | 
+| <sub>Rgba32</sub> | <sub>ForegroundColor</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Output</sub> | <sub></sub> | 
-| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
+| <sub>Boolean</sub> | <sub>WriteToFile</sub> | <sub></sub> | 
 
 
 ###### Methods

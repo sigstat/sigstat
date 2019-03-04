@@ -38,6 +38,7 @@
 ## [SigStat.Common.Helpers](SigStat.Common.Helpers)
 
 - [<sub>IProgress</sub>](SigStat.Common.Helpers#iprogress)
+- [<sub>SerializationHelper</sub>](SigStat.Common.Helpers#serializationhelper)
 - [<sub>SimpleConsoleLogger</sub>](SigStat.Common.Helpers#simpleconsolelogger)
 
 ## [SigStat.Common.Loaders](SigStat.Common.Loaders)

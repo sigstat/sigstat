@@ -20,6 +20,21 @@ public interface SigStat.Common.Helpers.IProgress
 | <sub>EventHandler<Int32></sub> | <sub>ProgressChanged</sub> | <sub>Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed.</sub> | 
 
 
+#### `SerializationHelper`
+
+```csharp
+public class SigStat.Common.Helpers.SerializationHelper
+
+```
+
+###### Static Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>T</sub> | <sub>Deserialize(String)</sub> | <sub></sub> | 
+| <sub>String</sub> | <sub>Serialize(T)</sub> | <sub></sub> | 
+
+
 #### `SimpleConsoleLogger`
 
 A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
