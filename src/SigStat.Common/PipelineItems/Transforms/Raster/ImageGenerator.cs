@@ -20,16 +20,17 @@ namespace SigStat.Common.Transforms
     public class ImageGenerator : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<bool[,]> Input;
+        public FeatureDescriptor<bool[,]> Input { get; set; }
         [Output("Binarized")]
-        public FeatureDescriptor<bool[,]> Output;//TODO: InputOutput
+        public FeatureDescriptor<bool[,]> Output { get; set; }
 
         [Output("Image")]
         public FeatureDescriptor<Image<Rgba32>> OutputImage;
 
-        private readonly bool writeToFile;
-        readonly Rgba32 fg;
-        readonly Rgba32 bg;
+        public bool WriteToFile { get; set; }
+
+        public Rgba32 ForegroundColor { get; set; }
+        public Rgba32 BackgroundColor { get; set; }
 
         /// <summary> Initializes a new instance of the <see cref="ImageGenerator"/> class with default settings: skip file writing, Blue ink on white paper. </summary>
         public ImageGenerator() : this(false, Rgba32.LightBlue, Rgba32.White) { }
@@ -42,9 +43,9 @@ namespace SigStat.Common.Transforms
         /// <param name="backgroundColor">Paper color.</param>
         public ImageGenerator(bool writeToFile, Rgba32 foregroundColor, Rgba32 backgroundColor)
         {
-            this.writeToFile = writeToFile;
-            fg = foregroundColor;
-            bg = backgroundColor;           
+            this.WriteToFile = writeToFile;
+            ForegroundColor = foregroundColor;
+            BackgroundColor = backgroundColor;
         }
 
         /// <inheritdoc/>
@@ -53,7 +54,7 @@ namespace SigStat.Common.Transforms
             //default output is '{input}', '{input}Image'
             Output = Input;
             if (OutputImage == null)
-                OutputImage = FeatureDescriptor<Image<Rgba32>>.Get(Input.Name+"Image");//TODO: <T> template-es Register()
+                OutputImage = FeatureDescriptor<Image<Rgba32>>.Get(Input.Name + "Image");//TODO: <T> template-es Register()
 
             bool[,] b = signature.GetFeature(Input);
             int w = b.GetLength(0);
@@ -67,23 +68,23 @@ namespace SigStat.Common.Transforms
             {
                 for (int y = 0; y < h; y++)
                 {
-                    img[x, h - 1 - y] = b[x, y] ? fg : bg;
+                    img[x, h - 1 - y] = b[x, y] ? ForegroundColor : BackgroundColor;
                 }
                 Progress = (int)(x / (double)w * 95);
             }
 
             signature.SetFeature(OutputImage, img);
 
-            if(writeToFile)
+            if (WriteToFile)
             {
-                string signerString = (signature.Signer!=null) ? signature.Signer.ID : "Null";
-                string filename = $"{signature.ID?? "Null"}_{Input.Name}.png";
+                string signerString = (signature.Signer != null) ? signature.Signer.ID : "Null";
+                string filename = $"{signature.ID ?? "Null"}_{Input.Name}.png";
                 img.SaveAsPng(File.Create(filename));
-                this.Log( $"Image saved: {filename}");
+                this.Log($"Image saved: {filename}");
             }
 
             Progress = 100;
-            this.Log( $"Image generation from binary raster done.");
+            this.Log($"Image generation from binary raster done.");
         }
     }
 }

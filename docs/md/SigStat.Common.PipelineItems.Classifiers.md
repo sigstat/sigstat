@@ -1,6 +1,6 @@
 #### `DtwClassifier`
 
-Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
+<sub>Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.</sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.DtwClassifier
     : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IClassifier
@@ -24,7 +24,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwClassifier
 
 #### `DtwSignerModel`
 
-Represents a trained model for `SigStat.Common.PipelineItems.Classifiers.DtwClassifier`
+<sub>Represents a trained model for `SigStat.Common.PipelineItems.Classifiers.DtwClassifier`</sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.DtwSignerModel
     : ISignerModel
@@ -48,7 +48,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwSignerModel
 
 #### `WeightedClassifier`
 
-Classifies Signatures by weighing other Classifier results.
+<sub>Classifies Signatures by weighing other Classifier results.</sub>
 ```csharp
 public class SigStat.Common.PipelineItems.Classifiers.WeightedClassifier
     : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, IClassifier
