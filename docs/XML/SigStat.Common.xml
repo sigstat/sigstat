@@ -1081,6 +1081,55 @@
         <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <inheridoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale">
+            <summary>
+            Maps values of a feature to a specific range.
+            <para>InputFeature: feature to be scaled.</para>
+            <para>OutputFeature: output feature for scaled InputFeature></para>
+            </summary>
+            <remarks> This is a specific case of the <see cref="!:Map"/> transform. </remarks>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMinValue">
+            <summary>
+            <para>NewMinValue: lower bound of the interval, in which the input feature will be scaled</para> 
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMaxValue">
+            <summary>
+            <para>NewMaxValue: upper bound of the interval, in which the input feature will be scaled</para>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale">
+            <summary>
+            Maps values of a feature to a specific range and another proportional.
+            <para>BaseDimension: feature modelled the base dimension of the scaling. </para>
+            <para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para>
+            <para>BaseDimensionOutput: output feature for scaled BaseDimension></para>
+            <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension></para>
+            </summary>
+            <remarks> This is a specific case of the <see cref="!:Map"/> transform. </remarks>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.NewMinBaseValue">
+            <summary>
+            Lower bound of the interval, in which the base dimension will be scaled
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.NewMaxBaseValue">
+            <summary>
+            Upper bound of the interval, in which the base dimension will be scaled
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.NewMinProportionalValue">
+            <summary>
+            Lower bound of the interval, in which the proportional dimension will be scaled
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.Transforms.ComponentSorter">
             <summary>
             Sorts Component order by comparing each starting X value, and finding nearest components.
