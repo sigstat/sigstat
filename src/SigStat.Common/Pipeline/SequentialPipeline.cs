@@ -65,7 +65,7 @@ namespace SigStat.Common.Pipeline
                     if (inputs[ii].FD == null)
                     {
                         //Exception ex = new /*SigStatPipelineAutoWiring*/Exception($"Autowiring pipeline io failed, please provide an input to '{inputs[ii].FieldName}' of '{Items[i].ToString()}'");
-                        this.Error("Autowiring pipeline io failed, please provide an input to '{fieldName}' of '{item}'", inputs[ii].FieldName, Items[i].ToString());
+                        this.LogError("Autowiring pipeline io failed, please provide an input to '{fieldName}' of '{item}'", inputs[ii].FieldName, Items[i].ToString());
                         //throw ex;
                     }
                 }

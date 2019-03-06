@@ -43,7 +43,7 @@ namespace SigStat.Common.Model
         public Verifier(ILogger logger = null)
         {
             this.Logger = logger;
-            this.Trace("Verifier created");
+            this.LogTrace("Verifier created");
         }
 
         /// <summary>
@@ -64,14 +64,14 @@ namespace SigStat.Common.Model
             {
                 Pipeline.Transform(sig);
             }
-            this.Trace("Signatures transformed.");
+            this.LogTrace("Signatures transformed.");
 
             if (Classifier == null)
-                this.Error("No Classifier attached to the Verifier", this);
+                this.LogError("No Classifier attached to the Verifier");
             else
                 SignerModel = Classifier.Train(signatures);
 
-            this.Log("Training finished.");
+            this.LogInformation("Training finished.");
 
         }
 
@@ -82,18 +82,18 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
-            this.Log("Verifying 'signature {signature}'.", signature.ID);
+            this.LogInformation("Verifying signature {signature}.", signature.ID);
 
             Pipeline.Transform(signature);
 
-            this.Log("'Signature {signature}' transformed.", signature.ID);
+            this.LogInformation("Signature {signature} transformed.", signature.ID);
 
             if (SignerModel == null)
-                this.Error("Signer model not available. Train or provide a model for verification.");
+                this.LogError("Signer model not available. Train or provide a model for verification.");
 
             var result = Classifier.Test(SignerModel, signature);
 
-            this.Log("Verification result for signature '{signature}': {result}", signature.ID, result);
+            this.LogInformation("Verification result for signature '{signature}': {result}", signature.ID, result);
             return result;
         }
     }

@@ -51,7 +51,7 @@ namespace SigStat.Common.Transforms
             }
 
             signature.SetFeature(OutputImage, newImage);
-            this.Log( "Resizing done.");
+            this.LogInformation( "Resizing done.");
             Progress = 100;
         }
 

@@ -94,7 +94,7 @@ namespace SigStat.Common.Transforms
 
             signature.SetFeature(OutputImage, img);
             Progress = 100;
-            this.Log( "Realistic image generation done.");
+            this.LogInformation( "Realistic image generation done.");
         }
 
         private PointF ToImageCoords(double x, double y)
