@@ -49,15 +49,37 @@ namespace SigStat.Sample
             //OnlineToImage();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
-            //OnlineVerifierDemo();
+            //OnlineVerifierDemo();        
             //OnlineVerifierBenchmarkDemo();
+            PreprocessingBenchmarkDemo();
             TestPreprocessingTransformations();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
         }
 
+        private static void PreprocessingBenchmarkDemo()
+        {
+            // BenchmarkFromString(string)
+            //4320
+            // Sampling: 3
+            // DB: 3
+            // Translation: 5
+            // U/Scaling: 6
+            // Rotation: 2
+            // Resampling: 4
+            // Filter: 2
+            //string config = "{sampling:  s1,s2,s3}" +
+            //    " database: SVC2004, MCYT100" +
+            //    "Filter: none, P" +
+            //    "Rotation: true, false" +
+            //    "translation: None, CogToOiriginX,CogToOriginY,CogToOiriginXY, BottomLeftToOrigin;" +
+            //    "UniformScaling: None, X01Y0prop, Y01X0prop" +
+            //    "Scaling: None, X01, Y01, X01Y01" +
+            //    "Resampling: none, TimeSlotLength, SampleCount, FillPenUp}";
 
+            //GenerateConfigurations();
+        }
 
         public static void SignatureDemo()
         {
