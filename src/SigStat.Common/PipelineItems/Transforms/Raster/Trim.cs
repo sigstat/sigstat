@@ -38,11 +38,11 @@ namespace SigStat.Common.Transforms
 
             if (framewidth < 0)
             {
-                this.Warn("Negative frame width {framewidth}, this will result in data loss.", framewidth);
+                this.LogWarning("Negative frame width {framewidth}, this will result in data loss.", framewidth);
             }
             if (framewidth > w / 2 || framewidth > h / 2)
             {
-                this.Warn("Too large frame width {framewidth}, this will result in empty raster.", framewidth);
+                this.LogWarning("Too large frame width {framewidth}, this will result in empty raster.", framewidth);
             }
 
             int x0 = 0;
@@ -105,7 +105,7 @@ namespace SigStat.Common.Transforms
             }
 
             signature.SetFeature(Output, o);
-            this.Log($"Trimming done. New resolution: {x1-x0}x{y1-y0} px");
+            this.LogInformation($"Trimming done. New resolution: {x1-x0}x{y1-y0} px");
         }
 
     }

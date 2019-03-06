@@ -102,12 +102,12 @@ namespace SigStat.Common.Loaders
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
             signerFilter = signerFilter ?? SignerFilter ;
 
-            this.Log("Enumerating signers started.");
+            this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
             {
                 //cut names if the files are in directories
                 var signatureGroups = zip.Entries.Where(f=>f.Name.EndsWith(".TXT")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
-                this.Trace(signatureGroups.Count().ToString() + " signers found in database");
+                this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
                     Signer signer = new Signer { ID = group.Key };
@@ -135,7 +135,7 @@ namespace SigStat.Common.Loaders
                     yield return signer;
                 }
             }
-            this.Log("Enumerating signers finished.");
+            this.LogInformation("Enumerating signers finished.");
         }
 
         /// <summary>

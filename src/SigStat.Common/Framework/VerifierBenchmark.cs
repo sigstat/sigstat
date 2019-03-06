@@ -122,16 +122,16 @@ namespace SigStat.Common
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
         {
-            this.Log($"Benchmark execution started. Parallel mode: {ParallelMode.ToString()}");
+            this.LogInformation($"Benchmark execution started. Parallel mode: {ParallelMode.ToString()}");
             var results = new List<Result>();
             farAcc = 0;
             frrAcc = 0;
             pCnt = 0;
 
-            this.Log("Loading data..");
+            this.LogInformation("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
             Sampler.Init(signers);
-            this.Log($"{signers.Count} signers found. Benchmarking..");
+            this.LogInformation($"{signers.Count} signers found. Benchmarking..");
             
             if (ParallelMode)
             {
@@ -150,13 +150,13 @@ namespace SigStat.Common
 
             Progress = 100;
             var r = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
-            this.Log("Benchmark execution finished.", r);
+            this.LogInformation("Benchmark execution finished.", r);
             return r;
         }
 
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
-            this.Log($"Benchmarking Signer ID {iSigner.ID}");
+            this.LogInformation($"Benchmarking Signer ID {iSigner.ID}");
             Func<List<Signature>, List<Signature>> signerSelector = (l) => l.Where(s => s.Signer == iSigner).ToList();
             List<Signature> references = Sampler.SampleReferences(signerSelector);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(signerSelector);
@@ -190,7 +190,7 @@ namespace SigStat.Common
 
             //AER: average error rate
             double AER = (FRR + FAR) / 2.0;
-            this.Trace($"AER for Signer ID {iSigner.ID}: {AER}");
+            this.LogTrace($"AER for Signer ID {iSigner.ID}: {AER}");
 
             //EER definicio fix: ez az az ertek amikor FAR==FRR
 

@@ -34,7 +34,7 @@ namespace SigStat.Common.Transforms
             double min = values.Min();
             double max = values.Max();
 
-            this.Trace("SigID: {signature.ID} FeatureName: {Input.Name} Min: {min} Max: {max}", signature.ID, Input.Name, min, max);
+            this.LogTrace("SigID: {signature.ID} FeatureName: {Input.Name} Min: {min} Max: {max}", signature.ID, Input.Name, min, max);
 
             signature.SetFeature(OutputMin, new List<double> { min });//proba: minden featureben lehessen több érték, akkor is ha csak 1-et tarolunk
             signature.SetFeature(OutputMax, new List<double> { max });

@@ -38,7 +38,7 @@ namespace SigStat.Common.Transforms
             }
 
             signature.SetFeature(OutputCentroid, c);
-            this.Log("Centroid extraction done.");
+            this.LogInformation("Centroid extraction done.");
         }
     }
 }

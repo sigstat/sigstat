@@ -35,7 +35,7 @@ namespace SigStat.Common.Transforms
             }
             signature.SetFeature(Output, b);
             Progress = 100;
-            this.Log( $"HSCP thinning steps applied {stepCnt} times.");
+            this.LogInformation( $"HSCP thinning steps applied {stepCnt} times.");
         }
         
     }
