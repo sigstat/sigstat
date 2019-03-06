@@ -9,7 +9,7 @@ public class SigStat.Common.Transforms.AddConst
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputList</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -17,7 +17,7 @@ public class SigStat.Common.Transforms.AddConst
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -33,7 +33,7 @@ public class SigStat.Common.Transforms.AddVector
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>List<FeatureDescriptor<List<Double>>></sub> | <sub>Inputs</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<List<Double>>></sub> | <sub>InputsFD</sub> | <sub></sub> | 
@@ -43,7 +43,7 @@ public class SigStat.Common.Transforms.AddVector
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -59,7 +59,7 @@ public class SigStat.Common.Transforms.ApproximateOnlineFeatures
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -75,7 +75,7 @@ public class SigStat.Common.Transforms.Binarization
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>InputImage</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>OutputMask</sub> | <sub></sub> | 
@@ -83,7 +83,7 @@ public class SigStat.Common.Transforms.Binarization
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -99,7 +99,7 @@ public class SigStat.Common.Transforms.BinaryRasterizer
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Boolean>></sub> | <sub>InputButton</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputX</sub> | <sub></sub> | 
@@ -109,7 +109,7 @@ public class SigStat.Common.Transforms.BinaryRasterizer
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -125,7 +125,7 @@ public class SigStat.Common.Transforms.CentroidExtraction
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>List<FeatureDescriptor<List<Double>>></sub> | <sub>Inputs</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>OutputCentroid</sub> | <sub></sub> | 
@@ -133,7 +133,7 @@ public class SigStat.Common.Transforms.CentroidExtraction
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -149,7 +149,7 @@ public class SigStat.Common.Transforms.CentroidTranslate
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputX</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputY</sub> | <sub></sub> | 
@@ -168,7 +168,7 @@ public class SigStat.Common.Transforms.ComponentExtraction
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Point>></sub> | <sub>CrossingPoints</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Point>></sub> | <sub>EndPoints</sub> | <sub></sub> | 
@@ -178,7 +178,7 @@ public class SigStat.Common.Transforms.ComponentExtraction
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -194,7 +194,7 @@ public class SigStat.Common.Transforms.ComponentSorter
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<List<PointF>>></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<List<PointF>>></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -202,7 +202,7 @@ public class SigStat.Common.Transforms.ComponentSorter
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -218,7 +218,7 @@ public class SigStat.Common.Transforms.ComponentsToFeatures
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Boolean>></sub> | <sub>Button</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<List<PointF>>></sub> | <sub>InputComponents</sub> | <sub></sub> | 
@@ -228,7 +228,7 @@ public class SigStat.Common.Transforms.ComponentsToFeatures
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -244,7 +244,7 @@ public class SigStat.Common.Transforms.EndpointExtraction
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Point>></sub> | <sub>OutputCrossingPoints</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Point>></sub> | <sub>OutputEndpoints</sub> | <sub></sub> | 
@@ -253,7 +253,7 @@ public class SigStat.Common.Transforms.EndpointExtraction
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -269,7 +269,7 @@ public class SigStat.Common.Transforms.Extrema
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -285,7 +285,7 @@ public class SigStat.Common.Transforms.HSCPThinning
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -293,7 +293,7 @@ public class SigStat.Common.Transforms.HSCPThinning
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -309,14 +309,14 @@ public class SigStat.Common.Transforms.ImageGenerator
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
 
 
 ###### Properties
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Rgba32</sub> | <sub>BackgroundColor</sub> | <sub></sub> | 
 | <sub>Rgba32</sub> | <sub>ForegroundColor</sub> | <sub></sub> | 
@@ -327,7 +327,7 @@ public class SigStat.Common.Transforms.ImageGenerator
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -343,7 +343,7 @@ public class SigStat.Common.Transforms.Map
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -351,7 +351,7 @@ public class SigStat.Common.Transforms.Map
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -367,7 +367,7 @@ public class SigStat.Common.Transforms.Multiply
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputList</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -375,7 +375,7 @@ public class SigStat.Common.Transforms.Multiply
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -391,7 +391,7 @@ public class SigStat.Common.Transforms.Normalize
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -399,7 +399,7 @@ public class SigStat.Common.Transforms.Normalize
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -415,7 +415,7 @@ public class SigStat.Common.Transforms.OnePixelThinning
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -423,7 +423,7 @@ public class SigStat.Common.Transforms.OnePixelThinning
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -439,7 +439,7 @@ public class SigStat.Common.Transforms.RealisticImageGenerator
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -455,7 +455,7 @@ public class SigStat.Common.Transforms.Resize
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>InputImage</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
@@ -463,7 +463,7 @@ public class SigStat.Common.Transforms.Resize
 
 ###### Properties
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Nullable<Int32></sub> | <sub>Height</sub> | <sub>The new height. Leave it as null, if you do not want to explicitly specify a given height</sub> | 
 | <sub>Func<Image<Rgba32>, Size></sub> | <sub>ResizeFunction</sub> | <sub>Set a resize function if you want to dynamically calculate the new width and height of the image</sub> | 
@@ -472,7 +472,7 @@ public class SigStat.Common.Transforms.Resize
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -488,7 +488,7 @@ public class SigStat.Common.Transforms.TangentExtraction
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>OutputTangent</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>X</sub> | <sub></sub> | 
@@ -497,7 +497,7 @@ public class SigStat.Common.Transforms.TangentExtraction
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -522,7 +522,7 @@ public class SigStat.Common.Transforms.Translate
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputX</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>InputY</sub> | <sub></sub> | 
@@ -541,7 +541,7 @@ public class SigStat.Common.Transforms.Trim
 
 ###### Fields
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Output</sub> | <sub></sub> | 
@@ -549,7 +549,7 @@ public class SigStat.Common.Transforms.Trim
 
 ###### Methods
 
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
