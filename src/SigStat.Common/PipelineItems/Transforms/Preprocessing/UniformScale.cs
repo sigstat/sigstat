@@ -14,15 +14,15 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension></para>
     /// </summary>
     /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
-    public class UniformScale: PipelineBase, ITransformation
+    public class UniformScale : PipelineBase, ITransformation
     {
         [Input]
         //public FeatureDescriptor BaseDimension { get; set; }
-        FeatureDescriptor BaseDimension;
+        public FeatureDescriptor BaseDimension;
 
         [Input]
         //public FeatureDescriptor ProportionalDimension { get; set; }
-        FeatureDescriptor ProportionalDimension;
+        public FeatureDescriptor ProportionalDimension;
 
         /// <summary>
         /// Lower bound of the interval, in which the base dimension will be scaled
@@ -41,11 +41,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         [Output("UniformScaledBaseDimension")]
         //public FeatureDescriptor BaseDimensionOutput { get; set; }
-        FeatureDescriptor BaseDimensionOutput;
+        public FeatureDescriptor BaseDimensionOutput;
 
         [Output("UniformScaledProportionalDimension")]
         //public FeatureDescriptor ProportionalDimensionOutput { get; set; }
-        FeatureDescriptor ProportionalDimensionOutput;
+        public FeatureDescriptor ProportionalDimensionOutput;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

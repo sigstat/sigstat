@@ -8,8 +8,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     public class NormalizeRotation : PipelineBase, ITransformation
     {
-        [Output] //TODO: ez tényleg csak fieldekre akartuk?
-        List<FeatureDescriptor> OutputFeatures;
+        //[Output] //TODO: ez tényleg csak fieldekre akartuk?
+        public List<FeatureDescriptor> OutputFeatures;
 
 
         public void Transform(Signature signature)
@@ -27,10 +27,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             for (int i = 0; i < xValues.Count; i++)
             {
-                xValues[i] = xValues[i] * cosa - yValues[i] * sina;
-                yValues[i] = xValues[i] * sina + yValues[i] * cosa;
+                double x = xValues[i];
+                double y = yValues[i];
+                xValues[i] = x * cosa - y * sina;
+                yValues[i] = x * sina + y * cosa;
             }
 
+            signature.SetFeature(Features.X, xValues);
             signature.SetFeature(Features.Y, yValues);
         }
 
@@ -60,7 +63,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             var newYValues = new List<double>(numPoints);
             for (int i = 0; i < numPoints; i++)
             {
-                newYValues.Add(a1 * tValues[i] + b1); //eredetileg - volt
+                newYValues.Add(a1 * tValues[i] - b1);
             }
 
             return newYValues;
