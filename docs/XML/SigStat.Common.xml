@@ -299,7 +299,7 @@
             Note to framework developers: you may extend this class with additional overloads if they are required
             </remarks>
         </member>
-        <member name="M:SigStat.Common.ILoggerObjectExtensions.Error(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.LogError(SigStat.Common.ILoggerObject,System.String,System.Object[])">
             <summary>
             Formats and writes an error log message.
             </summary>
@@ -307,7 +307,7 @@
             <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
             <param name="args">An object array that contains zero or more objects to format.</param>
         </member>
-        <member name="M:SigStat.Common.ILoggerObjectExtensions.Log(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.LogInformation(SigStat.Common.ILoggerObject,System.String,System.Object[])">
             <summary>
             Formats and writes an informational log message.
             </summary>
@@ -315,7 +315,7 @@
             <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
             <param name="args">An object array that contains zero or more objects to format.</param>
         </member>
-        <member name="M:SigStat.Common.ILoggerObjectExtensions.Warn(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.LogWarning(SigStat.Common.ILoggerObject,System.String,System.Object[])">
             <summary>
             Formats and writes an warning log message.
             </summary>
@@ -323,9 +323,25 @@
             <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
             <param name="args">An object array that contains zero or more objects to format.</param>
         </member>
-        <member name="M:SigStat.Common.ILoggerObjectExtensions.Trace(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.LogTrace(SigStat.Common.ILoggerObject,System.String,System.Object[])">
             <summary>
             Formats and writes a trace log message.
+            </summary>
+            <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+            <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.LogCritical(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+            <summary>
+            Formats and writes an critical error log message.
+            </summary>
+            <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+            <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:SigStat.Common.ILoggerObjectExtensions.LogDebug(SigStat.Common.ILoggerObject,System.String,System.Object[])">
+            <summary>
+            Formats and writes an debug log message.
             </summary>
             <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
             <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}"</param>

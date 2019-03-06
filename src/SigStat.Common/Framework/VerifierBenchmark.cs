@@ -7,6 +7,7 @@ using System.Linq;
 using SigStat.Common.Helpers;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Model;
+using SigStat.Common.Framework.Exceptions;
 
 namespace SigStat.Common
 {
@@ -122,16 +123,16 @@ namespace SigStat.Common
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
         {
-            this.LogInformation($"Benchmark execution started. Parallel mode: {ParallelMode.ToString()}");
+            this.LogInformation("Benchmark execution started. Parallel mode: {ParallelMode}", ParallelMode);
             var results = new List<Result>();
             farAcc = 0;
             frrAcc = 0;
             pCnt = 0;
 
-            this.LogInformation("Loading data..");
+            this.LogTrace("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
             Sampler.Init(signers);
-            this.LogInformation($"{signers.Count} signers found. Benchmarking..");
+            this.LogInformation("{signersCount} signers found. Benchmarking..", signers.Count);
             
             if (ParallelMode)
             {
@@ -144,55 +145,87 @@ namespace SigStat.Common
                 results = signers.SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
 
-            double frrFinal = frrAcc / signers.Count;
-            double farFinal = farAcc / signers.Count;
+            double frrFinal = frrAcc / results.Count;
+            double farFinal = farAcc / results.Count;
             double aerFinal = (frrFinal + farFinal) / 2.0;
+
+            int failedSigners = signers.Count - results.Count;
+            if (failedSigners > 0)
+            {
+                this.LogWarning("{skippedCount} out of {signerCount} Signers were skipped.", signers.Count - results.Count, signers.Count);
+            }
 
             Progress = 100;
             var r = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
-            this.LogInformation("Benchmark execution finished.", r);
+            this.LogInformation("Benchmark execution finished.");
             return r;
         }
 
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
-            this.LogInformation($"Benchmarking Signer ID {iSigner.ID}");
+            this.LogInformation("Benchmarking Signer {iSignerID}", iSigner.ID);
             Func<List<Signature>, List<Signature>> signerSelector = (l) => l.Where(s => s.Signer == iSigner).ToList();
             List<Signature> references = Sampler.SampleReferences(signerSelector);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(signerSelector);
             List<Signature> forgeryTests = Sampler.SampleForgeryTests(signerSelector);
 
-            Verifier.Train(references);
+            try
+            {
+                Verifier.Train(references);
+            }
+            catch //(VerifierTrainingException ex)
+            {
+                this.LogError("Training Verifier on Signer {iSignerID} failed. Skipping..", iSigner.ID);
+                pCnt += 1.0 / (cntSigners - 1);
+                Progress = (int)(pCnt * 100);
+                yield break;
+            }
 
             //FRR: false rejection rate
             //FRR = elutasított eredeti / összes eredeti
             int nFalseReject = 0;
+            int failedGenuineTests = 0;
             foreach (Signature genuine in genuineTests)
             {
-                if (Verifier.Test(genuine) <= 0.5)
+                try
                 {
-                    nFalseReject++;//eredeti alairast hamisnak hisz
+                    if (Verifier.Test(genuine) <= 0.5)
+                    {
+                        nFalseReject++;//eredeti alairast hamisnak hisz
+                    }
+                }
+                catch //(VerifierTestingException ex)
+                {
+                    this.LogError("Testing genuine Signature {signatureID} of Signer {signerID} failed. Skipping..", genuine.ID, iSigner.ID);
+                    failedGenuineTests++;
                 }
             }
-            double FRR = nFalseReject / (double)genuineTests.Count;
+            double FRR = nFalseReject / (double)(genuineTests.Count - failedGenuineTests);
 
             //FAR: false acceptance rate
             //FAR = elfogadott hamis / összes hamis
             int nFalseAccept = 0;
+            int failedForgeryTests = 0;
             foreach (Signature forgery in forgeryTests)
             {
-                if (Verifier.Test(forgery) > 0.5)
+                try
                 {
-                    nFalseAccept++;//hamis alairast eredetinek hisz
+                    if (Verifier.Test(forgery) > 0.5)
+                    {
+                        nFalseAccept++;//hamis alairast eredetinek hisz
+                    }
+                }
+                catch //(VerifierTestingException ex)
+                {
+                    this.LogError("Testing forged Signature {signatureID} of Signer {signerID} failed. Skipping..", forgery.ID, iSigner.ID);
+                    failedForgeryTests++;
                 }
             }
-            double FAR = nFalseAccept / (double)forgeryTests.Count;
+            double FAR = nFalseAccept / (double)(forgeryTests.Count - failedForgeryTests);
 
             //AER: average error rate
             double AER = (FRR + FAR) / 2.0;
-            this.LogTrace($"AER for Signer ID {iSigner.ID}: {AER}");
-
-            //EER definicio fix: ez az az ertek amikor FAR==FRR
+            this.LogTrace("AER for Signer {iSignerID}: {AER}", iSigner.ID, AER);
 
             frrAcc += FRR;
             farAcc += FAR;
