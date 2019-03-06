@@ -9,7 +9,7 @@ public class SigStat.Common.Model.Verifier
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>IClassifier</sub> | <sub>Classifier</sub> | <sub>Gets or sets the classifier pipeline. Hands over the Logger object.</sub> | 
 | <sub>ILogger</sub> | <sub>Logger</sub> | <sub>Gets or sets the class responsible for logging</sub> | 
@@ -19,7 +19,7 @@ public class SigStat.Common.Model.Verifier
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Double</sub> | <sub>Test(Signature)</sub> | <sub>Verifies the genuinity of `signature`.</sub> | 
 | <sub>void</sub> | <sub>Train(List<Signature>)</sub> | <sub>Trains the verifier with a list of signatures. Uses the `SigStat.Common.Model.Verifier.Pipeline` to extract features,  and `SigStat.Common.Model.Verifier.Classifier` to find an optimized limit.</sub> | 

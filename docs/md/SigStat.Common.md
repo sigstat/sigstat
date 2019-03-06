@@ -8,7 +8,7 @@ public static class SigStat.Common.ArrayExtension
 
 ###### Static Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>ValueTuple<Int32, Int32></sub> | <sub>GetCog(this Double[,])</sub> | <sub>Calculates the center of gravity, assuming that each cell contains  a weight value</sub> | 
 | <sub>IEnumerable<T></sub> | <sub>GetValues(this T[,])</sub> | <sub>Enumerates all values in a two dimensional array</sub> | 
@@ -27,7 +27,7 @@ public class SigStat.Common.Baseline
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>PointF</sub> | <sub>End</sub> | <sub>Endpoint of the baseline</sub> | 
 | <sub>PointF</sub> | <sub>Start</sub> | <sub>Starting point of the baseline</sub> | 
@@ -35,7 +35,7 @@ public class SigStat.Common.Baseline
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>String</sub> | <sub>ToString()</sub> | <sub>Returns a string representation of the baseline</sub> | 
 
@@ -51,14 +51,14 @@ public class SigStat.Common.BasicMetadataExtraction
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
 
 ###### Static Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Double</sub> | <sub>Trim</sub> | <sub>Represents theratio of significant pixels that should be trimmed  from each side while calculating `SigStat.Common.Features.TrimmedBounds`</sub> | 
 
@@ -73,7 +73,7 @@ public struct SigStat.Common.BenchmarkResults
 
 ###### Fields
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Result</sub> | <sub>FinalResult</sub> | <sub>Summarized, final result of the benchmark execution.</sub> | 
 | <sub>List<Result></sub> | <sub>SignerResults</sub> | <sub>List that contains the `SigStat.Common.Result`s for each `SigStat.Common.Signer`</sub> | 
@@ -89,7 +89,7 @@ public class SigStat.Common.FeatureDescriptor
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Type</sub> | <sub>FeatureType</sub> | <sub>Gets or sets the type of the feature.</sub> | 
 | <sub>Boolean</sub> | <sub>IsCollection</sub> | <sub>Gets whether the type of the feature is List.</sub> | 
@@ -99,21 +99,21 @@ public class SigStat.Common.FeatureDescriptor
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>String</sub> | <sub>ToString()</sub> | <sub>Returns a string represenatation of the FeatureDescriptor</sub> | 
 
 
 ###### Static Fields
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Dictionary<String, FeatureDescriptor></sub> | <sub>descriptors</sub> | <sub>The static dictionary of all descriptors.</sub> | 
 
 
 ###### Static Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor</sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor` specified by `key`.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key.</sub> | 
 | <sub>FeatureDescriptor<T></sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor` specified by `key`.  Throws `System.Collections.Generic.KeyNotFoundException` exception if there is no descriptor registered with the given key.</sub> | 
@@ -132,7 +132,7 @@ public class SigStat.Common.FeatureDescriptor<T>
 
 ###### Static Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<T></sub> | <sub>Get(String)</sub> | <sub>Gets the `SigStat.Common.FeatureDescriptor`1` specified by `key`.  If the key is not registered yet, a new `SigStat.Common.FeatureDescriptor`1` is automatically created with the given key and type.</sub> | 
 
@@ -147,7 +147,7 @@ public static class SigStat.Common.Features
 
 ###### Static Fields
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>IReadOnlyList<FeatureDescriptor></sub> | <sub>All</sub> | <sub>Returns a readonly list of all `SigStat.Common.FeatureDescriptor`s defined in `SigStat.Common.Features`</sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>Altitude</sub> | <sub>Altitude of an online signature as a function of `SigStat.Common.Features.T`</sub> | 
@@ -174,7 +174,7 @@ public interface SigStat.Common.ILoggerObject
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>ILogger</sub> | <sub>Logger</sub> | <sub>Gets or sets the ILogger implementation used to perform logging</sub> | 
 
@@ -189,7 +189,7 @@ public static class SigStat.Common.ILoggerObjectExtensions
 
 ###### Static Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Error(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an error log message.</sub> | 
 | <sub>void</sub> | <sub>Log(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an informational log message.</sub> | 
@@ -208,7 +208,7 @@ public interface SigStat.Common.ITransformation
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub>Executes the transform on the `signature` parameter.  This function gets called by the pipeline.</sub> | 
 
@@ -223,7 +223,7 @@ public class SigStat.Common.Loop
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>RectangleF</sub> | <sub>Bounds</sub> | <sub>The bounding rectangle of the loop</sub> | 
 | <sub>PointF</sub> | <sub>Center</sub> | <sub>The geometrical center of the looop</sub> | 
@@ -232,7 +232,7 @@ public class SigStat.Common.Loop
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>String</sub> | <sub>ToString()</sub> | <sub>Returns a string representation of the loop</sub> | 
 
@@ -247,7 +247,7 @@ public static class SigStat.Common.MathHelper
 
 ###### Static Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Double</sub> | <sub>Min(Double, Double, Double)</sub> | <sub>Returns the smallest of the three double parameters</sub> | 
 
@@ -281,7 +281,7 @@ public abstract class SigStat.Common.PipelineBase
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>ILogger</sub> | <sub>Logger</sub> | <sub></sub> | 
 | <sub>List<PipelineInput></sub> | <sub>PipelineInputs</sub> | <sub></sub> | 
@@ -291,14 +291,14 @@ public abstract class SigStat.Common.PipelineBase
 
 ###### Events
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>EventHandler<Int32></sub> | <sub>ProgressChanged</sub> | <sub>The event is raised whenever the value of `SigStat.Common.PipelineBase.Progress` changes</sub> | 
 
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>OnProgressChanged()</sub> | <sub>Raises the `SigStat.Common.PipelineBase.ProgressChanged` event</sub> | 
 
@@ -313,7 +313,7 @@ public class SigStat.Common.Result
 
 ###### Fields
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Double</sub> | <sub>Aer</sub> | <sub>Average Error Rate</sub> | 
 | <sub>Double</sub> | <sub>Far</sub> | <sub>False Acceptance Rate</sub> | 
@@ -331,14 +331,14 @@ public class SigStat.Common.Sampler
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Int32</sub> | <sub>BatchSize</sub> | <sub></sub> | 
 
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Init(Signer)</sub> | <sub>Initialize the Sampler with a Signer's Signatures.</sub> | 
 | <sub>void</sub> | <sub>Init(List<Signer>)</sub> | <sub>Initialize the Sampler with a Signer's Signatures.</sub> | 
@@ -358,7 +358,7 @@ public class SigStat.Common.Signature
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>String</sub> | <sub>ID</sub> | <sub>An identifier for the Signature. Keep it unique to be useful for logs.</sub> | 
 | <sub>Object</sub> | <sub>Item</sub> | <sub>Gets or sets the specified feature.</sub> | 
@@ -369,7 +369,7 @@ public class SigStat.Common.Signature
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>List<Double[]></sub> | <sub>GetAggregateFeature(List<FeatureDescriptor>)</sub> | <sub>Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input.</sub> | 
 | <sub>T</sub> | <sub>GetFeature(String)</sub> | <sub>Gets the specified feature.</sub> | 
@@ -393,7 +393,7 @@ public class SigStat.Common.Signer
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>String</sub> | <sub>ID</sub> | <sub>An identifier for the Signer. Keep it unique to be useful for logs.</sub> | 
 | <sub>List<Signature></sub> | <sub>Signatures</sub> | <sub>List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.)</sub> | 
@@ -409,7 +409,7 @@ public static class SigStat.Common.SigStatEvents
 
 ###### Static Fields
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>EventId</sub> | <sub>BenchmarkEvent</sub> | <sub>Events originating from a benchmark</sub> | 
 | <sub>EventId</sub> | <sub>VerifierEvent</sub> | <sub>Events originating from a verifier</sub> | 
@@ -434,7 +434,7 @@ public class SigStat.Common.VerifierBenchmark
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>IDataSetLoader</sub> | <sub>Loader</sub> | <sub>The loader that will provide the database for benchmarking</sub> | 
 | <sub>ILogger</sub> | <sub>Logger</sub> | <sub>Gets or sets the attached `Microsoft.Extensions.Logging.ILogger` object used to log messages. Hands it over to the verifier.</sub> | 
@@ -445,14 +445,14 @@ public class SigStat.Common.VerifierBenchmark
 
 ###### Events
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>EventHandler<Int32></sub> | <sub>ProgressChanged</sub> | <sub></sub> | 
 
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>BenchmarkResults</sub> | <sub>Execute(Boolean = True)</sub> | <sub>Execute the benchmarking process.</sub> | 
 

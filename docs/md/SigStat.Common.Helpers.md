@@ -8,14 +8,14 @@ public interface SigStat.Common.Helpers.IProgress
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Int32</sub> | <sub>Progress</sub> | <sub>Gets the current progress in percentage.</sub> | 
 
 
 ###### Events
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>EventHandler<Int32></sub> | <sub>ProgressChanged</sub> | <sub>Invoked whenever the `SigStat.Common.Helpers.IProgress.Progress` property is changed.</sub> | 
 
@@ -29,7 +29,7 @@ public class SigStat.Common.Helpers.SerializationHelper
 
 ###### Static Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>T</sub> | <sub>Deserialize(String)</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>Serialize(T)</sub> | <sub></sub> | 
@@ -46,14 +46,14 @@ public class SigStat.Common.Helpers.SimpleConsoleLogger
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>LogLevel</sub> | <sub>LogLevel</sub> | <sub>All events below this level will be filtered</sub> | 
 
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>IDisposable</sub> | <sub>BeginScope(TState)</sub> | <sub></sub> | 
 | <sub>Boolean</sub> | <sub>IsEnabled(LogLevel)</sub> | <sub></sub> | 

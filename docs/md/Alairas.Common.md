@@ -9,7 +9,7 @@ public class Alairas.Common.SimpleRenderingTransformation
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 

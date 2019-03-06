@@ -8,7 +8,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRota
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -42,7 +42,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Double</sub> | <sub>NewMaxValue</sub> | <sub><para>NewMaxValue: upper bound of the interval, in which the input feature will be scaled</para></sub> | 
 | <sub>Double</sub> | <sub>NewMinValue</sub> | <sub><para>NewMinValue: lower bound of the interval, in which the input feature will be scaled</para></sub> | 
@@ -50,7 +50,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -65,7 +65,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.Translate
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>OriginType</sub> | <sub>GoalOrigin</sub> | <sub></sub> | 
 | <sub>Double</sub> | <sub>NewOrigin</sub> | <sub></sub> | 
@@ -73,7 +73,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.Translate
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
@@ -89,7 +89,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale
 
 ###### Properties
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Double</sub> | <sub>NewMaxBaseValue</sub> | <sub>Upper bound of the interval, in which the base dimension will be scaled</sub> | 
 | <sub>Double</sub> | <sub>NewMinBaseValue</sub> | <sub>Lower bound of the interval, in which the base dimension will be scaled</sub> | 
@@ -98,7 +98,7 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale
 
 ###### Methods
 
-| Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>void</sub> | <sub>Transform(Signature)</sub> | <sub></sub> | 
 
