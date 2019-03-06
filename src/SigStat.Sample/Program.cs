@@ -5,10 +5,12 @@ using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
+using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -48,11 +50,14 @@ namespace SigStat.Sample
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();
-            OnlineVerifierBenchmarkDemo();
+            //OnlineVerifierBenchmarkDemo();
+            TestPreprocessingTransformations();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
         }
+
+
 
         public static void SignatureDemo()
         {
@@ -78,7 +83,7 @@ namespace SigStat.Sample
             height = sig.GetFeature(heightDescriptor);
 
             // Define complex feature values
-            var loops = new List<Loop>() { new Loop(1,1), new Loop(3,3) };
+            var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
 
             // Reusing feature descriptors (see MyFeatures class for details)
             sig.SetFeature(MyFeatures.Loop, loops);
@@ -135,8 +140,8 @@ namespace SigStat.Sample
             // Initialize a transformation using fluent syntax
             var binarization = new Binarization()
             {
-                InputImage=Features.Image,
-                OutputMask=MyFeatures.Binarized
+                InputImage = Features.Image,
+                OutputMask = MyFeatures.Binarized
             };
 
             // Perform transformation
@@ -174,7 +179,7 @@ namespace SigStat.Sample
             ISignerModel model = classifier.Train(genuines);//Train on genuine signatures
             var result = classifier.Test(model, challenge);
 
-            Console.WriteLine("Classification result: " + (result>0.5?"Genuine":"Forged") );
+            Console.WriteLine("Classification result: " + (result > 0.5 ? "Genuine" : "Forged"));
         }
 
 
@@ -218,8 +223,8 @@ namespace SigStat.Sample
             Signer s = new Signer();
             s.Signatures.Add(s1);
 
-            verifier.Train(new List<Signature>{ s1 });
-            
+            verifier.Train(new List<Signature> { s1 });
+
             //TODO: ha mar Verifier demo, akkor Test()-et is hasznaljuk..
             ImageSaver.Save(s1, @"GeneratedOfflineImage.png");
         }
@@ -283,8 +288,8 @@ namespace SigStat.Sample
 
             Signature questioned1 = signers[0].Signatures[0];
             Signature questioned2 = signers[0].Signatures[25];
-            bool isGenuine1 = verifier.Test(questioned1)>0.5;//true
-            bool isGenuine2 = verifier.Test(questioned2)>0.5;//false
+            bool isGenuine1 = verifier.Test(questioned1) > 0.5;//true
+            bool isGenuine2 = verifier.Test(questioned2) > 0.5;//false
         }
 
         static void OnlineVerifierBenchmarkDemo()
@@ -293,7 +298,8 @@ namespace SigStat.Sample
             var benchmark = new VerifierBenchmark()
             {
                 Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
-                Verifier = new Verifier() {
+                Verifier = new Verifier()
+                {
                     Pipeline = new SequentialTransformPipeline {
                         { new TangentExtraction() }
                     },
@@ -366,7 +372,196 @@ namespace SigStat.Sample
 
         }
 
+        static void TestPreprocessingTransformations()
+        {
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"))[0];//Load the first signer only
 
+            Signature signature = signer.Signatures[15];
+
+            //string selectedTransformation = "Translate";
+            //string selectedTransformation = "UniformScale";
+            //string selectedTransformation = "Scale";
+            string selectedTransformation = "NormalizeRotation";
+
+            if (selectedTransformation == "Translate")
+            {
+                var originalValues = signature.GetFeature(Features.X);
+
+                new TranslatePreproc(OriginType.CenterOfGravity)
+                {
+                    InputFeature = Features.X,
+                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.CenterOfGravity + "TranslationResult"),
+                }.Transform(signature);
+                var cogValues = signature.GetFeature<List<double>>(OriginType.CenterOfGravity + "TranslationResult");
+
+                new TranslatePreproc(OriginType.Minimum)
+                {
+                    InputFeature = Features.X,
+                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Minimum + "TranslationResult")
+                }.Transform(signature);
+                var minValues = signature.GetFeature<List<double>>(OriginType.Minimum + "TranslationResult");
+
+                new TranslatePreproc(OriginType.Maximum)
+                {
+                    InputFeature = Features.X,
+                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Maximum + "TranslationResult")
+                }.Transform(signature);
+                var maxValues = signature.GetFeature<List<double>>(OriginType.Maximum + "TranslationResult");
+
+                new TranslatePreproc(100.0)
+                {
+                    InputFeature = Features.X,
+                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Predefined + "TranslationResult")
+                }.Transform(signature);
+                var predefValues = signature.GetFeature<List<double>>(OriginType.Predefined + "TranslationResult");
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("Original ; COG translated ; Min translated ; Max translated ; 100.0 translated");
+                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+                {
+                    sw.WriteLine($"{originalValues[i]};{cogValues[i]};{minValues[i]};{maxValues[i]};{predefValues[i]}");
+                }
+                sw.Close();
+
+                //TODO: .net core-ban ez így nem működik
+                //Process.Start(outputFileName);
+            }
+            else if (selectedTransformation == "UniformScale")
+            {
+                var originalXValues = signature.GetFeature(Features.X);
+                var originalYValues = signature.GetFeature(Features.Y);
+
+
+                new UniformScale()
+                {
+                    BaseDimension = Features.X,
+                    ProportionalDimension = Features.Y,
+                    NewMinBaseValue = 100,
+                    NewMaxBaseValue = 200,
+                    NewMinProportionalValue = 150,
+                    BaseDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultBaseDim"),
+                    ProportionalDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultProportionalDim")
+                }.Transform(signature);
+                var defScaledXValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultBaseDim"));
+                var defScaledYValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultProportionalDim"));
+
+
+                new UniformScale
+                {
+                    BaseDimension = Features.X,
+                    ProportionalDimension = Features.Y,
+                    BaseDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultBaseDim"),
+                    ProportionalDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultProportionalDim")
+                }.Transform(signature);
+                var autoScaledXValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultBaseDim"));
+                var autoScaledYValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultProportionalDim"));
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalX; OriginalY ; DefScaledX ; DefScaledY ; AutoScaledX; AutoScaledY");
+                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+                {
+                    sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{defScaledXValues[i]};{defScaledYValues[i]};{autoScaledXValues[i]}; {autoScaledYValues[i]}");
+                }
+                sw.Close();
+
+                //Process.Start(outputFileName);
+            }
+            else if (selectedTransformation == "Scale")
+            {
+                var originalXValues = signature.GetFeature(Features.X);
+                new Scale()
+                {
+                    InputFeature = Features.X,
+                    NewMinValue = 100,
+                    NewMaxValue = 500,
+                    OutputFeature = FeatureDescriptor.Get<List<double>>("ScalingResult")
+                }.Transform(signature);
+                var defScaledXValues = new List<double>(signature.GetFeature<List<double>>("ScalingResult"));
+
+                new Scale
+                {
+                    InputFeature = Features.X,
+                    OutputFeature = FeatureDescriptor.Get<List<double>>("ScalingResult")
+                }.Transform(signature);
+                var autoScaledXValues = new List<double>(signature.GetFeature<List<double>>("ScalingResult"));
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalX;  DefScaledX ;  AutoScaledX");
+                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+                {
+                    sw.WriteLine($"{originalXValues[i]};{defScaledXValues[i]};{autoScaledXValues[i]}");
+                }
+                sw.Close();
+
+                Process.Start(outputFileName);
+            }
+            else if (selectedTransformation == "NormalizeRotation")
+            {
+                //var originalTValues = new List<double>(signature.GetFeature(Features.T));
+                var originalXValues = new List<double>(signature.GetFeature(Features.X));
+                var originalYValues = new List<double>(signature.GetFeature(Features.Y));
+
+                var tfs = new SequentialTransformPipeline
+                {
+                    new ParallelTransformPipeline
+                    {
+                      //new Normalize() { Input = Features.T },
+                      new Normalize() { Input = Features.X },
+                     new Normalize() { Input = Features.Y }
+                    },
+                new RealisticImageGenerator(1280, 720)
+                //{X = Features.T }
+                };
+                tfs.Logger = new SimpleConsoleLogger();
+                tfs.Transform(signature);
+
+                ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
+
+
+                //signature.SetFeature(Features.T, new List<double>(originalTValues));
+                signature.SetFeature(Features.X, new List<double>(originalXValues));
+                signature.SetFeature(Features.Y, new List<double>(originalYValues));
+
+                new NormalizeRotation()
+                {
+                    OutputFeatures = new List<FeatureDescriptor>()
+                }.Transform(signature);
+                //var rotatedTValues = new List<double>(signature.GetFeature(Features.T));
+                var rotatedXValues = new List<double>(signature.GetFeature(Features.X));
+                var rotatedYValues = new List<double>(signature.GetFeature(Features.Y));
+
+                var tfsRotated = new SequentialTransformPipeline
+            {
+                new ParallelTransformPipeline
+                {
+                    //new Normalize() { Input = Features.T },
+                    new Normalize() { Input = Features.X },
+                    new Normalize() { Input = Features.Y }
+                },
+                new RealisticImageGenerator(1280, 720)
+                //{ X = Features.T }
+            };
+                tfsRotated.Logger = new SimpleConsoleLogger();
+                tfsRotated.Transform(signature);
+
+                ImageSaver.Save(signature, @"GeneratedOnlineImageRotated.png");
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalX; OriginalY; RotatedX ; RotatedY");
+                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+                {
+                   sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{rotatedXValues[i]};{rotatedYValues[i]}");
+                }
+                sw.Close();
+
+                //Process.Start(outputFileName);
+            }
+        }
 
 
 

@@ -15,15 +15,15 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         Predefined
     }
 
-    public class Translate : PipelineBase, ITransformation
+    public class TranslatePreproc : PipelineBase, ITransformation
     {
-        [Input]
+        [Input] //TODO:hibát dob így a mainben írt teszt
         //public FeatureDescriptor InputFeature { get; set; }
-        FeatureDescriptor InputFeature;
+        public FeatureDescriptor InputFeature;
 
         [Output("TranslatedFeature")]
         //public FeatureDescriptor OutputFeature { get; set; }
-        FeatureDescriptor OutputFeature;
+        public FeatureDescriptor OutputFeature;
 
 
         public OriginType GoalOrigin { get; set; } = OriginType.Predefined;
@@ -39,14 +39,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             }
         }
 
-        public Translate() { }
+        public TranslatePreproc() { }
 
-        public Translate(OriginType goalOrigin)
+        public TranslatePreproc(OriginType goalOrigin)
         {
             GoalOrigin = goalOrigin;
         }
 
-        public Translate(double newOrigin)
+        public TranslatePreproc(double newOrigin)
         {
             NewOrigin = newOrigin;
             GoalOrigin = OriginType.Predefined;
