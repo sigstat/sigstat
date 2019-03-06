@@ -76,7 +76,8 @@ namespace SigStat.Sample
             //    "translation: None, CogToOiriginX,CogToOriginY,CogToOiriginXY, BottomLeftToOrigin;" +
             //    "UniformScaling: None, X01Y0prop, Y01X0prop" +
             //    "Scaling: None, X01, Y01, X01Y01" +
-            //    "Resampling: none, TimeSlotLength, SampleCount, FillPenUp}";
+            //    "ResamplingType: none, CubicTimeSlotLength, CubicSampleCount, CubicFillPenUp, LinearTimeSlotLength, LinearSampleCount, LinearFillPenUp
+            //    "Interpolation: , }";
 
             //GenerateConfigurations();
         }
