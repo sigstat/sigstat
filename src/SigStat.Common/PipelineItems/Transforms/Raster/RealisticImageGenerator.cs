@@ -82,9 +82,19 @@ namespace SigStat.Common.Transforms
 
             int len = xs.Count;
             List<PointF> points = new List<PointF>();
+            double maxval = 1;
+            double minval = Double.PositiveInfinity;
+            xs.ForEach(x => {
+                maxval = Math.Max(maxval, x);
+                minval = Math.Min(minval, x);
+            });
+            ys.ForEach(y => {
+                maxval = Math.Max(maxval, y);
+                minval = Math.Min(minval, y);
+            });
             for (int i = 0; i < len; i++)
             {
-                points.Add(ToImageCoords(xs[i], ys[i]));
+                points.Add(ToImageCoords(xs[i], ys[i], minval, maxval));
                 Progress = (int)(i / (double)len * 90);
             }
             DrawRealisticLines(img, points);
@@ -97,19 +107,24 @@ namespace SigStat.Common.Transforms
             this.LogInformation( "Realistic image generation done.");
         }
 
-        private PointF ToImageCoords(double x, double y)
+        private PointF ToImageCoords(double x, double y, double minval, double maxval)
         {
             //ha x-et w-vel, y-t pedig h-val szoroznank, akkor torzulna
             //megtartjuk az aranyokat ugy, hogy w es h bol a kisebbiket valasztjuk (igy biztos belefer a kepbe minden)
-            int m = Math.Min(w, h);
+            int minres = Math.Min(w, h);
 
-            int frame = m / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
+            int frame = minres / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
+
+            double mx = (x - minval) / (maxval - minval);//0-1
+            double my = (1 - (y - minval) / (maxval - minval));
+
+            //TODO: center
 
             //Y-okat meg kell forditani, hogy ne legyen fejjel lefele a kepen
             //betesszuk a kep kozepere is
             return new PointF(
-                (float)(frame + x * (m - frame * 2) + (w - m) / 2),
-                (float)(frame + (1 - y) * (m - frame * 2) + (h - m) / 2)
+                (float)(frame + mx * (minres - frame * 2)),
+                (float)(frame + my * (minres - frame * 2))
             );
         }
 

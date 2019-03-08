@@ -8,20 +8,30 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     public class NormalizeRotation : PipelineBase, ITransformation
     {
-        //[Output] //TODO: ez tényleg csak fieldekre akartuk?
-        public List<FeatureDescriptor> OutputFeatures;
+        [Input]
+        public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputT { get; set; } = Features.T;
+
+        [Output]
+        public FeatureDescriptor<List<double>> OutputX { get; set; } = Features.X;
+
+        [Output]
+        public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
 
 
         public void Transform(Signature signature)
         {
-            //TODO: ellenőrizni h meg van-e adva output
-
             var linePoints = GenerateLinearBestFit(signature, out double a, out double b);
 
-            var xValues = signature.GetFeature(Features.X);
-            var yValues = signature.GetFeature(Features.Y);
+            var xValues = new List<double>(signature.GetFeature(InputX));
+            var yValues = new List<double>(signature.GetFeature(InputY));
 
-            var time = signature.GetFeature(Features.T).ToList();
+            var time = signature.GetFeature(InputT).ToList();
             double cosa = (time.Max() - time.Min()) / (linePoints.Max() - linePoints.Min());
             double sina = (linePoints.Max() - linePoints.Min()) / (time.Max() - time.Min());
 
@@ -33,14 +43,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 yValues[i] = x * sina + y * cosa;
             }
 
-            signature.SetFeature(Features.X, xValues);
-            signature.SetFeature(Features.Y, yValues);
+            signature.SetFeature(OutputX, xValues);
+            signature.SetFeature(OutputY, yValues);
         }
 
         private List<double> GenerateLinearBestFit(Signature sig, out double a, out double b)
         {
-            var tValues = new List<double>(sig.GetFeature(Features.T));
-            var yValues = new List<double>(sig.GetFeature(Features.Y));
+            var tValues = new List<double>(sig.GetFeature(InputT));
+            var yValues = new List<double>(sig.GetFeature(InputY));
 
             int numPoints = yValues.Count;
             double meanT = tValues.Average();

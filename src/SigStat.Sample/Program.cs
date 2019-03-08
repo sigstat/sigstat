@@ -370,11 +370,6 @@ namespace SigStat.Sample
 
             var pipeline = new SequentialTransformPipeline
             {
-                new ParallelTransformPipeline
-                {
-                    new Normalize() { Input = Features.X },
-                    new Normalize() { Input = Features.Y }
-                },
                 new ApproximateOnlineFeatures(),
                 new RealisticImageGenerator(1280, 720),
             };
@@ -528,49 +523,21 @@ namespace SigStat.Sample
                 var originalXValues = new List<double>(signature.GetFeature(Features.X));
                 var originalYValues = new List<double>(signature.GetFeature(Features.Y));
 
-                var tfs = new SequentialTransformPipeline
+                var imggen = new RealisticImageGenerator(1280, 720)
                 {
-                    new ParallelTransformPipeline
-                    {
-                      //new Normalize() { Input = Features.T },
-                      new Normalize() { Input = Features.X },
-                     new Normalize() { Input = Features.Y }
-                    },
-                new RealisticImageGenerator(1280, 720)
-                //{X = Features.T }
+                    Logger = new SimpleConsoleLogger()
                 };
-                tfs.Logger = new SimpleConsoleLogger();
-                tfs.Transform(signature);
-
+                imggen.Transform(signature);
                 ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
-
-
-                //signature.SetFeature(Features.T, new List<double>(originalTValues));
-                signature.SetFeature(Features.X, new List<double>(originalXValues));
-                signature.SetFeature(Features.Y, new List<double>(originalYValues));
 
                 new NormalizeRotation()
                 {
-                    OutputFeatures = new List<FeatureDescriptor>()
+                    Logger = new SimpleConsoleLogger()
                 }.Transform(signature);
                 //var rotatedTValues = new List<double>(signature.GetFeature(Features.T));
                 var rotatedXValues = new List<double>(signature.GetFeature(Features.X));
                 var rotatedYValues = new List<double>(signature.GetFeature(Features.Y));
-
-                var tfsRotated = new SequentialTransformPipeline
-            {
-                new ParallelTransformPipeline
-                {
-                    //new Normalize() { Input = Features.T },
-                    new Normalize() { Input = Features.X },
-                    new Normalize() { Input = Features.Y }
-                },
-                new RealisticImageGenerator(1280, 720)
-                //{ X = Features.T }
-            };
-                tfsRotated.Logger = new SimpleConsoleLogger();
-                tfsRotated.Transform(signature);
-
+                imggen.Transform(signature);
                 ImageSaver.Save(signature, @"GeneratedOnlineImageRotated.png");
 
                 string outputFileName = selectedTransformation + "TransformationOutputTest.csv";

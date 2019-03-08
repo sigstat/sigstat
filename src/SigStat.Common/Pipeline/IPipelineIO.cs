@@ -15,7 +15,8 @@ namespace SigStat.Common.Pipeline
 
     public class PipelineInput
     {
-        public object FD {
+        public object FD
+        {
             get => PI.GetValue(PipelineItem);
             set => PI.SetValue(PipelineItem, value);
         }

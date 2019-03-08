@@ -18,18 +18,15 @@ namespace SigStat.Common.Transforms
         [Input]
         public FeatureDescriptor<List<double>> Input { get; set; }
 
-        [Output("NormalizationResult")]
+        [Output]
         public FeatureDescriptor<List<double>> Output { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            var values = signature.GetFeature(Input);
-
-            //find min and max values
+            var values = new List<double>(signature.GetFeature(Input));
             double min = values.Min();
             double max = values.Max();
-
             //min lesz 0, max lesz 1
             for (int i = 0; i < values.Count; i++)
             {

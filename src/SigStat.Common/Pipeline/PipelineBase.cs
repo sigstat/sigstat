@@ -41,8 +41,9 @@ namespace SigStat.Common
                         }
                         else
                         {//List of Features
-                            throw new NotImplementedException();
-                            //TODO: bajbajbajbajbajbaj
+                            //prop.SetValue(this, new List<FeatureDescriptor>());
+                            //de mennyit? nem eleg egy ures listat letrehozni, mert akkor a transform nak kell megadnia az FD-kat
+                            //most hack: transform mondja meg, itt marad null
                         }
                     }
                     return new PipelineOutput(this, prop);
