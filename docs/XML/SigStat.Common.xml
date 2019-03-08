@@ -353,13 +353,7 @@
             Use this to fine-tune the <see cref="T:SigStat.Common.VerifierBenchmark"/>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Sampler.#ctor(SigStat.Common.Sampler)">
-            <summary>
-            Initialize a new instance of the <see cref="T:SigStat.Common.Sampler"/> class based on the <paramref name="s"/> parameter's strategy.
-            </summary>
-            <param name="s">A Sampler to copy.</param>
-        </member>
-        <member name="M:SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Int32)">
+        <member name="M:SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
             <summary>
             Initialize a new instance of the <see cref="T:SigStat.Common.Sampler"/> class by given sampling strategies.
             </summary>
@@ -367,37 +361,19 @@
             <param name="genuineTests">Strategy to sample genuine signatures to be used for testing.</param>
             <param name="forgeryTests">Strategy to sample forged signatures to be used for testing.</param>
         </member>
-        <member name="M:SigStat.Common.Sampler.Init(SigStat.Common.Signer)">
-            <summary>
-            Initialize the Sampler with a Signer's Signatures.
-            </summary>
-            <param name="s">Signer to sample Signatures from.</param>
-        </member>
-        <member name="M:SigStat.Common.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signer})">
-            <summary>
-            Initialize the Sampler with a Signer's Signatures.
-            </summary>
-            <param name="s">Signer to sample Signatures from.</param>
-        </member>
-        <member name="M:SigStat.Common.Sampler.Init(System.Collections.Generic.List{SigStat.Common.Signature})">
-            <summary>
-            Initialize the Sampler with a list of Signatures.
-            </summary>
-            <param name="s">List of Signatures to take samples from.</param>
-        </member>
-        <member name="M:SigStat.Common.Sampler.SampleReferences(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+        <member name="M:SigStat.Common.Sampler.SampleReferences(System.Collections.Generic.List{SigStat.Common.Signature})">
             <summary>
             Samples a batch of genuine reference signatures to train on.
             </summary>
             <returns>Genuine reference signatures to train on.</returns>
         </member>
-        <member name="M:SigStat.Common.Sampler.SampleGenuineTests(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+        <member name="M:SigStat.Common.Sampler.SampleGenuineTests(System.Collections.Generic.List{SigStat.Common.Signature})">
             <summary>
             Samples a batch of genuine test signatures to test on.
             </summary>
             <returns>Genuine signatures to test on.</returns>
         </member>
-        <member name="M:SigStat.Common.Sampler.SampleForgeryTests(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})">
+        <member name="M:SigStat.Common.Sampler.SampleForgeryTests(System.Collections.Generic.List{SigStat.Common.Signature})">
             <summary>
             Samples a batch of forged signatures to test on.
             </summary>
@@ -1625,7 +1601,7 @@
         <member name="T:SigStat.Common.PipelineBase">
             <summary>
             TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.
-            IProgress, ILogger, IPipelineIO default implementacioja.
+            ILoggerObject, IProgress, IPipelineIO default implementacioja.
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineBase.Logger">
