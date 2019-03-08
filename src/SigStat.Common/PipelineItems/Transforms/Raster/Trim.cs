@@ -16,10 +16,10 @@ namespace SigStat.Common.Transforms
     {
 
         [Input]
-        public FeatureDescriptor<bool[,]> Input;
+        public FeatureDescriptor<bool[,]> Input { get; set; }
 
         [Output("Trimmed")]
-        public FeatureDescriptor<bool[,]> Output;
+        public FeatureDescriptor<bool[,]> Output { get; set; }
 
         private readonly int framewidth;
 

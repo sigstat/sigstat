@@ -16,10 +16,10 @@ namespace SigStat.Common.Transforms
     public class Normalize : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<List<double>> Input;
+        public FeatureDescriptor<List<double>> Input { get; set; }
 
         [Output("NormalizationResult")]
-        public FeatureDescriptor<List<double>> Output;
+        public FeatureDescriptor<List<double>> Output { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

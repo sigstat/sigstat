@@ -16,10 +16,10 @@ namespace SigStat.Common.Transforms
     public class OnePixelThinning : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<bool[,]> Input;
+        public FeatureDescriptor<bool[,]> Input { get; set; }
 
         [Output("OnePixelThinningResult")]
-        public FeatureDescriptor<bool[,]> Output;
+        public FeatureDescriptor<bool[,]> Output { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

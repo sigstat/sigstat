@@ -11,7 +11,7 @@ namespace SigStat.Common
 {
     /// <summary>
     /// TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.
-    /// IProgress, ILogger, IPipelineIO default implementacioja.
+    /// ILoggerObject, IProgress, IPipelineIO default implementacioja.
     /// </summary>
     public abstract class PipelineBase : ILoggerObject, IProgress, IPipelineIO
     {
@@ -21,23 +21,23 @@ namespace SigStat.Common
         public PipelineBase()
         {
             //init io
-            PipelineInputs = this.GetType().GetFields()
-                .Where(field => Attribute.IsDefined(field, typeof(Input)))
-                .Select(field => new PipelineInput(this, field))
+            PipelineInputs = this.GetType().GetProperties()
+                .Where(prop => Attribute.IsDefined(prop, typeof(Input)))
+                .Select(prop => new PipelineInput(this, prop))
                 .ToList();
 
-            PipelineOutputs = this.GetType().GetFields()
-                .Where(field => Attribute.IsDefined(field, typeof(Output)))
-                .Select(field => {
-                    var val = field.GetValue(this);
+            PipelineOutputs = this.GetType().GetProperties()
+                .Where(prop => Attribute.IsDefined(prop, typeof(Output)))
+                .Select(prop => {
+                    var val = prop.GetValue(this);
                     if (val == null)
                     {
-                        var attr = (Output)Attribute.GetCustomAttribute(field, typeof(Output));
-                        var fdType = field.FieldType;
-                        if (!(fdType.GetGenericTypeDefinition() == typeof(List<>)))
+                        var attr = (Output)Attribute.GetCustomAttribute(prop, typeof(Output));
+                        var propType = prop.PropertyType;
+                        if (!(propType.GetGenericTypeDefinition() == typeof(List<>)))
                         {
-                            field.SetValue(this, FeatureDescriptor.Register(attr.Default ??
-                                $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{field.Name}", fdType.GetGenericArguments()[0]));
+                            prop.SetValue(this, FeatureDescriptor.Register(attr.Default ??
+                                $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{prop.Name}", propType.GetGenericArguments()[0]));
                         }
                         else
                         {//List of Features
@@ -45,7 +45,7 @@ namespace SigStat.Common
                             //TODO: bajbajbajbajbajbaj
                         }
                     }
-                    return new PipelineOutput(this, field);
+                    return new PipelineOutput(this, prop);
                 }).ToList();
         }
 

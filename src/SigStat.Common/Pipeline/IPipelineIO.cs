@@ -16,23 +16,23 @@ namespace SigStat.Common.Pipeline
     public class PipelineInput
     {
         public object FD {
-            get => FI.GetValue(PipelineItem);
-            set => FI.SetValue(PipelineItem, value);
+            get => PI.GetValue(PipelineItem);
+            set => PI.SetValue(PipelineItem, value);
         }
-        public AutoSetMode AutoSetMode => FI.GetCustomAttribute<Input>().AutoSetMode;
-        public Type Type => FI.FieldType/*.GetGenericArguments()[0]*/;
+        public AutoSetMode AutoSetMode => PI.GetCustomAttribute<Input>().AutoSetMode;
+        public Type Type => PI.PropertyType/*.GetGenericArguments()[0]*/;
         public bool IsCollectionOfFeatureDescriptors => Type.GetGenericTypeDefinition() == typeof(List<>);
-        public string FieldName => FI.Name;
+        public string PropName => PI.Name;
 
         private object PipelineItem;
-        private FieldInfo FI;
+        private PropertyInfo PI;
 
-        public PipelineInput(object PipelineItem, FieldInfo FI)
+        public PipelineInput(object PipelineItem, PropertyInfo PI)
         {
             this.PipelineItem = PipelineItem;
-            this.FI = FI;
-            if (!FI.IsPublic)//ide is kene Logger
-                throw new Exception($"Pipeline Input '{FieldName}' of '{PipelineItem.ToString()}' not public");
+            this.PI = PI;
+            if (!(PI.GetMethod.IsPublic && PI.SetMethod.IsPublic))//ide is kene Logger
+                throw new Exception($"Pipeline Input '{PropName}' of '{PipelineItem.ToString()}' not public");
         }
 
     }
@@ -41,24 +41,24 @@ namespace SigStat.Common.Pipeline
     {
         public object FD
         {
-            get => FI.GetValue(PipelineItem);
-            set => FI.SetValue(PipelineItem, value);
+            get => PI.GetValue(PipelineItem);
+            set => PI.SetValue(PipelineItem, value);
         }
-        public bool IsTemporary => FI.GetCustomAttribute<Output>().Default == null;
-        public string Default => FI.GetCustomAttribute<Output>().Default;
-        public Type Type => FI.FieldType/*.GetGenericArguments()[0]*/;
+        public bool IsTemporary => PI.GetCustomAttribute<Output>().Default == null;
+        public string Default => PI.GetCustomAttribute<Output>().Default;
+        public Type Type => PI.PropertyType/*.GetGenericArguments()[0]*/;
         public bool IsCollectionOfFeatureDescriptors => Type.GetGenericTypeDefinition() == typeof(List<>);
-        public string FieldName => FI.Name;
+        public string PropName => PI.Name;
 
         private object PipelineItem;
-        private FieldInfo FI;
+        private PropertyInfo PI;
 
-        public PipelineOutput(object PipelineItem, FieldInfo FI)
+        public PipelineOutput(object PipelineItem, PropertyInfo PI)
         {
             this.PipelineItem = PipelineItem;
-            this.FI = FI;
-            if (!FI.IsPublic)//ide is kene Logger
-                throw new Exception($"Pipeline Output '{FieldName}' of '{PipelineItem.ToString()}' not public");
+            this.PI = PI;
+            if (!(PI.GetMethod.IsPublic && PI.SetMethod.IsPublic))//ide is kene Logger
+                throw new Exception($"Pipeline Output '{PropName}' of '{PipelineItem.ToString()}' not public");
         }
 
     }

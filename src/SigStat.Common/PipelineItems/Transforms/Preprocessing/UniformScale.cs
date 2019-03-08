@@ -17,12 +17,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     public class UniformScale : PipelineBase, ITransformation
     {
         [Input]
-        //public FeatureDescriptor BaseDimension { get; set; }
-        public FeatureDescriptor BaseDimension;
+        public FeatureDescriptor<List<double>> BaseDimension { get; set; }
 
         [Input]
-        //public FeatureDescriptor ProportionalDimension { get; set; }
-        public FeatureDescriptor ProportionalDimension;
+        public FeatureDescriptor<List<double>> ProportionalDimension { get; set; }
 
         /// <summary>
         /// Lower bound of the interval, in which the base dimension will be scaled
@@ -40,12 +38,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public double NewMinProportionalValue { get; set; } = 0;
 
         [Output("UniformScaledBaseDimension")]
-        //public FeatureDescriptor BaseDimensionOutput { get; set; }
-        public FeatureDescriptor BaseDimensionOutput;
+        public FeatureDescriptor<List<double>> BaseDimensionOutput { get; set; }
 
         [Output("UniformScaledProportionalDimension")]
-        //public FeatureDescriptor ProportionalDimensionOutput { get; set; }
-        public FeatureDescriptor ProportionalDimensionOutput;
+        public FeatureDescriptor<List<double>> ProportionalDimensionOutput { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
@@ -57,8 +53,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 throw new NullReferenceException("Input or output of the proportional dimension is null");
 
 
-            List<double> baseValues = new List<double>(signature.GetFeature<List<double>>(BaseDimension).ToList());
-            List<double> propValues = new List<double>(signature.GetFeature<List<double>>(ProportionalDimension).ToList());
+            List<double> baseValues = new List<double>(signature.GetFeature(BaseDimension).ToList());
+            List<double> propValues = new List<double>(signature.GetFeature(ProportionalDimension).ToList());
 
             //find actual min and max values
             var oldMinBaseValue = baseValues.Min();

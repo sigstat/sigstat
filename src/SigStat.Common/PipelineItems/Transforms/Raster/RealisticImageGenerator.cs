@@ -23,25 +23,25 @@ namespace SigStat.Common.Transforms
     {
 
         [Input]
-        FeatureDescriptor<List<double>> X = Features.X;
+        FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
         [Input]
-        FeatureDescriptor<List<double>> Y = Features.Y;
+        FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
         [Input]
-        FeatureDescriptor<List<bool>> Button = Features.Button;
+        FeatureDescriptor<List<bool>> Button { get; set; } = Features.Button;
 
         [Input]
-        FeatureDescriptor<List<double>> Pressure = Features.Pressure;
+        FeatureDescriptor<List<double>> Pressure { get; set; } = Features.Pressure;
 
         [Input]
-        FeatureDescriptor<List<double>> Altitude = Features.Altitude;
+        FeatureDescriptor<List<double>> Altitude { get; set; } = Features.Altitude;
 
         [Input]
-        FeatureDescriptor<List<double>> Azimuth = Features.Azimuth;
+        FeatureDescriptor<List<double>> Azimuth { get; set; } = Features.Azimuth;
 
         [Output("RealisticImage")]
-        FeatureDescriptor<Image<Rgba32>> OutputImage = Features.Image;
+        FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; } = Features.Image;
 
         private readonly int w;
         private readonly int h;

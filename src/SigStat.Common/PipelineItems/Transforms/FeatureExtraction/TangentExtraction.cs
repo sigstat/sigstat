@@ -14,13 +14,13 @@ namespace SigStat.Common.Transforms
     public class TangentExtraction : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<List<double>> X = Features.X;
+        public FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
         [Input]
-        public FeatureDescriptor<List<double>> Y = Features.Y;
+        public FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
         [Output("Tangent")]
-        public FeatureDescriptor<List<double>> OutputTangent;
+        public FeatureDescriptor<List<double>> OutputTangent { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

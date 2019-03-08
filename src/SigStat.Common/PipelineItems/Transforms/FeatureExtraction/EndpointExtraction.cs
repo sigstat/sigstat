@@ -16,13 +16,13 @@ namespace SigStat.Common.Transforms
     public class EndpointExtraction : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<bool[,]> Skeleton;
+        public FeatureDescriptor<bool[,]> Skeleton { get; set; }
 
         [Output("EndPoints")]
-        public FeatureDescriptor<List<Point>> OutputEndpoints;
+        public FeatureDescriptor<List<Point>> OutputEndpoints { get; set; }
 
         [Output("CrossingPoints")]
-        public FeatureDescriptor<List<Point>> OutputCrossingPoints;
+        public FeatureDescriptor<List<Point>> OutputCrossingPoints { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

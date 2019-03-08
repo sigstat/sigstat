@@ -20,12 +20,12 @@ namespace SigStat.Common.Transforms
     public class AddVector : PipelineBase, ITransformation
     {
         [Input]
-        public List<FeatureDescriptor<List<double>>> Inputs;
-        public FeatureDescriptor<List<List<double>>> InputsFD;//aggregated
+        public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
+        public FeatureDescriptor<List<List<double>>> InputsFD { get; set; }//aggregated
 
         [Output("AddVectorOutputs")]
-        public List<FeatureDescriptor<List<double>>> Outputs;
-        public FeatureDescriptor<List<List<double>>> OutputsFD;
+        public List<FeatureDescriptor<List<double>>> Outputs { get; set; }
+        public FeatureDescriptor<List<List<double>>> OutputsFD { get; set; }
 
         private readonly FeatureDescriptor<List<double>> vectorFeature;//aggregated
 

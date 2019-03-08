@@ -25,7 +25,7 @@ namespace SigStat.Common.Transforms
         public FeatureDescriptor<bool[,]> Output { get; set; }
 
         [Output("Image")]
-        public FeatureDescriptor<Image<Rgba32>> OutputImage;
+        public FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; }
 
         public bool WriteToFile { get; set; }
 

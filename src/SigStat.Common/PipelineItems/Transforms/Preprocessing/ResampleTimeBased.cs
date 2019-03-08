@@ -13,13 +13,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public IInterpolation Interpolation { get; set; }
 
         [Input]
-        public List<FeatureDescriptor> InputFeatures;
+        public List<FeatureDescriptor> InputFeatures { get; set; }
 
         [Output("ResampledTimestamps")]
-        public List<double> ResampledTimestamps;
+        public List<double> ResampledTimestamps { get; set; }
 
         [Output]
-        public List<FeatureDescriptor> OutputFeatures;
+        public List<FeatureDescriptor> OutputFeatures { get; set; }
 
         public void Transform(Signature signature)
         {

@@ -14,13 +14,13 @@ namespace SigStat.Common.Transforms
     public class ApproximateOnlineFeatures : PipelineBase, ITransformation
     {
         [Output("Pressure")]
-        FeatureDescriptor<List<double>> OutputPressure = Features.Pressure;
+        FeatureDescriptor<List<double>> OutputPressure { get; set; } = Features.Pressure;
 
         [Output("Altitude")]
-        FeatureDescriptor<List<double>> OutputAltitude = Features.Altitude;
+        FeatureDescriptor<List<double>> OutputAltitude { get; set; } = Features.Altitude;
 
         [Output("Azimuth")]
-        FeatureDescriptor<List<double>> OutputAzimuth = Features.Azimuth;
+        FeatureDescriptor<List<double>> OutputAzimuth { get; set; } = Features.Azimuth;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

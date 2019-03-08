@@ -14,10 +14,10 @@ namespace SigStat.Common.Transforms
     public class ComponentSorter : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<List<List<PointF>>> Input;
+        public FeatureDescriptor<List<List<PointF>>> Input { get; set; }
 
         [Output("Components")]
-        public FeatureDescriptor<List<List<PointF>>> Output;
+        public FeatureDescriptor<List<List<PointF>>> Output { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

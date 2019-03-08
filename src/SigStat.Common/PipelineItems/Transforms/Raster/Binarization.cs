@@ -44,10 +44,10 @@ namespace SigStat.Common.Transforms
         }
 
         [Input]
-        public FeatureDescriptor<Image<Rgba32>> InputImage;
+        public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Output("Binarized")]
-        public FeatureDescriptor<bool[,]> OutputMask;
+        public FeatureDescriptor<bool[,]> OutputMask { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

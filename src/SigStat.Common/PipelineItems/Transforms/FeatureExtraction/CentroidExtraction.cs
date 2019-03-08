@@ -16,10 +16,10 @@ namespace SigStat.Common.Transforms
     public class CentroidExtraction : PipelineBase, ITransformation
     {
         [Input]
-        public List<FeatureDescriptor<List<double>>> Inputs;
+        public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
         [Output("Centroid")]
-        public FeatureDescriptor<List<double>> OutputCentroid;
+        public FeatureDescriptor<List<double>> OutputCentroid { get; set; }
 
         public CentroidExtraction()
         {

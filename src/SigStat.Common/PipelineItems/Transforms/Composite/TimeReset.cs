@@ -15,10 +15,10 @@ namespace SigStat.Common.Transforms
     public class TimeReset : SequentialTransformPipeline
     {
         [Input]
-        FeatureDescriptor<List<double>> Input = Features.T;
+        FeatureDescriptor<List<double>> Input { get; set; } = Features.T;
 
         [Output("T")]
-        FeatureDescriptor<List<double>> Output = Features.T;
+        FeatureDescriptor<List<double>> Output { get; set; } = Features.T;
 
         /// <summary>Initializes a new instance of the <see cref="TimeReset"/> class.</summary>
         public TimeReset()
