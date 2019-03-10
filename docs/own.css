@@ -28,10 +28,11 @@ th{
   color: #000000;
   text-transform: uppercase;
   font-family:"sans-sherif";
+  cursor: pointer
 }
 td{
   padding: 15px;
-  text-align: left;
+  text-align: center;
   vertical-align:middle;
   font-weight: 300;
   font-size: 12px;
