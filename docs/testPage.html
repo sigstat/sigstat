@@ -8,7 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
-<body>
+<body onload="sortTable(6)">
   <div class="container">
     <div class="table-responsive">
       <h1>Signature verifiers benchmark</h1>
@@ -16,12 +16,73 @@
 
 <table class="table table-bordered table-striped" id ="employee_table">
   <tr>
-    <th>Name</th>
-    <th>Age</th>
+    <th onclick="sortTable(0)">Verifier's name</th>
+    <th onclick="sortTable(1)">DB 1</th>
+    <th onclick="sortTable(2)">DB 2</th>
+    <th onclick="sortTable(3)">DB 3</th>
+    <th onclick="sortTable(4)">DB 4</th>
+    <th onclick="sortTable(5)">DB 5</th>
+    <th onclick="sortTable(6)">Total Rate (%)</th>
   </tr>
 </table>
     </div>
   </div>
+  <script>
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("employee_table");
+      switching = true;
+      //Set the sorting direction to ascending:
+      dir = "desc"; 
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          /*check if the two rows should switch place,
+          based on the direction, asc or desc:*/
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          //Each time a switch is done, increase this count by 1:
+          switchcount ++;      
+        } else {
+          /*If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again.*/
+          if (switchcount == 0 && dir == "desc") {
+            dir = "asc";
+            switching = true;
+          }
+        }
+      }
+    }
+    </script>
 </body>
 </html>
 
@@ -32,7 +93,14 @@ $(document).ready(function(){
       $.each(data, function(key,value){
           employee_data += '<tr>' ;
           employee_data += '<td>'+value.name+'</td>';
-          employee_data += '<td>'+value.age+'</td>';
+          employee_data += '<td>'+value.DB1+'%'+'</td>';
+          employee_data += '<td>'+value.DB2+'%'+'</td>';
+          employee_data += '<td>'+value.DB3+'%'+'</td>';
+          employee_data += '<td>'+value.DB4+'%'+'</td>';
+          employee_data += '<td>'+value.DB5+'%'+'</td>';
+          var sum = +value.DB1 + +value.DB2 + +value.DB3 + +value.DB4 + +value.DB5;
+          var avg = sum/5;
+          employee_data += '<td>'+avg+'%'+'</td>';
           employee_data += '</tr>';
       });
       $('#employee_table').append(employee_data);
