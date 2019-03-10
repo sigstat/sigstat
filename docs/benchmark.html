@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="own.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
 </head>
 <body>
     <div class="flex-wrapper">
@@ -20,12 +21,7 @@
                     <li><a href="download.html">DOWNLOAD</a></li>
                     <li><a href="landing.html">HOME</a></li>
                     <li>
-                        <table>
-                            <tr id=rowTable>
-                                <td><a href="landing.html"><img src="sigstat.png" alt="logo" id="imageLogo" /></a></td>
-                            </tr>
-                        </table>
-
+                    <td><a href="landing.html"><img src="sigstat.png" alt="logo" id="imageLogo" /></a></td>       
                     </li>
                 </ul>
             </div>
@@ -58,83 +54,20 @@
             </table>
                 </div>
               </div>
-              <script>
-                function sortTable(n) {
-                  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                  table = document.getElementById("employee_table");
-                  switching = true;
-                  dir = "desc"; 
-                  while (switching) {
-                    switching = false;
-                    rows = table.rows;
-                    for (i = 1; i < (rows.length - 1); i++) {
-                      shouldSwitch = false;
-                      x = rows[i].getElementsByTagName("TD")[n];
-                      y = rows[i + 1].getElementsByTagName("TD")[n];
-                      if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                          shouldSwitch= true;
-                          break;
-                        }
-                      } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                          shouldSwitch = true;
-                          break;
-                        }
-                      }
-                    }
-                    if (shouldSwitch) {
-                      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                      switching = true;
-                      switchcount ++;      
-                    } else {
-                      if (switchcount == 0 && dir == "desc") {
-                        dir = "asc";
-                        switching = true;
-                      }
-                    }
-                  }
-                }
-                </script>
+
             </body>
             </html>
-            
-            <script>
-            $(document).ready(function(){
-              $.getJSON("employee.json", function(data){
-                  var employee_data = ' ';
-                  $.each(data, function(key,value){
-                      employee_data += '<tr>' ;
-                      employee_data += '<td>'+value.name+'</td>';
-                      employee_data += '<td>'+value.DB1+'%'+'</td>';
-                      employee_data += '<td>'+value.DB2+'%'+'</td>';
-                      employee_data += '<td>'+value.DB3+'%'+'</td>';
-                      employee_data += '<td>'+value.DB4+'%'+'</td>';
-                      employee_data += '<td>'+value.DB5+'%'+'</td>';
-                      var sum = +value.DB1 + +value.DB2 + +value.DB3 + +value.DB4 + +value.DB5;
-                      var avg = (sum/5).toFixed(2);
-                      employee_data += '<td>'+avg+'%'+'</td>';
-                      employee_data += '</tr>';
-                  });
-                  $('#employee_table').append(employee_data);
-              });
-            });
-            </script>
-            
-            <script src="index.js"></script>
-
-
         </div>
         <footer>
 
             <table id="under">
                 <tr>
-                    <td align="right" style="padding : 10px"><a id="footMenu" href="#">Report Issues</a></td>
-                    <td align="left" style="padding : 10px"><a id="footMenu" target="_blank" href="https://github.com/sigstat/sigstat">GitHub</a></td>
+                    <td id ="asd" align="right" style="padding : 10px"><a id="footMenu" href="#">Report Issues</a></td>
+                    <td id ="asd" align="left" style="padding : 10px"><a id="footMenu" target="_blank" href="https://github.com/sigstat/sigstat">GitHub</a></td>
                 </tr>
                 <tr>
-                    <td align="right" style="padding : 10px"><a id="footMenu" href="#">Code of Conduct</a></td>
-                    <td align="left" style="padding : 10px"><a id="footMenu" href="#">Contribute</a></td>
+                    <td id ="asd" align="right" style="padding : 10px"><a id="footMenu" href="#">Code of Conduct</a></td>
+                    <td id ="asd" align="left" style="padding : 10px"><a id="footMenu" href="#">Contribute</a></td>
                 </tr>
             </table>
         </footer>

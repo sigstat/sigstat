@@ -179,11 +179,11 @@ h1 {
     border-width: 2px;
 }
 #imageLogo{
-    position: relative;
+    position: absolute;
     bottom: 25px;
-    top: -17px;
-    left: 0px;
-    display:block;
+    top: 12px;
+    left: 10px;
+    display: block;
     height:50px;
 }
 #rowTable{
