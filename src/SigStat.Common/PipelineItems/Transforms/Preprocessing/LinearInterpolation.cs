@@ -4,9 +4,12 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
-    public class LinearInterpolation : InterpolationBase
+    public class LinearInterpolation : IInterpolation
     {
-        public override double GetValue(double timestamp)
+        public List<double> FeatureValues { get; set; }
+        public List<double> TimeValues { get; set; }
+
+        public double GetValue(double timestamp)
         {
             if (TimeValues == null)
                 throw new NullReferenceException("List of timestamps is null");
@@ -22,9 +25,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             double v0 = 0, v1 = 0, t0 = 0, t1 = 0;
             bool isRangeFound = false;
             //TODO: itt még lehetne teljesítményt optimalizálni
-            for (int i = 0; i < TimeValues.Count - 1; i++)
+            for (int i = 0; i < TimeValues.Count - 1 && !isRangeFound; i++)
             {
-                if (TimeValues[i] < timestamp || TimeValues[i + 1] > timestamp)
+                if (TimeValues[i] < timestamp && TimeValues[i + 1] > timestamp)
                 {
                     t0 = TimeValues[i];
                     t1 = TimeValues[i + 1];
@@ -37,7 +40,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             if (!isRangeFound)
                 throw new ArgumentOutOfRangeException("The given timestamp is not in the range of TimeValues");
 
-            return v0 + (timestamp - t0) * (t1 - t0) / (v1 - v0);
+            return v0 + (timestamp - t0) * (v1 - v0) / (t1 - t0) ;
         }
     }
 }

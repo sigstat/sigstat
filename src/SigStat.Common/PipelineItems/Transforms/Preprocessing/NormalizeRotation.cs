@@ -26,25 +26,19 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         public void Transform(Signature signature)
         {
-            //TODO: ellenőrizni h meg van-e adva output
-
             var linePoints = GenerateLinearBestFit(signature, out double a, out double b);
 
             var xValues = new List<double>(signature.GetFeature(InputX));
             var yValues = new List<double>(signature.GetFeature(InputY));
 
-            var time = signature.GetFeature(Features.T);
+            var time = signature.GetFeature(InputT);
 
             var angle = CalculateAngleBetweenLines(
                 time.Min(), time.Max(), linePoints.Min(), linePoints.Max(),
                 time.Min(), time.Max(), linePoints.Min(), linePoints.Min());
-            Console.WriteLine($"angle:{angle}");
 
             double cosa = Math.Cos(angle);
             double sina = Math.Sin(angle);
-            //double cosa = (time.Max() - time.Min()) / (linePoints.Max() - linePoints.Min());
-            //double sina = (linePoints.Max() - linePoints.Min()) / (time.Max() - time.Min());
-            Console.WriteLine($"COS={cosa}, SIN={sina}");
 
             for (int i = 0; i < xValues.Count; i++)
             {

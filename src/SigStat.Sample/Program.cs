@@ -516,7 +516,7 @@ namespace SigStat.Sample
                 }
                 sw.Close();
 
-                Process.Start(outputFileName);
+                //Process.Start(outputFileName);
             }
             else if (selectedTransformation == "NormalizeRotation")
             {
@@ -524,7 +524,7 @@ namespace SigStat.Sample
                 //var xValues = signature.GetFeature(Features.X);
                 //var yValues = signature.GetFeature(Features.Y);
 
-                //double cosa = 1/Math.Sqrt(2);
+                //double cosa = 1 / Math.Sqrt(2);
                 //double sina = 1 / Math.Sqrt(2);
 
                 //for (int i = 0; i < xValues.Count; i++)
@@ -540,18 +540,26 @@ namespace SigStat.Sample
                 var originalXValues = new List<double>(signature.GetFeature(Features.X));
                 var originalYValues = new List<double>(signature.GetFeature(Features.Y));
 
-                var imggen = new RealisticImageGenerator(1280, 720)
+
+                var tfsOriginal = new SequentialTransformPipeline
                 {
-                     new UniformScale() {
+
+                    new UniformScale() {
                          BaseDimension = Features.X,
                          ProportionalDimension = Features.Y,
                          BaseDimensionOutput = Features.X,
                          ProportionalDimensionOutput =Features.Y
                      },
-                     new RealisticImageGenerator(1280, 720)
-                    Logger = new SimpleConsoleLogger()
+                    new RealisticImageGenerator(1280, 720)
                 };
-                imggen.Transform(signature);
+                tfsOriginal.Logger = new SimpleConsoleLogger();
+                tfsOriginal.Transform(signature);
+                //var imggen = new RealisticImageGenerator(1280, 720)
+                //{
+
+                //    Logger = new SimpleConsoleLogger()
+                //};
+                //imggen.Transform(signature);
                 ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
 
 
@@ -560,7 +568,6 @@ namespace SigStat.Sample
 
                 new NormalizeRotation()
                 {
-                    OutputFeatures = new List<FeatureDescriptor>()
                 }.Transform(signature);
                 var rotatedXValues = new List<double>(signature.GetFeature(Features.X));
                 var rotatedYValues = new List<double>(signature.GetFeature(Features.Y));
@@ -579,7 +586,7 @@ namespace SigStat.Sample
                 tfsRotated.Logger = new SimpleConsoleLogger();
                 tfsRotated.Transform(signature);
 
-                imggen.Transform(signature);
+                //imggen.Transform(signature);
                 ImageSaver.Save(signature, @"GeneratedOnlineImageRotated.png");
 
                 string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
@@ -595,39 +602,75 @@ namespace SigStat.Sample
             }
             else if (selectedTransformation == "ResampleTimeBased")
             {
+
+                //var imggen = new RealisticImageGenerator(1280, 720)
+                //{
+
+                //    Logger = new SimpleConsoleLogger()
+                //};
+                //imggen.Transform(signature);
+                //ImageSaver.Save(signature, @"GeneratedOnlineImageBaseSampled.png");
+
                 List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
                     new FeatureDescriptor<List<double>>[]
                     {
-                        Features.X, Features.Y, Features.T, Features.Pressure, Features.Azimuth, Features.Altitude
+                        Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
                     });
 
+                var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
                 var originalValues = new List<double>[features.Count];
                 for (int i = 0; i < features.Count; i++)
                 {
-                    originalValues[i] = new List<double>(signature.GetFeature<List<double>>(features[i]));
+                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
                 }
 
-                new ResampleTimeBased()
+                var resampler = new ResampleTimeBased()
                 {
                     InputFeatures = features,
-                    OutputFeatures = features
-                }.Transform(signature);
+                    OutputFeatures = features,
+                    TimeSlot = 100, 
+                    Interpolation = new LinearInterpolation()
+                };
+                resampler.Transform(signature);
+
+                //kisebb timeslotra mint az eredeti nem meg mert a penupot is nézi a kirajzoló
+                //imggen.Transform(signature);
+                //ImageSaver.Save(signature, @"GeneratedOnlineImageResampled.png");
 
                 var resampledValues = new List<double>[features.Count];
                 for (int i = 0; i < features.Count; i++)
                 {
-                    resampledValues[i] = new List<double>(signature.GetFeature<List<double>>(features[i]));
+                    resampledValues[i] = new List<double>(signature.GetFeature(features[i]));
                 }
 
                 string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
                 StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalX; OriginalY ; OriginalT; OriginalP ; OriginalAz; OriginalAl ;" +
-                    "ResampledX; ResampledY ; ResampledT; ResampledP ; ResampledAz; ResampledAl ");
-                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+                sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
+                    "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
+                var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
+                var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
+                var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true: false;
+                for (int i = 0; i < max; i++)
                 {
-                    sw.WriteLine(
-                        $"{originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]}; {originalValues[5][i]}" +
-                        $"{resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}; {resampledValues[5][i]}");
+                    if (i < min)
+                    {
+                        sw.WriteLine(
+                            $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+                    }
+                    else if(isOriginalMin)
+                    {
+                        sw.WriteLine(
+                            $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
+                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+                    }
+                    else
+                    {
+                        sw.WriteLine(
+                           $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+                            $"\"\";\"\";\"\";\"\";\"\";\"\" ");
+
+                    }
                 }
                 sw.Close();
 
