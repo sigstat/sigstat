@@ -131,7 +131,6 @@ namespace SigStat.Common
 
             this.LogTrace("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
-            Sampler.Init(signers);
             this.LogInformation("{signersCount} signers found. Benchmarking..", signers.Count);
             
             if (ParallelMode)
@@ -164,10 +163,9 @@ namespace SigStat.Common
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
             this.LogInformation("Benchmarking Signer {iSignerID}", iSigner.ID);
-            Func<List<Signature>, List<Signature>> signerSelector = (l) => l.Where(s => s.Signer == iSigner).ToList();
-            List<Signature> references = Sampler.SampleReferences(signerSelector);
-            List<Signature> genuineTests = Sampler.SampleGenuineTests(signerSelector);
-            List<Signature> forgeryTests = Sampler.SampleForgeryTests(signerSelector);
+            List<Signature> references = Sampler.SampleReferences(iSigner.Signatures);
+            List<Signature> genuineTests = Sampler.SampleGenuineTests(iSigner.Signatures);
+            List<Signature> forgeryTests = Sampler.SampleForgeryTests(iSigner.Signatures);
 
             try
             {

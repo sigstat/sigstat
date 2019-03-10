@@ -22,10 +22,10 @@ namespace SigStat.Common.Transforms
         //public FeatureDescriptor<double> InputValue;
 
         [Input]
-        public FeatureDescriptor<List<double>> InputList;
+        public FeatureDescriptor<List<double>> InputList { get; set; }
 
         [Output]
-        public FeatureDescriptor<List<double>> Output;
+        public FeatureDescriptor<List<double>> Output { get; set; }
 
         /// <summary> Initializes a new instance of the <see cref="Multiply"/> class with specified settings. </summary>
         /// <param name="byConst">The value to multiply the input feature by.</param>

@@ -18,10 +18,10 @@ namespace SigStat.Common.Transforms
     public class Resize : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<Image<Rgba32>> InputImage;
+        public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Output("Resized")]
-        public FeatureDescriptor<Image<Rgba32>> OutputImage;
+        public FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; }
 
         /// <summary>
         /// The new width. Leave it as null, if you do not want to explicitly specify a given width

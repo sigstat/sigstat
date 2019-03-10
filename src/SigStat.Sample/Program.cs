@@ -370,11 +370,6 @@ namespace SigStat.Sample
 
             var pipeline = new SequentialTransformPipeline
             {
-                new ParallelTransformPipeline
-                {
-                    new Normalize() { Input = Features.X },
-                    new Normalize() { Input = Features.Y }
-                },
                 new ApproximateOnlineFeatures(),
                 new RealisticImageGenerator(1280, 720),
             };
@@ -545,7 +540,7 @@ namespace SigStat.Sample
                 var originalXValues = new List<double>(signature.GetFeature(Features.X));
                 var originalYValues = new List<double>(signature.GetFeature(Features.Y));
 
-                var tfs = new SequentialTransformPipeline
+                var imggen = new RealisticImageGenerator(1280, 720)
                 {
                      new UniformScale() {
                          BaseDimension = Features.X,
@@ -554,10 +549,9 @@ namespace SigStat.Sample
                          ProportionalDimensionOutput =Features.Y
                      },
                      new RealisticImageGenerator(1280, 720)
+                    Logger = new SimpleConsoleLogger()
                 };
-                tfs.Logger = new SimpleConsoleLogger();
-                tfs.Transform(signature);
-
+                imggen.Transform(signature);
                 ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
 
 
@@ -585,6 +579,7 @@ namespace SigStat.Sample
                 tfsRotated.Logger = new SimpleConsoleLogger();
                 tfsRotated.Transform(signature);
 
+                imggen.Transform(signature);
                 ImageSaver.Save(signature, @"GeneratedOnlineImageRotated.png");
 
                 string outputFileName = selectedTransformation + "TransformationOutputTest.csv";

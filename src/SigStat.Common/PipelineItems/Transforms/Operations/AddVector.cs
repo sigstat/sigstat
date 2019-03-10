@@ -20,12 +20,10 @@ namespace SigStat.Common.Transforms
     public class AddVector : PipelineBase, ITransformation
     {
         [Input]
-        public List<FeatureDescriptor<List<double>>> Inputs;
-        public FeatureDescriptor<List<List<double>>> InputsFD;//aggregated
+        public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
-        [Output("AddVectorOutputs")]
-        public List<FeatureDescriptor<List<double>>> Outputs;
-        public FeatureDescriptor<List<List<double>>> OutputsFD;
+        [Output]
+        public List<FeatureDescriptor<List<double>>> Outputs { get; set; }
 
         private readonly FeatureDescriptor<List<double>> vectorFeature;//aggregated
 
@@ -42,16 +40,19 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            var vector = signature.GetFeature(vectorFeature);
-            var inputfeatures = signature.GetFeature(InputsFD);
-            var outputfeatures = new List<List<double>>();
+            //TODO HACK: a konstruktorban meg nem tudjuk elore, hogy hany db FD lesz, nem tudjuk ott inicializalni
+            //ezt megoldana egy Transform() elott futtatott init
+            if(Outputs==null)
+                Outputs = Inputs;
 
+            var vector = signature.GetFeature(vectorFeature);
             int dim = vector.Count;
-            if ((inputfeatures.Count) != dim)
+            if (Inputs.Count != dim || Outputs.Count != dim)
             {
                 this.LogError("Dimension mismatch");
+                throw new /*SigStatTransform*/Exception();
             }
-
+            var inputfeatures = Inputs.Select(ifd => signature.GetFeature(ifd)).ToList();
             for (int iF = 0; iF < dim; iF++)
             {
                 var listFeature = inputfeatures[iF];
@@ -59,11 +60,10 @@ namespace SigStat.Common.Transforms
                 {
                     listFeature[i] += vector[iF];
                 }
-                outputfeatures.Add(listFeature);
+
+                signature.SetFeature(Outputs[iF], listFeature);
                 Progress += 100 / dim;
             }
-
-            signature.SetFeature(OutputsFD, outputfeatures);
             Progress = 100;
         }
 

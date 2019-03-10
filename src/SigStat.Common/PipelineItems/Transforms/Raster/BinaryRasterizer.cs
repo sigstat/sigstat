@@ -21,16 +21,16 @@ namespace SigStat.Common.Transforms
     public class BinaryRasterizer : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<List<double>> InputX = Features.X;
+        public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
-        public FeatureDescriptor<List<double>> InputY = Features.Y;
+        public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Input]
-        public FeatureDescriptor<List<bool>> InputButton = Features.Button;
+        public FeatureDescriptor<List<bool>> InputButton { get; set; } = Features.Button;
 
         [Output("Binarized")]
-        public FeatureDescriptor<bool[,]> Output;
+        public FeatureDescriptor<bool[,]> Output { get; set; }
 
         private readonly int w;
         private readonly int h;

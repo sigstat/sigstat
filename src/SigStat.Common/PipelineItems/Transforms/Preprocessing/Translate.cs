@@ -17,13 +17,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
     public class TranslatePreproc : PipelineBase, ITransformation
     {
-        [Input] //TODO:hibát dob így a mainben írt teszt: <List<double>> meg kell adni!!!
-        //public FeatureDescriptor InputFeature { get; set; }
-        public FeatureDescriptor<List<double>> InputFeature;
+        [Input]
+        public FeatureDescriptor<List<double>> InputFeature { get; set; }
 
         [Output("TranslatedFeature")]
-        //public FeatureDescriptor OutputFeature { get; set; }
-        public FeatureDescriptor<List<double>> OutputFeature;
+        public FeatureDescriptor<List<double>> OutputFeature { get; set; }
 
 
         public OriginType GoalOrigin { get; set; } = OriginType.Predefined;
@@ -79,7 +77,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private void COGTransform(Signature sig)
         {
-            var translatedValues = new List<double>(sig.GetFeature<List<double>>(InputFeature));
+            var translatedValues = new List<double>(sig.GetFeature(InputFeature));
             var cog = translatedValues.Average();
             _newOrigin = cog;
 
@@ -93,7 +91,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private void ExtremaTransform(Signature sig, bool isMax)
         {
-            var translatedValues = new List<double>(sig.GetFeature<List<double>>(InputFeature));
+            var translatedValues = new List<double>(sig.GetFeature(InputFeature));
 
             var origin = isMax ? translatedValues.Max() : translatedValues.Min();
             _newOrigin = origin;
@@ -108,7 +106,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private void TranslateToPredefinedOrigin(Signature sig, double newOrigin)
         {
-            var translatedValues = new List<double>(sig.GetFeature<List<double>>(InputFeature));
+            var translatedValues = new List<double>(sig.GetFeature(InputFeature));
 
             for (int i = 0; i < translatedValues.Count; i++)
             {

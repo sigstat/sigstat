@@ -18,13 +18,13 @@ namespace SigStat.Common.Transforms
     public class Extrema : PipelineBase, ITransformation
     {
         [Input]
-        FeatureDescriptor<List<double>> Input;
+        FeatureDescriptor<List<double>> Input { get; set; }
 
         [Output("Min")]
-        FeatureDescriptor<List<double>> OutputMin;
+        FeatureDescriptor<List<double>> OutputMin { get; set; }
 
         [Output("Max")]
-        FeatureDescriptor<List<double>> OutputMax;
+        FeatureDescriptor<List<double>> OutputMax { get; set; }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

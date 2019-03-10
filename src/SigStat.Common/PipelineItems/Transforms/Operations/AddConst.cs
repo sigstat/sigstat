@@ -12,13 +12,13 @@ namespace SigStat.Common.Transforms
     public class AddConst : PipelineBase, ITransformation
     {
         [Input]
-        public FeatureDescriptor<List<double>> InputList;
+        public FeatureDescriptor<List<double>> InputList { get; set; }
 
         //[Input(AutoSetMode = AutoSetMode.Never)]
         //public FeatureDescriptor<double> InputValue;
 
         [Output]
-        public FeatureDescriptor<List<double>> Output;
+        public FeatureDescriptor<List<double>> Output { get; set; }
 
         private readonly double addValue;
 

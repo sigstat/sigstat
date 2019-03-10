@@ -18,16 +18,16 @@ namespace SigStat.Common.Transforms
     {
 
         [Input]
-        public FeatureDescriptor<List<double>> InputX = Features.X;
+        public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
-        public FeatureDescriptor<List<double>> InputY = Features.Y;
+        public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Output("X")]
-        public FeatureDescriptor<List<double>> OutputX = Features.X;
+        public FeatureDescriptor<List<double>> OutputX { get; set; } = Features.X;
 
         [Output("Y")]
-        public FeatureDescriptor<List<double>> OutputY = Features.Y;
+        public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
 
         /// <summary> Initializes a new instance of the <see cref="CentroidTranslate"/> class.</summary>
         public CentroidTranslate()

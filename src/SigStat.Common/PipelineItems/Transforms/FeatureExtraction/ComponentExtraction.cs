@@ -17,16 +17,16 @@ namespace SigStat.Common.Transforms
     {
 
         [Input]
-        public FeatureDescriptor<bool[,]> Skeleton;// = FeatureDescriptor<bool[,]>.Get("Skeleton");
+        public FeatureDescriptor<bool[,]> Skeleton { get; set; }// = FeatureDescriptor<bool[,]>.Get("Skeleton");
 
         [Input]
-        public FeatureDescriptor<List<Point>> EndPoints;// = FeatureDescriptor<List<Point>>.Get("EndPoints");
+        public FeatureDescriptor<List<Point>> EndPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("EndPoints");
 
         [Input]
-        public FeatureDescriptor<List<Point>> CrossingPoints;// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
+        public FeatureDescriptor<List<Point>> CrossingPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
 
         [Output("Components")]
-        public FeatureDescriptor<List<List<PointF>>> OutputComponents;
+        public FeatureDescriptor<List<List<PointF>>> OutputComponents { get; set; }
 
         private readonly int samplingResolution;
         private bool[,] b;

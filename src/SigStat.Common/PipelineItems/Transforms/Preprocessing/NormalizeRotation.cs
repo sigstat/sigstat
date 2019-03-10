@@ -8,8 +8,20 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     public class NormalizeRotation : PipelineBase, ITransformation
     {
-        //[Output] 
-        public List<FeatureDescriptor> OutputFeatures;
+        [Input]
+        public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
+
+        [Input]
+        public FeatureDescriptor<List<double>> InputT { get; set; } = Features.T;
+
+        [Output]
+        public FeatureDescriptor<List<double>> OutputX { get; set; } = Features.X;
+
+        [Output]
+        public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
 
 
         public void Transform(Signature signature)
@@ -18,8 +30,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             var linePoints = GenerateLinearBestFit(signature, out double a, out double b);
 
-            var xValues = signature.GetFeature(Features.X);
-            var yValues = signature.GetFeature(Features.Y);
+            var xValues = new List<double>(signature.GetFeature(InputX));
+            var yValues = new List<double>(signature.GetFeature(InputY));
 
             var time = signature.GetFeature(Features.T);
 
@@ -42,8 +54,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 yValues[i] = x * sina + y * cosa;
             }
 
-            signature.SetFeature(Features.X, xValues);
-            signature.SetFeature(Features.Y, yValues);
+            signature.SetFeature(OutputX, xValues);
+            signature.SetFeature(OutputY, yValues);
         }
 
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="own.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+<body>
+  <div class="container">
+    <div class="table-responsive">
+      <h1>Signature verifiers benchmark</h1>
+      <br />
+
+<table class="table table-bordered table-striped" id ="employee_table">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+</table>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+$(document).ready(function(){
+  $.getJSON("employee.json", function(data){
+      var employee_data = ' ';
+      $.each(data, function(key,value){
+          employee_data += '<tr>' ;
+          employee_data += '<td>'+value.name+'</td>';
+          employee_data += '<td>'+value.age+'</td>';
+          employee_data += '</tr>';
+      });
+      $('#employee_table').append(employee_data);
+  });
+});
+</script>
+
+<script src="index.js"></script>

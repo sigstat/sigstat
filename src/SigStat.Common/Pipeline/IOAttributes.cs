@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace SigStat.Common.Pipeline
 {
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class Input : System.Attribute
     {
         public AutoSetMode AutoSetMode = AutoSetMode.IfNull;
@@ -15,7 +15,7 @@ namespace SigStat.Common.Pipeline
         }
     }
 
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class Output : System.Attribute
     {
         public string Default;
