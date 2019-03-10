@@ -10,6 +10,16 @@ food: Cookie
     <title>SigStat</title>
     <link href="logo1.png" rel="shortcut icon" type="image/x-icon">
 
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse:collapse;
+        }
+        th, td {
+          padding: 5px;
+        }
+        </style>
+
 
 </head>
 <body>
@@ -18,11 +28,6 @@ food: Cookie
             <div class="navigation">
                 <ul>
                     <li><a href="aboutUs.html">ABOUT US</a></li>
-                    {% if {{page.food}} == "Pizza" %}
-                    <li><a href="#">{{page.food}}</a></li>
-                    {% else %}
-                        <li><a href="#">'asd'</a></li>
-                    {% endif %}
                     <li><a href="#">BENCHMARK</a></li>
                     <li><a href="development.html">DEVELOPMENT</a></li>
                     <li><a href="download.html">DOWNLOAD</a></li>
@@ -51,7 +56,36 @@ food: Cookie
             <br /><br /><br /><br /><br /><br /><br />
 
             <br /><br /><br /><br /><br /><br /><br />
-            <p><h1>BENCHMARK  ------  UNDER CONSTRUCTION!</h1></p>
+
+
+<table id="demo"></table>
+
+<script>
+function loadXMLDoc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xmlhttp.open("GET", "cd_catalog.xml", true);
+  xmlhttp.send();
+}
+function myFunction(xml) {
+  var i;
+  var xmlDoc = xml.responseXML;
+  var table="<tr><th>Artist</th><th>Title</th></tr>";
+  var x = xmlDoc.getElementsByTagName("CD");
+  for (i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
             <br /><br /><br /><br /><br /><br /><br />
 
             <br /><br /><br /><br /><br /><br /><br />
