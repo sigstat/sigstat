@@ -112,7 +112,7 @@
                       employee_data += '<td>'+value.DB4+'%'+'</td>';
                       employee_data += '<td>'+value.DB5+'%'+'</td>';
                       var sum = +value.DB1 + +value.DB2 + +value.DB3 + +value.DB4 + +value.DB5;
-                      var avg = sum/5;
+                      var avg = (sum/5).toFixed(2);
                       employee_data += '<td>'+avg+'%'+'</td>';
                       employee_data += '</tr>';
                   });
