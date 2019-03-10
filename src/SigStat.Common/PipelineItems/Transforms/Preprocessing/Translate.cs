@@ -17,13 +17,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
     public class TranslatePreproc : PipelineBase, ITransformation
     {
-        [Input] //TODO:hibát dob így a mainben írt teszt
+        [Input] //TODO:hibát dob így a mainben írt teszt: <List<double>> meg kell adni!!!
         //public FeatureDescriptor InputFeature { get; set; }
-        public FeatureDescriptor InputFeature;
+        public FeatureDescriptor<List<double>> InputFeature;
 
         [Output("TranslatedFeature")]
         //public FeatureDescriptor OutputFeature { get; set; }
-        public FeatureDescriptor OutputFeature;
+        public FeatureDescriptor<List<double>> OutputFeature;
 
 
         public OriginType GoalOrigin { get; set; } = OriginType.Predefined;

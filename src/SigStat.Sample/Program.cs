@@ -398,14 +398,15 @@ namespace SigStat.Sample
         static void TestPreprocessingTransformations()
         {
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"))[0];//Load the first signer only
+            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "15"))[0];//Load the first signer only
 
-            Signature signature = signer.Signatures[15];
+            Signature signature = signer.Signatures[11];
 
             //string selectedTransformation = "Translate";
             //string selectedTransformation = "UniformScale";
             //string selectedTransformation = "Scale";
-            string selectedTransformation = "NormalizeRotation";
+            //string selectedTransformation = "NormalizeRotation";
+            string selectedTransformation = "ResampleTimeBased";
 
             if (selectedTransformation == "Translate")
             {
@@ -524,20 +525,35 @@ namespace SigStat.Sample
             }
             else if (selectedTransformation == "NormalizeRotation")
             {
+                ////Deform
+                //var xValues = signature.GetFeature(Features.X);
+                //var yValues = signature.GetFeature(Features.Y);
+
+                //double cosa = 1/Math.Sqrt(2);
+                //double sina = 1 / Math.Sqrt(2);
+
+                //for (int i = 0; i < xValues.Count; i++)
+                //{
+                //    double x = xValues[i];
+                //    double y = yValues[i];
+                //    xValues[i] = x * cosa - y * sina;
+                //    yValues[i] = x * sina + y * cosa;
+                //}
+
+
                 //var originalTValues = new List<double>(signature.GetFeature(Features.T));
                 var originalXValues = new List<double>(signature.GetFeature(Features.X));
                 var originalYValues = new List<double>(signature.GetFeature(Features.Y));
 
                 var tfs = new SequentialTransformPipeline
                 {
-                    new ParallelTransformPipeline
-                    {
-                      //new Normalize() { Input = Features.T },
-                      new Normalize() { Input = Features.X },
-                     new Normalize() { Input = Features.Y }
-                    },
-                new RealisticImageGenerator(1280, 720)
-                //{X = Features.T }
+                     new UniformScale() {
+                         BaseDimension = Features.X,
+                         ProportionalDimension = Features.Y,
+                         BaseDimensionOutput = Features.X,
+                         ProportionalDimensionOutput =Features.Y
+                     },
+                     new RealisticImageGenerator(1280, 720)
                 };
                 tfs.Logger = new SimpleConsoleLogger();
                 tfs.Transform(signature);
@@ -545,7 +561,6 @@ namespace SigStat.Sample
                 ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
 
 
-                //signature.SetFeature(Features.T, new List<double>(originalTValues));
                 signature.SetFeature(Features.X, new List<double>(originalXValues));
                 signature.SetFeature(Features.Y, new List<double>(originalYValues));
 
@@ -553,21 +568,20 @@ namespace SigStat.Sample
                 {
                     OutputFeatures = new List<FeatureDescriptor>()
                 }.Transform(signature);
-                //var rotatedTValues = new List<double>(signature.GetFeature(Features.T));
                 var rotatedXValues = new List<double>(signature.GetFeature(Features.X));
                 var rotatedYValues = new List<double>(signature.GetFeature(Features.Y));
 
                 var tfsRotated = new SequentialTransformPipeline
-            {
-                new ParallelTransformPipeline
                 {
-                    //new Normalize() { Input = Features.T },
-                    new Normalize() { Input = Features.X },
-                    new Normalize() { Input = Features.Y }
-                },
-                new RealisticImageGenerator(1280, 720)
-                //{ X = Features.T }
-            };
+
+                    new UniformScale() {
+                         BaseDimension = Features.X,
+                         ProportionalDimension = Features.Y,
+                         BaseDimensionOutput = Features.X,
+                         ProportionalDimensionOutput =Features.Y
+                     },
+                    new RealisticImageGenerator(1280, 720)
+                };
                 tfsRotated.Logger = new SimpleConsoleLogger();
                 tfsRotated.Transform(signature);
 
@@ -578,11 +592,50 @@ namespace SigStat.Sample
                 sw.WriteLine("OriginalX; OriginalY; RotatedX ; RotatedY");
                 for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
                 {
-                   sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{rotatedXValues[i]};{rotatedYValues[i]}");
+                    sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{rotatedXValues[i]};{rotatedYValues[i]}");
                 }
                 sw.Close();
 
                 //Process.Start(outputFileName);
+            }
+            else if (selectedTransformation == "ResampleTimeBased")
+            {
+                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+                    new FeatureDescriptor<List<double>>[]
+                    {
+                        Features.X, Features.Y, Features.T, Features.Pressure, Features.Azimuth, Features.Altitude
+                    });
+
+                var originalValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    originalValues[i] = new List<double>(signature.GetFeature<List<double>>(features[i]));
+                }
+
+                new ResampleTimeBased()
+                {
+                    InputFeatures = features,
+                    OutputFeatures = features
+                }.Transform(signature);
+
+                var resampledValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    resampledValues[i] = new List<double>(signature.GetFeature<List<double>>(features[i]));
+                }
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalX; OriginalY ; OriginalT; OriginalP ; OriginalAz; OriginalAl ;" +
+                    "ResampledX; ResampledY ; ResampledT; ResampledP ; ResampledAz; ResampledAl ");
+                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+                {
+                    sw.WriteLine(
+                        $"{originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]}; {originalValues[5][i]}" +
+                        $"{resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}; {resampledValues[5][i]}");
+                }
+                sw.Close();
+
             }
         }
 

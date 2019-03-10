@@ -16,7 +16,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     {
         [Input]
         //public FeatureDescriptor InputFeature { get; set; }
-        public FeatureDescriptor InputFeature;
+        public FeatureDescriptor<List<double>> InputFeature;
 
         /// <summary>
         /// <para>NewMinValue: lower bound of the interval, in which the input feature will be scaled</para> 
@@ -30,7 +30,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         [Output("ScaledFeature")] // jó lenne a névhez meghivatkozni az input nevét
         //public FeatureDescriptor OutputFeature { get; set; }
-        public FeatureDescriptor OutputFeature;
+        public FeatureDescriptor<List<double>> OutputFeature;
 
 
         /// <inheritdoc/>

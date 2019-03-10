@@ -18,11 +18,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     {
         [Input]
         //public FeatureDescriptor BaseDimension { get; set; }
-        public FeatureDescriptor BaseDimension;
+        public FeatureDescriptor<List<double>> BaseDimension;
 
         [Input]
         //public FeatureDescriptor ProportionalDimension { get; set; }
-        public FeatureDescriptor ProportionalDimension;
+        public FeatureDescriptor<List<double>> ProportionalDimension;
 
         /// <summary>
         /// Lower bound of the interval, in which the base dimension will be scaled
@@ -41,11 +41,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         [Output("UniformScaledBaseDimension")]
         //public FeatureDescriptor BaseDimensionOutput { get; set; }
-        public FeatureDescriptor BaseDimensionOutput;
+        public FeatureDescriptor<List<double>> BaseDimensionOutput;
 
         [Output("UniformScaledProportionalDimension")]
         //public FeatureDescriptor ProportionalDimensionOutput { get; set; }
-        public FeatureDescriptor ProportionalDimensionOutput;
+        public FeatureDescriptor<List<double>> ProportionalDimensionOutput;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
