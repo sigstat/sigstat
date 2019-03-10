@@ -1,16 +1,13 @@
----
-food: Cookie
----
-
 <!DOCTYPE html>
 <html>
 <head>
-
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>SigStat</title>
     <link href="logo1.png" rel="shortcut icon" type="image/x-icon">
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="own.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="flex-wrapper">
@@ -40,21 +37,97 @@ food: Cookie
 
                 window.scrollTo(0, 220);
 
-            }
+        }
             </script>
 
-            <br /><br /><br /><br /><br /><br /><br />
+            <div class="container">
+                <div class="table-responsive">
+                  <h1>Signature verifiers benchmark</h1>
+                  <br />
+            
+            <table class="table table-bordered table-striped" id ="employee_table">
+              <tr>
+                <th onclick="sortTable(0)">Verifier's name</th>
+                <th onclick="sortTable(1)">DB 1</th>
+                <th onclick="sortTable(2)">DB 2</th>
+                <th onclick="sortTable(3)">DB 3</th>
+                <th onclick="sortTable(4)">DB 4</th>
+                <th onclick="sortTable(5)">DB 5</th>
+                <th onclick="sortTable(6)">Total Rate (%)</th>
+              </tr>
+            </table>
+                </div>
+              </div>
+              <script>
+                function sortTable(n) {
+                  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                  table = document.getElementById("employee_table");
+                  switching = true;
+                  dir = "desc"; 
+                  while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    for (i = 1; i < (rows.length - 1); i++) {
+                      shouldSwitch = false;
+                      x = rows[i].getElementsByTagName("TD")[n];
+                      y = rows[i + 1].getElementsByTagName("TD")[n];
+                      if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                          shouldSwitch= true;
+                          break;
+                        }
+                      } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                          shouldSwitch = true;
+                          break;
+                        }
+                      }
+                    }
+                    if (shouldSwitch) {
+                      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                      switching = true;
+                      switchcount ++;      
+                    } else {
+                      if (switchcount == 0 && dir == "desc") {
+                        dir = "asc";
+                        switching = true;
+                      }
+                    }
+                  }
+                }
+                </script>
+            </body>
+            </html>
+            
+            <script>
+            $(document).ready(function(){
+              $.getJSON("employee.json", function(data){
+                  var employee_data = ' ';
+                  $.each(data, function(key,value){
+                      employee_data += '<tr>' ;
+                      employee_data += '<td>'+value.name+'</td>';
+                      employee_data += '<td>'+value.DB1+'%'+'</td>';
+                      employee_data += '<td>'+value.DB2+'%'+'</td>';
+                      employee_data += '<td>'+value.DB3+'%'+'</td>';
+                      employee_data += '<td>'+value.DB4+'%'+'</td>';
+                      employee_data += '<td>'+value.DB5+'%'+'</td>';
+                      var sum = +value.DB1 + +value.DB2 + +value.DB3 + +value.DB4 + +value.DB5;
+                      var avg = sum/5;
+                      employee_data += '<td>'+avg+'%'+'</td>';
+                      employee_data += '</tr>';
+                  });
+                  $('#employee_table').append(employee_data);
+              });
+            });
+            </script>
+            
+            <script src="index.js"></script>
 
-            <br /><br /><br /><br /><br /><br /><br />
-            <p><h1>BENCHMARK  ------  UNDER CONSTRUCTION!</h1></p>
-            <br /><br /><br /><br /><br /><br /><br />
-
-            <br /><br /><br /><br /><br /><br /><br />
 
         </div>
         <footer>
 
-            <table id="foot">
+            <table id="under">
                 <tr>
                     <td align="right" style="padding : 10px"><a id="footMenu" href="#">Report Issues</a></td>
                     <td align="left" style="padding : 10px"><a id="footMenu" target="_blank" href="https://github.com/sigstat/sigstat">GitHub</a></td>
@@ -69,7 +142,3 @@ food: Cookie
 </body>
 </html>
 
-
-
-
-</html>

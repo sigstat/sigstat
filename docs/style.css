@@ -247,9 +247,9 @@ footer {
     flex-direction: column;
     justify-content: space-between
   }
-foot {
-    padding-right: 500px;
-    padding-left: 500px;
+#under {
+   display: flex;
+   justify-content: center;
 }
 #footMenu {
     text-decoration: none;
