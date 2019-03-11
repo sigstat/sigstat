@@ -19,6 +19,7 @@ namespace SigStat.Common.Helpers
         // Filter: 2
 
         //minta
+        //    Features: X, Y, P, a1, a2, XY, XYP, XYPA1A2
         //string config = "{sampling:  s1,s2,s3}" +
         //    " database: SVC2004, MCYT100" +
         //    "Filter: none, P" +

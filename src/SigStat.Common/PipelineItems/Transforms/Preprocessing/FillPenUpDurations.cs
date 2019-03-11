@@ -24,6 +24,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         public List<PenUpDuration> PenUpDurations { get; set; }
 
+        // Medián timeslot length alapján inicalizáljuk
         public int FillUpTimeSlot { get; set; } = 0;
 
         public IInterpolation Interpolation { get; set; }
