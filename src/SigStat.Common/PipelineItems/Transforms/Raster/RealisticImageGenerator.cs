@@ -82,19 +82,38 @@ namespace SigStat.Common.Transforms
 
             int len = xs.Count;
             List<PointF> points = new List<PointF>();
-            double maxval = 1;
+            double xmin = Double.PositiveInfinity;
+            double xmax = 1;
+            double ymin = Double.PositiveInfinity;
+            double ymax = 1;
             double minval = Double.PositiveInfinity;
+            double maxval = 1;
             xs.ForEach(x => {
-                maxval = Math.Max(maxval, x);
-                minval = Math.Min(minval, x);
+                xmin = Math.Min(xmin, x);
+                xmax = Math.Max(xmax, x);
             });
             ys.ForEach(y => {
-                maxval = Math.Max(maxval, y);
-                minval = Math.Min(minval, y);
+                ymin = Math.Min(ymin, y);
+                ymax = Math.Max(ymax, y);
             });
+            minval = Math.Min(xmin, ymin);
+            maxval = Math.Max(xmax, ymax);
+            //ha x-et w-vel, y-t pedig h-val szoroznank, akkor torzulna
+            //megtartjuk az aranyokat ugy, hogy w es h bol a kisebbiket valasztjuk (igy biztos belefer a kepbe minden)
+            int minres = Math.Min(w, h);
+            int maxres = Math.Max(w, h);
+            int frame = minres / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
             for (int i = 0; i < len; i++)
             {
-                points.Add(ToImageCoords(xs[i], ys[i], minval, maxval));
+                //convert to image coords
+                double scale = maxval - minval;
+                double mx = (xs[i] - minval) / scale;//0-1
+                double my = 1 - (ys[i] - minval) / scale;//flip y
+                double center = (maxres - minres) / 2;
+                points.Add(new PointF(
+                    (float)(frame + mx * (minres - frame * 2) + center),//add frame
+                    (float)(frame + my * (minres - frame * 2) - center)
+                ));
                 Progress = (int)(i / (double)len * 90);
             }
             DrawRealisticLines(img, points);
@@ -105,27 +124,6 @@ namespace SigStat.Common.Transforms
             signature.SetFeature(OutputImage, img);
             Progress = 100;
             this.LogInformation( "Realistic image generation done.");
-        }
-
-        private PointF ToImageCoords(double x, double y, double minval, double maxval)
-        {
-            //ha x-et w-vel, y-t pedig h-val szoroznank, akkor torzulna
-            //megtartjuk az aranyokat ugy, hogy w es h bol a kisebbiket valasztjuk (igy biztos belefer a kepbe minden)
-            int minres = Math.Min(w, h);
-
-            int frame = minres / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
-
-            double mx = (x - minval) / (maxval - minval);//0-1
-            double my = (1 - (y - minval) / (maxval - minval));
-
-            //TODO: center
-
-            //Y-okat meg kell forditani, hogy ne legyen fejjel lefele a kepen
-            //betesszuk a kep kozepere is
-            return new PointF(
-                (float)(frame + mx * (minres - frame * 2)),
-                (float)(frame + my * (minres - frame * 2))
-            );
         }
 
         private void DrawRealisticLines(Image<Rgba32> img, List<PointF> points)
