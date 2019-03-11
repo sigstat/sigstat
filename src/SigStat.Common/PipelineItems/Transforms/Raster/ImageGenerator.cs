@@ -54,7 +54,9 @@ namespace SigStat.Common.Transforms
             //default output is '{input}', '{input}Image'
             Output = Input;
             if (OutputImage == null)
+            {
                 OutputImage = FeatureDescriptor<Image<Rgba32>>.Get(Input.Name + "Image");//TODO: <T> template-es Register()
+            }
 
             bool[,] b = signature.GetFeature(Input);
             int w = b.GetLength(0);

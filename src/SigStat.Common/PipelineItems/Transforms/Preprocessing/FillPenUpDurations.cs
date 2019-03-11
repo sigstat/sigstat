@@ -31,20 +31,30 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public void Transform(Signature signature)
         {
             if (FillUpTimeSlot == 0)
+            {
                 throw new Exception("Time slot between samples filled up has to be greater than 0");
+            }
 
             if (Interpolation == null)
+            {
                 throw new NullReferenceException("Interpolation is not defined");
+            }
 
             if (InputFeatures == null)
+            {
                 throw new NullReferenceException("Input features are not defined");
+            }
 
             if (OutputFeatures == null)
+            {
                 throw new NullReferenceException("Output features are not defined");
+            }
 
 
             if (PenUpDurations == null)
+            {
                 PenUpDurations = CalculatePenUpDurations(signature);
+            }
 
             var avgPenUpDuration = CalculateAveragePenUpDuration(PenUpDurations);
 

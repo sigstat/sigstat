@@ -29,16 +29,24 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public void Transform(Signature signature)
         {
             if (NumOfSamples <= 0)
+            {
                 throw new Exception("Number of samples has to be positive");
+            }
 
             if (InputFeatures == null)
+            {
                 throw new NullReferenceException("Input features are not defined");
+            }
 
             if (OutputFeatures == null)
+            {
                 throw new NullReferenceException("Output features are not defined");
+            }
 
             if (Interpolation == null)
+            {
                 throw new NullReferenceException("Interpolation is not defined");
+            }
 
             var featureValues = new List<double>[InputFeatures.Count];
 

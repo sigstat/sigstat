@@ -12,10 +12,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public double GetValue(double timestamp)
         {
             if (TimeValues == null)
+            {
                 throw new NullReferenceException("List of timestamps is null");
+            }
 
             if (FeatureValues == null)
+            {
                 throw new NullReferenceException("List of feature values is null");
+            }
 
 
             if (TimeValues.Contains(timestamp))

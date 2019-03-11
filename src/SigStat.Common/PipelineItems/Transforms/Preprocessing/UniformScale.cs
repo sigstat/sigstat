@@ -47,10 +47,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public void Transform(Signature signature)
         {
             if (BaseDimension == null || BaseDimensionOutput == null)
+            {
                 throw new NullReferenceException("Input or output of the base dimension is null");
+            }
 
             if (ProportionalDimension == null || ProportionalDimensionOutput == null)
+            {
                 throw new NullReferenceException("Input or output of the proportional dimension is null");
+            }
 
 
             List<double> baseValues = new List<double>(signature.GetFeature(BaseDimension).ToList());

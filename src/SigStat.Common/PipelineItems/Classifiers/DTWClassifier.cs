@@ -66,11 +66,17 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 for (int j = 0; j < genuines.Count; j++)
                 {
                     if (distanceMatrix[j, i] != -1)
+                    {
                         distanceMatrix[i, j] = distanceMatrix[j, i];
+                    }
                     else if (i == j)
+                    {
                         distanceMatrix[i, j] = 0;
+                    }
                     else
+                    {
                         distanceMatrix[i, j] = dtwAlg.Compute(genuines[i], genuines[j]); ;
+                    }
                 }
             }
 
@@ -100,9 +106,13 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             // TODO: return values between 0 and 1
             if (distances.Average() > dtwModel.Threshold)
+            {
                 return 0;
+            }
             else
+            {
                 return 1;
+            }
         }
     }
 }
