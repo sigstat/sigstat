@@ -73,14 +73,6 @@
 - [<sub>DtwSignerModel</sub>](SigStat.Common.PipelineItems.Classifiers#dtwsignermodel)
 - [<sub>WeightedClassifier</sub>](SigStat.Common.PipelineItems.Classifiers#weightedclassifier)
 
-## [SigStat.Common.PipelineItems.Transforms.Preprocessing](SigStat.Common.PipelineItems.Transforms.Preprocessing)
-
-- [<sub>NormalizeRotation</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#normalizerotation)
-- [<sub>OriginType</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#origintype)
-- [<sub>Scale</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#scale)
-- [<sub>Translate</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#translate)
-- [<sub>UniformScale</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#uniformscale)
-
 ## [SigStat.Common.Transforms](SigStat.Common.Transforms)
 
 - [<sub>AddConst</sub>](SigStat.Common.Transforms#addconst)
