@@ -15,13 +15,13 @@ namespace SigStat.Common
     public class Result
     {
         /// <summary>Identifier of the <see cref="Signer"/></summary>
-        public readonly string Signer;
+        private readonly string Signer;
         /// <summary>False Rejection Rate</summary>
-        public readonly double Frr;
+        private readonly double Frr;
         /// <summary>False Acceptance Rate</summary>
-        public readonly double Far;
+        private readonly double Far;
         /// <summary>Average Error Rate</summary>
-        public readonly double Aer;
+        private readonly double Aer;
 
         //ez internal, mert csak a Benchmark keszithet uj Resultokat
         internal Result(string signer, double frr, double far, double aer)

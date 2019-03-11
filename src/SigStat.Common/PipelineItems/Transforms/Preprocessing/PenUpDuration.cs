@@ -19,7 +19,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 _startTime = value;
                 isStartInitialized = true;
                 if (isEndInitialized)
+                {
                     Length = _endTime - _startTime;
+                }
             }
         }
         public double EndTime
@@ -30,7 +32,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 _endTime = value;
                 isEndInitialized = true;
                 if (isStartInitialized)
+                {
                     Length = _endTime - _startTime;
+                }
             }
         }
 

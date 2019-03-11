@@ -25,7 +25,9 @@ namespace SigStat.Common.Model
             {
                 pipeline = value;
                 if (pipeline.Logger == null)
+                {
                     pipeline.Logger = this.Logger;
+                }
             }
         }
 

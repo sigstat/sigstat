@@ -19,14 +19,13 @@ description: An open source framework for signature verification
 baseurl: "http://sigstat.org/" # the subpath of your site, e.g. /blog
 url: "http://sigstat.org/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb #https://twitter.com/sigstatorg?
-github_username:  jekyll #isgstat?
+github_username: jekyll #isgstat?
 
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
-
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
