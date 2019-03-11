@@ -17,6 +17,12 @@ namespace SigStat.Common.Loaders
                 case "S1":
                     b.Sampler = new SVC2004Sampler();
                     break;
+                case "S2"://TODO: replace with new samplers
+                    b.Sampler = new SVC2004Sampler();
+                    break;
+                case "S3":
+                    b.Sampler = new SVC2004Sampler();
+                    break;
                 default:
                     break;
             }
@@ -26,7 +32,10 @@ namespace SigStat.Common.Loaders
                     b.Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
                     break;
                 case "MCYT100":
-                    b.Loader = new Svc2004Loader(@"Databases\Online\MCYT100\MCYT100.zip", true);
+                    b.Loader = null;//TODO: MCYTLoader
+                    break;
+                case "...":
+                    b.Loader = null;
                     break;
                 default:
                     break;
@@ -36,6 +45,7 @@ namespace SigStat.Common.Loaders
                 case "P":
                     
                     break;
+                case "None":
                 default:
                     break;
             }
@@ -47,6 +57,7 @@ namespace SigStat.Common.Loaders
                 case true:
                     pipeline.Add(new NormalizeRotation() { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y });
                     break;
+                case false:
                 default:
                     break;
             }
@@ -67,23 +78,12 @@ namespace SigStat.Common.Loaders
                     pipeline.Add(new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.X, OutputFeature = Features.X });
                     pipeline.Add(new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.Y, OutputFeature = Features.Y });
                     break;
+                case "None":
                 default:
                     break;
             }
 
-
-            switch (config.UniformScaling)
-            {
-                case "X01Y0prop":
-                    pipeline.Add(new UniformScale() { BaseDimension=Features.X, BaseDimensionOutput=Features.X, ProportionalDimension=Features.Y, ProportionalDimensionOutput=Features.Y});
-                    break;
-                case "Y01X0prop":
-                    pipeline.Add(new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X });
-                    break;
-                default:
-                    break;
-            }
-
+            //kulonbozo scale-ek kizarjak egymast, ezert osszevonhatjuk
             switch (config.Scaling)
             {
                 case "X01":
@@ -96,6 +96,13 @@ namespace SigStat.Common.Loaders
                     pipeline.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
                     pipeline.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
                     break;
+                case "X01Y0prop":
+                    pipeline.Add(new UniformScale() { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y });
+                    break;
+                case "Y01X0prop":
+                    pipeline.Add(new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X });
+                    break;
+                case "None":
                 default:
                     break;
             }
@@ -144,6 +151,7 @@ namespace SigStat.Common.Loaders
                         Interpolation = ip
                     });
                     break;
+                case "None":
                 default:
                     break;
             }
