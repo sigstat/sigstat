@@ -86,8 +86,8 @@ ul {
 ul li a {
     float : right;
     display : block;
-    color : white;
-    text-decoration : none;
+    color : white !important;
+    text-decoration : none !important;
     font-size : 20px;
     font-family : Arial;
     padding : 25px 20px;
@@ -224,8 +224,6 @@ h1 {
     vertical-align: middle;
     width: 20%;
 }
-
-
 
 footer {
     bottom: 0;
