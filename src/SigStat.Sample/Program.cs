@@ -401,7 +401,9 @@ namespace SigStat.Sample
             //string selectedTransformation = "UniformScale";
             //string selectedTransformation = "Scale";
             //string selectedTransformation = "NormalizeRotation";
-            string selectedTransformation = "ResampleTimeBased";
+            //string selectedTransformation = "ResampleTimeBased";
+            //string selectedTransformation = "ResampleSamplesCountBased";
+            string selectedTransformation = "FillPenUpDurations";
 
             if (selectedTransformation == "Translate")
             {
@@ -674,6 +676,122 @@ namespace SigStat.Sample
                 }
                 sw.Close();
 
+            }
+            else if (selectedTransformation == "ResampleSamplesCountBased")
+            {
+                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+                    new FeatureDescriptor<List<double>>[]
+                    {
+                        Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+                    });
+
+                var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
+                var originalValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+                }
+
+                var resampler = new ResampleSamplesCountBased()
+                {
+                    InputFeatures = features,
+                    OutputFeatures = features,
+                    NumOfSamples = 100,
+                    Interpolation = new LinearInterpolation()
+                };
+                resampler.Transform(signature);
+
+                var resampledValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    resampledValues[i] = new List<double>(signature.GetFeature(features[i]));
+                }
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
+                    "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
+                var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
+                var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
+                var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true : false;
+                for (int i = 0; i < max; i++)
+                {
+                    if (i < min)
+                    {
+                        sw.WriteLine(
+                            $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+                    }
+                    else if (isOriginalMin)
+                    {
+                        sw.WriteLine(
+                            $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
+                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+                    }
+                    else
+                    {
+                        sw.WriteLine(
+                           $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+                            $"\"\";\"\";\"\";\"\";\"\";\"\" ");
+
+                    }
+                }
+                sw.Close();
+
+            }
+            else if (selectedTransformation == "FillPenUpDurations")
+            {
+                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+                    new FeatureDescriptor<List<double>>[]
+                    {
+                        Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+                    });
+
+                var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
+                var originalValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+                }
+
+                var filler = new FillPenUpDurations()
+                {
+                    InputFeatures = features,
+                    OutputFeatures = features,
+                    FillUpTimeSlot = 10,
+                    Interpolation = new LinearInterpolation(),
+                };
+                filler.Transform(signature);
+
+                var filledTimestamps = new List<double>(signature.GetFeature(filler.TimeOutputFeature));
+                var filledValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    filledValues[i] = new List<double>(signature.GetFeature(features[i]));
+                }
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
+                    "FilledT; FilledX; FilledY ; FilledP ; FilledAz; FilledAl ");
+                var originalCount = signature.GetFeature(filler.TimeInputFeature).Count;
+                for (int i = 0; i < filledTimestamps.Count; i++)
+                {
+                    if (i < originalCount)
+                    {
+                        sw.WriteLine(
+                            $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+                            $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
+                    }
+                    else 
+                    {
+                        sw.WriteLine(
+                            $"\"\";\"\";\"\";\"\";\"\";\"\"; " +
+                            $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
+                    }
+                   
+                }
+                sw.Close();
             }
         }
 

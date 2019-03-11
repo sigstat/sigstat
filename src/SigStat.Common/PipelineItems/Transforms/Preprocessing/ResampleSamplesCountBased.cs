@@ -6,9 +6,9 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
-    public class ResampleTimeBased : PipelineBase, ITransformation
+    public class ResampleSamplesCountBased : PipelineBase, ITransformation
     {
-        public double TimeSlot { get; set; } = 0;
+        public int NumOfSamples { get; set; } = 0;
 
         public IInterpolation Interpolation { get; set; }
 
@@ -28,8 +28,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         public void Transform(Signature signature)
         {
-            if (TimeSlot <= 0)
-                throw new Exception("Time slot has to be positive");
+            if (NumOfSamples <= 0)
+                throw new Exception("Number of samples has to be positive");
 
             if (InputFeatures == null)
                 throw new NullReferenceException("Input features are not defined");
@@ -37,12 +37,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             if (OutputFeatures == null)
                 throw new NullReferenceException("Output features are not defined");
 
-            if(Interpolation == null)
+            if (Interpolation == null)
                 throw new NullReferenceException("Interpolation is not defined");
 
             var featureValues = new List<double>[InputFeatures.Count];
 
-            var originalTimestamps = new List<double>(signature.GetFeature<List<double>>(OriginalTFeature));
+            var originalTimestamps = new List<double>(signature.GetFeature(OriginalTFeature));
             for (int i = 0; i < InputFeatures.Count; i++)
             {
                 featureValues[i] = new List<double>(signature.GetFeature(InputFeatures[i]));
@@ -57,21 +57,22 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             Interpolation.FeatureValues = originalValues;
 
             var minTimestamp = originalTimestamps.Min();
-            var numOfSteps = (int)Math.Floor((originalTimestamps.Max() - minTimestamp) / TimeSlot);
-            var maxTimestamp = minTimestamp + numOfSteps * TimeSlot;
+            double timeSlot = (originalTimestamps.Max() - minTimestamp) / (NumOfSamples - 1);
 
-            var resampledValues = new List<double>(numOfSteps + 1);
+            var resampledValues = new List<double>(NumOfSamples);
 
-            if (ResampledTimestamps == null || ResampledTimestamps.Count != numOfSteps + 1)
+            if (ResampledTimestamps == null || ResampledTimestamps.Count != NumOfSamples)
             {
-                ResampledTimestamps = new List<double>(numOfSteps + 1);
+                ResampledTimestamps = new List<double>(NumOfSamples);
 
                 double actualTimestamp = minTimestamp;
-                while (actualTimestamp <= maxTimestamp)
+                int stepCount = 0;
+                while (stepCount < NumOfSamples)
                 {
                     ResampledTimestamps.Add(actualTimestamp);
                     resampledValues.Add(Interpolation.GetValue(actualTimestamp));
-                    actualTimestamp += TimeSlot;
+                    actualTimestamp += timeSlot;
+                    stepCount++;
                 }
             }
             else
