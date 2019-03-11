@@ -759,7 +759,8 @@ namespace SigStat.Sample
                     InputFeatures = features,
                     OutputFeatures = features,
                     FillUpTimeSlot = 10,
-                    Interpolation = new LinearInterpolation(),
+                    //Interpolation = new LinearInterpolation(),
+                    Interpolation = new CubicInterpolation()
                 };
                 filler.Transform(signature);
 
