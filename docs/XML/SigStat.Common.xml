@@ -1052,6 +1052,26 @@
         <member name="M:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <inheridoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel">
+            <summary>
+            Represents a trained model for <see cref="T:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.Threshold">
+            <summary>
+            A threshold, that will be used for classification. Signatures with
+            an average DTW distance from the genuines above this threshold will
+            be classified as forgeries
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.DistanceMatrix">
+            <summary>
+            DTW distance matrix of the signatures
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier">
             <summary>
             Classifies Signatures by weighing other Classifier results.
