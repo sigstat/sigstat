@@ -8,6 +8,7 @@ using SigStat.Common.Helpers;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Model;
 using SigStat.Common.Framework.Exceptions;
+using System.IO;
 
 namespace SigStat.Common
 {
@@ -69,6 +70,11 @@ namespace SigStat.Common
                     verifier.Logger = Logger;
                 }
             }
+        }
+
+        public void Dump(string filename)
+        {
+            File.WriteAllText(filename, DateTime.Now.ToString());
         }
 
         private ILogger logger;

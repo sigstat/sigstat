@@ -30,11 +30,19 @@ namespace SigStat.Common.Helpers
         //    "ResamplingType: none, CubicTimeSlotLength, CubicSampleCount, CubicFillPenUp, LinearTimeSlotLength, LinearSampleCount, LinearFillPenUp
         //    "Interpolation: , }";
 
-        public BenchmarkConfig FromJsonString(string jsonString)
+        public static BenchmarkConfig FromJsonString(string jsonString)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(jsonString);
         }
 
+        public string ToShortString()
+        {
+            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Where(v=>v!=null).Select(v=>v.ToString()));
+        }
+        public string ToJsonString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
         public BenchmarkConfig FromJsonFile(string path)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(File.ReadAllText(path));
@@ -138,7 +146,7 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Interpolations(List<BenchmarkConfig> l)
         {
             //csak ott kell interpolaciot allitani, ahol van resampling
-            l.Where(c=>c.ResamplingType!="None").ToList().ForEach(c => c.Interpolation = "Linear");
+            l.Where(c => c.ResamplingType != "None").ToList().ForEach(c => c.Interpolation = "Linear");
             List<string> es = new List<string>() { "Cubic" };
             var ls = es.SelectMany(e => l.Where(c => c.ResamplingType != "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {

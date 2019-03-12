@@ -32,6 +32,8 @@ namespace SigStat.Common.Helpers
         /// </summary>
         public LogLevel LogLevel { get; set; }
 
+        public event EventHandler<string> Logged;
+
         /// <summary>
         /// Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
         /// </summary>
@@ -87,7 +89,9 @@ namespace SigStat.Common.Helpers
                 default:
                     break;
             }
-            Console.WriteLine(formatter(state, exception));
+            string msg = formatter(state, exception);
+            Console.WriteLine(msg);
+            Logged?.Invoke(this, msg);
             Console.ForegroundColor = oldColor;
         }
     }
