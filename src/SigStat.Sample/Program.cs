@@ -349,7 +349,9 @@ namespace SigStat.Sample
             string path = @"Databases\Offline\Generated\";
             Directory.CreateDirectory(path);
 
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            //Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            MCYTLoader loader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip", true);
+
             List<Signer> signers = loader.EnumerateSigners(null).ToList();
 
             var pipeline = new SequentialTransformPipeline
