@@ -349,7 +349,9 @@ namespace SigStat.Sample
             string path = @"Databases\Offline\Generated\";
             Directory.CreateDirectory(path);
 
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            //Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            MCYTLoader loader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip", true);
+
             List<Signer> signers = loader.EnumerateSigners(null).ToList();
 
             var pipeline = new SequentialTransformPipeline
@@ -385,9 +387,9 @@ namespace SigStat.Sample
             //string selectedTransformation = "UniformScale";
             //string selectedTransformation = "Scale";
             //string selectedTransformation = "NormalizeRotation";
-            //string selectedTransformation = "ResampleTimeBased";
+            string selectedTransformation = "ResampleTimeBased";
             //string selectedTransformation = "ResampleSamplesCountBased";
-            string selectedTransformation = "FillPenUpDurations";
+            //string selectedTransformation = "FillPenUpDurations";
 
             if (selectedTransformation == "Translate")
             {
@@ -589,13 +591,13 @@ namespace SigStat.Sample
             else if (selectedTransformation == "ResampleTimeBased")
             {
 
-                //var imggen = new RealisticImageGenerator(1280, 720)
-                //{
+                var imggen = new RealisticImageGenerator(1280, 720)
+                {
 
-                //    Logger = new SimpleConsoleLogger()
-                //};
-                //imggen.Transform(signature);
-                //ImageSaver.Save(signature, @"GeneratedOnlineImageBaseSampled.png");
+                    Logger = new SimpleConsoleLogger()
+                };
+                imggen.Transform(signature);
+                ImageSaver.Save(signature, @"GeneratedOnlineImageBaseSampled.png");
 
                 List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
                     new FeatureDescriptor<List<double>>[]
@@ -614,14 +616,15 @@ namespace SigStat.Sample
                 {
                     InputFeatures = features,
                     OutputFeatures = features,
-                    TimeSlot = 100, 
-                    Interpolation = new LinearInterpolation()
+                    TimeSlot = 20, 
+                    Interpolation = new CubicInterpolation()
+                    //Interpolation = new LinearInterpolation()
                 };
                 resampler.Transform(signature);
 
                 //kisebb timeslotra mint az eredeti nem meg mert a penupot is nézi a kirajzoló
-                //imggen.Transform(signature);
-                //ImageSaver.Save(signature, @"GeneratedOnlineImageResampled.png");
+                imggen.Transform(signature);
+                ImageSaver.Save(signature, @"GeneratedOnlineImageResampled.png");
 
                 var resampledValues = new List<double>[features.Count];
                 for (int i = 0; i < features.Count; i++)

@@ -327,3 +327,4 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder
 .mfractor/
+/src/SigStat.Sample/Databases/Online/MCYT100/MCYT_Signature_100.zip

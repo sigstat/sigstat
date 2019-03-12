@@ -78,7 +78,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 while (actualTimestamp <= maxTimestamp)
                 {
                     ResampledTimestamps.Add(actualTimestamp);
-                    resampledValues.Add(Interpolation.GetValue(actualTimestamp));
+                    var interpolatedValue = Interpolation.GetValue(actualTimestamp); // HUGEHACK!!! P miatt
+                    resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
                     actualTimestamp += TimeSlot;
                 }
             }
@@ -86,7 +87,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             {
                 foreach (var ts in ResampledTimestamps)
                 {
-                    resampledValues.Add(Interpolation.GetValue(ts));
+                    //resampledValues.Add(Interpolation.GetValue(ts));
+                    var interpolatedValue = Interpolation.GetValue(ts); // HUGEHACK!!! P miatt
+                    resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
                 }
             }
 
