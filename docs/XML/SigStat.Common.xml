@@ -750,6 +750,9 @@
             <summary>
             Loads one signature from specified stream.
             </summary>
+            <remarks>
+            Based on Mohammad's MCYT reader.
+            </remarks>
             <param name="signature">Signature to write features to.</param>
             <param name="stream">Stream to read MCYT data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
