@@ -19,19 +19,19 @@ namespace SigStat.Common.Loaders
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("Svc2004.X");
         /// <summary>
-        /// X cooridnates from the online signature imported from the SVC2004 database
+        /// Y cooridnates from the online signature imported from the SVC2004 database
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("Svc2004.Y");
         /// <summary>
-        /// X cooridnates from the online signature imported from the SVC2004 database
+        /// T values from the online signature imported from the SVC2004 database
         /// </summary>
-        public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("Svc2004.t");
+        public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("Svc2004.T");
         /// <summary>
-        /// Y cooridnates from the online signature imported from the SVC2004 database
+        /// Button values from the online signature imported from the SVC2004 database
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> Button = FeatureDescriptor.Get<List<int>>("Svc2004.Button");
         /// <summary>
-        /// Button values from the online signature imported from the SVC2004 database
+        /// Azimuth values from the online signature imported from the SVC2004 database
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> Azimuth = FeatureDescriptor.Get<List<int>>("Svc2004.Azimuth");
         /// <summary>

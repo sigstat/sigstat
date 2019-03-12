@@ -12,10 +12,14 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Databases\Offline\Images\U1S1.png" />
+    <None Remove="Databases\Online\MCYT100\MCYT_Signature_100.zip" />
     <None Remove="Databases\Online\SVC2004\Task2.zip" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Databases\Offline\Images\U1S1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Databases\Online\MCYT100\MCYT_Signature_100.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Databases\Online\SVC2004\Task2.zip">
