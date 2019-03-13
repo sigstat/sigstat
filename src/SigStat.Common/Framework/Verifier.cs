@@ -57,6 +57,11 @@ namespace SigStat.Common.Model
         /// It's up to the classifier, whether it takes advantage of both classes</remarks>
         public virtual void Train(List<Signature> signatures)
         {
+            // TODO: centralize logger injection
+            Pipeline.Logger = this.Logger;
+            if (Classifier is ILoggerObject)
+                ((ILoggerObject)Classifier).Logger = this.Logger;
+
             if (signatures.Any(s => s.Origin != Origin.Genuine))
             {
                 //this.Warn( $"Training with a non-genuine signature.");

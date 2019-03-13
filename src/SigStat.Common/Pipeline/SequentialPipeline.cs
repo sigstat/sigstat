@@ -50,6 +50,13 @@ namespace SigStat.Common.Pipeline
             {
                 return;
             }
+
+            foreach (var item in Items)
+            {
+                if (item is ILoggerObject)
+                    ((ILoggerObject)item).Logger = this.Logger;
+            }
+
             // Do the first transformation
             Items[0].Transform(signature);
 

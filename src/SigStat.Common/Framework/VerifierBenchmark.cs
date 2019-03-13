@@ -129,6 +129,8 @@ namespace SigStat.Common
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
         {
+            // TODO: centralize logger injection
+            Verifier.Logger = logger;
             this.LogInformation("Benchmark execution started. Parallel mode: {ParallelMode}", ParallelMode);
             var results = new List<Result>();
             farAcc = 0;
