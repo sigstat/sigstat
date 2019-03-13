@@ -7,8 +7,43 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     public class FillPenUpDurations : PipelineBase, ITransformation
     {
-        [Input]
-        public FeatureDescriptor<List<bool>> PenUpInputFeature { get; set; } = Features.Button;
+        public class TimeSlot
+        {
+            private double _startTime;
+            private double _endTime;
+            private bool isStartInitialized = false;
+            private bool isEndInitialized = false;
+
+            public double StartTime
+            {
+                get => _startTime;
+                set
+                {
+                    _startTime = value;
+                    isStartInitialized = true;
+                    if (isEndInitialized)
+                    {
+                        Length = _endTime - _startTime;
+                    }
+                }
+            }
+            public double EndTime
+            {
+                get => _endTime;
+                set
+                {
+                    _endTime = value;
+                    isEndInitialized = true;
+                    if (isStartInitialized)
+                    {
+                        Length = _endTime - _startTime;
+                    }
+                }
+            }
+
+            public double Length { get; private set; }
+        }
+
 
         [Input]
         public FeatureDescriptor<List<double>> TimeInputFeature { get; set; } = Features.T;
@@ -22,22 +57,16 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
 
-        public List<PenUpDuration> PenUpDurations { get; set; }
+        public List<TimeSlot> TimeSlots { get; set; }
 
-        public int FillUpTimeSlot { get; set; } = 0;
-
-        public IInterpolation Interpolation { get; set; }
+        public Type InterpolationType { get; set; }
 
         public void Transform(Signature signature)
         {
-            if (FillUpTimeSlot == 0)
-            {
-                throw new Exception("Time slot between samples filled up has to be greater than 0");
-            }
 
-            if (Interpolation == null)
+            if (InterpolationType == null)
             {
-                throw new NullReferenceException("Interpolation is not defined");
+                throw new NullReferenceException("InterpolationType is not defined");
             }
 
             if (InputFeatures == null)
@@ -51,40 +80,42 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             }
 
 
-            if (PenUpDurations == null)
+            if (TimeSlots == null)
             {
-                PenUpDurations = CalculatePenUpDurations(signature);
+                TimeSlots = CalculateTimeSlots(signature);
             }
 
-            var avgPenUpDuration = CalculateAveragePenUpDuration(PenUpDurations);
+            var timeSlotMedian = CalculateTimeSlotsMedian(TimeSlots);
 
-            var longPenUpDurations = new List<PenUpDuration>(PenUpDurations.Count);
-            foreach (var penUpDuration in PenUpDurations)
+            var longTimeSlots = new List<TimeSlot>(TimeSlots.Count);
+            foreach (var ts in TimeSlots)
             {
-                if (penUpDuration.Length > avgPenUpDuration)
+                if (ts.Length > timeSlotMedian)
                 {
-                    longPenUpDurations.Add(penUpDuration);
+                    longTimeSlots.Add(ts);
                 }
             }
 
             var timeValues = new List<double>(signature.GetFeature(TimeInputFeature));
 
+            var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
+
             for (int i = 0; i < InputFeatures.Count; i++)
             {
                 var values = new List<double>(signature.GetFeature(InputFeatures[i]));
-                Interpolation.FeatureValues = new List<double>(values);
-                Interpolation.TimeValues = new List<double>(timeValues);
+                interpolation.FeatureValues = new List<double>(values);
+                interpolation.TimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
 
-                foreach (var penUpDuration in longPenUpDurations)
+                foreach (var ts in longTimeSlots)
                 {
-                    var actualTimestamp = penUpDuration.StartTime + FillUpTimeSlot;
-                    int actualIndex = timeValues.IndexOf(penUpDuration.StartTime) + 1;
-                    while (actualTimestamp < penUpDuration.EndTime)
+                    var actualTimestamp = ts.StartTime + timeSlotMedian;
+                    int actualIndex = timeValues.IndexOf(ts.StartTime) + 1;
+                    while (actualTimestamp < ts.EndTime)
                     {
                         if (i == 0) { timeValues.Insert(actualIndex, actualTimestamp); }
-                        values.Insert(actualIndex, Interpolation.GetValue(actualTimestamp));
+                        values.Insert(actualIndex, interpolation.GetValue(actualTimestamp));
 
-                        actualTimestamp += FillUpTimeSlot;
+                        actualTimestamp += timeSlotMedian;
                         actualIndex++;
                     }
                 }
@@ -96,33 +127,38 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         }
 
-        private double CalculateAveragePenUpDuration(List<PenUpDuration> penUpDurations)
+        private double CalculateTimeSlotsMedian(List<TimeSlot> timeSlots)
         {
-            double sum = 0;
-            foreach (var pud in penUpDurations)
+            var timeSlotsLength = new List<double>(timeSlots.Count);
+            foreach (var ts in timeSlots)
             {
-                sum += pud.Length;
+                timeSlotsLength.Add(ts.Length);
             }
+            timeSlotsLength.Sort();
 
-            return sum / penUpDurations.Count;
+            if (timeSlotsLength.Count % 2 == 0)
+            {
+                int i = (timeSlotsLength.Count / 2) - 1;
+                return (timeSlotsLength[i] + timeSlotsLength[i + 1]) / 2;
+            }
+            else
+            {
+                int i = timeSlotsLength.Count / 2;
+                return timeSlotsLength[i];
+            }
         }
 
-        //TODO: erősen SCV2004 felpítésre támaszkodó
-        private List<PenUpDuration> CalculatePenUpDurations(Signature signature)
+        private List<TimeSlot> CalculateTimeSlots(Signature signature)
         {
-            var penUpDurations = new List<PenUpDuration>();
-            var buttonStatuses = signature.GetFeature(PenUpInputFeature);
             var timesValues = signature.GetFeature(TimeInputFeature);
+            var timeSlots = new List<TimeSlot>(timesValues.Count-1);
 
-            for (int i = 1; i < buttonStatuses.Count; i++)
+            for (int i = 0; i < timesValues.Count - 1; i++)
             {
-                if (!buttonStatuses[i])
-                {
-                    penUpDurations.Add(new PenUpDuration() { StartTime = timesValues[i - 1], EndTime = timesValues[i] });
-                }
+                timeSlots.Add(new TimeSlot() { StartTime = timesValues[i], EndTime = timesValues[i + 1] });
             }
 
-            return penUpDurations;
+            return timeSlots;
         }
     }
 }

@@ -11,6 +11,11 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Databases\Online\MCYT100\**" />
+    <EmbeddedResource Remove="Databases\Online\MCYT100\**" />
+    <None Remove="Databases\Online\MCYT100\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Databases\Offline\Images\U1S1.png" />
     <None Remove="Databases\Online\SVC2004\Task2.zip" />
   </ItemGroup>

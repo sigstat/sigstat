@@ -8,6 +8,8 @@ using SigStat.Common.Helpers;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Model;
 using SigStat.Common.Framework.Exceptions;
+using System.IO;
+using SigStat.Common.PipelineItems.Classifiers;
 
 namespace SigStat.Common
 {
@@ -15,13 +17,13 @@ namespace SigStat.Common
     public class Result
     {
         /// <summary>Identifier of the <see cref="Signer"/></summary>
-        private readonly string Signer;
+        public readonly string Signer;
         /// <summary>False Rejection Rate</summary>
-        private readonly double Frr;
+        public readonly double Frr;
         /// <summary>False Acceptance Rate</summary>
-        private readonly double Far;
+        public readonly double Far;
         /// <summary>Average Error Rate</summary>
-        private readonly double Aer;
+        public readonly double Aer;
 
         //ez internal, mert csak a Benchmark keszithet uj Resultokat
         internal Result(string signer, double frr, double far, double aer)
@@ -61,14 +63,22 @@ namespace SigStat.Common
 
         private Verifier verifier;
         /// <summary> Gets or sets the <see cref="Model.Verifier"/> to be benchmarked. </summary>
-        public Verifier Verifier { get => verifier;
-            set {
+        public Verifier Verifier
+        {
+            get => verifier;
+            set
+            {
                 verifier = value;
-                if (verifier!=null)
+                if (verifier != null)
                 {
                     verifier.Logger = Logger;
                 }
             }
+        }
+
+        public void Dump(string filename)
+        {
+            File.WriteAllText(filename, DateTime.Now.ToString());
         }
 
         private ILogger logger;
@@ -123,6 +133,8 @@ namespace SigStat.Common
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
         {
+            // TODO: centralize logger injection
+            Verifier.Logger = logger;
             this.LogInformation("Benchmark execution started. Parallel mode: {ParallelMode}", ParallelMode);
             var results = new List<Result>();
             farAcc = 0;
@@ -132,7 +144,7 @@ namespace SigStat.Common
             this.LogTrace("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
             this.LogInformation("{signersCount} signers found. Benchmarking..", signers.Count);
-            
+
             if (ParallelMode)
             {
                 //Parallel.ForEach(signers, a=>benchmarkSigner(a));
@@ -166,14 +178,17 @@ namespace SigStat.Common
             List<Signature> references = Sampler.SampleReferences(iSigner.Signatures);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(iSigner.Signatures);
             List<Signature> forgeryTests = Sampler.SampleForgeryTests(iSigner.Signatures);
+            //HACK: remove this after preprocessing benchamrk
+            if (verifier.Classifier is OptimalDtwClassifier)
+                references = iSigner.Signatures;
 
             try
             {
                 Verifier.Train(references);
             }
-            catch //(VerifierTrainingException ex)
+            catch (Exception exc)
             {
-                this.LogError("Training Verifier on Signer {iSignerID} failed. Skipping..", iSigner.ID);
+                this.LogError("Training Verifier on Signer {iSignerID} failed. Skipping.." +exc, iSigner.ID);
                 pCnt += 1.0 / (cntSigners - 1);
                 Progress = (int)(pCnt * 100);
                 yield break;

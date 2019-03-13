@@ -10,7 +10,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     {
         public double TimeSlot { get; set; } = 0;
 
-        public IInterpolation Interpolation { get; set; }
+        public Type InterpolationType { get; set; }
 
         public List<double> ResampledTimestamps { get; private set; }
 
@@ -43,14 +43,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 throw new NullReferenceException("Output features are not defined");
             }
 
-            if (Interpolation == null)
+            if (InterpolationType == null)
             {
                 throw new NullReferenceException("Interpolation is not defined");
             }
 
             var featureValues = new List<double>[InputFeatures.Count];
 
-            var originalTimestamps = new List<double>(signature.GetFeature<List<double>>(OriginalTFeature));
+            var originalTimestamps = new List<double>(signature.GetFeature(OriginalTFeature));
             for (int i = 0; i < InputFeatures.Count; i++)
             {
                 featureValues[i] = new List<double>(signature.GetFeature(InputFeatures[i]));
@@ -61,8 +61,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private List<double> GenerateResampledValues(List<double> originalValues, List<double> originalTimestamps)
         {
-            Interpolation.TimeValues = originalTimestamps;
-            Interpolation.FeatureValues = originalValues;
+            var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
+            interpolation.TimeValues = originalTimestamps;
+            interpolation.FeatureValues = originalValues;
 
             var minTimestamp = originalTimestamps.Min();
             var numOfSteps = (int)Math.Floor((originalTimestamps.Max() - minTimestamp) / TimeSlot);
@@ -77,8 +78,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 double actualTimestamp = minTimestamp;
                 while (actualTimestamp <= maxTimestamp)
                 {
+                    var interpolatedValue = interpolation.GetValue(actualTimestamp); // HUGEHACK!!! P miatt
+                    resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
                     ResampledTimestamps.Add(actualTimestamp);
-                    resampledValues.Add(Interpolation.GetValue(actualTimestamp));
                     actualTimestamp += TimeSlot;
                 }
             }
@@ -86,7 +88,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             {
                 foreach (var ts in ResampledTimestamps)
                 {
-                    resampledValues.Add(Interpolation.GetValue(ts));
+                    //resampledValues.Add(Interpolation.GetValue(ts));
+                    var interpolatedValue = interpolation.GetValue(ts); // HUGEHACK!!! P miatt
+                    resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
                 }
             }
 

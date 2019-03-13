@@ -1,5 +1,6 @@
 ﻿using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
+using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using System;
 using System.Collections.Generic;
@@ -9,19 +10,55 @@ namespace SigStat.Common.Loaders
 {
     public static class BenchmarkBuilder
     {
+
+        //Elejen letrehozzuk oket: nem kell mindenkinek kulon instance, mert allapotmentesek vagyunk (ahol igen..)
+        //miert static? Mert a Builder is static. Lehetne a Buildben is letrehozni oket, de mi sokszor hivjuk meg ezt a Buildet.
+        static SVC2004Sampler svcSampler = new SVC2004Sampler();
+        //TODO: more signer samplers
+        static Svc2004Loader svcLoader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+        static MCYTLoader mcytLoader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip", true);
+        static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
+        {
+            Features.X, Features.Y, Features.Azimuth, Features.Altitude
+        };
+        static FilterPoints filterPoints = new FilterPoints()
+        {
+            InputFeatures = toFilter,
+            OutputFeatures = toFilter,
+            KeyFeatureInput = Features.Pressure,
+            KeyFeatureOutput = Features.Pressure
+        };
+        static NormalizeRotation normalizeRotation = new NormalizeRotation() { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y };
+        static TranslatePreproc cxTranslate = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X };
+        static TranslatePreproc cyTranslate = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y };
+        static TranslatePreproc blxTranslate = new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.X, OutputFeature = Features.X };
+        static TranslatePreproc blyTranslate = new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.Y, OutputFeature = Features.Y };
+        static Scale xScale = new Scale() { InputFeature = Features.X, OutputFeature = Features.X };
+        static Scale yScale = new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y };
+        static UniformScale xyUniformScale = new UniformScale() { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y };
+        static UniformScale yxUniformScale = new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X };
+        //static LinearInterpolation linearInterpolation = new LinearInterpolation();
+        //static CubicInterpolation cubicInterpolation = new CubicInterpolation(); 
+        //TODO: legyen allapotmentes a maradek is?
+
+
+
         public static VerifierBenchmark Build(BenchmarkConfig config)
         {
+
+
+
             VerifierBenchmark b = new VerifierBenchmark();
             switch (config.Sampling)
             {
                 case "S1":
-                    b.Sampler = new SVC2004Sampler();
+                    b.Sampler = svcSampler;
                     break;
                 case "S2"://TODO: replace with new samplers
-                    b.Sampler = new SVC2004Sampler();
+                    b.Sampler = svcSampler;
                     break;
                 case "S3":
-                    b.Sampler = new SVC2004Sampler();
+                    b.Sampler = svcSampler;
                     break;
                 default:
                     break;
@@ -29,78 +66,71 @@ namespace SigStat.Common.Loaders
             switch (config.Database)
             {
                 case "SVC2004":
-                    b.Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+                    b.Loader = svcLoader;
                     break;
                 case "MCYT100":
-                    b.Loader = null;//TODO: MCYTLoader
+                    b.Loader = mcytLoader;
                     break;
-                case "...":
+                case "..."://TODO: add 3rd db
                     b.Loader = null;
                     break;
-                default:
-                    break;
-            }
-            switch (config.Filter)//TODO: ez a Loader Signer filtere, vagy valami transform lesz
-            {
-                case "P":
-                    
-                    break;
-                case "None":
                 default:
                     break;
             }
 
             var pipeline = new SequentialTransformPipeline();
 
-            switch (config.Rotation)
+            switch (config.Filter)
             {
-                case true:
-                    pipeline.Add(new NormalizeRotation() { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y });
-                    break;
-                case false:
-                default:
-                    break;
-            }
-
-            switch (config.Translation)
-            {
-                case "CogToOriginX":
-                    pipeline.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
-                    break;
-                case "CogToOriginY":
-                    pipeline.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    break;
-                case "CogToOriginXY":
-                    pipeline.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
-                    pipeline.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    break;
-                case "BottomLeftToOrigin":
-                    pipeline.Add(new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.X, OutputFeature = Features.X });
-                    pipeline.Add(new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.Y, OutputFeature = Features.Y });
+                case "P":
+                    pipeline.Add(filterPoints);
                     break;
                 case "None":
                 default:
                     break;
             }
 
-            //kulonbozo scale-ek kizarjak egymast, ezert osszevonhatjuk
-            switch (config.Scaling)
+            if (config.Rotation)
+                pipeline.Add(normalizeRotation);
+
+            switch (config.TranslationScaling.Translation)
+            {
+                case "CogToOriginX":
+                    pipeline.Add(cxTranslate);
+                    break;
+                case "CogToOriginY":
+                    pipeline.Add(cyTranslate);
+                    break;
+                case "CogToOriginXY":
+                    pipeline.Add(cxTranslate);
+                    pipeline.Add(cyTranslate);
+                    break;
+                case "BottomLeftToOrigin":
+                    pipeline.Add(blxTranslate);
+                    pipeline.Add(blyTranslate);
+                    break;
+                case "None":
+                default:
+                    break;
+            }
+
+            switch (config.TranslationScaling.Scaling)
             {
                 case "X01":
-                    pipeline.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
+                    pipeline.Add(xScale);
                     break;
                 case "Y01":
-                    pipeline.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
+                    pipeline.Add(yScale);
                     break;
                 case "X01Y01":
-                    pipeline.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
-                    pipeline.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
+                    pipeline.Add(xScale);
+                    pipeline.Add(yScale);
                     break;
                 case "X01Y0prop":
-                    pipeline.Add(new UniformScale() { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y });
+                    pipeline.Add(xyUniformScale);
                     break;
                 case "Y01X0prop":
-                    pipeline.Add(new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X });
+                    pipeline.Add(yxUniformScale);
                     break;
                 case "None":
                 default:
@@ -112,15 +142,15 @@ namespace SigStat.Common.Loaders
                 Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
             };
 
-            IInterpolation ip = new LinearInterpolation();
+            Type ip;
             switch (config.Interpolation)
             {
                 case "Cubic":
-                    //ip = new CubicInterpolation();
+                    ip = typeof(CubicInterpolation);
                     break;
                 case "Linear":
                 default:
-                    ip = new LinearInterpolation();
+                    ip = typeof(LinearInterpolation);
                     break;
             }
 
@@ -130,7 +160,8 @@ namespace SigStat.Common.Loaders
                     pipeline.Add(new ResampleTimeBased() {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
-                        Interpolation = ip
+                        TimeSlot = config.ResamplingParam,
+                        InterpolationType = ip
                     });
                     break;
                 case "SampleCount":
@@ -138,8 +169,8 @@ namespace SigStat.Common.Loaders
                     {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
-                        NumOfSamples = 100,
-                        Interpolation = ip
+                        NumOfSamples = (int)config.ResamplingParam,
+                        InterpolationType = ip
                     });
                     break;
                 case "FillPenUp":
@@ -147,8 +178,7 @@ namespace SigStat.Common.Loaders
                     { 
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
-                        FillUpTimeSlot = 10,
-                        Interpolation = ip
+                        InterpolationType = ip
                     });
                     break;
                 case "None":
@@ -156,15 +186,52 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-
+            var classifier = new OptimalDtwClassifier();//TODO: csak ez?
+            classifier.Features = new List<FeatureDescriptor>();
+            switch (config.Features)
+            {
+                case "X":
+                    classifier.Features.Add(Features.X);
+                    break;
+                case "Y":
+                    classifier.Features.Add(Features.Y);
+                    break;
+                case "P":
+                    classifier.Features.Add(Features.Pressure);
+                    break;
+                case "Azimuth":
+                    classifier.Features.Add(Features.Azimuth);
+                    break;
+                case "Altitude":
+                    classifier.Features.Add(Features.Altitude);
+                    break;
+                case "XY":
+                    classifier.Features.Add(Features.X);
+                    classifier.Features.Add(Features.Y);
+                    break;
+                case "XYP":
+                    classifier.Features.Add(Features.X);
+                    classifier.Features.Add(Features.Y);
+                    classifier.Features.Add(Features.Pressure);
+                    break;
+                case "XYPAzimuthAltitude":
+                    classifier.Features.Add(Features.X);
+                    classifier.Features.Add(Features.Y);
+                    classifier.Features.Add(Features.Pressure);
+                    classifier.Features.Add(Features.Azimuth);
+                    classifier.Features.Add(Features.Altitude);
+                    break;
+                default:
+                    break;
+            }
 
             b.Verifier = new Model.Verifier()
             {
                 Pipeline = pipeline,
-                Classifier = null//
+                Classifier = classifier
             };
 
-            b.Logger = new SimpleConsoleLogger();//TODO: fajlba loggoljon
+            b.Logger = new SimpleConsoleLogger();//TODO: ezt a preprocessing benchmark adja meg?
             return b;
 
         }

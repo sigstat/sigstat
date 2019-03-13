@@ -66,7 +66,6 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             var oldMinPropValue = propValues.Min();
             var oldMaxPropValue = propValues.Max();
 
-            // newMaxProp = newMinProp + (newBaseIntervalLength / oldBaseIntervalLength) * oldPropIntervalLength
             var newMaxPropValue = NewMinProportionalValue +
                 ((NewMaxBaseValue - NewMinBaseValue) / (oldMaxBaseValue - oldMinBaseValue)) * (oldMaxPropValue - oldMinPropValue);
 

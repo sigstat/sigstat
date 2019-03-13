@@ -55,8 +55,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private List<double> GenerateLinearBestFit(Signature sig, out double a, out double b)
         {
-            var tValues = new List<double>(sig.GetFeature(Features.T));
-            var yValues = new List<double>(sig.GetFeature(Features.Y));
+            var tValues = new List<double>(sig.GetFeature(InputT));
+            var yValues = new List<double>(sig.GetFeature(InputY));
 
             int numPoints = yValues.Count;
             double meanT = tValues.Average();
