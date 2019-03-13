@@ -141,6 +141,7 @@ namespace SigStat.Common.Loaders
                     pipeline.Add(new ResampleTimeBased() {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
+                        TimeSlot = config.ResamplingParam,
                         Interpolation = ip
                     });
                     break;
@@ -149,7 +150,7 @@ namespace SigStat.Common.Loaders
                     {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
-                        NumOfSamples = 100,
+                        NumOfSamples = (int)config.ResamplingParam,
                         Interpolation = ip
                     });
                     break;

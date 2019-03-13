@@ -9,13 +9,12 @@ namespace SigStat.Common.Helpers
 {
     public class BenchmarkConfig
     {
-        // 32256 = 8*3*3*16*2*7*2
+        // 26112 = 8*3*16*2*17*2
         // Features: 8
         // Sampling: 3
-        // DB: 3
         // Translation+Scaling: 16
         // Rotation: 2
-        // Resampling+Interpolation: 7
+        // DB+Resampling+Interpolation: 17
         // Filter: 2
 
         //minta
@@ -39,10 +38,12 @@ namespace SigStat.Common.Helpers
         {
             return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Where(v=>v!=null).Select(v=>v.ToString()));
         }
+
         public string ToJsonString()
         {
             return JsonConvert.SerializeObject(this);
         }
+
         public BenchmarkConfig FromJsonFile(string path)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(File.ReadAllText(path));
@@ -52,7 +53,7 @@ namespace SigStat.Common.Helpers
         {
             List<BenchmarkConfig> l = new List<BenchmarkConfig>();
             l.Add(new BenchmarkConfig());
-            l = Samplers(Databases(Filters(Rotations(TranslationScalings(Interpolations(ResamplingTypes(SetFeatures(l))))))));
+            l = Samplers(Interpolations(ResamplingTypes(Databases(Filters(Rotations(TranslationScalings(SetFeatures(l))))))));
             return l;
         }
 
@@ -74,7 +75,7 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Database = "SCV2004");
+            l.ForEach(c => c.Database = "SVC2004");
             List<string> es = new List<string>() { "MCYT100", "..." };
             var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
             {
@@ -142,12 +143,51 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> ResamplingTypes(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.ResamplingType = "None");
-            List<string> es = new List<string>() { "TimeSlot", "SampleCount", "FillPenUp" };
-            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+
+            //db tol fugg, hogy milyen resampling
+            //svc: SampleCount, FillPenUp
+            //mcyt: SampleCount, TimeSlot, FillPenUp
+
+            //downsample svc
+            var ls = l.Where(c => c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
-                ResamplingType = e
-            })).ToList();
+                ResamplingType = "SampleCount",
+                ResamplingParam = 125
+            });
             l.AddRange(ls);
+
+            //upsample svc
+            var ls2 = l.Where(c => c.Database == "SVC2004" && c.ResamplingType == "SampleCount").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingParam = 500
+            });
+            l.AddRange(ls2);
+
+            //downsample mcyt
+            var ls3 = l.Where(c => c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType = "SampleCount",
+                ResamplingParam = 50
+            });
+            l.AddRange(ls3);
+
+            //upsample mcyt
+            var ls4 = l.Where(c => c.Database == "MCYT100" && c.ResamplingType == "SampleCount").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingParam = 200
+            });
+            l.AddRange(ls4);
+
+            //fillpenup mindenkinek
+            var ls5 = l.Where(c => c.ResamplingType == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType = "FillPenUp"
+            });
+            l.AddRange(ls5);
+
+            //TODO: kell TimeSlotLength MCYT-nek?
+            //
+
             return l;
         }
 
@@ -185,6 +225,7 @@ namespace SigStat.Common.Helpers
             Rotation = c.Rotation;
             TranslationScaling = c.TranslationScaling;
             ResamplingType = c.ResamplingType;
+            ResamplingParam = c.ResamplingParam;
             Interpolation = c.Interpolation;
             Features = c.Features;
         }
@@ -194,6 +235,7 @@ namespace SigStat.Common.Helpers
         public string Filter { get; set; }
         public bool Rotation { get; set; }
         public string ResamplingType { get; set; }
+        public double ResamplingParam { get; set; }
         public string Interpolation { get; set; }
         public string Features { get; set; }
         public (string Translation,string Scaling) TranslationScaling { get; set; }
