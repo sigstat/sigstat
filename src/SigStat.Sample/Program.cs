@@ -15,6 +15,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace SigStat.Sample
 {
@@ -51,8 +52,11 @@ namespace SigStat.Sample
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
             //OnlineVerifierBenchmarkDemo();
-            PreprocessingBenchmarkDemo();
-            TestPreprocessingTransformations();
+            //PreprocessingBenchmarkDemo();
+            //TestPreprocessingTransformations();
+            //JsonSerializeSignature();
+            //JsonSerializeOnlineVerifier();
+            //DeserializeOnlineVerifier();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -321,7 +325,7 @@ namespace SigStat.Sample
 
             var result = benchmark.Execute();
 
-            Console.WriteLine($"AER: {result.FinalResult.Aer}");
+            //Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
         static void OnlineToImage()
@@ -780,8 +784,150 @@ namespace SigStat.Sample
             }
         }
 
+        static void JsonSerializeSignature()
+        {
+            // Create a signature instance and initialize main properties
+            Signature sig = new Signature();
+            sig.ID = "Demo";
+            sig.Origin = Origin.Genuine;
 
+            // Set/Get feature value, using a string key
+            sig["Height"] = 5;
+            var height = (int)sig["Height"];
 
+            // Set/Get feature value, using a generic method and a sting key
+            sig.SetFeature<int>("Height", 5);
+            height = sig.GetFeature<int>("Height");
+
+            // Register a feature descriptor
+            FeatureDescriptor<int> heightDescriptor = FeatureDescriptor.Get<int>("Height");
+
+            // Set/Get feature value, using a generic feature descriptor
+            // Note that no casting is required!
+            sig.SetFeature(heightDescriptor, 5);
+            height = sig.GetFeature(heightDescriptor);
+
+            // Define complex feature values
+            var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
+
+            // Reusing feature descriptors (see MyFeatures class for details)
+            sig.SetFeature(MyFeatures.Loop, loops);
+            loops = sig.GetFeature(MyFeatures.Loop);
+
+            string json = JsonConvert.SerializeObject(sig,Formatting.Indented);
+            Console.WriteLine(json);
+
+            Signature desirializedSig = JsonConvert.DeserializeObject<Signature>(json);
+            foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
+            {
+                if (!descriptor.IsCollection)
+                {
+                    Console.WriteLine($"{descriptor.Name}: {sig[descriptor]}");
+                }
+                else
+                {
+                    Console.WriteLine($"{descriptor}:");
+                    var items = (IList)sig[descriptor];
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        Console.WriteLine($" {i}.) {items[i]}");
+                    }
+                }
+            }
+        }
+
+        static void JsonSerializeOnlineVerifier()
+        {
+            var onlineverifier = new Verifier(new SimpleConsoleLogger())
+            {
+                Pipeline = new SequentialTransformPipeline
+                {
+                    new ParallelTransformPipeline
+                    {
+                        new Normalize() { Input = Features.Pressure },
+                        new Map(0, 1) { Input = Features.X },
+                        new Map(0, 1) { Input = Features.Y },
+                        //new TimeReset(),
+                    },
+                    //new CentroidTranslate(),//is a sequential pipeline of other building blocks
+                    new TangentExtraction(),
+                    /*new AlignmentNormalization(Alignment.Origin),
+                    new Paper13FeatureExtractor(),*/
+
+                },
+                Classifier = new WeightedClassifier
+                {
+                    {
+                        (new DtwClassifier(Accord.Math.Distance.Manhattan)
+                        {
+                            InputFeatures = { Features.X, Features.Y }
+                        },
+                           0.15)
+                    },
+                    {
+                        (new DtwClassifier(){
+                            InputFeatures = { Features.Pressure }
+                        }, 0.3)
+                    },
+                    {
+                        (new DtwClassifier(){
+                            InputFeatures = { MyFeatures.Tangent }
+                        }, 0.55)
+                    },
+                }
+            };
+            File.WriteAllText(@"serialized.txt", JsonConvert.SerializeObject(onlineverifier, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            }));
+
+            Console.WriteLine(onlineverifier.ToString());
+            Console.WriteLine("\t" + onlineverifier.Pipeline.ToString());
+            foreach (var item in onlineverifier.Pipeline)
+            {
+                Console.WriteLine("\t\t" + item.ToString());
+                if ((item.GetType().GetMember("Items")).Length > 0)
+                {
+                    foreach (var item2 in ((ParallelTransformPipeline)item).Items)
+                    {
+                        Console.WriteLine("\t\t\t" + item2.ToString());
+                    }
+                }
+            }
+            Console.WriteLine("\t" + onlineverifier.Classifier.ToString());
+            foreach (var item in ((WeightedClassifier)onlineverifier.Classifier).Items)
+            {
+                Console.WriteLine("\t\t" + item.ToString());
+            }
+
+        }
+        
+        static void DeserializeOnlineVerifier()
+        {
+            Verifier desirializedOV = JsonConvert.DeserializeObject<Verifier>(File.ReadAllText(@"serialized.txt"), new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter() }
+            });
+            Console.WriteLine(desirializedOV.ToString());
+            Console.WriteLine("\t" + desirializedOV.Pipeline.ToString());
+            foreach(var item in desirializedOV.Pipeline)
+            {
+                Console.WriteLine("\t\t" + item.ToString());
+                if ((item.GetType().GetMember("Items")).Length > 0) {
+                    foreach (var item2 in ((ParallelTransformPipeline)item).Items)
+                    {
+                        Console.WriteLine("\t\t\t" + item2.ToString());
+                    }
+                }
+            }
+            Console.WriteLine("\t" + desirializedOV.Classifier.ToString());
+            foreach (var item in ((WeightedClassifier)desirializedOV.Classifier).Items)
+            {
+                Console.WriteLine("\t\t" + item.ToString());
+            }
+
+        }
 
         static int primaryP = 0;
         static int secondaryP = 0;
