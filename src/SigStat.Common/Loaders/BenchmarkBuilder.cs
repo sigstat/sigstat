@@ -1,5 +1,6 @@
 ﻿using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
+using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using System;
 using System.Collections.Generic;
@@ -32,25 +33,35 @@ namespace SigStat.Common.Loaders
                     b.Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
                     break;
                 case "MCYT100":
-                    b.Loader = null;//TODO: MCYTLoader
+                    b.Loader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip", true);
                     break;
-                case "...":
+                case "..."://TODO: add 3rd db
                     b.Loader = null;
                     break;
                 default:
                     break;
             }
-            switch (config.Filter)//TODO: ez a Loader Signer filtere, vagy valami transform lesz
+
+            var pipeline = new SequentialTransformPipeline();
+
+            var toFilter = new List<FeatureDescriptor<List<double>>>()
+            {
+                Features.X, Features.Y, Features.Azimuth, Features.Altitude
+            };
+            switch (config.Filter)
             {
                 case "P":
-                    
+                    pipeline.Add(new FilterPoints() {
+                        InputFeatures = toFilter,
+                        OutputFeatures = toFilter,
+                        KeyFeatureInput = Features.Pressure,
+                        KeyFeatureOutput = Features.Pressure
+                    });
                     break;
                 case "None":
                 default:
                     break;
             }
-
-            var pipeline = new SequentialTransformPipeline();
 
             switch (config.Rotation)
             {
@@ -116,7 +127,7 @@ namespace SigStat.Common.Loaders
             switch (config.Interpolation)
             {
                 case "Cubic":
-                    //ip = new CubicInterpolation();
+                    ip = new CubicInterpolation();
                     break;
                 case "Linear":
                 default:
@@ -155,15 +166,52 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-
+            var classifier = new OptimalDtwClassifier();//TODO: csak ez?
+            classifier.Features = new List<FeatureDescriptor>();
+            switch (config.Features)
+            {
+                case "X":
+                    classifier.Features.Add(Features.X);
+                    break;
+                case "Y":
+                    classifier.Features.Add(Features.Y);
+                    break;
+                case "P":
+                    classifier.Features.Add(Features.Pressure);
+                    break;
+                case "Azimuth":
+                    classifier.Features.Add(Features.Azimuth);
+                    break;
+                case "Altitude":
+                    classifier.Features.Add(Features.Altitude);
+                    break;
+                case "XY":
+                    classifier.Features.Add(Features.X);
+                    classifier.Features.Add(Features.Y);
+                    break;
+                case "XYP":
+                    classifier.Features.Add(Features.X);
+                    classifier.Features.Add(Features.Y);
+                    classifier.Features.Add(Features.Pressure);
+                    break;
+                case "XYPAzimuthAltitude":
+                    classifier.Features.Add(Features.X);
+                    classifier.Features.Add(Features.Y);
+                    classifier.Features.Add(Features.Pressure);
+                    classifier.Features.Add(Features.Azimuth);
+                    classifier.Features.Add(Features.Altitude);
+                    break;
+                default:
+                    break;
+            }
 
             b.Verifier = new Model.Verifier()
             {
                 Pipeline = pipeline,
-                Classifier = null//
+                Classifier = classifier
             };
 
-            b.Logger = new SimpleConsoleLogger();//TODO: fajlba loggoljon
+            b.Logger = new SimpleConsoleLogger();//TODO: ezt a preprocessing benchmark adja meg?
             return b;
 
         }

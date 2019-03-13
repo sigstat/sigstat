@@ -9,7 +9,8 @@ namespace SigStat.Common.Helpers
 {
     public class BenchmarkConfig
     {
-        // 7560 = 3*3*5*6*2*7*2
+        // 60480 = 8*3*3*5*6*2*7*2
+        // Features: 8
         // Sampling: 3
         // DB: 3
         // Translation: 5
@@ -52,8 +53,7 @@ namespace SigStat.Common.Helpers
         {
             List<BenchmarkConfig> l = new List<BenchmarkConfig>();
             l.Add(new BenchmarkConfig());
-            //l = Samplers(Databases(Filters(Rotations(Translations(Scalings(Interpolations(ResamplingTypes(l))))))));
-            l = Samplers(Databases(Filters(Rotations(Translations(Scalings(Interpolations(ResamplingTypes(l))))))));
+            l = Samplers(Databases(Filters(Rotations(Translations(Scalings(Interpolations(ResamplingTypes(SetFeatures(l)))))))));
             return l;
         }
 
@@ -156,6 +156,18 @@ namespace SigStat.Common.Helpers
             return l;
         }
 
+        private static List<BenchmarkConfig> SetFeatures(List<BenchmarkConfig> l)
+        {
+            l.ForEach(c => c.Features = "XYPAzimuthAltitude");
+            List<string> es = new List<string>() { "X", "Y", "P", "Azimuth", "Altitude", "XY", "XYP" };
+            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Features = e
+            })).ToList();
+            l.AddRange(ls);
+            return l;
+        }
+
         public BenchmarkConfig() { }
         public BenchmarkConfig(BenchmarkConfig c)
         {
@@ -167,6 +179,7 @@ namespace SigStat.Common.Helpers
             Scaling = c.Scaling;
             ResamplingType = c.ResamplingType;
             Interpolation = c.Interpolation;
+            Features = c.Features;
         }
 
         public string Sampling { get; set; }
@@ -177,6 +190,7 @@ namespace SigStat.Common.Helpers
         public string Scaling { get; set; }
         public string ResamplingType { get; set; }
         public string Interpolation { get; set; }
+        public string Features { get; set; }
 
     }
 }
