@@ -27,7 +27,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         public double NewMaxValue { get; set; } = 1;
 
-        [Output("ScaledFeature")] // jó lenne a névhez meghivatkozni az input nevét
+        [Output("ScaledFeature")]
         public FeatureDescriptor<List<double>> OutputFeature { get; set; }
 
 

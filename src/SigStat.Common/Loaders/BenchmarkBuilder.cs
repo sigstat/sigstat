@@ -147,7 +147,6 @@ namespace SigStat.Common.Loaders
                     { 
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
-                        FillUpTimeSlot = 10,
                         Interpolation = ip
                     });
                     break;

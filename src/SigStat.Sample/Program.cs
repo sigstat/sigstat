@@ -63,7 +63,7 @@ namespace SigStat.Sample
             var configs = BenchmarkConfig.GenerateConfigurations();
             //var config = BenchmarkConfig.FromJsonFile(path);
             var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
-            
+
         }
 
         public static void SignatureDemo()
@@ -390,6 +390,7 @@ namespace SigStat.Sample
             string selectedTransformation = "ResampleTimeBased";
             //string selectedTransformation = "ResampleSamplesCountBased";
             //string selectedTransformation = "FillPenUpDurations";
+            //string selectedTransformation = "FilterPoints";
 
             if (selectedTransformation == "Translate")
             {
@@ -616,7 +617,7 @@ namespace SigStat.Sample
                 {
                     InputFeatures = features,
                     OutputFeatures = features,
-                    TimeSlot = 20, 
+                    TimeSlot = 20,
                     Interpolation = new CubicInterpolation()
                     //Interpolation = new LinearInterpolation()
                 };
@@ -638,7 +639,7 @@ namespace SigStat.Sample
                     "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
                 var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
                 var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
-                var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true: false;
+                var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true : false;
                 for (int i = 0; i < max; i++)
                 {
                     if (i < min)
@@ -647,7 +648,7 @@ namespace SigStat.Sample
                             $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
                             $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
                     }
-                    else if(isOriginalMin)
+                    else if (isOriginalMin)
                     {
                         sw.WriteLine(
                             $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
@@ -683,8 +684,9 @@ namespace SigStat.Sample
                 {
                     InputFeatures = features,
                     OutputFeatures = features,
-                    NumOfSamples = 100,
-                    Interpolation = new LinearInterpolation()
+                    NumOfSamples = 500,
+                    //Interpolation = new LinearInterpolation()
+                    Interpolation = new CubicInterpolation()
                 };
                 resampler.Transform(signature);
 
@@ -745,7 +747,6 @@ namespace SigStat.Sample
                 {
                     InputFeatures = features,
                     OutputFeatures = features,
-                    FillUpTimeSlot = 10,
                     //Interpolation = new LinearInterpolation(),
                     Interpolation = new CubicInterpolation()
                 };
@@ -771,13 +772,67 @@ namespace SigStat.Sample
                             $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
                             $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
                     }
-                    else 
+                    else
                     {
                         sw.WriteLine(
                             $"\"\";\"\";\"\";\"\";\"\";\"\"; " +
                             $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
                     }
-                   
+
+                }
+                sw.Close();
+            }
+            else if (selectedTransformation == "FilterPoints")
+            {
+                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+                    new FeatureDescriptor<List<double>>[]
+                    {
+                        Features.X, Features.Y, Features.Azimuth, Features.Altitude
+                    });
+
+                var originalPressureValues = new List<double>(signature.GetFeature(Features.Pressure));
+                var originalValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+                }
+
+                var filter = new FilterPoints()
+                {
+                    InputFeatures = features,
+                    OutputFeatures = features,
+                    KeyFeatureInput = Features.Pressure,
+                    KeyFeatureOutput = Features.Pressure
+                };
+                filter.Transform(signature);
+
+                var filteredPressureValues = new List<double>(signature.GetFeature(filter.KeyFeatureInput));
+                var filteredValues = new List<double>[features.Count];
+                for (int i = 0; i < features.Count; i++)
+                {
+                    filteredValues[i] = new List<double>(signature.GetFeature(features[i]));
+                }
+
+                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+                StreamWriter sw = new StreamWriter(outputFileName);
+                sw.WriteLine("OriginalP; OriginalX; OriginalY ; OriginalAz; OriginalAl ;" +
+                    "FilteredP ; FilteredX; FilteredY ;  FilteredAz; FilteredAl ");
+                var filteredCount = filteredPressureValues.Count;
+                for (int i = 0; i < originalPressureValues.Count; i++)
+                {
+                    if (i < filteredCount)
+                    {
+                        sw.WriteLine(
+                            $"{originalPressureValues[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};" +
+                            $"{filteredPressureValues[i]}; {filteredValues[0][i]};{filteredValues[1][i]};{filteredValues[2][i]};{filteredValues[3][i]}");
+                    }
+                    else
+                    {
+                        sw.WriteLine(
+                            $"{originalPressureValues[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};" +
+                            $"\"\";\"\";\"\";\"\";\"\";\"\" ");
+                    }
+
                 }
                 sw.Close();
             }

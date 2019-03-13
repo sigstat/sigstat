@@ -50,7 +50,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             var featureValues = new List<double>[InputFeatures.Count];
 
-            var originalTimestamps = new List<double>(signature.GetFeature<List<double>>(OriginalTFeature));
+            var originalTimestamps = new List<double>(signature.GetFeature(OriginalTFeature));
             for (int i = 0; i < InputFeatures.Count; i++)
             {
                 featureValues[i] = new List<double>(signature.GetFeature(InputFeatures[i]));
@@ -77,9 +77,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 double actualTimestamp = minTimestamp;
                 while (actualTimestamp <= maxTimestamp)
                 {
-                    ResampledTimestamps.Add(actualTimestamp);
                     var interpolatedValue = Interpolation.GetValue(actualTimestamp); // HUGEHACK!!! P miatt
                     resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
+                    ResampledTimestamps.Add(actualTimestamp);
                     actualTimestamp += TimeSlot;
                 }
             }

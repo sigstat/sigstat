@@ -6,7 +6,6 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
-    //TODO: ezt az enumot nem szeretem h itt van
     public enum OriginType
     {
         CenterOfGravity,

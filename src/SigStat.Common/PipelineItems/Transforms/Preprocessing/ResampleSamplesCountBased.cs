@@ -75,10 +75,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
                 double actualTimestamp = minTimestamp;
                 int stepCount = 0;
-                while (stepCount < NumOfSamples)
+                while (stepCount < NumOfSamples - 1)
                 {
-                    ResampledTimestamps.Add(actualTimestamp);
                     resampledValues.Add(Interpolation.GetValue(actualTimestamp));
+                    ResampledTimestamps.Add(actualTimestamp);
                     actualTimestamp += timeSlot;
                     stepCount++;
                 }

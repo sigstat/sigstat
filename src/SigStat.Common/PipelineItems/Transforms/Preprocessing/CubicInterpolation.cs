@@ -50,16 +50,16 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             double t3 = t * t * t;
 
             //expanded
-            //var h00 = 2 * t3 - 3 * tSquare + 1;
-            //var h10 = t3 - 2 * tSquare + t;
-            //var h01 = -2 * t3 + 3 * tSquare;
-            //var h11 = t3 - tSquare;
+            var h00 = 2 * t3 - 3 * tSquare + 1;
+            var h10 = t3 - 2 * tSquare + t;
+            var h01 = -2 * t3 + 3 * tSquare;
+            var h11 = t3 - tSquare;
 
             //factorized
-            var h00 = (1 + 2 * t) * (1 - t) * (1 - t);
-            var h10 = t * (1 - t) * (1 - t);
-            var h01 = t * t * (3 - 2 * t);
-            var h11 = t * t * (t - 1);
+            //var h00 = (1 + 2 * t) * (1 - t) * (1 - t);
+            //var h10 = t * (1 - t) * (1 - t);
+            //var h01 = t * t * (3 - 2 * t);
+            //var h11 = t * t * (t - 1);
 
             var m0 = (1 / 2.0) * ((v1 - v0) / (t1 - t0) + (v0 - v_1) / (t0 - t_1));
             var m1 = (1 / 2.0) * ((v2 - v1) / (t2 - t1) + (v1 - v0) / (t1 - t0));
