@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,9 @@ namespace SigStat.Common
     /// <typeparam name="T">Type of the feature.</typeparam>
     public class FeatureDescriptor<T> : FeatureDescriptor
     {
+        [JsonConstructor]
         private FeatureDescriptor(string name, string key, Type featureType) : base(name, key, featureType) { }
+
         private FeatureDescriptor(string name, string key) : base(name, key, typeof(T)) { }
 
         private static object syncRoot = new object();

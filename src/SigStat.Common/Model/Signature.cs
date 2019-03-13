@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SigStat.Common
 {
@@ -13,12 +14,16 @@ namespace SigStat.Common
     public class Signature
     {
         /// <summary>An identifier for the Signature. Keep it unique to be useful for logs. </summary>
+        [JsonProperty(Order =1)]
         public string ID { get; set; }
         /// <summary>Represents our knowledge on the origin of the signature. <see cref="Origin.Unknown"/> may be used in practice before it is verified.</summary>
+        [JsonProperty(Order = 2)]
         public Origin Origin { get; set; }
         /// <summary>A reference to the <see cref="Common.Signer"/> who this signature belongs to. (The origin is not constrained to be genuine.)</summary>
+        [JsonProperty(Order = 3)]
         public Signer Signer { get; set; }
 
+        [JsonProperty(Order = 4)]
         private readonly ConcurrentDictionary<string, object> features = new ConcurrentDictionary<string, object>();
 
 

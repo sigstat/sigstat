@@ -5,15 +5,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
     /// <summary>
     /// Classifies Signatures by weighing other Classifier results.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class WeightedClassifier : PipelineBase, IEnumerable, IClassifier
     {
         /// <summary>List of classifiers and belonging weights.</summary>
+        [JsonProperty]
         public List<(IClassifier classifier, double weight)> Items = new List<(IClassifier classifier, double weight)>();
 
         /// <inheritdoc/>

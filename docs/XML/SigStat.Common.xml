@@ -1566,9 +1566,6 @@
             <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
-            <summary>List of transforms to be run in sequence.</summary>
-        </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.GetEnumerator">
             <inheritdoc/>
         </member>

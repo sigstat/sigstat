@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Helpers;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: List{double}</para>
     /// <para>Default Pipeline Output: (List{double}) MapResult</para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Map : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> Input { get; set; }
 
         [Output("MapResult")]

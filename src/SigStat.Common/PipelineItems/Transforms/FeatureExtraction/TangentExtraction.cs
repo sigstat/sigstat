@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Helpers;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: X, Y <see cref="Features"/></para>
     /// <para>Default Pipeline Output: (List{double})  Tangent </para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class TangentExtraction : PipelineBase, ITransformation
     {
         [Input]

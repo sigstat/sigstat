@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SigStat.Common
 {
     /// <summary>
     /// Standard set of features.
     /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
     public static class Features
     {
 

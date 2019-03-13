@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
+using Newtonsoft.Json;
 using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
@@ -14,12 +15,14 @@ namespace SigStat.Common.Model
     /// <summary>
     /// Uses pipelines to transform, train on, and classify <see cref="Signature"/> objects.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Verifier : ILoggerObject
     {
         //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
 
         private SequentialTransformPipeline pipeline;
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
+        [JsonProperty]
         public SequentialTransformPipeline Pipeline { get => pipeline;
             set
             {
@@ -32,10 +35,13 @@ namespace SigStat.Common.Model
         }
 
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
+        [JsonProperty]
         public IClassifier Classifier { get; set; }
+        [JsonProperty]
         public ISignerModel SignerModel { get; set; }
 
         /// <summary> Gets or sets the class responsible for logging</summary>
+        [JsonProperty]
         public ILogger Logger { get; set; }
 
         /// <summary>
