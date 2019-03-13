@@ -61,12 +61,14 @@ namespace SigStat.Common.PipelineItems.Classifiers
             var testSignatures = testGenuine.Concat(testForged).ToList();
 
             var dtwDistances = new DistanceMatrix<string, string, double>();
-            Dtw dtw = new Dtw();
+
+            
+
             foreach (var train in trainSignatures)
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    dtwDistances[test.ID, train.ID] = dtw.Compute(train.Values, test.Values);
+                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, Accord.Math.Distance.Euclidean);
                 }
             }
 
@@ -90,7 +92,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 DistanceMatrix = dtwDistances,
                 SignatureDistanceFromTraining = averageDistances.ToDictionary(sig=>sig.ID, sig=>sig.Distance),
                 ErrorRates = errorRates,
-                Threshold = errorRates.First(e => e.Value.Frr <= e.Value.Far).Key
+                Threshold = errorRates.First(e => e.Value.Frr > e.Value.Far).Key
             };
             return model;
         }
@@ -129,9 +131,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
             var model = (OptimalDtwSignerModel)signerModel;
             var distance = model.SignatureDistanceFromTraining[signature.ID];
             if (distance <= model.Threshold)
-                return 0;
-            else
                 return 1;
+            else
+                return 0;
 
         }
 

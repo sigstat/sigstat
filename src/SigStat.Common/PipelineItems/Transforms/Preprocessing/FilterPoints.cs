@@ -21,7 +21,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
 
-        public int Percentile { get; set; } = 25;
+        public int Percentile { get; set; } = 5;
 
         public void Transform(Signature signature)
         {
@@ -54,7 +54,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private double CalculatePercentile(int percentile, List<double> values)
         {
-            var min = values.Min();
+            var min = 0;// values.Min();
             var rangeLength = values.Max() - min;
             var unitLength = rangeLength / 100.0;
             return min + unitLength * percentile;

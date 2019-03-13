@@ -10,7 +10,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     {
         public int NumOfSamples { get; set; } = 0;
 
-        public IInterpolation Interpolation { get; set; }
+        public Type InterpolationType { get; set; }
 
         public List<double> ResampledTimestamps { get; private set; }
 
@@ -43,7 +43,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 throw new NullReferenceException("Output features are not defined");
             }
 
-            if (Interpolation == null)
+            if (InterpolationType == null)
             {
                 throw new NullReferenceException("Interpolation is not defined");
             }
@@ -61,8 +61,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private List<double> GenerateResampledValues(List<double> originalValues, List<double> originalTimestamps)
         {
-            Interpolation.TimeValues = originalTimestamps;
-            Interpolation.FeatureValues = originalValues;
+            var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
+            interpolation.TimeValues = originalTimestamps;
+            interpolation.FeatureValues = originalValues;
 
             var minTimestamp = originalTimestamps.Min();
             double timeSlot = (originalTimestamps.Max() - minTimestamp) / (NumOfSamples - 1);
@@ -77,7 +78,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 int stepCount = 0;
                 while (stepCount < NumOfSamples - 1)
                 {
-                    resampledValues.Add(Interpolation.GetValue(actualTimestamp));
+                    resampledValues.Add(interpolation.GetValue(actualTimestamp));
                     ResampledTimestamps.Add(actualTimestamp);
                     actualTimestamp += timeSlot;
                     stepCount++;
@@ -87,7 +88,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             {
                 foreach (var ts in ResampledTimestamps)
                 {
-                    resampledValues.Add(Interpolation.GetValue(ts));
+                    resampledValues.Add(interpolation.GetValue(ts));
                 }
             }
 

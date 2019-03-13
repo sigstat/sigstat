@@ -6,7 +6,7 @@ namespace SigStat.Common
 {
     public class DistanceMatrix<TRowKey, TColumnKey, TValue>
     {
-        Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue> items;
+        Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue> items = new  Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue>();
 
 
         public TValue this[TRowKey row, TColumnKey column]

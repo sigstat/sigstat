@@ -59,14 +59,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         public List<TimeSlot> TimeSlots { get; set; }
 
-        public IInterpolation Interpolation { get; set; }
+        public Type InterpolationType { get; set; }
 
         public void Transform(Signature signature)
         {
 
-            if (Interpolation == null)
+            if (InterpolationType == null)
             {
-                throw new NullReferenceException("Interpolation is not defined");
+                throw new NullReferenceException("InterpolationType is not defined");
             }
 
             if (InputFeatures == null)
@@ -98,11 +98,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             var timeValues = new List<double>(signature.GetFeature(TimeInputFeature));
 
+            var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
+
             for (int i = 0; i < InputFeatures.Count; i++)
             {
                 var values = new List<double>(signature.GetFeature(InputFeatures[i]));
-                Interpolation.FeatureValues = new List<double>(values);
-                Interpolation.TimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
+                interpolation.FeatureValues = new List<double>(values);
+                interpolation.TimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
 
                 foreach (var ts in longTimeSlots)
                 {
@@ -111,7 +113,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     while (actualTimestamp < ts.EndTime)
                     {
                         if (i == 0) { timeValues.Insert(actualIndex, actualTimestamp); }
-                        values.Insert(actualIndex, Interpolation.GetValue(actualTimestamp));
+                        values.Insert(actualIndex, interpolation.GetValue(actualTimestamp));
 
                         actualTimestamp += timeSlotMedian;
                         actualIndex++;

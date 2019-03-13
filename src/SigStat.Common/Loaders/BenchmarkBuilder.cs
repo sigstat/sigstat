@@ -142,15 +142,15 @@ namespace SigStat.Common.Loaders
                 Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
             };
 
-            IInterpolation ip;
+            Type ip;
             switch (config.Interpolation)
             {
                 case "Cubic":
-                    ip = new CubicInterpolation();
+                    ip = typeof(CubicInterpolation);
                     break;
                 case "Linear":
                 default:
-                    ip = new LinearInterpolation();
+                    ip = typeof(LinearInterpolation);
                     break;
             }
 
@@ -161,7 +161,7 @@ namespace SigStat.Common.Loaders
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
                         TimeSlot = config.ResamplingParam,
-                        Interpolation = ip
+                        InterpolationType = ip
                     });
                     break;
                 case "SampleCount":
@@ -170,7 +170,7 @@ namespace SigStat.Common.Loaders
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
                         NumOfSamples = (int)config.ResamplingParam,
-                        Interpolation = ip
+                        InterpolationType = ip
                     });
                     break;
                 case "FillPenUp":
@@ -178,7 +178,7 @@ namespace SigStat.Common.Loaders
                     { 
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
-                        Interpolation = ip
+                        InterpolationType = ip
                     });
                     break;
                 case "None":

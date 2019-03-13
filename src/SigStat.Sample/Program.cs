@@ -50,9 +50,10 @@ namespace SigStat.Sample
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
-            //OnlineVerifierBenchmarkDemo();
-            PreprocessingBenchmarkDemo();
-            TestPreprocessingTransformations();
+            OnlineVerifierBenchmarkDemo();
+            //PreprocessingBenchmarkDemo();
+            //TestPreprocessingTransformations();
+
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -308,9 +309,16 @@ namespace SigStat.Sample
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
-                        { new TangentExtraction() }
-                    },
-                    Classifier = new DtwClassifier() { InputFeatures = new List<FeatureDescriptor>() { MyFeatures.Tangent } }
+                             new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
+                             new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
+                             new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y}
+                        }
+                ,
+                    Classifier = new OptimalDtwClassifier()
+                    {
+                        Sampler = new SVC2004Sampler(),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
+                    }
                 },
                 Sampler = new SVC2004Sampler(),
                 Logger = new SimpleConsoleLogger(),
@@ -319,7 +327,7 @@ namespace SigStat.Sample
             benchmark.ProgressChanged += ProgressPrimary;
             //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
-            var result = benchmark.Execute();
+            var result = benchmark.Execute(true);
 
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
@@ -618,7 +626,7 @@ namespace SigStat.Sample
                     InputFeatures = features,
                     OutputFeatures = features,
                     TimeSlot = 20,
-                    Interpolation = new CubicInterpolation()
+                    InterpolationType = typeof(CubicInterpolation)
                     //Interpolation = new LinearInterpolation()
                 };
                 resampler.Transform(signature);
@@ -686,7 +694,7 @@ namespace SigStat.Sample
                     OutputFeatures = features,
                     NumOfSamples = 500,
                     //Interpolation = new LinearInterpolation()
-                    Interpolation = new CubicInterpolation()
+                    InterpolationType = typeof(CubicInterpolation)
                 };
                 resampler.Transform(signature);
 
@@ -748,7 +756,7 @@ namespace SigStat.Sample
                     InputFeatures = features,
                     OutputFeatures = features,
                     //Interpolation = new LinearInterpolation(),
-                    Interpolation = new CubicInterpolation()
+                    InterpolationType = typeof(CubicInterpolation)
                 };
                 filler.Transform(signature);
 
