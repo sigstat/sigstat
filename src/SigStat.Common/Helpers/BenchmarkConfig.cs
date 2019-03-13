@@ -9,12 +9,11 @@ namespace SigStat.Common.Helpers
 {
     public class BenchmarkConfig
     {
-        // 60480 = 8*3*3*5*6*2*7*2
+        // 32256 = 8*3*3*16*2*7*2
         // Features: 8
         // Sampling: 3
         // DB: 3
-        // Translation: 5
-        // U/Scaling: 6
+        // Translation+Scaling: 16
         // Rotation: 2
         // Resampling+Interpolation: 7
         // Filter: 2
@@ -53,7 +52,7 @@ namespace SigStat.Common.Helpers
         {
             List<BenchmarkConfig> l = new List<BenchmarkConfig>();
             l.Add(new BenchmarkConfig());
-            l = Samplers(Databases(Filters(Rotations(Translations(Scalings(Interpolations(ResamplingTypes(SetFeatures(l)))))))));
+            l = Samplers(Databases(Filters(Rotations(TranslationScalings(Interpolations(ResamplingTypes(SetFeatures(l))))))));
             return l;
         }
 
@@ -107,25 +106,34 @@ namespace SigStat.Common.Helpers
             return l;
         }
 
-        private static List<BenchmarkConfig> Translations(List<BenchmarkConfig> l)
+        private static List<BenchmarkConfig> TranslationScalings(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Translation = "None");
-            List<string> es = new List<string>() { "CogToOriginX", "CogToOriginY", "CogToOriginXY", "BottomLeftToOrigin" };
-            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
-            {
-                Translation = e
-            })).ToList();
-            l.AddRange(ls);
-            return l;
-        }
+            //jobb kezzel megadni az ertelmes parokat: 16 db van, osszes 30 helyett
+            l.ForEach(c => c.TranslationScaling = ("None","None"));
+            List<(string,string)> es = new List<(string, string)>() {
+                ("None","X01Y0prop"),
+                ("None","Y01X0prop"),
+                ("None","X01"),
+                ("None","Y01"),
+                ("None","X01Y01"),
 
-        private static List<BenchmarkConfig> Scalings(List<BenchmarkConfig> l)
-        {
-            l.ForEach(c => c.Scaling = "None");
-            List<string> es = new List<string>() { "X01", "Y01", "X01Y01", "X01Y0prop", "Y01X0prop" };
+                ("CogToOriginX","None"),
+                ("CogToOriginX","Y01"),
+
+                ("CogToOriginY","None"),
+                ("CogToOriginY","X01"),
+
+                ("CogToOriginXY","None"),
+                ("CogToOriginXY","X01"),
+                ("CogToOriginXY","Y01"),
+
+                ("BottomLeftToOrigin","None"),
+                ("BottomLeftToOrigin","X01"),
+                ("BottomLeftToOrigin","Y01"),
+            };
             var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
             {
-                Scaling = e
+                TranslationScaling = e
             })).ToList();
             l.AddRange(ls);
             return l;
@@ -175,8 +183,7 @@ namespace SigStat.Common.Helpers
             Database = c.Database;
             Filter = c.Filter;
             Rotation = c.Rotation;
-            Translation = c.Translation;
-            Scaling = c.Scaling;
+            TranslationScaling = c.TranslationScaling;
             ResamplingType = c.ResamplingType;
             Interpolation = c.Interpolation;
             Features = c.Features;
@@ -186,11 +193,10 @@ namespace SigStat.Common.Helpers
         public string Database { get; set; }
         public string Filter { get; set; }
         public bool Rotation { get; set; }
-        public string Translation { get; set; }
-        public string Scaling { get; set; }
         public string ResamplingType { get; set; }
         public string Interpolation { get; set; }
         public string Features { get; set; }
+        public (string Translation,string Scaling) TranslationScaling { get; set; }
 
     }
 }

@@ -73,7 +73,7 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            switch (config.Translation)
+            switch (config.TranslationScaling.Translation)
             {
                 case "CogToOriginX":
                     pipeline.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
@@ -95,7 +95,7 @@ namespace SigStat.Common.Loaders
             }
 
             //kulonbozo scale-ek kizarjak egymast, ezert osszevonhatjuk
-            switch (config.Scaling)
+            switch (config.TranslationScaling.Scaling)
             {
                 case "X01":
                     pipeline.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
