@@ -7,7 +7,7 @@ public class SigStat.Common.Transforms.AddConst
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -31,14 +31,12 @@ public class SigStat.Common.Transforms.AddVector
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>List<FeatureDescriptor<List<Double>>></sub> | <sub>Inputs</sub> | <sub></sub> | 
-| <sub>FeatureDescriptor<List<List<Double>>></sub> | <sub>InputsFD</sub> | <sub></sub> | 
 | <sub>List<FeatureDescriptor<List<Double>>></sub> | <sub>Outputs</sub> | <sub></sub> | 
-| <sub>FeatureDescriptor<List<List<Double>>></sub> | <sub>OutputsFD</sub> | <sub></sub> | 
 
 
 ###### Methods
@@ -73,7 +71,7 @@ public class SigStat.Common.Transforms.Binarization
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -97,7 +95,7 @@ public class SigStat.Common.Transforms.BinaryRasterizer
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -123,7 +121,7 @@ public class SigStat.Common.Transforms.CentroidExtraction
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -147,7 +145,7 @@ public class SigStat.Common.Transforms.CentroidTranslate
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -166,7 +164,7 @@ public class SigStat.Common.Transforms.ComponentExtraction
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -192,7 +190,7 @@ public class SigStat.Common.Transforms.ComponentSorter
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -216,7 +214,7 @@ public class SigStat.Common.Transforms.ComponentsToFeatures
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -242,7 +240,7 @@ public class SigStat.Common.Transforms.EndpointExtraction
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -283,7 +281,7 @@ public class SigStat.Common.Transforms.HSCPThinning
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -307,13 +305,6 @@ public class SigStat.Common.Transforms.ImageGenerator
 
 ```
 
-###### Fields
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| --- | --- | --- | 
-| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
-
-
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
@@ -322,6 +313,7 @@ public class SigStat.Common.Transforms.ImageGenerator
 | <sub>Rgba32</sub> | <sub>ForegroundColor</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Input</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<Boolean[,]></sub> | <sub>Output</sub> | <sub></sub> | 
+| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
 | <sub>Boolean</sub> | <sub>WriteToFile</sub> | <sub></sub> | 
 
 
@@ -341,7 +333,7 @@ public class SigStat.Common.Transforms.Map
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -365,7 +357,7 @@ public class SigStat.Common.Transforms.Multiply
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -389,7 +381,7 @@ public class SigStat.Common.Transforms.Normalize
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -413,7 +405,7 @@ public class SigStat.Common.Transforms.OnePixelThinning
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -453,19 +445,13 @@ public class SigStat.Common.Transforms.Resize
 
 ```
 
-###### Fields
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| --- | --- | --- | 
-| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>InputImage</sub> | <sub></sub> | 
-| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
-
-
 ###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>Nullable<Int32></sub> | <sub>Height</sub> | <sub>The new height. Leave it as null, if you do not want to explicitly specify a given height</sub> | 
+| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>InputImage</sub> | <sub></sub> | 
+| <sub>FeatureDescriptor<Image<Rgba32>></sub> | <sub>OutputImage</sub> | <sub></sub> | 
 | <sub>Func<Image<Rgba32>, Size></sub> | <sub>ResizeFunction</sub> | <sub>Set a resize function if you want to dynamically calculate the new width and height of the image</sub> | 
 | <sub>Nullable<Int32></sub> | <sub>Width</sub> | <sub>The new width. Leave it as null, if you do not want to explicitly specify a given width</sub> | 
 
@@ -486,7 +472,7 @@ public class SigStat.Common.Transforms.TangentExtraction
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -520,7 +506,7 @@ public class SigStat.Common.Transforms.Translate
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -539,7 +525,7 @@ public class SigStat.Common.Transforms.Trim
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 

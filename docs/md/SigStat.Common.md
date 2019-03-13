@@ -79,6 +79,42 @@ public struct SigStat.Common.BenchmarkResults
 | <sub>List<Result></sub> | <sub>SignerResults</sub> | <sub>List that contains the `SigStat.Common.Result`s for each `SigStat.Common.Signer`</sub> | 
 
 
+#### `DistanceMatrix<TRowKey, TColumnKey, TValue>`
+
+```csharp
+public class SigStat.Common.DistanceMatrix<TRowKey, TColumnKey, TValue>
+
+```
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>TValue</sub> | <sub>Item</sub> | <sub></sub> | 
+
+
+#### `ErrorRate`
+
+```csharp
+public struct SigStat.Common.ErrorRate
+
+```
+
+###### Fields
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>Double</sub> | <sub>Far</sub> | <sub></sub> | 
+| <sub>Double</sub> | <sub>Frr</sub> | <sub></sub> | 
+
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>Double</sub> | <sub>Aer</sub> | <sub></sub> | 
+
+
 #### `FeatureDescriptor`
 
 <sub>Represents a feature with name and type.</sub>
@@ -191,10 +227,14 @@ public static class SigStat.Common.ILoggerObjectExtensions
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>void</sub> | <sub>Error(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an error log message.</sub> | 
-| <sub>void</sub> | <sub>Log(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an informational log message.</sub> | 
-| <sub>void</sub> | <sub>Trace(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes a trace log message.</sub> | 
-| <sub>void</sub> | <sub>Warn(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an warning log message.</sub> | 
+| <sub>void</sub> | <sub>LogCritical(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an critical error log message.</sub> | 
+| <sub>void</sub> | <sub>LogDebug(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an debug log message.</sub> | 
+| <sub>void</sub> | <sub>LogError(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an error log message.</sub> | 
+| <sub>void</sub> | <sub>LogError(this ILoggerObject, Exception, String, Object[])</sub> | <sub>Formats and writes an error log message.</sub> | 
+| <sub>void</sub> | <sub>LogInformation(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an informational log message.</sub> | 
+| <sub>void</sub> | <sub>LogTrace(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes a trace log message.</sub> | 
+| <sub>void</sub> | <sub>LogWarning(this ILoggerObject, String, Object[])</sub> | <sub>Formats and writes an warning log message.</sub> | 
+| <sub>void</sub> | <sub>LogWarning(this ILoggerObject, Exception, String, Object[])</sub> | <sub>Formats and writes an warning log message.</sub> | 
 
 
 #### `ITransformation`
@@ -272,7 +312,7 @@ Enum
 
 #### `PipelineBase`
 
-<sub>TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  IProgress, ILogger, IPipelineIO default implementacioja.</sub>
+<sub>TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  ILoggerObject, IProgress, IPipelineIO default implementacioja.</sub>
 ```csharp
 public abstract class SigStat.Common.PipelineBase
     : ILoggerObject, IProgress, IPipelineIO
@@ -329,23 +369,13 @@ public class SigStat.Common.Sampler
 
 ```
 
-###### Properties
-
-| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
-| --- | --- | --- | 
-| <sub>Int32</sub> | <sub>BatchSize</sub> | <sub></sub> | 
-
-
 ###### Methods
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>void</sub> | <sub>Init(Signer)</sub> | <sub>Initialize the Sampler with a Signer's Signatures.</sub> | 
-| <sub>void</sub> | <sub>Init(List<Signer>)</sub> | <sub>Initialize the Sampler with a Signer's Signatures.</sub> | 
-| <sub>void</sub> | <sub>Init(List<Signature>)</sub> | <sub>Initialize the Sampler with a Signer's Signatures.</sub> | 
-| <sub>List<Signature></sub> | <sub>SampleForgeryTests(Func<List<Signature>, List<Signature>>)</sub> | <sub>Samples a batch of forged signatures to test on.</sub> | 
-| <sub>List<Signature></sub> | <sub>SampleGenuineTests(Func<List<Signature>, List<Signature>>)</sub> | <sub>Samples a batch of genuine test signatures to test on.</sub> | 
-| <sub>List<Signature></sub> | <sub>SampleReferences(Func<List<Signature>, List<Signature>>)</sub> | <sub>Samples a batch of genuine reference signatures to train on.</sub> | 
+| <sub>List<Signature></sub> | <sub>SampleForgeryTests(List<Signature>)</sub> | <sub>Samples a batch of forged signatures to test on.</sub> | 
+| <sub>List<Signature></sub> | <sub>SampleGenuineTests(List<Signature>)</sub> | <sub>Samples a batch of genuine test signatures to test on.</sub> | 
+| <sub>List<Signature></sub> | <sub>SampleReferences(List<Signature>)</sub> | <sub>Samples a batch of genuine reference signatures to train on.</sub> | 
 
 
 #### `Signature`
@@ -454,6 +484,7 @@ public class SigStat.Common.VerifierBenchmark
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
+| <sub>void</sub> | <sub>Dump(String)</sub> | <sub></sub> | 
 | <sub>BenchmarkResults</sub> | <sub>Execute(Boolean = True)</sub> | <sub>Execute the benchmarking process.</sub> | 
 
 

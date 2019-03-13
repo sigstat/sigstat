@@ -10,6 +10,8 @@
 - [<sub>Baseline</sub>](SigStat.Common#baseline)
 - [<sub>BasicMetadataExtraction</sub>](SigStat.Common#basicmetadataextraction)
 - [<sub>BenchmarkResults</sub>](SigStat.Common#benchmarkresults)
+- [<sub>DistanceMatrix<TRowKey, TColumnKey, TValue></sub>](SigStat.Common#distancematrixtrowkey-tcolumnkey-tvalue)
+- [<sub>ErrorRate</sub>](SigStat.Common#errorrate)
 - [<sub>FeatureDescriptor</sub>](SigStat.Common#featuredescriptor)
 - [<sub>FeatureDescriptor<T></sub>](SigStat.Common#featuredescriptort)
 - [<sub>Features</sub>](SigStat.Common#features)
@@ -35,18 +37,26 @@
 - [<sub>HSCPThinningStep</sub>](SigStat.Common.Algorithms#hscpthinningstep)
 - [<sub>PatternMatching3x3</sub>](SigStat.Common.Algorithms#patternmatching3x3)
 
+## [SigStat.Common.Framework.Exceptions](SigStat.Common.Framework.Exceptions)
+
+- [<sub>VerifierTestingException</sub>](SigStat.Common.Framework.Exceptions#verifiertestingexception)
+- [<sub>VerifierTrainingException</sub>](SigStat.Common.Framework.Exceptions#verifiertrainingexception)
+
 ## [SigStat.Common.Helpers](SigStat.Common.Helpers)
 
+- [<sub>BenchmarkConfig</sub>](SigStat.Common.Helpers#benchmarkconfig)
 - [<sub>IProgress</sub>](SigStat.Common.Helpers#iprogress)
 - [<sub>SerializationHelper</sub>](SigStat.Common.Helpers#serializationhelper)
 - [<sub>SimpleConsoleLogger</sub>](SigStat.Common.Helpers#simpleconsolelogger)
 
 ## [SigStat.Common.Loaders](SigStat.Common.Loaders)
 
+- [<sub>BenchmarkBuilder</sub>](SigStat.Common.Loaders#benchmarkbuilder)
 - [<sub>DataSetLoader</sub>](SigStat.Common.Loaders#datasetloader)
 - [<sub>IDataSetLoader</sub>](SigStat.Common.Loaders#idatasetloader)
 - [<sub>ImageLoader</sub>](SigStat.Common.Loaders#imageloader)
 - [<sub>ImageSaver</sub>](SigStat.Common.Loaders#imagesaver)
+- [<sub>MCYTLoader</sub>](SigStat.Common.Loaders#mcytloader)
 - [<sub>Svc2004</sub>](SigStat.Common.Loaders#svc2004)
 - [<sub>Svc2004Loader</sub>](SigStat.Common.Loaders#svc2004loader)
 
@@ -71,7 +81,23 @@
 
 - [<sub>DtwClassifier</sub>](SigStat.Common.PipelineItems.Classifiers#dtwclassifier)
 - [<sub>DtwSignerModel</sub>](SigStat.Common.PipelineItems.Classifiers#dtwsignermodel)
+- [<sub>OptimalDtwClassifier</sub>](SigStat.Common.PipelineItems.Classifiers#optimaldtwclassifier)
 - [<sub>WeightedClassifier</sub>](SigStat.Common.PipelineItems.Classifiers#weightedclassifier)
+
+## [SigStat.Common.PipelineItems.Transforms.Preprocessing](SigStat.Common.PipelineItems.Transforms.Preprocessing)
+
+- [<sub>CubicInterpolation</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#cubicinterpolation)
+- [<sub>FillPenUpDurations</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#fillpenupdurations)
+- [<sub>FilterPoints</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#filterpoints)
+- [<sub>IInterpolation</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#iinterpolation)
+- [<sub>LinearInterpolation</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#linearinterpolation)
+- [<sub>NormalizeRotation</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#normalizerotation)
+- [<sub>OriginType</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#origintype)
+- [<sub>ResampleSamplesCountBased</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#resamplesamplescountbased)
+- [<sub>ResampleTimeBased</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#resampletimebased)
+- [<sub>Scale</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#scale)
+- [<sub>TranslatePreproc</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#translatepreproc)
+- [<sub>UniformScale</sub>](SigStat.Common.PipelineItems.Transforms.Preprocessing#uniformscale)
 
 ## [SigStat.Common.Transforms](SigStat.Common.Transforms)
 

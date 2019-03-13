@@ -130,8 +130,8 @@ public class SigStat.Common.Pipeline.PipelineInput
 | --- | --- | --- | 
 | <sub>AutoSetMode</sub> | <sub>AutoSetMode</sub> | <sub></sub> | 
 | <sub>Object</sub> | <sub>FD</sub> | <sub></sub> | 
-| <sub>String</sub> | <sub>FieldName</sub> | <sub></sub> | 
 | <sub>Boolean</sub> | <sub>IsCollectionOfFeatureDescriptors</sub> | <sub></sub> | 
+| <sub>String</sub> | <sub>PropName</sub> | <sub></sub> | 
 | <sub>Type</sub> | <sub>Type</sub> | <sub></sub> | 
 
 
@@ -148,9 +148,9 @@ public class SigStat.Common.Pipeline.PipelineOutput
 | --- | --- | --- | 
 | <sub>String</sub> | <sub>Default</sub> | <sub></sub> | 
 | <sub>Object</sub> | <sub>FD</sub> | <sub></sub> | 
-| <sub>String</sub> | <sub>FieldName</sub> | <sub></sub> | 
 | <sub>Boolean</sub> | <sub>IsCollectionOfFeatureDescriptors</sub> | <sub></sub> | 
 | <sub>Boolean</sub> | <sub>IsTemporary</sub> | <sub></sub> | 
+| <sub>String</sub> | <sub>PropName</sub> | <sub></sub> | 
 | <sub>Type</sub> | <sub>Type</sub> | <sub></sub> | 
 
 

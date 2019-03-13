@@ -1,3 +1,17 @@
+#### `BenchmarkBuilder`
+
+```csharp
+public static class SigStat.Common.Loaders.BenchmarkBuilder
+
+```
+
+###### Static Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>VerifierBenchmark</sub> | <sub>Build(BenchmarkConfig)</sub> | <sub></sub> | 
+
+
 #### `DataSetLoader`
 
 <sub>Abstract loader class to inherit from. Implements ILogger.</sub>
@@ -77,6 +91,28 @@ public static class SigStat.Common.Loaders.ImageSaver
 | <sub>void</sub> | <sub>Save(Signature, String)</sub> | <sub>Saves a png image file to the specified `path`.</sub> | 
 
 
+#### `MCYTLoader`
+
+```csharp
+public class SigStat.Common.Loaders.MCYTLoader
+    : DataSetLoader, IDataSetLoader, ILoggerObject
+
+```
+
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>IEnumerable<Signer></sub> | <sub>EnumerateSigners(Predicate<Signer>)</sub> | <sub></sub> | 
+
+
+###### Static Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>void</sub> | <sub>LoadSignature(Signature, MemoryStream, Boolean)</sub> | <sub>Loads one signature from specified stream.</sub> | 
+
+
 #### `Svc2004`
 
 <sub>Set of features containing raw data loaded from SVC2004-format database.</sub>
@@ -90,12 +126,12 @@ public static class SigStat.Common.Loaders.Svc2004
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Altitude</sub> | <sub>Altitude values from the online signature imported from the SVC2004 database</sub> | 
-| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Azimuth</sub> | <sub>Button values from the online signature imported from the SVC2004 database</sub> | 
-| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Button</sub> | <sub>Y cooridnates from the online signature imported from the SVC2004 database</sub> | 
+| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Azimuth</sub> | <sub>Azimuth values from the online signature imported from the SVC2004 database</sub> | 
+| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Button</sub> | <sub>Button values from the online signature imported from the SVC2004 database</sub> | 
 | <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Pressure</sub> | <sub>Pressure values from the online signature imported from the SVC2004 database</sub> | 
-| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>T</sub> | <sub>X cooridnates from the online signature imported from the SVC2004 database</sub> | 
+| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>T</sub> | <sub>T values from the online signature imported from the SVC2004 database</sub> | 
 | <sub>FeatureDescriptor<List<Int32>></sub> | <sub>X</sub> | <sub>X cooridnates from the online signature imported from the SVC2004 database</sub> | 
-| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Y</sub> | <sub>X cooridnates from the online signature imported from the SVC2004 database</sub> | 
+| <sub>FeatureDescriptor<List<Int32>></sub> | <sub>Y</sub> | <sub>Y cooridnates from the online signature imported from the SVC2004 database</sub> | 
 
 
 #### `Svc2004Loader`

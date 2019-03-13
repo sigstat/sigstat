@@ -7,7 +7,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwClassifier
 
 ```
 
-###### Fields
+###### Properties
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
@@ -44,6 +44,30 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwSignerModel
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
 | <sub>List<Double[][]></sub> | <sub>GenuineSignatures</sub> | <sub>A list a of genuine signatures used for training</sub> | 
+
+
+#### `OptimalDtwClassifier`
+
+```csharp
+public class SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier
+    : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IClassifier
+
+```
+
+###### Properties
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>List<FeatureDescriptor></sub> | <sub>Features</sub> | <sub></sub> | 
+| <sub>Sampler</sub> | <sub>Sampler</sub> | <sub></sub> | 
+
+
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>Double</sub> | <sub>Test(ISignerModel, Signature)</sub> | <sub></sub> | 
+| <sub>ISignerModel</sub> | <sub>Train(List<Signature>)</sub> | <sub></sub> | 
 
 
 #### `WeightedClassifier`
