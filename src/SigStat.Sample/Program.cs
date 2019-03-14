@@ -367,7 +367,11 @@ namespace SigStat.Sample
 
             var pipeline = new SequentialTransformPipeline
             {
-                new ApproximateOnlineFeatures(),
+                new UniformScale() { BaseDimension=Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput=Features.X, ProportionalDimensionOutput=Features.Y },
+                new Normalize() { Input=Features.Pressure, Output=Features.Pressure },
+                new Normalize() { Input=Features.Altitude, Output=Features.Altitude },
+                new Map(0, Math.PI/2) { Input=Features.Altitude, Output=Features.Altitude },
+                new Map(0, 2*Math.PI) { Input=Features.Azimuth, Output=Features.Azimuth },
                 new RealisticImageGenerator(1280, 720),
             };
             pipeline.Logger = new SimpleConsoleLogger();

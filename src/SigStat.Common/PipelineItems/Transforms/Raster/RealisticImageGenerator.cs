@@ -82,38 +82,9 @@ namespace SigStat.Common.Transforms
 
             int len = xs.Count;
             List<PointF> points = new List<PointF>();
-            double xmin = Double.PositiveInfinity;
-            double xmax = 1;
-            double ymin = Double.PositiveInfinity;
-            double ymax = 1;
-            double minval = Double.PositiveInfinity;
-            double maxval = 1;
-            xs.ForEach(x => {
-                xmin = Math.Min(xmin, x);
-                xmax = Math.Max(xmax, x);
-            });
-            ys.ForEach(y => {
-                ymin = Math.Min(ymin, y);
-                ymax = Math.Max(ymax, y);
-            });
-            minval = Math.Min(xmin, ymin);
-            maxval = Math.Max(xmax, ymax);
-            //ha x-et w-vel, y-t pedig h-val szoroznank, akkor torzulna
-            //megtartjuk az aranyokat ugy, hogy w es h bol a kisebbiket valasztjuk (igy biztos belefer a kepbe minden)
-            int minres = Math.Min(w, h);
-            int maxres = Math.Max(w, h);
-            int frame = minres / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
             for (int i = 0; i < len; i++)
             {
-                //convert to image coords
-                double scale = maxval - minval;
-                double mx = (xs[i] - minval) / scale;//0-1
-                double my = 1 - (ys[i] - minval) / scale;//flip y
-                double center = (maxres - minres) / 2;
-                points.Add(new PointF(
-                    (float)(frame + mx * (minres - frame * 2) + center),//add frame
-                    (float)(frame + my * (minres - frame * 2) - center)
-                ));
+                points.Add(ToImageCoords(xs[i], ys[i]));
                 Progress = (int)(i / (double)len * 90);
             }
             DrawRealisticLines(img, points);
@@ -123,7 +94,23 @@ namespace SigStat.Common.Transforms
 
             signature.SetFeature(OutputImage, img);
             Progress = 100;
-            this.LogInformation( "Realistic image generation done.");
+            this.LogInformation("Realistic image generation done.");
+        }
+
+        private PointF ToImageCoords(double x, double y)
+        {
+            //ha x-et w-vel, y-t pedig h-val szoroznank, akkor torzulna
+            //megtartjuk az aranyokat ugy, hogy w es h bol a kisebbiket valasztjuk (igy biztos belefer a kepbe minden)
+            int m = Math.Min(w, h);
+
+            int frame = m / 20;//keretet hagyunk, hogy ne a kep legszelerol induljon
+
+            //Y-okat meg kell forditani, hogy ne legyen fejjel lefele a kepen
+            //betesszuk a kep kozepere is
+            return new PointF(
+                (float)(frame + x * (m - frame * 2) + (w - m) / 2),
+                (float)(frame + (1 - y) * (m - frame * 2) + (h - m) / 2)
+            );
         }
 
         private void DrawRealisticLines(Image<Rgba32> img, List<PointF> points)
@@ -145,15 +132,16 @@ namespace SigStat.Common.Transforms
                         }
                         //kb mennyit kell a ket pont koze rajzolni: tavolsaguktol fugg
                         float step = 1.5f / (Math.Abs(iP.X - jP.X) + Math.Abs(iP.Y - jP.Y));//lehetne euclidean is de minek es draga
+                        step = Math.Max(step, 0.01f);
                         for (float t = 0.0f; t <= 1.0f; t += step)
                         {
                             PointF p = new PointF(
                                 Lerp(iP.X, jP.X, t),
                                 Lerp(iP.Y, jP.Y, t)
                             );
-                            float scale = 0.5f + penScale * Lerp((float)alts[i], (float)alts[i + 1], t) * Lerp((float)ps[i], (float)ps[i + 1], t);//pen width depends on altitude and pressure
+                            float scale = 0.5f + penScale * Lerp((float)alts[i], (float)alts[i + 1], t) * Math.Max(0.0f, Lerp((float)ps[i], (float)ps[i + 1], t));//pen width depends on altitude and pressure
                             Rgba32 color = fg;
-                            float darker = 0.8f + 0.2f * (1 - Lerp((float)ps[i], (float)ps[i + 1], t));//color depends on pressure
+                            float darker = 0.8f + 0.2f * (1 - Math.Max(0.0f, Lerp((float)ps[i], (float)ps[i + 1], t)));//color depends on pressure
                             color.R = (byte)(tierDarken * darker * fg.R);
                             color.G = (byte)(tierDarken * darker * fg.G);                            
 
