@@ -15,8 +15,8 @@ namespace SigStat.Common.Loaders
         //miert static? Mert a Builder is static. Lehetne a Buildben is letrehozni oket, de mi sokszor hivjuk meg ezt a Buildet.
         static SVC2004Sampler svcSampler = new SVC2004Sampler();
         //TODO: more signer samplers
-        static Svc2004Loader svcLoader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-        static MCYTLoader mcytLoader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip", true);
+        static Svc2004Loader svcLoader = new Svc2004Loader(@"Task2.zip", true);
+        static MCYTLoader mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
             Features.X, Features.Y, Features.Azimuth, Features.Altitude
