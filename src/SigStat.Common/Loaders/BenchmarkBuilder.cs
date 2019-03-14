@@ -80,7 +80,8 @@ namespace SigStat.Common.Loaders
 
             var pipeline = new SequentialTransformPipeline();
 
-            switch (config.Filter)
+            //Filter first
+            switch (config.ResamplingType_Filter)
             {
                 case "P":
                     pipeline.Add(filterPoints);
@@ -93,7 +94,7 @@ namespace SigStat.Common.Loaders
             if (config.Rotation)
                 pipeline.Add(normalizeRotation);
 
-            switch (config.TranslationScaling.Translation)
+            switch (config.Translation_Scaling.Translation)
             {
                 case "CogToOriginX":
                     pipeline.Add(cxTranslate);
@@ -114,7 +115,7 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            switch (config.TranslationScaling.Scaling)
+            switch (config.Translation_Scaling.Scaling)
             {
                 case "X01":
                     pipeline.Add(xScale);
@@ -154,16 +155,9 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            switch (config.ResamplingType)
+            //resample after transformations
+            switch (config.ResamplingType_Filter)
             {
-                case "TimeSlot":
-                    pipeline.Add(new ResampleTimeBased() {
-                        InputFeatures = featurelist,
-                        OutputFeatures = featurelist,
-                        TimeSlot = config.ResamplingParam,
-                        InterpolationType = ip
-                    });
-                    break;
                 case "SampleCount":
                     pipeline.Add(new ResampleSamplesCountBased()
                     {
