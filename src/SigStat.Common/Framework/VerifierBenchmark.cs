@@ -147,12 +147,10 @@ namespace SigStat.Common
 
             if (ParallelMode)
             {
-                //Parallel.ForEach(signers, a=>benchmarkSigner(a));
                 results = signers.AsParallel().SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
             else
             {
-                //signers.ForEach(iSigner => benchmarkSigner(iSigner));
                 results = signers.SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
 
@@ -165,7 +163,14 @@ namespace SigStat.Common
             {
                 this.LogWarning("{skippedCount} out of {signerCount} Signers were skipped.", signers.Count - results.Count, signers.Count);
             }
-
+            if (results.Count == 0)
+            {
+                Exception ex = new Exception("Benchmark returned no results.");
+                this.LogError(ex, "Exception: " + ex.Message);//otlet: LogError(ex); ugyanezt csinalja meg
+                throw ex;
+                
+            }
+            
             Progress = 100;
             var r = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
             this.LogInformation("Benchmark execution finished.");
@@ -188,7 +193,7 @@ namespace SigStat.Common
             }
             catch (Exception exc)
             {
-                this.LogError("Training Verifier on Signer {iSignerID} failed. Skipping.." +exc, iSigner.ID);
+                this.LogError(exc, "Training Verifier on Signer {iSignerID} failed. Skipping..", iSigner.ID);
                 pCnt += 1.0 / (cntSigners - 1);
                 Progress = (int)(pCnt * 100);
                 yield break;
@@ -207,9 +212,9 @@ namespace SigStat.Common
                         nFalseReject++;//eredeti alairast hamisnak hisz
                     }
                 }
-                catch //(VerifierTestingException ex)
+                catch (/*VerifierTesting*/Exception ex)
                 {
-                    this.LogError("Testing genuine Signature {signatureID} of Signer {signerID} failed. Skipping..", genuine.ID, iSigner.ID);
+                    this.LogError(ex, "Testing genuine Signature {signatureID} of Signer {signerID} failed. Skipping..", genuine.ID, iSigner.ID);
                     failedGenuineTests++;
                 }
             }
@@ -228,9 +233,9 @@ namespace SigStat.Common
                         nFalseAccept++;//hamis alairast eredetinek hisz
                     }
                 }
-                catch //(VerifierTestingException ex)
+                catch (/*VerifierTesting*/Exception ex)
                 {
-                    this.LogError("Testing forged Signature {signatureID} of Signer {signerID} failed. Skipping..", forgery.ID, iSigner.ID);
+                    this.LogError(ex, "Testing forged Signature {signatureID} of Signer {signerID} failed. Skipping..", forgery.ID, iSigner.ID);
                     failedForgeryTests++;
                 }
             }
