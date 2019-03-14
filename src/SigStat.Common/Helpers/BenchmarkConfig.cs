@@ -9,7 +9,8 @@ namespace SigStat.Common.Helpers
 {
     public class BenchmarkConfig
     {
-        // 26112 = 8*3*16*2*17*2
+        // 52224 = 2*8*3*16*2*17*2
+        // Classifiers: 2
         // Features: 8
         // Sampling: 3
         // Translation+Scaling: 16
@@ -53,7 +54,7 @@ namespace SigStat.Common.Helpers
         {
             List<BenchmarkConfig> l = new List<BenchmarkConfig>();
             l.Add(new BenchmarkConfig());
-            l = Samplers(Interpolations(ResamplingTypes(Databases(Filters(Rotations(TranslationScalings(SetFeatures(l))))))));
+            l = Classifiers(Samplers(Interpolations(ResamplingTypes(Databases(Filters(Rotations(TranslationScalings(SetFeatures(l)))))))));
             return l;
         }
 
@@ -82,6 +83,17 @@ namespace SigStat.Common.Helpers
                 Database = e
             })).ToList();
             l.AddRange(ls);
+            return l;
+        }
+
+        private static List<BenchmarkConfig> Classifiers(List<BenchmarkConfig> l)
+        {
+            l.ForEach(c => c.Classifier = "Dtw");
+            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Classifier = "OptimalDtw"
+            });
+            l.AddRange(l2);
             return l;
         }
 
@@ -219,6 +231,7 @@ namespace SigStat.Common.Helpers
         public BenchmarkConfig() { }
         public BenchmarkConfig(BenchmarkConfig c)
         {
+            Classifier = c.Classifier;
             Sampling = c.Sampling;
             Database = c.Database;
             Filter = c.Filter;
@@ -230,15 +243,16 @@ namespace SigStat.Common.Helpers
             Features = c.Features;
         }
 
+        public string Classifier { get; set; }
         public string Sampling { get; set; }
         public string Database { get; set; }
         public string Filter { get; set; }
         public bool Rotation { get; set; }
+        public (string Translation, string Scaling) TranslationScaling { get; set; }
         public string ResamplingType { get; set; }
         public double ResamplingParam { get; set; }
         public string Interpolation { get; set; }
         public string Features { get; set; }
-        public (string Translation,string Scaling) TranslationScaling { get; set; }
 
     }
 }

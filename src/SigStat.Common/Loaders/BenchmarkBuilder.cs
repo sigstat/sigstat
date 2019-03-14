@@ -186,43 +186,54 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            var classifier = new OptimalDtwClassifier();//TODO: csak ez?
-            classifier.Features = new List<FeatureDescriptor>();
+            var ClassifierFeatures = new List<FeatureDescriptor>();
             switch (config.Features)
             {
                 case "X":
-                    classifier.Features.Add(Features.X);
+                    ClassifierFeatures.Add(Features.X);
                     break;
                 case "Y":
-                    classifier.Features.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Y);
                     break;
                 case "P":
-                    classifier.Features.Add(Features.Pressure);
+                    ClassifierFeatures.Add(Features.Pressure);
                     break;
                 case "Azimuth":
-                    classifier.Features.Add(Features.Azimuth);
+                    ClassifierFeatures.Add(Features.Azimuth);
                     break;
                 case "Altitude":
-                    classifier.Features.Add(Features.Altitude);
+                    ClassifierFeatures.Add(Features.Altitude);
                     break;
                 case "XY":
-                    classifier.Features.Add(Features.X);
-                    classifier.Features.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Y);
                     break;
                 case "XYP":
-                    classifier.Features.Add(Features.X);
-                    classifier.Features.Add(Features.Y);
-                    classifier.Features.Add(Features.Pressure);
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Pressure);
                     break;
                 case "XYPAzimuthAltitude":
-                    classifier.Features.Add(Features.X);
-                    classifier.Features.Add(Features.Y);
-                    classifier.Features.Add(Features.Pressure);
-                    classifier.Features.Add(Features.Azimuth);
-                    classifier.Features.Add(Features.Altitude);
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Pressure);
+                    ClassifierFeatures.Add(Features.Azimuth);
+                    ClassifierFeatures.Add(Features.Altitude);
                     break;
                 default:
                     break;
+            }
+
+            IClassifier classifier;
+            if (config.Classifier == "Dtw")
+            {
+                classifier = new DtwClassifier(Accord.Math.Distance.Euclidean);
+                (classifier as DtwClassifier).Features = ClassifierFeatures;
+            }
+            else//if (config.Classifier == "OptimalDtw")
+            {
+                classifier = new OptimalDtwClassifier();
+                (classifier as OptimalDtwClassifier).Features = ClassifierFeatures;
             }
 
             b.Verifier = new Model.Verifier()
@@ -231,7 +242,6 @@ namespace SigStat.Common.Loaders
                 Classifier = classifier
             };
 
-            b.Logger = new SimpleConsoleLogger();//TODO: ezt a preprocessing benchmark adja meg?
             return b;
 
         }

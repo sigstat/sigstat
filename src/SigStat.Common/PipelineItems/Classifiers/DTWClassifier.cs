@@ -42,7 +42,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
         [Input]
         [JsonProperty]
-        public List<FeatureDescriptor> InputFeatures { get; set; }
+        public List<FeatureDescriptor> Features { get; set; }
 
         /// <summary>Initializes a new instance of the <see cref="DtwClassifier"/> class with the default Manhattan distance method.</summary>
         public DtwClassifier() : this(Accord.Math.Distance.Manhattan)
@@ -53,15 +53,14 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public DtwClassifier(Func<double[], double[], double> distanceMethod)
         {
             this.distanceMethod = distanceMethod;
-            InputFeatures = new List<FeatureDescriptor>();//
+            Features = new List<FeatureDescriptor>();//
         }
 
         /// <inheridoc/>
         public ISignerModel Train(List<Signature> signatures)
         {
             var genuines = signatures.Where(s => s.Origin == Origin.Genuine)
-                .Select(s => s.GetAggregateFeature(InputFeatures).ToArray()).ToList();
-            Dtw dtwAlg = new Dtw(distanceMethod);
+                .Select(s => s.GetAggregateFeature(Features).ToArray()).ToList();
             var distanceMatrix = new double[genuines.Count, genuines.Count];
             distanceMatrix.SetValues(-1);
             for (int i = 0; i < genuines.Count; i++)
@@ -78,7 +77,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                     }
                     else
                     {
-                        distanceMatrix[i, j] = dtwAlg.Compute(genuines[i], genuines[j]); ;
+                        distanceMatrix[i, j] = DtwPy.Dtw(genuines[i], genuines[j], distanceMethod);
                     }
                 }
             }
@@ -98,13 +97,12 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public double Test(ISignerModel model, Signature signature)
         {
             var dtwModel = (DtwSignerModel)model;
-            var testSignature = signature.GetAggregateFeature(InputFeatures).ToArray();
+            var testSignature = signature.GetAggregateFeature(Features).ToArray();
             var distances = new double[dtwModel.GenuineSignatures.Count];
-            Dtw dtwAlg = new Dtw(distanceMethod);
 
             for (int i = 0; i < dtwModel.GenuineSignatures.Count; i++)
             {
-                distances[i] = dtwAlg.Compute(dtwModel.GenuineSignatures[i], testSignature);
+                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i], testSignature, distanceMethod);
             }
 
             // TODO: return values between 0 and 1

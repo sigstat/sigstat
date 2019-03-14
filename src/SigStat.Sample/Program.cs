@@ -185,7 +185,7 @@ namespace SigStat.Sample
 
             IClassifier classifier = new DtwClassifier()
             {
-                InputFeatures = { Features.X, Features.Y, Features.T }
+                Features = { Features.X, Features.Y, Features.T }
             };
             ISignerModel model = classifier.Train(genuines);//Train on genuine signatures
             var result = classifier.Test(model, challenge);
@@ -266,18 +266,18 @@ namespace SigStat.Sample
                     {
                         (new DtwClassifier(Accord.Math.Distance.Manhattan)
                         {
-                            InputFeatures = { Features.X, Features.Y }
+                            Features = { Features.X, Features.Y }
                         },
                            0.15)
                     },
                     {
                         (new DtwClassifier(){
-                            InputFeatures = { Features.Pressure }
+                            Features = { Features.Pressure }
                         }, 0.3)
                     },
                     {
                         (new DtwClassifier(){
-                            InputFeatures = { MyFeatures.Tangent }
+                            Features = { MyFeatures.Tangent }
                         }, 0.55)
                     },
                     //{
@@ -929,18 +929,18 @@ namespace SigStat.Sample
                     {
                         (new DtwClassifier(Accord.Math.Distance.Manhattan)
                         {
-                            InputFeatures = { Features.X, Features.Y }
+                            Features = { Features.X, Features.Y }
                         },
                            0.15)
                     },
                     {
                         (new DtwClassifier(){
-                            InputFeatures = { Features.Pressure }
+                            Features = { Features.Pressure }
                         }, 0.3)
                     },
                     {
                         (new DtwClassifier(){
-                            InputFeatures = { MyFeatures.Tangent }
+                            Features = { MyFeatures.Tangent }
                         }, 0.55)
                     },
                 }
