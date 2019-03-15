@@ -1,4 +1,5 @@
 ﻿using OfficeOpenXml;
+using SigStat.Common.Helpers.Excel.Palette;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
