@@ -72,10 +72,10 @@ namespace SigStat.PreprocessingBenchmark
                     benchmark.Logger = logger;
                     Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
                     //HACK: temporarily disable benchmark
-                    //var results = benchmark.Execute(true);
+                    var results = benchmark.Execute(true);
                     Console.WriteLine($"{DateTime.Now}: Generating results...");
                     string filename = config.ToShortString() + ".xlsx";
-                    benchmark.Dump(filename);
+                    benchmark.Dump(filename, config.ToKeyValuePairs());
                     Console.WriteLine($"{DateTime.Now}: Uploading results...");
 
                     var blob = Container.GetBlockBlobReference(filename);

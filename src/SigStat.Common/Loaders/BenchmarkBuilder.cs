@@ -226,8 +226,12 @@ namespace SigStat.Common.Loaders
             }
             else//if (config.Classifier == "OptimalDtw")
             {
-                classifier = new OptimalDtwClassifier();
-                (classifier as OptimalDtwClassifier).Features = ClassifierFeatures;
+                classifier = new OptimalDtwClassifier()
+                {
+                    Features = ClassifierFeatures,
+                    Sampler = b.Sampler
+
+                };
             }
 
             b.Verifier = new Model.Verifier()

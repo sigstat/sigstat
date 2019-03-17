@@ -463,6 +463,9 @@
         <member name="F:SigStat.Common.Result.Aer">
             <summary>Average Error Rate</summary>
         </member>
+        <member name="F:SigStat.Common.Result.Model">
+            HACK: Consider removing this after benchmark
+        </member>
         <member name="T:SigStat.Common.BenchmarkResults">
             <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
         </member>
@@ -570,6 +573,13 @@
             </summary>
             <param name="weightMartix"></param>
             <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.Palette.PaletteStorage.GetPalette(SigStat.Common.Helpers.Excel.Palette.ExcelColor)">
+            <summary>
+            Get the Palette assigned to the color
+            </summary>
+            <param name="excelColor"></param>
+            <returns>The specified palette</returns>
         </member>
         <member name="T:SigStat.Common.Helpers.IProgress">
             <summary>

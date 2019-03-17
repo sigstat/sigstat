@@ -92,7 +92,7 @@ namespace SigStat.Common.Helpers.Excel
             {
                 for (int j = 0; j < tableLength; j++)
                 {
-                    ws.Cells[startRow + i, x + j].Value = data[i, j];
+                    ws.Cells[startRow + i, x + j].Value = data[j, i];
                 }
             }
 

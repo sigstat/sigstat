@@ -38,7 +38,12 @@ namespace SigStat.Common.Helpers
 
         public string ToShortString()
         {
-            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Where(v=>v!=null).Select(v=>v.ToString()));
+            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Select(v=>v?.ToString() ?? ""));
+        }
+
+        public IEnumerable<KeyValuePair<string,string>> ToKeyValuePairs()
+        {
+            return GetType().GetProperties().Select(pi => new KeyValuePair<string, string>(pi.Name, pi.GetValue(this)?.ToString() ?? ""));
         }
 
         public string ToJsonString()
@@ -89,12 +94,13 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Classifiers(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Classifier = "Dtw");
-            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
-            {
-                Classifier = "OptimalDtw"
-            });
-            l.AddRange(l2);
+
+            l.ForEach(c => c.Classifier = "OptimalDtw");
+            //var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
+            //{
+            //    Classifier = "Dtw"
+            //});
+            //l.AddRange(l2);
             return l;
         }
 
