@@ -93,6 +93,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 }
             }
 
+            var originalTimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
             var timeValues = new List<double>(signature.GetFeature(TimeInputFeature));
 
             var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
@@ -101,7 +102,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             {
                 var values = new List<double>(signature.GetFeature(InputFeatures[i]));
                 interpolation.FeatureValues = new List<double>(values);
-                interpolation.TimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
+                interpolation.TimeValues = originalTimeValues;
 
                 foreach (var ts in longTimeSlots)
                 {

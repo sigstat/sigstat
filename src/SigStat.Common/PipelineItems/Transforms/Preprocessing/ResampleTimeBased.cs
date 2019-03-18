@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    //TODO: time fix
     public class ResampleTimeBased : PipelineBase, ITransformation
     {
         public double TimeSlot { get; set; } = 0;

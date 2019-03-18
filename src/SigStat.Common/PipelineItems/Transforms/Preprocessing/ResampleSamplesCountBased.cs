@@ -12,7 +12,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         public Type InterpolationType { get; set; }
 
-        public List<double> ResampledTimestamps { get; private set; }
+        //public List<double> ResampledTimestamps { get; private set; }
 
         [Input]
         public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
@@ -51,48 +51,48 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             var featureValues = new List<double>[InputFeatures.Count];
 
             var originalTimestamps = new List<double>(signature.GetFeature(OriginalTFeature));
+            var resampledTimestamps = GenerateNewTimestamps(originalTimestamps);
+
             for (int i = 0; i < InputFeatures.Count; i++)
             {
                 featureValues[i] = new List<double>(signature.GetFeature(InputFeatures[i]));
-                signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues[i], originalTimestamps));
+                signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues[i], originalTimestamps, resampledTimestamps));
             }
-            signature.SetFeature(ResampledTFeature, ResampledTimestamps);
+            signature.SetFeature(ResampledTFeature, resampledTimestamps);
         }
 
-        private List<double> GenerateResampledValues(List<double> originalValues, List<double> originalTimestamps)
+        private List<double> GenerateResampledValues(List<double> originalValues, List<double> originalTimestamps, List<double> resampledTimestamps)
         {
             var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
             interpolation.TimeValues = originalTimestamps;
             interpolation.FeatureValues = originalValues;
 
-            var minTimestamp = originalTimestamps.Min();
-            double timeSlot = (originalTimestamps.Max() - minTimestamp) / (NumOfSamples - 1);
-
             var resampledValues = new List<double>(NumOfSamples);
 
-            if (ResampledTimestamps == null || ResampledTimestamps.Count != NumOfSamples)
+            foreach (var ts in resampledTimestamps)
             {
-                ResampledTimestamps = new List<double>(NumOfSamples);
-
-                double actualTimestamp = minTimestamp;
-                int stepCount = 0;
-                while (stepCount < NumOfSamples - 1)
-                {
-                    resampledValues.Add(interpolation.GetValue(actualTimestamp));
-                    ResampledTimestamps.Add(actualTimestamp);
-                    actualTimestamp += timeSlot;
-                    stepCount++;
-                }
-            }
-            else
-            {
-                foreach (var ts in ResampledTimestamps)
-                {
-                    resampledValues.Add(interpolation.GetValue(ts));
-                }
+                resampledValues.Add(interpolation.GetValue(ts));
             }
 
             return resampledValues;
+        }
+
+        private List<double> GenerateNewTimestamps(List<double> originalTimestamps)
+        {
+            var minTimestamp = originalTimestamps.Min();
+            double timeSlot = (originalTimestamps.Max() - minTimestamp) / (NumOfSamples - 1);
+            var resampledTimestamps = new List<double>();
+
+            double actualTimestamp = minTimestamp;
+            int stepCount = 0;
+            while (stepCount < NumOfSamples - 1)
+            {
+                resampledTimestamps.Add(actualTimestamp);
+                actualTimestamp += timeSlot;
+                stepCount++;
+            }
+
+            return resampledTimestamps;
         }
     }
 }

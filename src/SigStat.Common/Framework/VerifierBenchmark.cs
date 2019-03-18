@@ -250,17 +250,17 @@ namespace SigStat.Common
             if (verifier.Classifier is OptimalDtwClassifier)
                 references = iSigner.Signatures;
 
-            try
-            {
+            //try
+            //{
                 Verifier.Train(references);
-            }
-            catch (Exception exc)
-            {
-                this.LogError(exc, "Training Verifier on Signer {iSignerID} failed. Skipping..", iSigner.ID);
-                pCnt += 1.0 / (cntSigners - 1);
-                Progress = (int)(pCnt * 100);
-                yield break;
-            }
+            //}
+            //catch (Exception exc)
+            //{
+            //    this.LogError(exc, "Training Verifier on Signer {iSignerID} failed. Skipping..", iSigner.ID);
+            //    pCnt += 1.0 / (cntSigners - 1);
+            //    Progress = (int)(pCnt * 100);
+            //    yield break;
+            //}
 
             //FRR: false rejection rate
             //FRR = elutasított eredeti / összes eredeti
