@@ -51,8 +51,8 @@ namespace SigStat.Sample
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
-            OnlineVerifierBenchmarkDemo();
-            //PreprocessingBenchmarkDemo();
+            //OnlineVerifierBenchmarkDemo();
+            PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
@@ -64,9 +64,25 @@ namespace SigStat.Sample
 
         private static void PreprocessingBenchmarkDemo()
         {
-            var configs = BenchmarkConfig.GenerateConfigurations();
-            //var config = BenchmarkConfig.FromJsonFile(path);
-            var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
+            //var configs = BenchmarkConfig.GenerateConfigurations();
+            ////var config = BenchmarkConfig.FromJsonFile(path);
+            //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
+
+            BenchmarkConfig config = new BenchmarkConfig()
+            {
+                Classifier = "OptimalDtw",
+                Sampling = "S1",
+                Database = "SVC2004",
+                Rotation = true,
+                Translation_Scaling = ("None", "X01Y01"),
+                ResamplingType_Filter = "FillPenUp",
+                ResamplingParam = 0,
+                Interpolation = "Cubic",
+                Features = "XYP"
+            };
+            var benchmark = BenchmarkBuilder.Build(config);
+            benchmark.Logger = new SimpleConsoleLogger();
+            benchmark.Execute();
 
         }
 
@@ -312,12 +328,13 @@ namespace SigStat.Sample
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
-                             //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
-                             //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
-                             //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
-                             //new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
-                             //new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
-                             //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
+                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
+                        //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
+                        new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+                        new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                             new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
                              //new ResampleSamplesCountBased() {
                              //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
                              //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
@@ -329,9 +346,14 @@ namespace SigStat.Sample
                              //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
                              //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
                              //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
-                              new FillPenUpDurations() {InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                              OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                              InterpolationType = typeof(CubicInterpolation),TimeInputFeature =Features.T, TimeOutputFeature = Features.T}
+                              new FillPenUpDurations()
+                              {
+                                  InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
+                                  OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                                  InterpolationType = typeof(CubicInterpolation),
+                                  TimeInputFeature =Features.T,
+                                  TimeOutputFeature = Features.T
+                              }
                         }
                 ,
                     Classifier = new OptimalDtwClassifier()

@@ -163,6 +163,8 @@ namespace SigStat.Common.Loaders
                     {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
+                        OriginalTFeature = Features.T,
+                        ResampledTFeature = Features.T,
                         NumOfSamples = (int)config.ResamplingParam,
                         InterpolationType = ip
                     });
@@ -172,6 +174,8 @@ namespace SigStat.Common.Loaders
                     { 
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
+                        TimeInputFeature = Features.T,
+                        TimeOutputFeature = Features.T,
                         InterpolationType = ip
                     });
                     break;
