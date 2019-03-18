@@ -54,6 +54,13 @@ namespace SigStat.Common.Model
             this.LogTrace("Verifier created");
         }
 
+        public Verifier(Verifier v)
+        {
+            this.Logger = v.Logger;
+            this.Pipeline = v.Pipeline;
+            this.Classifier = v.Classifier;
+        }
+
         /// <summary>
         /// Trains the verifier with a list of signatures. Uses the <see cref="Pipeline"/> to extract features,
         /// and <see cref="Classifier"/> to find an optimized limit.
