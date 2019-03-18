@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage.Blob;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
@@ -12,7 +13,7 @@ namespace SigStat.PreprocessingBenchmark
 {
     class Worker
     {
-        static TimeSpan timeOut = new TimeSpan(0, 30, 0);
+        static TimeSpan timeOut = new TimeSpan(0, 10, 0);
         static CloudBlobContainer Container;
         static CloudQueue Queue;
 
@@ -37,7 +38,7 @@ namespace SigStat.PreprocessingBenchmark
                 return;
             }
 
-            if (!Directory.Exists(Program.OutputDirectory))
+            if (!string.IsNullOrEmpty(Program.OutputDirectory) && !Directory.Exists(Program.OutputDirectory))
                 Directory.CreateDirectory(Program.OutputDirectory);
 
 
@@ -46,6 +47,7 @@ namespace SigStat.PreprocessingBenchmark
             Console.WriteLine("Worker is running. Press 'a' to abort.");
             while (true)
             {
+                bool error = false;
                 StringBuilder debugInfo = new StringBuilder();
                 debugInfo.AppendLine(DateTime.Now.ToString());
                 string debugFileName = null;
@@ -72,7 +74,14 @@ namespace SigStat.PreprocessingBenchmark
                     Console.WriteLine($"{DateTime.Now}: Building benchmark...");
                     var benchmark = BenchmarkBuilder.Build(config);
                     var logger = new SimpleConsoleLogger();
-                    logger.Logged += (s, m) => debugInfo.AppendLine(m);
+                    logger.Logged += (m, e, l) =>
+                    {
+                        debugInfo.AppendLine(m);
+                        if (e != null)
+                            debugInfo.AppendLine(e.ToString());
+                        if (l == LogLevel.Error || l == LogLevel.Critical)
+                            error = true;
+                    };
                     benchmark.Logger = logger;
                     Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
                     var results = benchmark.Execute(true);
@@ -83,20 +92,28 @@ namespace SigStat.PreprocessingBenchmark
                     benchmark.Dump(filename, config.ToKeyValuePairs());
                     Console.WriteLine($"{DateTime.Now}: Uploading results...");
 
-                    var blob = Container.GetBlockBlobReference(filename);
+                    string cloudFilename = config.ToShortString() + ".xlsx";
+                    var blob = Container.GetBlockBlobReference(cloudFilename);
                     await blob.DeleteIfExistsAsync();
                     await blob.UploadFromFileAsync(filename);
                 }
                 catch (Exception exc)
                 {
+                    debugInfo.AppendLine(exc.ToString());
+                    error = true;
+                }
+                if (error)
+                {
                     debugFileName = $"{debugFileName ?? Guid.NewGuid().ToString()}.txt";
+                    var cloudFilename = debugFileName;
+
                     if (!string.IsNullOrWhiteSpace(Program.OutputDirectory))
                         debugFileName = Path.Combine(Program.OutputDirectory, debugFileName);
-                    debugInfo.AppendLine(exc.ToString());
                     File.WriteAllText(debugFileName, debugInfo.ToString());
-                    var blob = Container.GetBlockBlobReference(debugFileName);
+                    var blob = Container.GetBlockBlobReference(cloudFilename);
                     await blob.DeleteIfExistsAsync();
                     await blob.UploadFromFileAsync(debugFileName);
+
                 }
 
                 await Queue.DeleteMessageAsync(msg);

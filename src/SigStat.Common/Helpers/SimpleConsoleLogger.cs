@@ -27,12 +27,14 @@ namespace SigStat.Common.Helpers
     /// </example>
     public class SimpleConsoleLogger : ILogger
     {
+        public delegate void ErrorEventHandler(string message, Exception exception, LogLevel level);
+
         /// <summary>
         /// All events below this level will be filtered
         /// </summary>
         public LogLevel LogLevel { get; set; }
 
-        public event EventHandler<string> Logged;
+        public event ErrorEventHandler Logged;
 
         /// <summary>
         /// Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
@@ -91,7 +93,12 @@ namespace SigStat.Common.Helpers
             }
             string msg = formatter(state, exception);
             Console.WriteLine(msg);
-            Logged?.Invoke(this, msg);
+            if (exception != null)
+            {
+                Console.WriteLine(exception);
+            }
+            Logged?.Invoke(msg, exception, logLevel);
+
             Console.ForegroundColor = oldColor;
         }
     }

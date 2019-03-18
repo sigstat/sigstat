@@ -39,11 +39,11 @@ namespace SigStat.Common
             var result = new object[columns.Count + 1, rows.Count + 1];
             for (int i = 0; i < columns.Count; i++)
             {
-                result[i, 0] = columns[i].ToString();
+                result[i+1, 0] = columns[i].ToString();
             }
             for (int j = 0; j < rows.Count; j++)
             {
-                result[0, j] = rows[j].ToString();
+                result[0, j+1] = rows[j].ToString();
             }
             for (int i = 0; i < columns.Count; i++)
             {

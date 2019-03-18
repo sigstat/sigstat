@@ -83,7 +83,7 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Database = "SVC2004");
-            List<string> es = new List<string>() { "MCYT100", "..." };
+            List<string> es = new List<string>() { "MCYT100" };
             var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Database = e
