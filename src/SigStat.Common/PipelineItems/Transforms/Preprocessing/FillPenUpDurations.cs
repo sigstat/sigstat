@@ -57,7 +57,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
 
-        public List<TimeSlot> TimeSlots { get; set; }
+        //public List<TimeSlot> TimeSlots { get; set; }
 
         public Type InterpolationType { get; set; }
 
@@ -80,15 +80,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             }
 
 
-            if (TimeSlots == null)
-            {
-                TimeSlots = CalculateTimeSlots(signature);
-            }
+            var timeSlots = CalculateTimeSlots(signature);
 
-            var timeSlotMedian = CalculateTimeSlotsMedian(TimeSlots);
+            var timeSlotMedian = CalculateTimeSlotsMedian(timeSlots);
 
-            var longTimeSlots = new List<TimeSlot>(TimeSlots.Count);
-            foreach (var ts in TimeSlots)
+            var longTimeSlots = new List<TimeSlot>(timeSlots.Count);
+            foreach (var ts in timeSlots)
             {
                 if (ts.Length > timeSlotMedian)
                 {
@@ -151,7 +148,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         private List<TimeSlot> CalculateTimeSlots(Signature signature)
         {
             var timesValues = signature.GetFeature(TimeInputFeature);
-            var timeSlots = new List<TimeSlot>(timesValues.Count-1);
+            var timeSlots = new List<TimeSlot>(timesValues.Count - 1);
 
             for (int i = 0; i < timesValues.Count - 1; i++)
             {

@@ -318,14 +318,20 @@ namespace SigStat.Sample
                              //new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
                              //new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
                              //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
-                             new ResampleSamplesCountBased() {
-                                 InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                                 OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
-                                 InterpolationType = typeof(LinearInterpolation),
-                                 NumOfSamples = 500,
-                                 OriginalTFeature = Features.T,
-                                 ResampledTFeature = Features.T,
-                             } 
+                             //new ResampleSamplesCountBased() {
+                             //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                             //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
+                             //    InterpolationType = typeof(CubicInterpolation),
+                             //    NumOfSamples = 500,
+                             //    OriginalTFeature = Features.T,
+                             //    ResampledTFeature = Features.T,
+                             //},
+                             //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                             //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                             //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                              new FillPenUpDurations() {InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                              OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                              InterpolationType = typeof(LinearInterpolation),TimeInputFeature =Features.T, TimeOutputFeature = Features.T}
                         }
                 ,
                     Classifier = new OptimalDtwClassifier()
@@ -341,7 +347,7 @@ namespace SigStat.Sample
             benchmark.ProgressChanged += ProgressPrimary;
             //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
-            var result = benchmark.Execute(true);
+            var result = benchmark.Execute(false);
 
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
@@ -894,7 +900,7 @@ namespace SigStat.Sample
             sig.SetFeature(MyFeatures.Loop, loops);
             loops = sig.GetFeature(MyFeatures.Loop);
 
-            string json = JsonConvert.SerializeObject(sig,Formatting.Indented);
+            string json = JsonConvert.SerializeObject(sig, Formatting.Indented);
             Console.WriteLine(json);
 
             Signature desirializedSig = JsonConvert.DeserializeObject<Signature>(json);
@@ -981,7 +987,7 @@ namespace SigStat.Sample
             }
 
         }
-        
+
         static void DeserializeOnlineVerifier()
         {
             Verifier desirializedOV = JsonConvert.DeserializeObject<Verifier>(File.ReadAllText(@"serialized.txt"), new JsonSerializerSettings
@@ -991,10 +997,11 @@ namespace SigStat.Sample
             });
             Console.WriteLine(desirializedOV.ToString());
             Console.WriteLine("\t" + desirializedOV.Pipeline.ToString());
-            foreach(var item in desirializedOV.Pipeline)
+            foreach (var item in desirializedOV.Pipeline)
             {
                 Console.WriteLine("\t\t" + item.ToString());
-                if ((item.GetType().GetMember("Items")).Length > 0) {
+                if ((item.GetType().GetMember("Items")).Length > 0)
+                {
                     foreach (var item2 in ((ParallelTransformPipeline)item).Items)
                     {
                         Console.WriteLine("\t\t\t" + item2.ToString());
