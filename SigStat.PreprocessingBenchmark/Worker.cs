@@ -37,6 +37,10 @@ namespace SigStat.PreprocessingBenchmark
                 return;
             }
 
+            if (!Directory.Exists(Program.OutputDirectory))
+                Directory.CreateDirectory(Program.OutputDirectory);
+
+
             DateTime lastRefresh = DateTime.Now.AddDays(-1);
 
             Console.WriteLine("Worker is running. Press 'a' to abort.");
@@ -71,10 +75,11 @@ namespace SigStat.PreprocessingBenchmark
                     logger.Logged += (s, m) => debugInfo.AppendLine(m);
                     benchmark.Logger = logger;
                     Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
-                    //HACK: temporarily disable benchmark
                     var results = benchmark.Execute(true);
                     Console.WriteLine($"{DateTime.Now}: Generating results...");
                     string filename = config.ToShortString() + ".xlsx";
+                    if (!string.IsNullOrWhiteSpace(Program.OutputDirectory))
+                        filename = Path.Combine(Program.OutputDirectory, filename);
                     benchmark.Dump(filename, config.ToKeyValuePairs());
                     Console.WriteLine($"{DateTime.Now}: Uploading results...");
 
@@ -85,6 +90,8 @@ namespace SigStat.PreprocessingBenchmark
                 catch (Exception exc)
                 {
                     debugFileName = $"{debugFileName ?? Guid.NewGuid().ToString()}.txt";
+                    if (!string.IsNullOrWhiteSpace(Program.OutputDirectory))
+                        debugFileName = Path.Combine(Program.OutputDirectory, debugFileName);
                     debugInfo.AppendLine(exc.ToString());
                     File.WriteAllText(debugFileName, debugInfo.ToString());
                     var blob = Container.GetBlockBlobReference(debugFileName);

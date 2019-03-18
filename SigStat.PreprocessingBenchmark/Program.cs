@@ -2,6 +2,7 @@
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace SigStat.PreprocessingBenchmark
@@ -10,6 +11,7 @@ namespace SigStat.PreprocessingBenchmark
     {
         public static CloudStorageAccount Account;
         public static string Experiment;
+        public static string OutputDirectory;
         public enum Mode
         {
             Worker,
@@ -30,6 +32,9 @@ namespace SigStat.PreprocessingBenchmark
             [Option('e', "experiment", Required = false, Default = "default", HelpText = "Unique name for the experiment")]
             public string Experiment { get; set; }
 
+            [Option('o', "outputDir", Required = false, Default = "", HelpText = "output directory")]
+            public string OutputDirectory { get; set; }
+
 
         }
 
@@ -41,6 +46,7 @@ namespace SigStat.PreprocessingBenchmark
                        var credentials = new StorageCredentials(o.AccountName, o.AccountKey);
                        Account = new CloudStorageAccount(credentials, true);
                        Experiment = o.Experiment;
+                       OutputDirectory = o.OutputDirectory;
 
                        switch (o.Mode)
                        {
