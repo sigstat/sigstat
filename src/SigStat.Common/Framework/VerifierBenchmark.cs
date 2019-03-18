@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.Threading.Tasks;
 using SigStat.Common.Loaders;
@@ -10,6 +11,12 @@ using SigStat.Common.Model;
 using SigStat.Common.Framework.Exceptions;
 using System.IO;
 using SigStat.Common.PipelineItems.Classifiers;
+using OfficeOpenXml;
+using SigStat.Common.Helpers.Excel;
+using System.Diagnostics;
+using SigStat.Common.Helpers.Excel.Palette;
+using SigStat.Common.Pipeline;
+using static SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier;
 
 namespace SigStat.Common
 {
@@ -25,13 +32,17 @@ namespace SigStat.Common
         /// <summary>Average Error Rate</summary>
         public readonly double Aer;
 
+        /// HACK: Consider removing this after benchmark
+        public readonly ISignerModel Model;
+
         //ez internal, mert csak a Benchmark keszithet uj Resultokat
-        internal Result(string signer, double frr, double far, double aer)
+        internal Result(string signer, double frr, double far, double aer, ISignerModel model)
         {
             Signer = signer;
             Frr = frr;
             Far = far;
             Aer = aer;
+            Model = model;
         }
     }
 
@@ -76,9 +87,55 @@ namespace SigStat.Common
             }
         }
 
-        public void Dump(string filename)
+        public void Dump(string filename, IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            File.WriteAllText(filename, DateTime.Now.ToString());
+            using (var p = new ExcelPackage())
+            {
+                var summarySheet = p.Workbook.Worksheets.Add("Summary");
+                summarySheet.Cells[2, 2].Value = "Preprocessing benchmark";
+                summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
+                summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description", true);
+                var execution = new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>("Name:","Preprocessing benchmark"),
+                    new KeyValuePair<string, object>("Date:",DateTime.Now.ToString()),
+                    new KeyValuePair<string, object>("Agent:",Environment.MachineName),
+                    new KeyValuePair<string, object>("Duration:",duration.ToString()),
+                };
+                summarySheet.InsertTable(2, 8, execution, "Execution", ExcelColor.Secondary, true);
+                summarySheet.InsertTable(5, 8, parameters, "Parameters", ExcelColor.Secondary, true);
+                var resultsSummary = new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>("FAR:",benchmarkResults.FinalResult.Far),
+                    new KeyValuePair<string, object>("FRR:",benchmarkResults.FinalResult.Frr),
+                    new KeyValuePair<string, object>("AER:",benchmarkResults.FinalResult.Aer),
+                };
+                summarySheet.InsertTable(8, 8, resultsSummary, "Results", ExcelColor.Warning, true);
+                var resultsSheet = p.Workbook.Worksheets.Add("Results");
+                var signers = benchmarkResults.SignerResults.OrderBy(s => s.Signer).ToList();
+                var signerSummaries = signers.Select(s => new {
+                    s.Signer,
+                    FAR = s.Far,
+                    FRR = s.Frr,
+                    AER = s.Aer
+                });
+
+                resultsSheet.InsertTable(2, 2, signerSummaries);
+
+                foreach (var signer in signers)
+                {
+                    var signerSheet = p.Workbook.Worksheets.Add(signer.Signer);
+                    var model = ((OptimalDtwSignerModel)signer.Model);
+                    var distances = model.DistanceMatrix.ToArray();
+                    var errorRates = model.ErrorRates.Select(r => new { Threshold = r.Key, FAR = r.Value.Far, FRR = r.Value.Frr, AER = r.Value.Aer });
+                    var threshold = new List<KeyValuePair<string, object>>{ new KeyValuePair<string, object>("Threshold", model.Threshold) };
+                    signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
+                    signerSheet.InsertTable(4+ distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
+                    signerSheet.InsertTable(4+ distances.GetLength(0), 6, errorRates, "Error rates", ExcelColor.Info, true);
+                }
+
+                p.SaveAs(new FileInfo(filename));
+            }
         }
 
         private ILogger logger;
@@ -126,6 +183,9 @@ namespace SigStat.Common
         private double farAcc = 0;
         private double frrAcc = 0;
         private double pCnt = 0;
+        // HACK: should be refactored after preprocessing benchmark
+        private TimeSpan duration = TimeSpan.MinValue;
+        private BenchmarkResults benchmarkResults;
 
         /// <summary>
         /// Execute the benchmarking process.
@@ -133,6 +193,8 @@ namespace SigStat.Common
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
         {
+            var stopwatch = Stopwatch.StartNew();
+
             // TODO: centralize logger injection
             Verifier.Logger = logger;
             this.LogInformation("Benchmark execution started. Parallel mode: {ParallelMode}", ParallelMode);
@@ -168,13 +230,14 @@ namespace SigStat.Common
                 Exception ex = new Exception("Benchmark returned no results.");
                 this.LogError(ex, "Exception: " + ex.Message);//otlet: LogError(ex); ugyanezt csinalja meg
                 throw ex;
-                
+
             }
-            
+
             Progress = 100;
-            var r = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal));
             this.LogInformation("Benchmark execution finished.");
-            return r;
+            benchmarkResults = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal, null));
+            duration = stopwatch.Elapsed;
+            return benchmarkResults;
         }
 
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
@@ -250,7 +313,7 @@ namespace SigStat.Common
 
             pCnt += 1.0 / (cntSigners - 1);
             Progress = (int)(pCnt * 100);
-            yield return new Result(iSigner.ID, FRR, FAR, AER);
+            yield return new Result(iSigner.ID, FRR, FAR, AER, Verifier.SignerModel);
         }
 
 

@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.PreprocessingBenchmark": {
       "commandName": "Project",
-      "commandLineArgs": "-k \"M+iJr8b/5W/+PIUvDQgqy4q6Vk+DBARgusiXDd7xYJvjrhm8mIbr7QuVr9g790b3o1w6KGq2ZfnYTRkV0mXAMg==\""
+      "commandLineArgs": "-k \"...\""
     }
   }
 }

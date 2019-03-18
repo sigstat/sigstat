@@ -463,6 +463,9 @@
         <member name="F:SigStat.Common.Result.Aer">
             <summary>Average Error Rate</summary>
         </member>
+        <member name="F:SigStat.Common.Result.Model">
+            HACK: Consider removing this after benchmark
+        </member>
         <member name="T:SigStat.Common.BenchmarkResults">
             <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
         </member>
