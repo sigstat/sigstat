@@ -312,15 +312,32 @@ namespace SigStat.Sample
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
-                             new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
-                             new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
-                             new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y}
+                             //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
+                             //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
+                             //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
+                             //new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                             //new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                             //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+                             //new ResampleSamplesCountBased() {
+                             //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                             //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
+                             //    InterpolationType = typeof(CubicInterpolation),
+                             //    NumOfSamples = 500,
+                             //    OriginalTFeature = Features.T,
+                             //    ResampledTFeature = Features.T,
+                             //},
+                             //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                             //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                             //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                              new FillPenUpDurations() {InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                              OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                              InterpolationType = typeof(CubicInterpolation),TimeInputFeature =Features.T, TimeOutputFeature = Features.T}
                         }
                 ,
                     Classifier = new OptimalDtwClassifier()
                     {
                         Sampler = new SVC2004Sampler(),
-                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
                 Sampler = new SVC2004Sampler(),
@@ -391,467 +408,467 @@ namespace SigStat.Sample
 
         }
 
-        static void TestPreprocessingTransformations()
-        {
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "15"))[0];//Load the first signer only
+        //static void TestPreprocessingTransformations()
+        //{
+        //    Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+        //    var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "32"))[0];//Load the first signer only
 
-            Signature signature = signer.Signatures[11];
+        //    Signature signature = signer.Signatures[13];
 
-            //string selectedTransformation = "Translate";
-            //string selectedTransformation = "UniformScale";
-            //string selectedTransformation = "Scale";
-            //string selectedTransformation = "NormalizeRotation";
-            string selectedTransformation = "ResampleTimeBased";
-            //string selectedTransformation = "ResampleSamplesCountBased";
-            //string selectedTransformation = "FillPenUpDurations";
-            //string selectedTransformation = "FilterPoints";
+        //    string selectedTransformation = "Translate";
+        //    //string selectedTransformation = "UniformScale";
+        //    //string selectedTransformation = "Scale";
+        //    //string selectedTransformation = "NormalizeRotation";
+        //    //string selectedTransformation = "ResampleTimeBased";
+        //    //string selectedTransformation = "ResampleSamplesCountBased";
+        //    //string selectedTransformation = "FillPenUpDurations";
+        //    //string selectedTransformation = "FilterPoints";
 
-            if (selectedTransformation == "Translate")
-            {
-                var originalValues = signature.GetFeature(Features.X);
+        //    if (selectedTransformation == "Translate")
+        //    {
+        //        var originalValues = signature.GetFeature(Features.X);
 
-                new TranslatePreproc(OriginType.CenterOfGravity)
-                {
-                    InputFeature = Features.X,
-                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.CenterOfGravity + "TranslationResult"),
-                }.Transform(signature);
-                var cogValues = signature.GetFeature<List<double>>(OriginType.CenterOfGravity + "TranslationResult");
+        //        new TranslatePreproc(OriginType.CenterOfGravity)
+        //        {
+        //            InputFeature = Features.X,
+        //            OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.CenterOfGravity + "TranslationResult"),
+        //        }.Transform(signature);
+        //        var cogValues = signature.GetFeature<List<double>>(OriginType.CenterOfGravity + "TranslationResult");
 
-                new TranslatePreproc(OriginType.Minimum)
-                {
-                    InputFeature = Features.X,
-                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Minimum + "TranslationResult")
-                }.Transform(signature);
-                var minValues = signature.GetFeature<List<double>>(OriginType.Minimum + "TranslationResult");
+        //        new TranslatePreproc(OriginType.Minimum)
+        //        {
+        //            InputFeature = Features.X,
+        //            OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Minimum + "TranslationResult")
+        //        }.Transform(signature);
+        //        var minValues = signature.GetFeature<List<double>>(OriginType.Minimum + "TranslationResult");
 
-                new TranslatePreproc(OriginType.Maximum)
-                {
-                    InputFeature = Features.X,
-                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Maximum + "TranslationResult")
-                }.Transform(signature);
-                var maxValues = signature.GetFeature<List<double>>(OriginType.Maximum + "TranslationResult");
+        //        new TranslatePreproc(OriginType.Maximum)
+        //        {
+        //            InputFeature = Features.X,
+        //            OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Maximum + "TranslationResult")
+        //        }.Transform(signature);
+        //        var maxValues = signature.GetFeature<List<double>>(OriginType.Maximum + "TranslationResult");
 
-                new TranslatePreproc(100.0)
-                {
-                    InputFeature = Features.X,
-                    OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Predefined + "TranslationResult")
-                }.Transform(signature);
-                var predefValues = signature.GetFeature<List<double>>(OriginType.Predefined + "TranslationResult");
+        //        new TranslatePreproc(100.0)
+        //        {
+        //            InputFeature = Features.X,
+        //            OutputFeature = FeatureDescriptor.Get<List<double>>(OriginType.Predefined + "TranslationResult")
+        //        }.Transform(signature);
+        //        var predefValues = signature.GetFeature<List<double>>(OriginType.Predefined + "TranslationResult");
 
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("Original ; COG translated ; Min translated ; Max translated ; 100.0 translated");
-                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
-                {
-                    sw.WriteLine($"{originalValues[i]};{cogValues[i]};{minValues[i]};{maxValues[i]};{predefValues[i]}");
-                }
-                sw.Close();
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("Original ; COG translated ; Min translated ; Max translated ; 100.0 translated");
+        //        for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+        //        {
+        //            sw.WriteLine($"{originalValues[i]};{cogValues[i]};{minValues[i]};{maxValues[i]};{predefValues[i]}");
+        //        }
+        //        sw.Close();
 
-                //TODO: .net core-ban ez így nem működik
-                //Process.Start(outputFileName);
-            }
-            else if (selectedTransformation == "UniformScale")
-            {
-                var originalXValues = signature.GetFeature(Features.X);
-                var originalYValues = signature.GetFeature(Features.Y);
-
-
-                new UniformScale()
-                {
-                    BaseDimension = Features.X,
-                    ProportionalDimension = Features.Y,
-                    NewMinBaseValue = 100,
-                    NewMaxBaseValue = 200,
-                    NewMinProportionalValue = 150,
-                    BaseDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultBaseDim"),
-                    ProportionalDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultProportionalDim")
-                }.Transform(signature);
-                var defScaledXValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultBaseDim"));
-                var defScaledYValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultProportionalDim"));
+        //        //TODO: .net core-ban ez így nem működik
+        //        //Process.Start(outputFileName);
+        //    }
+        //    else if (selectedTransformation == "UniformScale")
+        //    {
+        //        var originalXValues = signature.GetFeature(Features.X);
+        //        var originalYValues = signature.GetFeature(Features.Y);
 
 
-                new UniformScale
-                {
-                    BaseDimension = Features.X,
-                    ProportionalDimension = Features.Y,
-                    BaseDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultBaseDim"),
-                    ProportionalDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultProportionalDim")
-                }.Transform(signature);
-                var autoScaledXValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultBaseDim"));
-                var autoScaledYValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultProportionalDim"));
-
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalX; OriginalY ; DefScaledX ; DefScaledY ; AutoScaledX; AutoScaledY");
-                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
-                {
-                    sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{defScaledXValues[i]};{defScaledYValues[i]};{autoScaledXValues[i]}; {autoScaledYValues[i]}");
-                }
-                sw.Close();
-
-                //Process.Start(outputFileName);
-            }
-            else if (selectedTransformation == "Scale")
-            {
-                var originalXValues = signature.GetFeature(Features.X);
-                new Scale()
-                {
-                    InputFeature = Features.X,
-                    NewMinValue = 100,
-                    NewMaxValue = 500,
-                    OutputFeature = FeatureDescriptor.Get<List<double>>("ScalingResult")
-                }.Transform(signature);
-                var defScaledXValues = new List<double>(signature.GetFeature<List<double>>("ScalingResult"));
-
-                new Scale
-                {
-                    InputFeature = Features.X,
-                    OutputFeature = FeatureDescriptor.Get<List<double>>("ScalingResult")
-                }.Transform(signature);
-                var autoScaledXValues = new List<double>(signature.GetFeature<List<double>>("ScalingResult"));
-
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalX;  DefScaledX ;  AutoScaledX");
-                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
-                {
-                    sw.WriteLine($"{originalXValues[i]};{defScaledXValues[i]};{autoScaledXValues[i]}");
-                }
-                sw.Close();
-
-                //Process.Start(outputFileName);
-            }
-            else if (selectedTransformation == "NormalizeRotation")
-            {
-                ////Deform
-                //var xValues = signature.GetFeature(Features.X);
-                //var yValues = signature.GetFeature(Features.Y);
-
-                //double cosa = 1 / Math.Sqrt(2);
-                //double sina = 1 / Math.Sqrt(2);
-
-                //for (int i = 0; i < xValues.Count; i++)
-                //{
-                //    double x = xValues[i];
-                //    double y = yValues[i];
-                //    xValues[i] = x * cosa - y * sina;
-                //    yValues[i] = x * sina + y * cosa;
-                //}
+        //        new UniformScale()
+        //        {
+        //            BaseDimension = Features.X,
+        //            ProportionalDimension = Features.Y,
+        //            NewMinBaseValue = 100,
+        //            NewMaxBaseValue = 200,
+        //            NewMinProportionalValue = 150,
+        //            BaseDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultBaseDim"),
+        //            ProportionalDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultProportionalDim")
+        //        }.Transform(signature);
+        //        var defScaledXValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultBaseDim"));
+        //        var defScaledYValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultProportionalDim"));
 
 
-                //var originalTValues = new List<double>(signature.GetFeature(Features.T));
-                var originalXValues = new List<double>(signature.GetFeature(Features.X));
-                var originalYValues = new List<double>(signature.GetFeature(Features.Y));
+        //        new UniformScale
+        //        {
+        //            BaseDimension = Features.X,
+        //            ProportionalDimension = Features.Y,
+        //            BaseDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultBaseDim"),
+        //            ProportionalDimensionOutput = FeatureDescriptor.Get<List<double>>("UniformScalingResultProportionalDim")
+        //        }.Transform(signature);
+        //        var autoScaledXValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultBaseDim"));
+        //        var autoScaledYValues = new List<double>(signature.GetFeature<List<double>>("UniformScalingResultProportionalDim"));
+
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalX; OriginalY ; DefScaledX ; DefScaledY ; AutoScaledX; AutoScaledY");
+        //        for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+        //        {
+        //            sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{defScaledXValues[i]};{defScaledYValues[i]};{autoScaledXValues[i]}; {autoScaledYValues[i]}");
+        //        }
+        //        sw.Close();
+
+        //        //Process.Start(outputFileName);
+        //    }
+        //    else if (selectedTransformation == "Scale")
+        //    {
+        //        var originalXValues = signature.GetFeature(Features.X);
+        //        new Scale()
+        //        {
+        //            InputFeature = Features.X,
+        //            NewMinValue = 100,
+        //            NewMaxValue = 500,
+        //            OutputFeature = FeatureDescriptor.Get<List<double>>("ScalingResult")
+        //        }.Transform(signature);
+        //        var defScaledXValues = new List<double>(signature.GetFeature<List<double>>("ScalingResult"));
+
+        //        new Scale
+        //        {
+        //            InputFeature = Features.X,
+        //            OutputFeature = FeatureDescriptor.Get<List<double>>("ScalingResult")
+        //        }.Transform(signature);
+        //        var autoScaledXValues = new List<double>(signature.GetFeature<List<double>>("ScalingResult"));
+
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalX;  DefScaledX ;  AutoScaledX");
+        //        for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+        //        {
+        //            sw.WriteLine($"{originalXValues[i]};{defScaledXValues[i]};{autoScaledXValues[i]}");
+        //        }
+        //        sw.Close();
+
+        //        //Process.Start(outputFileName);
+        //    }
+        //    else if (selectedTransformation == "NormalizeRotation")
+        //    {
+        //        ////Deform
+        //        //var xValues = signature.GetFeature(Features.X);
+        //        //var yValues = signature.GetFeature(Features.Y);
+
+        //        //double cosa = 1 / Math.Sqrt(2);
+        //        //double sina = 1 / Math.Sqrt(2);
+
+        //        //for (int i = 0; i < xValues.Count; i++)
+        //        //{
+        //        //    double x = xValues[i];
+        //        //    double y = yValues[i];
+        //        //    xValues[i] = x * cosa - y * sina;
+        //        //    yValues[i] = x * sina + y * cosa;
+        //        //}
 
 
-                var tfsOriginal = new SequentialTransformPipeline
-                {
-
-                    new UniformScale() {
-                         BaseDimension = Features.X,
-                         ProportionalDimension = Features.Y,
-                         BaseDimensionOutput = Features.X,
-                         ProportionalDimensionOutput =Features.Y
-                     },
-                    new RealisticImageGenerator(1280, 720)
-                };
-                tfsOriginal.Logger = new SimpleConsoleLogger();
-                tfsOriginal.Transform(signature);
-                //var imggen = new RealisticImageGenerator(1280, 720)
-                //{
-
-                //    Logger = new SimpleConsoleLogger()
-                //};
-                //imggen.Transform(signature);
-                ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
+        //        //var originalTValues = new List<double>(signature.GetFeature(Features.T));
+        //        var originalXValues = new List<double>(signature.GetFeature(Features.X));
+        //        var originalYValues = new List<double>(signature.GetFeature(Features.Y));
 
 
-                signature.SetFeature(Features.X, new List<double>(originalXValues));
-                signature.SetFeature(Features.Y, new List<double>(originalYValues));
+        //        var tfsOriginal = new SequentialTransformPipeline
+        //        {
 
-                new NormalizeRotation()
-                {
-                }.Transform(signature);
-                var rotatedXValues = new List<double>(signature.GetFeature(Features.X));
-                var rotatedYValues = new List<double>(signature.GetFeature(Features.Y));
+        //            new UniformScale() {
+        //                 BaseDimension = Features.X,
+        //                 ProportionalDimension = Features.Y,
+        //                 BaseDimensionOutput = Features.X,
+        //                 ProportionalDimensionOutput =Features.Y
+        //             },
+        //            new RealisticImageGenerator(1280, 720)
+        //        };
+        //        tfsOriginal.Logger = new SimpleConsoleLogger();
+        //        tfsOriginal.Transform(signature);
+        //        //var imggen = new RealisticImageGenerator(1280, 720)
+        //        //{
 
-                var tfsRotated = new SequentialTransformPipeline
-                {
+        //        //    Logger = new SimpleConsoleLogger()
+        //        //};
+        //        //imggen.Transform(signature);
+        //        ImageSaver.Save(signature, @"GeneratedOnlineImageBase.png");
 
-                    new UniformScale() {
-                         BaseDimension = Features.X,
-                         ProportionalDimension = Features.Y,
-                         BaseDimensionOutput = Features.X,
-                         ProportionalDimensionOutput =Features.Y
-                     },
-                    new RealisticImageGenerator(1280, 720)
-                };
-                tfsRotated.Logger = new SimpleConsoleLogger();
-                tfsRotated.Transform(signature);
 
-                //imggen.Transform(signature);
-                ImageSaver.Save(signature, @"GeneratedOnlineImageRotated.png");
+        //        signature.SetFeature(Features.X, new List<double>(originalXValues));
+        //        signature.SetFeature(Features.Y, new List<double>(originalYValues));
 
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalX; OriginalY; RotatedX ; RotatedY");
-                for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
-                {
-                    sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{rotatedXValues[i]};{rotatedYValues[i]}");
-                }
-                sw.Close();
+        //        new NormalizeRotation()
+        //        {
+        //        }.Transform(signature);
+        //        var rotatedXValues = new List<double>(signature.GetFeature(Features.X));
+        //        var rotatedYValues = new List<double>(signature.GetFeature(Features.Y));
 
-                //Process.Start(outputFileName);
-            }
-            else if (selectedTransformation == "ResampleTimeBased")
-            {
+        //        var tfsRotated = new SequentialTransformPipeline
+        //        {
 
-                var imggen = new RealisticImageGenerator(1280, 720)
-                {
+        //            new UniformScale() {
+        //                 BaseDimension = Features.X,
+        //                 ProportionalDimension = Features.Y,
+        //                 BaseDimensionOutput = Features.X,
+        //                 ProportionalDimensionOutput =Features.Y
+        //             },
+        //            new RealisticImageGenerator(1280, 720)
+        //        };
+        //        tfsRotated.Logger = new SimpleConsoleLogger();
+        //        tfsRotated.Transform(signature);
 
-                    Logger = new SimpleConsoleLogger()
-                };
-                imggen.Transform(signature);
-                ImageSaver.Save(signature, @"GeneratedOnlineImageBaseSampled.png");
+        //        //imggen.Transform(signature);
+        //        ImageSaver.Save(signature, @"GeneratedOnlineImageRotated.png");
 
-                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
-                    new FeatureDescriptor<List<double>>[]
-                    {
-                        Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
-                    });
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalX; OriginalY; RotatedX ; RotatedY");
+        //        for (int i = 0; i < signature.GetFeature(Features.X).Count; i++)
+        //        {
+        //            sw.WriteLine($"{originalXValues[i]};{originalYValues[i]};{rotatedXValues[i]};{rotatedYValues[i]}");
+        //        }
+        //        sw.Close();
 
-                var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
-                var originalValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //        //Process.Start(outputFileName);
+        //    }
+        //    else if (selectedTransformation == "ResampleTimeBased")
+        //    {
 
-                var resampler = new ResampleTimeBased()
-                {
-                    InputFeatures = features,
-                    OutputFeatures = features,
-                    TimeSlot = 20,
-                    InterpolationType = typeof(CubicInterpolation)
-                    //Interpolation = new LinearInterpolation()
-                };
-                resampler.Transform(signature);
+        //        var imggen = new RealisticImageGenerator(1280, 720)
+        //        {
 
-                //kisebb timeslotra mint az eredeti nem meg mert a penupot is nézi a kirajzoló
-                imggen.Transform(signature);
-                ImageSaver.Save(signature, @"GeneratedOnlineImageResampled.png");
+        //            Logger = new SimpleConsoleLogger()
+        //        };
+        //        imggen.Transform(signature);
+        //        ImageSaver.Save(signature, @"GeneratedOnlineImageBaseSampled.png");
 
-                var resampledValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    resampledValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //        List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+        //            new FeatureDescriptor<List<double>>[]
+        //            {
+        //                Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+        //            });
 
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
-                    "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
-                var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
-                var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
-                var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true : false;
-                for (int i = 0; i < max; i++)
-                {
-                    if (i < min)
-                    {
-                        sw.WriteLine(
-                            $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
-                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
-                    }
-                    else if (isOriginalMin)
-                    {
-                        sw.WriteLine(
-                            $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
-                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
-                    }
-                    else
-                    {
-                        sw.WriteLine(
-                           $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
-                            $"\"\";\"\";\"\";\"\";\"\";\"\" ");
+        //        var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
+        //        var originalValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
 
-                    }
-                }
-                sw.Close();
+        //        var resampler = new ResampleTimeBased()
+        //        {
+        //            InputFeatures = features,
+        //            OutputFeatures = features,
+        //            TimeSlot = 20,
+        //            InterpolationType = typeof(CubicInterpolation)
+        //            //Interpolation = new LinearInterpolation()
+        //        };
+        //        resampler.Transform(signature);
 
-            }
-            else if (selectedTransformation == "ResampleSamplesCountBased")
-            {
-                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
-                    new FeatureDescriptor<List<double>>[]
-                    {
-                        Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
-                    });
+        //        //kisebb timeslotra mint az eredeti nem meg mert a penupot is nézi a kirajzoló
+        //        imggen.Transform(signature);
+        //        ImageSaver.Save(signature, @"GeneratedOnlineImageResampled.png");
 
-                var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
-                var originalValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //        var resampledValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            resampledValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
 
-                var resampler = new ResampleSamplesCountBased()
-                {
-                    InputFeatures = features,
-                    OutputFeatures = features,
-                    NumOfSamples = 500,
-                    //Interpolation = new LinearInterpolation()
-                    InterpolationType = typeof(CubicInterpolation)
-                };
-                resampler.Transform(signature);
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
+        //            "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
+        //        var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
+        //        var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
+        //        var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true : false;
+        //        for (int i = 0; i < max; i++)
+        //        {
+        //            if (i < min)
+        //            {
+        //                sw.WriteLine(
+        //                    $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+        //                    $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+        //            }
+        //            else if (isOriginalMin)
+        //            {
+        //                sw.WriteLine(
+        //                    $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
+        //                    $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+        //            }
+        //            else
+        //            {
+        //                sw.WriteLine(
+        //                   $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+        //                    $"\"\";\"\";\"\";\"\";\"\";\"\" ");
 
-                var resampledValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    resampledValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //            }
+        //        }
+        //        sw.Close();
 
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
-                    "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
-                var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
-                var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
-                var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true : false;
-                for (int i = 0; i < max; i++)
-                {
-                    if (i < min)
-                    {
-                        sw.WriteLine(
-                            $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
-                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
-                    }
-                    else if (isOriginalMin)
-                    {
-                        sw.WriteLine(
-                            $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
-                            $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
-                    }
-                    else
-                    {
-                        sw.WriteLine(
-                           $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
-                            $"\"\";\"\";\"\";\"\";\"\";\"\" ");
+        //    }
+        //    else if (selectedTransformation == "ResampleSamplesCountBased")
+        //    {
+        //        List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+        //            new FeatureDescriptor<List<double>>[]
+        //            {
+        //                Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+        //            });
 
-                    }
-                }
-                sw.Close();
+        //        var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
+        //        var originalValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
 
-            }
-            else if (selectedTransformation == "FillPenUpDurations")
-            {
-                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
-                    new FeatureDescriptor<List<double>>[]
-                    {
-                        Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
-                    });
+        //        var resampler = new ResampleSamplesCountBased()
+        //        {
+        //            InputFeatures = features,
+        //            OutputFeatures = features,
+        //            NumOfSamples = 500,
+        //            //Interpolation = new LinearInterpolation()
+        //            InterpolationType = typeof(CubicInterpolation)
+        //        };
+        //        resampler.Transform(signature);
 
-                var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
-                var originalValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //        var resampledValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            resampledValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
 
-                var filler = new FillPenUpDurations()
-                {
-                    InputFeatures = features,
-                    OutputFeatures = features,
-                    //Interpolation = new LinearInterpolation(),
-                    InterpolationType = typeof(CubicInterpolation)
-                };
-                filler.Transform(signature);
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
+        //            "ResampledT; ResampledX; ResampledY ; ResampledP ; ResampledAz; ResampledAl ");
+        //        var min = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? originalTimestamps.Count : resampler.ResampledTimestamps.Count;
+        //        var max = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? resampler.ResampledTimestamps.Count : originalTimestamps.Count;
+        //        var isOriginalMin = originalTimestamps.Count <= resampler.ResampledTimestamps.Count ? true : false;
+        //        for (int i = 0; i < max; i++)
+        //        {
+        //            if (i < min)
+        //            {
+        //                sw.WriteLine(
+        //                    $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+        //                    $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+        //            }
+        //            else if (isOriginalMin)
+        //            {
+        //                sw.WriteLine(
+        //                    $" \"\";\"\";\"\";\"\";\"\";\"\"; " +
+        //                    $"{resampler.ResampledTimestamps[i]}; {resampledValues[0][i]};{resampledValues[1][i]};{resampledValues[2][i]};{resampledValues[3][i]};{resampledValues[4][i]}");
+        //            }
+        //            else
+        //            {
+        //                sw.WriteLine(
+        //                   $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+        //                    $"\"\";\"\";\"\";\"\";\"\";\"\" ");
 
-                var filledTimestamps = new List<double>(signature.GetFeature(filler.TimeOutputFeature));
-                var filledValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    filledValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //            }
+        //        }
+        //        sw.Close();
 
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
-                    "FilledT; FilledX; FilledY ; FilledP ; FilledAz; FilledAl ");
-                var originalCount = signature.GetFeature(filler.TimeInputFeature).Count;
-                for (int i = 0; i < filledTimestamps.Count; i++)
-                {
-                    if (i < originalCount)
-                    {
-                        sw.WriteLine(
-                            $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
-                            $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
-                    }
-                    else
-                    {
-                        sw.WriteLine(
-                            $"\"\";\"\";\"\";\"\";\"\";\"\"; " +
-                            $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
-                    }
+        //    }
+        //    else if (selectedTransformation == "FillPenUpDurations")
+        //    {
+        //        List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+        //            new FeatureDescriptor<List<double>>[]
+        //            {
+        //                Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+        //            });
 
-                }
-                sw.Close();
-            }
-            else if (selectedTransformation == "FilterPoints")
-            {
-                List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
-                    new FeatureDescriptor<List<double>>[]
-                    {
-                        Features.X, Features.Y, Features.Azimuth, Features.Altitude
-                    });
+        //        var originalTimestamps = new List<double>(signature.GetFeature(Features.T));
+        //        var originalValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
 
-                var originalPressureValues = new List<double>(signature.GetFeature(Features.Pressure));
-                var originalValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    originalValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //        var filler = new FillPenUpDurations()
+        //        {
+        //            InputFeatures = features,
+        //            OutputFeatures = features,
+        //            //Interpolation = new LinearInterpolation(),
+        //            InterpolationType = typeof(CubicInterpolation)
+        //        };
+        //        filler.Transform(signature);
 
-                var filter = new FilterPoints()
-                {
-                    InputFeatures = features,
-                    OutputFeatures = features,
-                    KeyFeatureInput = Features.Pressure,
-                    KeyFeatureOutput = Features.Pressure
-                };
-                filter.Transform(signature);
+        //        var filledTimestamps = new List<double>(signature.GetFeature(filler.TimeOutputFeature));
+        //        var filledValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            filledValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
 
-                var filteredPressureValues = new List<double>(signature.GetFeature(filter.KeyFeatureInput));
-                var filteredValues = new List<double>[features.Count];
-                for (int i = 0; i < features.Count; i++)
-                {
-                    filteredValues[i] = new List<double>(signature.GetFeature(features[i]));
-                }
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalT; OriginalX; OriginalY ; OriginalP ; OriginalAz; OriginalAl ;" +
+        //            "FilledT; FilledX; FilledY ; FilledP ; FilledAz; FilledAl ");
+        //        var originalCount = signature.GetFeature(filler.TimeInputFeature).Count;
+        //        for (int i = 0; i < filledTimestamps.Count; i++)
+        //        {
+        //            if (i < originalCount)
+        //            {
+        //                sw.WriteLine(
+        //                    $"{originalTimestamps[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};{originalValues[4][i]};" +
+        //                    $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
+        //            }
+        //            else
+        //            {
+        //                sw.WriteLine(
+        //                    $"\"\";\"\";\"\";\"\";\"\";\"\"; " +
+        //                    $"{filledTimestamps[i]}; {filledValues[0][i]};{filledValues[1][i]};{filledValues[2][i]};{filledValues[3][i]};{filledValues[4][i]}");
+        //            }
 
-                string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
-                StreamWriter sw = new StreamWriter(outputFileName);
-                sw.WriteLine("OriginalP; OriginalX; OriginalY ; OriginalAz; OriginalAl ;" +
-                    "FilteredP ; FilteredX; FilteredY ;  FilteredAz; FilteredAl ");
-                var filteredCount = filteredPressureValues.Count;
-                for (int i = 0; i < originalPressureValues.Count; i++)
-                {
-                    if (i < filteredCount)
-                    {
-                        sw.WriteLine(
-                            $"{originalPressureValues[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};" +
-                            $"{filteredPressureValues[i]}; {filteredValues[0][i]};{filteredValues[1][i]};{filteredValues[2][i]};{filteredValues[3][i]}");
-                    }
-                    else
-                    {
-                        sw.WriteLine(
-                            $"{originalPressureValues[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};" +
-                            $"\"\";\"\";\"\";\"\";\"\";\"\" ");
-                    }
+        //        }
+        //        sw.Close();
+        //    }
+        //    else if (selectedTransformation == "FilterPoints")
+        //    {
+        //        List<FeatureDescriptor<List<double>>> features = new List<FeatureDescriptor<List<double>>>(
+        //            new FeatureDescriptor<List<double>>[]
+        //            {
+        //                Features.X, Features.Y, Features.Azimuth, Features.Altitude
+        //            });
 
-                }
-                sw.Close();
-            }
-        }
+        //        var originalPressureValues = new List<double>(signature.GetFeature(Features.Pressure));
+        //        var originalValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            originalValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
+
+        //        var filter = new FilterPoints()
+        //        {
+        //            InputFeatures = features,
+        //            OutputFeatures = features,
+        //            KeyFeatureInput = Features.Pressure,
+        //            KeyFeatureOutput = Features.Pressure
+        //        };
+        //        filter.Transform(signature);
+
+        //        var filteredPressureValues = new List<double>(signature.GetFeature(filter.KeyFeatureInput));
+        //        var filteredValues = new List<double>[features.Count];
+        //        for (int i = 0; i < features.Count; i++)
+        //        {
+        //            filteredValues[i] = new List<double>(signature.GetFeature(features[i]));
+        //        }
+
+        //        string outputFileName = selectedTransformation + "TransformationOutputTest.csv";
+        //        StreamWriter sw = new StreamWriter(outputFileName);
+        //        sw.WriteLine("OriginalP; OriginalX; OriginalY ; OriginalAz; OriginalAl ;" +
+        //            "FilteredP ; FilteredX; FilteredY ;  FilteredAz; FilteredAl ");
+        //        var filteredCount = filteredPressureValues.Count;
+        //        for (int i = 0; i < originalPressureValues.Count; i++)
+        //        {
+        //            if (i < filteredCount)
+        //            {
+        //                sw.WriteLine(
+        //                    $"{originalPressureValues[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};" +
+        //                    $"{filteredPressureValues[i]}; {filteredValues[0][i]};{filteredValues[1][i]};{filteredValues[2][i]};{filteredValues[3][i]}");
+        //            }
+        //            else
+        //            {
+        //                sw.WriteLine(
+        //                    $"{originalPressureValues[i]}; {originalValues[0][i]};{originalValues[1][i]};{originalValues[2][i]};{originalValues[3][i]};" +
+        //                    $"\"\";\"\";\"\";\"\";\"\";\"\" ");
+        //            }
+
+        //        }
+        //        sw.Close();
+        //    }
+        //}
 
         static void JsonSerializeSignature()
         {
@@ -883,7 +900,7 @@ namespace SigStat.Sample
             sig.SetFeature(MyFeatures.Loop, loops);
             loops = sig.GetFeature(MyFeatures.Loop);
 
-            string json = JsonConvert.SerializeObject(sig,Formatting.Indented);
+            string json = JsonConvert.SerializeObject(sig, Formatting.Indented);
             Console.WriteLine(json);
 
             Signature desirializedSig = JsonConvert.DeserializeObject<Signature>(json);
@@ -970,7 +987,7 @@ namespace SigStat.Sample
             }
 
         }
-        
+
         static void DeserializeOnlineVerifier()
         {
             Verifier desirializedOV = JsonConvert.DeserializeObject<Verifier>(File.ReadAllText(@"serialized.txt"), new JsonSerializerSettings
@@ -980,10 +997,11 @@ namespace SigStat.Sample
             });
             Console.WriteLine(desirializedOV.ToString());
             Console.WriteLine("\t" + desirializedOV.Pipeline.ToString());
-            foreach(var item in desirializedOV.Pipeline)
+            foreach (var item in desirializedOV.Pipeline)
             {
                 Console.WriteLine("\t\t" + item.ToString());
-                if ((item.GetType().GetMember("Items")).Length > 0) {
+                if ((item.GetType().GetMember("Items")).Length > 0)
+                {
                     foreach (var item2 in ((ParallelTransformPipeline)item).Items)
                     {
                         Console.WriteLine("\t\t\t" + item2.ToString());

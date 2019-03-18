@@ -246,13 +246,17 @@ namespace SigStat.Common
             List<Signature> references = Sampler.SampleReferences(iSigner.Signatures);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(iSigner.Signatures);
             List<Signature> forgeryTests = Sampler.SampleForgeryTests(iSigner.Signatures);
+
+            //HACK: kulon Verifier kell minden Signerhez
+            Verifier vClone = new Verifier(Verifier);
+
             //HACK: remove this after preprocessing benchamrk
-            if (verifier.Classifier is OptimalDtwClassifier)
+            if (vClone.Classifier is OptimalDtwClassifier)
                 references = iSigner.Signatures;
 
             try
             {
-                Verifier.Train(references);
+                vClone.Train(references);
             }
             catch (Exception exc)
             {
@@ -270,7 +274,7 @@ namespace SigStat.Common
             {
                 try
                 {
-                    if (Verifier.Test(genuine) <= 0.5)
+                    if (vClone.Test(genuine) <= 0.5)
                     {
                         nFalseReject++;//eredeti alairast hamisnak hisz
                     }
@@ -291,7 +295,7 @@ namespace SigStat.Common
             {
                 try
                 {
-                    if (Verifier.Test(forgery) > 0.5)
+                    if (vClone.Test(forgery) > 0.5)
                     {
                         nFalseAccept++;//hamis alairast eredetinek hisz
                     }
@@ -313,7 +317,7 @@ namespace SigStat.Common
 
             pCnt += 1.0 / (cntSigners - 1);
             Progress = (int)(pCnt * 100);
-            yield return new Result(iSigner.ID, FRR, FAR, AER, Verifier.SignerModel);
+            yield return new Result(iSigner.ID, FRR, FAR, AER, vClone.SignerModel);
         }
 
 

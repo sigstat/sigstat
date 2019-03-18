@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    //TODO: time fix
     public class ResampleTimeBased : PipelineBase, ITransformation
     {
         public double TimeSlot { get; set; } = 0;
@@ -78,8 +79,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 double actualTimestamp = minTimestamp;
                 while (actualTimestamp <= maxTimestamp)
                 {
-                    var interpolatedValue = interpolation.GetValue(actualTimestamp); // HUGEHACK!!! P miatt
-                    resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
+                    resampledValues.Add(interpolation.GetValue(actualTimestamp));
                     ResampledTimestamps.Add(actualTimestamp);
                     actualTimestamp += TimeSlot;
                 }
@@ -88,9 +88,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             {
                 foreach (var ts in ResampledTimestamps)
                 {
-                    //resampledValues.Add(Interpolation.GetValue(ts));
-                    var interpolatedValue = interpolation.GetValue(ts); // HUGEHACK!!! P miatt
-                    resampledValues.Add(interpolatedValue < 0 ? 0.0000001 : interpolatedValue);// HUGEHACK!!!
+                    resampledValues.Add(interpolation.GetValue(ts));
                 }
             }
 
