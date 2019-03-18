@@ -312,15 +312,26 @@ namespace SigStat.Sample
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
-                             new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
-                             new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
-                             new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y}
+                             //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
+                             //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
+                             //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
+                             //new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                             //new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                             //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+                             new ResampleSamplesCountBased() {
+                                 InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                                 OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
+                                 InterpolationType = typeof(LinearInterpolation),
+                                 NumOfSamples = 500,
+                                 OriginalTFeature = Features.T,
+                                 ResampledTFeature = Features.T,
+                             } 
                         }
                 ,
                     Classifier = new OptimalDtwClassifier()
                     {
                         Sampler = new SVC2004Sampler(),
-                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
                 Sampler = new SVC2004Sampler(),
@@ -394,15 +405,15 @@ namespace SigStat.Sample
         static void TestPreprocessingTransformations()
         {
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "15"))[0];//Load the first signer only
+            var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "32"))[0];//Load the first signer only
 
-            Signature signature = signer.Signatures[11];
+            Signature signature = signer.Signatures[13];
 
-            //string selectedTransformation = "Translate";
+            string selectedTransformation = "Translate";
             //string selectedTransformation = "UniformScale";
             //string selectedTransformation = "Scale";
             //string selectedTransformation = "NormalizeRotation";
-            string selectedTransformation = "ResampleTimeBased";
+            //string selectedTransformation = "ResampleTimeBased";
             //string selectedTransformation = "ResampleSamplesCountBased";
             //string selectedTransformation = "FillPenUpDurations";
             //string selectedTransformation = "FilterPoints";

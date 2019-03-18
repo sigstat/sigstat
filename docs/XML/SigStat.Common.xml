@@ -571,6 +571,13 @@
             <param name="weightMartix"></param>
             <returns></returns>
         </member>
+        <member name="M:SigStat.Common.Helpers.Excel.Palette.PaletteStorage.GetPalette(SigStat.Common.Helpers.Excel.Palette.ExcelColor)">
+            <summary>
+            Get the Palette assigned to the color
+            </summary>
+            <param name="excelColor"></param>
+            <returns>The specified palette</returns>
+        </member>
         <member name="T:SigStat.Common.Helpers.IProgress">
             <summary>
             Enables progress tracking by expsoing the <see cref="P:SigStat.Common.Helpers.IProgress.Progress"/> property and the <see cref="E:SigStat.Common.Helpers.IProgress.ProgressChanged"/> event.
