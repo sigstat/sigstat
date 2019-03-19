@@ -93,6 +93,14 @@ public class SigStat.Common.DistanceMatrix<TRowKey, TColumnKey, TValue>
 | <sub>TValue</sub> | <sub>Item</sub> | <sub></sub> | 
 
 
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>Object[,]</sub> | <sub>ToArray()</sub> | <sub></sub> | 
+| <sub>Boolean</sub> | <sub>TryGetValue(TRowKey, TColumnKey, TValue&)</sub> | <sub></sub> | 
+
+
 #### `ErrorRate`
 
 ```csharp
@@ -358,6 +366,7 @@ public class SigStat.Common.Result
 | <sub>Double</sub> | <sub>Aer</sub> | <sub>Average Error Rate</sub> | 
 | <sub>Double</sub> | <sub>Far</sub> | <sub>False Acceptance Rate</sub> | 
 | <sub>Double</sub> | <sub>Frr</sub> | <sub>False Rejection Rate</sub> | 
+| <sub>ISignerModel</sub> | <sub>Model</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>Signer</sub> | <sub>Identifier of the `SigStat.Common.Result.Signer`</sub> | 
 
 
@@ -484,7 +493,7 @@ public class SigStat.Common.VerifierBenchmark
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>void</sub> | <sub>Dump(String)</sub> | <sub></sub> | 
+| <sub>void</sub> | <sub>Dump(String, IEnumerable<KeyValuePair<String, String>>)</sub> | <sub></sub> | 
 | <sub>BenchmarkResults</sub> | <sub>Execute(Boolean = True)</sub> | <sub>Execute the benchmarking process.</sub> | 
 
 

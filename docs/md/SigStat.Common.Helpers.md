@@ -9,15 +9,15 @@ public class SigStat.Common.Helpers.BenchmarkConfig
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
+| <sub>String</sub> | <sub>Classifier</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>Database</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>Features</sub> | <sub></sub> | 
-| <sub>String</sub> | <sub>Filter</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>Interpolation</sub> | <sub></sub> | 
 | <sub>Double</sub> | <sub>ResamplingParam</sub> | <sub></sub> | 
-| <sub>String</sub> | <sub>ResamplingType</sub> | <sub></sub> | 
+| <sub>String</sub> | <sub>ResamplingType_Filter</sub> | <sub></sub> | 
 | <sub>Boolean</sub> | <sub>Rotation</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>Sampling</sub> | <sub></sub> | 
-| <sub>ValueTuple<String, String></sub> | <sub>TranslationScaling</sub> | <sub></sub> | 
+| <sub>ValueTuple<String, String></sub> | <sub>Translation_Scaling</sub> | <sub></sub> | 
 
 
 ###### Methods
@@ -26,6 +26,7 @@ public class SigStat.Common.Helpers.BenchmarkConfig
 | --- | --- | --- | 
 | <sub>BenchmarkConfig</sub> | <sub>FromJsonFile(String)</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>ToJsonString()</sub> | <sub></sub> | 
+| <sub>IEnumerable<KeyValuePair<String, String>></sub> | <sub>ToKeyValuePairs()</sub> | <sub></sub> | 
 | <sub>String</sub> | <sub>ToShortString()</sub> | <sub></sub> | 
 
 
@@ -35,6 +36,23 @@ public class SigStat.Common.Helpers.BenchmarkConfig
 | --- | --- | --- | 
 | <sub>BenchmarkConfig</sub> | <sub>FromJsonString(String)</sub> | <sub></sub> | 
 | <sub>List<BenchmarkConfig></sub> | <sub>GenerateConfigurations()</sub> | <sub></sub> | 
+
+
+#### `FeatureDescriptorJsonConverter`
+
+```csharp
+public class SigStat.Common.Helpers.FeatureDescriptorJsonConverter
+    : JsonConverter
+
+```
+
+###### Methods
+
+| <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
+| --- | --- | --- | 
+| <sub>Boolean</sub> | <sub>CanConvert(Type)</sub> | <sub></sub> | 
+| <sub>Object</sub> | <sub>ReadJson(JsonReader, Type, Object, JsonSerializer)</sub> | <sub></sub> | 
+| <sub>void</sub> | <sub>WriteJson(JsonWriter, Object, JsonSerializer)</sub> | <sub></sub> | 
 
 
 #### `IProgress`
@@ -94,7 +112,7 @@ public class SigStat.Common.Helpers.SimpleConsoleLogger
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>EventHandler<String></sub> | <sub>Logged</sub> | <sub></sub> | 
+| <sub>ErrorEventHandler</sub> | <sub>Logged</sub> | <sub></sub> | 
 
 
 ###### Methods

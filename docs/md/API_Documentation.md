@@ -45,9 +45,21 @@
 ## [SigStat.Common.Helpers](SigStat.Common.Helpers)
 
 - [<sub>BenchmarkConfig</sub>](SigStat.Common.Helpers#benchmarkconfig)
+- [<sub>FeatureDescriptorJsonConverter</sub>](SigStat.Common.Helpers#featuredescriptorjsonconverter)
 - [<sub>IProgress</sub>](SigStat.Common.Helpers#iprogress)
 - [<sub>SerializationHelper</sub>](SigStat.Common.Helpers#serializationhelper)
 - [<sub>SimpleConsoleLogger</sub>](SigStat.Common.Helpers#simpleconsolelogger)
+
+## [SigStat.Common.Helpers.Excel](SigStat.Common.Helpers.Excel)
+
+- [<sub>ExcelHelper</sub>](SigStat.Common.Helpers.Excel#excelhelper)
+- [<sub>HierarchyElement</sub>](SigStat.Common.Helpers.Excel#hierarchyelement)
+
+## [SigStat.Common.Helpers.Excel.Palette](SigStat.Common.Helpers.Excel.Palette)
+
+- [<sub>ExcelColor</sub>](SigStat.Common.Helpers.Excel.Palette#excelcolor)
+- [<sub>Palette</sub>](SigStat.Common.Helpers.Excel.Palette#palette)
+- [<sub>PaletteStorage</sub>](SigStat.Common.Helpers.Excel.Palette#palettestorage)
 
 ## [SigStat.Common.Loaders](SigStat.Common.Loaders)
 

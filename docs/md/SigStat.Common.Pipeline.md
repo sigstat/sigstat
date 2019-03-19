@@ -167,7 +167,7 @@ public class SigStat.Common.Pipeline.SequentialTransformPipeline
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>List<ITransformation></sub> | <sub>Items</sub> | <sub>List of transforms to be run in sequence.</sub> | 
+| <sub>List<ITransformation></sub> | <sub>Items</sub> | <sub></sub> | 
 
 
 ###### Properties

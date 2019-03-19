@@ -38,7 +38,6 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDura
 | <sub>List<FeatureDescriptor<List<Double>>></sub> | <sub>OutputFeatures</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>TimeInputFeature</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>TimeOutputFeature</sub> | <sub></sub> | 
-| <sub>List<TimeSlot></sub> | <sub>TimeSlots</sub> | <sub></sub> | 
 
 
 ###### Methods
@@ -181,7 +180,6 @@ public class SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSampl
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>OriginalTFeature</sub> | <sub></sub> | 
 | <sub>List<FeatureDescriptor<List<Double>>></sub> | <sub>OutputFeatures</sub> | <sub></sub> | 
 | <sub>FeatureDescriptor<List<Double>></sub> | <sub>ResampledTFeature</sub> | <sub></sub> | 
-| <sub>List<Double></sub> | <sub>ResampledTimestamps</sub> | <sub></sub> | 
 
 
 ###### Methods

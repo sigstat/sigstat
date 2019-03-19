@@ -11,7 +11,7 @@ public class SigStat.Common.PipelineItems.Classifiers.DtwClassifier
 
 | <sub>Type</sub> | <sub>Name</sub> | <sub>Summary</sub> | 
 | --- | --- | --- | 
-| <sub>List<FeatureDescriptor></sub> | <sub>InputFeatures</sub> | <sub></sub> | 
+| <sub>List<FeatureDescriptor></sub> | <sub>Features</sub> | <sub></sub> | 
 
 
 ###### Methods
