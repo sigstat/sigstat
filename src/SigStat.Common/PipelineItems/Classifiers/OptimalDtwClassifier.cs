@@ -49,6 +49,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
         public ISignerModel Train(List<Signature> signatures)
         {
+
             if (signatures == null)
                 throw new ArgumentNullException(nameof(signatures));
             if (signatures.Count == 0)
@@ -62,7 +63,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             var dtwDistances = new DistanceMatrix<string, string, double>();
 
-            
+
 
             foreach (var train in trainSignatures)
             {
@@ -82,19 +83,32 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 .OrderBy(d => d.Distance)
                 .ToList();
 
-            var errorRates = averageDistances.Select(d => new KeyValuePair<double, ErrorRate>(
-                d.Distance,
-                CalculateErrorRate(d.Distance, averageDistances)
+
+
+            List<double> thresholds = new List<double>();
+            thresholds.Add(0);
+            for (int i = 0; i < averageDistances.Count - 1; i++)
+            {
+                thresholds.Add((averageDistances[i].Distance + averageDistances[i + 1].Distance) / 2);
+            }
+
+            thresholds.Add(averageDistances[averageDistances.Count - 1].Distance + 1);
+
+            var errorRates = thresholds.Select(th => new KeyValuePair<double, ErrorRate>(
+                th,
+                CalculateErrorRate(th, averageDistances)
             )).ToList();
+
 
             OptimalDtwSignerModel model = new OptimalDtwSignerModel()
             {
                 DistanceMatrix = dtwDistances,
-                SignatureDistanceFromTraining = averageDistances.ToDictionary(sig=>sig.ID, sig=>sig.Distance),
+                SignatureDistanceFromTraining = averageDistances.ToDictionary(sig => sig.ID, sig => sig.Distance),
                 ErrorRates = errorRates,
-                Threshold = errorRates.First(e => e.Value.Frr > e.Value.Far).Key
+                Threshold = errorRates.First(e => e.Value.Far >= e.Value.Frr).Key
             };
             return model;
+
         }
 
         private ErrorRate CalculateErrorRate(double threshold, List<SignatureDistance> distances)
@@ -121,7 +135,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 }
             }
 
-            return new ErrorRate { Far = (double)genuineError / genuineCount, Frr = (double)forgedError / forgedCount };
+            return new ErrorRate { Far = (double)forgedError / forgedCount, Frr = (double)genuineError / genuineCount };
         }
 
         /// <inheritdoc/>

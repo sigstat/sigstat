@@ -2,7 +2,7 @@
 
 namespace SigStat.Common.Helpers.Excel.Palette
 {
-    class Palette
+    public class Palette
     {
         public Color MainColor { get; set; }
         public Color DarkColor { get; set; }

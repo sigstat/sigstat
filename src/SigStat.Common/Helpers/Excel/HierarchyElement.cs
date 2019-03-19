@@ -2,7 +2,7 @@
 
 namespace SigStat.Common.Helpers.Excel
 {
-    class HierarchyElement
+    public class HierarchyElement
     {
         public List<HierarchyElement> Children { get; }
 

@@ -171,6 +171,17 @@ namespace SigStat.Common.Loaders
                 .Select(l => l.Split(' ').Select(s => int.Parse(s)).ToArray())
                 .ToList();
 
+            //HACK: same timestamp for measurements does not make sense
+            // therefore, we remove the second entry
+            // a better solution would be to change the timestamps based on their environments
+            for (int i = 0; i < lines.Count-1; i++)
+            {
+                if (lines[i][2] == lines[i + 1][2])
+                {
+                    lines.RemoveAt(i + 1);
+                    i--;
+                }
+            }
             // Task1, Task2
             signature.SetFeature(Svc2004.X, lines.Select(l => l[0]).ToList());
             signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());

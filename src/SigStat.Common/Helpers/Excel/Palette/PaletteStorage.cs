@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace SigStat.Common.Helpers.Excel.Palette
 {
-    enum ExcelColor
+    public enum ExcelColor
     {
         Primary = 1,
         Secondary = 2,
@@ -13,7 +13,7 @@ namespace SigStat.Common.Helpers.Excel.Palette
         Info = 6
     }
 
-    class PaletteStorage
+    public class PaletteStorage
     {
         //Load colors into a dictionary
         private static readonly Dictionary<ExcelColor, Palette> PaletteColors = new Dictionary<ExcelColor, Palette>

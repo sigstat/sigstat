@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace SigStat.Common.Helpers.Excel
 {
-    static class ExcelHelper
+    public static class ExcelHelper
     {
 
         //Merge cells in given range

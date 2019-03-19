@@ -64,25 +64,28 @@ namespace SigStat.Sample
 
         private static void PreprocessingBenchmarkDemo()
         {
-            //var configs = BenchmarkConfig.GenerateConfigurations();
             ////var config = BenchmarkConfig.FromJsonFile(path);
-            //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
-
             BenchmarkConfig config = new BenchmarkConfig()
             {
                 Classifier = "OptimalDtw",
                 Sampling = "S1",
                 Database = "SVC2004",
                 Rotation = true,
-                Translation_Scaling = ("None", "X01Y01"),
-                ResamplingType_Filter = "FillPenUp",
-                ResamplingParam = 0,
+                Translation_Scaling = ("BottomLeftToOrigin", "Y01"),
+                ResamplingType_Filter = "SampleCount",
+                ResamplingParam = 500,
                 Interpolation = "Cubic",
                 Features = "XYP"
             };
-            var benchmark = BenchmarkBuilder.Build(config);
+            var configs = BenchmarkConfig.GenerateConfigurations();
+            var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
+            //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
+
+           
+            var benchmark = BenchmarkBuilder.Build(myConfig);
             benchmark.Logger = new SimpleConsoleLogger();
-            benchmark.Execute();
+            benchmark.Execute(true);
+            benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
 
         }
 

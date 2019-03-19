@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.PreprocessingBenchmark": {
       "commandName": "Project",
-      "commandLineArgs": "-k \"...\""
+      "commandLineArgs": "-k \"key.txt\" -o \"C:\\SignatureDB\\Benchmark\\Run1\" -m Analyser"
     }
   }
 }

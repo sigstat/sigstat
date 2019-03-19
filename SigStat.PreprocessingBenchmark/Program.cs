@@ -16,7 +16,8 @@ namespace SigStat.PreprocessingBenchmark
         {
             Worker,
             Monitor,
-            JobGenerator
+            JobGenerator,
+            Analyser
         }
         public class Options
         {
@@ -41,8 +42,18 @@ namespace SigStat.PreprocessingBenchmark
         static async Task Main(string[] args)
         {
             await Parser.Default.ParseArguments<Options>(args)
-                .MapResult<Options,Task>(o =>
-                   {
+                .MapResult<Options, Task>(o =>
+                    {
+                    if (o.AccountKey.EndsWith(".txt"))
+                    {
+                        if (!File.Exists(o.AccountKey))
+                        {
+                            Console.WriteLine($"Account key file '{o.AccountKey}' does not exist");
+                            return Task.FromResult(-1);
+                           }
+                           o.AccountKey = File.ReadAllText(o.AccountKey);
+                       }
+
                        var credentials = new StorageCredentials(o.AccountName, o.AccountKey);
                        Account = new CloudStorageAccount(credentials, true);
                        Experiment = o.Experiment;
@@ -59,6 +70,9 @@ namespace SigStat.PreprocessingBenchmark
                            case Mode.JobGenerator:
                                Console.WriteLine("Running JobGenerator");
                                return JobGenerator.RunAsync();
+                           case Mode.Analyser:
+                               Console.WriteLine("Running Analyser");
+                               return Analyser.RunAsync();
                            default:
                                throw new NotSupportedException();
                        }

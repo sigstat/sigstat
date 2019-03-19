@@ -56,6 +56,8 @@ namespace SigStat.Common.Algorithms
             //                           DTW[i - 1, j - 1])    # match
 
             //return DTW[N, M]
+            
+            //TODO: could dtw[n,m] be the correct syntax here?
             return dtw[n-1, m-1];
         }
 
