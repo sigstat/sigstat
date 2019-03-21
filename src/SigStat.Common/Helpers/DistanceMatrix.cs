@@ -31,6 +31,12 @@ namespace SigStat.Common
             return items.TryGetValue(new KeyValuePair<TRowKey, TColumnKey>(row, column), out value);
         }
 
+        public bool ContainsKey(TRowKey row, TColumnKey column)
+        {
+            return items.ContainsKey(new KeyValuePair<TRowKey, TColumnKey>(row, column));
+        }
+
+
         internal object[,] ToArray()
         {
             var rows = items.Keys.Select(key => key.Key).Distinct().OrderBy(i => i).ToList();
@@ -55,6 +61,11 @@ namespace SigStat.Common
             }
             return result;
 
+        }
+
+        internal IEnumerable<TValue> GetValues()
+        {
+            return items.Values;
         }
     }
 }

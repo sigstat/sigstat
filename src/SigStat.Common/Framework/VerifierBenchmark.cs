@@ -94,6 +94,7 @@ namespace SigStat.Common
                 var summarySheet = p.Workbook.Worksheets.Add("Summary");
                 summarySheet.Cells[2, 2].Value = "Preprocessing benchmark";
                 summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
+                summarySheet.Cells[4, 2].Value = Path.GetFileNameWithoutExtension(filename);
                 summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description", true);
                 var execution = new List<KeyValuePair<string, object>>
                 {
@@ -172,12 +173,12 @@ namespace SigStat.Common
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VerifierBenchmark"/> class.
-        /// Sets the <see cref="Common.Sampler"/> to the default <see cref="SVC2004Sampler"/>.
+        /// Sets the <see cref="Common.Sampler"/> to the default <see cref="SVC2004Sampler1"/>.
         /// </summary>
         public VerifierBenchmark()
         {
             Verifier = null;
-            Sampler = new SVC2004Sampler();
+            Sampler = new SVC2004Sampler1();
         }
 
         private double farAcc = 0;

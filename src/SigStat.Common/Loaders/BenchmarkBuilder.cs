@@ -13,7 +13,12 @@ namespace SigStat.Common.Loaders
 
         //Elejen letrehozzuk oket: nem kell mindenkinek kulon instance, mert allapotmentesek vagyunk (ahol igen..)
         //miert static? Mert a Builder is static. Lehetne a Buildben is letrehozni oket, de mi sokszor hivjuk meg ezt a Buildet.
-        static SVC2004Sampler svcSampler = new SVC2004Sampler();
+        static SVC2004Sampler1 svcSampler1 = new SVC2004Sampler1();
+        static SVC2004Sampler2 svcSampler2 = new SVC2004Sampler2();
+        static SVC2004Sampler3 svcSampler3 = new SVC2004Sampler3();
+        static McytSampler1 mcytSampler1 = new McytSampler1();
+        static McytSampler2 mcytSampler2 = new McytSampler2();
+        static McytSampler3 mcytSampler3 = new McytSampler3();
         //TODO: more signer samplers
         static Svc2004Loader svcLoader = new Svc2004Loader(@"Task2.zip", true);
         static MCYTLoader mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
@@ -45,38 +50,44 @@ namespace SigStat.Common.Loaders
 
         public static VerifierBenchmark Build(BenchmarkConfig config)
         {
-
-
+            Sampler sampler1 = null;
+            Sampler sampler2 = null;
+            Sampler sampler3 = null;
 
             VerifierBenchmark b = new VerifierBenchmark();
-            switch (config.Sampling)
-            {
-                case "S1":
-                    b.Sampler = svcSampler;
-                    break;
-                case "S2"://TODO: replace with new samplers
-                    b.Sampler = svcSampler;
-                    break;
-                case "S3":
-                    b.Sampler = svcSampler;
-                    break;
-                default:
-                    break;
-            }
             switch (config.Database)
             {
                 case "SVC2004":
                     b.Loader = svcLoader;
+                    sampler1 = svcSampler1;
+                    sampler2 = svcSampler2;
+                    sampler3 = svcSampler3;
                     break;
                 case "MCYT100":
                     b.Loader = mcytLoader;
+                    sampler1 = mcytSampler1;
+                    sampler2 = mcytSampler2;
+                    sampler3 = mcytSampler3;
                     break;
-                case "..."://TODO: add 3rd db
-                    b.Loader = null;
+                default:
+                    throw new NotSupportedException();
+            }
+
+            switch (config.Sampling)
+            {
+                case "S1":
+                    b.Sampler = sampler1;
+                    break;
+                case "S2"://TODO: replace with new samplers
+                    b.Sampler = sampler2;
+                    break;
+                case "S3":
+                    b.Sampler = sampler3;
                     break;
                 default:
                     break;
             }
+            
 
             var pipeline = new SequentialTransformPipeline();
 

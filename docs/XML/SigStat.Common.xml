@@ -509,7 +509,7 @@
         <member name="M:SigStat.Common.VerifierBenchmark.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:SigStat.Common.VerifierBenchmark"/> class.
-            Sets the <see cref="T:SigStat.Common.Sampler"/> to the default <see cref="T:SigStat.Common.SVC2004Sampler"/>.
+            Sets the <see cref="T:SigStat.Common.Sampler"/> to the default <see cref="T:SigStat.Common.SVC2004Sampler1"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.VerifierBenchmark.Execute(System.Boolean)">

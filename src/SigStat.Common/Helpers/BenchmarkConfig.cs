@@ -67,7 +67,7 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Samplers(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Sampling = "S1");
-            /*var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
+            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Sampling = "S2"
             });
@@ -76,7 +76,7 @@ namespace SigStat.Common.Helpers
                 Sampling = "S3"
             });
             l.AddRange(l2);
-            l.AddRange(l3);*///TODO: uncomment when more Samplers are available
+            l.AddRange(l3);
             return l;
         }
 

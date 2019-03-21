@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
+    
     /// <summary>
     /// Represents a trained model for <see cref="DtwClassifier"/>
     /// </summary>
@@ -19,7 +20,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <summary>
         /// A list a of genuine signatures used for training
         /// </summary>
-        public List<double[][]> GenuineSignatures { get; set; }
+        public List<KeyValuePair<string, double[][]>> GenuineSignatures { get; set; }
         /// <summary>
         /// A threshold, that will be used for classification. Signatures with
         /// an average DTW distance from the genuines above this threshold will
@@ -30,7 +31,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <summary>
         /// DTW distance matrix of the genuine signatures
         /// </summary>
-        public double[,] DistanceMatrix;
+        public DistanceMatrix<string,string, double> DistanceMatrix;
     }
     /// <summary>
     /// Classifies Signatures with the <see cref="Dtw"/> algorithm.
@@ -60,25 +61,25 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public ISignerModel Train(List<Signature> signatures)
         {
             var genuines = signatures.Where(s => s.Origin == Origin.Genuine)
-                .Select(s => s.GetAggregateFeature(Features).ToArray()).ToList();
-            var distanceMatrix = new double[genuines.Count, genuines.Count];
-            distanceMatrix.SetValues(-1);
-            for (int i = 0; i < genuines.Count; i++)
+                .Select(s => new { s.ID, Features = s.GetAggregateFeature(Features).ToArray() }).ToList();
+            var distanceMatrix = new DistanceMatrix<string,string, double>();
+            foreach (var i in genuines)
             {
-                for (int j = 0; j < genuines.Count; j++)
+                foreach (var j in genuines)
                 {
-                    if (distanceMatrix[j, i] != -1)
+                    if (distanceMatrix.ContainsKey(j.ID, i.ID))
                     {
-                        distanceMatrix[i, j] = distanceMatrix[j, i];
+                        distanceMatrix[i.ID, j.ID] = distanceMatrix[j.ID, i.ID];
                     }
                     else if (i == j)
                     {
-                        distanceMatrix[i, j] = 0;
+                        distanceMatrix[i.ID, j.ID] = 0;
                     }
                     else
                     {
-                        distanceMatrix[i, j] = DtwPy.Dtw(genuines[i], genuines[j], distanceMethod);
+                        distanceMatrix[i.ID, j.ID] = DtwPy.Dtw(i.Features, j.Features, distanceMethod);
                     }
+
                 }
             }
 
@@ -87,7 +88,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             var stdev = Math.Sqrt(distances.Select(d => (d - mean) * (d - mean)).Sum() / distances.Count());
             return new DtwSignerModel
             {
-                GenuineSignatures = genuines,
+                GenuineSignatures = genuines.Select(g=>new KeyValuePair<string, double[][]>(g.ID, g.Features)).ToList(),
                 DistanceMatrix = distanceMatrix,
                 Threshold = mean + stdev
             };
@@ -102,7 +103,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             for (int i = 0; i < dtwModel.GenuineSignatures.Count; i++)
             {
-                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i], testSignature, distanceMethod);
+                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, distanceMethod);
             }
 
             // TODO: return values between 0 and 1

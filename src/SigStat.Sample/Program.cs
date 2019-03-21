@@ -361,11 +361,11 @@ namespace SigStat.Sample
                 ,
                     Classifier = new OptimalDtwClassifier()
                     {
-                        Sampler = new SVC2004Sampler(),
+                        Sampler = new SVC2004Sampler1(),
                         Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
-                Sampler = new SVC2004Sampler(),
+                Sampler = new SVC2004Sampler1(),
                 Logger = new SimpleConsoleLogger(),
             };
 

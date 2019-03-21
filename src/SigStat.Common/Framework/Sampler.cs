@@ -56,12 +56,76 @@ namespace SigStat.Common
         }
     }
 
-    public class SVC2004Sampler : Sampler
+    public class SVC2004Sampler1 : Sampler
     {
-        public SVC2004Sampler() : base(
+        public SVC2004Sampler1() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
             sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).Take(10).ToList())
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class SVC2004Sampler2 : Sampler
+    {
+        public SVC2004Sampler2() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class SVC2004Sampler3 : Sampler
+    {
+        public SVC2004Sampler3() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 0).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 1).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class SVC2004Sampler4 : Sampler
+    {
+        public SVC2004Sampler4() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 1).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 0).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+    public class McytSampler1 : Sampler
+    {
+        public McytSampler1() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(15).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class McytSampler2 : Sampler
+    {
+        public McytSampler2() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(15).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(15).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class McytSampler3 : Sampler
+    {
+        static string[] training = new[] { "00","02", "04", "06", "08", "10", "12", "14", "16", "18" };
+        public McytSampler3() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class McytSampler4 : Sampler
+    {
+        static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
+        public McytSampler4() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
         { }
     }
 
