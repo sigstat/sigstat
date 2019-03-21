@@ -21,6 +21,37 @@ namespace SigStat.Common
         /// </summary>
         public virtual List<Signature> Signatures { get; set; } = new List<Signature>();
 
-        //ezt cachelni kene, de azzal is lennenek bajok. Inkabb a Sampler osztaly megoldja
+        public override string ToString()
+        {
+            if (Signatures == null)
+                return ID;
+
+            int genuine = 0;
+            int forged = 0;
+            int unknown = 0;
+
+            for (int i = 0; i < Signatures.Count; i++)
+            {
+                switch (Signatures[i].Origin)
+                {
+                    case Origin.Unknown:
+                        unknown++;
+                        break;
+                    case Origin.Genuine:
+                        genuine++;
+                        break;
+                    case Origin.Forged:
+                        forged++;
+                        break;
+                    default:
+                        throw new NotSupportedException();
+                }
+            }
+
+            if (unknown == 0)
+                return $"{ID} (G:{genuine} F:{forged})";
+            else
+                return $"{ID} (G:{genuine} F:{forged} U:{unknown})";
+        }
     }
 }
