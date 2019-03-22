@@ -43,8 +43,11 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
         public Sampler Sampler { get; set; }
 
-        public OptimalDtwClassifier()
+        public Func<double[], double[], double> DistanceFunction { get; set; }
+
+        public OptimalDtwClassifier(Func<double[], double[], double> distanceFunction = null)
         {
+            DistanceFunction = distanceFunction ?? Accord.Math.Distance.Euclidean;
         }
 
         public ISignerModel Train(List<Signature> signatures)
@@ -69,7 +72,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, Accord.Math.Distance.Euclidean);
+                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
                 }
             }
 

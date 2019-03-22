@@ -16,12 +16,20 @@ namespace SigStat.Common.Loaders
         static SVC2004Sampler1 svcSampler1 = new SVC2004Sampler1();
         static SVC2004Sampler2 svcSampler2 = new SVC2004Sampler2();
         static SVC2004Sampler3 svcSampler3 = new SVC2004Sampler3();
+        static SVC2004Sampler4 svcSampler4 = new SVC2004Sampler4();
         static McytSampler1 mcytSampler1 = new McytSampler1();
         static McytSampler2 mcytSampler2 = new McytSampler2();
         static McytSampler3 mcytSampler3 = new McytSampler3();
+        static McytSampler4 mcytSampler4 = new McytSampler4();
+        static DutchSampler1 dutchSampler1 = new DutchSampler1();
+        static DutchSampler2 dutchSampler2 = new DutchSampler2();
+        static DutchSampler3 dutchSampler3 = new DutchSampler3();
+        static DutchSampler4 dutchSampler4 = new DutchSampler4();
         //TODO: more signer samplers
         static Svc2004Loader svcLoader = new Svc2004Loader(@"Task2.zip", true);
         static MCYTLoader mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
+        static SigComp11DutchLoader dutchLoader = new SigComp11DutchLoader(@"dutch_renamed.zip", true);
+
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
             Features.X, Features.Y, Features.Azimuth, Features.Altitude
@@ -53,6 +61,8 @@ namespace SigStat.Common.Loaders
             Sampler sampler1 = null;
             Sampler sampler2 = null;
             Sampler sampler3 = null;
+            Sampler sampler4 = null;
+
 
             VerifierBenchmark b = new VerifierBenchmark();
             switch (config.Database)
@@ -62,12 +72,21 @@ namespace SigStat.Common.Loaders
                     sampler1 = svcSampler1;
                     sampler2 = svcSampler2;
                     sampler3 = svcSampler3;
+                    sampler4 = svcSampler4;
                     break;
                 case "MCYT100":
                     b.Loader = mcytLoader;
                     sampler1 = mcytSampler1;
                     sampler2 = mcytSampler2;
                     sampler3 = mcytSampler3;
+                    sampler4 = mcytSampler4;
+                    break;
+                case "DUTCH":
+                    b.Loader = dutchLoader;
+                    sampler1 = dutchSampler1;
+                    sampler2 = dutchSampler2;
+                    sampler3 = dutchSampler3;
+                    sampler4 = dutchSampler4;
                     break;
                 default:
                     throw new NotSupportedException();
@@ -83,6 +102,9 @@ namespace SigStat.Common.Loaders
                     break;
                 case "S3":
                     b.Sampler = sampler3;
+                    break;
+                case "S4":
+                    b.Sampler = sampler4;
                     break;
                 default:
                     break;
@@ -233,21 +255,36 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
+
+            Func<double[], double[], double> distance = null;
+            switch (config.Distance)
+            {
+                case "Euclidean":
+                    distance = Accord.Math.Distance.Euclidean;
+                    break;
+                case "Manhattan":
+                    distance = Accord.Math.Distance.Manhattan;
+                    break;
+                default:
+                    break;
+            }
             IClassifier classifier;
             if (config.Classifier == "Dtw")
             {
-                classifier = new DtwClassifier(Accord.Math.Distance.Euclidean);
+                classifier = new DtwClassifier(distance);
                 (classifier as DtwClassifier).Features = ClassifierFeatures;
             }
-            else//if (config.Classifier == "OptimalDtw")
+            else if (config.Classifier == "OptimalDtw")
             {
-                classifier = new OptimalDtwClassifier()
+                classifier = new OptimalDtwClassifier(distance)
                 {
+                   
                     Features = ClassifierFeatures,
                     Sampler = b.Sampler
 
                 };
             }
+            else throw new NotSupportedException();
 
             b.Verifier = new Model.Verifier()
             {

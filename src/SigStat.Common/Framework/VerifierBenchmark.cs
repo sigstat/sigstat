@@ -126,15 +126,23 @@ namespace SigStat.Common
                 foreach (var signer in signers)
                 {
                     var signerSheet = p.Workbook.Worksheets.Add(signer.Signer);
-                    var model = ((OptimalDtwSignerModel)signer.Model);
-                    var distances = model.DistanceMatrix.ToArray();
-                    var errorRates = model.ErrorRates.Select(r => new { Threshold = r.Key, FAR = r.Value.Far, FRR = r.Value.Frr, AER = r.Value.Aer });
-                    var threshold = new List<KeyValuePair<string, object>>{ new KeyValuePair<string, object>("Threshold", model.Threshold) };
-                    signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
-                    signerSheet.InsertTable(4+ distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
-                    signerSheet.InsertTable(4+ distances.GetLength(0), 6, errorRates, "Error rates", ExcelColor.Info, true);
+                    if (signer.Model is OptimalDtwSignerModel om)
+                    {
+                        var distances = om.DistanceMatrix.ToArray();
+                        var errorRates = om.ErrorRates.Select(r => new { Threshold = r.Key, FAR = r.Value.Far, FRR = r.Value.Frr, AER = r.Value.Aer });
+                        var threshold = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Threshold", om.Threshold) };
+                        signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
+                        signerSheet.InsertTable(4 + distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
+                        signerSheet.InsertTable(4 + distances.GetLength(0), 6, errorRates, "Error rates", ExcelColor.Info, true);
+                    }
+                    else if (signer.Model is DtwSignerModel dm)
+                    {
+                        var distances = dm.DistanceMatrix.ToArray();
+                        var threshold = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Threshold", dm.Threshold) };
+                        signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
+                        signerSheet.InsertTable(4 + distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
+                    }
                 }
-
                 p.SaveAs(new FileInfo(filename));
             }
         }

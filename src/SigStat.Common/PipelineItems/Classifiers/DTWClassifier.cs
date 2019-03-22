@@ -104,6 +104,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             for (int i = 0; i < dtwModel.GenuineSignatures.Count; i++)
             {
                 distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, distanceMethod);
+                dtwModel.DistanceMatrix[signature.ID, dtwModel.GenuineSignatures[i].Key] = distances[i];
             }
 
             // TODO: return values between 0 and 1

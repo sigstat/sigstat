@@ -129,4 +129,44 @@ namespace SigStat.Common
         { }
     }
 
+
+
+    public class DutchSampler1 : Sampler
+    {
+        public DutchSampler1() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class DutchSampler2 : Sampler
+    {
+        public DutchSampler2() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(14).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(14).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class DutchSampler3 : Sampler
+    {
+        static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18","20"};
+        public DutchSampler3() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class DutchSampler4 : Sampler
+    {
+        static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
+        public DutchSampler4() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
 }

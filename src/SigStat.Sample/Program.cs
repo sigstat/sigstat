@@ -62,20 +62,46 @@ namespace SigStat.Sample
 
         }
 
+        private static void RenderDatabase()
+        {
+            SigComp11DutchLoader loader = new SigComp11DutchLoader("Dutch_renamed.zip", true);
+            var signatures = loader.EnumerateSigners().Take(10);
+            List<Signer> signers = loader.EnumerateSigners(null).ToList();
+
+            var pipeline = new SequentialTransformPipeline
+            {
+                new UniformScale() { BaseDimension=Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput=Features.X, ProportionalDimensionOutput=Features.Y },
+                new Normalize() { Input=Features.Pressure, Output=Features.Pressure },
+                new RealisticImageGenerator(1280, 720),
+            };
+            pipeline.Logger = new SimpleConsoleLogger();
+
+            foreach (var signer in signers)
+            {
+                foreach (var signature in signer.Signatures)
+                {
+                    pipeline.Transform(signature);
+                    ImageSaver.Save(signature, signature.ID + ".png");
+                }
+            }
+            return;
+        }
+
         private static void PreprocessingBenchmarkDemo()
         {
             ////var config = BenchmarkConfig.FromJsonFile(path);
             BenchmarkConfig config = new BenchmarkConfig()
             {
-                Classifier = "OptimalDtw",
-                Sampling = "S1",
-                Database = "SVC2004",
+                Classifier = "Dtw",
+                Sampling = "S4",
+                Database = "DUTCH",
                 Rotation = true,
                 Translation_Scaling = ("BottomLeftToOrigin", "Y01"),
-                ResamplingType_Filter = "SampleCount",
-                ResamplingParam = 500,
-                Interpolation = "Cubic",
-                Features = "XYP"
+                ResamplingType_Filter = "None",
+                ResamplingParam = 0,
+                Interpolation = "",
+                Features = "XYP",
+                Distance = "Manhattan"
             };
             var configs = BenchmarkConfig.GenerateConfigurations();
             var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());

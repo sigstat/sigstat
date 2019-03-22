@@ -25,6 +25,7 @@ namespace SigStat.PreprocessingBenchmark
             public string ResamplingParam { get; set; }
             public string Interpolation { get; set; }
             public string Features { get; set; }
+            public string Distance { get; set; }
 
             public double FRR { get; set; }
             public double FAR { get; set; }
@@ -63,7 +64,7 @@ namespace SigStat.PreprocessingBenchmark
                 result.AER = summary.Cells["I12"].GetValue<double>();
                 result.Key = Path.GetFileNameWithoutExtension(filename);
 
-                for (int row = 10; row <= 18; row++)
+                for (int row = 10; row <= 19; row++)
                 {
                     string key = summary.Cells[row, 5].GetValue<string>();
                     string value = summary.Cells[row, 6].GetValue<string>();

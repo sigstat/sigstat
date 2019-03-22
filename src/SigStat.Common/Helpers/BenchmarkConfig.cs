@@ -60,7 +60,7 @@ namespace SigStat.Common.Helpers
         {
             List<BenchmarkConfig> l = new List<BenchmarkConfig>();
             l.Add(new BenchmarkConfig());
-            l = Classifiers(Samplers(Interpolations(ResamplingTypes_Filters(Databases(Rotations(Translations_Scalings(SetFeatures(l))))))));
+            l = Classifiers(Samplers(Interpolations(ResamplingTypes_Filters(SetFeatures(Databases(Rotations(Translations_Scalings(Distances(l)))))))));
             return l;
         }
 
@@ -75,15 +75,21 @@ namespace SigStat.Common.Helpers
             {
                 Sampling = "S3"
             });
+            var l4 = l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Sampling = "S4"
+            });
             l.AddRange(l2);
             l.AddRange(l3);
+            l.AddRange(l4);
+
             return l;
         }
 
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Database = "SVC2004");
-            List<string> es = new List<string>() { "MCYT100" };
+            List<string> es = new List<string>() { "MCYT100", "DUTCH" };
             var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Database = e
@@ -96,11 +102,11 @@ namespace SigStat.Common.Helpers
         {
 
             l.ForEach(c => c.Classifier = "OptimalDtw");
-            //var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
-            //{
-            //    Classifier = "Dtw"
-            //});
-            //l.AddRange(l2);
+            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Classifier = "Dtw"
+            });
+            l.AddRange(l2);
             return l;
         }
 
@@ -110,6 +116,17 @@ namespace SigStat.Common.Helpers
             var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Rotation = true
+            });
+            l.AddRange(l2);
+            return l;
+        }
+
+        private static List<BenchmarkConfig> Distances(List<BenchmarkConfig> l)
+        {
+            l.ForEach(c => c.Distance = "Manhattan");
+            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Distance = "Euclidean"
             });
             l.AddRange(l2);
             return l;
@@ -156,47 +173,43 @@ namespace SigStat.Common.Helpers
             //svc: None, SampleCount, FillPenUp
             //mcyt: None, SampleCount, Filter
 
-            //downsample svc
-            var ls = l.Where(c => c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "SampleCount",
-                ResamplingParam = 125
-            });
-            l.AddRange(ls);
-
-            //upsample svc
-            var ls2 = l.Where(c => c.Database == "SVC2004" && c.ResamplingType_Filter == "SampleCount").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingParam = 500
-            });
-            l.AddRange(ls2);
-
-            //downsample mcyt
-            var ls3 = l.Where(c => c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "SampleCount",
                 ResamplingParam = 50
-            });
-            l.AddRange(ls3);
-
-            //upsample mcyt
-            var ls4 = l.Where(c => c.Database == "MCYT100" && c.ResamplingType_Filter == "SampleCount").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
-                ResamplingParam = 200
-            });
-            l.AddRange(ls4);
+                ResamplingType_Filter = "SampleCount",
+                ResamplingParam = 100
+            }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "SampleCount",
+                ResamplingParam = 500
+            }));
 
-            var ls5 = l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "SampleCount",
+                ResamplingParam = 1000
+            }));
+
+
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "FillPenUp"
-            });
-            l.AddRange(ls5);
+            }));
 
-            var ls6 = l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P"
-            });
-            l.AddRange(ls6);
+            }));
+
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P"
+            }));
 
             return l;
         }
@@ -216,13 +229,26 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> SetFeatures(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Features = "XYPAzimuthAltitude");
-            List<string> es = new List<string>() { "X", "Y", "P", "Azimuth", "Altitude", "XY", "XYP" };
-            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+            l.ForEach(c => c.Features = "XYP");
+            List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
+            var ls1 = es1.SelectMany(e => l.Where(c => c.Database != "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Features = e
             })).ToList();
-            l.AddRange(ls);
+
+            List<string> es2 = new List<string>() { "X", "Y", "P", "XY" };
+
+            var ls2 = es2.SelectMany(e => l.Where(c => c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Features = e
+            })).ToList();
+
+
+            l.AddRange(ls1);
+            l.AddRange(ls2);
+
+
+
             return l;
         }
 
@@ -238,6 +264,7 @@ namespace SigStat.Common.Helpers
             ResamplingParam = c.ResamplingParam;
             Interpolation = c.Interpolation;
             Features = c.Features;
+            Distance = c.Distance;
         }
 
         public string Classifier { get; set; }
@@ -249,6 +276,7 @@ namespace SigStat.Common.Helpers
         public double ResamplingParam { get; set; }
         public string Interpolation { get; set; }
         public string Features { get; set; }
+        public string Distance { get; set; }
 
     }
 }
