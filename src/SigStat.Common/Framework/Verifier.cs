@@ -48,6 +48,7 @@ namespace SigStat.Common.Model
         /// Initializes a new instance of the <see cref="Verifier"/> class
         /// </summary>
         /// <param name="logger">Initializes the Logger property of the <see cref="Verifier"/></param>
+        [JsonConstructor]
         public Verifier(ILogger logger = null)
         {
             this.Logger = logger;
