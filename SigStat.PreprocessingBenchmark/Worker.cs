@@ -13,7 +13,7 @@ namespace SigStat.PreprocessingBenchmark
 {
     class Worker
     {
-        static TimeSpan timeOut = new TimeSpan(0, 10, 0);
+        static TimeSpan timeOut = new TimeSpan(0, 30, 0);
         static CloudBlobContainer Container;
         static CloudQueue Queue;
 
