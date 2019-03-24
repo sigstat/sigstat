@@ -16,6 +16,12 @@ namespace SigStat.PreprocessingBenchmark
         {
             public string Key { get; set; }
 
+            public string Date { get; set; }
+            public string Agent { get; set; }
+            public string Duration { get; set; }
+
+
+
             public string Classifier { get; set; }
             public string Sampling { get; set; }
             public string Database { get; set; }
@@ -71,7 +77,17 @@ namespace SigStat.PreprocessingBenchmark
                     typeof(ReportLine).GetProperty(key).SetValue(result, value);
 
                 }
+
+                for (int row = 11; row <= 13; row++)
+                {
+                    string key = summary.Cells[row, 2].GetValue<string>().Replace(":","");
+                    string value = summary.Cells[row, 3].GetValue<string>();
+                    typeof(ReportLine).GetProperty(key).SetValue(result, value);
+
+                }
+
                 return result;
+
             }
         }
     }

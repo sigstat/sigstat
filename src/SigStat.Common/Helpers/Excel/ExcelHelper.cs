@@ -105,13 +105,13 @@ namespace SigStat.Common.Helpers.Excel
         public static void InsertTable<T>(this ExcelWorksheet ws, int x, int y, IEnumerable<T> data, string title = null, ExcelColor color = ExcelColor.Primary, bool showHeader = true)
         {
             //Get required Type data
-            var dataType = data.First().GetType();
-            var props = new List<PropertyInfo>(dataType.GetProperties());
+            var props = new List<PropertyInfo>(typeof(T).GetProperties());
+            var items = data.ToList();
 
             //Get table's range
             //If we show a header the height of the table is 1 bigger
-            var tableHeight = data.Count() + (showHeader ? 1 : 0);
-            var tableLength = props.Count();
+            var tableHeight = items.Count + (showHeader ? 1 : 0);
+            var tableLength = props.Count;
             var tableRange = ws.Cells[y, x, y + tableHeight - 1, x + tableLength - 1];
 
             //Format table
@@ -122,7 +122,7 @@ namespace SigStat.Common.Helpers.Excel
             if (showHeader)
             {
                 //If we show header then it contains the name of the properties
-                for (int i = 0; i < props.Count(); i++)
+                for (int i = 0; i < props.Count; i++)
                 {
                     ws.Cells[startRow, x + i].Value = props[i].Name;
                 }
@@ -133,11 +133,11 @@ namespace SigStat.Common.Helpers.Excel
             Object obj;
 
             //Insert data
-            for (int i = 0; i < data.Count(); i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 for (int j = 0; j < props.Count; j++)
                 {
-                    obj = props[j].GetValue(data.ElementAt(i));
+                    obj = props[j].GetValue(items[i]);
                     ws.Cells[startRow + i, x + j].Value = obj;
                 }
             }
