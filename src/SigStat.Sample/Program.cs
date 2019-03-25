@@ -15,7 +15,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace SigStat.Sample
 {
@@ -922,39 +921,28 @@ namespace SigStat.Sample
         //}
 
         static void JsonSerializeSignature()
-        {
-            // Create a signature instance and initialize main properties
+        {  
             Signature sig = new Signature();
             sig.ID = "Demo";
             sig.Origin = Origin.Genuine;
-
-            // Set/Get feature value, using a string key
             sig["Height"] = 5;
             var height = (int)sig["Height"];
-
-            // Set/Get feature value, using a generic method and a sting key
             sig.SetFeature<int>("Height", 5);
             height = sig.GetFeature<int>("Height");
-
-            // Register a feature descriptor
             FeatureDescriptor<int> heightDescriptor = FeatureDescriptor.Get<int>("Height");
-
-            // Set/Get feature value, using a generic feature descriptor
-            // Note that no casting is required!
             sig.SetFeature(heightDescriptor, 5);
             height = sig.GetFeature(heightDescriptor);
-
-            // Define complex feature values
             var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
-
-            // Reusing feature descriptors (see MyFeatures class for details)
             sig.SetFeature(MyFeatures.Loop, loops);
             loops = sig.GetFeature(MyFeatures.Loop);
 
-            string json = JsonConvert.SerializeObject(sig, Formatting.Indented);
+            //Serialize to a string
+            string json = SerializationHelper.JsonSerialize<Signature>(sig);
             Console.WriteLine(json);
 
-            Signature desirializedSig = JsonConvert.DeserializeObject<Signature>(json);
+            //Deserialize from a string
+            Signature desirializedSig = SerializationHelper.Deserialize<Signature>(json);
+
             foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
             {
                 if (!descriptor.IsCollection)
@@ -1013,11 +1001,12 @@ namespace SigStat.Sample
                     },
                 }
             };
-            File.WriteAllText(@"serialized.txt", JsonConvert.SerializeObject(onlineverifier, Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            }));
 
+            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier, @"serialized.txt");
+
+            //Console.WriteLine(SerializationHelper.JsonSerialize<Verifier>(onlineverifier));
+
+            //Write object to console for veryfying
             Console.WriteLine(onlineverifier.ToString());
             Console.WriteLine("\t" + onlineverifier.Pipeline.ToString());
             foreach (var item in onlineverifier.Pipeline)
@@ -1041,29 +1030,27 @@ namespace SigStat.Sample
 
         static void DeserializeOnlineVerifier()
         {
-            Verifier desirializedOV = JsonConvert.DeserializeObject<Verifier>(File.ReadAllText(@"serialized.txt"), new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter() }
-            });
-            Console.WriteLine(desirializedOV.ToString());
-            Console.WriteLine("\t" + desirializedOV.Pipeline.ToString());
-            foreach (var item in desirializedOV.Pipeline)
-            {
-                Console.WriteLine("\t\t" + item.ToString());
-                if ((item.GetType().GetMember("Items")).Length > 0)
-                {
-                    foreach (var item2 in ((ParallelTransformPipeline)item).Items)
-                    {
-                        Console.WriteLine("\t\t\t" + item2.ToString());
-                    }
-                }
-            }
-            Console.WriteLine("\t" + desirializedOV.Classifier.ToString());
-            foreach (var item in ((WeightedClassifier)desirializedOV.Classifier).Items)
-            {
-                Console.WriteLine("\t\t" + item.ToString());
-            }
+            Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(@"serialized.txt");
+
+            //Write object to console for veryfying
+            Console.WriteLine(deserializedOV.ToString());
+            Console.WriteLine("\t" + deserializedOV.Pipeline.ToString());
+             foreach (var item in deserializedOV.Pipeline)
+             {
+                 Console.WriteLine("\t\t" + item.ToString());
+                 if ((item.GetType().GetMember("Items")).Length > 0)
+                 {
+                     foreach (var item2 in ((ParallelTransformPipeline)item).Items)
+                     {
+                         Console.WriteLine("\t\t\t" + item2.ToString());
+                     }
+                 }
+             }
+             Console.WriteLine("\t" + deserializedOV.Classifier.ToString());
+             foreach (var item in ((WeightedClassifier)deserializedOV.Classifier).Items)
+             {
+                 Console.WriteLine("\t\t" + item.ToString());
+             }
 
         }
 
