@@ -55,7 +55,6 @@ namespace SigStat.Sample
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            //DeserializeOnlineVerifier();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -1002,55 +1001,17 @@ namespace SigStat.Sample
                 }
             };
 
-            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier, @"serialized.txt");
+            string path = @"serialized.txt";
 
-            //Console.WriteLine(SerializationHelper.JsonSerialize<Verifier>(onlineverifier));
+            //File serialization example
+            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier,path);
+            Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(path);
 
-            //Write object to console for veryfying
-            Console.WriteLine(onlineverifier.ToString());
-            Console.WriteLine("\t" + onlineverifier.Pipeline.ToString());
-            foreach (var item in onlineverifier.Pipeline)
-            {
-                Console.WriteLine("\t\t" + item.ToString());
-                if ((item.GetType().GetMember("Items")).Length > 0)
-                {
-                    foreach (var item2 in ((ParallelTransformPipeline)item).Items)
-                    {
-                        Console.WriteLine("\t\t\t" + item2.ToString());
-                    }
-                }
-            }
-            Console.WriteLine("\t" + onlineverifier.Classifier.ToString());
-            foreach (var item in ((WeightedClassifier)onlineverifier.Classifier).Items)
-            {
-                Console.WriteLine("\t\t" + item.ToString());
-            }
 
-        }
-
-        static void DeserializeOnlineVerifier()
-        {
-            Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(@"serialized.txt");
-
-            //Write object to console for veryfying
-            Console.WriteLine(deserializedOV.ToString());
-            Console.WriteLine("\t" + deserializedOV.Pipeline.ToString());
-             foreach (var item in deserializedOV.Pipeline)
-             {
-                 Console.WriteLine("\t\t" + item.ToString());
-                 if ((item.GetType().GetMember("Items")).Length > 0)
-                 {
-                     foreach (var item2 in ((ParallelTransformPipeline)item).Items)
-                     {
-                         Console.WriteLine("\t\t\t" + item2.ToString());
-                     }
-                 }
-             }
-             Console.WriteLine("\t" + deserializedOV.Classifier.ToString());
-             foreach (var item in ((WeightedClassifier)deserializedOV.Classifier).Items)
-             {
-                 Console.WriteLine("\t\t" + item.ToString());
-             }
+            //String serialization example
+            string json = SerializationHelper.JsonSerialize<Verifier>(onlineverifier);
+            Console.WriteLine(json);
+            Verifier deserializedOV2 = SerializationHelper.Deserialize<Verifier>(json);
 
         }
 

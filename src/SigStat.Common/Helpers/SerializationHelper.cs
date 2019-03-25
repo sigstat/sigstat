@@ -13,7 +13,8 @@ namespace SigStat.Common.Helpers
             T desirializedObject = JsonConvert.DeserializeObject<T>(s, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
-                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter() }
+                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter(),
+                                                       new FeatureDescriptorTJsonConverter()}
             });
 
             return desirializedObject;
@@ -23,7 +24,8 @@ namespace SigStat.Common.Helpers
             T desirializedObject = JsonConvert.DeserializeObject<T>(File.ReadAllText(path), new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
-                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter() }
+                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter(),
+                                                       new FeatureDescriptorTJsonConverter()}
             });
 
             return desirializedObject;
