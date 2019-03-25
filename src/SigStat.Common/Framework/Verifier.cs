@@ -55,6 +55,11 @@ namespace SigStat.Common.Model
             this.LogTrace("Verifier created");
         }
 
+        public Verifier(){
+            this.Logger = null;
+            this.LogTrace("Verifier created");
+        }
+
         public Verifier(Verifier v)
         {
             this.Logger = v.Logger;
