@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using Newtonsoft.Json;
+
 namespace SigStat.Common
 {
     /// <summary>
     /// Represents a loop in a signature
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Loop
     {
         /// <summary>
         /// The geometrical center of the looop
         /// </summary>
+        [JsonProperty]
         public PointF Center { get; set; }
         /// <summary>
         /// The bounding rectangle of the loop
         /// </summary>
+        [JsonProperty]
         public RectangleF Bounds { get; set; }
         /// <summary>
         /// A list of defining points of the loop
         /// </summary>
+        [JsonProperty]
         public List<PointF> Points { get; set; }
 
         /// <summary>

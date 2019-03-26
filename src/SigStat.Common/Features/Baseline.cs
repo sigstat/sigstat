@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using Newtonsoft.Json;
+
 namespace SigStat.Common
 {
     /// <summary>
     ///
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Baseline
     {
         /// <summary>
         /// Starting point of the baseline
         /// </summary>
+        [JsonProperty]
         public PointF Start { get; set; }
         /// <summary>
         /// Endpoint of the baseline
         /// </summary>
+        [JsonProperty]
         public PointF End { get; set; }
 
         /// <summary>
