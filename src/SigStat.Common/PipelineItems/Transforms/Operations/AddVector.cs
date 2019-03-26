@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -17,9 +18,11 @@ namespace SigStat.Common.Transforms
     /// Adds Centroid.x to each element of X.
     /// Adds Centroid.y to each element of Y.
     /// </example>
+    [JsonObject(MemberSerialization.OptIn)]
     public class AddVector : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
         [Output]

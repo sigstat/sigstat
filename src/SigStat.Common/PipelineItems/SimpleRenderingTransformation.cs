@@ -8,12 +8,14 @@ using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.Primitives;
 using SigStat.Common.Helpers;
+using Newtonsoft.Json;
 
 namespace Alairas.Common
 {
     /// <summary>
     /// Renders an image of the signature based on the available online information (X,Y,Dpi)
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class SimpleRenderingTransformation : PipelineBase, ITransformation
     {
         /// <inheritdoc></inheritdoc>

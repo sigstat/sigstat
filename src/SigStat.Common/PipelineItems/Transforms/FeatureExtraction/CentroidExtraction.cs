@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,9 +14,11 @@ namespace SigStat.Common.Transforms
     /// Extracts the Centroid (aka. Center Of Gravity) of the input features.
     /// <para> Default Pipeline Output: (List{double}) Centroid. </para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class CentroidExtraction : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
         [Output("Centroid")]

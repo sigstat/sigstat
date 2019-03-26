@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Algorithms;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Algorithms;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class OptimalDtwClassifier : PipelineBase, IClassifier
     {
         #region SignerModel
@@ -39,6 +41,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         }
 
         [Input]
+        [JsonProperty]
         public List<FeatureDescriptor> Features { get; set; }
 
         public Sampler Sampler { get; set; }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,9 +14,11 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: bool[,]</para>
     /// <para>Default Pipeline Output: (bool[,]) HSCPThinningResult </para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class HSCPThinning : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<bool[,]> Input { get; set; }
 
         [Output("HSCPThinningResult")]

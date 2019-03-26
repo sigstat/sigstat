@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,6 +15,7 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: Image{Rgba32}</para>
     /// <para>Default Pipeline Output: (bool[,]) Binarized</para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Binarization : PipelineBase, ITransformation
     {
 
@@ -44,6 +46,7 @@ namespace SigStat.Common.Transforms
         }
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Output("Binarized")]

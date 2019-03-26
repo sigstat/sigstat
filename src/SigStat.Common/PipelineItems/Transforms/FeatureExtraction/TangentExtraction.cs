@@ -16,9 +16,11 @@ namespace SigStat.Common.Transforms
     public class TangentExtraction : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
         [Output("Tangent")]

@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,9 +12,11 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: (bool[,]) Components</para>
     /// <para>Default Pipeline Output: (bool[,]) Components</para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class ComponentSorter : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<List<PointF>>> Input { get; set; }
 
         [Output("Components")]

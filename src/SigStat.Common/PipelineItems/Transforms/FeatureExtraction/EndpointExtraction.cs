@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,9 +14,11 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: (bool[,]) Skeleton</para>
     /// <para>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints </para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class EndpointExtraction : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<bool[,]> Skeleton { get; set; }
 
         [Output("EndPoints")]

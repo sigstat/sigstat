@@ -9,15 +9,18 @@ using SixLabors.Primitives;
 using SigStat.Common.Helpers;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
     /// <summary>
     /// Resizes the image to a specified width and height
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Resize : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Output("Resized")]

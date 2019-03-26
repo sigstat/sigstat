@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -14,13 +15,17 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Output: (List{double}) Centroid</para>
     /// </summary>
     /// <remarks>This is a special case of <see cref="Translate"/></remarks>
+
+    [JsonObject(MemberSerialization.OptIn)]
     public class CentroidTranslate : SequentialTransformPipeline
     {
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Output("X")]

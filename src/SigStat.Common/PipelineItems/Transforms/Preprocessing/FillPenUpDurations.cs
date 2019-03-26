@@ -1,10 +1,12 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class FillPenUpDurations : PipelineBase, ITransformation
     {
         public class TimeSlot
@@ -46,9 +48,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> TimeInputFeature { get; set; } = Features.T;
 
         [Input]
+        [JsonProperty]
         public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
 
         [Output("FilledTime")]

@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         Maximum,
         Predefined
     }
-
+    [JsonObject(MemberSerialization.OptIn)]
     public class TranslatePreproc : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputFeature { get; set; }
 
         [Output("TranslatedFeature")]

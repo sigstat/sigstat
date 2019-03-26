@@ -10,6 +10,7 @@ using SigStat.Common.Helpers;
 using SixLabors.Shapes;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -18,15 +19,19 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: Standard <see cref="Features"/></para>
     /// <para>Default Pipeline Output: (bool[,]) Binarized</para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class BinaryRasterizer : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<bool>> InputButton { get; set; } = Features.Button;
 
         [Output("Binarized")]

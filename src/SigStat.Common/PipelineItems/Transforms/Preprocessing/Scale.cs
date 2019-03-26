@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// <para>OutputFeature: output feature for scaled InputFeature></para>
     /// </summary>
     /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Scale:PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputFeature { get; set; }
 
         /// <summary>

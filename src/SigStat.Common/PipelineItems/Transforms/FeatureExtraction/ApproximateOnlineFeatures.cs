@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace SigStat.Common.Transforms
     /// init Pressure, Altitude, Azimuth features with default values.
     /// <para>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth</para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class ApproximateOnlineFeatures : PipelineBase, ITransformation
     {
         [Output("Pressure")]

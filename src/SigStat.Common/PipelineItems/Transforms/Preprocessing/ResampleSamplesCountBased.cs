@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class ResampleSamplesCountBased : PipelineBase, ITransformation
     {
         public int NumOfSamples { get; set; } = 0;
@@ -15,9 +17,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         //public List<double> ResampledTimestamps { get; private set; }
 
         [Input]
+        [JsonProperty]
         public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> OriginalTFeature { get; set; } = Features.T;
 
         [Output("ResampledTimestamps")]

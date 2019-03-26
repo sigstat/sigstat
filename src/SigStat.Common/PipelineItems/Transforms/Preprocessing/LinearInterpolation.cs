@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class LinearInterpolation : IInterpolation
     {
+        [JsonProperty]
         public List<double> FeatureValues { get; set; }
+        [JsonProperty]
         public List<double> TimeValues { get; set; }
 
         public double GetValue(double timestamp)

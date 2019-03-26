@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: <see cref="Features.T"/></para>
     /// <para>Default Pipeline Output: <see cref="Features.T"/></para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class TimeReset : SequentialTransformPipeline
     {
         [Input]
+        [JsonProperty]
         FeatureDescriptor<List<double>> Input { get; set; } = Features.T;
 
         [Output("T")]

@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Pipeline;
+﻿using Newtonsoft.Json;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: <see cref="Features.X"/>, <see cref="Features.Y"/></para>
     /// <para>Default Pipeline Output: <see cref="Features.X"/>, <see cref="Features.Y"/></para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Translate : SequentialTransformPipeline
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Output("X")]

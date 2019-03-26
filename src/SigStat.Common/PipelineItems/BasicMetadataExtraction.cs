@@ -6,14 +6,17 @@ using System.IO;
 using System.Drawing;
 using SigStat.Common;
 using SigStat.Common.Helpers;
+using Newtonsoft.Json;
 
 namespace SigStat.Common
 {
     /// <summary>
     /// Extracts basic statistical signature (like <see cref="Features.Bounds"/> or <see cref="Features.Cog"/>) information from an Image
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class BasicMetadataExtraction : PipelineBase, ITransformation
     {
+        [JsonProperty]
         /// <summary>
         /// Represents theratio of significant pixels that should be trimmed
         /// from each side while calculating <see cref="Features.TrimmedBounds"/>

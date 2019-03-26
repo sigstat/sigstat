@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Pipeline;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Transforms
 {
@@ -13,9 +14,11 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: (List{List{PointF}}) Components</para>
     /// <para>Default Pipeline Output: X, Y, Button <see cref="Features"/></para>
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class ComponentsToFeatures : PipelineBase, ITransformation
     {
         [Input]
+        [JsonProperty]
         public FeatureDescriptor<List<List<PointF>>> InputComponents { get; set; }
 
         [Output("X")]
