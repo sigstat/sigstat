@@ -6,7 +6,7 @@
     <members>
         <member name="T:SigStat.Common.Algorithms.Dtw">
             <summary>
-            Dynamic Time Warping algorithm - test comment
+            Dynamic Time Warping algorithm
             </summary>
         </member>
         <member name="P:SigStat.Common.Algorithms.Dtw.ForwardPath">
@@ -1106,12 +1106,6 @@
         <member name="T:SigStat.Common.BasicMetadataExtraction">
             <summary>
             Extracts basic statistical signature (like <see cref="F:SigStat.Common.Features.Bounds"/> or <see cref="F:SigStat.Common.Features.Cog"/>) information from an Image
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.BasicMetadataExtraction.Trim">
-            <summary>
-            Represents theratio of significant pixels that should be trimmed
-            from each side while calculating <see cref="F:SigStat.Common.Features.TrimmedBounds"/>
             </summary>
         </member>
         <member name="M:SigStat.Common.BasicMetadataExtraction.Transform(SigStat.Common.Signature)">

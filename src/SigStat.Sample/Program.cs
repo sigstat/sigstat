@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SigStat.Sample
@@ -51,10 +52,10 @@ namespace SigStat.Sample
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
             //OnlineVerifierBenchmarkDemo();
-            PreprocessingBenchmarkDemo();
+            //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
-            //JsonSerializeOnlineVerifier();
+            JsonSerializeOnlineVerifier();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -924,19 +925,28 @@ namespace SigStat.Sample
             Signature sig = new Signature();
             sig.ID = "Demo";
             sig.Origin = Origin.Genuine;
-            sig["Height"] = 5;
-            var height = (int)sig["Height"];
-            sig.SetFeature<int>("Height", 5);
-            height = sig.GetFeature<int>("Height");
+            sig.Signer = new Signer()
+            {
+                ID = "S05"
+            };
+            //sig.Signer.Signatures.Add(sig);
             FeatureDescriptor<int> heightDescriptor = FeatureDescriptor.Get<int>("Height");
-            sig.SetFeature(heightDescriptor, 5);
-            height = sig.GetFeature(heightDescriptor);
+            //var method = typeof(FeatureDescriptor).GetMethod("Get<>", BindingFlags.Public | BindingFlags.Static);
+            //var genMethod = method.MakeGenericMethod(type);
+            //genMethod.Invoke()
+            
+
+            sig.SetFeature(heightDescriptor, 4);
             var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
             sig.SetFeature(MyFeatures.Loop, loops);
-            loops = sig.GetFeature(MyFeatures.Loop);
+
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            var signer = loader.EnumerateSigners(p => p.ID == "01").First();//Load the first signer only
+            var signature = signer.Signatures[0];
+            signature.Signer.Signatures = null;
 
             //Serialize to a string
-            string json = SerializationHelper.JsonSerialize<Signature>(sig);
+            string json = SerializationHelper.JsonSerialize<Signature>(signature);
             Console.WriteLine(json);
 
             //Deserialize from a string
@@ -946,12 +956,12 @@ namespace SigStat.Sample
             {
                 if (!descriptor.IsCollection)
                 {
-                    Console.WriteLine($"{descriptor.Name}: {sig[descriptor]}");
+                    Console.WriteLine($"{descriptor.Name}: {desirializedSig[descriptor]}");
                 }
                 else
                 {
                     Console.WriteLine($"{descriptor}:");
-                    var items = (IList)sig[descriptor];
+                    var items = (IList)desirializedSig[descriptor];
                     for (int i = 0; i < items.Count; i++)
                     {
                         Console.WriteLine($" {i}.) {items[i]}");

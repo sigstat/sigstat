@@ -23,7 +23,7 @@ namespace SigStat.Common
         [JsonProperty(Order = 3)]
         public Signer Signer { get; set; }
 
-        [JsonProperty(Order = 4)]
+        [JsonProperty(PropertyName ="Features", Order = 4)]
         private readonly ConcurrentDictionary<string, object> features = new ConcurrentDictionary<string, object>();
 
 

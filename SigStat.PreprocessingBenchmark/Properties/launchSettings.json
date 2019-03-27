@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.PreprocessingBenchmark": {
       "commandName": "Project",
-      "commandLineArgs": "-k \"key.txt\" -o \"D:\\SigStat\\Run3\" -m Analyser"
+      "commandLineArgs": "-k \"key.txt\" -o \"D:\\SigStat\\Run3\" -m Worker"
     }
   }
 }
