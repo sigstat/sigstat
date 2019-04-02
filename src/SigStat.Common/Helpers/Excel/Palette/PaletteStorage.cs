@@ -3,17 +3,22 @@ using System.Drawing;
 
 namespace SigStat.Common.Helpers.Excel.Palette
 {
-    public enum ExcelColor
+    
+    enum ExcelColor
     {
-        Primary = 1,
-        Secondary = 2,
-        Succes = 3,
-        Danger = 4,
-        Warning = 5,
-        Info = 6
+        Primary,
+        Secondary,
+        Succes,
+        Danger,
+        Warning,
+        Info,
+        Transparent
     }
 
-    public class PaletteStorage
+    /// <summary>
+    /// Stores color information for every ExcelColor
+    /// </summary>
+    class PaletteStorage
     {
         //Load colors into a dictionary
         private static readonly Dictionary<ExcelColor, Palette> PaletteColors = new Dictionary<ExcelColor, Palette>
@@ -24,7 +29,9 @@ namespace SigStat.Common.Helpers.Excel.Palette
             {ExcelColor.Danger, new Palette(ColorFromRgb(255, 59, 59), ColorFromRgb(208, 0, 0), ColorFromRgb(255, 174, 174)) },
             {ExcelColor.Warning, new Palette(ColorFromRgb(255, 217, 102), ColorFromRgb(255, 192, 0), ColorFromRgb(255, 230, 153)) },
             {ExcelColor.Info, new Palette(ColorFromRgb(92, 214, 234), ColorFromRgb(23, 162, 184), ColorFromRgb(170, 233, 244)) },
+            {ExcelColor.Transparent, new Palette(Color.Transparent, Color.Transparent, Color.Transparent) }
         };
+
 
         /// <summary>
         /// Get the Palette assigned to the color

@@ -1,49 +1,73 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SigStat.Common.Helpers.Excel
 {
-    public class HierarchyElement
+    /// <summary>
+    /// Hierarchical structure to store object
+    /// </summary>
+    class HierarchyElement : IEnumerable<HierarchyElement>
     {
         public List<HierarchyElement> Children { get; }
 
-        public string Name { get; set; }
+        public Object Content { get; set; }
 
-        public HierarchyElement(string Name)
+        /// <summary>
+        /// Create an emty element
+        /// </summary>
+        public HierarchyElement()
         {
             Children = new List<HierarchyElement>();
-            this.Name = Name;
         }
 
-        public void AddChild(HierarchyElement child)
+        /// <summary>
+        /// Create a new element with content
+        /// </summary>
+        /// <param name="Content">Content of the new element</param>
+        public HierarchyElement(Object Content)
+        {
+            Children = new List<HierarchyElement>();
+            this.Content = Content;
+        }
+
+        public void Add(HierarchyElement child)
         {
             Children.Add(child);
         }
 
-        //Return the depth from this node
-        public int getDepth()
+
+        /// <summary>
+        /// Return the hierarchy's depth from this node
+        /// </summary>
+        /// <returns></returns>
+        public int GetDepth()
         {
 
             int max = 0;
 
             foreach (var child in Children)
             {
-                if (child.getDepth() > max)
+                if (child.GetDepth() > max)
                 {
-                    max = child.getDepth();
+                    max = child.GetDepth();
                 }
             }
 
             return max + 1;
         }
 
-        //Returns number of elements under this node and itself
-        public int getCount()
+        /// <summary>
+        /// Returns number of elements under this node and itself
+        /// </summary>
+        /// <returns></returns>
+        public int GetCount()
         {
             int count = 1;
 
             foreach (var child in Children)
             {
-                count += child.getCount();
+                count += child.GetCount();
             }
 
             return count;
@@ -51,8 +75,19 @@ namespace SigStat.Common.Helpers.Excel
 
         public override string ToString()
         {
-            return this.Name;
+            return this.Content.ToString();
+        }
+
+        public IEnumerator<HierarchyElement> GetEnumerator()
+        {
+            return ((IEnumerable<HierarchyElement>)Children).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
     }
+
 
 }
