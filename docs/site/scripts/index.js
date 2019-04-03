@@ -42,7 +42,7 @@ function sortTable(n) {
 }
 
 $(document).ready(function () {
-  $.getJSON("employee.json", function (data) {
+  $.getJSON("scripts/employee.json", function (data) {
     var employee_data = ' ';
     $.each(data, function (key, value) {
       employee_data += '<tr>';
