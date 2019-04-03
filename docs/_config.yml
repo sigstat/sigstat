@@ -20,7 +20,7 @@ baseurl: "http://sigstat.org/" # the subpath of your site, e.g. /blog
 url: "http://sigstat.org/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb #https://twitter.com/sigstatorg?
 github_username: jekyll #isgstat?
-source: docs/site
+source: site
 # Build settings
 markdown: kramdown
 theme: minima
