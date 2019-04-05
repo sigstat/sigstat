@@ -95,7 +95,8 @@ namespace SigStat.Common
                 summarySheet.Cells[2, 2].Value = "Preprocessing benchmark";
                 summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
                 summarySheet.Cells[4, 2].Value = Path.GetFileNameWithoutExtension(filename);
-                summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description", true);
+                //summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description", true);
+                summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description");
                 var execution = new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("Name:","Preprocessing benchmark"),
