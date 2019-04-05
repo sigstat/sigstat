@@ -8,7 +8,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>7.3</LangVersion>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
