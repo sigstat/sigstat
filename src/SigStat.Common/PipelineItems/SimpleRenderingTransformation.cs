@@ -10,7 +10,7 @@ using SixLabors.Primitives;
 using SigStat.Common.Helpers;
 using Newtonsoft.Json;
 
-namespace Alairas.Common
+namespace SigStat.Common
 {
     /// <summary>
     /// Renders an image of the signature based on the available online information (X,Y,Dpi)
