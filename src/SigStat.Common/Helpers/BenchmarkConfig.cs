@@ -134,6 +134,8 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Translations_Scalings(List<BenchmarkConfig> l)
         {
+            //TODO: Add X01Y01 ==> CogToOrigin 
+
             //jobb kezzel megadni az ertelmes parokat: 16 db van, osszes 30 helyett
             l.ForEach(c => c.Translation_Scaling = ("None","None"));
             List<(string,string)> es = new List<(string, string)>() {

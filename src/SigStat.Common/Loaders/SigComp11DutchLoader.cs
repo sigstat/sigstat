@@ -144,6 +144,17 @@ namespace SigStat.Common.Loaders
                 .Select(l => l.Split(' ').Select(s => int.Parse(s)).ToArray())
                 .ToList();
 
+            // Remove noise (points with 0 pressure) from the beginning of the signature
+            while (lines.Count>0 && lines[0][2] == 0)
+            {
+                lines.RemoveAt(0);
+            }
+            // Remove noise (points with 0 pressure) from the end of the signature
+            while (lines.Count > 0 &&  lines[lines.Count-1][2] == 0)
+            {
+                lines.RemoveAt(lines.Count - 1);
+            }
+
             signature.SetFeature(SigComp11.X, lines.Select(l => l[0]).ToList());
             signature.SetFeature(SigComp11.Y, lines.Select(l => l[1]).ToList());
             signature.SetFeature(SigComp11.Z, lines.Select(l => l[2]).ToList());
