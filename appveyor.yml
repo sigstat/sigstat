@@ -33,6 +33,7 @@ before_build:
 - cmd: nuget restore
 - choco install opencover.portable
 - choco install codecov
+- cmd: dotnet tool install --global igloo15.MarkdownApi.Tool --version 0.4.1
 #- ps: Install-Product node 6
 #- npm install -g github-wikito-converter
 #- npm install -g html-pdf
