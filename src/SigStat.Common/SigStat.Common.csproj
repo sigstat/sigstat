@@ -17,9 +17,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <ApplicationIcon />
-    <OutputType>Library</OutputType>
-    <StartupObject />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>default</LangVersion>
