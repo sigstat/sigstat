@@ -27,7 +27,7 @@ environment:
     secure: GWychdaWwFZJHzYsFL1es67HqNEgirgT3iHeewQmNSFODWFEUzn4Eu5QT1XH5C8/
   
 skip_commits:  
-  message: /doc/   
+  message: /\[doc\]/
 
 before_build:
 - cmd: nuget restore
@@ -61,7 +61,7 @@ on_success:
 - git checkout master
 - markdownapi C:\projects\sigstat\src\SigStat.Common\bin\Release\net461\SigStat.Common.dll C:\projects\sigstat\docs\md
 - git add .
-- git diff-index --quiet HEAD || git commit -am "doc"
+- git diff-index --quiet HEAD || git commit -am "doc [skip ci]"
 - git push
 #- md C:\projects\wiki
 #- cd C:\projects\wiki
