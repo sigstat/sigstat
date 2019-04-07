@@ -31,12 +31,12 @@ namespace SigStat.Common.Helpers
             string key = (string)jo["Key"];
 
             // Construct the Result object using the non-default constructor
-            
+            var fdType = typeof(FeatureDescriptor<>).MakeGenericType(objectType.GenericTypeArguments);
+            var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
 
-            // (If anything else needs to be populated on the result object, do that here)
 
             // Return the result
-            return FeatureDescriptor.Get(key);
+            return get.Invoke(null, new object[] { key });
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
