@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace SigStat.Common
 {
@@ -18,6 +19,7 @@ namespace SigStat.Common
         public string ID { get; set; }
         /// <summary>Represents our knowledge on the origin of the signature. <see cref="Origin.Unknown"/> may be used in practice before it is verified.</summary>
         [JsonProperty(Order = 2)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public Origin Origin { get; set; }
         /// <summary>A reference to the <see cref="Common.Signer"/> who this signature belongs to. (The origin is not constrained to be genuine.)</summary>
         [JsonProperty(Order = 3)]

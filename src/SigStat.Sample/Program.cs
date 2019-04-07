@@ -54,8 +54,8 @@ namespace SigStat.Sample
             //OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
-            //JsonSerializeSignature();
-            JsonSerializeOnlineVerifier();
+            JsonSerializeSignature();
+            //JsonSerializeOnlineVerifier();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
