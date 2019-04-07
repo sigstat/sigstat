@@ -111,6 +111,9 @@
 - [`IProgress`](./SigStat/Common/Helpers/IProgress.md)
 - [`SerializationHelper`](./SigStat/Common/Helpers/SerializationHelper.md)
 - [`SimpleConsoleLogger`](./SigStat/Common/Helpers/SimpleConsoleLogger.md)
+## Serialization
+
+- [`RectangleFConverter`](./SigStat/Common/Helpers/Serialization/RectangleFConverter.md)
 ## Palette
 
 - [`Palette`](./SigStat/Common/Helpers/Excel/Palette/Palette.md)
