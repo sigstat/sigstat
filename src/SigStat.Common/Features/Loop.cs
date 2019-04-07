@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using Newtonsoft.Json;
+using SigStat.Common.Helpers.Serialization;
 
 namespace SigStat.Common
 {
@@ -21,6 +22,7 @@ namespace SigStat.Common
         /// The bounding rectangle of the loop
         /// </summary>
         [JsonProperty]
+        [JsonConverter(typeof(RectangleFConverter))]
         public RectangleF Bounds { get; set; }
         /// <summary>
         /// A list of defining points of the loop

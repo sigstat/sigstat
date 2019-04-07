@@ -938,6 +938,8 @@ namespace SigStat.Sample
 
             sig.SetFeature(heightDescriptor, 4);
             var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
+            RectangleF bound = new RectangleF(10, 10, 5, 3);
+            loops[0].Bounds = bound;
             sig.SetFeature(MyFeatures.Loop, loops);
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
@@ -946,7 +948,7 @@ namespace SigStat.Sample
             signature.Signer.Signatures = null;
 
             //Serialize to a string
-            string json = SerializationHelper.JsonSerialize<Signature>(signature);
+            string json = SerializationHelper.JsonSerialize<Signature>(sig);
             Console.WriteLine(json);
 
             //Deserialize from a string
