@@ -3,13 +3,13 @@
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
     <!-- Version info will be overwriten by the publish process -->
-    <Version>0.1.204</Version>
+    <Version>0.1.417</Version>
     <Authors>Bence Kovari</Authors>
     <Company>Bence Kovari</Company>
     <PackageLicenseUrl>https://github.com/bmeaut/sigstat/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bmeaut/sigstat</PackageProjectUrl>
     <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> 
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Package Description</Description>
     <!-- <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>     -->
     <Copyright>Copyright 2018</Copyright>

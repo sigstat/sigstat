@@ -6,7 +6,7 @@
     <members>
         <member name="T:SigStat.Common.Algorithms.Dtw">
             <summary>
-            Dynamic Time Warping algorithm
+            Dynamic Time Warping algorithm - test comment2
             </summary>
         </member>
         <member name="P:SigStat.Common.Algorithms.Dtw.ForwardPath">
