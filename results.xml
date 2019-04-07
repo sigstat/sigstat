@@ -192,16 +192,6 @@
       <ModuleName>Microsoft.TemplateEngine.Cli</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="6D-41-8E-6C-7F-48-A8-99-38-66-80-E7-BD-08-7F-6A-2F-C0-58-6A">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Resources.ResourceManager.dll</FullName>
-      <ModuleName>System.Resources.ResourceManager</ModuleName>
-      <Classes />
-    </Module>
-    <Module skippedDueTo="Filter" hash="07-0E-A6-AD-2F-57-46-59-D7-CE-99-98-24-6F-6F-06-FC-33-78-E6">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Globalization.dll</FullName>
-      <ModuleName>System.Globalization</ModuleName>
-      <Classes />
-    </Module>
     <Module skippedDueTo="Filter" hash="EA-85-85-9B-28-6F-2B-6B-96-B7-CF-C5-F7-BC-51-BC-A9-74-17-59">
       <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Private.Uri.dll</FullName>
       <ModuleName>System.Private.Uri</ModuleName>
@@ -210,6 +200,16 @@
     <Module skippedDueTo="Filter" hash="A6-A8-FD-11-C0-DC-D6-9C-52-E2-87-88-71-36-E7-E9-E7-E3-CF-39">
       <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Threading.Tasks.dll</FullName>
       <ModuleName>System.Threading.Tasks</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="6D-41-8E-6C-7F-48-A8-99-38-66-80-E7-BD-08-7F-6A-2F-C0-58-6A">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Resources.ResourceManager.dll</FullName>
+      <ModuleName>System.Resources.ResourceManager</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="07-0E-A6-AD-2F-57-46-59-D7-CE-99-98-24-6F-6F-06-FC-33-78-E6">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Globalization.dll</FullName>
+      <ModuleName>System.Globalization</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="DE-7D-B8-6A-53-47-6B-C3-26-4A-2A-60-CC-B0-D3-D1-0F-D0-60-6B">
@@ -502,6 +502,11 @@
       <ModuleName>System.IO.FileSystem.Primitives</ModuleName>
       <Classes />
     </Module>
+    <Module skippedDueTo="Filter" hash="60-9C-E5-29-EA-B4-83-AF-38-56-0B-F3-63-0C-0B-94-4D-15-85-FD">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Text.Encoding.Extensions.dll</FullName>
+      <ModuleName>System.Text.Encoding.Extensions</ModuleName>
+      <Classes />
+    </Module>
     <Module skippedDueTo="Filter" hash="A7-5A-79-9D-31-BB-24-38-A6-C1-18-BD-EA-D7-F6-5C-46-76-25-6B">
       <FullName>C:\Program Files\dotnet\sdk\2.2.103\Microsoft.ApplicationInsights.dll</FullName>
       <ModuleName>Microsoft.ApplicationInsights</ModuleName>
@@ -510,11 +515,6 @@
     <Module skippedDueTo="Filter" hash="01-61-F1-A8-6F-90-42-37-00-83-C8-59-39-B8-48-30-6D-A4-A4-FF">
       <FullName>C:\Program Files\dotnet\sdk\2.2.103\Microsoft.DotNet.PlatformAbstractions.dll</FullName>
       <ModuleName>Microsoft.DotNet.PlatformAbstractions</ModuleName>
-      <Classes />
-    </Module>
-    <Module skippedDueTo="Filter" hash="60-9C-E5-29-EA-B4-83-AF-38-56-0B-F3-63-0C-0B-94-4D-15-85-FD">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Text.Encoding.Extensions.dll</FullName>
-      <ModuleName>System.Text.Encoding.Extensions</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="E6-48-7B-0B-D1-FA-22-17-AC-CC-95-AA-CA-1E-DE-A0-32-AD-49-E0">
@@ -1057,6 +1057,11 @@
       <ModuleName>System.Globalization</ModuleName>
       <Classes />
     </Module>
+    <Module skippedDueTo="Filter" hash="14-4E-20-F0-EC-40-90-54-BD-0D-AA-D1-BD-71-1C-0D-F6-88-8E-C2">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.0.9\System.Resources.ResourceManager.dll</FullName>
+      <ModuleName>System.Resources.ResourceManager</ModuleName>
+      <Classes />
+    </Module>
     <Module skippedDueTo="Filter" hash="94-47-2A-D2-AC-C8-E2-22-B9-4B-BD-71-39-0B-E3-50-D2-07-0D-CB">
       <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.0.9\System.Text.Encoding.dll</FullName>
       <ModuleName>System.Text.Encoding</ModuleName>
@@ -1065,11 +1070,6 @@
     <Module skippedDueTo="Filter" hash="EC-CD-2D-95-E5-EB-A6-17-09-10-A8-DB-F6-D1-2D-C8-9E-DE-3F-E0">
       <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.0.9\System.Security.Cryptography.Primitives.dll</FullName>
       <ModuleName>System.Security.Cryptography.Primitives</ModuleName>
-      <Classes />
-    </Module>
-    <Module skippedDueTo="Filter" hash="14-4E-20-F0-EC-40-90-54-BD-0D-AA-D1-BD-71-1C-0D-F6-88-8E-C2">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.0.9\System.Resources.ResourceManager.dll</FullName>
-      <ModuleName>System.Resources.ResourceManager</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="43-E8-F0-B3-67-8C-54-40-51-4D-58-85-75-ED-55-E9-5C-CD-21-04">
@@ -1682,6 +1682,11 @@
       <ModuleName>System.Text.Encoding</ModuleName>
       <Classes />
     </Module>
+    <Module skippedDueTo="Filter" hash="BB-97-F1-71-C0-E5-2A-A9-6B-4D-22-B1-71-D7-84-8B-BF-51-8B-B0">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Runtime.Serialization.Formatters.dll</FullName>
+      <ModuleName>System.Runtime.Serialization.Formatters</ModuleName>
+      <Classes />
+    </Module>
     <Module skippedDueTo="Filter" hash="6F-4C-A1-79-64-5D-01-3D-0B-18-B0-3D-EF-7B-60-B7-8E-8F-B7-87">
       <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.7\System.Security.Principal.Windows.dll</FullName>
       <ModuleName>System.Security.Principal.Windows</ModuleName>
@@ -1697,9 +1702,14 @@
       <ModuleName>System.Security.Principal</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="BB-97-F1-71-C0-E5-2A-A9-6B-4D-22-B1-71-D7-84-8B-BF-51-8B-B0">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Runtime.Serialization.Formatters.dll</FullName>
-      <ModuleName>System.Runtime.Serialization.Formatters</ModuleName>
+    <Module skippedDueTo="Filter" hash="26-02-AC-BE-9D-CB-59-C0-73-C7-64-51-EA-F8-75-D1-A7-12-69-B0">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.7\System.Text.Encoding.dll</FullName>
+      <ModuleName>System.Text.Encoding</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="5E-BD-60-83-6D-6F-B8-A6-D1-9C-9B-0A-C1-C1-41-47-EE-34-F5-86">
+      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.7\System.Reflection.dll</FullName>
+      <ModuleName>System.Reflection</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="">
@@ -1722,19 +1732,9 @@
       <ModuleName>System.Drawing.Primitives</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="26-02-AC-BE-9D-CB-59-C0-73-C7-64-51-EA-F8-75-D1-A7-12-69-B0">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.7\System.Text.Encoding.dll</FullName>
-      <ModuleName>System.Text.Encoding</ModuleName>
-      <Classes />
-    </Module>
     <Module skippedDueTo="Filter" hash="BA-1E-C6-06-78-44-E6-B5-67-D9-53-DA-A0-A5-C1-2B-DB-79-29-3A">
       <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.2.1\System.Reflection.Primitives.dll</FullName>
       <ModuleName>System.Reflection.Primitives</ModuleName>
-      <Classes />
-    </Module>
-    <Module skippedDueTo="Filter" hash="5E-BD-60-83-6D-6F-B8-A6-D1-9C-9B-0A-C1-C1-41-47-EE-34-F5-86">
-      <FullName>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\2.1.7\System.Reflection.dll</FullName>
-      <ModuleName>System.Reflection</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="FA-59-35-B7-93-5C-BE-03-2E-CB-57-4F-A4-CC-3E-F8-75-68-3A-97">
@@ -1897,7 +1897,7 @@
       <ModuleName>System.Private.Xml.Linq</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="DE-C8-3B-56-98-5B-B1-D3-CD-C7-29-E7-54-1E-51-4E-17-80-7A-06">
+    <Module skippedDueTo="Filter" hash="47-06-85-D2-10-CF-3C-27-A5-D9-3E-50-B6-3C-AC-14-DB-24-F8-10">
       <FullName>C:\projects\sigstat\test\SigStat.Common.Test\bin\Release\netcoreapp2.1\SigStat.Common.Test.dll</FullName>
       <ModuleName>SigStat.Common.Test</ModuleName>
       <Classes />
@@ -1917,7 +1917,7 @@
       <ModuleName>System.Console</ModuleName>
       <Classes />
     </Module>
-    <Module hash="AD-2E-09-54-8C-13-A6-F5-59-BA-75-C4-4A-19-86-FE-C0-5E-F9-DD">
+    <Module hash="8A-41-92-FF-44-CE-4A-4F-EA-83-57-D2-17-34-80-C3-7F-0C-AB-3F">
       <Summary numSequencePoints="3507" visitedSequencePoints="69" numBranchPoints="2683" visitedBranchPoints="39" sequenceCoverage="1.97" branchCoverage="1.45" maxCyclomaticComplexity="50" minCyclomaticComplexity="1" />
       <FullName>C:\projects\sigstat\test\SigStat.Common.Test\bin\Release\netcoreapp2.1\SigStat.Common.dll</FullName>
       <ModuleName>SigStat.Common</ModuleName>
