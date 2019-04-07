@@ -60,9 +60,9 @@ on_success:
 - git config --global user.name "hargitomi97"
 - git checkout master
 - markdownapi C:\projects\sigstat\src\SigStat.Common\bin\Release\net461\SigStat.Common.dll C:\projects\sigstat\docs\md
-- git add .
-- git diff-index --quiet HEAD || git commit -am "doc [skip ci]"
-- git push
+#- git add .
+#- git diff-index --quiet HEAD || git commit -am "doc [skip ci]"
+#- git push
 #- md C:\projects\wiki
 #- cd C:\projects\wiki
 #- git clone https://github.com/sigstat/sigstat.wiki.git
