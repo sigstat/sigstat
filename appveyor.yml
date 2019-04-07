@@ -44,7 +44,7 @@ build:
   verbosity: normal
 deploy:
 - provider: NuGet
-  server: https://www.myget.org/F/bencekovari/api/v2/packagegit
+  server: https://www.myget.org/F/bencekovari/api/v2/package
   api_key:
    secure: Lt06yKCteORxJGN1HKZz3WbzQXLDHsRiuJCXTVKOM9DAAC7ZR/Lr9OI4BsOHrguh
 
