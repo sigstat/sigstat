@@ -17,6 +17,7 @@ using System.Diagnostics;
 using SigStat.Common.Helpers.Excel.Palette;
 using SigStat.Common.Pipeline;
 using static SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier;
+using Newtonsoft.Json;
 
 namespace SigStat.Common
 {
@@ -47,11 +48,14 @@ namespace SigStat.Common
     }
 
     /// <summary>Contains the benchmark results of every <see cref="Common.Signer"/> and the summarized final results.</summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public struct BenchmarkResults
     {
+        [JsonProperty]
         /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
         public readonly List<Result> SignerResults;
         /// <summary>Summarized, final result of the benchmark execution.</summary>
+        [JsonProperty]
         public readonly Result FinalResult;
 
         //ez internal, mert csak a Benchmark keszithet uj BenchmarkResults-t
@@ -62,7 +66,8 @@ namespace SigStat.Common
         }
     }
 
-    /// <summary> Benchmarking class to test error rates of a <see cref="Model.Verifier"/> </summary>
+    /// <summary> Benchmarking class to test error rates of a <see cref="Model.Verifier"/> </summary>   
+    [JsonObject(MemberSerialization.OptIn)]
     public class VerifierBenchmark : ILoggerObject
     {
         readonly EventId benchmarkEvent = SigStatEvents.BenchmarkEvent;
@@ -74,6 +79,7 @@ namespace SigStat.Common
 
         private Verifier verifier;
         /// <summary> Gets or sets the <see cref="Model.Verifier"/> to be benchmarked. </summary>
+        [JsonProperty]
         public Verifier Verifier
         {
             get => verifier;
@@ -170,10 +176,12 @@ namespace SigStat.Common
         /// <summary>
         /// The loader that will provide the database for benchmarking
         /// </summary>
+        [JsonProperty]
         public IDataSetLoader Loader { get => loader; set => loader = value; }
         /// <summary>
         /// The <see cref="Common.Sampler"/> to be used for benchmarking
         /// </summary>
+        [JsonProperty]
         public Sampler Sampler { get => sampler; set => sampler = value; }
 
         /// <inheritdoc/>

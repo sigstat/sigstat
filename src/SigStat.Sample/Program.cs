@@ -54,8 +54,9 @@ namespace SigStat.Sample
             //OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
-            JsonSerializeSignature();
+            //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
+            JsonSerializeOnlineVerifierBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -1025,6 +1026,49 @@ namespace SigStat.Sample
             Console.WriteLine(json);
             Verifier deserializedOV2 = SerializationHelper.Deserialize<Verifier>(json);
 
+        }
+        static void JsonSerializeOnlineVerifierBenchmark()
+        {
+            var benchmark = new VerifierBenchmark()
+            {
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
+                Verifier = new Verifier()
+                {
+                    Pipeline = new SequentialTransformPipeline
+                    {
+                        new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+                        new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                             new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                              new FillPenUpDurations()
+                              {
+                                  InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
+                                  OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                                  InterpolationType = typeof(CubicInterpolation),
+                                  TimeInputFeature =Features.T,
+                                  TimeOutputFeature = Features.T
+                              }
+                    }
+                    ,
+                    Classifier = new OptimalDtwClassifier()
+                    {
+                        Sampler = new SVC2004Sampler1(),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                    }
+                },
+                Sampler = new SVC2004Sampler1(),
+                Logger = new SimpleConsoleLogger(),
+            };
+
+            benchmark.ProgressChanged += ProgressPrimary;
+            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+            var result = benchmark.Execute(true);
+
+            Console.WriteLine($"AER: {result.FinalResult.Aer}");
+            SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(benchmark,@"serializedBM.txt");
+            SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"serializedBMResult.txt");
+            VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"serializedBM.txt");
         }
 
         static int primaryP = 0;
