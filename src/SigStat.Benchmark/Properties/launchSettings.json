@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SigStat.Benchmark": {
+      "commandName": "Project",
+      "commandLineArgs": "work"
+    }
+  }
+}

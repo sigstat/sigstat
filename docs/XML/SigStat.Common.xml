@@ -6,7 +6,7 @@
     <members>
         <member name="T:SigStat.Common.Algorithms.Dtw">
             <summary>
-            Dynamic Time Warping algorithm
+            Dynamic Time Warping algorithm - test comment2
             </summary>
         </member>
         <member name="P:SigStat.Common.Algorithms.Dtw.ForwardPath">
@@ -573,6 +573,209 @@
             </summary>
             <param name="weightMartix"></param>
             <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.Merge(OfficeOpenXml.ExcelRangeBase)">
+            <summary>
+            Merge all cells into one in the range.
+            </summary>
+            <param name="range">Cells to merge</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.FormatAsTable(OfficeOpenXml.ExcelRange,SigStat.Common.Helpers.Excel.Palette.ExcelColor,System.Boolean,System.Boolean)">
+            <summary>
+            Format cells in the range into a table
+            </summary>
+            <param name="range">The table's cells</param>
+            <param name="color">Color palette of the table</param>
+            <param name="showColumnHeader">Defines if the table has column header</param>
+            <param name="showRowHeader">Defines if the table has row header</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.FormatAsTableWithTitle(OfficeOpenXml.ExcelRange,System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor,System.Boolean,System.Boolean)">
+            <summary>
+            Format cells in the range into a table with possible title
+            </summary>
+            <param name="range">The table's cells</param>
+            <param name="title">The table's title, if null, the table won't have title</param>
+            <param name="color">Color palette of the table</param>
+            <param name="showColumnHeader">Defines if the table has column header</param>
+            <param name="showRowHeader">Defines if the table has row header</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Object[0:,0:],System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Insert table filled with data from a 2D array
+            </summary>
+            <param name="ws">Worksheet in wich the table is created</param>
+            <param name="col">Starting column of the table</param>
+            <param name="row">Starting row of the table</param>
+            <param name="data">2D array in wich the data to insert is stored</param>
+            <param name="title">The table's title</param>
+            <param name="color">The table's color</param>
+            <param name="hasRowHeader">Defines if the table has row header</param>
+            <param name="hasColumnHeader">Defines if the table has column header</param>
+            <param name="name">If given, creates a named range, with this name</param>
+            /// <returns>Range of the inserted data</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Double[0:,0:],System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Insert table filled with data from a 2D array
+            </summary>
+            <param name="ws">Worksheet in wich the table is created</param>
+            <param name="col">Starting column of the table</param>
+            <param name="row">Starting row of the table</param>
+            <param name="data">2D array in wich the data to insert is stored (double values)</param>
+            <param name="title">The table's title</param>
+            <param name="color">The table's color</param>
+            <param name="hasRowHeader">Defines if the table has row header</param>
+            <param name="hasColumnHeader">Defines if the table has column header</param>
+            /// <param name="name">If given, creates a named range, with this name</param>
+            <returns>Range of the inserted data</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertTable``1(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0},System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor,System.Boolean,System.String)">
+            <summary>
+            Insert a table filled with data from an IEnumerable
+            </summary>
+            <typeparam name="T">Type of inserted objects</typeparam>
+            <param name="ws">Worksheet in wich the table is created</param>
+            <param name="col">Starting column of the table</param>
+            <param name="row">Starting row of the table</param>
+            <param name="data">IEnumerable in wich the data to insert is stored</param>
+            <param name="title">The table's title</param>
+            <param name="color">The table's color</param>
+            <param name="showHeader">Defines if the table has header</param>
+            <param name="Name">If given, creates a named range, with this name</param>
+             <returns>Range of the inserted data</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertDictionary``2(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}},System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor,System.String)">
+            <summary>
+            Insert table from key-value pairs
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="ws">Worksheet in wich the table is created</param>
+            <param name="col">Starting column of the table</param>
+            <param name="row">Starting row of the table</param>
+            <param name="data">IEnumerable of key-value pairs in wich the data to insert is stored</param>
+            <param name="title">The table's title</param>
+            <param name="color">The table's color</param>
+            <param name="Name">If given, creates a named range, with this name</param>
+            <returns>Range of the inserted data</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertHierarchicalList(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,SigStat.Common.Helpers.Excel.HierarchyElement,System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor)">
+            <summary>
+            Insert a hierarchical list in tree style into the worksheet
+            </summary>
+            <param name="ws">Worksheet in wich the list is inserted</param>
+            <param name="col">Starting column of the list</param>
+            <param name="row">Starting row of the list</param>
+            <param name="root">Root element of the list</param>
+            <param name="title">Title of the list</param>
+            <param name="color">color of the list</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertLegend(OfficeOpenXml.ExcelRange,System.String,System.String,SigStat.Common.Helpers.Excel.Palette.ExcelColor)">
+            <summary>
+            Insert legend
+            </summary>
+            <param name="range">Range of the legend</param>
+            <param name="text">Text of the legend</param>
+            <param name="title">Title of the legend (can be null)</param>
+            <param name="color">Color of the legend</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertLink(OfficeOpenXml.ExcelRange,System.String)">
+            <summary>
+            Creates a link to given sheet
+            </summary>
+            <param name="range">Cells to place the link in</param>
+            <param name="sheet">Destination sheet's name</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertLink(OfficeOpenXml.ExcelRange,System.String,System.String)">
+            <summary>
+            Creates a link to selected cells in given sheet
+            </summary>
+            <param name="range">Cells to place the link in</param>
+            <param name="sheet">Destination sheet's name</param>
+            <param name="cells">Destination cells' address</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertLineChart(OfficeOpenXml.ExcelWorksheet,OfficeOpenXml.ExcelRange,System.Int32,System.Int32,System.String,System.String,System.String,OfficeOpenXml.ExcelRange,System.Int32,System.Int32,System.String)">
+            <summary>
+            Draws a line chart for the given data
+            </summary>
+            <param name="ws">Worksheet in wich the graph is inserted</param>
+            <param name="range">Range containing the data (first row for x axis other rows for series)</param>
+            <param name="col">The graph inserted starts at this column</param>
+            <param name="row">The graph inserted starts at this row</param>
+            <param name="name">Id and default title of the graph</param>
+            <param name="xLabel">Label for x axis of the graph</param>
+            <param name="yLabel">Label for y axis of the graph</param>
+            <param name="serieLabels">If the graph hase more than one series, each can be named separately</param>
+            <param name="width">Graph's width in px</param>
+            <param name="height">Graph's height in px</param>
+            <param name="title">Title of the graph if the defauolt name has to be overwritten</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertColumnChart(OfficeOpenXml.ExcelWorksheet,OfficeOpenXml.ExcelRange,System.Int32,System.Int32,System.String,System.String,System.String,OfficeOpenXml.ExcelRange,System.Int32,System.Int32,System.String)">
+            <summary>
+            Draws a column chart for the given data
+            </summary>
+            <param name="ws">Worksheet in wich the graph is inserted</param>
+            <param name="range">Range containing the data (first row for x axis other rows for series)</param>
+            <param name="col">The graph inserted starts at this column</param>
+            <param name="row">The graph inserted starts at this row</param>
+            <param name="name">Id and default title of the graph</param>
+            <param name="xLabel">Label for x axis of the graph</param>
+            <param name="yLabel">Label for y axis of the graph</param>
+            <param name="serieLabels">If the graph hase more than one series, each can be named separately</param>
+            <param name="width">Graph's width in px</param>
+            <param name="height">Graph's height in px</param>
+            <param name="title">Title of the graph if the defauolt name has to be overwritten</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.CellHandler.InsertText(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.String,SigStat.Common.Helpers.Excel.Level.TextLevel)">
+            <summary>
+            Inserts text into the defined cell, and format to match text level
+            </summary>
+            <param name="ws">Worksheet in wich the text is inserted</param>
+            <param name="row">Row of the cell</param>
+            <param name="col">Column of the cell</param>
+            <param name="text">Text to insert</param>
+            <param name="level">Level of text</param>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Excel.HierarchyElement">
+            <summary>
+            Hierarchical structure to store object
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.HierarchyElement.#ctor">
+            <summary>
+            Create an emty element
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.HierarchyElement.#ctor(System.Object)">
+            <summary>
+            Create a new element with content
+            </summary>
+            <param name="Content">Content of the new element</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.HierarchyElement.GetDepth">
+            <summary>
+            Return the hierarchy's depth from this node
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.HierarchyElement.GetCount">
+            <summary>
+            Returns number of elements under this node and itself
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Excel.Level.Level.StyleAs(OfficeOpenXml.Style.ExcelStyle,SigStat.Common.Helpers.Excel.Level.TextLevel)">
+            <summary>
+            Set the style according to text level
+            </summary>
+            <param name="style"></param>
+            <param name="level"></param>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Excel.Palette.PaletteStorage">
+            <summary>
+            Stores color information for every ExcelColor
+            </summary>
         </member>
         <member name="M:SigStat.Common.Helpers.Excel.Palette.PaletteStorage.GetPalette(SigStat.Common.Helpers.Excel.Palette.ExcelColor)">
             <summary>
@@ -1241,6 +1444,14 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.SimpleRenderingTransformation">
+            <summary>
+            Renders an image of the signature based on the available online information (X,Y,Dpi)
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.SimpleRenderingTransformation.Transform(SigStat.Common.Signature)">
+            <inheritdoc></inheritdoc>
+        </member>
         <member name="T:SigStat.Common.Transforms.ComponentSorter">
             <summary>
             Sorts Component order by comparing each starting X value, and finding nearest components.
@@ -1735,14 +1946,6 @@
             <summary>
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
-        </member>
-        <member name="T:Alairas.Common.SimpleRenderingTransformation">
-            <summary>
-            Renders an image of the signature based on the available online information (X,Y,Dpi)
-            </summary>
-        </member>
-        <member name="M:Alairas.Common.SimpleRenderingTransformation.Transform(SigStat.Common.Signature)">
-            <inheritdoc></inheritdoc>
         </member>
     </members>
 </doc>
