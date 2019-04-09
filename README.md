@@ -4,11 +4,12 @@
 [![](sigstat.gif)](https://sigstat.org)
 
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/hargitomi97/sigstat/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/sigstat/sigstat/blob/master/LICENSE.md)
 [![Build status](https://ci.appveyor.com/api/projects/status/4om5obpqk6s57rq7/branch/master?svg=true)](https://ci.appveyor.com/project/BenceKovari/sigstat/branch/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ef04a4d496c40eabb38e798930089e6)](https://www.codacy.com/app/SigStat/sigstat?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sigstat/sigstat&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/sigstat/sigstat/branch/master/graph/badge.svg)](https://codecov.io/gh/sigstat/sigstat)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Follow SigStat on Twitter](https://img.shields.io/badge/twitter-@SigStatOrg-55acee.svg?style=flat-square)](https://twitter.com/sigstatorg)
 
 # Introduction
 
@@ -24,31 +25,31 @@ Signature verification plays a very important role in our lives. Companies and o
 - online signature verification
 - etc.
 
-# How to use our project
-To use this project, you need to have **.NET Framework 4.7.2** up and running!
-For full declaration of each class please visit our [wiki](https://github.com/sigstat/sigstat/wiki) site!
+# How to use our library
+To use this project, you need to have **.NET Framework 4.6.1** up and running!
+For full declaration of each class please scroll through our [documentation](https://github.com/sigstat/sigstat/tree/master/docs/md)!
 
-# Included NuGet Packages 
+# Installed NuGet Packages 
 
 To reach the full potential of our project, we use some additional NuGet packages. 
 
 | Nuget name | link |
 | ------ | ------ |
+| Accord.Math | [https://github.com/accord-net/framework](https://github.com/accord-net/framework) |
+| CommandLineParser | [https://github.com/commandlineparser/commandline](https://github.com/commandlineparser/commandline) |
 | EPPlus | [https://github.com/JanKallman/EPPlus](https://github.com/JanKallman/EPPlus) |
-| NDtw | [https://github.com/doblak/ndtw](https://github.com/doblak/ndtw) |
-| SixLabors.Core | [https://github.com/SixLabors/Core](https://github.com/SixLabors/Core) |
-| SixLabors.Fonts | [https://github.com/SixLabors/Fonts](https://github.com/SixLabors/Fonts) |
+| NewtonSoft.Json | [https://github.com/JamesNK/Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) |
 | SixLabors.ImageSharp | [https://github.com/SixLabors/ImageSharp](https://github.com/SixLabors/ImageSharp) |
-| SixLabors.Shapes | [https://github.com/SixLabors/Shapes](https://github.com/SixLabors/Shapes) |
+| SixLabors.ImageSharp.Drawing | [https://github.com/SixLabors/ImageSharp](https://github.com/SixLabors/ImageSharp) |
 
-# Latest News <!--(Ezek valamilyen szinten seo-hoz is hozzájárulhatnak persze ehhez a jövőben kell ember aki foglalkozik ezekkel, tehát ez elég kérdéses :D)-->
+# Stay up-to-date!
 
-- **Twitter** - Follow [Sigstat](https://twitter.com/sigstat)
-- **Facebook** - Follow [Sigstat](https://facebook.com/sigstat)
+- **Twitter** - Follow [Sigstat](https://twitter.com/sigstatorg)
+- **Facebook** - Follow [Sigstat](https://www.facebook.com/sigstat.org)
 - **Email** - Subscribe to our [newsletter] (1 or 2 per month)
 - **YouTube** - For tutorial videos, examples and other contents visit our [YouTube channel](https://youtube.com/sigstat)!
 
 
 # Feedback
 
-Please open an [issue](https://github.com/hargitomi97/sigstat/issues/new) or, for sensitive information, email sigstat@info.com
+Please open an [issue](https://github.com/sigstat/sigstat/issues/new) or, for sensitive information, email sigstat@info.com
