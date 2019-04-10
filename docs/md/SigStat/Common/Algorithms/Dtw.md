@@ -5,7 +5,7 @@ Namespace: [SigStat]() > [Common]() > [Algorithms]()
 Assembly: SigStat.Common.dll
 
 ## Summary
-Dynamic Time Warping algorithm - test comment2
+Dynamic Time Warping algorithm
 
 ## Constructors
 
