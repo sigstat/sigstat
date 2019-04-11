@@ -114,6 +114,10 @@
 ## Serialization
 
 - [`RectangleFConverter`](./SigStat/Common/Helpers/Serialization/RectangleFConverter.md)
+## Excel
+
+- [`CellHandler`](./SigStat/Common/Helpers/Excel/CellHandler.md)
+- [`HierarchyElement`](./SigStat/Common/Helpers/Excel/HierarchyElement.md)
 ## Palette
 
 - [`Palette`](./SigStat/Common/Helpers/Excel/Palette/Palette.md)
