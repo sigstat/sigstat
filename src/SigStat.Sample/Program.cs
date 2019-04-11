@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging.Console;
+﻿
 using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
