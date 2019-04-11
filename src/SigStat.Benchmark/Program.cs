@@ -11,8 +11,6 @@ namespace SigStat.Benchmark
     {
         public static CloudStorageAccount Account;
         public static string Experiment;
-        public static string Input;
-        public static string Output;
 
         public abstract class Options
         {
@@ -45,8 +43,7 @@ namespace SigStat.Benchmark
 
             public override Task getTask()
             {
-                Output = OutputDirectory;
-                return Worker.RunAsync();
+                return Worker.RunAsync(OutputDirectory);
             }
         }
 
@@ -58,8 +55,7 @@ namespace SigStat.Benchmark
 
             public override Task getTask()
             {
-                Input = InputDirectory;
-                return Worker.RunAsync();
+                return JobGenerator.RunAsync(InputDirectory);
             }
         }
 
@@ -73,9 +69,7 @@ namespace SigStat.Benchmark
 
             public override Task getTask()
             {
-                Input = InputDirectory;
-                Output = OutputFile;
-                return Worker.RunAsync();
+                return Analyser.RunAsync(InputDirectory, OutputFile);
             }
         }
 
