@@ -6,7 +6,7 @@
     <members>
         <member name="T:SigStat.Common.Algorithms.Dtw">
             <summary>
-            Dynamic Time Warping algorithm - test comment2
+            Dynamic Time Warping algorithm
             </summary>
         </member>
         <member name="P:SigStat.Common.Algorithms.Dtw.ForwardPath">
@@ -469,14 +469,11 @@
         <member name="T:SigStat.Common.BenchmarkResults">
             <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
         </member>
-        <member name="F:SigStat.Common.BenchmarkResults.SignerResults">
-            <summary>List that contains the <see cref="T:SigStat.Common.Result"/>s for each <see cref="T:SigStat.Common.Signer"/></summary>
-        </member>
         <member name="F:SigStat.Common.BenchmarkResults.FinalResult">
             <summary>Summarized, final result of the benchmark execution.</summary>
         </member>
         <member name="T:SigStat.Common.VerifierBenchmark">
-            <summary> Benchmarking class to test error rates of a <see cref="T:SigStat.Common.Model.Verifier"/> </summary>
+            <summary> Benchmarking class to test error rates of a <see cref="T:SigStat.Common.Model.Verifier"/> </summary>   
         </member>
         <member name="F:SigStat.Common.VerifierBenchmark.loader">
             <summary> The loader to take care of <see cref="T:SigStat.Common.Signature"/> database loading. </summary>

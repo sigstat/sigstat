@@ -13,6 +13,7 @@ namespace SigStat.Benchmark
         static CloudBlobContainer Container;
         static CloudQueue Queue;
         enum Action { Run, Refresh, Abort };
+
         internal static async Task RunAsync()
         {
             Console.WriteLine("Initializing container: " + Program.Experiment);
