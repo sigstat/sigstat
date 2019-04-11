@@ -75,6 +75,7 @@ namespace SigStat.Benchmark
                     var config = BenchmarkConfig.FromJsonString(msg.AsString);
                     debugFileName = config.ToShortString();
                     Console.WriteLine($"{DateTime.Now}: Building benchmark...");
+                    // var benchmark = VerifierBenchmark.Load(string)
                     var benchmark = BenchmarkBuilder.Build(config);
                     var logger = new SimpleConsoleLogger();
                     logger.Logged += (m, e, l) =>
@@ -92,6 +93,13 @@ namespace SigStat.Benchmark
                     string filename = config.ToShortString() + ".xlsx";
                     if (!string.IsNullOrWhiteSpace(OutputDirectory))
                         filename = Path.Combine(OutputDirectory, filename);
+                    //LogProcessor.Dump(logger);
+
+                    // MongoDB 
+                    // TableStorage
+                    // Json => utólag, json-ben szűrni lehet
+                    // DynamoDB ==> MongoDB $$$$$$$
+                    // DateTime, MachineName, ....ExecutionTime,..., ResultType, Result json{40*60 táblázat}
                     benchmark.Dump(filename, config.ToKeyValuePairs());
                     Console.WriteLine($"{DateTime.Now}: Uploading results...");
 

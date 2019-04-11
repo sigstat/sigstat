@@ -7,7 +7,7 @@ namespace SigStat.Common.Helpers.Excel
     /// <summary>
     /// Hierarchical structure to store object
     /// </summary>
-    class HierarchyElement : IEnumerable<HierarchyElement>
+    public class HierarchyElement : IEnumerable<HierarchyElement>
     {
         public List<HierarchyElement> Children { get; }
 

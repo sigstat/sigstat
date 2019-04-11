@@ -12,7 +12,7 @@ namespace SigStat.Benchmark
         public static CloudStorageAccount Account;
         public static string Experiment;
 
-        public abstract class Options
+        public abstract class OptionsBase
         {
             [Option('k', "key", Required = true, HelpText = "Azure key to use for managing the job.")]
             public string AccountKey { get; set; }
@@ -23,57 +23,57 @@ namespace SigStat.Benchmark
             [Option('e', "experiment", Required = false, Default = "default", HelpText = "Unique name for the experiment")]
             public string Experiment { get; set; }
 
-            public abstract Task getTask();
+            public abstract Task RunAsync();
         }
 
         [Verb("monitor", HelpText = "Start monitoring")]
-        class MonitorOptions : Options
+        class MonitorOptions : OptionsBase
         {
-            public override Task getTask()
+            public override Task RunAsync()
             {
                 return Monitor.RunAsync();
             }
         }
 
         [Verb("work", HelpText = "Start worker")]
-        class WorkOptions : Options
+        class WorkOptions : OptionsBase
         {
             [Option('o', "outputDir", Required = false, Default = "", HelpText = "Output directory")]
             public string OutputDirectory { get; set; }
 
-            public override Task getTask()
+            public override Task RunAsync()
             {
                 return Worker.RunAsync(OutputDirectory);
             }
         }
 
         [Verb("generatejobs", HelpText = "Start job generator")]
-        class GenerateJobsOptions : Options
+        class GenerateJobsOptions : OptionsBase
         {
             [Option('o', "inputDir", Required = false, Default = "", HelpText = "Input directory")]
             public string InputDirectory { get; set; }
 
-            public override Task getTask()
+            public override Task RunAsync()
             {
                 return JobGenerator.RunAsync(InputDirectory);
             }
         }
 
         [Verb("analyse", HelpText = "Start analyser")]
-        class AnalyseOptions : Options
+        class AnalyseOptions : OptionsBase
         {
             [Option('o', "inputDir", Required = false, Default = "", HelpText = "Input directory")]
             public string InputDirectory { get; set; }
             [Option('o', "output", Required = false, Default = "", HelpText = "Output file")]
             public string OutputFile { get; set; }
 
-            public override Task getTask()
+            public override Task RunAsync()
             {
                 return Analyser.RunAsync(InputDirectory, OutputFile);
             }
         }
 
-        public static bool getCommonOptions(Options o)
+        public static bool GetCommonOptions(OptionsBase o)
         {
             if (o.AccountKey.EndsWith(".txt"))
             {
@@ -93,7 +93,7 @@ namespace SigStat.Benchmark
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Account key is invalid");
+                Console.WriteLine($"Account key is invalid. " + e);
                 return false;
             }
             return true;
@@ -102,17 +102,17 @@ namespace SigStat.Benchmark
         static async Task Main(string[] args)
         {
             await Parser.Default.ParseArguments<MonitorOptions, WorkOptions, GenerateJobsOptions, AnalyseOptions>(args)
-                .MapResult<Options, Task>(o =>
+                .MapResult<OptionsBase, Task>(o =>
                 {
-                    if (!getCommonOptions(o)) return Task.FromResult(-1);
+                    if (!GetCommonOptions(o)) return Task.FromResult(-1);
 
-                    return o.getTask();
+                    return o.RunAsync();
                 },
-                   errs => Task.FromResult(-1));
+                errs => Task.FromResult(-1));
             Console.WriteLine("Execution finished. Press any key to exit the application...");
             Console.ReadKey();
         }
     }
-    
+
 }
 

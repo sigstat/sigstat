@@ -4,7 +4,7 @@ using System.Drawing;
 namespace SigStat.Common.Helpers.Excel.Palette
 {
     
-    enum ExcelColor
+    public enum ExcelColor
     {
         Primary,
         Secondary,

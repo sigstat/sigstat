@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SigStat.Common.Helpers.Excel;
+
 
 namespace SigStat.Benchmark
 {
@@ -63,7 +65,7 @@ namespace SigStat.Benchmark
             using (var p = new ExcelPackage())
             {
                 var sheet = p.Workbook.Worksheets.Add("Summary");
-                //sheet.InsertTable(2, 2, reports);
+                sheet.InsertTable(2, 2, reports);
                 p.SaveAs(new FileInfo("Report.xlsx"));
             }
         }

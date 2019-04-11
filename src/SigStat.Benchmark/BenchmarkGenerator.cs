@@ -10,15 +10,12 @@ namespace SigStat.Benchmark
 {
     class BenchmarkGenerator
     {
-        private HashSet<IClassifier> Classifiers;
-        private HashSet<Sampler> Samplers;
-        private HashSet<DataSetLoader> Loaders;
-        private HashSet<ITransformation> Transformations;
-        private HashSet<IInterpolation> Interpolations;
-        private HashSet<FeatureDescriptor> Features;
-        private HashSet<string> Distance;
+        private List<IClassifier> Classifiers;
+        private List<Tuple<DataSetLoader, Sampler>> Databases;
+        private List<List<ITransformation>> TransformationGroups;
+        private List<List<FeatureDescriptor>> FeatureGroups;
 
-        public List<VerifierBenchmark> generate()
+        public List<VerifierBenchmark> Generate()
         {
             return new List<VerifierBenchmark>();
         }

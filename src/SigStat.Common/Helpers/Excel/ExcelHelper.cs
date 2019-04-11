@@ -11,7 +11,7 @@ using SigStat.Common.Helpers.Excel.Level;
 
 namespace SigStat.Common.Helpers.Excel
 {
-    static class CellHandler
+    public static class CellHandler
     {
 
 
