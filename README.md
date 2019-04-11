@@ -26,7 +26,7 @@ Signature verification plays a very important role in our lives. Companies and o
 - etc.
 
 # How to use our library
-To use this project, you need to have **.NET Framework 4.6.1** up and running!
+To use this project, you need to have **.NET Framework 4.6.1** and **.NET Core SDK 2.1.403** installed!
 For full declaration of each class please scroll through our [documentation](https://github.com/sigstat/sigstat/tree/master/docs/md)!
 
 # Installed NuGet Packages 
