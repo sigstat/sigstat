@@ -13,7 +13,7 @@ Extracts unsorted components by tracing through the binary Skeleton raster.  <pa
 
 | Name | Summary | 
 | --- | --- | 
-| ComponentExtraction ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) |  | 
+| ComponentExtraction ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) | Initializes a new instance of the `SigStat.Common.Transforms.ComponentExtraction` class with specified sampling resolution. | 
 
 
 ## Properties

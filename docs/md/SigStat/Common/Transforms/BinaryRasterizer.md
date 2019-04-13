@@ -13,7 +13,7 @@ Converts standard features to a binary raster.  <para>Default Pipeline Input: St
 
 | Name | Summary | 
 | --- | --- | 
-| BinaryRasterizer ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Single`](https://docs.microsoft.com/en-us/dotnet/api/System.Single) ) |  | 
+| BinaryRasterizer ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Single`](https://docs.microsoft.com/en-us/dotnet/api/System.Single) ) | Initializes a new instance of the `SigStat.Common.Transforms.BinaryRasterizer` class with specified raster size and pen width. | 
 
 
 ## Properties

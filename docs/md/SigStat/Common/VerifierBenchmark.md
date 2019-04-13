@@ -13,7 +13,7 @@ Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
 
 | Name | Summary | 
 | --- | --- | 
-| VerifierBenchmark (  ) |  | 
+| VerifierBenchmark (  ) | Initializes a new instance of the `SigStat.Common.VerifierBenchmark` class.  Sets the `SigStat.Common.Sampler` to the default `SigStat.Common.SVC2004Sampler1`. | 
 
 
 ## Properties

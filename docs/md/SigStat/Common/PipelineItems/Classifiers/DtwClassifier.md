@@ -13,7 +13,7 @@ Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
 
 | Name | Summary | 
 | --- | --- | 
-| DtwClassifier (  ) |  | 
+| DtwClassifier (  ) | Initializes a new instance of the `SigStat.Common.PipelineItems.Classifiers.DtwClassifier` class with the default Manhattan distance method. | 
 | DtwClassifier ( [`Func`](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> ) |  | 
 
 

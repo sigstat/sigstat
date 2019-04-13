@@ -11,8 +11,8 @@ Represents a loop in a signature
 
 | Name | Summary | 
 | --- | --- | 
-| Loop (  ) |  | 
-| Loop ( [`Single`](https://docs.microsoft.com/en-us/dotnet/api/System.Single), [`Single`](https://docs.microsoft.com/en-us/dotnet/api/System.Single) ) |  | 
+| Loop (  ) | Creates a `SigStat.Common.Loop` instance | 
+| Loop ( [`Single`](https://docs.microsoft.com/en-us/dotnet/api/System.Single), [`Single`](https://docs.microsoft.com/en-us/dotnet/api/System.Single) ) | Creates a `SigStat.Common.Loop` instance and initializes the `SigStat.Common.Loop.Center` property | 
 
 
 ## Properties

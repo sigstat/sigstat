@@ -13,7 +13,7 @@ Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` o
 
 | Name | Summary | 
 | --- | --- | 
-| Verifier ( [`ILogger`](./Verifier.md) ) |  | 
+| Verifier ( [`ILogger`](./Verifier.md) ) | Initializes a new instance of the `SigStat.Common.Model.Verifier` class | 
 | Verifier (  ) |  | 
 | Verifier ( [`Verifier`](./Verifier.md) ) |  | 
 

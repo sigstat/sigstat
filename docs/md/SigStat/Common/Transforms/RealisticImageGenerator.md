@@ -13,7 +13,7 @@ Generates a realistic looking image of the Signature based on standard features.
 
 | Name | Summary | 
 | --- | --- | 
-| RealisticImageGenerator ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) |  | 
+| RealisticImageGenerator ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) | Initializes a new instance of the `SigStat.Common.Transforms.RealisticImageGenerator` class with specified settings. | 
 
 
 ## Methods

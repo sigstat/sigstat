@@ -13,9 +13,9 @@ Generates an image feature out of a binary raster.  Optionally, saves the image 
 
 | Name | Summary | 
 | --- | --- | 
-| ImageGenerator (  ) |  | 
-| ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) |  | 
-| ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`Rgba32`](./ImageGenerator.md), [`Rgba32`](./ImageGenerator.md) ) |  | 
+| ImageGenerator (  ) | Initializes a new instance of the `SigStat.Common.Transforms.ImageGenerator` class with default settings: skip file writing, Blue ink on white paper. | 
+| ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) | Initializes a new instance of the `SigStat.Common.Transforms.ImageGenerator` class with default settings. | 
+| ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`Rgba32`](./ImageGenerator.md), [`Rgba32`](./ImageGenerator.md) ) | Initializes a new instance of the `SigStat.Common.Transforms.ImageGenerator` class with specified settings. | 
 
 
 ## Properties

@@ -13,7 +13,7 @@ Generates a binary raster version of the input image with the iterative threshol
 
 | Name | Summary | 
 | --- | --- | 
-| Binarization (  ) |  | 
+| Binarization (  ) | Initializes a new instance of the `SigStat.Common.Transforms.Binarization` class with default settings: Iterative threshold and `SigStat.Common.Transforms.Binarization.ForegroundType.Dark`. | 
 | Binarization ( [`ForegroundType`](./Binarization.md), [`Nullable`](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> ) |  | 
 
 

@@ -13,7 +13,7 @@ Sequential pipeline to translate X and Y `SigStat.Common.Features` to Centroid. 
 
 | Name | Summary | 
 | --- | --- | 
-| CentroidTranslate (  ) |  | 
+| CentroidTranslate (  ) | Initializes a new instance of the `SigStat.Common.Transforms.CentroidTranslate` class. | 
 
 
 ## Properties
