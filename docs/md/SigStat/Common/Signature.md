@@ -32,13 +32,13 @@ Represents a signature as a collection of features, containing the data that flo
 | --- | --- | --- | 
 | [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[]> | GetAggregateFeature ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`FeatureDescriptor`](./FeatureDescriptor.md)> ) | Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.  Use this for example at DTW algorithm input. | 
 | [T](./Signature.md) | GetFeature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) | Gets the specified feature. | 
-| [T](./Signature.md) | GetFeature ( [`FeatureDescriptor`](./FeatureDescriptor-1.md)\<[`T`](./Signature.md)> ) |  | 
+| [T](./Signature.md) | GetFeature ( [`FeatureDescriptor`](./FeatureDescriptor-1.md)\<[`T`](./Signature.md)> ) | Gets the specified feature. This is the preferred way. | 
 | [T](./Signature.md) | GetFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md) ) | Gets the specified feature. This is the preferred way. | 
 | [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1)\<[FeatureDescriptor](./FeatureDescriptor.md)> | GetFeatureDescriptors (  ) | Gets a collection of `SigStat.Common.FeatureDescriptor`s that are used in this signature. | 
 | [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | HasFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md) ) | Returns true if the signature contains the specified feature | 
 | [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | HasFeature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) | Returns true if the signature contains the specified feature | 
-| void | SetFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md), [`T`](./Signature.md) ) |  | 
-| void | SetFeature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`T`](./Signature.md) ) |  | 
+| void | SetFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md), [`T`](./Signature.md) ) | Sets the specified feature. | 
+| void | SetFeature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`T`](./Signature.md) ) | Sets the specified feature. | 
 | [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | ToString (  ) | Returns a string representation of the signature | 
 
 
