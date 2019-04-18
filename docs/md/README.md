@@ -1,4 +1,4 @@
-# [Api](./README.md)
+# [API Documentation](./README.md)
 
 ## Namespaces
 
