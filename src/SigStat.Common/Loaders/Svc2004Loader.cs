@@ -6,6 +6,7 @@ using System.Linq;
 using SigStat.Common.Helpers;
 using System.IO.Compression;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace SigStat.Common.Loaders
 {
@@ -47,6 +48,7 @@ namespace SigStat.Common.Loaders
     /// <summary>
     /// Loads SVC2004-format database from .zip
     /// </summary>
+   [JsonObject(MemberSerialization.OptIn)]
     public class Svc2004Loader : DataSetLoader
     {
         private struct SignatureFile
@@ -68,12 +70,14 @@ namespace SigStat.Common.Loaders
                 SignatureID = parts[1].PadLeft(2, '0');
             }
         }
-
+        [JsonProperty]
         private string DatabasePath { get; set; }
+        [JsonProperty]
         private bool StandardFeatures { get; }
         /// <summary>
         /// Ignores any signers during the loading, that do not match the predicate
         /// </summary>
+        [JsonProperty]
         public Predicate<Signer> SignerFilter { get; set; }
 
 

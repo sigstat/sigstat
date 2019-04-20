@@ -91,6 +91,11 @@ namespace SigStat.Common
             throw new KeyNotFoundException($"There is no FeatureDescriptor registered with key: {descriptor}");
         }
 
+        public static Dictionary<string, FeatureDescriptor> GetAll()
+        {
+            return descriptors;
+        }
+
 
         /// <summary>
         /// Gets the <see cref="FeatureDescriptor{T}"/> specified by <paramref name="key"/>.

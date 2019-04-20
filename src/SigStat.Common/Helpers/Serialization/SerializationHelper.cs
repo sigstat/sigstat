@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SigStat.Common.Helpers.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +14,7 @@ namespace SigStat.Common.Helpers
             T desirializedObject = JsonConvert.DeserializeObject<T>(s, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
-                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter(),
-                                                       new FeatureDescriptorTJsonConverter()}
+                ContractResolver = new VerifierResolver()
             });
 
             return desirializedObject;
@@ -24,8 +24,7 @@ namespace SigStat.Common.Helpers
             T desirializedObject = JsonConvert.DeserializeObject<T>(File.ReadAllText(path), new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
-                Converters = new List<JsonConverter> { new FeatureDescriptorJsonConverter(),
-                                                       new FeatureDescriptorTJsonConverter()}
+                ContractResolver =  new VerifierResolver()
             });
 
             return desirializedObject;
@@ -35,7 +34,8 @@ namespace SigStat.Common.Helpers
         {
             File.WriteAllText(path, JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = TypeNameHandling.Auto,
+                ContractResolver = new VerifierResolver()
             }));
         }
 
@@ -43,8 +43,9 @@ namespace SigStat.Common.Helpers
         {
            return JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+                TypeNameHandling = TypeNameHandling.Auto,
+               ContractResolver = new VerifierResolver()
+           });
         }
     }
 }

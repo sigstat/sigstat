@@ -41,7 +41,10 @@ namespace SigStat.Common.Helpers
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+
+            var fd = (FeatureDescriptor)value;
+
+            serializer.Serialize(writer, new JObject { { "Key", fd.Key } });
         }
     }
 }
