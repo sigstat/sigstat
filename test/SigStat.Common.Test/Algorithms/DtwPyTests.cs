@@ -10,13 +10,26 @@ namespace SigStat.Common.Test.Algorithms
     {
 
         [TestMethod]
-        public void TestDtw()
+        public void TestDtwTwoDimension()
+        {
+
+        }
+
+
+        [TestMethod]
+        public void TestDtwOneDimension()
         {
 
         }
 
         [TestMethod]
-        public void TestEuclideanDistance()
+        public void TestEuclideanDistanceTwoDimension()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestEuclideanDistanceOneDimension()
         {
 
         }

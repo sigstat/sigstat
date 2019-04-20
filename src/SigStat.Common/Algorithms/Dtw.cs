@@ -163,7 +163,7 @@ namespace SigStat.Common.Algorithms
         /// <param name="p1">Point 1</param>
         /// <param name="p2">Point 2</param>
         /// <returns>Distance between <paramref name="p1"/> and <paramref name="p2"/></returns>
-        private double Distance(double[] p1, double[] p2)
+        public double Distance(double[] p1, double[] p2)
         {
             if (p1.Length == 1)//nem ter vissza az Accord, ha a pontok 1 dimenziosak, ezert ezt kulon kezeljuk
             {
