@@ -5,7 +5,13 @@ using System.Collections.Generic;
 
 namespace SigStat.Common.Test.PipelineItem.Transforms
 {
+    [TestClass]
     public class LinearInterpolationTest
     {
+        [TestMethod]
+        public void TestGetValue()
+        {
+            
+        }
     }
 }
