@@ -9,16 +9,16 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
     [TestClass]
     public class CubicInterpolationTest
     {
-     /*   [TestMethod]
+        [TestMethod]
         public void TestGetValue()
         {
-            double timestamp = 2.0;
-            double expected = 0;
+          //  double timestamp = 2;
+          //  double expected = 2;
             // CubicInterpolation asd = new CubicInterpolation();
             //  double result = asd.GetValue(timestamp);
 
-            Assert.AreEqual(expected, timestamp);
+          //  Assert.AreEqual(expected, timestamp);
         }
-       */ 
+        
     }
 }

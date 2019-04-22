@@ -5,7 +5,13 @@ using System.Collections.Generic;
 
 namespace SigStat.Common.Test.PipelineItem.Transforms
 {
-    class UniformScaleTest
+    [TestClass]
+    public class UniformScaleTest
     {
+        [TestMethod]
+        public void TestTransform()
+        {
+            //public void Transform(Signature signature)
+        }
     }
 }
