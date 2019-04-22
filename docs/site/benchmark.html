@@ -5,11 +5,12 @@
     <link href="resources/style.css" rel="stylesheet" type="text/css">
     <title>SigStat</title>
     <link href="resources/logo1.png" rel="shortcut icon" type="image/x-icon">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" href="resources/own.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/tabulator-tables@4.2.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.2.4/dist/js/tabulator.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="scripts/index.js"></script>
 </head>
 
 <body>
@@ -26,40 +27,12 @@
                     </li>
                 </ul>
             </div>
-
-            <!--<img id="loadImg" class="zoominheader" src="nagyito2.png">
-            <img  id="loadImg2" class="zoominheader2" src="szoveg2.png">-->
-            <!--<script>
-                if ((document.getElementById("loadImg").style.visibility != "hidden") || document.getElementById("loadImg2").style.visibility != "hidden") {
-
-                    window.scrollTo(0, 220);
-
-                }
-            </script>-->
-
-            <div class="container">
-                <div class="table-responsive">
-                    <h1>Signature verifiers benchmark</h1>
-                    <br />
-
-                    <table class="table table-bordered table-striped" id="employee_table">
-                        <tr>
-                            <th onclick="sortTable(0)">Verifier's name</th>
-                            <th onclick="sortTable(1)">DB 1</th>
-                            <th onclick="sortTable(2)">DB 2</th>
-                            <th onclick="sortTable(3)">DB 3</th>
-                            <th onclick="sortTable(4)">DB 4</th>
-                            <th onclick="sortTable(5)">DB 5</th>
-                            <th onclick="sortTable(6)">Total Rate (%)</th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
+            
+            <div id="example-table"></div>
+           
+        </div>
+        <script src="scripts/index.js"></script>
 </body>
-
-</html>
-</div>
 <footer>
 
     <table id="under">
@@ -77,7 +50,5 @@
         </tr>
     </table>
 </footer>
-</div>
-</body>
 
 </html>
