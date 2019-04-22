@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigStat.Common;
 using SigStat.Common.Algorithms;
+using SigStat.Common.Loaders;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +13,14 @@ namespace SigStat.Common.Test.Loader
         [TestMethod]
         public void TestLoadSignatureFromFile()
         {
-            //  public static void LoadSignature(Signature signature, string path, bool standardFeatures)
+            
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Test\SVC2004\Test.zip", true);
+            var signers = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"));//Load the first signer only
+            string id = signers[0].ID;
+            string expected = "01";
+
+            Assert.AreEqual(id,expected);
+           //Program.cs->line 340
         }
         [TestMethod]
         public void TestLoadSignatureFromStream()

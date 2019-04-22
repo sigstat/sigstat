@@ -148,7 +148,7 @@ namespace SigStat.Common.Loaders
         /// <param name="signature">Signature to write features to.</param>
         /// <param name="path">Path to a file of format "U*S*.txt"</param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
-        public static void LoadSignature(Signature signature, string path, bool standardFeatures)
+        public void LoadSignature(Signature signature, string path, bool standardFeatures)
         {
             ParseSignature(signature, File.ReadAllLines(path), standardFeatures);
         }
