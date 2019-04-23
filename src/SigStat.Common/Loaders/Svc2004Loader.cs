@@ -7,6 +7,7 @@ using SigStat.Common.Helpers;
 using System.IO.Compression;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace SigStat.Common.Loaders
 {
@@ -43,6 +44,17 @@ namespace SigStat.Common.Loaders
         /// Pressure values from the online signature imported from the SVC2004 database
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("Svc2004.Pressure");
+
+        /// <summary>
+        /// A list of all Svc2004 feature descriptors
+        /// </summary>
+        public static readonly FeatureDescriptor[] All =
+            typeof(Svc2004)
+            .GetFields(BindingFlags.Static | BindingFlags.Public)
+            .Where(f => f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition() == typeof(FeatureDescriptor<>))
+            .Select(f=>(FeatureDescriptor)f.GetValue(null))
+            .ToArray();
+
     }
 
     /// <summary>

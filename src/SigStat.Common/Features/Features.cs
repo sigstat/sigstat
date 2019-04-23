@@ -71,7 +71,9 @@ namespace SigStat.Common
         /// Returns a readonly list of all <see cref="FeatureDescriptor"/>s defined in <see cref="Features"/>
         /// </summary>
         public static readonly IReadOnlyList<FeatureDescriptor> All = 
-            typeof(Features).GetFields(BindingFlags.Public | BindingFlags.Static).Select(fi => fi.GetValue(null)).OfType<FeatureDescriptor>().ToList();
+            typeof(Features)
+            .GetFields(BindingFlags.Public | BindingFlags.Static)
+            .Select(fi => fi.GetValue(null)).OfType<FeatureDescriptor>().ToList();
 
 
     }

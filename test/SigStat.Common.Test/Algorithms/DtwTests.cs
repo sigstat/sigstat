@@ -22,9 +22,9 @@ namespace SigStat.Common.Test.Algorithms
             signature1[2] = new double[] { 3, 8 };
             
             double[][] signature2 = new double[3][];
-            signature2[0] = new double[] { 1, 6 };
-            signature2[1]= new double[] { 2, 7 };
-            signature2[2]= new double[] { 3, 10 };
+            signature2[0] = new double[] { 1, 5 };
+            signature2[1]= new double[] { 2, 6 };
+            signature2[2]= new double[] { 3, 8 };
          
 
             var dtw = new Dtw();

@@ -1043,6 +1043,11 @@
             Pressure values from the online signature imported from the SVC2004 database
             </summary>
         </member>
+        <member name="F:SigStat.Common.Loaders.Svc2004.All">
+            <summary>
+            A list of all Svc2004 feature descriptors
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Loaders.Svc2004Loader">
             <summary>
             Loads SVC2004-format database from .zip
