@@ -17,9 +17,8 @@ namespace SigStat.Common.Test.Loader
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Test\SVC2004\Test.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"));//Load the first signer only
             string id = signers[0].ID;
-            string expected = "01";
-
-            Assert.AreEqual(id,expected);
+  
+            Assert.AreEqual(id,"01");
            //Program.cs->line 340
         }
         [TestMethod]
