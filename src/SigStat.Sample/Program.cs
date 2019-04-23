@@ -56,7 +56,7 @@ namespace SigStat.Sample
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            JsonSerializeOnlineVerifierBenchmark();
+            //JsonSerializeOnlineVerifierBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -1014,7 +1014,7 @@ namespace SigStat.Sample
                 }
             };
 
-            string path = @"serialized.txt";
+            string path = @"VerifierSerialized.txt";
 
             //File serialization example
             SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier,path);

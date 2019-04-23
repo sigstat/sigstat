@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,19 +11,33 @@ namespace SigStat.Common.Helpers.Serialization
 {
     class VerifierResolver : DefaultContractResolver
     {
+
+        private bool Detailed { get; set; } = true;
         protected override JsonObjectContract CreateObjectContract(Type objectType)
         {
             JsonObjectContract contract = base.CreateObjectContract(objectType);
             if (objectType == typeof(FeatureDescriptor))
             {
-                contract.Converter = new FeatureDescriptorJsonConverter();
+                contract.Converter = new FeatureDescriptorJsonConverter(Detailed);
             }
             if (objectType.IsGenericType && objectType.GetTypeInfo().BaseType == typeof(FeatureDescriptor))
             {
-                contract.Converter = new FeatureDescriptorTJsonConverter();
+                contract.Converter = new FeatureDescriptorTJsonConverter(Detailed);
             }
 
             return contract;
+        }
+
+        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
+        {
+            JsonProperty property = base.CreateProperty(member, memberSerialization);
+
+            if (property.PropertyName == "AllFeatures")
+            {
+                property.Converter = new FeatureDescriptorDictionaryConverter();
+                Detailed = false;
+            }
+           return property;
         }
     }
 }

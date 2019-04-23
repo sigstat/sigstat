@@ -24,7 +24,6 @@ namespace SigStat.Common.Helpers.Serialization
             foreach (var fd in items)
             {
                 string key = (string)fd["Key"];
-                string name = (string)fd["Name"];
                 string featureType = (string)fd["FeatureType"];
                 Type currType = Type.GetType(featureType);
                 var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType);
@@ -44,7 +43,7 @@ namespace SigStat.Common.Helpers.Serialization
             writer.WriteStartArray();
             foreach (var fd in array.Values)
             {
-                serializer.Serialize(writer, new JObject { { "Key", fd.Key }, { "Name", fd.Name }, { "FeatureType", fd.FeatureType.AssemblyQualifiedName } });
+                serializer.Serialize(writer, new JObject { { "Key", fd.Key }, { "FeatureType", fd.FeatureType.AssemblyQualifiedName } });
             }
             writer.WriteEndArray();
             writer.WriteEndObject();

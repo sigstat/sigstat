@@ -9,7 +9,11 @@ namespace SigStat.Common.Helpers
 {
     public class FeatureDescriptorTJsonConverter : JsonConverter
     {
-
+        private bool Detailed { get; set; }
+        public FeatureDescriptorTJsonConverter(bool detail)
+        {
+            Detailed = detail;
+        }
         public override bool CanConvert(Type objectType)
         {
             if (objectType.IsGenericType)
@@ -24,27 +28,38 @@ namespace SigStat.Common.Helpers
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            // Load the JSON for the Result into a JObject
-            JObject jo = JObject.Load(reader);
-
-            // Read the properties which will be used as constructor parameters
-            string key = (string)jo["Key"];
-
-            // Construct the Result object using the non-default constructor
-            var fdType = typeof(FeatureDescriptor<>).MakeGenericType(objectType.GenericTypeArguments);
-            var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
-
-
-            // Return the result
-            return get.Invoke(null, new object[] { key });
+            if (Detailed)
+            {
+                JObject jo = JObject.Load(reader);
+                string key = (string)jo["Key"];
+                string featureType = (string)jo["FeatureType"];
+                Type currType = Type.GetType(featureType);
+                var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType.GenericTypeArguments);
+                var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
+                return get.Invoke(null, new object[] { key });
+            }
+            else
+            {
+                JObject jo = JObject.Load(reader);
+                string key = (string)jo["Key"];
+                FeatureDescriptor fd = FeatureDescriptor.Get(key);
+                return fd;
+            }
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
 
-            var fd = (FeatureDescriptor)value;
-
-            serializer.Serialize(writer, new JObject { { "Key", fd.Key } });
+            if (Detailed)
+            {
+                var fd = (FeatureDescriptor)value;
+                serializer.Serialize(writer, new JObject { { "Key", fd.Key }, { "FeatureType", fd.FeatureType.AssemblyQualifiedName } });
+            }
+            else
+            {
+                var fd = (FeatureDescriptor)value;
+                serializer.Serialize(writer, new JObject { { "Key", fd.Key } });
+            }
         }
     }
 }

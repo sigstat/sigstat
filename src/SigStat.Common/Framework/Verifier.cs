@@ -19,8 +19,7 @@ namespace SigStat.Common.Model
     public class Verifier : ILoggerObject
     {
         [JsonProperty]
-        [JsonConverter(typeof(FeatureDescriptorDictionaryConverter))]
-        public Dictionary<string, FeatureDescriptor> Features
+        public Dictionary<string, FeatureDescriptor> AllFeatures
         {
             get
             {
