@@ -12,7 +12,7 @@ namespace SigStat.Common.Transforms
     /// init Pressure, Altitude, Azimuth features with default values.
     /// <para>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class ApproximateOnlineFeatures : PipelineBase, ITransformation
     {
         [Output("Pressure")]

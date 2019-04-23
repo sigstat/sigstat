@@ -10,11 +10,11 @@ namespace SigStat.Common.Transforms
     /// Adds a constant value to a feature. Works with collection features too.
     /// <para>Default Pipeline Output: Pipeline Input</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class AddConst : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputList { get; set; }
 
         //[Input(AutoSetMode = AutoSetMode.Never)]

@@ -13,11 +13,11 @@ namespace SigStat.Common.Pipeline
     /// Runs pipeline items in parallel.
     /// <para>Default Pipeline Output: Range of all the Item outputs.</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run parallel.</summary>
-        [JsonProperty]
+        
         public List<ITransformation> Items = new List<ITransformation>();
         public override List<PipelineInput> PipelineInputs { get => Items.SelectMany(i=>i.PipelineInputs).ToList(); }
         public override List<PipelineOutput> PipelineOutputs { get => Items.SelectMany(i => i.PipelineOutputs).ToList(); }

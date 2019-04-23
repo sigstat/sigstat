@@ -36,13 +36,13 @@ namespace SigStat.Common.PipelineItems.Classifiers
     /// <summary>
     /// Classifies Signatures with the <see cref="Dtw"/> algorithm.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class DtwClassifier : PipelineBase, IClassifier
     {
         private readonly Func<double[], double[], double> distanceMethod;
 
         [Input]
-        [JsonProperty]
+        
         public List<FeatureDescriptor> Features { get; set; }
 
         /// <summary>Initializes a new instance of the <see cref="DtwClassifier"/> class with the default Manhattan distance method.</summary>

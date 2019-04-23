@@ -15,10 +15,10 @@ namespace SigStat.Common.Model
     /// <summary>
     /// Uses pipelines to transform, train on, and classify <see cref="Signature"/> objects.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Verifier : ILoggerObject
     {
-        [JsonProperty]
+        
         public Dictionary<string, FeatureDescriptor> AllFeatures
         {
             get
@@ -30,7 +30,7 @@ namespace SigStat.Common.Model
 
         private SequentialTransformPipeline pipeline;
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
-        [JsonProperty]
+        
         public SequentialTransformPipeline Pipeline { get => pipeline;
             set
             {
@@ -43,13 +43,13 @@ namespace SigStat.Common.Model
         }
 
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
-        [JsonProperty]
+        
         public IClassifier Classifier { get; set; }
-        [JsonProperty]
+        
         public ISignerModel SignerModel { get; set; }
        
         /// <summary> Gets or sets the class responsible for logging</summary>
-        [JsonProperty]
+        
         public ILogger Logger { get; set; }
 
         /// <summary>

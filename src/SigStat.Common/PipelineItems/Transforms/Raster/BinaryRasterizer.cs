@@ -19,19 +19,19 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: Standard <see cref="Features"/></para>
     /// <para>Default Pipeline Output: (bool[,]) Binarized</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class BinaryRasterizer : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<bool>> InputButton { get; set; } = Features.Button;
 
         [Output("Binarized")]

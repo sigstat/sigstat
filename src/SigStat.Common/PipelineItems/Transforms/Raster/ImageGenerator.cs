@@ -18,11 +18,11 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: bool[,]</para>
     /// <para>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class ImageGenerator : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<bool[,]> Input { get; set; }
         [Output("Binarized")]
         public FeatureDescriptor<bool[,]> Output { get; set; }

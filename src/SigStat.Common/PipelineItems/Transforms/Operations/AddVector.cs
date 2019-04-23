@@ -18,11 +18,11 @@ namespace SigStat.Common.Transforms
     /// Adds Centroid.x to each element of X.
     /// Adds Centroid.y to each element of Y.
     /// </example>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class AddVector : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
         [Output]

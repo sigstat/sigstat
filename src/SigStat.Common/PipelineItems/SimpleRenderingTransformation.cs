@@ -15,7 +15,7 @@ namespace SigStat.Common
     /// <summary>
     /// Renders an image of the signature based on the available online information (X,Y,Dpi)
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class SimpleRenderingTransformation : PipelineBase, ITransformation
     {
         /// <inheritdoc></inheritdoc>

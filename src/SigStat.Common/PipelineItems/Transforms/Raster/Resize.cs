@@ -16,11 +16,11 @@ namespace SigStat.Common.Transforms
     /// <summary>
     /// Resizes the image to a specified width and height
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Resize : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Output("Resized")]

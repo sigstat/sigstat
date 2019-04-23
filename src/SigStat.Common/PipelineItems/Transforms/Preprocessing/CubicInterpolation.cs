@@ -5,13 +5,13 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class CubicInterpolation : IInterpolation
     {
-        [JsonProperty]
+        
         public List<double> FeatureValues { get; set; }
 
-        [JsonProperty]
+        
         public List<double> TimeValues { get; set; }
 
         public double GetValue(double timestamp)

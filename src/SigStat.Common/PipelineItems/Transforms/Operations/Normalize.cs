@@ -14,11 +14,11 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Output: (List{double}) NormalizationResult</para>
     /// </summary>
     /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Normalize : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> Input { get; set; }
 
         [Output]

@@ -14,15 +14,15 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: <see cref="Features.X"/>, <see cref="Features.Y"/></para>
     /// <para>Default Pipeline Output: <see cref="Features.X"/>, <see cref="Features.Y"/></para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Translate : SequentialTransformPipeline
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Output("X")]

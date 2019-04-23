@@ -15,7 +15,7 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: List{double}</para>
     /// <para>Default Pipeline Output: (List{double}) Input</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Multiply : PipelineBase, /*IEnumerable,*/ ITransformation
     {
         private readonly double byConst;
@@ -24,7 +24,7 @@ namespace SigStat.Common.Transforms
         //public FeatureDescriptor<double> InputValue;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputList { get; set; }
 
         [Output]

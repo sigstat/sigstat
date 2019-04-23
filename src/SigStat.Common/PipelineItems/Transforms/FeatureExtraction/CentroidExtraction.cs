@@ -14,11 +14,11 @@ namespace SigStat.Common.Transforms
     /// Extracts the Centroid (aka. Center Of Gravity) of the input features.
     /// <para> Default Pipeline Output: (List{double}) Centroid. </para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class CentroidExtraction : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
         [Output("Centroid")]

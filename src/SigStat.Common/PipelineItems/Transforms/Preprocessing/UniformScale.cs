@@ -15,15 +15,15 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension></para>
     /// </summary>
     /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class UniformScale : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> BaseDimension { get; set; }
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> ProportionalDimension { get; set; }
 
         /// <summary>

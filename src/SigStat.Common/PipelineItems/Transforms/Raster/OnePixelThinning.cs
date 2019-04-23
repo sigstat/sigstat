@@ -14,11 +14,11 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: bool[,]</para>
     /// <para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class OnePixelThinning : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<bool[,]> Input { get; set; }
 
         [Output("OnePixelThinningResult")]

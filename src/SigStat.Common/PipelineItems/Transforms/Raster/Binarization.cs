@@ -15,7 +15,7 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: Image{Rgba32}</para>
     /// <para>Default Pipeline Output: (bool[,]) Binarized</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Binarization : PipelineBase, ITransformation
     {
 

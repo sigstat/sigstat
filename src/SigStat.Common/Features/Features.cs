@@ -13,7 +13,7 @@ namespace SigStat.Common
     /// <summary>
     /// Standard set of features.
     /// </summary>
-    [JsonObject(MemberSerialization.OptOut)]
+    
     public static class Features
     {
 

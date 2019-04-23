@@ -14,16 +14,16 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: (bool[,]) Skeleton, (List{Point}) EndPoints, (List{Point}) CrossingPoints</para>
     /// <para>Default Pipeline Output: (List{List{PointF}}) Components</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class ComponentExtraction : PipelineBase, ITransformation
     {
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<bool[,]> Skeleton { get; set; }// = FeatureDescriptor<bool[,]>.Get("Skeleton");
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<Point>> EndPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("EndPoints");
 
         [Input]

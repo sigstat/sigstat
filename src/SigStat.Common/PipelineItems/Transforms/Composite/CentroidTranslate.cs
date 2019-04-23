@@ -16,16 +16,16 @@ namespace SigStat.Common.Transforms
     /// </summary>
     /// <remarks>This is a special case of <see cref="Translate"/></remarks>
 
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class CentroidTranslate : SequentialTransformPipeline
     {
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Output("X")]

@@ -13,12 +13,12 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: bool[,]</para>
     /// <para>Default Pipeline Output: (bool[,]) Trimmed</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Trim : PipelineBase, ITransformation
     {
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<bool[,]> Input { get; set; }
 
         [Output("Trimmed")]

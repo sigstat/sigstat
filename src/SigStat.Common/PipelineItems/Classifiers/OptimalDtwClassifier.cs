@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class OptimalDtwClassifier : PipelineBase, IClassifier
     {
         #region SignerModel
@@ -41,11 +41,11 @@ namespace SigStat.Common.PipelineItems.Classifiers
         }
 
         [Input]
-        [JsonProperty]
+        
         public List<FeatureDescriptor> Features { get; set; }
 
         public Sampler Sampler { get; set; }
-
+        [JsonIgnore]
         public Func<double[], double[], double> DistanceFunction { get; set; }
 
         public OptimalDtwClassifier(Func<double[], double[], double> distanceFunction = null)

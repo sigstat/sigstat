@@ -10,24 +10,24 @@ namespace SigStat.Common
     /// <summary>
     /// Represents a loop in a signature
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Loop
     {
         /// <summary>
         /// The geometrical center of the looop
         /// </summary>
-        [JsonProperty]
+        
         public PointF Center { get; set; }
         /// <summary>
         /// The bounding rectangle of the loop
         /// </summary>
-        [JsonProperty]
+        
         [JsonConverter(typeof(RectangleFConverter))]
         public RectangleF Bounds { get; set; }
         /// <summary>
         /// A list of defining points of the loop
         /// </summary>
-        [JsonProperty]
+        
         public List<PointF> Points { get; set; }
 
         /// <summary>

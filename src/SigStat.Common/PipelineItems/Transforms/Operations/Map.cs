@@ -13,11 +13,11 @@ namespace SigStat.Common.Transforms
     /// <para>Pipeline Input type: List{double}</para>
     /// <para>Default Pipeline Output: (List{double}) MapResult</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Map : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> Input { get; set; }
 
         [Output("MapResult")]

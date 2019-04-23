@@ -16,11 +16,11 @@ namespace SigStat.Common.Transforms
     /// <remarks>
     /// Output features are lists, containing only one value each.
     /// </remarks>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Extrema : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<double>> Input { get; set; }
 
         [Output("Min")]

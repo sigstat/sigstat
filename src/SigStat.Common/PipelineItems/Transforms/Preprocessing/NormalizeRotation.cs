@@ -7,19 +7,19 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class NormalizeRotation : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputT { get; set; } = Features.T;
 
         [Output]

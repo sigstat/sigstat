@@ -8,7 +8,7 @@ using System.Text;
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     //TODO: time fix
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class ResampleTimeBased : PipelineBase, ITransformation
     {
         public double TimeSlot { get; set; } = 0;
@@ -18,11 +18,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public List<double> ResampledTimestamps { get; private set; }
 
         [Input]
-        [JsonProperty]
+        
         public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> OriginalTFeature { get; set; } = Features.T;
 
         [Output("ResampledTimestamps")]

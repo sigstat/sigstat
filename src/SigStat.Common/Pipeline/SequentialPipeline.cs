@@ -16,10 +16,10 @@ namespace SigStat.Common.Pipeline
     /// Runs pipeline items in a sequence.
     /// <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class SequentialTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
-        [JsonProperty]
+        
         /// <summary>List of transforms to be run in sequence.</summary>
         public List<ITransformation> Items = new List<ITransformation>();
         public override List<PipelineInput> PipelineInputs { get => Items[0].PipelineInputs; }

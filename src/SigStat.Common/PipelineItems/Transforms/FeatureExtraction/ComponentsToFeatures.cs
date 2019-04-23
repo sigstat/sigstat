@@ -14,11 +14,11 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: (List{List{PointF}}) Components</para>
     /// <para>Default Pipeline Output: X, Y, Button <see cref="Features"/></para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class ComponentsToFeatures : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<List<PointF>>> InputComponents { get; set; }
 
         [Output("X")]

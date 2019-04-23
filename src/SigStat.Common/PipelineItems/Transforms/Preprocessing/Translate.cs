@@ -14,11 +14,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         Maximum,
         Predefined
     }
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class TranslatePreproc : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> InputFeature { get; set; }
 
         [Output("TranslatedFeature")]

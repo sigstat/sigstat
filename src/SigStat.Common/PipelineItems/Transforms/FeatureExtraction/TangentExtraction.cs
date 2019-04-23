@@ -12,15 +12,15 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: X, Y <see cref="Features"/></para>
     /// <para>Default Pipeline Output: (List{double})  Tangent </para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class TangentExtraction : PipelineBase, ITransformation
     {
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
         [Input]
-        [JsonProperty]
+        
         public FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
         [Output("Tangent")]

@@ -20,32 +20,32 @@ namespace SigStat.Common.Transforms
     /// <para>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude <see cref="Features"/></para>
     /// <para>Default Pipeline Output: <see cref="Features.Image"/></para>
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class RealisticImageGenerator : PipelineBase, ITransformation
     {
 
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<bool>> Button { get; set; } = Features.Button;
 
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<double>> Pressure { get; set; } = Features.Pressure;
 
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<double>> Altitude { get; set; } = Features.Altitude;
 
         [Input]
-        [JsonProperty]
+        
         FeatureDescriptor<List<double>> Azimuth { get; set; } = Features.Azimuth;
 
         [Output("RealisticImage")]

@@ -28,6 +28,12 @@ namespace SigStat.Common.Helpers.Serialization
             return contract;
         }
 
+        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+        {
+            IList<JsonProperty> props = base.CreateProperties(type, memberSerialization);
+            return props.Where(p => p.Writable || p.PropertyName.Equals("AllFeatures")).ToList();
+        }
+
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
             JsonProperty property = base.CreateProperty(member, memberSerialization);
