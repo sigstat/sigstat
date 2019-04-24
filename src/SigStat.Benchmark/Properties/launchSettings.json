@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.Benchmark": {
       "commandName": "Project",
-      "commandLineArgs": "monitor -k D:\\key.txt"
+      "commandLineArgs": "generate -k D:/key.txt"
     }
   }
 }

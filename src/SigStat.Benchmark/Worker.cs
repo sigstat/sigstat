@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
+using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
 using System;
@@ -16,11 +17,11 @@ namespace SigStat.Benchmark
         static TimeSpan timeOut = new TimeSpan(0, 30, 0);
         static CloudBlobContainer Container;
         static CloudQueue Queue;
-        static string OutputDirectory;
+        static DirectoryInfo OutputDirectory;
 
         internal static async Task RunAsync(string outputDir)
         {
-            OutputDirectory = outputDir;
+            OutputDirectory = Directory.CreateDirectory(outputDir);
 
             Console.WriteLine("Initializing container: " + Program.Experiment);
             var blobClient = Program.Account.CreateCloudBlobClient();
@@ -40,10 +41,6 @@ namespace SigStat.Benchmark
                 Console.WriteLine("Queue does not exist. Aborting...");
                 return;
             }
-
-            if (!string.IsNullOrEmpty(OutputDirectory) && !Directory.Exists(OutputDirectory))
-                Directory.CreateDirectory(OutputDirectory);
-
 
             DateTime lastRefresh = DateTime.Now.AddDays(-1);
 
@@ -77,6 +74,7 @@ namespace SigStat.Benchmark
                     Console.WriteLine($"{DateTime.Now}: Building benchmark...");
                     // var benchmark = VerifierBenchmark.Load(string)
                     var benchmark = BenchmarkBuilder.Build(config);
+                    
                     var logger = new SimpleConsoleLogger();
                     logger.Logged += (m, e, l) =>
                     {
@@ -91,8 +89,7 @@ namespace SigStat.Benchmark
                     var results = benchmark.Execute(true);
                     Console.WriteLine($"{DateTime.Now}: Generating results...");
                     string filename = config.ToShortString() + ".xlsx";
-                    if (!string.IsNullOrWhiteSpace(OutputDirectory))
-                        filename = Path.Combine(OutputDirectory, filename);
+                    filename = Path.Combine(OutputDirectory.ToString(), filename);
                     //LogProcessor.Dump(logger);
 
                     // MongoDB 
@@ -107,6 +104,7 @@ namespace SigStat.Benchmark
                     var blob = Container.GetBlockBlobReference(cloudFilename);
                     await blob.DeleteIfExistsAsync();
                     await blob.UploadFromFileAsync(filename);
+                    
                 }
                 catch (Exception exc)
                 {
@@ -118,8 +116,7 @@ namespace SigStat.Benchmark
                     debugFileName = $"{debugFileName ?? Guid.NewGuid().ToString()}.txt";
                     var cloudFilename = debugFileName;
 
-                    if (!string.IsNullOrWhiteSpace(OutputDirectory))
-                        debugFileName = Path.Combine(OutputDirectory, debugFileName);
+                    debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
                     File.WriteAllText(debugFileName, debugInfo.ToString());
                     var blob = Container.GetBlockBlobReference(cloudFilename);
                     await blob.DeleteIfExistsAsync();

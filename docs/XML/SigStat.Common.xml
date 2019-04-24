@@ -469,6 +469,9 @@
         <member name="T:SigStat.Common.BenchmarkResults">
             <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
         </member>
+        <member name="F:SigStat.Common.BenchmarkResults.SignerResults">
+            <summary>List that contains the <see cref="T:SigStat.Common.Result"/>s for each <see cref="T:SigStat.Common.Signer"/></summary>
+        </member>
         <member name="F:SigStat.Common.BenchmarkResults.FinalResult">
             <summary>Summarized, final result of the benchmark execution.</summary>
         </member>
@@ -1313,6 +1316,12 @@
             Extracts basic statistical signature (like <see cref="F:SigStat.Common.Features.Bounds"/> or <see cref="F:SigStat.Common.Features.Cog"/>) information from an Image
             </summary>
         </member>
+        <member name="P:SigStat.Common.BasicMetadataExtraction.Trim">
+            <summary>
+            Represents theratio of significant pixels that should be trimmed
+            from each side while calculating <see cref="F:SigStat.Common.Features.TrimmedBounds"/>
+            </summary>
+        </member>
         <member name="M:SigStat.Common.BasicMetadataExtraction.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
@@ -1897,6 +1906,9 @@
             Runs pipeline items in a sequence.
             <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
             </summary>
+        </member>
+        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
+            <summary>List of transforms to be run in sequence.</summary>
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.GetEnumerator">
             <inheritdoc/>
