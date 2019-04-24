@@ -57,6 +57,8 @@ namespace SigStat.Benchmark
                     TimeOutputFeature = Features.T
                 }
             );
+            AddFeatureGroup(Features.X, Features.Y, Features.Azimuth);
+            AddFeatureGroup(Features.X, Features.Y, Features.Bounds);
             AddFeatureGroup(Features.X, Features.Y, Features.Pressure);
         }
 
@@ -121,40 +123,57 @@ namespace SigStat.Benchmark
         {
             OutputDirectory = Directory.CreateDirectory(outputDir);
 
-            Console.WriteLine("Initializing container: " + Program.Experiment);
-            var blobClient = Program.Account.CreateCloudBlobClient();
-            Container = blobClient.GetContainerReference(Program.Experiment);
-            await Container.CreateIfNotExistsAsync();
-
-            Console.WriteLine("Initializing queue: " + Program.Experiment);
-            var queueClient = Program.Account.CreateCloudQueueClient();
-            Queue = queueClient.GetQueueReference(Program.Experiment);
-            await Queue.CreateIfNotExistsAsync();
-
-            await Queue.FetchAttributesAsync();
-            if ((Queue.ApproximateMessageCount ?? 0) > 0)
-            {
-                Console.WriteLine($"There are {Queue.ApproximateMessageCount} jobs pending in the queue. Should I clear them? [Y|N]");
-                if (Console.ReadKey(true).Key != ConsoleKey.Y)
-                {
-                    Console.WriteLine("Aborting");
-                    return;
-                }
-                await Queue.ClearAsync();
-            }
-
             BenchmarkGenerator.Compose();
 
-            Console.WriteLine("Generating benchmark configurations");
+            Console.WriteLine("Generating benchmark configurations...");
             BenchmarkGenerator.GenerateBenchmarks();
 
-            Console.WriteLine($"Enqueueing {Benchmarks.Count} combinations");
+            if (!Program.Offline)
+            {
+                Console.WriteLine("Initializing container: " + Program.Experiment);
+                var blobClient = Program.Account.CreateCloudBlobClient();
+                Container = blobClient.GetContainerReference(Program.Experiment);
+                await Container.CreateIfNotExistsAsync();
+
+                Console.WriteLine("Initializing queue: " + Program.Experiment);
+                var queueClient = Program.Account.CreateCloudQueueClient();
+                Queue = queueClient.GetQueueReference(Program.Experiment);
+                await Queue.CreateIfNotExistsAsync();
+
+                await Queue.FetchAttributesAsync();
+                if ((Queue.ApproximateMessageCount ?? 0) > 0)
+                {
+                    Console.WriteLine($"There are {Queue.ApproximateMessageCount} jobs pending in the queue. Should I clear them? [Y|N]");
+                    if (Console.ReadKey(true).Key != ConsoleKey.Y)
+                    {
+                        Console.WriteLine("Aborting");
+                        return;
+                    }
+                    await Queue.ClearAsync();
+                }
+            }
+
+            if (!Program.Offline) Console.WriteLine($"Enqueueing {Benchmarks.Count} combinations...");
+            else Console.WriteLine($"Writing {Benchmarks.Count} combinations to disk...");
+
             for (int i = 0; i < Benchmarks.Count; i++)
             {
                 Console.WriteLine($"{i + 1}/{Benchmarks.Count}");
-                SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(Benchmarks[i], OutputDirectory + $@"\Benchmark_{i + 1}.json");
-                await Queue.AddMessageAsync(new CloudQueueMessage(SerializationHelper.JsonSerialize<VerifierBenchmark>(Benchmarks[i])));
+
+                var filename = $"Benchmark_{i + 1}.json";
+                var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
+                SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(Benchmarks[i], fullfilename);
+
+                if(!Program.Offline)
+                {
+                    var blob = Container.GetBlockBlobReference($"Benchmarks/{filename}");
+                    await blob.DeleteIfExistsAsync();
+                    await blob.UploadFromFileAsync(fullfilename);
+
+                    await Queue.AddMessageAsync(new CloudQueueMessage(SerializationHelper.JsonSerialize<VerifierBenchmark>(Benchmarks[i])));
+                }
             }
+
             Console.WriteLine("Ready");
         }
     }

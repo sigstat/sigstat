@@ -12,15 +12,23 @@ namespace SigStat.Benchmark
     {
         public static CloudStorageAccount Account;
         public static string Experiment;
+        public static bool Offline = false;
 
-        public static bool AzureAuth(OptionsBase o)
+        public static void AzureAuth(OptionsBase o)
         {
+            if (o.AccountKey is null)
+            {
+                Offline = true;
+                return;
+            }
+
             if (o.AccountKey.EndsWith(".txt"))
             {
                 if (!File.Exists(o.AccountKey))
                 {
-                    Console.WriteLine($"Account key file '{o.AccountKey}' does not exist.");
-                    return false;
+                    Console.WriteLine($"Account key file '{o.AccountKey}' does not exist. Switching to offline mode...");
+                    Offline = true;
+                    return;
                 }
                 o.AccountKey = File.ReadAllText(o.AccountKey);
             }
@@ -33,11 +41,11 @@ namespace SigStat.Benchmark
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Account key is invalid. ");
                 Console.WriteLine(e);
-                return false;
+                Console.WriteLine("Azure authentication failed. Switching to offline mode...");
+                Offline = true;
+                return;
             }
-            return true;
         }
 
         static async Task Main(string[] args)
@@ -45,8 +53,7 @@ namespace SigStat.Benchmark
             await Parser.Default.ParseArguments<MonitorOptions, WorkerOptions, GeneratorOptions, AnalyserOptions>(args)
                 .MapResult<OptionsBase, Task>(o =>
                 {
-                    if (!AzureAuth(o)) return Task.FromResult(-1);
-
+                    AzureAuth(o);
                     return o.RunAsync();
                 },
                 errs => Task.FromResult(-1));

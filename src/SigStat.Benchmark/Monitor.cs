@@ -16,6 +16,12 @@ namespace SigStat.Benchmark
 
         internal static async Task RunAsync()
         {
+            if (Program.Offline)
+            {
+                Console.WriteLine("Monitoring can't work in offline mode. Aborting...");
+                return;
+            }
+
             Console.WriteLine("Initializing container: " + Program.Experiment);
             var blobClient = Program.Account.CreateCloudBlobClient();
             Container = blobClient.GetContainerReference(Program.Experiment);

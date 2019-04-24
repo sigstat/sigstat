@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Options
 {
-    [Verb("monitor", HelpText = "Start monitoring")]
+    [Verb("monitor", HelpText = "Monitoring mode for checking Azure Queue status.")]
     public class MonitorOptions : OptionsBase
     {
         public override Task RunAsync()

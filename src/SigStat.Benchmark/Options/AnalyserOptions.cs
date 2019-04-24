@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Options
 {
-    [Verb("analyse", HelpText = "Start analyser")]
+    [Verb("analyse", HelpText = "Analyser mode for analysing benchmark results.")]
     public class AnalyserOptions : OptionsBase
     {
         [Option('o', "inputDir", Required = false, Default = "", HelpText = "Input directory")]
