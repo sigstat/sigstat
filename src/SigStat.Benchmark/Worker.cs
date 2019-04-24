@@ -21,6 +21,7 @@ namespace SigStat.Benchmark
         static DirectoryInfo OutputDirectory;
         static Queue<VerifierBenchmark> LocalBenchmarks = new Queue<VerifierBenchmark>();
         static bool LocalInput = false;
+        static int i = 0;
 
         internal static async Task RunAsync(string inputDir, string outputDir)
         {
@@ -73,6 +74,7 @@ namespace SigStat.Benchmark
             Console.WriteLine("Worker is running. Press 'a' to abort.");
             while (true)
             {
+                i++;
                 bool error = false;
                 StringBuilder debugInfo = new StringBuilder();
                 debugInfo.AppendLine(DateTime.Now.ToString());
@@ -130,10 +132,10 @@ namespace SigStat.Benchmark
 
                     Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
                     var results = benchmark.Execute(true);
-
+                    
                     Console.WriteLine($"{DateTime.Now}: Generating results...");
                     //TODO: valami más név kéne, pl. VerifierBenchmark.ToShortString()
-                    var filename = Guid.NewGuid() + ".json";
+                    var filename = $"Benchmark_{i}.json";
                     var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
 
                     //LogProcessor.Dump(logger);
@@ -164,12 +166,12 @@ namespace SigStat.Benchmark
                 }
                 if (error)
                 {
-                    debugFileName = $"{debugFileName ?? Guid.NewGuid().ToString()}.txt";
+                    debugFileName = $"Benchmark_{i}_Log.txt";
                     var cloudFilename = debugFileName;
 
                     debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
                     File.WriteAllText(debugFileName, debugInfo.ToString());
-                    var blob = Container.GetBlockBlobReference(cloudFilename);
+                    var blob = Container.GetBlockBlobReference($"Results/{cloudFilename}");
                     await blob.DeleteIfExistsAsync();
                     await blob.UploadFromFileAsync(debugFileName);
                 }

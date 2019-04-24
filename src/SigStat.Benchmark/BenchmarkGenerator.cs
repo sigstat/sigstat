@@ -101,9 +101,8 @@ namespace SigStat.Benchmark
                                     {
                                         Items = transformationgroup
                                     },
-                                    Classifier = new OptimalDtwClassifier()
+                                    Classifier = new DtwClassifier()
                                     {
-                                        Sampler = database.Item2,
                                         Features = featuregroup
                                     }
 
