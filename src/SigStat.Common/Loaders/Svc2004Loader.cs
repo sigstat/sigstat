@@ -84,8 +84,7 @@ namespace SigStat.Common.Loaders
         }
 
         public string DatabasePath { get; set; }
-        
-        public bool StandardFeatures { get; }
+        public bool StandardFeatures { get; set; }
         /// <summary>
         /// Ignores any signers during the loading, that do not match the predicate
         /// </summary>
