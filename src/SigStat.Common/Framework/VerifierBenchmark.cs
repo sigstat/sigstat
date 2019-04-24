@@ -25,12 +25,16 @@ namespace SigStat.Common
     public class Result
     {
         /// <summary>Identifier of the <see cref="Signer"/></summary>
+        [JsonProperty]
         public readonly string Signer;
         /// <summary>False Rejection Rate</summary>
+        [JsonProperty]
         public readonly double Frr;
         /// <summary>False Acceptance Rate</summary>
+        [JsonProperty]
         public readonly double Far;
         /// <summary>Average Error Rate</summary>
+        [JsonProperty]
         public readonly double Aer;
 
         /// HACK: Consider removing this after benchmark
@@ -53,9 +57,10 @@ namespace SigStat.Common
     {
         
         /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
+        [JsonProperty]
         public readonly List<Result> SignerResults;
         /// <summary>Summarized, final result of the benchmark execution.</summary>
-        
+        [JsonProperty]
         public readonly Result FinalResult;
 
         //ez internal, mert csak a Benchmark keszithet uj BenchmarkResults-t
