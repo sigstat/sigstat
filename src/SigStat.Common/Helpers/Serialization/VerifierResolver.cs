@@ -20,7 +20,7 @@ namespace SigStat.Common.Helpers.Serialization
             {
                 contract.Converter = new FeatureDescriptorJsonConverter(Detailed);
             }
-            if (objectType.IsGenericType && objectType.GetTypeInfo().BaseType == typeof(FeatureDescriptor))
+            if (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(FeatureDescriptor<>))
             {
                 contract.Converter = new FeatureDescriptorTJsonConverter(Detailed);
             }

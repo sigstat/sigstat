@@ -176,6 +176,7 @@ namespace SigStat.Common
 
         private int progress;
         /// <inheritdoc/>
+        [JsonIgnore]
         public int Progress { get => progress; set { progress = value; ProgressChanged?.Invoke(this, value); } }
 
         /// <summary>

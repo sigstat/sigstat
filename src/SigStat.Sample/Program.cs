@@ -56,7 +56,7 @@ namespace SigStat.Sample
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            //JsonSerializeOnlineVerifierBenchmark();
+            JsonSerializeOnlineVerifierBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -1063,11 +1063,11 @@ namespace SigStat.Sample
             benchmark.ProgressChanged += ProgressPrimary;
             //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
-           var result = benchmark.Execute(true);
+           //var result = benchmark.Execute(true);
 
-           Console.WriteLine($"AER: {result.FinalResult.Aer}");
+           //Console.WriteLine($"AER: {result.FinalResult.Aer}");
             SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(benchmark,@"VerifierBenchmarkSerialized.txt");
-            SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
+            //SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
             VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
         }
 

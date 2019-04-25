@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SigStat.Common.Helpers.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -39,6 +40,8 @@ namespace SigStat.Common.Helpers
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            var state = serializer.Context.Context as FeatureStreamingContextState;
+
             if (Detailed)
             {
                 var fd = (FeatureDescriptor)value;

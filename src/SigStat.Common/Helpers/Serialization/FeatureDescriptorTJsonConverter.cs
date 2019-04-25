@@ -49,7 +49,7 @@ namespace SigStat.Common.Helpers
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-
+            //serializer.Context.Context // serializer.ContextState
             if (Detailed)
             {
                 var fd = (FeatureDescriptor)value;
