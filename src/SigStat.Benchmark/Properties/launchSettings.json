@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.Benchmark": {
       "commandName": "Project",
-      "commandLineArgs": "work -k D:/key.txt -i D:/benchmarks -o D:/results  -e test"
+      "commandLineArgs": "work -i Benchmarks"
     }
   }
 }

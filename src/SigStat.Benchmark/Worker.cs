@@ -23,8 +23,11 @@ namespace SigStat.Benchmark
         static bool LocalInput = false;
         static int i = 0;
 
+
         internal static async Task RunAsync(string inputDir, string outputDir)
         {
+            
+
             if (inputDir != null) LocalInput = true;
 
             if (LocalInput)
@@ -93,7 +96,7 @@ namespace SigStat.Benchmark
                 {
                     if (LocalInput)
                     {
-                        if(LocalBenchmarks.Count == 0)
+                        if (LocalBenchmarks.Count == 0)
                         {
                             Console.WriteLine("No more tasks in queue.");
                             return;
@@ -131,8 +134,8 @@ namespace SigStat.Benchmark
                     benchmark.Logger = logger;
 
                     Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
-                    var results = benchmark.Execute(true);
-                    
+                    var results = benchmark.Execute(false);
+
                     Console.WriteLine($"{DateTime.Now}: Generating results...");
                     //TODO: valami más név kéne, pl. VerifierBenchmark.ToShortString()
                     var filename = $"Benchmark_{i}.json";
@@ -149,7 +152,7 @@ namespace SigStat.Benchmark
                     Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
                     SerializationHelper.JsonSerializeToFile<BenchmarkResults>(results, fullfilename);
 
-                    if(!Program.Offline)
+                    if (!Program.Offline)
                     {
                         Console.WriteLine($"{DateTime.Now}: Uploading results...");
 
@@ -171,14 +174,42 @@ namespace SigStat.Benchmark
 
                     debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
                     File.WriteAllText(debugFileName, debugInfo.ToString());
-                    var blob = Container.GetBlockBlobReference($"Results/{cloudFilename}");
-                    await blob.DeleteIfExistsAsync();
-                    await blob.UploadFromFileAsync(debugFileName);
+                    if (!Program.Offline)
+                    {
+                        var blob = Container.GetBlockBlobReference($"Results/{cloudFilename}");
+                        await blob.DeleteIfExistsAsync();
+                        await blob.UploadFromFileAsync(debugFileName);
+                    }
                 }
 
                 if (!LocalInput) await Queue.DeleteMessageAsync(msg);
                 else LocalBenchmarks.Dequeue();
-                }
             }
         }
+
+        internal static string Init()
+        {
+            if (Program.Offline)
+                //list feltöltése fájlokból
+                return "";
+            else
+                // blob, queue inicializálása
+                return "";
+        }
+        internal static string GetNextTask()
+        {
+            if (Program.Offline)
+                return "";
+            else
+                return "";
+        }
+
+        internal static void UploadResults()
+        {
+            if (!Program.Offline)
+                return;
+            
+
+        }
     }
+}

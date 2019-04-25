@@ -21,6 +21,7 @@ namespace SigStat.Benchmark
         static CloudQueue Queue;
         static DirectoryInfo OutputDirectory;
 
+        //Tuple helyett célosztály ==> DatabaseConfiguration
         public static List<IClassifier> Classifiers = new List<IClassifier>();
         public static List<Tuple<DataSetLoader, Sampler>> Databases = new List<Tuple<DataSetLoader, Sampler>>();
         public static List<List<ITransformation>> TransformationGroups = new List<List<ITransformation>>();
@@ -101,10 +102,7 @@ namespace SigStat.Benchmark
                                     {
                                         Items = transformationgroup
                                     },
-                                    Classifier = new DtwClassifier()
-                                    {
-                                        Features = featuregroup
-                                    }
+                                    Classifier = InitClassifier(classifier, featuregroup, database.Item2)
 
                                 },
                                 Sampler = database.Item2,
@@ -116,6 +114,11 @@ namespace SigStat.Benchmark
                     }
                 }
             }
+        }
+
+        private static IClassifier InitClassifier(IClassifier classifier, List<FeatureDescriptor> features, Sampler sampler)
+        {
+            return new DtwClassifier();
         }
 
         internal static async Task RunAsync(string outputDir)
