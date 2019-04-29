@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JS-datatable examples</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism-okaidia.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/unescaped-markup/prism-unescaped-markup.css">
+
+    <link rel="stylesheet" href="../css.min/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../css.min/bootstrap-table-filter-control.min.css">
+    <link rel="stylesheet" href="../css/datatable.css">
+    <style>
+        nav[data-toggle='toc'] {
+            margin-top: 30px;
+        }
+
+        /* small screens */
+        @media (max-width: 768px) {
+            /* override the Affix plugin so that the navigation isn't sticky */
+            nav.affix[data-toggle='toc'] {
+                position: static;
+            }
+            nav[data-toggle='toc'] .nav .nav {
+                display: block;
+            }
+        }
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+        </div>
+        <div class="col-md-9">
+            <h1 class="page-header" id="js-table">js-datatable development tests</h1>
+
+            <h2 id="visualization-baseline">Horizontal line</h2>
+            <table
+                    class="datatable table"
+                    data-json="data4.json"
+                    data-show-chart="true"
+                    data-id-field="code"
+                    data-rank-mode="grouped_muted"
+                    data-row-highlighting="true"
+                    data-chart-modes="bar,scatter,comparison"
+                    data-chart-default-mode="bar"
+                    data-bar-baseline="false"
+                    data-bar-hline="true"
+
+                    data-scatter-x="value1"
+                    data-scatter-y="value2"
+
+                    data-comparison-row-id-field="code"
+                    data-comparison-sets-json='[{"title": "All values","data_axis_title": "Value axis", "fields": ["value1", "value2", "value3", "value4"], "field_titles": ["custom title 1","custom title 2","custom title 3","custom title 4"]},{"title": "Sub comparison 1","data_axis_title": "Value", "fields": ["value1", "value2"]},{"title": "Sub comparison 2", "data_axis_title": "Accuracy", "fields": ["value3", "value4"]}]'
+                    data-comparison-active-set="All values"
+                    data-comparison-a-row="Red"
+                    data-comparison-b-row="Blue"
+
+                    data-sort-name="value1"
+                    data-sort-order="desc"
+                    data-pagination="false"
+                    data-show-pagination-switch="false"
+            >
+                <thead>
+                <tr>
+                    <th data-sortable="false" data-rank="true">
+                        <span class="text-muted">Rank</span>
+                    </th>
+                    <th class="sep-left-cell"
+                        data-chartable="false"
+                        data-field="code"
+                        data-sortable="true"
+                        data-visible="true">
+                        System
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value1"
+                        data-sortable="true"
+                        data-visible="true"
+                        data-value-type="float1-percentage-interval-muted"
+                        data-axis-label="Label"
+                    >
+                        Value 1
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value2"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 2
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value3"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 3
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value4"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 4
+                    </th>
+                </tr>
+                </thead>
+            </table>
+
+            <h2 id="visualization-comparison">Comparison</h2>
+            <table
+                    class="datatable table"
+                    data-json="data4.json"
+                    data-show-chart="true"
+                    data-id-field="code"
+                    data-rank-mode="grouped_muted"
+                    data-chart-modes="comparison"
+                    data-comparison-row-id-field="code"
+                    data-comparison-sets-json='[{"title": "All values","data_axis_title": "Value axis", "fields": ["value1", "value2", "value3", "value4"], "field_titles": ["custom title 1","custom title 2","custom title 3","custom title 4"]},{"title": "Sub comparison 1","data_axis_title": "Value", "fields": ["value1", "value2"]},{"title": "Sub comparison 2", "data_axis_title": "Accuracy", "fields": ["value3", "value4"]}]'
+                    data-comparison-active-set="All values"
+                    data-comparison-a-row="Red"
+                    data-comparison-b-row="Blue"
+
+                    data-sort-name="value1"
+                    data-sort-order="desc"
+                    data-pagination="false"
+                    data-show-pagination-switch="false"
+            >
+                <thead>
+                <tr>
+                    <th data-sortable="false" data-rank="true">
+                        <span class="text-muted">Rank</span>
+                    </th>
+                    <th class="sep-left-cell"
+                        data-chartable="false"
+                        data-field="code"
+                        data-sortable="true"
+                        data-visible="true">
+                        System
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value1"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 1
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value2"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 2
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value3"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 3
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-beginatzero="false"
+                        data-chartable="true"
+                        data-field="value4"
+                        data-sortable="true"
+                        data-visible="true">
+                        Value 4
+                    </th>
+                </tr>
+                </thead>
+            </table>
+
+            <h2 id="filtering">Filtering</h2>
+            <p>Column based filtering.</p>
+            <table class="table datatable"
+                   data-json="data4.json"
+                   data-id-field="code"
+                   data-sort-name="value1"
+                   data-sort-order="desc"
+                   data-rank-mode="grouped_muted"
+                   data-show-chart="true"
+                   data-chart-modes="bar,scatter"
+                   data-chart-default-mode="scatter"
+                   data-show-bar-chart-xaxis="true"
+                   data-filter-control="true"
+                   data-filter-show-clear="true"
+                   data-tag-mode="column"
+                   data-scatter-x="value1"
+                   data-scatter-y="value2">
+                <thead>
+                <tr>
+                    <th data-field="code"
+                        data-sortable="true">
+                        Name
+                    </th>
+                    <th data-align="center"
+                        data-field="value1"
+                        data-chartable="true"
+                        data-sortable="true">
+                        Value 1
+                    </th>
+                    <th data-align="center"
+                        data-field="value2"
+                        data-reversed="true"
+                        data-chartable="true"
+                        data-sortable="true">
+                        Value 2
+                    </th>
+                    <th data-align="center"
+                        data-field="value3"
+                        data-reversed="true"
+                        data-chartable="true"
+                        data-sortable="true">
+                        Value 3
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-field="feature1"
+                        data-sortable="true"
+                        data-tag="true"
+                        data-filter-control="select">
+                        Feature 1
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-field="feature2"
+                        data-sortable="true"
+                        data-tag="true"
+                        data-filter-control="select">
+                        Feature 2
+                    </th>
+                    <th class="sep-left-cell"
+                        data-align="center"
+                        data-field="list"
+                        data-tag="false"
+                        data-value-type="list2"
+                        data-sortable="true"
+                        data-filter-control="select">
+                        List
+                    </th>
+                </tr>
+                </thead>
+            </table>
+
+
+
+
+
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-javascript.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-markup.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-json.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-yaml.min.js"></script>
+
+    <script type="text/javascript" src="../js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table-filter-control.js"></script>
+
+    <script type="text/javascript" src="../js/Chart.bundle.js"></script>
+    <script type="text/javascript" src="../js.min/js-yaml.min.js"></script>
+
+    <script type="text/javascript" src="../js/datatable.js"></script>
+
+</body>
+</html>
