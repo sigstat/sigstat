@@ -12,6 +12,6 @@ Contains the benchmark results of every `SigStat.Common.Signer` and the summariz
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | [Result](./Result.md) | FinalResult | Summarized, final result of the benchmark execution. | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Result](./Result.md)> | SignerResults |  | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Result](./Result.md)> | SignerResults | List that contains the `SigStat.Common.Result`s for each `SigStat.Common.Signer` | 
 
 

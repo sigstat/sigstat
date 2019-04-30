@@ -175,6 +175,8 @@
 	- A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 ### Serialization
 
+- [`FeatureStreamingContextState`](./SigStat/Common/Helpers/Serialization/FeatureStreamingContextState.md)
+	- SerializationContext for serializing SigStat objects
 - [`RectangleFConverter`](./SigStat/Common/Helpers/Serialization/RectangleFConverter.md)
 ### Excel
 

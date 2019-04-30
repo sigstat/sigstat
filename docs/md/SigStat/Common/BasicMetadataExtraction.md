@@ -27,6 +27,6 @@ Extracts basic statistical signature (like `SigStat.Common.Features.Bounds` or `
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Trim |  | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Trim | Represents theratio of significant pixels that should be trimmed  from each side while calculating `SigStat.Common.Features.TrimmedBounds` | 
 
 

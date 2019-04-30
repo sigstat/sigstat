@@ -22,8 +22,8 @@ Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` o
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
+| [Dictionary](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2)\<[String](https://docs.microsoft.com/en-us/dotnet/api/System.String), [FeatureDescriptor](./../FeatureDescriptor.md)> | AllFeatures |  | 
 | [IClassifier](./../Pipeline/IClassifier.md) | Classifier | Gets or sets the classifier pipeline. Hands over the Logger object. | 
-| [Dictionary](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2)\<[String](https://docs.microsoft.com/en-us/dotnet/api/System.String), [FeatureDescriptor](./../FeatureDescriptor.md)> | Features |  | 
 | [ILogger](./Verifier.md) | Logger | Gets or sets the class responsible for logging | 
 | [SequentialTransformPipeline](./../Pipeline/SequentialTransformPipeline.md) | Pipeline | Gets or sets the transform pipeline. Hands over the Logger object. | 
 | [ISignerModel](./../Pipeline/ISignerModel.md) | SignerModel |  | 

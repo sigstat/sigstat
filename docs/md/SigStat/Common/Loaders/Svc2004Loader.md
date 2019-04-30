@@ -20,7 +20,9 @@ Loads SVC2004-format database from .zip
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
+| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | DatabasePath |  | 
 | [Predicate](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[Signer](./../Signer.md)> | SignerFilter | Ignores any signers during the loading, that do not match the predicate | 
+| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | StandardFeatures |  | 
 
 
 ## Methods

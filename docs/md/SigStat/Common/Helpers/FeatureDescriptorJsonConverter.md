@@ -9,7 +9,7 @@ Assembly: SigStat.Common.dll
 
 | Name | Summary | 
 | --- | --- | 
-| FeatureDescriptorJsonConverter (  ) |  | 
+| FeatureDescriptorJsonConverter ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) |  | 
 
 
 ## Methods
