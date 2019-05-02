@@ -459,6 +459,60 @@ namespace SigStat.Sample
 
         }
 
+
+        static void ClassificationBenchmark()
+        {
+            var benchmark = new VerifierBenchmark()
+            {
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
+                Verifier = new Verifier()
+                {
+                    Pipeline = new SequentialTransformPipeline {
+                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
+                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
+                        //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
+                        new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+                        new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                             new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                             //new ResampleSamplesCountBased() {
+                             //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                             //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
+                             //    InterpolationType = typeof(CubicInterpolation),
+                             //    NumOfSamples = 500,
+                             //    OriginalTFeature = Features.T,
+                             //    ResampledTFeature = Features.T,
+                             //},
+                             //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                             //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                             //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                              new FillPenUpDurations()
+                              {
+                                  InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
+                                  OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                                  InterpolationType = typeof(CubicInterpolation),
+                                  TimeInputFeature =Features.T,
+                                  TimeOutputFeature = Features.T
+                              }
+                        }
+             ,
+                    Classifier = new DtwClassifier()
+                    {
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                    }
+                },
+                Sampler = new SVC2004Sampler1(),
+                Logger = new SimpleConsoleLogger(),
+            };
+
+            benchmark.ProgressChanged += ProgressPrimary;
+            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+            var result = benchmark.Execute(true);
+
+            Console.WriteLine($"AER: {result.FinalResult.Aer}");
+        }
+
         //static void TestPreprocessingTransformations()
         //{
         //    Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);

@@ -45,6 +45,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         
         public List<FeatureDescriptor> Features { get; set; }
 
+
         /// <summary>Initializes a new instance of the <see cref="DtwClassifier"/> class with the default Manhattan distance method.</summary>
         public DtwClassifier() : this(Accord.Math.Distance.Manhattan)
         {
