@@ -1,49 +1,41 @@
 $(function () {
   $.ajax({
     type: 'GET',
-    url: 'https://api.myjson.com/bins/z4m4w',
+    url: 'https://api.myjson.com/bins/fpxfo',
     dataType: 'json',
     success: function (data) {
+      var length = Object.keys(data.databases).length;
+      var th = "<th class=\"align-middle\"";
+      var th_end = "</th>";
+      var rowspan2 = " rowspan=\"2\">";
 
-      /*tableData = data.results;
-      //console.log(tableData);
-      columns = Object.keys(tableData[0]);
-      //console.log(columns);
-  
-      //console.log(y.MCYT100);
-      /*for(const prop in y){
-        console.log((prop));
+      $("#asd").append(th + rowspan2 + "Verifier's Name" + th_end);
+      for (var i = 0; i < length; i++) {
+        $("#asd").append("<th colspan=\"3\">" + "<span>" + data.databases[i].Name + "</span>" + "</th>");
       }
-  
-      var x = document.getElementsByClassName("sep-left-cell");
-      //console.log(x);
-      var databaseNames = [];
-      for(var i = 3; i<=6; i++){
-        databaseNames.push(columns[i]);
+      for (var i = 0; i < length; i++) {
+        $("#asd2").append("<th><em>" + "AER" + "</em></th>");
+        $("#asd2").append("<th><em>" + "FAR" + "</em></th>");
+        $("#asd2").append("<th><em>" + "FRR" + "</em></th>");
       }
-      console.log(databaseNames);
-  
-      var y = tableData[0];
-      var asd = (Object.keys(y.MCYT100));
-      console.log(asd);
-  
-      for(var j = 0; j<=3; j++){
-        x[j].textContent = databaseNames[j];
-        //console.log(x[j].textContent);
-      }
-  
-      var z = document.getElementsByClassName("subcolumn");
-      //for(var j = 0; j<=11; j++){
-  
-        z[0].textContent = asd[0];
-        z[1].textContent = asd[1];
-        z[2].textContent = asd[2];
-        z[3].textContent = asd[0];
-        z[4].textContent = asd[1];
-        z[5].textContent = asd[2];
-     // }*/
+
+      var res_length = Object.keys(data.results).length;
+      console.log(res_length);
+
+      var databaseNames = Object.keys(data.results[0]);
+      databaseNames.splice(0, 3);
+      console.log(databaseNames[0]);
+      var temp = databaseNames[0];
 
 
+      for (var i = 0; i < res_length; i++) {
+          $("#content").append("<tr>" + "<td>" + data.results[i].verifierName + "</td>"
+            + "<td>" + data.results[i][databaseNames[0]].AER + "</td>" + "<td>" + data.results[i][databaseNames[0]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[0]].FRR + "</td>"
+            + "<td>" + data.results[i][databaseNames[1]].AER + "</td>" + "<td>" + data.results[i][databaseNames[1]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[1]].FRR + "</td>"
+            + "<td>" + data.results[i][databaseNames[2]].AER + "</td>" + "<td>" + data.results[i][databaseNames[2]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[2]].FRR + "</td>"
+            + "<td>" + data.results[i][databaseNames[3]].AER + "</td>" + "<td>" + data.results[i][databaseNames[3]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[3]].FRR + "</td>"
+            + "</tr>")
+      }
 
       $("body").on('mouseover', 'span:not(.tooltipstered)', function () {
         var tooltipInstance = null;

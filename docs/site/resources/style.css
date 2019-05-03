@@ -264,12 +264,12 @@ footer {
     color: white;
 }
 
-/*.flex-wrapper {
+.flex-wrapper {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     justify-content: space-between
-}*/
+}
 
 #under {
     display: flex;

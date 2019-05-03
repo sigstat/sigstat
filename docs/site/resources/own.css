@@ -19,6 +19,11 @@ th {
   cursor: pointer;
 }
 
+
+table.table-bordered{
+  text-align: center;
+}
+
 table:not(#under){
   border: 10px solid white;
 }
