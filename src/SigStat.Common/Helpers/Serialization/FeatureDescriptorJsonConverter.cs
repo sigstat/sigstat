@@ -9,11 +9,6 @@ namespace SigStat.Common.Helpers
 {
     public class FeatureDescriptorJsonConverter : JsonConverter
     {
-        private bool Detailed { get; set; }
-        public FeatureDescriptorJsonConverter(bool detail)
-        {
-            Detailed = detail;
-        }
         public override bool CanConvert(Type objectType)
         {
             return (objectType == typeof(FeatureDescriptor));
@@ -21,37 +16,38 @@ namespace SigStat.Common.Helpers
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (Detailed)
+            string value = (string)reader.Value;
+            if (value.Contains("|"))
             {
-                JObject jo = JObject.Load(reader);
-                string key = (string)jo["Key"];
-                string featureType = (string)jo["FeatureType"];
+                string[] strings = value.Split('|');
+                string key = strings[0].Trim();
+                string featureType = strings[1].Trim();
                 Type currType = Type.GetType(featureType);
                 FeatureDescriptor fd = FeatureDescriptor.Register(key, currType);
                 return fd;
             }
             else{
-                JObject jo = JObject.Load(reader);
-                string key = (string)jo["Key"];
-                FeatureDescriptor fd = FeatureDescriptor.Get(key);
+                FeatureDescriptor fd = FeatureDescriptor.Get(value);
                 return fd;
             }
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            writer.Formatting = Formatting.None;
             var state = serializer.Context.Context as FeatureStreamingContextState;
-
-            if (Detailed)
+            var fd = (FeatureDescriptor)value;
+            if (!state.KnownFeatureKeys.Contains(fd.Key))
             {
-                var fd = (FeatureDescriptor)value;
-                serializer.Serialize(writer, new JObject { { "Key", fd.Key }, { "FeatureType", fd.FeatureType.AssemblyQualifiedName } });
+                serializer.Serialize(writer, fd.Key + " | " + fd.FeatureType.AssemblyQualifiedName);
+                state.KnownFeatureKeys.Add(fd.Key);
+                
             }
             else
             {
-                var fd = (FeatureDescriptor)value;
-                serializer.Serialize(writer, new JObject { { "Key", fd.Key } });
+                serializer.Serialize(writer, new JObject {  fd.Key  });
             }
+            writer.Formatting = Formatting.Indented;
         }
     }
 }

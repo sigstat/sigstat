@@ -21,7 +21,7 @@ namespace SigStat.Common
         /// <summary>A reference to the <see cref="Common.Signer"/> who this signature belongs to. (The origin is not constrained to be genuine.)</summary>
         public Signer Signer { get; set; }
 
-        [JsonProperty]
+
         private readonly ConcurrentDictionary<string, object> features = new ConcurrentDictionary<string, object>();
 
 

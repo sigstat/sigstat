@@ -11,27 +11,25 @@ namespace SigStat.Common.Helpers.Serialization
 {
     class VerifierResolver : DefaultContractResolver
     {
-
-        private bool Detailed { get; set; } = true;
+        
         protected override JsonObjectContract CreateObjectContract(Type objectType)
         {
             JsonObjectContract contract = base.CreateObjectContract(objectType);
             if (objectType == typeof(FeatureDescriptor))
             {
-                contract.Converter = new FeatureDescriptorJsonConverter(Detailed);
+                contract.Converter = new FeatureDescriptorJsonConverter();
             }
             if (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(FeatureDescriptor<>))
             {
-                contract.Converter = new FeatureDescriptorTJsonConverter(Detailed);
+                contract.Converter = new FeatureDescriptorTJsonConverter();
             }
-
             return contract;
         }
 
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
             IList<JsonProperty> props = base.CreateProperties(type, memberSerialization);
-            return props.Where(p => p.Writable || p.PropertyName.Equals("AllFeatures")).ToList();
+            return props.Where(p => ((p.Writable || p.PropertyName.Equals("AllFeatures")) && !p.PropertyName.Equals("Logger"))).ToList();
         }
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
@@ -41,7 +39,6 @@ namespace SigStat.Common.Helpers.Serialization
             if (property.PropertyName == "AllFeatures")
             {
                 property.Converter = new FeatureDescriptorDictionaryConverter();
-                Detailed = false;
             }
            return property;
         }

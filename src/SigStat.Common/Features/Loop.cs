@@ -22,7 +22,6 @@ namespace SigStat.Common
         /// The bounding rectangle of the loop
         /// </summary>
         
-        [JsonConverter(typeof(RectangleFConverter))]
         public RectangleF Bounds { get; set; }
         /// <summary>
         /// A list of defining points of the loop

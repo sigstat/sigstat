@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SigStat.Common.Helpers.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -9,16 +10,11 @@ namespace SigStat.Common.Helpers
 {
     public class FeatureDescriptorTJsonConverter : JsonConverter
     {
-        private bool Detailed { get; set; }
-        public FeatureDescriptorTJsonConverter(bool detail)
-        {
-            Detailed = detail;
-        }
         public override bool CanConvert(Type objectType)
         {
             if (objectType.IsGenericType)
             {
-                return (objectType.GetTypeInfo().BaseType == typeof(FeatureDescriptor));
+                return (objectType.GetGenericTypeDefinition() == typeof(FeatureDescriptor<>));
             }
             else
             {
@@ -28,11 +24,13 @@ namespace SigStat.Common.Helpers
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (Detailed)
+
+            string value = (string)reader.Value;
+            if (value.Contains("|"))
             {
-                JObject jo = JObject.Load(reader);
-                string key = (string)jo["Key"];
-                string featureType = (string)jo["FeatureType"];
+                string[] strings = value.Split('|');
+                string key = strings[0].Trim();
+                string featureType = strings[1].Trim();
                 Type currType = Type.GetType(featureType);
                 var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType.GenericTypeArguments);
                 var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
@@ -40,26 +38,26 @@ namespace SigStat.Common.Helpers
             }
             else
             {
-                JObject jo = JObject.Load(reader);
-                string key = (string)jo["Key"];
-                FeatureDescriptor fd = FeatureDescriptor.Get(key);
+                FeatureDescriptor fd = FeatureDescriptor.Get(value);
                 return fd;
             }
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            //serializer.Context.Context // serializer.ContextState
-            if (Detailed)
+            writer.Formatting = Formatting.None;
+            var state = serializer.Context.Context as FeatureStreamingContextState;
+            var fd = (FeatureDescriptor)value;
+            if (!state.KnownFeatureKeys.Contains(fd.Key))
             {
-                var fd = (FeatureDescriptor)value;
-                serializer.Serialize(writer, new JObject { { "Key", fd.Key }, { "FeatureType", fd.FeatureType.AssemblyQualifiedName } });
+                serializer.Serialize(writer, fd.Key + " | " + fd.FeatureType.AssemblyQualifiedName);
+                state.KnownFeatureKeys.Add(fd.Key);
             }
             else
             {
-                var fd = (FeatureDescriptor)value;
-                serializer.Serialize(writer, new JObject { { "Key", fd.Key } });
+                serializer.Serialize(writer,  fd.Key  );
             }
+            writer.Formatting = Formatting.Indented;
         }
     }
 }
