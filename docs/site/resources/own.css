@@ -19,9 +19,12 @@ th {
   cursor: pointer;
 }
 
-
 table.table-bordered{
   text-align: center;
+  table-layout: fixed;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 table:not(#under){

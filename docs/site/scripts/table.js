@@ -1,13 +1,15 @@
 $(function () {
   $.ajax({
     type: 'GET',
-    url: 'https://api.myjson.com/bins/fpxfo',
+    //url: 'https://api.myjson.com/bins/6o6l0',
+    url: 'https://api.myjson.com/bins/16gc1g',
     dataType: 'json',
     success: function (data) {
       var length = Object.keys(data.databases).length;
       var th = "<th class=\"align-middle\"";
       var th_end = "</th>";
       var rowspan2 = " rowspan=\"2\">";
+      //console.log(length);
 
       $("#asd").append(th + rowspan2 + "Verifier's Name" + th_end);
       for (var i = 0; i < length; i++) {
@@ -24,18 +26,22 @@ $(function () {
 
       var databaseNames = Object.keys(data.results[0]);
       databaseNames.splice(0, 3);
-      console.log(databaseNames[0]);
-      var temp = databaseNames[0];
 
+      var dynamic = "";
 
       for (var i = 0; i < res_length; i++) {
-          $("#content").append("<tr>" + "<td>" + data.results[i].verifierName + "</td>"
-            + "<td>" + data.results[i][databaseNames[0]].AER + "</td>" + "<td>" + data.results[i][databaseNames[0]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[0]].FRR + "</td>"
-            + "<td>" + data.results[i][databaseNames[1]].AER + "</td>" + "<td>" + data.results[i][databaseNames[1]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[1]].FRR + "</td>"
-            + "<td>" + data.results[i][databaseNames[2]].AER + "</td>" + "<td>" + data.results[i][databaseNames[2]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[2]].FRR + "</td>"
-            + "<td>" + data.results[i][databaseNames[3]].AER + "</td>" + "<td>" + data.results[i][databaseNames[3]].FAR + "</td>" + "<td>" + data.results[i][databaseNames[3]].FRR + "</td>"
-            + "</tr>")
+        dynamic += "<tr>" + "<td>" + data.results[i].verifierName + "</td>"
+        for (var j = 0; j < length; j++) {
+          dynamic += "<td>" + (data.results[i][databaseNames[j]].AER == null ? " " : data.results[i][databaseNames[j]].AER) + "</td>" +
+            "<td>" + (data.results[i][databaseNames[j]].FAR == null ? " " : data.results[i][databaseNames[j]].FAR) + "</td>" +
+            "<td>" + (data.results[i][databaseNames[j]].FRR == null ? " " : data.results[i][databaseNames[j]].FRR) + "</td>";
+        }
+        dynamic += "</tr>";
+
       }
+
+
+      $("#content").append(dynamic);
 
       $("body").on('mouseover', 'span:not(.tooltipstered)', function () {
         var tooltipInstance = null;
@@ -44,10 +50,11 @@ $(function () {
         var eol = "<br>";
 
         var first = data.databases.find(asd => asd.Name === temp);
-        var count = Object.keys(first).length - 1;
+        //var count = Object.keys(first).length - 1;
+        //console.log(count);
         var test = "";
 
-        for (var i = 1; i <= count; i++) {
+        for (var i = 1; i <= 6; i++) {
           test += Object.keys(first)[i] + sep + first[Object.keys(first)[i]] + eol
         }
 
@@ -67,10 +74,9 @@ $(function () {
         var eol = "<br>";
 
         var first = data.results.find(asd => asd.verifierName === temp);
-        var count = Object.keys(first).length - 5;
         var test = "";
 
-        for (var i = 1; i <= count; i++) {
+        for (var i = 1; i <= 2; i++) {
           test += Object.keys(first)[i] + sep + first[Object.keys(first)[i]] + eol;
         }
 
