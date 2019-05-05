@@ -11,6 +11,8 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
         [TestMethod]
         public void TestTransform()
         {
+            Signature signature1 = new Signature();
+
             //public void Transform(Signature signature)
         }
     }

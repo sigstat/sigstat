@@ -9,7 +9,8 @@ namespace SigStat.Common.Test.Model
         [TestMethod]
         public void TestConstructor()
         {
-            const string featureKey = "Loop";
+
+            //const string featureKey = "Loop";
             //var fa = new FeatureAttribute("Loop");
 
             //Assert.AreEqual(featureKey, fa.FeatureKey);
