@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SigStat.Common.Algorithms;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace SigStat.Common.Test.Algorithms
         [TestMethod]
         public void TestScan()
         {
-
+            
         }
 
         [TestMethod]

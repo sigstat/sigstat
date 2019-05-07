@@ -14,7 +14,7 @@ namespace SigStat.Common.Test.Algorithms
         public void TestComputeTwoDimension()
         {
 
-            double[][] signature1 = new double[3][]; //array that contain arrays.
+            double[][] signature1 = new double[3][];    
             
             //Two dimension points. another test required for one dimension points.
             signature1[0] = new double[] { 1, 4 };
@@ -35,7 +35,7 @@ namespace SigStat.Common.Test.Algorithms
         [TestMethod]
         public void TestComputeOneDimension()
         {
-            double[][] signature1 = new double[3][]; //array that contain arrays.
+            double[][] signature1 = new double[3][];
 
             //One dimension points.
             signature1[0] = new double[] { 4 };
@@ -79,7 +79,7 @@ namespace SigStat.Common.Test.Algorithms
         public void TestComputeDifferentLenghtInput() //SameLengthInput already tested in the previous tests.
         {
 
-            double[][] signature1 = new double[3][]; //array that contain arrays.
+            double[][] signature1 = new double[3][]; 
 
             //Two dimension points. another test required for one dimension points.
             signature1[0] = new double[] { 1, 4 };
@@ -105,7 +105,7 @@ namespace SigStat.Common.Test.Algorithms
         public void TestSameInput()
         {
 
-            double[][] signature1 = new double[3][]; //array that contain arrays.
+            double[][] signature1 = new double[3][]; 
 
             //Two dimension points. another test required for one dimension points.
             signature1[0] = new double[] { 1, 4 };

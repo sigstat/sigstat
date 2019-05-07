@@ -79,7 +79,33 @@ namespace SigStat.Common.Test.Model
 
             Assert.IsNotNull(signature.ToString());
 
-
         }
+
+        [TestMethod]
+        public void GetAggregateFeatureTest()
+        {
+            string ID = "testid";
+            Origin origin = new Origin();
+            Signer signer = new Signer();
+
+            Signature signature = new Signature(ID, origin, signer);
+
+            FeatureDescriptor featureDescriptor = FeatureDescriptor.Get<String>("Desc");
+            signature[featureDescriptor] = "desc";
+
+            FeatureDescriptor featureDescriptor2 = FeatureDescriptor.Get<String>("Desc2");
+            signature[featureDescriptor2] = "desc2";
+
+            List<FeatureDescriptor> fs = new List<FeatureDescriptor>();
+            fs.Add(featureDescriptor);
+            fs.Add(featureDescriptor2);
+
+        //    Assert.AreEqual(signature.GetAggregateFeature, featureDescriptor);
+            
     }
+
+
+
 }
+}
+
