@@ -53,8 +53,9 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
             
             TranslatePreproc tp2 = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = SigStat.Common.Features.X, OutputFeature = SigStat.Common.Features.X };
       
-            //tp2.Transform(signature);
-         }
+          //  tp2.Transform(signature);
+
+        }
 
         [TestMethod]
         public void TestCOGTransform()

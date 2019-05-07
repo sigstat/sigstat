@@ -40,16 +40,10 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
         [TestMethod]
         public void TestGetValueContains()
         {
-            List<double> timeValues = new List<double>();
-            timeValues.Add(2.0);
-            timeValues.Add(3.0);
-            timeValues.Add(4.0);
-            List<double> featueValues = new List<double>();
-            featueValues.Add(3.0);
-            featueValues.Add(4.0);
-            featueValues.Add(5.0);
-
-
+            List<double> timeValues = new List<double>() {2.0, 3.0, 4.0};
+            
+            List<double> featueValues = new List<double>() {3.0, 4.0, 5.0 };
+            
             //timeValues contains timestamps
             ci.TimeValues = timeValues;
             ci.FeatureValues = featueValues;
@@ -65,21 +59,10 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
         [TestMethod]
         public void TestGetValueDoesNotContains()
         {
-            List<double> timeValues = new List<double>();
-            timeValues.Add(2.0);
-            timeValues.Add(4.0);
-            timeValues.Add(6.0);
-            timeValues.Add(8.0);
-            timeValues.Add(10.0);
-            timeValues.Add(12.0);
-            List<double> featueValues = new List<double>();
-            featueValues.Add(2.0);
-            featueValues.Add(4.0);
-            featueValues.Add(6.0);
-            featueValues.Add(8.0);
-            featueValues.Add(10.0);
-            featueValues.Add(12.0);
-
+            List<double> timeValues = new List<double>() { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0 }; ;
+            
+            List<double> featueValues = new List<double>() { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0 };
+            
             //timeValues does not contains timestamps
             ci2.TimeValues = timeValues;
             ci2.FeatureValues = featueValues;

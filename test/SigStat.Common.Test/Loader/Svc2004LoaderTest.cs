@@ -99,11 +99,11 @@ namespace SigStat.Common.Test.Loader
                 Assert.IsTrue(signature.HasFeature(expectedDescriptor), $"{expectedDescriptor.Name} was not found in signature");
             }
 
-          /*  foreach (var descriptor in signature.GetFeatureDescriptors())
+            foreach (var descriptor in signature.GetFeatureDescriptors())
             {
-                var featureValues = (List<int>)signature[descriptor];
-                Assert.AreEqual(84, featureValues.Count);
-            }*/
+               // var featureValues = (List<int>)signature[descriptor];
+               // Assert.AreEqual(84, featureValues.Count);
+            }
         }
         [TestMethod]
         public void TestLoadSignatureFromStream()
@@ -112,6 +112,7 @@ namespace SigStat.Common.Test.Loader
         }
 
         [TestMethod]
+    
         public void TestParseSignature()
         {
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Test\SVC2004\Test.zip", true);
