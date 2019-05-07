@@ -9,14 +9,25 @@ using System.Text;
 
 namespace SigStat.Common.Helpers.Serialization
 {
+    /// <summary>
+    /// Custom serializer for lists containing <see cref="FeatureDescriptor"/> or  <see cref="FeatureDescriptor{T}"/> objects
+    /// </summary>
     class FeatureDescriptorListJsonConverter : JsonConverter
     {
         private FeatureDescriptorTJsonConverter helperConverter = new FeatureDescriptorTJsonConverter();
+        /// <summary>
+        /// Tells if the current object is of the correct type
+        /// </summary>
+        /// <param name="objectType">The type of the object</param>
+        /// <returns>If the object can be converted or not</returns>
         public override bool CanConvert(Type objectType)
         {
             return (objectType == typeof(List<PipelineOutput>));
         }
-
+        /// <summary>
+        /// Overwrite of the <see cref="JsonConverter"/> method
+        /// Deserializes the list of <see cref="FeatureDescriptor"/> objects
+        /// </summary>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JArray ja = JArray.Load(reader);
@@ -29,7 +40,10 @@ namespace SigStat.Common.Helpers.Serialization
             }
             return instance;
         }
-
+        /// <summary>
+        /// Overwrite of the <see cref="JsonConverter"/> method
+        /// Serializes the list of <see cref="FeatureDescriptor"/> objects to json
+        /// </summary>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.Formatting = Formatting.None;
@@ -43,7 +57,7 @@ namespace SigStat.Common.Helpers.Serialization
             writer.Formatting = Formatting.Indented;
         }
 
-        public object GetFeatureDesricptor(string json)
+        private object GetFeatureDesricptor(string json)
         {
 
             string value = json;

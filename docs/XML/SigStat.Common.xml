@@ -799,6 +799,54 @@
             Gets the current progress in percentage.
             </summary>
         </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter">
+            <summary>
+            Custom serializer for a Dictionary of <see cref="T:SigStat.Common.FeatureDescriptor"/>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter.CanConvert(System.Type)">
+            <summary>
+            Tells if the current object is of the correct type
+            </summary>
+            <param name="objectType">The type of the object</param>
+            <returns>If the object can be converted or not</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Deserializes the dictionary of <see cref="T:SigStat.Common.FeatureDescriptor"/> created by the this class
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Serializes the dictionary <see cref="T:SigStat.Common.FeatureDescriptor"/> with type of the descriptor
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter">
+            <summary>
+            Custom serializer for lists containing <see cref="T:SigStat.Common.FeatureDescriptor"/> or  <see cref="T:SigStat.Common.FeatureDescriptor`1"/> objects
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter.CanConvert(System.Type)">
+            <summary>
+            Tells if the current object is of the correct type
+            </summary>
+            <param name="objectType">The type of the object</param>
+            <returns>If the object can be converted or not</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Deserializes the list of <see cref="T:SigStat.Common.FeatureDescriptor"/> objects
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Serializes the list of <see cref="T:SigStat.Common.FeatureDescriptor"/> objects to json
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Helpers.Serialization.FeatureStreamingContextState">
             <summary>
             SerializationContext for serializing SigStat objects
@@ -813,6 +861,142 @@
             <summary>
             A list of already serialized FeatureDescriptor keys
             </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.RectangleFConverter">
+            <summary>
+            Custom serializer for <see cref="T:System.Drawing.RectangleF"/> objects
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.RectangleFConverter.CanConvert(System.Type)">
+            <summary>
+            Tells if the current object is of the correct type
+            </summary>
+            <param name="objectType">The type of the object</param>
+            <returns>If the object can be converted or not</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.RectangleFConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Deserializes the <see cref="T:System.Drawing.RectangleF"/> json created by the same class
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.RectangleFConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Serializes the <see cref="T:System.Drawing.RectangleF"/> to json
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.VerifierResolver">
+            <summary>
+            Custom resolver for customizing the json serialization 
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.VerifierResolver.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+            <summary>
+            Decides if the current property should be serialized or not
+            </summary>
+            <param name="type">The type of the current property</param>
+            <param name="memberSerialization">The type of member serialization in Json.NET</param>
+            <returns>A bool</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.VerifierResolver.CreateProperty(System.Reflection.MemberInfo,Newtonsoft.Json.MemberSerialization)">
+            <summary>
+            Selects which JsonConverter should be used for the property
+            </summary>
+            <param name="member">A  <see cref="T:System.Reflection.MemberInfo"/></param>
+            <param name="memberSerialization">The type of member serialization in Json.NET</param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Helpers.FeatureDescriptorJsonConverter">
+            <summary>
+            Custom serializer for <see cref="T:SigStat.Common.FeatureDescriptor"/> objects
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.FeatureDescriptorJsonConverter.CanConvert(System.Type)">
+            <summary>
+            Tells if the current object is of the correct type
+            </summary>
+            <param name="objectType">The type of the object</param>
+            <returns>If the object can be converted or not</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.FeatureDescriptorJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Deserializes the <see cref="T:SigStat.Common.FeatureDescriptor"/> json created by the this class
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.FeatureDescriptorJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Serializes the <see cref="T:SigStat.Common.FeatureDescriptor"/> to json with type depending on if it was serialized earlier or not
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.FeatureDescriptorTJsonConverter">
+            <summary>
+            Custom serializer for <see cref="T:SigStat.Common.FeatureDescriptor`1"/> objects
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.FeatureDescriptorTJsonConverter.CanConvert(System.Type)">
+            <summary>
+            Tells if the current object is of the correct type
+            </summary>
+            <param name="objectType">The type of the object</param>
+            <returns>If the object can be converted or not</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.FeatureDescriptorTJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Deserializes the <see cref="T:SigStat.Common.FeatureDescriptor`1"/> json created by the this class
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.FeatureDescriptorTJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Serializes the <see cref="T:SigStat.Common.FeatureDescriptor`1"/> to json with type depending on if it was serialized earlier or not
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.SerializationHelper">
+            <summary>
+            Json serialization and deserialization using the custom resolver  <see cref="T:SigStat.Common.Helpers.Serialization.VerifierResolver"/>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.GetSettings">
+            <summary>
+            Settings used for the serialization methods
+            </summary>
+            <returns>A new settings object</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.Deserialize``1(System.String)">
+            <summary>
+            Constructs object from strings that were serialized previously
+            </summary>
+            <typeparam name="T">A type which has a public parameterless constructor</typeparam>
+            <param name="s">The serialized string</param>
+            <returns>The object that was serialized</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.DeserializeFromFile``1(System.String)">
+            <summary>
+            Constructs object from file given by a path
+            </summary>
+            <typeparam name="T">A type which has a public parameterless constructor</typeparam>
+            <param name="path">Relative path to the file</param>
+            <returns>The object that was serialized to the file</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String)">
+            <summary>
+            Writes object to file to the given by path in json format
+            </summary>
+            <typeparam name="T">The type of the object</typeparam>
+            <param name="o">The object</param>
+            <param name="path">Relative path</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0)">
+            <summary>
+            Creates json string from object
+            </summary>
+            <typeparam name="T">The type of the object</typeparam>
+            <param name="o">The object</param>
+            <returns>The json string constructed from the object</returns>
         </member>
         <member name="T:SigStat.Common.Helpers.SimpleConsoleLogger">
             <summary>

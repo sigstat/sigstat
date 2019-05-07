@@ -1120,7 +1120,7 @@ namespace SigStat.Sample
            //var result = benchmark.Execute(true);
 
            //Console.WriteLine($"AER: {result.FinalResult.Aer}");
-            SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(benchmark,@"VerifierBenchmarkSerialized.txt");
+            SerializationHelper.JsonSerializeToFile(benchmark,@"VerifierBenchmarkSerialized.txt");
             //SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
             VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
         }
