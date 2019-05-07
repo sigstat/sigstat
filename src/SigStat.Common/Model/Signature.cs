@@ -13,6 +13,7 @@ namespace SigStat.Common
     /// <summary>
     /// Represents a signature as a collection of features, containing the data that flows in the pipeline.
     /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
     public class Signature: IEnumerable<KeyValuePair<FeatureDescriptor, object>>
     {
         /// <summary>An identifier for the Signature. Keep it unique to be useful for logs. </summary>
@@ -22,7 +23,7 @@ namespace SigStat.Common
         /// <summary>A reference to the <see cref="Common.Signer"/> who this signature belongs to. (The origin is not constrained to be genuine.)</summary>
         public Signer Signer { get; set; }
 
-
+        [JsonProperty]
         private readonly ConcurrentDictionary<string, object> features = new ConcurrentDictionary<string, object>();
 
 
