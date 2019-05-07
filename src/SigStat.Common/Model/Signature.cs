@@ -6,13 +6,14 @@ using System.Reflection;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Collections;
 
 namespace SigStat.Common
 {
     /// <summary>
     /// Represents a signature as a collection of features, containing the data that flows in the pipeline.
     /// </summary>
-    public class Signature
+    public class Signature: IEnumerable<KeyValuePair<FeatureDescriptor, object>>
     {
         /// <summary>An identifier for the Signature. Keep it unique to be useful for logs. </summary>
         public string ID { get; set; }
@@ -127,20 +128,22 @@ namespace SigStat.Common
         /// </summary>
         /// <param name="featureDescriptor">The feature to put the new value in.</param>
         /// <param name="feature">The value to set.</param>
-        public void SetFeature<T>(FeatureDescriptor featureDescriptor, T feature)
+        public Signature SetFeature<T>(FeatureDescriptor featureDescriptor, T feature)
         {
             features[featureDescriptor.Key] = feature;
+            return this;
         }
         /// <summary>
         /// Sets the specified feature. 
         /// </summary>
         /// <param name="featureKey">The unique key of the feature.</param>
         /// <param name="feature">The value to set.</param>
-        public void SetFeature<T>(string featureKey, T feature)
+        public Signature SetFeature<T>(string featureKey, T feature)
         {
             //Ensure, that the FeatureDescriptor is registered
             FeatureDescriptor.Get<T>(featureKey);
             features[featureKey] = feature;
+            return this;
         }
 
         /// <summary>
@@ -201,6 +204,19 @@ namespace SigStat.Common
             return ID??"";
         }
 
+        public IEnumerator<KeyValuePair<FeatureDescriptor, object>> GetEnumerator()
+        {
+            return features.Select(kvp => new KeyValuePair<FeatureDescriptor, object>(FeatureDescriptor.Get(kvp.Key), kvp.Value)).GetEnumerator();
+        }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        //public void Add(FeatureDescriptor featureDescriptor, object featureValue)
+        //{
+        //    SetFeature(featureDescriptor, featureValue);
+        //}
     }
 }

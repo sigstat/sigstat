@@ -41,7 +41,6 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
         public void TestGetValue()
         {
             List<double> timeValues = new List<double>() { 2.0, 3.0, 4.0};
-            
             List<double> featueValues = new List<double>() { 3.0,4.0,5.0};
             
             LinearInterpolation li = new LinearInterpolation();

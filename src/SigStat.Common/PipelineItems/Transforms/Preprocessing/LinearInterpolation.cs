@@ -16,14 +16,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public double GetValue(double timestamp)
         {
             if (TimeValues == null)
-            {
-                throw new NullReferenceException("List of timestamps is null");
-            }
+                throw new InvalidOperationException("TimeValues is not initialized");
 
             if (FeatureValues == null)
-            {
-                throw new NullReferenceException("List of feature values is null");
-            }
+                throw new NullReferenceException("FeatureValues is not initialized");
 
 
             if (TimeValues.Contains(timestamp))

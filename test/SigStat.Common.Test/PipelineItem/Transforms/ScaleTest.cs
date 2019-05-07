@@ -20,6 +20,7 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
                 ID = "S05"
             };
 
+            new Scale()
 
             //Sample, Program.cs
   /*              new Scale()

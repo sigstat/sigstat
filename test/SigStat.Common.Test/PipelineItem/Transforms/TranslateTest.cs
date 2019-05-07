@@ -31,14 +31,10 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
         [TestMethod]
         public void TestTransform()
         {
-            Signature signature = new Signature();
-            signature.ID = "Demo";
-            signature.Origin = Origin.Genuine;
-            signature.Signer = new Signer()
-            {
-                ID = "S05"
-            };
-            
+            var signature = TestHelper.BuildSignature()
+                .SetFeature(Features.X, new List<double> { 1, 2, 3 })
+                .SetFeature(Features.Y, new List<double> { 1, 2, 3 });
+
             TranslatePreproc tp1 = new TranslatePreproc(OriginType.CenterOfGravity);
             
             try
@@ -50,10 +46,10 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
             {
                 Assert.AreEqual("Input or output feature is null", ex.Message);
             }
-            
-            TranslatePreproc tp2 = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = SigStat.Common.Features.X, OutputFeature = SigStat.Common.Features.X };
+
+            TranslatePreproc tp2 = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X };
       
-          //  tp2.Transform(signature);
+            tp2.Transform(signature);
 
         }
 
