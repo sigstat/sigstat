@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SigStat.Common.Pipeline;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,14 @@ namespace SigStat.Common.Helpers.Serialization
             {
                 property.Converter = new FeatureDescriptorDictionaryConverter();
             }
-           return property;
+            if (property.PropertyType.IsGenericType && 
+                (property.PropertyType.GetGenericTypeDefinition() == typeof(List<>) &&
+                (property.PropertyType == typeof(List<FeatureDescriptor>) || (property.PropertyType.GetGenericArguments()[0].IsGenericType &&
+                property.PropertyType.GetGenericArguments()[0].GetGenericTypeDefinition() == typeof(FeatureDescriptor<>)))))
+            {
+                property.Converter = new FeatureDescriptorListJsonConverter();
+            }
+            return property;
         }
     }
 }
