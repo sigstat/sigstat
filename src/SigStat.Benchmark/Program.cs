@@ -14,21 +14,20 @@ namespace SigStat.Benchmark
         public static string Experiment;
         public static bool Offline = false;
 
-        public static void AzureAuth(OptionsBase o)
+        public static bool AzureAuth(OptionsBase o)
         {
             if (o.AccountKey is null)
             {
                 Offline = true;
-                return;
+                return true;
             }
 
             if (o.AccountKey.EndsWith(".txt"))
             {
                 if (!File.Exists(o.AccountKey))
                 {
-                    Console.WriteLine($"Account key file '{o.AccountKey}' does not exist. Switching to offline mode...");
-                    Offline = true;
-                    return;
+                    Console.WriteLine($"Account key file '{o.AccountKey}' does not exist. Aborting...");
+                    return false;
                 }
                 o.AccountKey = File.ReadAllText(o.AccountKey);
             }
@@ -38,13 +37,13 @@ namespace SigStat.Benchmark
                 var credentials = new StorageCredentials(o.AccountName, o.AccountKey);
                 Account = new CloudStorageAccount(credentials, true);
                 Experiment = o.Experiment;
+                return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Console.WriteLine("Azure authentication failed. Switching to offline mode...");
-                Offline = true;
-                return;
+                File.WriteAllText("log.txt", e.ToString());
+                Console.WriteLine("Azure authentication failed. Aborting...");
+                return false;
             }
         }
 
@@ -53,8 +52,8 @@ namespace SigStat.Benchmark
             await Parser.Default.ParseArguments<MonitorOptions, WorkerOptions, GeneratorOptions, AnalyserOptions>(args)
                 .MapResult<OptionsBase, Task>(o =>
                 {
-                    AzureAuth(o);
-                    return o.RunAsync();
+                    if (AzureAuth(o)) return o.RunAsync();
+                    else return Task.FromResult(-1);
                 },
                 errs => Task.FromResult(-1));
             Console.WriteLine("Execution finished. Press any key to exit the application...");

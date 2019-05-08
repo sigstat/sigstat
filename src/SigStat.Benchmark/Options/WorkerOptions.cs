@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Options
 {
+    /// <summary>
+    /// Command line options for worker mode
+    /// </summary>
     [Verb("work", HelpText = "Worker mode for processing benchmarks.")]
     class WorkerOptions : OptionsBase
     {

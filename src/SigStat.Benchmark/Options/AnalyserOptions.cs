@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Options
 {
+    /// <summary>
+    /// Command line options for analyser mode
+    /// </summary>
     [Verb("analyse", HelpText = "Analyser mode for analysing benchmark results.")]
     public class AnalyserOptions : OptionsBase
     {

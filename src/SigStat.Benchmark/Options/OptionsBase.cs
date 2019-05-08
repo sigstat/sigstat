@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Options
 {
+    /// <summary>
+    /// Base class for command line options containing common options
+    /// </summary>
     public abstract class OptionsBase
     {
         [Option('k', "key", Required = false, HelpText = "Azure key to use for managing the job.")]

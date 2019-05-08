@@ -1,6 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Microsoft.WindowsAzure.Storage.Table;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SigStat.Benchmark.Model;
 using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
@@ -19,69 +26,29 @@ namespace SigStat.Benchmark
         static CloudQueue Queue;
         static DirectoryInfo InputDirectory;
         static DirectoryInfo OutputDirectory;
-        static Queue<VerifierBenchmark> LocalBenchmarks = new Queue<VerifierBenchmark>();
-        static bool LocalInput = false;
-        static int i = 0;
 
+        static Queue<VerifierBenchmark> LocalBenchmarks = new Queue<VerifierBenchmark>();
+
+        static VerifierBenchmark CurrentBenchmark;
+        static CloudQueueMessage CurrentMessage;
+        static BenchmarkResults CurrentResults;
+        static string CurrentResultType;
+        static int i = 0;
 
         internal static async Task RunAsync(string inputDir, string outputDir)
         {
-            
-
-            if (inputDir != null) LocalInput = true;
-
-            if (LocalInput)
-            {
-                if (Directory.Exists(inputDir)) InputDirectory = new DirectoryInfo(inputDir);
-                else
-                {
-                    Console.WriteLine("Input directory doesn't exist. Aborting...");
-                    return;
-                }
-
-                foreach (var file in InputDirectory.GetFiles())
-                {
-                    var benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(file.FullName);
-                    LocalBenchmarks.Enqueue(benchmark);
-                }
-            }
-
             OutputDirectory = Directory.CreateDirectory(outputDir);
 
-            if (!Program.Offline)
-            {
-                try
-                {
-                    Console.WriteLine("Initializing container: " + Program.Experiment);
-                    var blobClient = Program.Account.CreateCloudBlobClient();
-                    Container = blobClient.GetContainerReference(Program.Experiment);
-                    if (!(await Container.ExistsAsync()))
-                    {
-                        Console.WriteLine("Container does not exist. Aborting...");
-                        return;
-                    }
+            var initSuccess = await Init(inputDir);
+            if (!initSuccess) return;
 
+            Console.WriteLine("Worker is running. Press 'A' to abort.");
 
-                    Console.WriteLine("Initializing queue: " + Program.Experiment);
-                    var queueClient = Program.Account.CreateCloudQueueClient();
-                    Queue = queueClient.GetQueueReference(Program.Experiment);
-                    if (!(await Queue.ExistsAsync()))
-                    {
-                        Console.WriteLine("Queue does not exist. Aborting...");
-                        return;
-                    }
-                }
-                catch { }
-            }
-
-            Console.WriteLine("Worker is running. Press 'a' to abort.");
             while (true)
             {
                 i++;
-                bool error = false;
                 StringBuilder debugInfo = new StringBuilder();
                 debugInfo.AppendLine(DateTime.Now.ToString());
-                string debugFileName = null;
 
                 if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.A)
                 {
@@ -89,127 +56,191 @@ namespace SigStat.Benchmark
                     return;
                 }
 
-                var benchmark = new VerifierBenchmark();
-                CloudQueueMessage msg = null;
+                CurrentBenchmark = await GetNextBenchmark();
+                if (CurrentBenchmark is null) return;
+
+                var logger = new SimpleConsoleLogger();
+                logger.Logged += (m, e, l) =>
+                {
+                    debugInfo.AppendLine(m);
+                    if (e != null)
+                        debugInfo.AppendLine(e.ToString());
+                    if (l == LogLevel.Error || l == LogLevel.Critical)
+                        CurrentResultType = "Error";
+                };
+                CurrentBenchmark.Logger = logger;
+
+                Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
 
                 try
                 {
-                    if (LocalInput)
-                    {
-                        if (LocalBenchmarks.Count == 0)
-                        {
-                            Console.WriteLine("No more tasks in queue.");
-                            return;
-                        }
-                        var localbenchmark = LocalBenchmarks.Peek();
-                        Console.WriteLine($"{DateTime.Now}: Loading benchmark...");
-                        //Console.WriteLine(localbenchmark);
-                        //debugInfo.AppendLine(localbenchmark);
-                        //benchmark = SerializationHelper.Deserialize<VerifierBenchmark>(localbenchmark);
-                        benchmark = localbenchmark;
-                    }
-                    else
-                    {
-                        msg = await Queue.GetMessageAsync(timeOut, null, null);
-                        if (msg == null)
-                        {
-                            Console.WriteLine("No more tasks in queue.");
-                            return;
-                        }
-                        Console.WriteLine($"{DateTime.Now}: Loading benchmark...");
-                        Console.WriteLine(msg.AsString);
-                        debugInfo.AppendLine(msg.AsString);
-                        benchmark = SerializationHelper.Deserialize<VerifierBenchmark>(msg.AsString);
-                    }
-
-                    var logger = new SimpleConsoleLogger();
-                    logger.Logged += (m, e, l) =>
-                    {
-                        debugInfo.AppendLine(m);
-                        if (e != null)
-                            debugInfo.AppendLine(e.ToString());
-                        if (l == LogLevel.Error || l == LogLevel.Critical)
-                            error = true;
-                    };
-                    benchmark.Logger = logger;
-
-                    Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
-                    var results = benchmark.Execute(false);
-
-                    Console.WriteLine($"{DateTime.Now}: Generating results...");
-                    //TODO: valami más név kéne, pl. VerifierBenchmark.ToShortString()
-                    var filename = $"Benchmark_{i}.json";
-                    var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
-
-                    //LogProcessor.Dump(logger);
-                    // MongoDB 
-                    // TableStorage
-                    // Json => utólag, json-ben szűrni lehet
-                    // DynamoDB ==> MongoDB $$$$$$$
-                    // DateTime, MachineName, ....ExecutionTime,..., ResultType, Result json{40*60 táblázat}
-                    //benchmark.Dump(filename, config.ToKeyValuePairs());
-
-                    Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
-                    SerializationHelper.JsonSerializeToFile<BenchmarkResults>(results, fullfilename);
-
-                    if (!Program.Offline)
-                    {
-                        Console.WriteLine($"{DateTime.Now}: Uploading results...");
-
-                        var blob = Container.GetBlockBlobReference($"Results/{filename}");
-                        await blob.DeleteIfExistsAsync();
-                        await blob.UploadFromFileAsync(fullfilename);
-                    }
+                    CurrentResults = CurrentBenchmark.Execute(true);
+                    CurrentResultType = "Success";
                 }
                 catch (Exception exc)
                 {
+                    CurrentResultType = "Error";
                     Console.WriteLine(exc.ToString());
                     debugInfo.AppendLine(exc.ToString());
-                    error = true;
-                }
-                if (error)
-                {
-                    debugFileName = $"Benchmark_{i}_Log.txt";
-                    var cloudFilename = debugFileName;
+
+                    var debugFileName = $"Result_{i}_Log.txt";
 
                     debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
                     File.WriteAllText(debugFileName, debugInfo.ToString());
+
                     if (!Program.Offline)
                     {
-                        var blob = Container.GetBlockBlobReference($"Results/{cloudFilename}");
+                        var blob = Container.GetBlockBlobReference($"Results/{debugFileName}");
                         await blob.DeleteIfExistsAsync();
                         await blob.UploadFromFileAsync(debugFileName);
                     }
                 }
 
-                if (!LocalInput) await Queue.DeleteMessageAsync(msg);
-                else LocalBenchmarks.Dequeue();
+                await ProcessResults();
+
+                //LogProcessor.Dump(logger);
+                // MongoDB 
+                // TableStorage
+                // Json => utólag, json-ben szűrni lehet
+                // DynamoDB ==> MongoDB $$$$$$$
+                // DateTime, MachineName, ....ExecutionTime,..., ResultType, Result json{40*60 táblázat}
+                //benchmark.Dump(filename, config.ToKeyValuePairs());
             }
         }
 
-        internal static string Init()
+        internal static async Task<bool> Init(string inputDir)
         {
             if (Program.Offline)
-                //list feltöltése fájlokból
-                return "";
+            {
+                if (!Directory.Exists(inputDir))
+                {
+                    Console.WriteLine("Input directory doesn't exist. Aborting...");
+                    return false;
+                }
+                else InputDirectory = new DirectoryInfo(inputDir);
+
+                foreach (var file in InputDirectory.GetFiles())
+                {
+                    var benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(file.FullName);
+                    LocalBenchmarks.Enqueue(benchmark);
+                }
+            }
             else
-                // blob, queue inicializálása
-                return "";
+            {
+                Console.WriteLine("Initializing container: " + Program.Experiment);
+                var blobClient = Program.Account.CreateCloudBlobClient();
+                Container = blobClient.GetContainerReference(Program.Experiment);
+                if (!(await Container.ExistsAsync()))
+                {
+                    Console.WriteLine("Container does not exist. Aborting...");
+                    return false;
+                }
+
+                Console.WriteLine("Initializing queue: " + Program.Experiment);
+                var queueClient = Program.Account.CreateCloudQueueClient();
+                Queue = queueClient.GetQueueReference(Program.Experiment);
+                if (!(await Queue.ExistsAsync()))
+                {
+                    Console.WriteLine("Queue does not exist. Aborting...");
+                    return false;
+                }
+            }
+            return true;
         }
-        internal static string GetNextTask()
+
+        internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
             if (Program.Offline)
-                return "";
+            {
+                if (LocalBenchmarks.Count == 0)
+                {
+                    Console.WriteLine("No more tasks in queue.");
+                    return null;
+                }
+                Console.WriteLine($"{DateTime.Now}: Loading benchmark...");
+                return LocalBenchmarks.Dequeue();
+            }
             else
-                return "";
+            {
+                CurrentMessage = await Queue.GetMessageAsync(timeOut, null, null);
+                if (CurrentMessage == null)
+                {
+                    Console.WriteLine("No more tasks in queue.");
+                    return null;
+                }
+                Console.WriteLine($"{DateTime.Now}: Loading benchmark...");
+                return SerializationHelper.Deserialize<VerifierBenchmark>(CurrentMessage.AsString);
+            }
         }
 
-        internal static void UploadResults()
+        internal static async Task ProcessResults()
         {
-            if (!Program.Offline)
-                return;
-            
+            //Valami más név kéne, pl. VerifierBenchmark.ToString()
+            var filename = $"Result_{i}.json";
+            var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
 
+            if (Program.Offline)
+            {
+                Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
+                SerializationHelper.JsonSerializeToFile<BenchmarkResults>(CurrentResults, fullfilename);
+            }
+            else
+            {
+                Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
+                SerializationHelper.JsonSerializeToFile<BenchmarkResults>(CurrentResults, fullfilename);
+
+                Console.WriteLine($"{DateTime.Now}: Uploading results to Azure Blob store...");
+                var blob = Container.GetBlockBlobReference($"Results/{filename}");
+                await blob.DeleteIfExistsAsync();
+                await blob.UploadFromFileAsync(fullfilename);
+
+                Console.WriteLine($"{DateTime.Now}: Writing results to Azure Table store...");
+                CloudTableClient tableClient = Program.Account.CreateCloudTableClient();
+                CloudTable table = tableClient.GetTableReference(Program.Experiment + "FinalResults");
+                await table.CreateIfNotExistsAsync();
+
+                var finalResultEntity = new DynamicTableEntity();
+                finalResultEntity.PartitionKey = filename;
+
+                finalResultEntity.RowKey = CurrentResultType;
+                finalResultEntity.Properties.Add("Machine", EntityProperty.CreateEntityPropertyFromObject(System.Environment.MachineName));
+                finalResultEntity.Properties.Add("Frr", EntityProperty.CreateEntityPropertyFromObject(CurrentResults.FinalResult.Frr));
+                finalResultEntity.Properties.Add("Far", EntityProperty.CreateEntityPropertyFromObject(CurrentResults.FinalResult.Far));
+                finalResultEntity.Properties.Add("Aer", EntityProperty.CreateEntityPropertyFromObject(CurrentResults.FinalResult.Aer));
+                
+                var tableOperation = TableOperation.InsertOrReplace(finalResultEntity);
+                await table.ExecuteAsync(tableOperation);
+
+                table = tableClient.GetTableReference(Program.Experiment + "SignerResults");
+                await table.CreateIfNotExistsAsync();
+
+                var signerResultEntity = new DynamicTableEntity();
+                signerResultEntity.PartitionKey = filename;
+
+                foreach (var signerResult in CurrentResults.SignerResults)
+                {
+                    signerResultEntity.RowKey = signerResult.Signer;
+                    signerResultEntity.Properties["Frr"] = EntityProperty.CreateEntityPropertyFromObject(signerResult.Frr);
+                    signerResultEntity.Properties["Far"] = EntityProperty.CreateEntityPropertyFromObject(signerResult.Far);
+                    signerResultEntity.Properties["Aer"] = EntityProperty.CreateEntityPropertyFromObject(signerResult.Aer);
+
+                    tableOperation = TableOperation.InsertOrReplace(signerResultEntity);
+                    await table.ExecuteAsync(tableOperation);
+                }
+
+                Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
+                var document = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize<BenchmarkResults>(CurrentResults));
+                document.Add("Benchmark", filename);
+                document.Add("Machine", System.Environment.MachineName);
+                document.Add("Time", DateTime.Now);
+                document.Add("ResultType", CurrentResultType);
+                var client = new MongoClient("mongodb+srv://sigstat:sigstat@benchmarktest-4josb.azure.mongodb.net/test?retryWrites=true");
+                var database = client.GetDatabase("benchmarks");
+                var collection = database.GetCollection<BsonDocument>("results");
+                await collection.InsertOneAsync(document);
+
+                await Queue.DeleteMessageAsync(CurrentMessage);
+            }
         }
     }
 }
