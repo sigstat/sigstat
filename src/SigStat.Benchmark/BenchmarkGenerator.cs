@@ -40,11 +40,11 @@ namespace SigStat.Benchmark
                 new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y },
                 new FillPenUpDurations()
                 {
-                     InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                     OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                     InterpolationType = typeof(CubicInterpolation),
-                     TimeInputFeature = Features.T,
-                     TimeOutputFeature = Features.T
+                    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                    OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                    InterpolationType = typeof(CubicInterpolation),
+                    TimeInputFeature = Features.T,
+                    TimeOutputFeature = Features.T
                 }
             );
             AddTransformationGroup(
@@ -69,7 +69,7 @@ namespace SigStat.Benchmark
 
         public static void AddDatabase(DataSetLoader datasetloader, Sampler sampler)
         {
-            Databases.Add(new DatabaseConfiguration(){ DataSetLoader = datasetloader, Sampler = sampler });
+            Databases.Add(new DatabaseConfiguration() { DataSetLoader = datasetloader, Sampler = sampler });
         }
 
         public static void AddTransformationGroup(params ITransformation[] transformations)
@@ -117,7 +117,8 @@ namespace SigStat.Benchmark
 
         private static IClassifier InitClassifier(IClassifier classifier, List<FeatureDescriptor> features, Sampler sampler)
         {
-            if (classifier is DtwClassifier) {
+            if (classifier is DtwClassifier)
+            {
                 var c = classifier as DtwClassifier;
                 c.Features = features;
                 return c;
@@ -154,9 +155,10 @@ namespace SigStat.Benchmark
             {
                 Console.WriteLine($"Writing {Benchmarks.Count} combinations to disk...");
 
+                //TODO: do not save files locally, when using online mode
                 for (int i = 0; i < Benchmarks.Count; i++)
                 {
-                    var filename = $"Benchmark_{i + 1}.json";
+                    var filename = $"Benchmark_{i}.json";
                     var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
                     SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(Benchmarks[i], fullfilename);
                 }
@@ -191,9 +193,10 @@ namespace SigStat.Benchmark
 
                     for (int i = 0; i < Benchmarks.Count; i++)
                     {
-                        Console.WriteLine($"{i + 1}/{Benchmarks.Count}");
+                        if (i % 100 == 0)
+                            Console.WriteLine($"{i}/{Benchmarks.Count}");
 
-                        var filename = $"Benchmark_{i + 1}.json";
+                        var filename = $"Benchmark_{i}.json";
                         var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
 
                         var blob = Container.GetBlockBlobReference($"Benchmarks/{filename}");
@@ -210,7 +213,7 @@ namespace SigStat.Benchmark
             catch (Exception e)
             {
                 File.WriteAllText("log.txt", e.ToString());
-                Console.WriteLine("Something went wrong. See log for details. Aborting...");
+                Console.WriteLine("Something went wrong. \r\n" + e);
                 return;
             }
         }

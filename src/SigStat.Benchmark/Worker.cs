@@ -82,7 +82,7 @@ namespace SigStat.Benchmark
                     CurrentResultType = "Error";
                     Console.WriteLine(exc.ToString());
                     debugInfo.AppendLine(exc.ToString());
-
+                    //TODO: work with benchmark filename instead of 'i'
                     var debugFileName = $"Result_{i}_Log.txt";
 
                     debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
@@ -112,12 +112,12 @@ namespace SigStat.Benchmark
         {
             if (Program.Offline)
             {
-                if (!Directory.Exists(inputDir))
+                InputDirectory = new DirectoryInfo(inputDir);
+                if (!InputDirectory.Exists)
                 {
                     Console.WriteLine("Input directory doesn't exist. Aborting...");
                     return false;
                 }
-                else InputDirectory = new DirectoryInfo(inputDir);
 
                 foreach (var file in InputDirectory.GetFiles())
                 {
