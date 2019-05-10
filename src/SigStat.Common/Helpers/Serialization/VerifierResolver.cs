@@ -40,6 +40,22 @@ namespace SigStat.Common.Helpers.Serialization
             {
                 property.Converter = new FeatureDescriptorDictionaryConverter();
             }
+
+            //if (typeof(IEnumerable<FeatureDescriptor>).IsAssignableFrom(property.PropertyType)) ;
+            //MethodInfo add = property.PropertyType.GetMethods().Where(m => m.Name == "Add")
+            //    .Where(m => m.GetParameters().Length == 1 && typeof(FeatureDescriptor).IsAssignableFrom(m.GetParameters()[0].ParameterType)).SingleOrDefault();
+
+            //var list = Activator.CreateInstance(property.PropertyType);
+            //foreach (var fd in featureDescriptors)
+            //{
+            //    add.Invoke(list, new[] { })
+            //}
+
+
+            //List<FeatureDescriptor<int>> list = null;
+            //IEnumerable<FeatureDescriptor> en;
+            //en = list;
+
             if (
                 property.PropertyType.IsGenericType && 
                (property.PropertyType.GetGenericTypeDefinition() == typeof(List<>) && 

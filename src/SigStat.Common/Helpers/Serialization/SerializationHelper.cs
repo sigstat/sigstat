@@ -42,7 +42,7 @@ namespace SigStat.Common.Helpers
 
                 return desirializedObject;
             }
-            catch(SerializationException e)
+            catch (SerializationException e)
             {
                 Console.WriteLine($"Serialization error: '{e}'");
                 return default(T);
@@ -91,22 +91,7 @@ namespace SigStat.Common.Helpers
         /// <param name="path">Relative path</param>
         public static void JsonSerializeToFile<T>(T o, string path)
         {
-            try
-            {
-                File.WriteAllText(path, JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings()));
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine($"Serialization error: '{e}'");
-            }
-            catch (JsonWriterException e)
-            {
-                Console.WriteLine($"Error while writing json: '{e}'");
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine($"Incorrect path '{e}'");
-            }
+            File.WriteAllText(path, JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings()));
         }
         /// <summary>
         /// Creates json string from object
@@ -116,20 +101,7 @@ namespace SigStat.Common.Helpers
         /// <returns>The json string constructed from the object</returns>
         public static string JsonSerialize<T>(T o)
         {
-            try
-            {
-                return JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings());
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine($"Serialization error: '{e}'");
-                return null;
-            }
-            catch (JsonReaderException e)
-            {
-                Console.WriteLine($"Error while writing json: '{e}'");
-                return null;
-            }
+            return JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings());
         }
     }
 }
