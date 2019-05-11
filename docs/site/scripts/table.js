@@ -32,9 +32,9 @@ $(function () {
       for (var i = 0; i < res_length; i++) {
         dynamic += "<tr>" + "<td>" + data.results[i].verifierName + "</td>"
         for (var j = 0; j < length; j++) {
-          dynamic += "<td>" + (data.results[i][databaseNames[j]].AER == null ? " " : data.results[i][databaseNames[j]].AER) + "</td>" +
-            "<td>" + (data.results[i][databaseNames[j]].FAR == null ? " " : data.results[i][databaseNames[j]].FAR) + "</td>" +
-            "<td>" + (data.results[i][databaseNames[j]].FRR == null ? " " : data.results[i][databaseNames[j]].FRR) + "</td>";
+          dynamic += "<td>" + (data.results[i][databaseNames[j]].AER == null ? "?" : data.results[i][databaseNames[j]].AER) + "</td>" +
+            "<td>" + (data.results[i][databaseNames[j]].FAR == null ? "?" : data.results[i][databaseNames[j]].FAR) + "</td>" +
+            "<td>" + (data.results[i][databaseNames[j]].FRR == null ? "?" : data.results[i][databaseNames[j]].FRR) + "</td>";
         }
         dynamic += "</tr>";
 
