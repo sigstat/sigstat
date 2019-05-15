@@ -1205,6 +1205,62 @@
             <param name="stream">Stream to read MCYT data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
+        <member name="T:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19">
+            <summary>
+            Set of features containing raw data loaded from SigComp19-format database.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.X">
+            <summary>
+            X cooridnates from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.Y">
+            <summary>
+            Y cooridnates from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.P">
+            <summary>
+            Pressure from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.Altitude">
+            <summary>
+            Altitude from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.Azimuth">
+            <summary>
+            Azimuth from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.Distance">
+            <summary>
+            Distance from the surface of the tablet from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.T">
+            <summary>
+            T values from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.EventType">
+            <summary>
+            EventType (pen up) values from the online signature imported from the SigComp19 database
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.SigComp19OnlineLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">
+            <summary>
+            Loads one signature from specified stream.
+            </summary>
+            <remarks>
+            Based on Mohammad's MCYT reader.
+            </remarks>
+            <param name="signature">Signature to write features to.</param>
+            <param name="stream">Stream to read SigComp19 data from.</param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
         <member name="T:SigStat.Common.Loaders.Svc2004">
             <summary>
             Set of features containing raw data loaded from SVC2004-format database.

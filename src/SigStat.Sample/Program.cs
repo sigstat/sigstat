@@ -56,7 +56,8 @@ namespace SigStat.Sample
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            JsonSerializeOnlineVerifierBenchmark();
+            //JsonSerializeOnlineVerifierBenchmark();
+            ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -107,7 +108,7 @@ namespace SigStat.Sample
             var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
             //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
 
-           
+
             var benchmark = BenchmarkBuilder.Build(myConfig);
             benchmark.Logger = new SimpleConsoleLogger();
             benchmark.Execute(true);
@@ -459,7 +460,6 @@ namespace SigStat.Sample
 
         }
 
-
         static void ClassificationBenchmark()
         {
             var benchmark = new VerifierBenchmark()
@@ -469,36 +469,18 @@ namespace SigStat.Sample
                 {
                     Pipeline = new SequentialTransformPipeline {
                         new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
-                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
-                        //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
-                        new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+                        new Scale() {InputFeature = Features.X, OutputFeature= Features.X },
+                        new Scale() {InputFeature = Features.Y, OutputFeature= Features.Y },
 
-                        new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
-                             new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
-                             //new ResampleSamplesCountBased() {
-                             //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                             //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
-                             //    InterpolationType = typeof(CubicInterpolation),
-                             //    NumOfSamples = 500,
-                             //    OriginalTFeature = Features.T,
-                             //    ResampledTFeature = Features.T,
-                             //},
-                             //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
-                             //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
-                             //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
-                              new FillPenUpDurations()
-                              {
-                                  InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
-                                  OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                                  InterpolationType = typeof(CubicInterpolation),
-                                  TimeInputFeature =Features.T,
-                                  TimeOutputFeature = Features.T
-                              }
-                        }
-             ,
+                        //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                        //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                        //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                    },
+
                     Classifier = new DtwClassifier()
                     {
-                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure },
+                        MultiplicationFactor = 1.7
                     }
                 },
                 Sampler = new SVC2004Sampler1(),
@@ -511,6 +493,7 @@ namespace SigStat.Sample
             var result = benchmark.Execute(true);
 
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
+
         }
 
         //static void TestPreprocessingTransformations()
@@ -976,7 +959,7 @@ namespace SigStat.Sample
         //}
 
         static void JsonSerializeSignature()
-        {  
+        {
             Signature sig = new Signature();
             sig.ID = "Demo";
             sig.Origin = Origin.Genuine;
@@ -989,7 +972,7 @@ namespace SigStat.Sample
             //var method = typeof(FeatureDescriptor).GetMethod("Get<>", BindingFlags.Public | BindingFlags.Static);
             //var genMethod = method.MakeGenericMethod(type);
             //genMethod.Invoke()
-            
+
 
             sig.SetFeature(heightDescriptor, 4);
             var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
@@ -1071,7 +1054,7 @@ namespace SigStat.Sample
             string path = @"VerifierSerialized.txt";
 
             //File serialization example
-            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier,path);
+            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier, path);
             Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(path);
 
 
@@ -1117,10 +1100,10 @@ namespace SigStat.Sample
             benchmark.ProgressChanged += ProgressPrimary;
             //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
-           //var result = benchmark.Execute(true);
+            //var result = benchmark.Execute(true);
 
-           //Console.WriteLine($"AER: {result.FinalResult.Aer}");
-            SerializationHelper.JsonSerializeToFile(benchmark,@"VerifierBenchmarkSerialized.txt");
+            //Console.WriteLine($"AER: {result.FinalResult.Aer}");
+            SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
             //SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
             VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
         }
