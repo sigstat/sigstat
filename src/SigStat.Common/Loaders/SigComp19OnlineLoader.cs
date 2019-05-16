@@ -108,7 +108,7 @@ namespace SigStat.Common.Loaders
                         Signature signature = new Signature
                         {
                             Signer = signer,
-                            ID = signatureFile.SignatureID,
+                            ID = signatureFile.SignatureIndex,
                             Origin = signatureFile.ForgerID == null ? Origin.Genuine : Origin.Forged
                         };
                         using (MemoryStream ms = new MemoryStream())
