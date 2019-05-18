@@ -7,10 +7,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-
-
 .tooltipster-base.tooltipster-top,
-.tooltipster-base.tooltipster-bottom {
+.tooltipster-base.tooltipster-bottom { /* have some space from the screen sides */
 padding-left :15px;
 padding-right: 15px;
 }
@@ -35,10 +33,10 @@ th {
   font-weight: bold;
   color: whitesmoke;
   text-transform: uppercase;
-  /*font-family: Arial;*/
   cursor: pointer;
 }
 
+/* rotate for column headers, to have vertical column header: rotate (270deg) needed */
 th.rotate{
   height: 128px;
   padding: 0;
@@ -66,7 +64,7 @@ table:not(#under){
   border: 10px solid white;
 }
 
-table tr:nth-child(odd) td:not(#asd) {
+table tr:nth-child(odd) td:not(#underCell) {
   background: white;
   text-align: center;
   vertical-align: middle;
@@ -78,7 +76,7 @@ table tr:nth-child(odd) td:not(#asd) {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-table tr:nth-child(even) td:not(#asd) {
+table tr:nth-child(even) td:not(#underCell) {
   background: #D3D3D3;
   text-align: center;
   vertical-align: middle;

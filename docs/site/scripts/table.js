@@ -1,34 +1,33 @@
 $(function () {
   $.ajax({
     type: 'GET',
-    // url: 'https://api.myjson.com/bins/z9efy', // with columnType
-    // url: 'https://api.myjson.com/bins/17w6pq', // without columnType
-    url: 'https://raw.githubusercontent.com/sigstat/sigstat/596ff6d7b14de0125123704ed2744754f2aae67e/docs/site/scripts/Results.json', // from GH
+    // url: 'https://api.myjson.com/bins/z9efy', // with columnType example
+    url: 'http://sigstat.org/site/scripts/Results.json', // directly from the site
     dataType: 'json',
     success: function (data) {
-      var length = Object.keys(data.databases).length;
-      var th = "<th class=\"rotate\">";
-      var th_end = "</th>";
+      let db_length = Object.keys(data.databases).length;
+      let th = "<th class=\"rotate\">";
+      let th_end = "</th>";
 
-      $("#header").append("<th class=\"align-middle\">" + "Verifier's" + "<br>"+ "Name" + th_end);
+      $("#header").append("<th class=\"align-middle\">" + "Verifier's" + "<br>" + "Name" + th_end);
       $("#header").append("<th class=\"align-middle\">" + "Average" + th_end);
       $("#header").append("<th class=\"align-middle\">" + "Average" + "<br>" + "Core" + th_end);
-      for (var i = 0; i < length; i++) {
+      for (let i = 0; i < db_length; i++) {
         $("#header").append(th + "<div>" + "<span>" + data.databases[i].Name + "</div>" + "</span>" + th_end);
       }
 
-      var res_length = Object.keys(data.results).length;
+      let res_length = Object.keys(data.results).length;
 
-      var databaseNames = Object.keys(data.results[0]);
+      let databaseNames = Object.keys(data.results[0]);
       databaseNames.splice(0, 3);
 
-      var dynamic = "";
+      let dynamic = "";
 
-      for (var i = 0; i < res_length; i++) {
+      for (let i = 0; i < res_length; i++) {
         dynamic += "<tr>" + "<td class=\"verName\">" + data.results[i].verifierName + "</td>";
-        dynamic += "<td>" + "<p class=\"summary\">" + (data.results[i]["Average"].AER).toFixed(2) + "%"+ "</p>" + "</td>";
-        dynamic += "<td>" + "<p class=\"summary\">" + data.results[i]["Average Core"].AER.toFixed(2) + "%"+ "</p>" + "</td>";
-        for (var j = 0; j < length; j++) {
+        dynamic += "<td>" + "<p class=\"summary\">" + (data.results[i]["Average"].AER).toFixed(2) + "%" + "</p>" + "</td>";
+        dynamic += "<td>" + "<p class=\"summary\">" + data.results[i]["Average Core"].AER.toFixed(2) + "%" + "</p>" + "</td>";
+        for (let j = 0; j < db_length; j++) { // if AER is missing due to exception
           dynamic += "<td>" + "<em>" + (data.results[i][databaseNames[j]].AER == null ? " " : (data.results[i][databaseNames[j]].AER).toFixed(2) + "%") + "</em>" + "</td>";
         }
         dynamic += "</tr>";
@@ -36,40 +35,41 @@ $(function () {
       }
       $("#content").append(dynamic);
 
-      var IsValueSummary = data.columnType;
-      if (IsValueSummary === 'summary'){
-        var bar = newSheet();
-        bar.insertRule("p.summary {color: white;}",0);
-        bar.insertRule("p.summary {background-color: chocolate;}",0);
+      let IsValueSummary = data.columnType;
+      if (IsValueSummary === 'summary') {
+        let bar = newSheet();
+        bar.insertRule("p.summary {color: white;}", 0);
+        bar.insertRule("p.summary {background-color: chocolate;}", 0);
       }
 
       function newSheet() {
-        var style = document.createElement("style");
-       
+        let style = document.createElement("style");
+
         style.appendChild(document.createTextNode(""));
         document.head.appendChild(style);
-       
+
         return style.sheet;
-       };
+      };
 
+      // table header
       $("body").on('mouseover', 'span:not(.tooltipstered)', function () {
-        var tooltipInstance = null;
-        var temp = ($(this).html());
-        var sep = ": ";
-        var eol = "<br>";
+        let tooltipInstance = null;
+        let temp = ($(this).html());
+        let sep = ": ";
+        let eol = "<br>";
 
-        var first = data.databases.find(asd => asd.Name === temp);
-        var test = "";
+        let singleDB = data.databases.find(asd => asd.Name === temp);
+        let headers = "";
 
         for (var i = 1; i <= 5; i++) {
-          test += Object.keys(first)[i] + sep + first[Object.keys(first)[i]] + eol
+          headers += Object.keys(singleDB)[i] + sep + singleDB[Object.keys(singleDB)[i]] + eol
         }
-        test += Object.keys(first)[6] + sep + "<a href=" + first[Object.keys(first)[i]] + " target=\"_blank\">" + first[Object.keys(first)[i]] + "</a>";
+        headers += Object.keys(singleDB)[6] + sep + "<a href=" + singleDB[Object.keys(singleDB)[i]] + " target=\"_blank\">" + singleDB[Object.keys(singleDB)[i]] + "</a>";
 
 
         tooltipInstance = $(this).tooltipster({
           contentAsHTML: true,
-          content: test,
+          content: headers,
           delay: 100,
           theme: 'tooltipster-light',
           interactive: true
@@ -78,23 +78,24 @@ $(function () {
         tooltipInstance.tooltipster('open');
       })
 
+      // verifier's name in the first column
       $("#myTable tbody tr td:first-child").on('mouseover', function () {
-        var tooltipInstance = null;
-        var temp = ($(this).html());
-        var sep = ": ";
-        var eol = "<br>";
+        let tooltipInstance = null;
+        let temp = ($(this).html());
+        let sep = ": ";
+        let eol = "<br>";
 
 
-        var first = data.results.find(asd => asd.verifierName === temp);
-        var test = "";
+        let singleVerifier = data.results.find(asd => asd.verifierName === temp);
+        let firstColumn = "";
 
-        for (var i = 1; i <= 2; i++) {
-          test += Object.keys(first)[i] + sep + first[Object.keys(first)[i]] + eol;
+        for (let i = 1; i <= 2; i++) {
+          firstColumn += Object.keys(singleVerifier)[i] + sep + singleVerifier[Object.keys(singleVerifier)[i]] + eol;
         }
 
         tooltipInstance = $(this).tooltipster({
           contentAsHTML: true,
-          content: test,
+          content: firstColumn,
           delay: 0,
           theme: 'tooltipster-default',
           multiple: true
@@ -102,31 +103,32 @@ $(function () {
         tooltipInstance.tooltipster('open');
       })
 
+      // Average and Average Core datas
       $("body").on('mouseover', 'p:not(.tooltipstered)', function () {
-        var rowData = ($(this).parent().parent().find('td:first').text());
-        var currentColumnIndex = $(this).parent().index();
+        let rowData = ($(this).parent().parent().find('td:first').text());
+        let currentColumnIndex = $(this).parent().index();
 
 
-        var temp = data.results.find(asd => asd.verifierName === rowData);
-        var almost = "";
-        if(currentColumnIndex === 1){
-          almost = temp[Object.keys(temp)[Object.keys(temp).length-2]];
+        let currentRow = data.results.find(asd => asd.verifierName === rowData);
+        let preCell = "";
+        if (currentColumnIndex === 1) {
+          preCell = currentRow[Object.keys(currentRow)[Object.keys(currentRow).length - 2]];
         }
-        if(currentColumnIndex === 2){
-          almost = temp[Object.keys(temp)[Object.keys(temp).length-1]];
-        }
-        
-        var test = "";
-
-        for (var i = 0; i <= 2; i++) {
-          test += Object.keys(almost)[i] + ": " + almost[Object.keys(almost)[i]].toFixed(2) + "%" + "<br>";
+        if (currentColumnIndex === 2) {
+          preCell = currentRow[Object.keys(currentRow)[Object.keys(currentRow).length - 1]];
         }
 
-        
+        let content = "";
+
+        for (let i = 0; i <= 2; i++) {
+          content += Object.keys(preCell)[i] + ": " + preCell[Object.keys(preCell)[i]].toFixed(2) + "%" + "<br>";
+        }
+
+
 
         tooltipInstance = $(this).tooltipster({
           contentAsHTML: true,
-          content: test,
+          content: content,
           delay: 0,
           theme: 'tooltipster-noir',
         })
@@ -134,39 +136,37 @@ $(function () {
         tooltipInstance.tooltipster('open');
       })
 
+      // all cells related to databases
       $("body").on('mouseover', 'em:not(.tooltipstered)', function () {
-        var rowData = ($(this).parent().parent().find('td:first').text());
-        var currentColumnIndex = $(this).parent().index() - 3;
-        var db = data.databases[currentColumnIndex];
-        var final = db[Object.keys(db)[0]];
+        let rowData = ($(this).parent().parent().find('td:first').text());
+        let currentColumnIndex = $(this).parent().index() - 3;
+        let singleDB = data.databases[currentColumnIndex];
+        let firstValue = singleDB[Object.keys(singleDB)[0]];
 
-        var temp = data.results.find(asd => asd.verifierName === rowData);
-        var almost = temp[Object.keys(temp)[currentColumnIndex + 3]];
-        
+        let getDB = data.results.find(asd => asd.verifierName === rowData);
+        let currentData = getDB[Object.keys(getDB)[currentColumnIndex + 3]];
+
+        let tooltipInstance = null;
+
+        let row = data.results.find(asd => asd.verifierName === rowData);
+        let content = "";
+
+        content += Object.keys(row)[0] + ": " + row[Object.keys(row)[0]] + "<br>";
+        content += "databaseName: " + firstValue + "<br>";
 
 
-        var tooltipInstance = null;
-
-
-        var row = data.results.find(asd => asd.verifierName === rowData);
-        var test = "";
-
-        test += Object.keys(row)[0] + ": " + row[Object.keys(row)[0]] + "<br>";
-        test += "databaseName: " + final + "<br>";
-
-        
-        for (var i = 0; i <= 2; i++) {
-          test += Object.keys(almost)[i] + ": " + almost[Object.keys(almost)[i]].toFixed(2) + "%" + "<br>";
+        for (let i = 0; i <= 2; i++) {
+          content += Object.keys(currentData)[i] + ": " + currentData[Object.keys(currentData)[i]].toFixed(2) + "%" + "<br>";
         }
-        
-        if(Object.keys(almost)[3] === 'Comment'){
-          test += Object.keys(almost)[3] + ": " + almost[Object.keys(almost)[3]];
+
+        if (Object.keys(currentData)[3] === 'Comment') {
+          content += Object.keys(currentData)[3] + ": " + currentData[Object.keys(currentData)[3]];
         }
 
 
         tooltipInstance = $(this).tooltipster({
           contentAsHTML: true,
-          content: test,
+          content: content,
           delay: 0,
           theme: 'tooltipster-punk'
 
