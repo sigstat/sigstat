@@ -91,6 +91,8 @@ namespace SigStat.Common
             sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
         { }
     }
+
+    
     public class McytSampler1 : Sampler
     {
         public McytSampler1() : base(
@@ -111,7 +113,7 @@ namespace SigStat.Common
 
     public class McytSampler3 : Sampler
     {
-        static string[] training = new[] { "00","02", "04", "06", "08", "10", "12", "14", "16", "18" };
+        static string[] training = new[] { "00", "02", "04", "06", "08", "10", "12", "14", "16", "18" };
         public McytSampler3() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
             sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
@@ -129,9 +131,7 @@ namespace SigStat.Common
         { }
     }
 
-
-
-    public class DutchSampler1 : Sampler
+   public class DutchSampler1 : Sampler
     {
         public DutchSampler1() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
@@ -151,7 +151,7 @@ namespace SigStat.Common
 
     public class DutchSampler3 : Sampler
     {
-        static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18","20"};
+        static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18", "20" };
         public DutchSampler3() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
             sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
@@ -169,4 +169,22 @@ namespace SigStat.Common
         { }
     }
 
+    public class UniversalSampler : Sampler
+    {
+        // TODO: this can use wrong configurations 
+        public UniversalSampler(int refCount, int testCount) : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(refCount).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(refCount).Take(testCount).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).Take(testCount).ToList())
+        { }
+    }
+
+    public class SigComp19Sampler : Sampler
+    {
+        public SigComp19Sampler(int refCount, int testCount) : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(refCount).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(refCount).Take(testCount).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
 }

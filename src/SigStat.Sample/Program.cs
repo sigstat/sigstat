@@ -468,13 +468,12 @@ namespace SigStat.Sample
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
-                        new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
                         new Scale() {InputFeature = Features.X, OutputFeature= Features.X },
                         new Scale() {InputFeature = Features.Y, OutputFeature= Features.Y },
 
-                        //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
-                        //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
-                        //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                        new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                        InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                        OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
                     },
 
                     Classifier = new DtwClassifier()
@@ -483,7 +482,7 @@ namespace SigStat.Sample
                         MultiplicationFactor = 1.7
                     }
                 },
-                Sampler = new SVC2004Sampler1(),
+                Sampler = new UniversalSampler(3, 10),
                 Logger = new SimpleConsoleLogger(),
             };
 

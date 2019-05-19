@@ -1,0 +1,20 @@
+﻿This generic signature verification module, created for SigComp2019 compares
+a questioned signature with some authentic (reference) signatures of a given 
+writer and calculates comparsion score and evidential value of this score.  
+Comparsion score shows the probability of the sample being a genuine signature
+and evidential score is expressed as the ratio of the probabilities of finding
+that score when the questioned signature is a genuine signature and when it is
+a forgery.
+
+(c) 2019 Budapest University of Technology and Economics
+    Department of Automation and Applied Informatics
+    http://www.aut.bme.hu/signature
+
+./TaskSigOnline output.txt test/que/11.csv ref/01.csv test/ref/02.csv test/ref/23.csv
+directory output questioned_signature reference_signatures
+
+  directory		Specifies the working directory
+  output		Specifies the output file
+  questioned_signature  Specifies the file describing the questioned signature
+  reference_signatures  Sepcifies the at least 3 at most 8 files describing the 
+			authentic signatures of the original writer
