@@ -8,12 +8,10 @@ a forgery.
 
 (c) 2019 Budapest University of Technology and Economics
     Department of Automation and Applied Informatics
-    http://www.aut.bme.hu/signature
+    https://github.com/sigstat
 
-./TaskSigOnline output.txt test/que/11.csv ref/01.csv test/ref/02.csv test/ref/23.csv
-directory output questioned_signature reference_signatures
+Verifier.exe output.txt test/que/11.csv ref/01.csv test/ref/02.csv test/ref/23.csv
 
-  directory		Specifies the working directory
   output		Specifies the output file
   questioned_signature  Specifies the file describing the questioned signature
   reference_signatures  Sepcifies the at least 3 at most 8 files describing the 

@@ -38,7 +38,7 @@ namespace SigStat.SigComp2019
                 Classifier = new DtwClassifier()
                 {
                     Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure },
-                    MultiplicationFactor = 1.7
+                    MultiplicationFactor = 1.8
                 }
             };
 
