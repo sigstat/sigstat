@@ -6,7 +6,6 @@ using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,7 +15,6 @@ namespace SigStat.SigComp2019
 {
     class Program
     {
-        static string directoryName;
         static string outputFileName;
         static Signature questionedSignature = new Signature();
         static List<Signature> referenceSignatures = new List<Signature>();
@@ -64,20 +62,19 @@ namespace SigStat.SigComp2019
 
         private static bool ReadParameters(string[] args)
         {
-            if(args == null || args.Length < 6)
+            if(args == null || args.Length < 5)
             {
                 Console.WriteLine(ResourceHelper.ReadString("Help"));
                 return false;
             }
 
-            directoryName = args[0];
-            outputFileName = Path.Combine(directoryName, args[1]);
+            outputFileName = args[0];
 
             using (MemoryStream ms = new MemoryStream())
             {
-                var sigFileName = args[2];
+                var sigFileName = args[1];
                 fileNames.Add(sigFileName);
-                using (Stream s = new FileStream(Path.Combine(directoryName,  sigFileName), FileMode.Open))
+                using (Stream s = new FileStream(sigFileName, FileMode.Open))
                 {
                     s.CopyTo(ms);//must use memory stream to use Seek()
                 }
@@ -85,19 +82,19 @@ namespace SigStat.SigComp2019
                 SigComp19OnlineLoader.LoadSignature(questionedSignature, ms, true);
             }
 
-            for (int i = 3; i < args.Length; i++)
+            for (int i = 2; i < args.Length; i++)
             {
                 Signature sig = new Signature()
                 {
                     Origin = Origin.Genuine,
-                    ID = (i - 2).ToString()
+                    ID = (i - 1).ToString()
                 };
                 var sigFileName = args[i];
                 fileNames.Add(sigFileName);
 
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    using (Stream s = new FileStream(Path.Combine(directoryName, sigFileName), FileMode.Open))
+                    using (Stream s = new FileStream(sigFileName, FileMode.Open))
                     {
                         s.CopyTo(ms);//must use memory stream to use Seek()
                     }
