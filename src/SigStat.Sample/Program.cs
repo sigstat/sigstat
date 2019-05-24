@@ -174,7 +174,7 @@ namespace SigStat.Sample
         static void DatabaseLoaderDemo(out List<Signature> genuines, out Signature challenge)
         {
             //Load signatures from local database
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"))[0];//Load the first signer only
             genuines = signer.Signatures.Where(s => s.Origin == Origin.Genuine).ToList();
             challenge = genuines[0];
@@ -182,7 +182,7 @@ namespace SigStat.Sample
 
         static void TransformationPipeline()
         {
-            Signature offlineSignature = ImageLoader.LoadSignature(@"Databases\Offline\Images\004_e_001.png");
+            Signature offlineSignature = ImageLoader.LoadSignature(@"Databases\Offline\Images\004_e_001.png".GetPath());
 
             // Initialize a transformation using object initializer
             var resize = new Resize()
@@ -275,7 +275,7 @@ namespace SigStat.Sample
                 Classifier = new WeightedClassifier()
             };
 
-            Signature s1 = ImageLoader.LoadSignature(@"Databases\Offline\Images\U1S1.png");
+            Signature s1 = ImageLoader.LoadSignature(@"Databases\Offline\Images\U1S1.png".GetPath());
             s1.Origin = Origin.Genuine;
             Signer s = new Signer();
             s.Signatures.Add(s1);
@@ -337,7 +337,7 @@ namespace SigStat.Sample
                 }
             };
 
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             var signers = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"));//Load the first signer only
 
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);
@@ -354,7 +354,7 @@ namespace SigStat.Sample
 
             var benchmark = new VerifierBenchmark()
             {
-                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true),
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
@@ -406,7 +406,7 @@ namespace SigStat.Sample
 
         static void OnlineToImage()
         {
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             Signature s1 = loader.EnumerateSigners(p => (p.ID == "10")).ToList()[0].Signatures[10];//signer 10, signature 10
 
             var tfs = new SequentialTransformPipeline
@@ -426,11 +426,11 @@ namespace SigStat.Sample
 
         static void GenerateOfflineDatabase()
         {
-            string path = @"Databases\Offline\Generated\";
+            string path = @"Databases\Offline\Generated\".GetPath();
             Directory.CreateDirectory(path);
 
             //Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
-            MCYTLoader loader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip", true);
+            MCYTLoader loader = new MCYTLoader(@"Databases\Online\MCYT100\MCYT_Signature_100.zip".GetPath(), true);
 
             List<Signer> signers = loader.EnumerateSigners(null).ToList();
 
@@ -464,7 +464,7 @@ namespace SigStat.Sample
         {
             var benchmark = new VerifierBenchmark()
             {
-                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true),
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline {
@@ -497,7 +497,7 @@ namespace SigStat.Sample
 
         //static void TestPreprocessingTransformations()
         //{
-        //    Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+        //    Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
         //    var signer = new List<Signer>(loader.EnumerateSigners(p => p.ID == "32"))[0];//Load the first signer only
 
         //    Signature signature = signer.Signatures[13];
@@ -979,7 +979,7 @@ namespace SigStat.Sample
             loops[0].Bounds = bound;
             sig.SetFeature(MyFeatures.Loop, loops);
 
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             var signer = loader.EnumerateSigners(p => p.ID == "01").First();//Load the first signer only
             var signature = signer.Signatures[0];
             signature.Signer.Signatures = null;
@@ -1067,7 +1067,7 @@ namespace SigStat.Sample
         {
             var benchmark = new VerifierBenchmark()
             {
-                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true),
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true),
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline

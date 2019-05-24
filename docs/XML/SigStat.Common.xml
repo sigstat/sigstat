@@ -1040,6 +1040,17 @@
         <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.IOExtensions">
+            <summary>
+            Extension methods for common IO operations
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.IOExtensions.GetPath(System.String)">
+            <summary>
+            Gets the given relative or absolute path in a platform neutral form
+            </summary>
+            <param name="path"></param>
+        </member>
         <member name="T:SigStat.Common.MathHelper">
             <summary>
             Common mathematical functions used by the SigStat framework
