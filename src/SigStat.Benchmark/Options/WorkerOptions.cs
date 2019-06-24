@@ -18,9 +18,15 @@ namespace SigStat.Benchmark.Options
         [Option('o', "outputDir", Required = false, Default = "Results", HelpText = "Output directory for storing benchmark results locally.")]
         public string OutputDirectory { get; set; }
 
+        [Option('p', "procId", Required = false, Default = 0, HelpText = "Worker Process Id.")]
+        public int ProcessId { get; set; }
+
+        [Option('t', "maxThreads", Required = false, Default = 0, HelpText = "Maximum number of threads the worker may use. The default value makes no restrictions.")]
+        public int MaxThreads { get; set; }
+
         public override Task RunAsync()
         {
-            return Worker.RunAsync(InputDirectory, OutputDirectory);
+            return Worker.RunAsync(InputDirectory, OutputDirectory, ProcessId, MaxThreads);
         }
     }
 }

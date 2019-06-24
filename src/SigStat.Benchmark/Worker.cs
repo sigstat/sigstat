@@ -35,7 +35,7 @@ namespace SigStat.Benchmark
         static string CurrentResultType;
         static int i = 0;
 
-        internal static async Task RunAsync(string inputDir, string outputDir)
+        internal static async Task RunAsync(string inputDir, string outputDir, int procId, int maxThreads)
         {
             OutputDirectory = Directory.CreateDirectory(outputDir);
 
