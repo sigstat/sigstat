@@ -214,14 +214,28 @@ namespace SigStat.Common
         /// <summary>
         /// Execute the benchmarking process.
         /// </summary>
+        /// <param name="ParallelMode"></param>
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
+        {
+            if (ParallelMode)
+                return Execute(Environment.ProcessorCount);
+            else
+                return Execute(1);
+        }
+
+        /// <summary>
+        /// Execute the benchmarking process with a degree of parallelism.
+        /// </summary>
+        /// <param name="degreeOfParallelism">Degree of parallelism is the maximum number of concurrently executing tasks.</param>
+        /// <returns></returns>
+        public BenchmarkResults Execute(int degreeOfParallelism)
         {
             var stopwatch = Stopwatch.StartNew();
 
             // TODO: centralize logger injection
             Verifier.Logger = logger;
-            this.LogInformation("Benchmark execution started. Parallel mode: {ParallelMode}", ParallelMode);
+            this.LogInformation("Benchmark execution started.");
             var results = new List<Result>();
             farAcc = 0;
             frrAcc = 0;
@@ -231,9 +245,9 @@ namespace SigStat.Common
             var signers = new List<Signer>(Loader.EnumerateSigners());
             this.LogInformation("{signersCount} signers found. Benchmarking..", signers.Count);
 
-            if (ParallelMode)
+            if (degreeOfParallelism>1)
             {
-                results = signers.AsParallel().SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
+                results = signers.AsParallel().WithDegreeOfParallelism(degreeOfParallelism).SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
             else
             {
