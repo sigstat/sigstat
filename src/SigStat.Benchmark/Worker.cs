@@ -14,6 +14,7 @@ using SigStat.Common.Loaders;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,13 +31,19 @@ namespace SigStat.Benchmark
         static Queue<VerifierBenchmark> LocalBenchmarks = new Queue<VerifierBenchmark>();
 
         static VerifierBenchmark CurrentBenchmark;
+        static string CurrentBenchmarkId;
         static CloudQueueMessage CurrentMessage;
         static BenchmarkResults CurrentResults;
         static string CurrentResultType;
-        static int i = 0;
 
         internal static async Task RunAsync(string inputDir, string outputDir, int procId, int maxThreads)
         {
+            //stop worker process after 3 days
+            DateTime stopTime = DateTime.Now.AddHours(71);
+
+            //delayed start
+            await Task.Delay(100 * procId);
+
             OutputDirectory = Directory.CreateDirectory(outputDir);
 
             var initSuccess = await Init(inputDir);
@@ -44,9 +51,8 @@ namespace SigStat.Benchmark
 
             Console.WriteLine("Worker is running. Press 'A' to abort.");
 
-            while (true)
+            while (DateTime.Now < stopTime)
             {
-                i++;
                 StringBuilder debugInfo = new StringBuilder();
                 debugInfo.AppendLine(DateTime.Now.ToString());
 
@@ -74,7 +80,10 @@ namespace SigStat.Benchmark
 
                 try
                 {
-                    CurrentResults = CurrentBenchmark.Execute(true);
+                    if(maxThreads>0)
+                        CurrentResults = CurrentBenchmark.Execute(maxThreads);
+                    else
+                        CurrentResults = CurrentBenchmark.Execute(true);//default: no restriction 
                     CurrentResultType = "Success";
                 }
                 catch (Exception exc)
@@ -82,8 +91,7 @@ namespace SigStat.Benchmark
                     CurrentResultType = "Error";
                     Console.WriteLine(exc.ToString());
                     debugInfo.AppendLine(exc.ToString());
-                    //TODO: work with benchmark filename instead of 'i'
-                    var debugFileName = $"Result_{i}_Log.txt";
+                    var debugFileName = $"Result_{CurrentBenchmarkId}_Log.txt";
 
                     debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
                     File.WriteAllText(debugFileName, debugInfo.ToString());
@@ -97,6 +105,14 @@ namespace SigStat.Benchmark
                 }
 
                 await ProcessResults();
+
+                if(Program.Offline)
+                {//delete input config and lock after processing
+                    File.Delete(Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json"));
+                    File.Delete(Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json.lock"));
+                }
+                else
+                    await Queue.DeleteMessageAsync(CurrentMessage);
 
                 //LogProcessor.Dump(logger);
                 // MongoDB 
@@ -119,11 +135,6 @@ namespace SigStat.Benchmark
                     return false;
                 }
 
-                foreach (var file in InputDirectory.GetFiles())
-                {
-                    var benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(file.FullName);
-                    LocalBenchmarks.Enqueue(benchmark);
-                }
             }
             else
             {
@@ -152,13 +163,23 @@ namespace SigStat.Benchmark
         {
             if (Program.Offline)
             {
-                if (LocalBenchmarks.Count == 0)
+                Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
+
+                //Find next unprocessed config
+                var next = InputDirectory.EnumerateFiles("*.json").FirstOrDefault(j => !File.Exists(j.FullName + ".lock"));
+                if (next == null)
                 {
                     Console.WriteLine("No more tasks in queue.");
                     return null;
                 }
-                Console.WriteLine($"{DateTime.Now}: Loading benchmark...");
-                return LocalBenchmarks.Dequeue();
+
+                //lock
+                File.Create(next.FullName + ".lock").Close();
+
+                CurrentBenchmarkId = next.Name.Split(".json")[0];
+                Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
+                return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
+
             }
             else
             {
@@ -168,21 +189,31 @@ namespace SigStat.Benchmark
                     Console.WriteLine("No more tasks in queue.");
                     return null;
                 }
-                Console.WriteLine($"{DateTime.Now}: Loading benchmark...");
+                CurrentBenchmarkId = CurrentMessage.Id;
+                Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
                 return SerializationHelper.Deserialize<VerifierBenchmark>(CurrentMessage.AsString);
             }
         }
 
         internal static async Task ProcessResults()
         {
-            //Valami más név kéne, pl. VerifierBenchmark.ToString()
-            var filename = $"Result_{i}.json";
+            //CurrentBenchmarkFileId helyett: VerifierBenchmark.ToString()
+            var filename = $"Result_{CurrentBenchmarkId}.json";
             var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
 
             if (Program.Offline)
             {
                 Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
                 SerializationHelper.JsonSerializeToFile<BenchmarkResults>(CurrentResults, fullfilename);
+
+                //TODO: honnan tudjuk, hogy ezek a resultok melyik confighoz tartoznak?
+                //most: input config json atmasolas
+                //jobb: Results json resze legyen a config
+                File.Copy(
+                    Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json"),
+                    Path.Combine(OutputDirectory.ToString(), $"Config_{CurrentBenchmarkId}.json")
+                );
+
             }
             else
             {
@@ -238,8 +269,6 @@ namespace SigStat.Benchmark
                 var database = client.GetDatabase("benchmarks");
                 var collection = database.GetCollection<BsonDocument>("results");
                 await collection.InsertOneAsync(document);
-
-                await Queue.DeleteMessageAsync(CurrentMessage);
             }
         }
     }

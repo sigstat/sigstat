@@ -153,19 +153,18 @@ namespace SigStat.Benchmark
         {
             try
             {
-                Console.WriteLine($"Writing {Benchmarks.Count} combinations to disk...");
-
-                //TODO: do not save files locally, when using online mode
-                for (int i = 0; i < Benchmarks.Count; i++)
+                if (Program.Offline)
                 {
-                    var filename = $"Benchmark_{i}.json";
-                    var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
-                    SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(Benchmarks[i], fullfilename);
+                    //save locally
+                    Console.WriteLine($"Writing {Benchmarks.Count} combinations to disk...");
+                    for (int i = 0; i < Benchmarks.Count; i++)
+                    {
+                        var filename = $"{i}.json";
+                        var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
+                        SerializationHelper.JsonSerializeToFile<VerifierBenchmark>(Benchmarks[i], fullfilename);
+                    }
                 }
-
-                Console.WriteLine($"Ready.");
-
-                if (!Program.Offline)
+                else
                 {
                     Console.WriteLine("Initializing container: " + Program.Experiment);
                     var blobClient = Program.Account.CreateCloudBlobClient();
@@ -206,14 +205,13 @@ namespace SigStat.Benchmark
                         await Queue.AddMessageAsync(new CloudQueueMessage(SerializationHelper.JsonSerialize<VerifierBenchmark>(Benchmarks[i])));
 
                     }
-
-                    Console.WriteLine("Ready.");
                 }
+                Console.WriteLine($"Ready.");
             }
             catch (Exception e)
             {
                 File.WriteAllText("log.txt", e.ToString());
-                Console.WriteLine("Something went wrong. \r\n" + e);
+                Console.WriteLine("Something went wrong.\r\n" + e);
                 return;
             }
         }
