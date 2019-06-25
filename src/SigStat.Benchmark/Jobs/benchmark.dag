@@ -1,0 +1,5 @@
+JOB  generator  generator.job
+JOB  benchmark  benchmark.job
+PARENT generator CHILD benchmark
+
+# condor_submit_dag benchmark.dag -maxjobs 330

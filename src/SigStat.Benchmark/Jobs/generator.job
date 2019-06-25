@@ -1,0 +1,14 @@
+# sigstat
+# /benchmarks
+# /results
+# /output
+
+universe = vanilla
+executable = sigstat
+# arguments = "generate -o benchmarks"
+arguments = generate -o benchmarks
+output = output/generator.out
+error = output/generator.err
+log = log
+requirements = ( machine =!= HEAD_NODE )
+queue
