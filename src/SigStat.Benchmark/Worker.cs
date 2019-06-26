@@ -49,17 +49,24 @@ namespace SigStat.Benchmark
             var initSuccess = await Init(inputDir);
             if (!initSuccess) return;
 
-            Console.WriteLine("Worker is running. Press 'A' to abort.");
+            Console.WriteLine("Worker is running.");
+            if(Environment.UserInteractive)
+            {
+                Console.WriteLine("Press 'A' to abort.");
+            }
 
             while (DateTime.Now < stopTime)
             {
                 StringBuilder debugInfo = new StringBuilder();
                 debugInfo.AppendLine(DateTime.Now.ToString());
 
-                if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.A)
+                if (Environment.UserInteractive)
                 {
-                    Console.WriteLine("Aborting...");
-                    return;
+                    if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.A)
+                    {
+                        Console.WriteLine("Aborting...");
+                        return;
+                    }
                 }
 
                 CurrentBenchmark = await GetNextBenchmark();

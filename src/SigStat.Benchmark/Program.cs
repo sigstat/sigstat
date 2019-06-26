@@ -56,8 +56,12 @@ namespace SigStat.Benchmark
                     else return Task.FromResult(-1);
                 },
                 errs => Task.FromResult(-1));
-            Console.WriteLine("Execution finished. Press any key to exit the application...");
-            Console.ReadKey();
+            Console.WriteLine("Execution finished.");
+            if (Environment.UserInteractive)
+            {
+                Console.WriteLine("Press any key to exit the application...");
+                Console.ReadKey();
+            }
         }
     }
 

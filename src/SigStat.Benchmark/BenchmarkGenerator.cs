@@ -155,6 +155,10 @@ namespace SigStat.Benchmark
             {
                 if (Program.Offline)
                 {
+                    //clear previously leftover configs
+                    foreach (var f in OutputDirectory.EnumerateFiles())
+                        f.Delete();
+
                     //save locally
                     Console.WriteLine($"Writing {Benchmarks.Count} combinations to disk...");
                     for (int i = 0; i < Benchmarks.Count; i++)
@@ -179,13 +183,16 @@ namespace SigStat.Benchmark
                     await Queue.FetchAttributesAsync();
                     if ((Queue.ApproximateMessageCount ?? 0) > 0)
                     {
-                        Console.WriteLine($"There are {Queue.ApproximateMessageCount} jobs pending in the queue. Should I clear them? [Y|N]");
-                        if (Console.ReadKey(true).Key != ConsoleKey.Y)
+                        if (Environment.UserInteractive)
                         {
-                            Console.WriteLine("Aborting...");
-                            return;
+                            Console.WriteLine($"There are {Queue.ApproximateMessageCount} jobs pending in the queue. Should I clear them? [Y|N]");
+                            if (Console.ReadKey(true).Key != ConsoleKey.Y)
+                            {
+                                await Queue.ClearAsync();
+                            }
                         }
-                        await Queue.ClearAsync();
+                        else
+                            await Queue.ClearAsync();//clear queue by default
                     }
 
                     Console.WriteLine($"Enqueueing {Benchmarks.Count} combinations...");
