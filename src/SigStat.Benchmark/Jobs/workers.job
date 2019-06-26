@@ -6,12 +6,11 @@ configcnt = ls configs -1 | wc -l
 jobcnt = $((configcnt/10 < maxjobcnt ? configcnt/10 : maxjobcnt))
 
 universe = vanilla
-executable = sigstat
-# arguments = "work -p $(Process) -i benchmarks -o results -t 1"
-arguments = work -p $(Process) -i benchmarks -o results -t 1
+executable = /home/1/sigstat/sigstat/SigStat.Benchmark
+arguments = work procId $(Process) inputDir benchmarks outputDir results maxThreads 1
 output = output/$(Process).out
 error = output/$(Process).err
-log = log
+log = output/$(Process).log
 requirements = ( machine =!= HEAD_NODE )
 
 # time limit

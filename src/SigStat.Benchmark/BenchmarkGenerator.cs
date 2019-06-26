@@ -29,10 +29,13 @@ namespace SigStat.Benchmark
 
         public static List<VerifierBenchmark> Benchmarks = new List<VerifierBenchmark>();
 
+        static string DatabasePath = "/home/1/sigstat/databases/";
+        //convention: dutch.zip, MCYT100.zip, SVC2004.zip
+
         public static void Compose()
         {
             AddClassifier(new OptimalDtwClassifier());
-            AddDatabase(new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true), new SVC2004Sampler1());
+            AddDatabase(new Svc2004Loader(Path.Combine(DatabasePath, "SVC2004.zip"), true), new SVC2004Sampler1());
             AddTransformationGroup(
                 new NormalizeRotation() { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y },
 
@@ -137,9 +140,10 @@ namespace SigStat.Benchmark
             return new DtwClassifier();
         }
 
-        internal static async Task RunAsync(string outputDir)
+        internal static async Task RunAsync(string outputDir, string databasePath)
         {
             OutputDirectory = Directory.CreateDirectory(outputDir);
+            DatabasePath = databasePath;
 
             BenchmarkGenerator.Compose();
 
@@ -183,7 +187,7 @@ namespace SigStat.Benchmark
                     await Queue.FetchAttributesAsync();
                     if ((Queue.ApproximateMessageCount ?? 0) > 0)
                     {
-                        if (Environment.UserInteractive)
+                        if (!Console.IsInputRedirected)
                         {
                             Console.WriteLine($"There are {Queue.ApproximateMessageCount} jobs pending in the queue. Should I clear them? [Y|N]");
                             if (Console.ReadKey(true).Key != ConsoleKey.Y)

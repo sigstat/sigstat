@@ -1,14 +1,8 @@
-# sigstat
-# /benchmarks
-# /results
-# /output
-
 universe = vanilla
-executable = sigstat
-# arguments = "generate -o benchmarks"
-arguments = generate -o benchmarks
+executable = /home/1/sigstat/sigstat/SigStat.Benchmark
+arguments = generate outputDir benchmarks databasePath /home/1/sigstat/databases/
 output = output/generator.out
 error = output/generator.err
-log = log
+log = output/generator.log
 requirements = ( machine =!= HEAD_NODE )
 queue

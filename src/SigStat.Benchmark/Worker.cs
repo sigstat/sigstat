@@ -50,7 +50,7 @@ namespace SigStat.Benchmark
             if (!initSuccess) return;
 
             Console.WriteLine("Worker is running.");
-            if(Environment.UserInteractive)
+            if (!Console.IsInputRedirected)
             {
                 Console.WriteLine("Press 'A' to abort.");
             }
@@ -60,7 +60,7 @@ namespace SigStat.Benchmark
                 StringBuilder debugInfo = new StringBuilder();
                 debugInfo.AppendLine(DateTime.Now.ToString());
 
-                if (Environment.UserInteractive)
+                if (!Console.IsInputRedirected)
                 {
                     if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.A)
                     {

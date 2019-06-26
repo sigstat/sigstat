@@ -57,7 +57,7 @@ namespace SigStat.Benchmark
                 },
                 errs => Task.FromResult(-1));
             Console.WriteLine("Execution finished.");
-            if (Environment.UserInteractive)
+            if (!Console.IsInputRedirected)
             {
                 Console.WriteLine("Press any key to exit the application...");
                 Console.ReadKey();
