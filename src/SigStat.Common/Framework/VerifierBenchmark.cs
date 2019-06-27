@@ -243,7 +243,7 @@ namespace SigStat.Common
 
             this.LogTrace("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
-            this.LogInformation("{signersCount} signers found. Benchmarking..", signers.Count);
+            this.LogTrace("{signersCount} signers found. Benchmarking..", signers.Count);
 
             if (degreeOfParallelism>1)
             {
@@ -280,7 +280,7 @@ namespace SigStat.Common
 
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
-            this.LogInformation("Benchmarking Signer {iSignerID}", iSigner.ID);
+            this.LogTrace("Benchmarking Signer {iSignerID}", iSigner.ID);
             List<Signature> references = Sampler.SampleReferences(iSigner.Signatures);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(iSigner.Signatures);
             List<Signature> forgeryTests = Sampler.SampleForgeryTests(iSigner.Signatures);

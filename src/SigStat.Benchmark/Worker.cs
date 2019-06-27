@@ -72,7 +72,7 @@ namespace SigStat.Benchmark
                 CurrentBenchmark = await GetNextBenchmark();
                 if (CurrentBenchmark is null) return;
 
-                var logger = new SimpleConsoleLogger();
+                var logger = new SimpleConsoleLogger();//default log level: Information
                 logger.Logged += (m, e, l) =>
                 {
                     debugInfo.AppendLine(m);
