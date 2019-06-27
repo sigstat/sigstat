@@ -49,7 +49,7 @@ namespace SigStat.Benchmark
             var initSuccess = await Init(inputDir);
             if (!initSuccess) return;
 
-            Console.WriteLine("Worker is running.");
+            Console.WriteLine($"{DateTime.Now}: Worker is running.");
             if (!Console.IsInputRedirected)
             {
                 Console.WriteLine("Press 'A' to abort.");
@@ -64,7 +64,7 @@ namespace SigStat.Benchmark
                 {
                     if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.A)
                     {
-                        Console.WriteLine("Aborting...");
+                        Console.WriteLine($"{DateTime.Now}: Aborting...");
                         return;
                     }
                 }
@@ -166,22 +166,39 @@ namespace SigStat.Benchmark
             return true;
         }
 
+        private static FileInfo findNextUnprocessedConfig()
+        {
+            return InputDirectory.EnumerateFiles("*.json").FirstOrDefault(j => !File.Exists(j.FullName + ".lock"));
+        }
+
         internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
             if (Program.Offline)
             {
                 Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
 
-                //Find next unprocessed config
-                var next = InputDirectory.EnumerateFiles("*.json").FirstOrDefault(j => !File.Exists(j.FullName + ".lock"));
-                if (next == null)
+                FileInfo next = findNextUnprocessedConfig();
+                int tries = 3;
+                while (tries > 0 && next!=null)
                 {
-                    Console.WriteLine("No more tasks in queue.");
-                    return null;
+                    try
+                    {
+                        File.Create(next.FullName + ".lock").Close();
+                        break;
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"{DateTime.Now}: Failed to lock config {next.Name}. Skipping ({tries})..");
+                        tries--;
+                        next = findNextUnprocessedConfig();
+                    }
                 }
 
-                //lock
-                File.Create(next.FullName + ".lock").Close();
+                if (next == null)
+                {
+                    Console.WriteLine($"{DateTime.Now}: No more tasks in queue.");
+                    return null;
+                }
 
                 CurrentBenchmarkId = next.Name.Split(".json")[0];
                 Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");

@@ -56,7 +56,7 @@ namespace SigStat.Benchmark
                     else return Task.FromResult(-1);
                 },
                 errs => Task.FromResult(-1));
-            Console.WriteLine("Execution finished.");
+            Console.WriteLine($"{DateTime.Now}: Execution finished.");
             if (!Console.IsInputRedirected)
             {
                 Console.WriteLine("Press any key to exit the application...");
