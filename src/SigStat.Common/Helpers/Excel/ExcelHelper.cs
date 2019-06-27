@@ -132,7 +132,7 @@ namespace SigStat.Common.Helpers.Excel
 
             //Set columns to autofit for better output
             tableRange = ws.Cells[startRow, col, startRow + tableHeight - 1, col + tableLength - 1];
-            tableRange.AutoFitColumns();
+            //tableRange.AutoFitColumns();//ehhez gdi+ kell
 
             //Create NamedRange
             if (name != null)
@@ -176,7 +176,7 @@ namespace SigStat.Common.Helpers.Excel
 
             //Set columns to autofit for better output
             tableRange = ws.Cells[startRow, col, startRow + tableHeight - 1, col + tableLength - 1];
-            tableRange.AutoFitColumns();
+            //tableRange.AutoFitColumns();//ehhez gdi+ kell
 
             //create NamedRange
             if (name != null)
@@ -273,7 +273,7 @@ namespace SigStat.Common.Helpers.Excel
             }
 
             //Set columns to autofit for better output
-            tableRange.AutoFitColumns();
+            //tableRange.AutoFitColumns();//ehhez gdi+ kell
 
             //create NamedRange
             if (Name != null)
@@ -318,7 +318,7 @@ namespace SigStat.Common.Helpers.Excel
 
             //Set columns to autofit for better output
             tableRange = ws.Cells[startRow, col, startRow + tableHeight - 1, col + tableLength - 1];
-            tableRange.AutoFitColumns();
+            //tableRange.AutoFitColumns();//ehhez gdi+ kell
 
             //create NamedRange
             if (Name != null)
@@ -379,7 +379,7 @@ namespace SigStat.Common.Helpers.Excel
                 ws.Column(i).Width = 2;
             }
             //set last column to autosize
-            ws.Column(col + depth - 1).AutoFit();
+            //ws.Column(col + depth - 1).AutoFit();//ehhez gdi+ kell
         }
 
         //Prints hierarchical list's data from x,y position
