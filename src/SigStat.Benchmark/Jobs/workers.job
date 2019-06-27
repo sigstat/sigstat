@@ -7,7 +7,7 @@ jobcnt = $((configcnt/10 < maxjobcnt ? configcnt/10 : maxjobcnt))
 
 universe = vanilla
 executable = /home/1/sigstat/sigstat/SigStat.Benchmark
-arguments = work procId $(Process) inputDir benchmarks outputDir results maxThreads 1
+arguments = work --procId $(Process) --inputDir benchmarks --outputDir results --maxThreads 1
 output = output/$(Process).out
 error = output/$(Process).err
 log = output/$(Process).log
