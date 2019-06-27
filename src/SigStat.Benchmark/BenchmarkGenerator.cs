@@ -62,8 +62,22 @@ namespace SigStat.Benchmark
                     TimeOutputFeature = Features.T
                 }
             );
+            AddTransformationGroup(
+                new Scale() { InputFeature = Features.X, OutputFeature = Features.X }
+            );
+            AddTransformationGroup(
+                new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y }
+            );
+            AddTransformationGroup(
+                new Scale() { InputFeature = Features.X, OutputFeature = Features.X },
+                new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y }
+            );
             AddFeatureGroup(Features.X, Features.Y, Features.Pressure);
             AddFeatureGroup(Features.X, Features.Y);
+            AddFeatureGroup(Features.Pressure);
+            AddFeatureGroup(Features.X, Features.Pressure);
+            AddFeatureGroup(Features.Y, Features.Pressure);
+            AddFeatureGroup(Features.Pressure);
         }
 
         public static void AddClassifier(IClassifier classifier)
