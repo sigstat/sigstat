@@ -13,6 +13,7 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using System.Threading.Tasks;
 using System.IO;
 using SigStat.Benchmark.Model;
+using System.Linq;
 
 namespace SigStat.Benchmark
 {
@@ -110,7 +111,14 @@ namespace SigStat.Benchmark
                                 Sampler = database.Sampler,
                                 Logger = new SimpleConsoleLogger()
                             };
-
+                            benchmark.Parameters = new List<KeyValuePair<string, string>>
+                            {//TODO: ezek mik legyenek
+                                new KeyValuePair<string, string>("Classifier", classifier.GetType().Name),
+                                new KeyValuePair<string, string>("Sampling", database.Sampler.GetType().Name),
+                                new KeyValuePair<string, string>("Database", database.DataSetLoader.GetType().Name),
+                                new KeyValuePair<string, string>("Transforms", string.Join( ",", transformationgroup.Select(t=>t.GetType().Name))),
+                                new KeyValuePair<string, string>("Features", string.Join( ",", featuregroup.Select(f=>f.Key))),
+                            };
                             Benchmarks.Add(benchmark);
                         }
                     }

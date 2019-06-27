@@ -222,25 +222,19 @@ namespace SigStat.Benchmark
         internal static async Task ProcessResults()
         {
             //CurrentBenchmarkFileId helyett: VerifierBenchmark.ToString()
-            var filename = $"Result_{CurrentBenchmarkId}.json";
+            var filename = $"Result_{CurrentBenchmarkId}.xlsx";
             var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
 
             if (Program.Offline)
             {
                 Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
-                SerializationHelper.JsonSerializeToFile<BenchmarkResults>(CurrentResults, fullfilename);
-
-                //TODO: honnan tudjuk, hogy ezek a resultok melyik confighoz tartoznak?
-                //most: input config json atmasolas
-                //jobb: Results json resze legyen a config
-                File.Copy(
-                    Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json"),
-                    Path.Combine(OutputDirectory.ToString(), $"Config_{CurrentBenchmarkId}.json")
-                );
+                CurrentBenchmark.Dump(fullfilename, CurrentBenchmark.Parameters);
 
             }
             else
             {
+                //TODO: szinten excelezni json results helyett
+
                 Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
                 SerializationHelper.JsonSerializeToFile<BenchmarkResults>(CurrentResults, fullfilename);
 

@@ -98,6 +98,8 @@ namespace SigStat.Common
             }
         }
 
+        public List<KeyValuePair<string, string>> Parameters { get; set; } = new List<KeyValuePair<string, string>>();
+
         public void Dump(string filename, IEnumerable<KeyValuePair<string, string>> parameters)
         {
             using (var p = new ExcelPackage())
@@ -115,8 +117,8 @@ namespace SigStat.Common
                     new KeyValuePair<string, object>("Agent:",Environment.MachineName),
                     new KeyValuePair<string, object>("Duration:",duration.ToString()),
                 };
-                summarySheet.InsertTable(2, 8, execution, "Execution", ExcelColor.Secondary, true);
-                summarySheet.InsertTable(5, 8, parameters, "Parameters", ExcelColor.Secondary, true);
+                summarySheet.InsertTable(8, 2, execution, "Execution", ExcelColor.Secondary, true);
+                summarySheet.InsertTable(8, 5, parameters, "Parameters", ExcelColor.Secondary, true);
                 var resultsSummary = new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("FAR:",benchmarkResults.FinalResult.Far),
@@ -144,15 +146,15 @@ namespace SigStat.Common
                         var errorRates = om.ErrorRates.Select(r => new { Threshold = r.Key, FAR = r.Value.Far, FRR = r.Value.Frr, AER = r.Value.Aer });
                         var threshold = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Threshold", om.Threshold) };
                         signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
-                        signerSheet.InsertTable(4 + distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
-                        signerSheet.InsertTable(4 + distances.GetLength(0), 6, errorRates, "Error rates", ExcelColor.Info, true);
+                        signerSheet.InsertTable(2, 4 + distances.GetLength(0), threshold, null, ExcelColor.Danger, false);
+                        signerSheet.InsertTable(6, 4 + distances.GetLength(0), errorRates, "Error rates", ExcelColor.Info, true);
                     }
                     else if (signer.Model is DtwSignerModel dm)
                     {
                         var distances = dm.DistanceMatrix.ToArray();
                         var threshold = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Threshold", dm.Threshold) };
                         signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
-                        signerSheet.InsertTable(4 + distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
+                        signerSheet.InsertTable(2, 4 + distances.GetLength(0), threshold, null, ExcelColor.Danger, false);
                     }
                 }
                 p.SaveAs(new FileInfo(filename));
@@ -317,7 +319,8 @@ namespace SigStat.Common
                         nFalseReject++;//eredeti alairast hamisnak hisz
                     }
                 }
-                catch (/*VerifierTesting*/Exception ex)
+                catch (/*VerifierTesting*/
+            Exception ex)
                 {
                     this.LogError(ex, "Testing genuine Signature {signatureID} of Signer {signerID} failed. Skipping..", genuine.ID, iSigner.ID);
                     failedGenuineTests++;
