@@ -44,6 +44,8 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
+
+
             //SignatureDemo();
             //TransformationPipeline();
             //Classifier();
