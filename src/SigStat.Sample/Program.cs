@@ -50,6 +50,7 @@ namespace SigStat.Sample
             //TransformationPipeline();
             //Classifier();
             //OnlineToImage();
+            DatabaseLoaderDemo();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
@@ -59,7 +60,7 @@ namespace SigStat.Sample
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
             //JsonSerializeOnlineVerifierBenchmark();
-            ClassificationBenchmark();
+            //ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -173,7 +174,15 @@ namespace SigStat.Sample
 
         }
 
-        static void DatabaseLoaderDemo(out List<Signature> genuines, out Signature challenge)
+        static void DatabaseLoaderDemo()
+        {
+            //Load signatures from local database
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
+            var signers = loader.EnumerateSigners().ToList();
+            Console.WriteLine($"{signers.Count} signers loaded with {signers.SelectMany(s=>s.Signatures).Count()} signatures");
+        }
+
+        static void LoadSignaturesFromDatabase(out List<Signature> genuines, out Signature challenge)
         {
             //Load signatures from local database
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
@@ -229,7 +238,7 @@ namespace SigStat.Sample
 
         static void Classifier()
         {
-            DatabaseLoaderDemo(out var genuines, out var challenge);
+            LoadSignaturesFromDatabase(out var genuines, out var challenge);
 
             IClassifier classifier = new DtwClassifier()
             {
@@ -309,34 +318,38 @@ namespace SigStat.Sample
                     new Paper13FeatureExtractor(),*/
 
                 },
-                Classifier = new WeightedClassifier
+                Classifier = new DtwClassifier()
                 {
-                    {
-                        (new DtwClassifier(Accord.Math.Distance.Manhattan)
-                        {
-                            Features = { Features.X, Features.Y }
-                        },
-                           0.15)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { Features.Pressure }
-                        }, 0.3)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { MyFeatures.Tangent }
-                        }, 0.55)
-                    },
-                    //{
-                    //    (new MultiDimensionKolmogorovSmirnovClassifier
-                    //    {
-                    //        Features = {"X", "Y" },
-                    //        ThresholdStrategy = ThresholdStrategies.AveragePlusDeviance
-                    //    },
-                    //    0.8)
-                    //}
+                    Features = { Features.Pressure }
                 }
+                //Classifier = new WeightedClassifier
+                //{
+                //    {
+                //        (new DtwClassifier(Accord.Math.Distance.Manhattan)
+                //        {
+                //            Features = { Features.X, Features.Y }
+                //        },
+                //           0.15)
+                //    },
+                //    {
+                //        (new DtwClassifier(){
+                //            Features = { Features.Pressure }
+                //        }, 0.3)
+                //    },
+                //    {
+                //        (new DtwClassifier(){
+                //            Features = { MyFeatures.Tangent }
+                //        }, 0.55)
+                //    },
+                //    //{
+                //    //    (new MultiDimensionKolmogorovSmirnovClassifier
+                //    //    {
+                //    //        Features = {"X", "Y" },
+                //    //        ThresholdStrategy = ThresholdStrategies.AveragePlusDeviance
+                //    //    },
+                //    //    0.8)
+                //    //}
+                //}
             };
 
             Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
@@ -415,8 +428,8 @@ namespace SigStat.Sample
             {
                 new ParallelTransformPipeline
                 {
-                    new Normalize() { Input = Features.X },
-                    new Normalize() { Input = Features.Y }
+                    new Normalize() { Input = Features.X, Output = Features.X },
+                    new Normalize() { Input = Features.Y, Output = Features.Y }
                 },
                 new RealisticImageGenerator(1280, 720)
             };
