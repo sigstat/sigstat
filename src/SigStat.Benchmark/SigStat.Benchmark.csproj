@@ -15,4 +15,12 @@
   <ItemGroup>
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Generate.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Work.cmd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

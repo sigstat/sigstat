@@ -12,9 +12,9 @@ namespace SigStat.Benchmark.Options
     [Verb("generate", HelpText = "Generator mode for generating benchmarks to process.")]
     class GeneratorOptions : OptionsBase
     {
-        [Option('o', "outputDir", Required = false, Default = "benchmarks", HelpText = "Output directory for storing generated benchmarks locally.")]
+        [Option('o', "outputDir", Required = false, Default = "output", HelpText = "Output directory for storing generated benchmarks locally.")]
         public string OutputDirectory { get; set; }
-        [Option('d', "databasePath", Required = false, Default = "/home/1/sigstat/databases/", HelpText = "Path of directory to read local benchmark databases from.")]
+        [Option('d', "databasePath", Required = false, Default = ".", HelpText = "Path of directory to read local benchmark databases from.")]
         public string DatabasePath { get; set; }
 
         public override Task RunAsync()
