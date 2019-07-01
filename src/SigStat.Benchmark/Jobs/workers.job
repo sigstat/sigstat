@@ -1,9 +1,11 @@
 # max number of jobs
-maxjobcnt = 330
+maxjobcnt=330
 # number of configs: list configs dir and count
-configcnt = ls configs -1 | wc -l
+configcnt=$(ls configs -1 | wc -l)
 # number of jobs: min(maxjobcnt, configcnt/10)
-jobcnt = $((configcnt/10 < maxjobcnt ? configcnt/10 : maxjobcnt))
+jobcnt=$((configcnt/10))
+jobcnt=$((jobcnt<1 ? 1 : jobcnt))
+jobcnt=$((jobcnt>maxjobcnt ? maxjobcnt : jobcnt))
 
 universe = vanilla
 executable = /home/1/sigstat/sigstat/SigStat.Benchmark
