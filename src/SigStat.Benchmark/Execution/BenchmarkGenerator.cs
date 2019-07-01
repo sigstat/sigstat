@@ -125,11 +125,61 @@ namespace SigStat.Benchmark
                                 Sampler = database.Sampler,
                                 Logger = new SimpleConsoleLogger()
                             };
+
+                            var trX = featuregroup.OfType<TranslatePreproc>().SingleOrDefault(t => t.InputFeature == Features.X);
+                            var trY = featuregroup.OfType<TranslatePreproc>().SingleOrDefault(t => t.InputFeature == Features.Y);
+                            var scX = featuregroup.OfType<Scale>().SingleOrDefault(s => s.InputFeature == Features.X);
+                            var scY = featuregroup.OfType<Scale>().SingleOrDefault(s => s.InputFeature == Features.X);
+                            var ucX = featuregroup.OfType<UniformScale>().SingleOrDefault(s => s.BaseDimension == Features.X);
+                            var ucY = featuregroup.OfType<UniformScale>().SingleOrDefault(s => s.BaseDimension == Features.Y);
+
+
+                            string tr = "None";
+                            if (trX != null && trX.GoalOrigin == OriginType.CenterOfGravity && trY != null && trY.GoalOrigin == OriginType.CenterOfGravity) tr = "CogToOriginXY";
+                            else if (trX != null && trX.GoalOrigin == OriginType.CenterOfGravity && trY == null) tr = "CogToOriginX";
+                            else if (trY != null && trY.GoalOrigin == OriginType.CenterOfGravity && trX == null) tr = "CogToOriginY";
+                            else if (trX != null && trX.GoalOrigin == OriginType.Minimum && trY != null && trY.GoalOrigin == OriginType.Minimum) tr = "BottomLeftToOrigin";
+
+                            string sc = "None";
+                            if (ucX != null) sc = "X01Y0prop";
+                            else if (ucY != null) sc = "Y01X0prop";
+                            else if (scX != null && scY != null) sc = "X01Y01";
+                            else if (scX != null) sc = "X01";
+                            else if (scY != null) sc = "Y01";
+                            string translationScaling = $"({tr}, {sc})";
+                            /*
+(CogToOriginXY, None)
+(CogToOriginX, None)
+(CogToOriginY, None)
+(BottomLeftToOrigin, None)
+(None, None)
+
+(CogToOriginXY, Y01)
+(CogToOriginX, Y01)
+(BottomLeftToOrigin, Y01)
+(None, Y01)
+(None, X01)
+(CogToOriginXY, X01)
+(CogToOriginY, X01)
+(BottomLeftToOrigin, X01)
+(None, X01Y01)
+(None, Y01X0prop)
+(None, X01Y0prop)
+                             */
+
+
                             benchmark.Parameters = new List<KeyValuePair<string, string>>
                             {//TODO: ezek mik legyenek
-                                new KeyValuePair<string, string>("Classifier", classifier.GetType().Name),
-                                new KeyValuePair<string, string>("Sampling", database.Sampler.GetType().Name),
-                                new KeyValuePair<string, string>("Database", database.DataSetLoader.GetType().Name),
+                                new KeyValuePair<string, string>("Classifier", classifier.GetType().Name.Replace("Classifier","")),
+                                new KeyValuePair<string, string>("Sampling", "S"+database.Sampler.GetType().Name.Last()),
+                                new KeyValuePair<string, string>("Database", database.DataSetLoader.GetType().Name.Replace("Loader","")),
+                                new KeyValuePair<string, string>("Rotation",  transformationgroup.Any(tg=>tg is NormalizeRotation).ToString()),
+                                new KeyValuePair<string, string>("Translation_Scaling",  translationScaling),
+                                new KeyValuePair<string, string>("ResamplingType_Filter",  transformationgroup.OfType<FillPenUpDurations>().Any() ? "FillPenUp" : transformationgroup.OfType<ResampleSamplesCountBased>().Any()?"SampleCount":transformationgroup.OfType<FilterPoints>().Any()?"P":"none"),
+                                new KeyValuePair<string, string>("ResamplingParam", (transformationgroup.OfType<ResampleSamplesCountBased>().Select(s=>(int?)s.NumOfSamples).SingleOrDefault()?? 0).ToString() ),
+                                new KeyValuePair<string, string>("Interpolation",   (transformationgroup.OfType<FillPenUpDurations>().SingleOrDefault()?.InterpolationType.Name ?? transformationgroup.OfType<ResampleSamplesCountBased>().SingleOrDefault()?.InterpolationType.Name ?? "").Replace("Interpolation", "")),
+                                new KeyValuePair<string, string>("Features",  featuregroup.Count==1? featuregroup[0].Key: featuregroup.Count==2? "XY": featuregroup.Count ==3?"XYP":"XYPAzimuthAltitude"),
+                                new KeyValuePair<string, string>("Distance",  (classifier as IDistanceClassifier).DistanceFunction  == Accord.Math.Distance.Manhattan ?"Manhattan": "Euclidean" ),
                                 new KeyValuePair<string, string>("Transforms", string.Join( ",", transformationgroup.Select(t=>t.GetType().Name))),
                                 new KeyValuePair<string, string>("Features", string.Join( ",", featuregroup.Select(f=>f.Key))),
                             };
