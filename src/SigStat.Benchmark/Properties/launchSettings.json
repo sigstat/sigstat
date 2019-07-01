@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.Benchmark": {
       "commandName": "Project",
-      "commandLineArgs": "generate outputdir benchmarks"
+      "commandLineArgs": "work --procId 1 --inputDir benchmarks --outputDir results"
     }
   }
 }

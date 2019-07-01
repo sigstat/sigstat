@@ -248,7 +248,7 @@ namespace SigStat.Common
             this.LogTrace("{signersCount} signers found. Benchmarking..", signers.Count);
 
             if (degreeOfParallelism>1)
-            {
+            {               
                 results = signers.AsParallel().WithDegreeOfParallelism(degreeOfParallelism).SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
             else
@@ -282,6 +282,7 @@ namespace SigStat.Common
 
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
+
             this.LogTrace("Benchmarking Signer {iSignerID}", iSigner.ID);
             List<Signature> references = Sampler.SampleReferences(iSigner.Signatures);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(iSigner.Signatures);

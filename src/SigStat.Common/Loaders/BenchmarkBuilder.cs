@@ -4,6 +4,8 @@ using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Loaders
@@ -26,9 +28,10 @@ namespace SigStat.Common.Loaders
         static DutchSampler3 dutchSampler3 = new DutchSampler3();
         static DutchSampler4 dutchSampler4 = new DutchSampler4();
         //TODO: more signer samplers
-        static Svc2004Loader svcLoader = new Svc2004Loader(@"Task2.zip", true);
-        static MCYTLoader mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
-        static SigComp11DutchLoader dutchLoader = new SigComp11DutchLoader(@"dutch_renamed.zip", true);
+        static string DatabasePath = Environment.GetEnvironmentVariable("SigStatDB");
+        static Svc2004Loader svcLoader = new Svc2004Loader(Path.Combine(DatabasePath, "SVC2004.zip"), true);
+        static MCYTLoader mcytLoader = new MCYTLoader(Path.Combine(DatabasePath, "MCYT100.zip"), true);
+        static SigComp11DutchLoader dutchLoader = new SigComp11DutchLoader(Path.Combine(DatabasePath, "dutch.zip"), true);
 
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
@@ -291,6 +294,8 @@ namespace SigStat.Common.Loaders
                 Pipeline = pipeline,
                 Classifier = classifier
             };
+
+            b.Parameters = config.ToKeyValuePairs().ToList();
 
             return b;
 

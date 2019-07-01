@@ -31,6 +31,7 @@ namespace SigStat.Common.Helpers
         //    "ResamplingType: none, CubicTimeSlotLength, CubicSampleCount, CubicFillPenUp, LinearTimeSlotLength, LinearSampleCount, LinearFillPenUp
         //    "Interpolation: , }";
 
+
         public static BenchmarkConfig FromJsonString(string jsonString)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(jsonString);
@@ -38,12 +39,13 @@ namespace SigStat.Common.Helpers
 
         public string ToShortString()
         {
-            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Select(v=>v?.ToString() ?? ""));
+            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Select(v => v?.ToString() ?? ""));
         }
 
-        public IEnumerable<KeyValuePair<string,string>> ToKeyValuePairs()
+        public IEnumerable<KeyValuePair<string, string>> ToKeyValuePairs()
         {
-            return GetType().GetProperties().Select(pi => new KeyValuePair<string, string>(pi.Name, pi.GetValue(this)?.ToString() ?? ""));
+            return new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Translation", this.Translation_Scaling.Translation), new KeyValuePair<string, string>("Scaling", this.Translation_Scaling.Scaling) }
+                    .Concat(GetType().GetProperties().Select(pi => new KeyValuePair<string, string>(pi.Name, pi.GetValue(this)?.ToString() ?? "")));
         }
 
         public string ToJsonString()
@@ -88,13 +90,13 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Database = "SVC2004");
-            List<string> es = new List<string>() { "MCYT100", "DUTCH" };
-            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
-            {
-                Database = e
-            })).ToList();
-            l.AddRange(ls);
+            l.ForEach(c => c.Database = "DUTCH");
+            //List<string> es = new List<string>() { "MCYT100", "DUTCH" };
+            //var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+            //{
+            //    Database = e
+            //})).ToList();
+            //l.AddRange(ls);
             return l;
         }
 
@@ -137,8 +139,8 @@ namespace SigStat.Common.Helpers
             //TODO: Add X01Y01 ==> CogToOrigin 
 
             //jobb kezzel megadni az ertelmes parokat: 16 db van, osszes 30 helyett
-            l.ForEach(c => c.Translation_Scaling = ("None","None"));
-            List<(string,string)> es = new List<(string, string)>() {
+            l.ForEach(c => c.Translation_Scaling = ("None", "None"));
+            List<(string, string)> es = new List<(string, string)>() {
                 ("None","X01Y0prop"),
                 ("None","Y01X0prop"),
                 ("None","X01"),
