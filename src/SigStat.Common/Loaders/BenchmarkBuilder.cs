@@ -120,6 +120,7 @@ namespace SigStat.Common.Loaders
             switch (config.ResamplingType_Filter)
             {
                 case "P":
+                case "P_FillPenUp":
                     pipeline.Add(filterPoints);
                     break;
                 case "None":
@@ -205,6 +206,7 @@ namespace SigStat.Common.Loaders
                         InterpolationType = ip
                     });
                     break;
+                case "P_FillPenUp":
                 case "FillPenUp":
                     pipeline.Add(new FillPenUpDurations()
                     { 

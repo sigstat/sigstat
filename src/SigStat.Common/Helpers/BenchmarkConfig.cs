@@ -9,6 +9,10 @@ namespace SigStat.Common.Helpers
 {
     public class BenchmarkConfig
     {
+        // Phase2:
+        // - Több jellemzőkombináció
+        // - 
+
         //most 1 signer samplerrel: 7168 
 
         // 21504 = 2*8*3*16*2*14
@@ -20,7 +24,7 @@ namespace SigStat.Common.Helpers
         // DB+Resampling+Filter+Interpolation: 14
 
         //eredeti minta
-        //    Features: X, Y, P, a1, a2, XY, XYP, XYPA1A2
+        //    Features: X, Y, P, a1, a2, XY, XYP, XYPA1A2, -- XAz, YAz, XAl, YAl, PAz, PAl, 
         //string config = "{sampling:  s1,s2,s3}" +
         //    " database: SVC2004, MCYT100" +
         //    "Filter: none, P" +
@@ -176,6 +180,7 @@ namespace SigStat.Common.Helpers
             //db tol fugg, hogy milyen resampling/filter kell
             //svc: None, SampleCount, FillPenUp
             //mcyt: None, SampleCount, Filter
+            //dutch: None, SampleCount, Filter
 
             l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
@@ -209,10 +214,18 @@ namespace SigStat.Common.Helpers
             {
                 ResamplingType_Filter = "P"
             }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P_FillPenUp"
+            }));
 
             l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P"
+            }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P_FillPenUp"
             }));
 
             return l;
