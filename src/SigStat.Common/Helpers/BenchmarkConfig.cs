@@ -140,7 +140,7 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Translations_Scalings(List<BenchmarkConfig> l)
         {
-            //TODO: Add X01Y01 ==> CogToOrigin 
+            //TODO: Add X01Y01 ==> CogToOrigin
 
             //jobb kezzel megadni az ertelmes parokat: 16 db van, osszes 30 helyett
             l.ForEach(c => c.Translation_Scaling = ("None", "None"));
@@ -234,9 +234,9 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Interpolations(List<BenchmarkConfig> l)
         {
             //csak ott kell interpolaciot allitani, ahol van resampling
-            l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp").ToList().ForEach(c => c.Interpolation = "Linear");
+            l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp" || c.ResamplingType_Filter == "P_FillPenUp").ToList().ForEach(c => c.Interpolation = "Linear");
             List<string> es = new List<string>() { "Cubic" };
-            var ls = es.SelectMany(e => l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var ls = es.SelectMany(e => l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp" || c.ResamplingType_Filter == "P_FillPenUp").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Interpolation = e
             })).ToList();
@@ -247,6 +247,7 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> SetFeatures(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Features = "XYP");
+
             List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
             var ls1 = es1.SelectMany(e => l.Where(c => c.Database != "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
@@ -254,7 +255,6 @@ namespace SigStat.Common.Helpers
             })).ToList();
 
             List<string> es2 = new List<string>() { "X", "Y", "P", "XY" };
-
             var ls2 = es2.SelectMany(e => l.Where(c => c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Features = e

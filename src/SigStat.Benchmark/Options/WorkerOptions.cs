@@ -12,7 +12,7 @@ namespace SigStat.Benchmark.Options
     [Verb("work", HelpText = "Worker mode for processing benchmarks.")]
     class WorkerOptions : OptionsBase
     {
-        [Option('i', "inputDir", Required = false, Default = "benchmarks", HelpText = "Input directory for loading benchmarks locally. Azure Queue will be used by default.")]
+        [Option('i', "inputDir", Required = false, Default = "configs", HelpText = "Input directory for loading benchmarks locally. Azure Queue will be used by default.")]
         public string InputDirectory { get; set; }
 
         [Option('o', "outputDir", Required = false, Default = "results", HelpText = "Output directory for storing benchmark results locally.")]
