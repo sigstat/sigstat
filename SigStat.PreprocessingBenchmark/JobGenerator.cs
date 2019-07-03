@@ -46,7 +46,7 @@ namespace SigStat.PreprocessingBenchmark
             Console.WriteLine("Generating benchmark configurations");
             var configs = BenchmarkConfig.GenerateConfigurations();
             Console.WriteLine($"Enqueueing {configs.Count} combinations");
-            configs = configs.Take(10).ToList();
+            //configs = configs.Take(10).ToList();
 
             for (int i = 0; i < configs.Count; i++)
             {

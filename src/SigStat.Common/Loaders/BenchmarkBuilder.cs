@@ -61,9 +61,13 @@ namespace SigStat.Common.Loaders
             if (databasePath == null)
                 databasePath = Environment.GetEnvironmentVariable("SigStatDB");
 
-            svcLoader = new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true);
-            mcytLoader = new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true);
-            dutchLoader = new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true);
+            //svcLoader = new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true);
+            //mcytLoader = new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true);
+            //dutchLoader = new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true);
+            svcLoader = new Svc2004Loader(@"Task2.zip", true);
+            mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
+            dutchLoader = new SigComp11DutchLoader(@"dutch_renamed.zip", true);
+
 
             Sampler sampler1 = null;
             Sampler sampler2 = null;
