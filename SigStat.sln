@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.Common", "src\SigStat.Common\SigStat.Common.csproj", "{95CD8669-5C94-4D5C-980B-BE7C68DDA6DB}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.Benchmark", "src\SigStat.Benchmark\SigStat.Benchmark.csproj", "{D2DBA13B-279A-4A0A-8D90-7F89EE7F8DD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigStat.SigComp2019", "src\SigStat.SigComp2019\SigStat.SigComp2019.csproj", "{93EFBEB5-DC9B-4881-A69A-398B9C762BE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigStat.FusionBenchmark", "src\SigStat.FusionBenchmark\SigStat.FusionBenchmark.csproj", "{2580A111-F3FE-46D9-BD8E-6614CB0E80D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +54,10 @@ Global
 		{93EFBEB5-DC9B-4881-A69A-398B9C762BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93EFBEB5-DC9B-4881-A69A-398B9C762BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93EFBEB5-DC9B-4881-A69A-398B9C762BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2580A111-F3FE-46D9-BD8E-6614CB0E80D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2580A111-F3FE-46D9-BD8E-6614CB0E80D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2580A111-F3FE-46D9-BD8E-6614CB0E80D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2580A111-F3FE-46D9-BD8E-6614CB0E80D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
