@@ -1187,7 +1187,7 @@
         </member>
         <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.X">
             <summary>
-            X cooridnates from the online signature imported from the SigComp11Chinese database
+            X cooridnates from the online signature imported from the SigComp11Chinese database  
             </summary>
         </member>
         <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.Y">

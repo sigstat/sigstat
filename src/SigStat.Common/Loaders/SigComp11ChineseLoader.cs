@@ -15,7 +15,7 @@ namespace SigStat.Common.Loaders
         public static class SigComp11Ch
         {
             /// <summary>
-            /// X cooridnates from the online signature imported from the SigComp11Chinese database
+            /// X cooridnates from the online signature imported from the SigComp11Chinese database  
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("SigComp11Ch.X");
             /// <summary>
