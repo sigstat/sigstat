@@ -191,43 +191,10 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            var ClassifierFeaturesT = new List<FeatureDescriptor<List<double>>>();
-            switch (config.Features)
+            var featurelist = new List<FeatureDescriptor<List<double>>>()
             {
-                case "X":
-                    ClassifierFeaturesT.Add(Features.X);
-                    break;
-                case "Y":
-                    ClassifierFeaturesT.Add(Features.Y);
-                    break;
-                case "P":
-                    ClassifierFeaturesT.Add(Features.Pressure);
-                    break;
-                case "Azimuth":
-                    ClassifierFeaturesT.Add(Features.Azimuth);
-                    break;
-                case "Altitude":
-                    ClassifierFeaturesT.Add(Features.Altitude);
-                    break;
-                case "XY":
-                    ClassifierFeaturesT.Add(Features.X);
-                    ClassifierFeaturesT.Add(Features.Y);
-                    break;
-                case "XYP":
-                    ClassifierFeaturesT.Add(Features.X);
-                    ClassifierFeaturesT.Add(Features.Y);
-                    ClassifierFeaturesT.Add(Features.Pressure);
-                    break;
-                case "XYPAzimuthAltitude":
-                    ClassifierFeaturesT.Add(Features.X);
-                    ClassifierFeaturesT.Add(Features.Y);
-                    ClassifierFeaturesT.Add(Features.Pressure);
-                    ClassifierFeaturesT.Add(Features.Azimuth);
-                    ClassifierFeaturesT.Add(Features.Altitude);
-                    break;
-                default:
-                    break;
-            }
+                Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+            };
 
             //resample after transformations
             switch (config.ResamplingType_Filter)
@@ -235,8 +202,8 @@ namespace SigStat.Common.Loaders
                 case "SampleCount":
                     pipeline.Add(new ResampleSamplesCountBased()
                     {
-                        InputFeatures = ClassifierFeaturesT,
-                        OutputFeatures = ClassifierFeaturesT,
+                        InputFeatures = featurelist,
+                        OutputFeatures = featurelist,
                         OriginalTFeature = Features.T,
                         ResampledTFeature = Features.T,
                         NumOfSamples = (int)config.ResamplingParam,
@@ -247,14 +214,52 @@ namespace SigStat.Common.Loaders
                 case "FillPenUp":
                     pipeline.Add(new FillPenUpDurations()
                     {
-                        InputFeatures = ClassifierFeaturesT,
-                        OutputFeatures = ClassifierFeaturesT,
+                        InputFeatures = featurelist,
+                        OutputFeatures = featurelist,
                         TimeInputFeature = Features.T,
                         TimeOutputFeature = Features.T,
                         InterpolationType = ip
                     });
                     break;
                 case "None":
+                default:
+                    break;
+            }
+
+            var ClassifierFeatures = new List<FeatureDescriptor>();
+            switch (config.Features)
+            {
+                case "X":
+                    ClassifierFeatures.Add(Features.X);
+                    break;
+                case "Y":
+                    ClassifierFeatures.Add(Features.Y);
+                    break;
+                case "P":
+                    ClassifierFeatures.Add(Features.Pressure);
+                    break;
+                case "Azimuth":
+                    ClassifierFeatures.Add(Features.Azimuth);
+                    break;
+                case "Altitude":
+                    ClassifierFeatures.Add(Features.Altitude);
+                    break;
+                case "XY":
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Y);
+                    break;
+                case "XYP":
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Pressure);
+                    break;
+                case "XYPAzimuthAltitude":
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Pressure);
+                    ClassifierFeatures.Add(Features.Azimuth);
+                    ClassifierFeatures.Add(Features.Altitude);
+                    break;
                 default:
                     break;
             }
@@ -272,7 +277,6 @@ namespace SigStat.Common.Loaders
                     break;
             }
             IClassifier classifier;
-            List<FeatureDescriptor> ClassifierFeatures = ClassifierFeaturesT.Select(t => FeatureDescriptor.Get(t.Key)).ToList();
             if (config.Classifier == "Dtw")
             {
                 classifier = new DtwClassifier(distance);
