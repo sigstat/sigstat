@@ -1180,6 +1180,42 @@
             <param name="stream">Stream to read MCYT data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
+        <member name="T:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11">
+            <summary>
+            Set of features containing raw data loaded from SigComp15German-format database.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.X">
+            <summary>
+            X cooridnates from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.Y">
+            <summary>
+            Y cooridnates from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.P">
+            <summary>
+            Z cooridnates from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.T">
+            <summary>
+            T values from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.SigComp11ChineseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">
+            <summary>
+            Loads one signature from specified stream.
+            </summary>
+            <remarks>
+            Based on Mohammad's MCYT reader.
+            </remarks>
+            <param name="signature">Signature to write features to.</param>
+            <param name="stream">Stream to read MCYT data from.</param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
         <member name="T:SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11">
             <summary>
             Set of features containing raw data loaded from MCYT-format database.
@@ -1206,6 +1242,42 @@
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.SigComp11DutchLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">
+            <summary>
+            Loads one signature from specified stream.
+            </summary>
+            <remarks>
+            Based on Mohammad's MCYT reader.
+            </remarks>
+            <param name="signature">Signature to write features to.</param>
+            <param name="stream">Stream to read MCYT data from.</param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
+        <member name="T:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15">
+            <summary>
+            Set of features containing raw data loaded from SigComp15German-format database.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.X">
+            <summary>
+            X cooridnates from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.Y">
+            <summary>
+            Y cooridnates from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.P">
+            <summary>
+            Z cooridnates from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.T">
+            <summary>
+            T values from the online signature imported from the SigComp15German database
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.SigComp15GermanLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">
             <summary>
             Loads one signature from specified stream.
             </summary>

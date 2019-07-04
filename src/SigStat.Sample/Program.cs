@@ -176,8 +176,10 @@ namespace SigStat.Sample
 
         static void DatabaseLoaderDemo()
         {
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
             //Load signatures from local database
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
+            //SigComp15GermanLoader loader = new SigComp15GermanLoader(Path.Combine(databaseDir, "SigWiComp2015_German.zip").GetPath(), true);
+            SigComp15GermanLoader loader = new SigComp15GermanLoader(@"Databases\SigWiComp2015_German.zip".GetPath(), true);
             var signers = loader.EnumerateSigners().ToList();
             Console.WriteLine($"{signers.Count} signers loaded with {signers.SelectMany(s=>s.Signatures).Count()} signatures");
         }
@@ -352,7 +354,7 @@ namespace SigStat.Sample
                 //}
             };
 
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\ger.rar".GetPath(), true);
             var signers = new List<Signer>(loader.EnumerateSigners(p => p.ID == "01"));//Load the first signer only
 
             List<Signature> references = signers[0].Signatures.GetRange(0, 10);

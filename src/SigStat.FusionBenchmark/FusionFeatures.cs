@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using System.Text;
+using System.Linq;
 
 namespace SigStat.FusionBenchmark
 {
