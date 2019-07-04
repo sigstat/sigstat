@@ -7,27 +7,27 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
-    class SigComp11ChineseLoader: DataSetLoader
+  public  class SigComp11ChineseLoader: DataSetLoader
     {
        /// <summary>
-        /// Set of features containing raw data loaded from SigComp15German-format database.
+        /// Set of features containing raw data loaded from SigComp11Chinese-format database.
         /// </summary>
-        public static class SigComp11
+        public static class SigComp11Ch
         {
             /// <summary>
-            /// X cooridnates from the online signature imported from the SigComp15German database
+            /// X cooridnates from the online signature imported from the SigComp11Chinese database
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("SigComp11Ch.X");
             /// <summary>
-            /// Y cooridnates from the online signature imported from the SigComp15German database
+            /// Y cooridnates from the online signature imported from the SigComp11Chinese database
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("SigComp11Ch.Y");
             /// <summary>
-            /// Z cooridnates from the online signature imported from the SigComp15German database
+            /// Z cooridnates from the online signature imported from the SigComp11Chinese database
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> P = FeatureDescriptor.Get<List<int>>("SigComp11Ch.p");
             /// <summary>
-            /// T values from the online signature imported from the SigComp15German database
+            /// T values from the online signature imported from the SigComp11Chinese database
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp15.T");
         }
@@ -39,9 +39,9 @@ namespace SigStat.Common.Loaders
             public string SignatureIndex { get; set; }
             public string ForgerID { get; set; }
             public string SignatureID { get; set; }
+            
 
-
-            public SigComp11ChineseSignatureFile(string filepath)
+            public SigComp11ChineseSignatureFile(string filepath): this()
             {
                 // TODO: Support original filename format
                 FilePath = filepath;
@@ -49,15 +49,34 @@ namespace SigStat.Common.Loaders
                 var parts = SignatureID.Split('_');
                 if (parts[0].Length == 2)
                 {
-                    SignerID = parts[1];
-                    SignatureIndex = parts[0];
-                    ForgerID = null;
+                    if (parts[1].Length == 3)
+                    {
+                        SignerID = parts[1];
+                        SignatureIndex = parts[0];
+                        ForgerID = null;
+                    }
+                    else if (parts[1].Length > 3)
+                    {
+                        SignerID = parts[1].Substring(parts[1].Length - 3);
+                        SignatureIndex = parts[0];
+                        ForgerID = parts[1];
+                    }
                 }
-                else if (parts.Length == 3)
+                else if (parts[0].Length > 2)
                 {
-                    SignerID = parts[0];
-                    SignatureIndex = parts[2];
-                    ForgerID = parts[1];
+                    if (parts[1].Length == 3)
+                    {
+                        SignerID = parts[0];
+                        SignatureIndex = parts[1];
+                        ForgerID = null;
+                    }
+                    else
+                    {
+                        SignerID = parts[0].Substring(parts[0].Length - 3); ;
+                        SignatureIndex = parts[1];
+                        ForgerID = parts[0];
+                    }
+
                 }
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
@@ -82,7 +101,7 @@ namespace SigStat.Common.Loaders
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
             {
                 //cut names if the files are in directories
-                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".trj")).Select(f => new SigComp11ChineseSignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
+                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".HWR")).Select(f => new SigComp11ChineseSignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
                 this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
@@ -155,24 +174,23 @@ namespace SigStat.Common.Loaders
                 lines.RemoveAt(lines.Count - 1);
             }
 
-            //signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
-            //signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
-            //signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
-            //// Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
-            //signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0 / 75.0) * 1000).ToList());
+            signature.SetFeature(SigComp11Ch.X, lines.Select(l => l[0]).ToList());
+            signature.SetFeature(SigComp11Ch.Y, lines.Select(l => l[1]).ToList());
+            signature.SetFeature(SigComp11Ch.P, lines.Select(l => l[2]).ToList());
+            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
 
-            //if (standardFeatures)
-            //{
-            //    signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
-            //    signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
-            //    signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
-            //    signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-            //    signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
-            //    signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
-            //    signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+            if (standardFeatures)
+            {
+               signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
+                signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
+                signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
+                signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
+               signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
+                signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
+               signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
 
 
-            //}
+            }
         }
 
     }

@@ -1180,29 +1180,29 @@
             <param name="stream">Stream to read MCYT data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
-        <member name="T:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11">
+        <member name="T:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch">
             <summary>
-            Set of features containing raw data loaded from SigComp15German-format database.
+            Set of features containing raw data loaded from SigComp11Chinese-format database.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.X">
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.X">
             <summary>
-            X cooridnates from the online signature imported from the SigComp15German database
+            X cooridnates from the online signature imported from the SigComp11Chinese database
             </summary>
         </member>
-        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.Y">
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.Y">
             <summary>
-            Y cooridnates from the online signature imported from the SigComp15German database
+            Y cooridnates from the online signature imported from the SigComp11Chinese database
             </summary>
         </member>
-        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.P">
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.P">
             <summary>
-            Z cooridnates from the online signature imported from the SigComp15German database
+            Z cooridnates from the online signature imported from the SigComp11Chinese database
             </summary>
         </member>
-        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11.T">
+        <member name="F:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.T">
             <summary>
-            T values from the online signature imported from the SigComp15German database
+            T values from the online signature imported from the SigComp11Chinese database
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.SigComp11ChineseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">
