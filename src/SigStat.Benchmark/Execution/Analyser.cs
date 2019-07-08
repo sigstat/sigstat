@@ -67,7 +67,7 @@ namespace SigStat.Benchmark
             {
                 var sheet = p.Workbook.Worksheets.Add("Summary");
                 sheet.InsertTable(2, 2, reports);
-                p.SaveAs(new FileInfo("Report.xlsx"));
+                p.SaveAs(new FileInfo(OutputFile));
             }
         }
 
