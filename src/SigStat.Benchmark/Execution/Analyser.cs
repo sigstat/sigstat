@@ -25,7 +25,8 @@ namespace SigStat.Benchmark
             public string Duration { get; set; }
 
 
-
+            public string Translation { get; set; }
+            public string Scaling { get; set; }
             public string Classifier { get; set; }
             public string Sampling { get; set; }
             public string Database { get; set; }
@@ -83,7 +84,7 @@ namespace SigStat.Benchmark
                     result.AER = summary.Cells["I12"].GetValue<double>();
                     result.Key = Path.GetFileNameWithoutExtension(filename);
 
-                    for (int row = 10; row <= 19; row++)
+                    for (int row = 10; row <= 21; row++)
                     {
                         string key = summary.Cells[row, 5].GetValue<string>();
                         string value = summary.Cells[row, 6].GetValue<string>();
