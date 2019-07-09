@@ -39,9 +39,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
     /// Classifies Signatures with the <see cref="Dtw"/> algorithm.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public class DtwClassifier : PipelineBase, IClassifier
+    public class DtwClassifier : PipelineBase, IDistanceClassifier
     {
-        private readonly Func<double[], double[], double> distanceMethod;
+        public Func<double[], double[], double> DistanceFunction { get; private set; }
 
         [Input]
 
@@ -58,7 +58,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <param name="distanceMethod">Accord.Math.Distance.*</param>
         public DtwClassifier(Func<double[], double[], double> distanceMethod)
         {
-            this.distanceMethod = distanceMethod;
+            this.DistanceFunction = distanceMethod;
             Features = new List<FeatureDescriptor>();//
         }
 
@@ -82,7 +82,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                     }
                     else
                     {
-                        distanceMatrix[i.ID, j.ID] = DtwPy.Dtw(i.Features, j.Features, distanceMethod);
+                        distanceMatrix[i.ID, j.ID] = DtwPy.Dtw(i.Features, j.Features, DistanceFunction);
                     }
 
                 }
@@ -123,7 +123,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             for (int i = 0; i < dtwModel.GenuineSignatures.Count; i++)
             {
-                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, distanceMethod);
+                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, DistanceFunction);
                 dtwModel.DistanceMatrix[signature.ID, dtwModel.GenuineSignatures[i].Key] = distances[i];
             }
 

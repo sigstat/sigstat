@@ -71,8 +71,8 @@ namespace SigStat.Common.Loaders
             StandardFeatures = standardFeatures;
         }
 
-        private string DatabasePath { get; }
-        private bool StandardFeatures { get; }
+        public string DatabasePath { get; set; }
+        public bool StandardFeatures { get; set; }
 
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {

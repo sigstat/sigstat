@@ -68,8 +68,10 @@ namespace SigStat.Common.Helpers
         /// <inheritdoc/>
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            var oldColor = Console.ForegroundColor;
+            if (!IsEnabled(logLevel))
+                return;
 
+            var oldColor = Console.ForegroundColor;
 
             switch (logLevel)
             {

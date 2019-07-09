@@ -105,7 +105,7 @@ namespace SigStat.Common.Model
             else
                 SignerModel = Classifier.Train(signatures);
 
-            this.LogInformation("Training finished.");
+            this.LogTrace("Training finished.");
 
         }
 
@@ -116,18 +116,18 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
-            this.LogInformation("Verifying signature {signature}.", signature.ID);
+            this.LogTrace("Verifying signature {signature}.", signature.ID);
 
             Pipeline.Transform(signature);
 
-            this.LogInformation("Signature {signature} transformed.", signature.ID);
+            this.LogTrace("Signature {signature} transformed.", signature.ID);
 
             if (SignerModel == null)
                 this.LogError("Signer model not available. Train or provide a model for verification.");
 
             var result = Classifier.Test(SignerModel, signature);
 
-            this.LogInformation("Verification result for signature '{signature}': {result}", signature.ID, result);
+            this.LogTrace("Verification result for signature '{signature}': {result}", signature.ID, result);
             return result;
         }
     }

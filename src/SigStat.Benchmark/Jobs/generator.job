@@ -1,0 +1,8 @@
+universe = vanilla
+executable = /home/1/sigstat/sigstat/SigStat.Benchmark
+arguments = generate --outputDir benchmarks --databasePath /home/1/sigstat/databases/
+output = output/generator.out
+error = output/generator.err
+log = output/generator.log
+requirements = ( machine =!= HEAD_NODE )
+queue

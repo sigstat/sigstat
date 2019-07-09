@@ -9,7 +9,7 @@ using System.Text;
 namespace SigStat.Common.PipelineItems.Classifiers
 {
     [JsonObject(MemberSerialization.OptOut)]
-    public class OptimalDtwClassifier : PipelineBase, IClassifier
+    public class OptimalDtwClassifier : PipelineBase, IDistanceClassifier
     {
         #region SignerModel
         /// <summary>

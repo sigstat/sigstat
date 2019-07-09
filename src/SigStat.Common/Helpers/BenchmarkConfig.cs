@@ -9,6 +9,10 @@ namespace SigStat.Common.Helpers
 {
     public class BenchmarkConfig
     {
+        // Phase2:
+        // - Több jellemzőkombináció
+        // - 
+
         //most 1 signer samplerrel: 7168 
 
         // 21504 = 2*8*3*16*2*14
@@ -20,7 +24,7 @@ namespace SigStat.Common.Helpers
         // DB+Resampling+Filter+Interpolation: 14
 
         //eredeti minta
-        //    Features: X, Y, P, a1, a2, XY, XYP, XYPA1A2
+        //    Features: X, Y, P, a1, a2, XY, XYP, XYPA1A2, -- XAz, YAz, XAl, YAl, PAz, PAl, 
         //string config = "{sampling:  s1,s2,s3}" +
         //    " database: SVC2004, MCYT100" +
         //    "Filter: none, P" +
@@ -31,6 +35,7 @@ namespace SigStat.Common.Helpers
         //    "ResamplingType: none, CubicTimeSlotLength, CubicSampleCount, CubicFillPenUp, LinearTimeSlotLength, LinearSampleCount, LinearFillPenUp
         //    "Interpolation: , }";
 
+
         public static BenchmarkConfig FromJsonString(string jsonString)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(jsonString);
@@ -38,12 +43,13 @@ namespace SigStat.Common.Helpers
 
         public string ToShortString()
         {
-            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Select(v=>v?.ToString() ?? ""));
+            return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Select(v => v?.ToString() ?? ""));
         }
 
-        public IEnumerable<KeyValuePair<string,string>> ToKeyValuePairs()
+        public IEnumerable<KeyValuePair<string, string>> ToKeyValuePairs()
         {
-            return GetType().GetProperties().Select(pi => new KeyValuePair<string, string>(pi.Name, pi.GetValue(this)?.ToString() ?? ""));
+            return new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Translation", this.Translation_Scaling.Translation), new KeyValuePair<string, string>("Scaling", this.Translation_Scaling.Scaling) }
+                    .Concat(GetType().GetProperties().Select(pi => new KeyValuePair<string, string>(pi.Name, pi.GetValue(this)?.ToString() ?? "")));
         }
 
         public string ToJsonString()
@@ -88,13 +94,13 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Database = "SVC2004");
-            List<string> es = new List<string>() { "MCYT100", "DUTCH" };
-            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
-            {
-                Database = e
-            })).ToList();
-            l.AddRange(ls);
+            l.ForEach(c => c.Database = "DUTCH");
+            //List<string> es = new List<string>() { "MCYT100", "DUTCH" };
+            //var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+            //{
+            //    Database = e
+            //})).ToList();
+            //l.AddRange(ls);
             return l;
         }
 
@@ -134,11 +140,11 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Translations_Scalings(List<BenchmarkConfig> l)
         {
-            //TODO: Add X01Y01 ==> CogToOrigin 
+            //TODO: Add X01Y01 ==> CogToOrigin
 
             //jobb kezzel megadni az ertelmes parokat: 16 db van, osszes 30 helyett
-            l.ForEach(c => c.Translation_Scaling = ("None","None"));
-            List<(string,string)> es = new List<(string, string)>() {
+            l.ForEach(c => c.Translation_Scaling = ("None", "None"));
+            List<(string, string)> es = new List<(string, string)>() {
                 ("None","X01Y0prop"),
                 ("None","Y01X0prop"),
                 ("None","X01"),
@@ -174,6 +180,7 @@ namespace SigStat.Common.Helpers
             //db tol fugg, hogy milyen resampling/filter kell
             //svc: None, SampleCount, FillPenUp
             //mcyt: None, SampleCount, Filter
+            //dutch: None, SampleCount, Filter
 
             l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
@@ -207,10 +214,18 @@ namespace SigStat.Common.Helpers
             {
                 ResamplingType_Filter = "P"
             }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P_FillPenUp"
+            }));
 
             l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P"
+            }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P_FillPenUp"
             }));
 
             return l;
@@ -219,9 +234,9 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Interpolations(List<BenchmarkConfig> l)
         {
             //csak ott kell interpolaciot allitani, ahol van resampling
-            l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp").ToList().ForEach(c => c.Interpolation = "Linear");
+            l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp" || c.ResamplingType_Filter == "P_FillPenUp").ToList().ForEach(c => c.Interpolation = "Linear");
             List<string> es = new List<string>() { "Cubic" };
-            var ls = es.SelectMany(e => l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var ls = es.SelectMany(e => l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp" || c.ResamplingType_Filter == "P_FillPenUp").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Interpolation = e
             })).ToList();
@@ -232,6 +247,7 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> SetFeatures(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Features = "XYP");
+
             List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
             var ls1 = es1.SelectMany(e => l.Where(c => c.Database != "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
@@ -239,7 +255,6 @@ namespace SigStat.Common.Helpers
             })).ToList();
 
             List<string> es2 = new List<string>() { "X", "Y", "P", "XY" };
-
             var ls2 = es2.SelectMany(e => l.Where(c => c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Features = e

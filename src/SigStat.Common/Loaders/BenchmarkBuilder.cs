@@ -4,6 +4,8 @@ using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.Loaders
@@ -25,10 +27,10 @@ namespace SigStat.Common.Loaders
         static DutchSampler2 dutchSampler2 = new DutchSampler2();
         static DutchSampler3 dutchSampler3 = new DutchSampler3();
         static DutchSampler4 dutchSampler4 = new DutchSampler4();
-        //TODO: more signer samplers
-        static Svc2004Loader svcLoader = new Svc2004Loader(@"Task2.zip", true);
-        static MCYTLoader mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
-        static SigComp11DutchLoader dutchLoader = new SigComp11DutchLoader(@"dutch_renamed.zip", true);
+
+        static Svc2004Loader svcLoader;
+        static MCYTLoader mcytLoader;
+        static SigComp11DutchLoader dutchLoader;
 
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
@@ -54,10 +56,21 @@ namespace SigStat.Common.Loaders
         //static CubicInterpolation cubicInterpolation = new CubicInterpolation(); 
         //TODO: legyen allapotmentes a maradek is?
 
-
-
-        public static VerifierBenchmark Build(BenchmarkConfig config)
+        public static VerifierBenchmark Build(BenchmarkConfig config, string databasePath = null)
         {
+            if (databasePath == null)
+                databasePath = Environment.GetEnvironmentVariable("SigStatDB");
+
+            svcLoader = new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true);
+            mcytLoader = new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true);
+            dutchLoader = new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true);
+
+            //labor:
+            //svcLoader = new Svc2004Loader(@"Task2.zip", true);
+            //mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
+            //dutchLoader = new SigComp11DutchLoader(@"dutch_renamed.zip", true);
+
+
             Sampler sampler1 = null;
             Sampler sampler2 = null;
             Sampler sampler3 = null;
@@ -117,6 +130,7 @@ namespace SigStat.Common.Loaders
             switch (config.ResamplingType_Filter)
             {
                 case "P":
+                case "P_FillPenUp":
                     pipeline.Add(filterPoints);
                     break;
                 case "None":
@@ -171,11 +185,6 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            var featurelist = new List<FeatureDescriptor<List<double>>>()
-            {
-                Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
-            };
-
             Type ip;
             switch (config.Interpolation)
             {
@@ -187,6 +196,11 @@ namespace SigStat.Common.Loaders
                     ip = typeof(LinearInterpolation);
                     break;
             }
+
+            var featurelist = new List<FeatureDescriptor<List<double>>>()
+            {
+                Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
+            };
 
             //resample after transformations
             switch (config.ResamplingType_Filter)
@@ -202,9 +216,10 @@ namespace SigStat.Common.Loaders
                         InterpolationType = ip
                     });
                     break;
+                case "P_FillPenUp":
                 case "FillPenUp":
                     pipeline.Add(new FillPenUpDurations()
-                    { 
+                    {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
                         TimeInputFeature = Features.T,
@@ -255,7 +270,6 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-
             Func<double[], double[], double> distance = null;
             switch (config.Distance)
             {
@@ -278,10 +292,8 @@ namespace SigStat.Common.Loaders
             {
                 classifier = new OptimalDtwClassifier(distance)
                 {
-                   
                     Features = ClassifierFeatures,
                     Sampler = b.Sampler
-
                 };
             }
             else throw new NotSupportedException();
@@ -291,6 +303,8 @@ namespace SigStat.Common.Loaders
                 Pipeline = pipeline,
                 Classifier = classifier
             };
+
+            b.Parameters = config.ToKeyValuePairs().ToList();
 
             return b;
 

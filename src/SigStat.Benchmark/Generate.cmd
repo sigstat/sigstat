@@ -1,0 +1,1 @@
+dotnet SigStat.Benchmark.dll generate --outputDir "benchmarks" --databasePath "%SigStatDB%"

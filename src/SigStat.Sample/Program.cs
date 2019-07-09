@@ -55,7 +55,7 @@ namespace SigStat.Sample
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
             //OnlineVerifierBenchmarkDemo();
-            //PreprocessingBenchmarkDemo();
+            PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
@@ -96,15 +96,15 @@ namespace SigStat.Sample
             ////var config = BenchmarkConfig.FromJsonFile(path);
             BenchmarkConfig config = new BenchmarkConfig()
             {
-                Classifier = "Dtw",
-                Sampling = "S4",
+                Classifier = "OptimalDtw",
+                Sampling = "S1",
                 Database = "DUTCH",
                 Rotation = true,
-                Translation_Scaling = ("BottomLeftToOrigin", "Y01"),
-                ResamplingType_Filter = "None",
-                ResamplingParam = 0,
-                Interpolation = "",
-                Features = "XYP",
+                Translation_Scaling = ("None", "X01"),
+                ResamplingType_Filter = "SampleCount",
+                ResamplingParam = 50,
+                Interpolation = "Linear",
+                Features = "P",
                 Distance = "Manhattan"
             };
             var configs = BenchmarkConfig.GenerateConfigurations();
@@ -113,8 +113,8 @@ namespace SigStat.Sample
 
 
             var benchmark = BenchmarkBuilder.Build(myConfig);
-            benchmark.Logger = new SimpleConsoleLogger();
-            benchmark.Execute(true);
+            benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
+            benchmark.Execute(false);
             benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
 
         }

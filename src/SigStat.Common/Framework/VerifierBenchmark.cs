@@ -98,6 +98,8 @@ namespace SigStat.Common
             }
         }
 
+        public List<KeyValuePair<string, string>> Parameters { get; set; } = new List<KeyValuePair<string, string>>();
+
         public void Dump(string filename, IEnumerable<KeyValuePair<string, string>> parameters)
         {
             using (var p = new ExcelPackage())
@@ -115,8 +117,8 @@ namespace SigStat.Common
                     new KeyValuePair<string, object>("Agent:",Environment.MachineName),
                     new KeyValuePair<string, object>("Duration:",duration.ToString()),
                 };
-                summarySheet.InsertTable(2, 8, execution, "Execution", ExcelColor.Secondary, true);
-                summarySheet.InsertTable(5, 8, parameters, "Parameters", ExcelColor.Secondary, true);
+                summarySheet.InsertTable(8, 2, execution, "Execution", ExcelColor.Secondary, true);
+                summarySheet.InsertTable(8, 5, parameters, "Parameters", ExcelColor.Secondary, true);
                 var resultsSummary = new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("FAR:",benchmarkResults.FinalResult.Far),
@@ -144,15 +146,15 @@ namespace SigStat.Common
                         var errorRates = om.ErrorRates.Select(r => new { Threshold = r.Key, FAR = r.Value.Far, FRR = r.Value.Frr, AER = r.Value.Aer });
                         var threshold = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Threshold", om.Threshold) };
                         signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
-                        signerSheet.InsertTable(4 + distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
-                        signerSheet.InsertTable(4 + distances.GetLength(0), 6, errorRates, "Error rates", ExcelColor.Info, true);
+                        signerSheet.InsertTable(2, 4 + distances.GetLength(0), threshold, null, ExcelColor.Danger, false);
+                        signerSheet.InsertTable(6, 4 + distances.GetLength(0), errorRates, "Error rates", ExcelColor.Info, true);
                     }
                     else if (signer.Model is DtwSignerModel dm)
                     {
                         var distances = dm.DistanceMatrix.ToArray();
                         var threshold = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Threshold", dm.Threshold) };
                         signerSheet.InsertTable(2, 2, distances, "Distance matrix", ExcelColor.Info, true, true);
-                        signerSheet.InsertTable(4 + distances.GetLength(0), 2, threshold, null, ExcelColor.Danger, false);
+                        signerSheet.InsertTable(2, 4 + distances.GetLength(0), threshold, null, ExcelColor.Danger, false);
                     }
                 }
                 p.SaveAs(new FileInfo(filename));
@@ -214,14 +216,28 @@ namespace SigStat.Common
         /// <summary>
         /// Execute the benchmarking process.
         /// </summary>
+        /// <param name="ParallelMode"></param>
         /// <returns></returns>
         public BenchmarkResults Execute(bool ParallelMode = true)
+        {
+            if (ParallelMode)
+                return Execute(Environment.ProcessorCount);
+            else
+                return Execute(1);
+        }
+
+        /// <summary>
+        /// Execute the benchmarking process with a degree of parallelism.
+        /// </summary>
+        /// <param name="degreeOfParallelism">Degree of parallelism is the maximum number of concurrently executing tasks.</param>
+        /// <returns></returns>
+        public BenchmarkResults Execute(int degreeOfParallelism)
         {
             var stopwatch = Stopwatch.StartNew();
 
             // TODO: centralize logger injection
             Verifier.Logger = logger;
-            this.LogInformation("Benchmark execution started. Parallel mode: {ParallelMode}", ParallelMode);
+            this.LogInformation("Benchmark execution started.");
             var results = new List<Result>();
             farAcc = 0;
             frrAcc = 0;
@@ -229,11 +245,11 @@ namespace SigStat.Common
 
             this.LogTrace("Loading data..");
             var signers = new List<Signer>(Loader.EnumerateSigners());
-            this.LogInformation("{signersCount} signers found. Benchmarking..", signers.Count);
+            this.LogTrace("{signersCount} signers found. Benchmarking..", signers.Count);
 
-            if (ParallelMode)
-            {
-                results = signers.AsParallel().SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
+            if (degreeOfParallelism>1)
+            {               
+                results = signers.AsParallel().WithDegreeOfParallelism(degreeOfParallelism).SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
             else
             {
@@ -266,7 +282,8 @@ namespace SigStat.Common
 
         private IEnumerable<Result> benchmarkSigner(Signer iSigner, int cntSigners)
         {
-            this.LogInformation("Benchmarking Signer {iSignerID}", iSigner.ID);
+
+            this.LogTrace("Benchmarking Signer {iSignerID}", iSigner.ID);
             List<Signature> references = Sampler.SampleReferences(iSigner.Signatures);
             List<Signature> genuineTests = Sampler.SampleGenuineTests(iSigner.Signatures);
             List<Signature> forgeryTests = Sampler.SampleForgeryTests(iSigner.Signatures);
@@ -303,7 +320,8 @@ namespace SigStat.Common
                         nFalseReject++;//eredeti alairast hamisnak hisz
                     }
                 }
-                catch (/*VerifierTesting*/Exception ex)
+                catch (/*VerifierTesting*/
+            Exception ex)
                 {
                     this.LogError(ex, "Testing genuine Signature {signatureID} of Signer {signerID} failed. Skipping..", genuine.ID, iSigner.ID);
                     failedGenuineTests++;

@@ -30,5 +30,10 @@ namespace SigStat.Common.Pipeline
         double Test(ISignerModel model, Signature signature);
     }
 
+    public interface IDistanceClassifier: IClassifier
+    {
+        Func<double[], double[], double> DistanceFunction { get; }
+    }
+
    
 }

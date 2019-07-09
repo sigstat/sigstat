@@ -516,6 +516,14 @@
             <summary>
             Execute the benchmarking process.
             </summary>
+            <param name="ParallelMode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.VerifierBenchmark.Execute(System.Int32)">
+            <summary>
+            Execute the benchmarking process with a degree of parallelism.
+            </summary>
+            <param name="degreeOfParallelism">Degree of parallelism is the maximum number of concurrently executing tasks.</param>
             <returns></returns>
         </member>
         <member name="T:SigStat.Common.ArrayExtension">
