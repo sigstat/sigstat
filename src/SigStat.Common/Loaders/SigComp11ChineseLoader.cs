@@ -89,8 +89,8 @@ namespace SigStat.Common.Loaders
             StandardFeatures = standardFeatures;
         }
 
-        private string DatabasePath { get; }
-        private bool StandardFeatures { get; }
+        public string DatabasePath { get; set; }
+        public bool StandardFeatures { get; set; }
 
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
@@ -181,13 +181,13 @@ namespace SigStat.Common.Loaders
 
             if (standardFeatures)
             {
-               signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
+                signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-               signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
-               signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
 
 
             }

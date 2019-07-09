@@ -184,7 +184,9 @@ namespace SigStat.Benchmark
                     try
                     {
                         File.Create(next.FullName + ".lock").Close();
-                        break;
+                        CurrentBenchmarkId = next.Name.Split(".json")[0];
+                        Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
+                        return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
                     }
                     catch
                     {
@@ -195,15 +197,9 @@ namespace SigStat.Benchmark
                 }
 
                 if (next == null)
-                {
                     Console.WriteLine($"{DateTime.Now}: No more tasks in queue.");
-                    return null;
-                }
 
-                CurrentBenchmarkId = next.Name.Split(".json")[0];
-                Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
-                return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
-
+                return null;
             }
             else
             {

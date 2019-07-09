@@ -27,10 +27,15 @@ namespace SigStat.Common.Loaders
         static DutchSampler2 dutchSampler2 = new DutchSampler2();
         static DutchSampler3 dutchSampler3 = new DutchSampler3();
         static DutchSampler4 dutchSampler4 = new DutchSampler4();
+        static GermanSampler germanSampler1 = new GermanSampler();
+        //TODO: add more samplers
 
         static Svc2004Loader svcLoader;
         static MCYTLoader mcytLoader;
         static SigComp11DutchLoader dutchLoader;
+        static SigComp15GermanLoader germanLoader;
+        static SigComp11ChineseLoader chineseLoader;
+        //static SigComp13JapaneseLoader japaneseLoader;
 
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
@@ -64,6 +69,9 @@ namespace SigStat.Common.Loaders
             svcLoader = new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true);
             mcytLoader = new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true);
             dutchLoader = new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true);
+            chineseLoader = new SigComp11ChineseLoader(Path.Combine(databasePath, "SigComp11Chinese.zip"), true);
+            germanLoader = new SigComp15GermanLoader(Path.Combine(databasePath, "SigWiComp2015_German.zip"), true);
+            //japaneseLoader = new SigComp13JapaneseLoader(Path.Combine(databasePath, "SigWiComp2013_Japanese.zip"), true);
 
             //labor:
             //svcLoader = new Svc2004Loader(@"Task2.zip", true);
@@ -101,6 +109,19 @@ namespace SigStat.Common.Loaders
                     sampler3 = dutchSampler3;
                     sampler4 = dutchSampler4;
                     break;
+                case "GERMAN":
+                    b.Loader = germanLoader;
+                    sampler1 = germanSampler1;
+                    //
+                    break;
+                case "CHINESE":
+                    b.Loader = chineseLoader;
+
+                    break;
+                case "JAPANESE":
+                    //b.Loader = japaneseLoader;
+
+                    break;
                 default:
                     throw new NotSupportedException();
             }
@@ -110,7 +131,7 @@ namespace SigStat.Common.Loaders
                 case "S1":
                     b.Sampler = sampler1;
                     break;
-                case "S2"://TODO: replace with new samplers
+                case "S2":
                     b.Sampler = sampler2;
                     break;
                 case "S3":

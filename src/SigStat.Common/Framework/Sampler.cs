@@ -187,4 +187,14 @@ namespace SigStat.Common
             sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
         { }
     }
+
+    public class GermanSampler : Sampler
+    {
+        // TODO: this can use wrong configurations 
+        public GermanSampler() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_R_")).ToList(),//10
+            sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_G")).ToList(),//5
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
 }
