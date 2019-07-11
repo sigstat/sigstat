@@ -92,7 +92,7 @@ namespace SigStat.Common
         { }
     }
 
-    
+
     public class McytSampler1 : Sampler
     {
         public McytSampler1() : base(
@@ -131,7 +131,7 @@ namespace SigStat.Common
         { }
     }
 
-   public class DutchSampler1 : Sampler
+    public class DutchSampler1 : Sampler
     {
         public DutchSampler1() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
@@ -197,4 +197,24 @@ namespace SigStat.Common
             sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
         { }
     }
+
+    public class JapaneseSampler1 : Sampler
+    {
+        public JapaneseSampler1() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(32).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+    public class JapaneseSampler2 : Sampler
+    {
+        public JapaneseSampler2() : base(
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(32).Take(10).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(32).ToList(),
+            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+        { }
+    }
+
+   
 }

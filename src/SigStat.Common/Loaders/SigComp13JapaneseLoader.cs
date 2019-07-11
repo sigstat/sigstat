@@ -7,32 +7,32 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
-    public class SigComp15GermanLoader : DataSetLoader
+    public class SigComp13JapaneseLoader : DataSetLoader
     {
         /// <summary>
-        /// Set of features containing raw data loaded from SigComp15German-format database.
+        /// Set of features containing raw data loaded from SigComp13Japanese-format database.
         /// </summary>
-        public static class SigComp15
+        public static class SigComp13Japanese
         {
             /// <summary>
-            /// X cooridnates from the online signature imported from the SigComp15German database
+            /// X cooridnates from the online signature imported from the SigComp13Japanese database  
             /// </summary>
-            public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("SigComp15.X");
+            public static readonly FeatureDescriptor<List<int>> X = FeatureDescriptor.Get<List<int>>("SigComp13Japanese.X");
             /// <summary>
-            /// Y cooridnates from the online signature imported from the SigComp15German database
+            /// Y cooridnates from the online signature imported from the SigComp13Japanese database
             /// </summary>
-            public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("SigComp15.Y");
+            public static readonly FeatureDescriptor<List<int>> Y = FeatureDescriptor.Get<List<int>>("SigComp13Japanese.Y");
             /// <summary>
-            /// Z cooridnates from the online signature imported from the SigComp15German database
+            /// Z cooridnates from the online signature imported from the SigComp13Japanese database (100 - pen down, 0 - pen up)
             /// </summary>
-            public static readonly FeatureDescriptor<List<int>> P = FeatureDescriptor.Get<List<int>>("SigComp15.p");
+            public static readonly FeatureDescriptor<List<int>> P = FeatureDescriptor.Get<List<int>>("SigComp13Japanese.P");
             /// <summary>
-            /// T values from the online signature imported from the SigComp15German database
+            /// Generated T values from the online signature imported from the SigComp13Japanese database
             /// </summary>
-            public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp15.T");
+            public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp13Japanese.T");
         }
 
-        private struct SigComp15GermanSignatureFile
+        private struct SigComp13JapaneseSignatureFile
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -41,43 +41,35 @@ namespace SigStat.Common.Loaders
             public string SignatureID { get; set; }
 
 
-            public SigComp15GermanSignatureFile(string filepath)
+            public SigComp13JapaneseSignatureFile(string filepath) : this()
             {
-                // TODO: Support original filename format
                 FilePath = filepath;
                 SignatureID = Path.GetFileNameWithoutExtension(filepath.Split('/').Last());//handle if file is in zip directory
-                //F: forged, G: genuine (testing), R: references (training)
                 var parts = SignatureID.Split('_');
-                if (parts[1][0] == 'F')
+                if (parts.Length == 2)
                 {
-                    SignerID = parts[0];
-                    SignatureIndex = parts[1];
-                    ForgerID = parts[1].Skip(1).ToString();
-                }
-                else if (parts[1][0] == 'G')
-                {
-                    SignerID = parts[0];
-                    SignatureIndex = parts[2];
+                    SignerID = parts[1];
+                    SignatureIndex = parts[0];
                     ForgerID = null;
                 }
-                else if (parts[1][0] == 'R')
+                else if (parts.Length == 3)
                 {
-                    SignerID = parts[0];
-                    SignatureIndex = parts[2];
-                    ForgerID = null;
+                    SignerID = parts[2];
+                    SignatureIndex = parts[0];
+                    ForgerID = parts[1];
                 }
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
             }
         }
 
-        public SigComp15GermanLoader(string databasePath, bool standardFeatures)
+        public SigComp13JapaneseLoader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
 
-        public string DatabasePath { get; set;  }
+        public string DatabasePath { get; set; }
         public bool StandardFeatures { get; set; }
 
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
@@ -89,7 +81,7 @@ namespace SigStat.Common.Loaders
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
             {
                 //cut names if the files are in directories
-                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".trj")).Select(f => new SigComp15GermanSignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
+                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".HWR")).Select(f => new SigComp13JapaneseSignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
                 this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
@@ -133,7 +125,7 @@ namespace SigStat.Common.Loaders
         /// Based on Mohammad's MCYT reader.
         /// </remarks>
         /// <param name="signature">Signature to write features to.</param>
-        /// <param name="stream">Stream to read MCYT data from.</param>
+        /// <param name="stream">Stream to read SigComp13Japanese data from.</param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         public static void LoadSignature(Signature signature, MemoryStream stream, bool standardFeatures)
         {
@@ -162,11 +154,11 @@ namespace SigStat.Common.Loaders
                 lines.RemoveAt(lines.Count - 1);
             }
 
-            signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
-            signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
-            signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
-            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
-            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0/75.0)*1000).ToList());
+            signature.SetFeature(SigComp13Japanese.X, lines.Select(l => l[0]).ToList());
+            signature.SetFeature(SigComp13Japanese.Y, lines.Select(l => l[1]).ToList());
+            signature.SetFeature(SigComp13Japanese.P, lines.Select(l => l[2]).ToList());
+            // Sampling frequency is 200Hz ==> time should be increased by 5 msec for each slot
+            signature.SetFeature(SigComp13Japanese.T, Enumerable.Range(0, lines.Count).Select(i => i * 5).ToList());
 
             if (standardFeatures)
             {
@@ -181,6 +173,5 @@ namespace SigStat.Common.Loaders
 
             }
         }
-
     }
 }
