@@ -10,10 +10,13 @@ namespace SigStat.Common.Framework.Samplers
     /// </summary>
     public class LastNSampler : Sampler
     {
-        public LastNSampler(int n = 10) : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Take(n).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Skip(n).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
+        public int N { get; set; }
+        public LastNSampler(int n = 10) : base(null, null, null)
+        {
+            N = n;
+            references = sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Take(N).ToList();
+            genuineTests = sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Skip(N).ToList();
+            forgeryTests = sl => sl.Where(s => s.Origin == Origin.Forged).ToList();
+        }
     }
 }

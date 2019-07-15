@@ -11,9 +11,9 @@ namespace SigStat.Common
     /// </summary>
     public class Sampler
     {
-        private readonly Func<List<Signature>, List<Signature>> references;
-        private readonly Func<List<Signature>, List<Signature>> genuineTests;
-        private readonly Func<List<Signature>, List<Signature>> forgeryTests;
+        protected Func<List<Signature>, List<Signature>> references;
+        protected Func<List<Signature>, List<Signature>> genuineTests;
+        protected Func<List<Signature>, List<Signature>> forgeryTests;
 
         /// <summary>
         /// Initialize a new instance of the <see cref="Sampler"/> class by given sampling strategies.
