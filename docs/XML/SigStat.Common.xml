@@ -281,6 +281,26 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SigStat.Common.Framework.Samplers.EvenNSampler">
+            <summary>
+            Universal sampler for training on n even indexed genuine signatures.
+            </summary>ss
+        </member>
+        <member name="T:SigStat.Common.Framework.Samplers.FirstNSampler">
+            <summary>
+            Universal sampler for training on the first N genuine signatures.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Framework.Samplers.LastNSampler">
+            <summary>
+            Universal sampler for training on the last N genuine signatures.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Framework.Samplers.OddNSampler">
+            <summary>
+            Universal sampler for training on n odd indexed genuine signatures.
+            </summary>ss
+        </member>
         <member name="T:SigStat.Common.ILoggerObject">
             <summary>
             Represents a type, that contains an ILogger property that can be used to perform logging.
@@ -1258,6 +1278,42 @@
             </remarks>
             <param name="signature">Signature to write features to.</param>
             <param name="stream">Stream to read MCYT data from.</param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
+        <member name="T:SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese">
+            <summary>
+            Set of features containing raw data loaded from SigComp13Japanese-format database.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.X">
+            <summary>
+            X cooridnates from the online signature imported from the SigComp13Japanese database  
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.Y">
+            <summary>
+            Y cooridnates from the online signature imported from the SigComp13Japanese database
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.P">
+            <summary>
+            Z cooridnates from the online signature imported from the SigComp13Japanese database (100 - pen down, 0 - pen up)
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.T">
+            <summary>
+            Generated T values from the online signature imported from the SigComp13Japanese database
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.SigComp13JapaneseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">
+            <summary>
+            Loads one signature from specified stream.
+            </summary>
+            <remarks>
+            Based on Mohammad's MCYT reader.
+            </remarks>
+            <param name="signature">Signature to write features to.</param>
+            <param name="stream">Stream to read SigComp13Japanese data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
         <member name="T:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15">

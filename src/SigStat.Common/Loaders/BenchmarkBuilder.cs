@@ -1,4 +1,5 @@
-﻿using SigStat.Common.Helpers;
+﻿using SigStat.Common.Framework.Samplers;
+using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
@@ -28,6 +29,11 @@ namespace SigStat.Common.Loaders
         static DutchSampler3 dutchSampler3 = new DutchSampler3();
         static DutchSampler4 dutchSampler4 = new DutchSampler4();
         static GermanSampler germanSampler1 = new GermanSampler();
+
+        static FirstNSampler first10Sampler = new FirstNSampler(10);
+        static LastNSampler last10Sampler = new LastNSampler(10);
+        static EvenNSampler even10Sampler = new EvenNSampler(10);
+        static OddNSampler odd10Sampler = new OddNSampler(10);
         //TODO: add more samplers
 
         static Svc2004Loader svcLoader;
@@ -116,7 +122,10 @@ namespace SigStat.Common.Loaders
                     break;
                 case "CHINESE":
                     b.Loader = chineseLoader;
-
+                    sampler1 = first10Sampler;
+                    sampler2 = last10Sampler;
+                    sampler3 = even10Sampler;
+                    sampler4 = odd10Sampler;
                     break;
                 case "JAPANESE":
                     //b.Loader = japaneseLoader;

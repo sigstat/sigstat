@@ -188,7 +188,7 @@ namespace SigStat.Benchmark
                         Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
                         return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
                     }
-                    catch
+                    catch (Exception) //catch {} won't catch all exceptions in release mode
                     {
                         Console.WriteLine($"{DateTime.Now}: Failed to lock config {next.Name}. Skipping ({tries})..");
                         tries--;

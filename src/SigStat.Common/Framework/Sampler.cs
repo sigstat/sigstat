@@ -56,6 +56,8 @@ namespace SigStat.Common
         }
     }
 
+    //TODO: move db-specific samplers
+
     public class SVC2004Sampler1 : Sampler
     {
         public SVC2004Sampler1() : base(
@@ -169,16 +171,6 @@ namespace SigStat.Common
         { }
     }
 
-    public class UniversalSampler : Sampler
-    {
-        // TODO: this can use wrong configurations 
-        public UniversalSampler(int refCount, int testCount) : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(refCount).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(refCount).Take(testCount).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).Take(testCount).ToList())
-        { }
-    }
-
     public class SigComp19Sampler : Sampler
     {
         public SigComp19Sampler(int refCount, int testCount) : base(
@@ -190,7 +182,6 @@ namespace SigStat.Common
 
     public class GermanSampler : Sampler
     {
-        // TODO: this can use wrong configurations 
         public GermanSampler() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_R_")).ToList(),//10
             sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_G")).ToList(),//5
@@ -216,5 +207,4 @@ namespace SigStat.Common
         { }
     }
 
-   
 }

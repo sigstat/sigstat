@@ -72,9 +72,18 @@ namespace SigStat.Common.Loaders
                     }
                     else
                     {
-                        SignerID = parts[0].Substring(parts[0].Length - 3); ;
-                        SignatureIndex = parts[1];
-                        ForgerID = parts[0];
+                        if (parts[0].Length > 3)
+                        {
+                            SignerID = parts[0].Substring(parts[0].Length - 3); ;
+                            SignatureIndex = parts[1];
+                            ForgerID = parts[0];
+                        }
+                        else
+                        {
+                            SignerID = parts[0];
+                            SignatureIndex = parts[1];
+                            ForgerID = null;
+                        }
                     }
 
                 }
