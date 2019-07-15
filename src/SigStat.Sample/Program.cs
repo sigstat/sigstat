@@ -1,5 +1,6 @@
 ﻿
 using SigStat.Common;
+using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
 using SigStat.Common.Model;
@@ -98,7 +99,7 @@ namespace SigStat.Sample
             {
                 Classifier = "OptimalDtw",
                 Sampling = "S1",
-                Database = "DUTCH",
+                Database = "CHINESE",
                 Rotation = true,
                 Translation_Scaling = ("None", "X01"),
                 ResamplingType_Filter = "SampleCount",

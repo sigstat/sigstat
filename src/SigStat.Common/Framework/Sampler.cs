@@ -11,9 +11,9 @@ namespace SigStat.Common
     /// </summary>
     public class Sampler
     {
-        private readonly Func<List<Signature>, List<Signature>> references;
-        private readonly Func<List<Signature>, List<Signature>> genuineTests;
-        private readonly Func<List<Signature>, List<Signature>> forgeryTests;
+        protected Func<List<Signature>, List<Signature>> references;
+        protected Func<List<Signature>, List<Signature>> genuineTests;
+        protected Func<List<Signature>, List<Signature>> forgeryTests;
 
         /// <summary>
         /// Initialize a new instance of the <see cref="Sampler"/> class by given sampling strategies.
@@ -55,6 +55,8 @@ namespace SigStat.Common
             return forgeryTests(signatures);
         }
     }
+
+    //TODO: move db-specific samplers
 
     public class SVC2004Sampler1 : Sampler
     {
@@ -169,16 +171,6 @@ namespace SigStat.Common
         { }
     }
 
-    public class UniversalSampler : Sampler
-    {
-        // TODO: this can use wrong configurations 
-        public UniversalSampler(int refCount, int testCount) : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(refCount).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(refCount).Take(testCount).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).Take(testCount).ToList())
-        { }
-    }
-
     public class SigComp19Sampler : Sampler
     {
         public SigComp19Sampler(int refCount, int testCount) : base(
@@ -190,7 +182,6 @@ namespace SigStat.Common
 
     public class GermanSampler : Sampler
     {
-        // TODO: this can use wrong configurations 
         public GermanSampler() : base(
             sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_R_")).ToList(),//10
             sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_G")).ToList(),//5
@@ -216,5 +207,4 @@ namespace SigStat.Common
         { }
     }
 
-   
 }

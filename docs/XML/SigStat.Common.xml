@@ -281,6 +281,26 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SigStat.Common.Framework.Samplers.EvenNSampler">
+            <summary>
+            Universal sampler for training on n even indexed genuine signatures.
+            </summary>ss
+        </member>
+        <member name="T:SigStat.Common.Framework.Samplers.FirstNSampler">
+            <summary>
+            Universal sampler for training on the first N genuine signatures.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Framework.Samplers.LastNSampler">
+            <summary>
+            Universal sampler for training on the last N genuine signatures.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Framework.Samplers.OddNSampler">
+            <summary>
+            Universal sampler for training on n odd indexed genuine signatures.
+            </summary>ss
+        </member>
         <member name="T:SigStat.Common.ILoggerObject">
             <summary>
             Represents a type, that contains an ILogger property that can be used to perform logging.
