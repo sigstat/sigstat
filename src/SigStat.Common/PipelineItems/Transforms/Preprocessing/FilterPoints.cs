@@ -27,7 +27,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             var keyFeatureValues = new List<double>(signature.GetFeature(KeyFeatureInput));
 
-            var filterValue = CalculatePercentile(Percentile, keyFeatureValues);
+            //var filterValue = CalculatePercentile(Percentile, keyFeatureValues);
+            var filterValue = 0;
 
             var indexes = new List<int>();
             for (int i = keyFeatureValues.Count-1; i > 0; i--)
