@@ -15,7 +15,7 @@ namespace SigStat.Common.Framework.Samplers
         {
             N = n;
             references = sl => sl.Where(s => s.Origin == Origin.Genuine).Where((s, i) => i % 2 == 0).Take(N).ToList();
-            genuineTests = sl => sl.Where(s => s.Origin == Origin.Genuine).Where((s, i) => i % 2 != 0).ToList();
+            genuineTests = sl => sl.Where(s => s.Origin == Origin.Genuine).Except(sl.Where((s, i) => i % 2 == 0).Take(N)).ToList();
             forgeryTests = sl => sl.Where(s => s.Origin == Origin.Forged).ToList();
         }
     }
