@@ -14,8 +14,8 @@ namespace SigStat.Common.Framework.Samplers
         public LastNSampler(int n = 10) : base(null, null, null)
         {
             N = n;
-            references = sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Take(N).ToList();
-            genuineTests = sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Skip(N).ToList();
+            references = sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Take(N).Reverse().ToList();
+            genuineTests = sl => sl.Where(s => s.Origin == Origin.Genuine).Reverse().Skip(N).Reverse().ToList();
             forgeryTests = sl => sl.Where(s => s.Origin == Origin.Forged).ToList();
         }
     }
