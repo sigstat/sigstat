@@ -69,8 +69,6 @@ namespace SigStat.Benchmark
                     }
                 }
 
-                CurrentBenchmark = await GetNextBenchmark();
-                if (CurrentBenchmark is null) return;
 
                 var logger = new SimpleConsoleLogger();//default log level: Information
                 logger.Logged += (m, e, l) =>
@@ -81,13 +79,17 @@ namespace SigStat.Benchmark
                     if (l == LogLevel.Error || l == LogLevel.Critical)
                         CurrentResultType = "Error";
                 };
-                CurrentBenchmark.Logger = logger;
 
-                Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
 
                 try
                 {
-                    if(maxThreads>0)
+                    CurrentBenchmark = await GetNextBenchmark();
+                    if (CurrentBenchmark is null) return;
+                    CurrentBenchmark.Logger = logger;
+
+                    Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
+
+                    if (maxThreads>0)
                         CurrentResults = CurrentBenchmark.Execute(maxThreads);
                     else
                         CurrentResults = CurrentBenchmark.Execute(true);//default: no restriction 
@@ -183,9 +185,10 @@ namespace SigStat.Benchmark
                 {
                     try
                     {
-                        File.Create(next.FullName + ".lock").Close();
+                        var f = File.Create(next.FullName + ".lock");
                         CurrentBenchmarkId = next.Name.Split(".json")[0];
                         Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
+
                         return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
                     }
                     catch (Exception) //catch {} won't catch all exceptions in release mode
