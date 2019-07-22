@@ -49,7 +49,7 @@ namespace SigStat.Common.Loaders
 
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
-            Features.X, Features.Y, Features.Azimuth, Features.Altitude
+            Features.X, Features.Y, Features.Azimuth, Features.Altitude, Features.T
         };
         static FilterPoints filterPoints = new FilterPoints()
         {

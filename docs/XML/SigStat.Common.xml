@@ -827,6 +827,16 @@
             Gets the current progress in percentage.
             </summary>
         </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Overwrite of the <see cref="T:Newtonsoft.Json.JsonConverter"/> method
+            Serializes the <see cref="T:SigStat.Common.FeatureDescriptor"/> to json with type depending on if it was serialized earlier or not
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter">
             <summary>
             Custom serializer for a Dictionary of <see cref="T:SigStat.Common.FeatureDescriptor"/>

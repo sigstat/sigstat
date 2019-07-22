@@ -9,10 +9,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     public enum OriginType
     {
-        CenterOfGravity,
-        Minimum,
-        Maximum,
-        Predefined
+        CenterOfGravity = 0,
+        Minimum = 1,  
+        Maximum = 2,
+        Predefined = 3
     }
     [JsonObject(MemberSerialization.OptOut)]
     public class TranslatePreproc : PipelineBase, ITransformation
@@ -34,7 +34,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             set
             {
                 _newOrigin = value;
-                GoalOrigin = OriginType.Predefined;
+                // TODO: Make sure that goal origin and new origins are consistent
             }
         }
 

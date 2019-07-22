@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SigStat.Common.Algorithms;
+using SigStat.Common.Helpers.Serialization;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public List<FeatureDescriptor> Features { get; set; }
 
         public Sampler Sampler { get; set; }
-        [JsonIgnore]
+        [JsonConverter(typeof(DistanceFunctionJsonConverter))]
         public Func<double[], double[], double> DistanceFunction { get; set; }
 
         public OptimalDtwClassifier(Func<double[], double[], double> distanceFunction = null)

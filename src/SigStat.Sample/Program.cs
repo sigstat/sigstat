@@ -99,24 +99,39 @@ namespace SigStat.Sample
             {
                 Classifier = "OptimalDtw",
                 Sampling = "S1",
-                Database = "CHINESE",
+                Database = "GERMAN",
                 Rotation = true,
-                Translation_Scaling = ("None", "X01"),
-                ResamplingType_Filter = "SampleCount",
-                ResamplingParam = 50,
+                Translation_Scaling = ("BottomLeftToOrigin", "None"),
+                ResamplingType_Filter = "P_FillPenUp",
+                ResamplingParam = 0,
                 Interpolation = "Linear",
                 Features = "P",
-                Distance = "Manhattan"
+                Distance = "Euclidean"
             };
+            //var configs = BenchmarkConfig.GenerateConfigurations();
+            //var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
+            ////var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
+
+
+            //var benchmark = BenchmarkBuilder.Build(myConfig);
+            //benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
+            //benchmark.Execute(false);
+            //benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
+
+
             var configs = BenchmarkConfig.GenerateConfigurations();
             var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
             //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
 
 
             var benchmark = BenchmarkBuilder.Build(myConfig);
+            SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
+            benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
+
             benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
             benchmark.Execute(false);
             benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
+
 
         }
 
