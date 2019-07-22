@@ -35,13 +35,17 @@ namespace SigStat.Common.Loaders
         static EvenNSampler even10Sampler = new EvenNSampler(10);
         static OddNSampler odd10Sampler = new OddNSampler(10);
         //TODO: add more samplers
+        static JapaneseSampler1 japaneseSampler1 = new JapaneseSampler1();
+        static JapaneseSampler2 japaneseSampler2 = new JapaneseSampler2();
+        static JapaneseSampler3 japaneseSampler3 = new JapaneseSampler3();
+        static JapaneseSampler4 japaneseSampler4 = new JapaneseSampler4();
 
         static Svc2004Loader svcLoader;
         static MCYTLoader mcytLoader;
         static SigComp11DutchLoader dutchLoader;
         static SigComp15GermanLoader germanLoader;
         static SigComp11ChineseLoader chineseLoader;
-        //static SigComp13JapaneseLoader japaneseLoader;
+        static SigComp13JapaneseLoader japaneseLoader;
 
         static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
         {
@@ -77,7 +81,7 @@ namespace SigStat.Common.Loaders
             dutchLoader = new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true);
             chineseLoader = new SigComp11ChineseLoader(Path.Combine(databasePath, "SigComp11Chinese.zip"), true);
             germanLoader = new SigComp15GermanLoader(Path.Combine(databasePath, "SigWiComp2015_German.zip"), true);
-            //japaneseLoader = new SigComp13JapaneseLoader(Path.Combine(databasePath, "SigWiComp2013_Japanese.zip"), true);
+            japaneseLoader = new SigComp13JapaneseLoader(Path.Combine(databasePath, "SigWiComp2013_Japanese.zip"), true);
 
             //labor:
             //svcLoader = new Svc2004Loader(@"Task2.zip", true);
@@ -128,8 +132,11 @@ namespace SigStat.Common.Loaders
                     sampler4 = odd10Sampler;
                     break;
                 case "JAPANESE":
-                    //b.Loader = japaneseLoader;
-
+                    b.Loader = japaneseLoader;
+                    sampler1 = japaneseSampler1;
+                    sampler2 = japaneseSampler2;
+                    sampler3 = japaneseSampler3;
+                    sampler4 = japaneseSampler4;
                     break;
                 default:
                     throw new NotSupportedException();

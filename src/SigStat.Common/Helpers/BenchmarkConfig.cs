@@ -75,8 +75,8 @@ namespace SigStat.Common.Helpers
 
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
-            l.ForEach(c => c.Database = "CHINESE");
-            //List<string> es = new List<string>() { "MCYT100", "DUTCH", "GERMAN", "JAPANESE", "SVC2004" };
+            l.ForEach(c => c.Database = "JAPANESE");
+            //List<string> es = new List<string>() { "MCYT100", "DUTCH", "GERMAN", "CHINESE", "SVC2004" };
             //var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
             //{
             //    Database = e
@@ -228,6 +228,15 @@ namespace SigStat.Common.Helpers
                 ResamplingType_Filter = "P_FillPenUp"
             }));
 
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "JAPANESE").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P"
+            }));
+            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "JAPANESE").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            {
+                ResamplingType_Filter = "P_FillPenUp"
+            }));
+
             return l;
         }
 
@@ -248,7 +257,7 @@ namespace SigStat.Common.Helpers
         {
             l.ForEach(c => c.Features = "XYP");
 
-            var xypConfigs = l.Where(c => c.Database == "DUTCH" || c.Database == "GERMAN" || c.Database == "CHINESE");//ezeknek nincs azimuth, altitudeja (1.0 mind)
+            var xypConfigs = l.Where(c => c.Database == "DUTCH" || c.Database == "GERMAN" || c.Database == "CHINESE" || c.Database == "JAPANESE");//ezeknek nincs azimuth, altitudeja (1.0 mind)
 
             List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
             var ls1 = es1.SelectMany(e => l.Except(xypConfigs).ToList().ConvertAll(c => new BenchmarkConfig(c)
