@@ -207,24 +207,26 @@ namespace SigStat.Common
         { }
     }
 
-    public class JapaneseSampler3 : Sampler
-    {
-        static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18", "20" };
-        public JapaneseSampler3() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID)).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID)).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
+    //TODO: fix or remove
+    //public class JapaneseSampler3 : Sampler
+    //{
+    //    static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18", "20" };
+    //    public JapaneseSampler3() : base(
+    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID)).ToList(),
+    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID)).ToList(),
+    //        sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+    //    { }
+    //}
 
-    public class JapaneseSampler4 : Sampler
-    {
-        static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
-        public JapaneseSampler4() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID)).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID)).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
+    //TODO: fix or remove
+    //public class JapaneseSampler4 : Sampler
+    //{
+    //    static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
+    //    public JapaneseSampler4() : base(
+    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID)).ToList(),
+    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID)).ToList(),
+    //        sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
+    //    { }
+    //}
 
 }

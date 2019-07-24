@@ -36,11 +36,6 @@ namespace SigStat.Common.Loaders
         static EvenNSampler even10Sampler = new EvenNSampler(10);
         static OddNSampler odd10Sampler = new OddNSampler(10);
 
-        static JapaneseSampler1 japaneseSampler1 = new JapaneseSampler1();
-        static JapaneseSampler2 japaneseSampler2 = new JapaneseSampler2();
-        static JapaneseSampler3 japaneseSampler3 = new JapaneseSampler3();
-        static JapaneseSampler4 japaneseSampler4 = new JapaneseSampler4();
-
         static Svc2004Loader svcLoader;
         static MCYTLoader mcytLoader;
         static SigComp11DutchLoader dutchLoader;
@@ -136,10 +131,10 @@ namespace SigStat.Common.Loaders
                     break;
                 case "JAPANESE":
                     b.Loader = japaneseLoader;
-                    sampler1 = japaneseSampler1;
-                    sampler2 = japaneseSampler2;
-                    sampler3 = japaneseSampler3;
-                    sampler4 = japaneseSampler4;
+                    sampler1 = first10Sampler;
+                    sampler2 = last10Sampler;
+                    sampler3 = even10Sampler;
+                    sampler4 = odd10Sampler;
                     break;
                 default:
                     throw new NotSupportedException();
