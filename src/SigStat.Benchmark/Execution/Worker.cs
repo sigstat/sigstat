@@ -195,6 +195,7 @@ namespace SigStat.Benchmark
                     catch
                     {
                         Console.WriteLine($"{DateTime.Now}: Failed to lock config {next.Name}. Skipping ({tries})..");
+                        await Task.Delay(1000);
                         tries--;
                         next = findNextUnprocessedConfig();
                     }

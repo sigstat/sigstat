@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using SigStat.Common.Helpers.Serialization;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
@@ -41,7 +42,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
     [JsonObject(MemberSerialization.OptOut)]
     public class DtwClassifier : PipelineBase, IDistanceClassifier
     {
-        public Func<double[], double[], double> DistanceFunction { get; private set; }
+        [JsonConverter(typeof(DistanceFunctionJsonConverter))]
+        public Func<double[], double[], double> DistanceFunction { get; set; }
 
         [Input]
 

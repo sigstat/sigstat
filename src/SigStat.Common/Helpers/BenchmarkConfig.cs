@@ -52,17 +52,15 @@ namespace SigStat.Common.Helpers
         {
             l.ForEach(c => c.Sampling = "S1");
 
-            var multipleSamplerConfigs = l.Where(c => c.Database != "GERMAN").ToList();
-
-            var l2 = multipleSamplerConfigs.ConvertAll(c => new BenchmarkConfig(c)
+            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Sampling = "S2"
             });
-            var l3 = multipleSamplerConfigs.ConvertAll(c => new BenchmarkConfig(c)
+            var l3 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Sampling = "S3"
             });
-            var l4 = multipleSamplerConfigs.ConvertAll(c => new BenchmarkConfig(c)
+            var l4 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Sampling = "S4"
             });
@@ -76,12 +74,12 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Database = "SVC2004");
-            //List<string> es = new List<string>() { "MCYT100", "DUTCH", "GERMAN", "CHINESE", "GERMAN" };
-            //var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
-            //{
-            //    Database = e
-            //})).ToList();
-            //l.AddRange(ls);
+            List<string> es = new List<string>() { "MCYT100", "DUTCH", "GERMAN", "CHINESE", "JAPANESE" };
+            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Database = e
+            })).ToList();
+            l.AddRange(ls);
             return l;
         }
 
@@ -160,82 +158,52 @@ namespace SigStat.Common.Helpers
 
             //db tol fugg, hogy milyen resampling/filter kell
             //svc: None, SampleCount, FillPenUp
-            //mcyt: None, SampleCount, Filter
-            //dutch: None, SampleCount, Filter
+            //other DBs: None, SampleCount, Filter, Filter+FillPenUp
 
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var s50 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "SampleCount",
                 ResamplingParam = 50
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            });
+            var s100 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "SampleCount",
                 ResamplingParam = 100
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            });
+            var s500 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "SampleCount",
                 ResamplingParam = 500
-            }));
-
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            });
+            var s1000 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "SampleCount",
                 ResamplingParam = 1000
-            }));
+            });
 
 
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var fillpenup = l.Where(c => c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "FillPenUp"
-            }));
+            });
 
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var p = l.Where(c => c.Database != "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P"
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "MCYT100").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            });
+            var p_fillpenup = l.Where(c => c.Database != "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P_FillPenUp"
-            }));
+            });
 
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P"
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "DUTCH").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P_FillPenUp"
-            }));
+            l.AddRange(s50);
+            l.AddRange(s100);
+            l.AddRange(s500);
+            l.AddRange(s1000);
 
-            //ez helyes?
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "GERMAN").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P"
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "GERMAN").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P_FillPenUp"
-            }));
-
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "CHINESE").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P"
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "CHINESE").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P_FillPenUp"
-            }));
-
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "JAPANESE").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P"
-            }));
-            l.AddRange(l.Where(c => c.ResamplingType_Filter == "None" && c.Database == "JAPANESE").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "P_FillPenUp"
-            }));
+            l.AddRange(fillpenup);
+            l.AddRange(p);
+            l.AddRange(p_fillpenup);
 
             return l;
         }

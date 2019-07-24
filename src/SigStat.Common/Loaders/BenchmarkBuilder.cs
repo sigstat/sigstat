@@ -16,6 +16,8 @@ namespace SigStat.Common.Loaders
 
         //Elejen letrehozzuk oket: nem kell mindenkinek kulon instance, mert allapotmentesek vagyunk (ahol igen..)
         //miert static? Mert a Builder is static. Lehetne a Buildben is letrehozni oket, de mi sokszor hivjuk meg ezt a Buildet.
+
+        //TODO: replace db specific samplers with universal ones where possible
         static SVC2004Sampler1 svcSampler1 = new SVC2004Sampler1();
         static SVC2004Sampler2 svcSampler2 = new SVC2004Sampler2();
         static SVC2004Sampler3 svcSampler3 = new SVC2004Sampler3();
@@ -28,13 +30,12 @@ namespace SigStat.Common.Loaders
         static DutchSampler2 dutchSampler2 = new DutchSampler2();
         static DutchSampler3 dutchSampler3 = new DutchSampler3();
         static DutchSampler4 dutchSampler4 = new DutchSampler4();
-        static GermanSampler germanSampler1 = new GermanSampler();
 
         static FirstNSampler first10Sampler = new FirstNSampler(10);
         static LastNSampler last10Sampler = new LastNSampler(10);
         static EvenNSampler even10Sampler = new EvenNSampler(10);
         static OddNSampler odd10Sampler = new OddNSampler(10);
-        //TODO: add more samplers
+
         static JapaneseSampler1 japaneseSampler1 = new JapaneseSampler1();
         static JapaneseSampler2 japaneseSampler2 = new JapaneseSampler2();
         static JapaneseSampler3 japaneseSampler3 = new JapaneseSampler3();
@@ -121,8 +122,10 @@ namespace SigStat.Common.Loaders
                     break;
                 case "GERMAN":
                     b.Loader = germanLoader;
-                    sampler1 = germanSampler1;
-                    //
+                    sampler1 = first10Sampler;
+                    sampler2 = last10Sampler;
+                    sampler3 = even10Sampler;
+                    sampler4 = odd10Sampler;
                     break;
                 case "CHINESE":
                     b.Loader = chineseLoader;
