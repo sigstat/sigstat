@@ -80,15 +80,15 @@ namespace SigStat.Benchmark
                         CurrentResultType = "Error";
                 };
 
+                CurrentBenchmark = await GetNextBenchmark();
+                if (CurrentBenchmark is null)
+                    return;
+                CurrentBenchmark.Logger = logger;
+
+                Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
 
                 try
                 {
-                    CurrentBenchmark = await GetNextBenchmark();
-                    if (CurrentBenchmark is null) return;
-                    CurrentBenchmark.Logger = logger;
-
-                    Console.WriteLine($"{DateTime.Now}: Starting benchmark...");
-
                     if (maxThreads>0)
                         CurrentResults = CurrentBenchmark.Execute(maxThreads);
                     else
@@ -111,6 +111,7 @@ namespace SigStat.Benchmark
                         await blob.DeleteIfExistsAsync();
                         await blob.UploadFromFileAsync(debugFileName);
                     }
+                    continue;
                 }
 
                 await ProcessResults();
@@ -191,7 +192,7 @@ namespace SigStat.Benchmark
 
                         return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
                     }
-                    catch (Exception) //catch {} won't catch all exceptions in release mode
+                    catch
                     {
                         Console.WriteLine($"{DateTime.Now}: Failed to lock config {next.Name}. Skipping ({tries})..");
                         tries--;

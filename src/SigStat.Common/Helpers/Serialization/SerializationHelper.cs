@@ -36,22 +36,7 @@ namespace SigStat.Common.Helpers
         /// <returns>The object that was serialized</returns>
         public static T Deserialize<T>(string s) where T : new()
         {
-            try
-            {
-                T desirializedObject = JsonConvert.DeserializeObject<T>(s, GetSettings());
-
-                return desirializedObject;
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine($"Serialization error: '{e}'");
-                return default(T);
-            }
-            catch (JsonReaderException e)
-            {
-                Console.WriteLine($"Error while reading json: '{e}'");
-                return default(T);
-            }
+            return JsonConvert.DeserializeObject<T>(s, GetSettings());
         }
         /// <summary>
         /// Constructs object from file given by a path
@@ -61,28 +46,9 @@ namespace SigStat.Common.Helpers
         /// <returns>The object that was serialized to the file</returns>
         public static T DeserializeFromFile<T>(string path) where T : new()
         {
-            try
-            {
-                T desirializedObject = JsonConvert.DeserializeObject<T>(File.ReadAllText(path), GetSettings());
-
-                return desirializedObject;
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine($"Serialization error: '{e}'");
-                return default(T);
-            }
-            catch (JsonReaderException e)
-            {
-                Console.WriteLine($"Error while reading json: '{e}'");
-                return default(T);
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine($"Incorrect path '{e}'");
-                return default(T);
-            }
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(path), GetSettings());
         }
+
         /// <summary>
         /// Writes object to file to the given by path in json format
         /// </summary>
