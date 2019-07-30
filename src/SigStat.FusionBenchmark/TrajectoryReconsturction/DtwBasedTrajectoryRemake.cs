@@ -138,14 +138,14 @@ namespace SigStat.FusionBenchmark.TrajectoryReconsturction
             {
                 if (list[i].On)
                 {
-                    double[] val = new double[3 + RelativePosition.areas];
-                    val[0] = list[i].PosD.X * 10.0;
-                    val[1] = list[i].PosD.Y * 10.0;
-                    val[2] = CalculateAngle(list, i) * 20.0;
-                    for (int relIdx = 0; relIdx < RelativePosition.areas; relIdx++)
-                    {
-                        val[2 + relIdx] = list[i].RelPos[relIdx];
-                    }
+                    double[] val = new double[2];
+                    val[0] = list[i].PosD.X;
+                    val[1] = list[i].PosD.Y;
+                    //val[2] = CalculateAngle(list, i) * 20.0;
+                    //for (int relIdx = 0; relIdx < RelativePosition.areas; relIdx++)
+                    //{
+                    //    val[2 + relIdx] = list[i].RelPos[relIdx];
+                    //}
                     res.Enqueue(val);
                 }
             }

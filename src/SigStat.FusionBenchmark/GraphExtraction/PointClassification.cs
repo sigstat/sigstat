@@ -31,9 +31,9 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             var crossingPoints = new VertexCollection();
             foreach (var p in vertices.Values)
             {
-                if (p.Degree() == 1)
+                if (p.Degree == 1)
                     endPoints.Add(p);
-                if (p.Degree() > 2)
+                if (p.Degree > 2)
                     crossingPoints.Add(p);
             }
             signature.SetFeature<VertexCollection>(OutputEndPoints, endPoints);

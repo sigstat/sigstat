@@ -187,6 +187,7 @@ namespace SigStat.FusionBenchmark
             foreach (var sig in signers[idx].Signatures)
             {
                 offlinepipeline.Transform(sig);
+                StrokeSaver.Save(sig, @"VisualResults/" + signers[idx].ID + "gr" + sig.ID + "St.png");
                 /*var vertices = sig.GetFeature<VertexCollection>(FusionFeatures.Vertices);
                 foreach (var p in vertices.Values)
                 {

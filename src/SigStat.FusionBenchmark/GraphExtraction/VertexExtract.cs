@@ -8,6 +8,7 @@ using SigStat.Common;
 using SigStat.Common.Pipeline;
 using SigStat.Common.Transforms;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace SigStat.FusionBenchmark.GraphExtraction
 {
@@ -36,23 +37,27 @@ namespace SigStat.FusionBenchmark.GraphExtraction
                     }
                 }
             }
+
+
+
             foreach (var p in outputVertices.Values)
             {
-                p.Neighbours = new List<Vertex>();
-                foreach (var q in outputVertices.Values)
-                {
-                    if (isNeighbour(p, q))
-                    {
-                        p.Neighbours.Add(q);
-                    }
-                }
+                p.Neighbours = outputVertices.Values.Where(q => IsNeighbour(p, q)).ToList();
+                //p.Neighbours = new List<Vertex>();
+                //foreach (var q in outputVertices.Values)
+                //{
+                //    if (isNeighbour(p, q))
+                //    {
+                //        p.Neighbours.Add(q);
+                //    }
+                //}
             }
             signature.SetFeature<VertexCollection>(OutputVertices, outputVertices);
             this.LogInformation("VertexExtract transform finished - " + outputVertices.Count.ToString() + " vertices extracted.");
 
         }
 
-        bool isNeighbour(Vertex p, Vertex q)
+        bool IsNeighbour(Vertex p, Vertex q)
         {
             return (Math.Abs(p.Pos.X - q.Pos.X)) <= 1 && (Math.Abs(p.Pos.Y - q.Pos.Y) <= 1) && p.Pos != q.Pos;
         }

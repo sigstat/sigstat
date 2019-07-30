@@ -77,7 +77,7 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             if (p.Parent == null)
                 p.Parent = p;
             actualStroke.Add(p);
-            if (p.Degree() != 2)
+            if (p.Degree != 2)
             {
                 AddStroke();
                 actualStroke.Add(p);

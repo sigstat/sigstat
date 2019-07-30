@@ -13,4 +13,10 @@
     <Folder Include="Databases\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Databases\SVC%2840%29.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

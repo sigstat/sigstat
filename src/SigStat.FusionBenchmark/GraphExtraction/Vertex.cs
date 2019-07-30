@@ -39,9 +39,12 @@ namespace SigStat.FusionBenchmark.GraphExtraction
         }
 
 
-        public int Degree()
+        public int Degree
         {
-            return Neighbours.Count;
+            get
+            {
+                return Neighbours.Count;
+            }
         }
     }
 }
