@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using SigStat.FusionBenchmark.GraphExtraction;
+using SigStat.FusionBenchmark.TrajectoryReconsturction;
 
 namespace SigStat.FusionBenchmark
 {
@@ -54,6 +56,33 @@ namespace SigStat.FusionBenchmark
         /// The visaul representation of a signature
         /// </summary>
         public static readonly FeatureDescriptor<Image<Rgba32>> Image = FeatureDescriptor.Get<Image<Rgba32>>("Image");
+        /// <summary>
+        /// Binarized, thinned visual representation of a signature
+        /// </summary>
+        public static readonly FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor.Get<bool[,]>("Skeleton");
+
+        public static readonly FeatureDescriptor<VertexCollection> Vertices = FeatureDescriptor.Get<VertexCollection>("Vertices");
+
+        public static readonly FeatureDescriptor<VertexCollection> EndPoints = FeatureDescriptor.Get<VertexCollection>("EndPoints");
+
+        public static readonly FeatureDescriptor<VertexCollection> CrossingPoints = FeatureDescriptor.Get<VertexCollection>("CrossingPoints");
+
+        public static readonly FeatureDescriptor<VertexCollection> Connects = FeatureDescriptor.Get<VertexCollection>("Connects");
+
+        public static readonly FeatureDescriptor<StrokeCollection> Strokes = FeatureDescriptor.Get<StrokeCollection>("Strokes");
+
+        public static readonly FeatureDescriptor<List<StrokeEdge>> StrokeEdgeList = FeatureDescriptor.Get<List<StrokeEdge>>("StrokeEdgeList");
+
+        public static readonly FeatureDescriptor<List<StrokeEdge>> InDirectStrokeEdgeList = FeatureDescriptor.Get<List<StrokeEdge>>("InDirectStrokeEdgeList");
+
+        public static readonly FeatureDescriptor<VertexList> BaseTrajectory = FeatureDescriptor.Get<VertexList>("BaseTrajectory");
+
+        public static readonly FeatureDescriptor<VertexList> Trajectory = FeatureDescriptor.Get<VertexList>("Trajectory");
+
+        public static readonly FeatureDescriptor<List<double>> Curvature = FeatureDescriptor.Get<List<double>>("Curvature");
+
+        public static readonly FeatureDescriptor<Stroke> NullStroke = FeatureDescriptor.Get<Stroke>("NullStroke");
+
         /// <summary>
         /// Center of gravity in a signature
         /// </summary>
