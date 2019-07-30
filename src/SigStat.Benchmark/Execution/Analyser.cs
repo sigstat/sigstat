@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SigStat.Common.Helpers.Excel;
-
+using System.Diagnostics;
 
 namespace SigStat.Benchmark
 {
@@ -46,6 +46,7 @@ namespace SigStat.Benchmark
         }
         internal static async Task RunAsync(string inputDir, string output)
         {
+            Stopwatch sw = Stopwatch.StartNew();
             InputDirectory = inputDir;
             OutputFile = output;
 
@@ -55,8 +56,9 @@ namespace SigStat.Benchmark
             var reports = new ConcurrentBag<ReportLine>();
             Parallel.ForEach(reportFiles, new ParallelOptions { MaxDegreeOfParallelism = 16 }, rf =>
             {
+                long eta = reports.Count>0? sw.ElapsedMilliseconds * (reportFiles.Count - reports.Count) / reports.Count:0; 
                 if (reports.Count % 100 == 0)
-                    Console.WriteLine(DateTime.Now + ": " + reports.Count + "/" + reportFiles.Count);
+                    Console.WriteLine(DateTime.Now + ": " + reports.Count + "/" + reportFiles.Count+" ETA: "+TimeSpan.FromMilliseconds(eta) );
                 reports.Add(LoadReportLine(rf));
 
             });
