@@ -3,20 +3,24 @@
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
     <!-- Version info will be overwriten by the publish process -->
-    <Version>0.1.421</Version>
+    <Version>0.1.1-alpha-20190731-1534</Version>
     <Authors>Bence Kovari</Authors>
-    <Company>Bence Kovari</Company>
-    <PackageLicenseUrl>https://github.com/bmeaut/sigstat/blob/master/LICENSE.md</PackageLicenseUrl>
+    <Company>Budapest University of Technology and Economics</Company>
     <PackageProjectUrl>https://github.com/bmeaut/sigstat</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Package Description</Description>
     <!-- <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>     -->
-    <Copyright>Copyright 2018</Copyright>
+    <Copyright>Copyright 2019</Copyright>
     <PackageTags>Signature;verification;offline;online</PackageTags>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/sigstat/sigstat</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>0.1.1.0</AssemblyVersion>
+    <FileVersion>0.1.1.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>default</LangVersion>
@@ -42,5 +46,11 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0006" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
