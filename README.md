@@ -1,7 +1,5 @@
-# SigStat project
-
-
 [![](sigstat.gif)](https://sigstat.org)
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/sigstat/sigstat/blob/master/LICENSE.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Follow SigStat on Twitter](https://img.shields.io/badge/twitter-@SigStatOrg-55acee.svg?style=flat-square)](https://twitter.com/sigstatorg)
