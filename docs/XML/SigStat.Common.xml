@@ -1459,6 +1459,82 @@
             <param name="d3"></param>
             <returns></returns>
         </member>
+        <member name="M:SigStat.Common.MathHelper.Median(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Calculates the median of the given data series
+            </summary>
+            <param name="values">The data series</param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.StrokeHelper">
+            <summary>
+            Helper class for locating and manipulating strokes in an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.StrokeHelper.GetStrokes(SigStat.Common.Signature)">
+            <summary>
+            Gets the strokes from an online signature with standard features. Note that
+            the signature has to contain <see cref="F:SigStat.Common.Features.T"/> and <see cref="F:SigStat.Common.Features.Pressure"/>
+            </summary>
+            <param name="signature">An online signature with standard features</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.StrokeHelper.GetStroke(System.Int32,System.Double)">
+            <summary>
+            Creates a <see cref="T:SigStat.Common.StrokeInterval"/> and initializes it with the given parameters
+            </summary>
+            <param name="startIndex">The start index.</param>
+            <param name="pressure">The pressure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.StrokeInterval">
+            <summary>
+            Represents a stroke in an online signature
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.StrokeInterval.StartIndex">
+            <summary>
+            The index of the firs element
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.StrokeInterval.EndIndex">
+            <summary>
+            The index of the last element
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.StrokeInterval.StrokeType">
+            <summary>
+            The <see cref="F:SigStat.Common.StrokeInterval.StrokeType"/> of the stroke.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.StrokeInterval.#ctor(System.Int32,System.Int32,SigStat.Common.StrokeType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.StrokeInterval"/> struct.
+            </summary>
+            <param name="startIndex">The index of the firs element</param>
+            <param name="endIndex">The index of the last element</param>
+            <param name="strokeType">Type of the stroke.</param>
+        </member>
+        <member name="T:SigStat.Common.StrokeType">
+            <summary>
+            Describes the type of a stroke
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.StrokeType.Unknown">
+            <summary>
+            The type of the stroke is not known
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.StrokeType.Up">
+            <summary>
+            The stroke was made in the air (the pen did not tuch the tablet/paper)
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.StrokeType.Down">
+            <summary>
+            The stroke was made on the writing surface (tablet, paper etc.)
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Loaders.DataSetLoader">
             <summary>
             Abstract loader class to inherit from. Implements ILogger.

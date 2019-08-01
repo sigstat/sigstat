@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace SigStat.Common
 {
@@ -40,6 +41,18 @@ namespace SigStat.Common
                     return d2;
                 }
             }
+        }
+
+        /// <summary>
+        /// Calculates the median of the given data series
+        /// </summary>
+        /// <param name="values">The data series</param>
+        /// <returns></returns>
+        public static double Median(this IEnumerable<double> values)
+        {
+            var valueList = new List<double>(values);
+            valueList.Sort();
+            return valueList[valueList.Count / 2];
         }
     }
 }
