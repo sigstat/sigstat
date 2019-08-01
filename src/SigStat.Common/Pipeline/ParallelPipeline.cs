@@ -17,9 +17,15 @@ namespace SigStat.Common.Pipeline
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run parallel.</summary>
-        
         public List<ITransformation> Items = new List<ITransformation>();
+
+        /// <summary>
+        /// Gets the pipeline inputs.
+        /// </summary>
         public override List<PipelineInput> PipelineInputs { get => Items.SelectMany(i=>i.PipelineInputs).ToList(); }
+        /// <summary>
+        /// Gets the pipeline outputs.
+        /// </summary>
         public override List<PipelineOutput> PipelineOutputs { get => Items.SelectMany(i => i.PipelineOutputs).ToList(); }
 
         /// <inheritdoc/>

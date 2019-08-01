@@ -5,14 +5,19 @@ using System.Text;
 
 namespace SigStat.Common.Helpers.Serialization
 {
+
     /// <summary>
+    /// Helper class for serializing distance functions
     /// </summary>
+    /// <seealso cref="Newtonsoft.Json.JsonConverter" />
     public class DistanceFunctionJsonConverter : JsonConverter
     {
+        /// <inheritdoc/>
         public override bool CanConvert(Type objectType)
         {
             return (objectType == typeof(FeatureDescriptor));
         }
+        /// <inheritdoc/>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             switch ((string)reader.Value)
@@ -23,10 +28,8 @@ namespace SigStat.Common.Helpers.Serialization
                     throw new Exception("Unsopported distance function");
             }
         }
-        /// <summary>
-        /// Overwrite of the <see cref="JsonConverter"/> method
-        /// Serializes the <see cref="FeatureDescriptor"/> to json with type depending on if it was serialized earlier or not
-        /// </summary>
+        /// <inheritdoc/>
+
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             // HACK: !!!!!!!!!

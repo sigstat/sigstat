@@ -15,10 +15,16 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class ComponentSorter : PipelineBase, ITransformation
     {
+
+        /// <summary>
+        /// Gets or sets the input.
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<List<PointF>>> Input { get; set; }
 
+        /// <summary>
+        /// Gets or sets the output.
+        /// </summary>
         [Output("Components")]
         public FeatureDescriptor<List<List<PointF>>> Output { get; set; }
 

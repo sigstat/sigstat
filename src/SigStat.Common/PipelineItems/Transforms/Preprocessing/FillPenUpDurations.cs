@@ -6,9 +6,18 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    /// <summary>
+    /// This transformation will fill "holes" in the "Time" feature by interpolating the last known
+    /// feature values. 
+    /// </summary>
+    /// <seealso cref="SigStat.Common.PipelineBase" />
+    /// <seealso cref="SigStat.Common.ITransformation" />
     [JsonObject(MemberSerialization.OptOut)]
     public class FillPenUpDurations : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Helper class for <see cref="FillPenUpDurations"/>
+        /// </summary>
         public class TimeSlot
         {
             private double _startTime;
@@ -16,6 +25,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             private bool isStartInitialized = false;
             private bool isEndInitialized = false;
 
+            /// <summary>
+            /// Gets or sets the start time of the slot
+            /// </summary>
             public double StartTime
             {
                 get => _startTime;
@@ -29,6 +41,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     }
                 }
             }
+
+            /// <summary>
+            /// Gets or sets the end time of the slot
+            /// </summary>
             public double EndTime
             {
                 get => _endTime;
@@ -43,28 +59,45 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 }
             }
 
+            /// <summary>
+            /// Gets the length of the slot
+            /// </summary>
             public double Length { get; private set; }
         }
 
 
-        [Input]
-        
+        /// <summary>
+        /// Gets or sets the feature representing the timestamps of an online signature
+        /// </summary>
+        [Input]        
         public FeatureDescriptor<List<double>> TimeInputFeature { get; set; } = Features.T;
 
+        /// <summary>
+        /// Gets or sets the features of an online signature that need to be altered
+        /// </summary>
         [Input]
-        
         public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
 
+        /// <summary>
+        /// Gets or sets the feature representing the modified timestamps of an online signature
+        /// </summary>
         [Output("FilledTime")]
         public FeatureDescriptor<List<double>> TimeOutputFeature { get; set; }
 
+        /// <summary>
+        /// Gets or sets the features of an online signature that were altered
+        /// </summary>
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
 
         //public List<TimeSlot> TimeSlots { get; set; }
 
+        /// <summary>
+        /// An implementation of <see cref="IInterpolation"/>
+        /// </summary>
         public Type InterpolationType { get; set; }
 
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
 

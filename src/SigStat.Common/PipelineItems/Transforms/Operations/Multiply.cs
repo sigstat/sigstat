@@ -23,10 +23,15 @@ namespace SigStat.Common.Transforms
         //[Input(AutoSetMode = AutoSetMode.Never)]
         //public FeatureDescriptor<double> InputValue;
 
+        /// <summary>
+        /// Input
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputList { get; set; }
 
+        /// <summary>
+        /// Output
+        /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> Output { get; set; }
 

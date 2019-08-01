@@ -7,27 +7,50 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    /// <summary>
+    /// Origin specification for <see cref="TranslatePreproc"/>
+    /// </summary>
     public enum OriginType
     {
+        /// <summary>Center of gravity</summary>
         CenterOfGravity = 0,
-        Minimum = 1,  
+        /// <summary>Minimum</summary>
+        Minimum = 1,
+        /// <summary>Maximum</summary>
         Maximum = 2,
+        /// <summary>Predefined</summary>
         Predefined = 3
     }
+    /// <summary>
+    /// This transformations can be used to translate the coordinates of an online signature
+    /// </summary>
+    /// <seealso cref="SigStat.Common.PipelineBase" />
+    /// <seealso cref="SigStat.Common.ITransformation" />
     [JsonObject(MemberSerialization.OptOut)]
     public class TranslatePreproc : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> (e.g. <see cref="Features.X"/>)
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputFeature { get; set; }
 
+        /// <summary>
+        /// Output <see cref="FeatureDescriptor"/> (e.g. <see cref="Features.X"/>)
+        /// </summary>
         [Output("TranslatedFeature")]
         public FeatureDescriptor<List<double>> OutputFeature { get; set; }
 
 
+        /// <summary>
+        /// Goal origin of the translation
+        /// </summary>
         public OriginType GoalOrigin { get; set; } = OriginType.Predefined;
 
         private double _newOrigin = 0;
+        /// <summary>
+        /// New origin after the translation
+        /// </summary>
         public double NewOrigin
         {
             get => _newOrigin;
@@ -38,20 +61,22 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TranslatePreproc"/> class.
+        /// </summary>
         public TranslatePreproc() { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TranslatePreproc"/> class.
+        /// </summary>
+        /// <param name="goalOrigin">The goal origin.</param>
         public TranslatePreproc(OriginType goalOrigin)
         {
             GoalOrigin = goalOrigin;
         }
 
-        public TranslatePreproc(double newOrigin)
-        {
-            NewOrigin = newOrigin;
-            GoalOrigin = OriginType.Predefined;
-        }
 
-
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             if (InputFeature == null || OutputFeature == null)

@@ -7,28 +7,45 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    /// <summary>
+    /// Performs rotation normalization on the online signature
+    /// </summary>
+    /// <seealso cref="SigStat.Common.PipelineBase" />
+    /// <seealso cref="SigStat.Common.ITransformation" />
     [JsonObject(MemberSerialization.OptOut)]
     public class NormalizeRotation : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Gets or sets the input feature representing the X coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// Gets or sets the input feature representing the Y coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
+        /// <summary>
+        /// Gets or sets the input feature representing the timestamps of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputT { get; set; } = Features.T;
 
+        /// <summary>
+        /// Gets or sets the output feature representing the X coordinates of an online signature
+        /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> OutputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// Gets or sets the input feature representing the Y coordinates of an online signature
+        /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
 
-
+        /// <inheritdoc/>
         public void Transform(Signature signature)
         {
             var linePoints = GenerateLinearBestFit(signature, out double a, out double b);

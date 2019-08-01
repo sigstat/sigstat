@@ -21,6 +21,10 @@ namespace SigStat.Common
         /// </summary>
         public virtual List<Signature> Signatures { get; set; } = new List<Signature>();
 
+        /// <summary>
+        /// Returns a string representation of a Signer
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             if (Signatures == null)

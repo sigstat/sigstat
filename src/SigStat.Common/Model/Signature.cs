@@ -205,6 +205,12 @@ namespace SigStat.Common
             return ID??"";
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the features.
+        /// </summary>
+        /// <returns>
+        /// An enumerator that can be used to iterate through the features.
+        /// </returns>
         public IEnumerator<KeyValuePair<FeatureDescriptor, object>> GetEnumerator()
         {
             return features.Select(kvp => new KeyValuePair<FeatureDescriptor, object>(FeatureDescriptor.Get(kvp.Key), kvp.Value)).GetEnumerator();

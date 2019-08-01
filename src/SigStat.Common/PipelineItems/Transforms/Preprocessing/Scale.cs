@@ -12,13 +12,15 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// <para>InputFeature: feature to be scaled.</para>
     /// <para>OutputFeature: output feature for scaled InputFeature></para>
     /// </summary>
-    /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
     [JsonObject(MemberSerialization.OptOut)]
     public class Scale:PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Gets or sets the input feature.
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputFeature { get; set; }
+
 
         /// <summary>
         /// <para>NewMinValue: lower bound of the interval, in which the input feature will be scaled</para> 
@@ -30,6 +32,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         public double NewMaxValue { get; set; } = 1;
 
+        /// <summary>
+        /// Gets or sets the output feature.
+        /// </summary>
         [Output("ScaledFeature")]
         public FeatureDescriptor<List<double>> OutputFeature { get; set; }
 

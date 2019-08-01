@@ -7,39 +7,66 @@ using System.Linq;
 
 namespace SigStat.Common.Helpers
 {
-    //TODO: refactor
+#pragma warning disable 1591
+    /// <summary>
+    /// Represents a configuration for a benchmark
+    /// </summary>
+    [Obsolete("This class was created for a specific benchmark and will be removed in the future")]
     public class BenchmarkConfig
     {
-        // Phase2:
-        // - Több jellemzőkombináció
-        // - 
 
+        /// <summary>
+        /// helper
+        /// </summary>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
         public static BenchmarkConfig FromJsonString(string jsonString)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(jsonString);
         }
 
+        /// <summary>
+        /// Helper
+        /// </summary>
+        /// <returns></returns>
         public string ToShortString()
         {
             return string.Join("_", GetType().GetProperties().Select(pi => pi.GetValue(this)).Select(v => v?.ToString() ?? ""));
         }
 
+        /// <summary>
+        /// Helper
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<KeyValuePair<string, string>> ToKeyValuePairs()
         {
             return new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Translation", this.Translation_Scaling.Translation), new KeyValuePair<string, string>("Scaling", this.Translation_Scaling.Scaling) }
                     .Concat(GetType().GetProperties().Select(pi => new KeyValuePair<string, string>(pi.Name, pi.GetValue(this)?.ToString() ?? "")));
         }
 
+        /// <summary>
+        /// Helper
+        /// </summary>
+        /// <returns></returns>
         public string ToJsonString()
         {
             return JsonConvert.SerializeObject(this);
         }
 
+        /// <summary>
+        /// Helper
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public BenchmarkConfig FromJsonFile(string path)
         {
             return JsonConvert.DeserializeObject<BenchmarkConfig>(File.ReadAllText(path));
         }
 
+        /// <summary>
+        /// Helper
+        /// </summary>
+        /// <returns></returns>
         public static List<BenchmarkConfig> GenerateConfigurations()
         {
             List<BenchmarkConfig> l = new List<BenchmarkConfig>();
@@ -48,6 +75,11 @@ namespace SigStat.Common.Helpers
             return l;
         }
 
+        /// <summary>
+        /// Helper
+        /// </summary>
+        /// <param name="l"></param>
+        /// <returns></returns>
         private static List<BenchmarkConfig> Samplers(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Sampling = "S1");
@@ -275,4 +307,5 @@ namespace SigStat.Common.Helpers
         public string Distance { get; set; }
 
     }
+#pragma warning restore 1591
 }

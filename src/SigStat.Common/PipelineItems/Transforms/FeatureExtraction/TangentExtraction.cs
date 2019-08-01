@@ -15,14 +15,21 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class TangentExtraction : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Gets or sets the input feature representing the X coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
+        /// <summary>
+        /// Gets or sets the input feature representing the Y coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
+        /// <summary>
+        /// Gets or sets the output feature representing the tangent angles of an online signature
+        /// </summary>
         [Output("Tangent")]
         public FeatureDescriptor<List<double>> OutputTangent { get; set; }
 

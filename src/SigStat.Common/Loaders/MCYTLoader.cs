@@ -8,6 +8,9 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
+    /// <summary>
+    /// <see cref="DataSetLoader"/> for the MCYT dataset
+    /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class MCYTLoader : DataSetLoader
     {
@@ -59,15 +62,27 @@ namespace SigStat.Common.Loaders
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MCYTLoader"/> class.
+        /// </summary>
+        /// <param name="databasePath">The database path.</param>
+        /// <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="Features"/>.</param>
         public MCYTLoader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
-
+        /// <summary>
+        /// Gets or sets the database path.
+        /// </summary>
         public string DatabasePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+        /// </summary>
         public bool StandardFeatures { get; set; }
 
+        /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file

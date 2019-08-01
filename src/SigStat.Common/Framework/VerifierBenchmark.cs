@@ -8,16 +8,15 @@ using System.Linq;
 using SigStat.Common.Helpers;
 using Microsoft.Extensions.Logging;
 using SigStat.Common.Model;
-using SigStat.Common.Framework.Exceptions;
 using System.IO;
 using SigStat.Common.PipelineItems.Classifiers;
 using OfficeOpenXml;
 using SigStat.Common.Helpers.Excel;
 using System.Diagnostics;
-using SigStat.Common.Helpers.Excel.Palette;
 using SigStat.Common.Pipeline;
 using static SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier;
 using Newtonsoft.Json;
+using SigStat.Common.Framework.Samplers;
 
 namespace SigStat.Common
 {
@@ -98,8 +97,14 @@ namespace SigStat.Common
             }
         }
 
+        /// <summary>A key value store that can be used to store custom information about the benchmark</summary>
         public List<KeyValuePair<string, string>> Parameters { get; set; } = new List<KeyValuePair<string, string>>();
 
+        /// <summary>
+        /// Dumps the results of the benchmark in a file.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <param name="parameters">The custom parameters of the benchmark (to be included in the dump)</param>
         public void Dump(string filename, IEnumerable<KeyValuePair<string, string>> parameters)
         {
             using (var p = new ExcelPackage())
@@ -198,12 +203,12 @@ namespace SigStat.Common
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VerifierBenchmark"/> class.
-        /// Sets the <see cref="Common.Sampler"/> to the default <see cref="SVC2004Sampler1"/>.
+        /// Sets the <see cref="Common.Sampler"/> to the default <see cref="FirstNSampler"/>.
         /// </summary>
         public VerifierBenchmark()
         {
             Verifier = null;
-            Sampler = new SVC2004Sampler1();
+            Sampler = new FirstNSampler(10);
         }
 
         private double farAcc = 0;

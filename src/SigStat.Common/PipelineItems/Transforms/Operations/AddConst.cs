@@ -13,13 +13,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class AddConst : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input values for trasformation
+        /// </summary>
         [Input]
-        
-        public FeatureDescriptor<List<double>> InputList { get; set; }
+        public FeatureDescriptor<List<double>> Input { get; set; }
 
-        //[Input(AutoSetMode = AutoSetMode.Never)]
-        //public FeatureDescriptor<double> InputValue;
-
+        /// <summary>
+        /// Output feature to store results
+        /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> Output { get; set; }
 
@@ -37,9 +39,9 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            if (InputList!=null)
+            if (Input!=null)
             {
-                List<double> values = signature.GetFeature(InputList);
+                List<double> values = signature.GetFeature(Input);
                 for (int i = 0; i < values.Count; i++)
                 {
                     values[i] = values[i] + addValue;

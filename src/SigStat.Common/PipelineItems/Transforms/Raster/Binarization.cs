@@ -45,10 +45,16 @@ namespace SigStat.Common.Transforms
             //this.Output(FeatureDescriptor.Get<bool[,]>("Binarized"));
         }
 
+        /// <summary>
+        /// Gets or sets the featuredescriptor of the input image.
+        /// </summary>
         [Input]
         [JsonProperty]
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
+        /// <summary>
+        /// Gets or sets the featuredescriptor of a the binarized image.
+        /// </summary>
         [Output("Binarized")]
         public FeatureDescriptor<bool[,]> OutputMask { get; set; }
 

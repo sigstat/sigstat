@@ -1,17 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace SigStat.Common.Helpers.Excel.Palette
+namespace SigStat.Common.Helpers.Excel
 {
-    
+    /// <summary>
+    /// Predefined color schemes for Excel
+    /// </summary>
     public enum ExcelColor
     {
+        /// <summary>Primary color</summary>
         Primary,
+        /// <summary>Secondary color</summary>
         Secondary,
+        /// <summary>Succes color</summary>
         Succes,
+        /// <summary>Danger color</summary>
         Danger,
+        /// <summary>Warning color</summary>
         Warning,
+        /// <summary>Info color</summary>
         Info,
+        /// <summary>Transparent color</summary>
         Transparent
     }
 

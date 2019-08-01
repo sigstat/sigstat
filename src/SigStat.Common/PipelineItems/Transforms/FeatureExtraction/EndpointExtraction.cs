@@ -17,13 +17,21 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class EndpointExtraction : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Binary representation of an image
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<bool[,]> Skeleton { get; set; }
 
+        /// <summary>
+        /// OutputEndpoints
+        /// </summary>
         [Output("EndPoints")]
         public FeatureDescriptor<List<Point>> OutputEndpoints { get; set; }
 
+        /// <summary>
+        /// OutputCrossingPoints
+        /// </summary>
         [Output("CrossingPoints")]
         public FeatureDescriptor<List<Point>> OutputCrossingPoints { get; set; }
 

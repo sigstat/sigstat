@@ -22,17 +22,27 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class BinaryRasterizer : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Gets or sets the <see cref="FeatureDescriptor"/> representing the X coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// Gets or sets the <see cref="FeatureDescriptor"/> representing the Y coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
+        /// <summary>
+        /// Gets or sets the <see cref="FeatureDescriptor"/> representing the stroke endings of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<bool>> InputButton { get; set; } = Features.Button;
+
+        /// <summary>
+        /// Gets or sets the <see cref="FeatureDescriptor"/> representing the output of the transformation
+        /// </summary>
 
         [Output("Binarized")]
         public FeatureDescriptor<bool[,]> Output { get; set; }

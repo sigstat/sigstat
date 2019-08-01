@@ -423,11 +423,11 @@ namespace SigStat.Sample
                 ,
                     Classifier = new OptimalDtwClassifier()
                     {
-                        Sampler = new JapaneseSampler1(),
+                        Sampler = new FirstNSampler(10),
                         Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
-                Sampler = new JapaneseSampler1(),
+                Sampler = new FirstNSampler(10),
                 Logger = new SimpleConsoleLogger(),
             };
 
@@ -1123,11 +1123,11 @@ namespace SigStat.Sample
                     ,
                     Classifier = new OptimalDtwClassifier()
                     {
-                        Sampler = new SVC2004Sampler1(),
+                        Sampler = new FirstNSampler(10),
                         Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
-                Sampler = new SVC2004Sampler1(),
+                Sampler = new FirstNSampler(10),
                 Logger = new SimpleConsoleLogger(),
             };
 

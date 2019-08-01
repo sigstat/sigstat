@@ -11,9 +11,18 @@ namespace SigStat.Common
     /// </summary>
     public class Sampler
     {
-        protected Func<List<Signature>, List<Signature>> references;
-        protected Func<List<Signature>, List<Signature>> genuineTests;
-        protected Func<List<Signature>, List<Signature>> forgeryTests;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Func<List<Signature>, List<Signature>> TrainingFilter { get; protected set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Func<List<Signature>, List<Signature>> GenuineTestFilter { get; protected set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Func<List<Signature>, List<Signature>> ForgeryTestFilter { get; protected set; }
 
         /// <summary>
         /// Initialize a new instance of the <see cref="Sampler"/> class by given sampling strategies.
@@ -23,9 +32,9 @@ namespace SigStat.Common
         /// <param name="forgeryTests">Strategy to sample forged signatures to be used for testing.</param>
         public Sampler(Func<List<Signature>, List<Signature>> references, Func<List<Signature>, List<Signature>> genuineTests, Func<List<Signature>, List<Signature>> forgeryTests)
         {
-            this.references = references;
-            this.genuineTests = genuineTests;
-            this.forgeryTests = forgeryTests;
+            this.TrainingFilter = references;
+            this.GenuineTestFilter = genuineTests;
+            this.ForgeryTestFilter = forgeryTests;
         }
 
         /// <summary>
@@ -34,7 +43,7 @@ namespace SigStat.Common
         /// <returns>Genuine reference signatures to train on.</returns>
         public List<Signature> SampleReferences(List<Signature> signatures)
         {
-            return references(signatures);
+            return TrainingFilter(signatures);
         }
 
         /// <summary>
@@ -43,7 +52,7 @@ namespace SigStat.Common
         /// <returns>Genuine signatures to test on.</returns>
         public List<Signature> SampleGenuineTests(List<Signature> signatures)
         {
-            return genuineTests(signatures);
+            return GenuineTestFilter(signatures);
         }
 
         /// <summary>
@@ -52,181 +61,9 @@ namespace SigStat.Common
         /// <returns>Forged signatures to test on.</returns>
         public List<Signature> SampleForgeryTests(List<Signature> signatures)
         {
-            return forgeryTests(signatures);
+            return ForgeryTestFilter(signatures);
         }
     }
 
-    //TODO: move db-specific samplers
-
-    public class SVC2004Sampler1 : Sampler
-    {
-        public SVC2004Sampler1() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class SVC2004Sampler2 : Sampler
-    {
-        public SVC2004Sampler2() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class SVC2004Sampler3 : Sampler
-    {
-        public SVC2004Sampler3() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 0).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 1).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class SVC2004Sampler4 : Sampler
-    {
-        public SVC2004Sampler4() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 1).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => int.Parse(s.ID) % 2 == 0).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-
-    public class McytSampler1 : Sampler
-    {
-        public McytSampler1() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(15).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class McytSampler2 : Sampler
-    {
-        public McytSampler2() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(15).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(15).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class McytSampler3 : Sampler
-    {
-        static string[] training = new[] { "00", "02", "04", "06", "08", "10", "12", "14", "16", "18" };
-        public McytSampler3() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class McytSampler4 : Sampler
-    {
-        static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
-        public McytSampler4() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class DutchSampler1 : Sampler
-    {
-        public DutchSampler1() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class DutchSampler2 : Sampler
-    {
-        public DutchSampler2() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(14).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(14).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class DutchSampler3 : Sampler
-    {
-        static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18", "20" };
-        public DutchSampler3() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class DutchSampler4 : Sampler
-    {
-        static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
-        public DutchSampler4() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID.Substring(s.ID.Length - 2))).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class SigComp19Sampler : Sampler
-    {
-        public SigComp19Sampler(int refCount, int testCount) : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(refCount).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(refCount).Take(testCount).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class GermanSampler : Sampler
-    {
-        public GermanSampler() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_R_")).ToList(),//10
-            sl => sl.Where(s => s.Origin == Origin.Genuine && s.ID.Contains("_G")).ToList(),//5
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class JapaneseSampler1 : Sampler
-    {
-        public JapaneseSampler1() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(10).Take(32).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    public class JapaneseSampler2 : Sampler
-    {
-        public JapaneseSampler2() : base(
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(32).Take(10).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Genuine).Take(32).ToList(),
-            sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-        { }
-    }
-
-    //TODO: fix or remove
-    //public class JapaneseSampler3 : Sampler
-    //{
-    //    static string[] training = new[] { "02", "04", "06", "08", "10", "12", "14", "16", "18", "20" };
-    //    public JapaneseSampler3() : base(
-    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID)).ToList(),
-    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID)).ToList(),
-    //        sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-    //    { }
-    //}
-
-    //TODO: fix or remove
-    //public class JapaneseSampler4 : Sampler
-    //{
-    //    static string[] training = new[] { "01", "03", "05", "07", "09", "11", "13", "15", "17", "19" };
-    //    public JapaneseSampler4() : base(
-    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => training.Contains(s.ID)).ToList(),
-    //        sl => sl.Where(s => s.Origin == Origin.Genuine).Where(s => !training.Contains(s.ID)).ToList(),
-    //        sl => sl.Where(s => s.Origin == Origin.Forged).ToList())
-    //    { }
-    //}
 
 }

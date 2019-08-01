@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Linq;
 
 namespace SigStat.Common
 {
@@ -91,9 +92,13 @@ namespace SigStat.Common
             throw new KeyNotFoundException($"There is no FeatureDescriptor registered with key: {descriptor}");
         }
 
+        /// <summary>
+        /// Gets a dictionary of all registered feature descriptors
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<string, FeatureDescriptor> GetAll()
         {
-            return descriptors;
+            return new Dictionary<string, FeatureDescriptor>(descriptors);
         }
 
 

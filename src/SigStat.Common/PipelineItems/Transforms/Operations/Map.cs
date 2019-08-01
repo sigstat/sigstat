@@ -16,10 +16,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class Map : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> Input { get; set; }
 
+        /// <summary>
+        /// Output
+        /// </summary>
         [Output("MapResult")]
         public FeatureDescriptor<List<double>> Output { get; set; }
 

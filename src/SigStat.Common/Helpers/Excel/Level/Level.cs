@@ -3,16 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigStat.Common.Helpers.Excel.Level
+namespace SigStat.Common.Helpers.Excel
 {
+    /// <summary>
+    /// Paragraph style setting
+    /// </summary>
     public enum TextLevel
     {
+        /// <summary>Main title</summary>
         Title,
+        /// <summary>Level 1 heading</summary>
         Heading1,
+        /// <summary>Level 2 heading</summary>
         Heading2,
+        /// <summary>Level 3 heading</summary>
         Heading3,
+        /// <summary>Normal document body style</summary>
         Normal
     }
+
+    /// <summary>
+    /// Helper class for applying text styling
+    /// </summary>
     static class Level
     {
         /// <summary>

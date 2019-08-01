@@ -83,12 +83,18 @@ namespace SigStat.Common.Loaders
             }
         }
 
+        /// <summary>
+        /// Gets or sets the database path.
+        /// </summary>
         public string DatabasePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+        /// </summary>
         public bool StandardFeatures { get; set; }
         /// <summary>
         /// Ignores any signers during the loading, that do not match the predicate
         /// </summary>
-        
         public Predicate<Signer> SignerFilter { get; set; }
 
 

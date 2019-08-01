@@ -17,16 +17,27 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class ComponentsToFeatures : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Components
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<List<PointF>>> InputComponents { get; set; }
 
+        /// <summary>
+        /// X
+        /// </summary>
         [Output("X")]
         public FeatureDescriptor<List<double>> X { get; set; }
 
+        /// <summary>
+        /// Y
+        /// </summary>
         [Output("Y")]
         public FeatureDescriptor<List<double>> Y { get; set; }
 
+        /// <summary>
+        /// Button
+        /// </summary>
         [Output("Button")]
         public FeatureDescriptor<List<bool>> Button { get; set; }
 
