@@ -46,7 +46,7 @@ namespace SigStat.Common
                     || pressures[index] <= 0 && stroke.StrokeType == StrokeType.Down)
                 {
                     stroke.EndIndex = index - 1;
-                    stroke = GetStroke(index, pressures[index]);
+                    stroke = GetStroke(index-1, pressures[index]);
                     strokeIntervals.Add(stroke);
                 }
                 index++;

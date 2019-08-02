@@ -178,6 +178,22 @@ namespace SigStat.Common.Loaders
             {
                 lines.RemoveAt(lines.Count - 1);
             }
+            // The database uses special datapoints to signal stroke boundaries
+            // We are going to replace them with averaged values to allow for smoother comparison
+            for (int i = 1; i < lines.Count-1; i++)
+            {
+                if (lines[i][0] != -1) continue;
+                if (lines[i][0] == -1 && lines[i + 1][0] == -1)
+                {
+                    // Remove duplicate stroke boundaries
+                    lines.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                lines[i][0] = (lines[i - 1][0] + lines[i + 1][0]) / 2;
+                lines[i][1] = (lines[i - 1][1] + lines[i + 1][1]) / 2;
+                lines[i][2] = 0;
+            }
 
             signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
             signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());

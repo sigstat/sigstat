@@ -8,12 +8,41 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Load database..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <ListBox ItemsSource="{Binding Signers}" SelectedItem="{Binding SelectedSigner}" HorizontalAlignment="Left" Height="377" Margin="10,35,0,0" VerticalAlignment="Top" Width="176">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Load database..." HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click"/>
+            <ComboBox ItemsSource="{Binding DatasetLoaders}" SelectedItem="{Binding SelectedDatasetLoader}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+        </StackPanel>
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Signers}" SelectedItem="{Binding SelectedSigner}">
 
         </ListBox>
-        <ListBox ItemsSource="{Binding SelectedSigner.Signatures}" SelectedItem="{Binding SelectedSignature}" HorizontalAlignment="Left" Height="377" Margin="186,35,0,0" VerticalAlignment="Top" Width="206"/>
-        <local:SignatureVisualizer Background="LightSteelBlue" Signature="{Binding SelectedSignature}" HorizontalAlignment="Left" Height="200" Margin="397,35,-122,-328.5" VerticalAlignment="Top" Width="200">
+        <ListBox Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding SelectedSigner.Signatures}" SelectedItem="{Binding SelectedSignature}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" >
+                        <local:SignatureVisualizer Signature="{Binding}" ShowAxes="False" Height="40"/>
+                        <TextBlock Text="{Binding}" Background="Transparent"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <local:SignatureVisualizer Background="#FFEEEEEE" Grid.Row="1" Grid.Column="2"   Signature="{Binding SelectedSignature}"  >
         </local:SignatureVisualizer>
 
     </Grid>

@@ -39,8 +39,9 @@ namespace SigStat.UI
                 dlg.InitialDirectory = databaseDir;
             if (dlg.ShowDialog() != true)
                 return;
-            var loader = new SigComp15GermanLoader(dlg.FileName, true);
-            VM.Signers = new ObservableCollection<Common.Signer>( loader.EnumerateSigners().OrderBy(s=>s.ID));
+            var ctor = VM.SelectedDatasetLoader.GetConstructor(new[] { typeof(string), typeof(bool) });
+            var loader = (IDataSetLoader)ctor.Invoke(new object[] { dlg.FileName, true });
+            VM.Signers = new ObservableCollection<Common.Signer>(loader.EnumerateSigners().OrderBy(s => s.ID));
 
         }
     }

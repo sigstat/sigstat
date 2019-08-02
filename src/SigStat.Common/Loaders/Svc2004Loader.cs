@@ -99,6 +99,21 @@ namespace SigStat.Common.Loaders
 
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
+        /// </summary>
+        /// <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+        /// <list type="bullet">
+        /// <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+        /// <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+        /// </list></param>
+        /// <param name="standardFeatures">Convert loaded data (<see cref="Svc2004"/>) to standard <see cref="Features"/>.</param>
+        public Svc2004Loader(string databasePath, bool standardFeatures)
+        {
+            DatabasePath = databasePath;
+            StandardFeatures = standardFeatures;
+            SignerFilter = null;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.

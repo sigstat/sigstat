@@ -13,7 +13,7 @@ using SigStat.Common;
 
 namespace SigStat.UI
 {
-    public class SignatureVisualizer: Canvas
+    public class SignatureVisualizer: Grid
     {
         private ScaleTransform scaleTransform = new ScaleTransform(1, 1, 0, 0);
         private TranslateTransform translateTransform = new TranslateTransform(0, 0);
@@ -29,16 +29,16 @@ namespace SigStat.UI
 
 
 
-
-        public bool InvertY
+        public DisplayMode DisplayMode
         {
-            get { return (bool)GetValue(InvertYProperty); }
-            set { SetValue(InvertYProperty, value); }
+            get { return (DisplayMode)GetValue(DisplayModeProperty); }
+            set { SetValue(DisplayModeProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for InvertY.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty InvertYProperty =
-            DependencyProperty.Register("InvertY", typeof(bool), typeof(SignatureVisualizer), new PropertyMetadata(true));
+        // Using a DependencyProperty as the backing store for DisplayMode.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DisplayModeProperty =
+            DependencyProperty.Register("DisplayMode", typeof(DisplayMode), typeof(SignatureVisualizer), new PropertyMetadata(DisplayMode.Zoom));
+
 
 
 
@@ -50,13 +50,34 @@ namespace SigStat.UI
 
         // Using a DependencyProperty as the backing store for ShowAxis.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowAxesProperty =
-            DependencyProperty.Register("ShowAxes", typeof(bool), typeof(SignatureVisualizer), new PropertyMetadata(true));
+            DependencyProperty.Register("ShowAxes", typeof(bool), typeof(SignatureVisualizer), new PropertyMetadata(true, ShowAxesChanged));
 
+        private static void ShowAxesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var visualizer = d as SignatureVisualizer;
+            if (d == null)
+                return;
+            visualizer.Reload();
+        }
+
+        private Canvas canvas;
+        private Viewbox viewbox;
+
+
+        public SignatureVisualizer()
+        {
+            ClipToBounds = true;
+            viewbox = new Viewbox();
+            canvas = new Canvas();
+            Children.Add(viewbox);
+            viewbox.Child = canvas;
+            viewbox.RenderTransform = new TransformGroup() { Children = { scaleTransform, translateTransform } };
+            this.IsHitTestVisible = true;
+        }
         protected override void OnInitialized(EventArgs e)
         {
-            //ClipToBounds = true;
-            RenderTransform = new TransformGroup(){ Children = { scaleTransform, translateTransform } };
             base.OnInitialized(e);
+           
         }
 
 
@@ -71,13 +92,11 @@ namespace SigStat.UI
 
         private void Reload()
         {
-            Children.Clear();
-
-            scaleTransform.ScaleX = 1;
-            scaleTransform.ScaleY = InvertY ? -1 : 1;
-            translateTransform.X = 0;
-            translateTransform.Y = 0;
-
+            canvas.Children.Clear();
+            //scaleTransform.ScaleX = 1;
+            //scaleTransform.ScaleY = 1;
+            //translateTransform.X = 0;
+            //translateTransform.Y = 0;
             var sig = Signature;
             if (sig == null)
                 return;
@@ -85,15 +104,33 @@ namespace SigStat.UI
             var xt = sig.GetFeature(Features.X);
             var yt = sig.GetFeature(Features.Y);
 
+            switch (DisplayMode)
+            {
+                case DisplayMode.Original:
+                    break;
+                case DisplayMode.Zoom:
+                    var minX = xt.Min();
+                    xt = xt.Select(x => x - minX).ToList();
+                    var minY = yt.Min();
+                    yt = yt.Select(y => y - minY).ToList();
+                    var maxY = yt.Max();
+                    yt = yt.Select(y => maxY - y).ToList();
+                    break;
+                default:
+                    throw new NotSupportedException($"Unsupported DisplayMode: {DisplayMode}");
+            }
+            canvas.Width = xt.Max();
+            canvas.Height = yt.Max();
+
             foreach (var stroke in strokes)
             {
-                Polyline polyline = new Polyline() { Stroke = Brushes.Blue, StrokeThickness = 3, StrokeLineJoin= PenLineJoin.Round };
-
+                Polyline polyline = new Polyline() { StrokeThickness = 3, StrokeLineJoin= PenLineJoin.Round };
+                polyline.Stroke = stroke.StrokeType == StrokeType.Down ? Brushes.Blue : Brushes.DarkSalmon;
                 for (int i = stroke.StartIndex; i <= stroke.EndIndex; i++)
                 {
                     polyline.Points.Add(new Point(xt[i], yt[i]));
                 }
-                Children.Add(polyline);
+                canvas.Children.Add(polyline);
                 //AddLogicalChild(polyline);
                 //AddVisualChild(polyline);
             }
@@ -115,8 +152,8 @@ namespace SigStat.UI
             Line yAxis = new Line() { Stroke = Brushes.Black, StrokeThickness = 3, StrokeEndLineCap = PenLineCap.Triangle };
             yAxis.X1 = -maxX;
             yAxis.X2 = maxX;
-            Children.Add(xAxis);
-            Children.Add(yAxis);
+            canvas.Children.Add(xAxis);
+            canvas.Children.Add(yAxis);
         }
 
         private Point mouseOrigin;
@@ -168,6 +205,7 @@ namespace SigStat.UI
             e.Handled = true;
             base.OnPreviewMouseWheel(e);
         }
+
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
            
