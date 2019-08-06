@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
 using SixLabors.ImageSharp.PixelFormats;
 using SigStat.FusionBenchmark.GraphExtraction;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.Primitives;
 
 namespace SigStat.FusionBenchmark.VisualHelpers
 {
@@ -15,7 +16,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
             img.ReColour(vertex.Pos, newCol);
         }
 
-        public static void ReColour(this Image<Rgba32> img, Point pos, Rgba32 newCol)
+        public static void ReColour(this Image<Rgba32> img, System.Drawing.Point pos, Rgba32 newCol)
         {
             img[pos.X, img.Height - pos.Y] = newCol;
         }
@@ -33,9 +34,15 @@ namespace SigStat.FusionBenchmark.VisualHelpers
                                                 Rgba32.Black,
                                             };
 
-        public static void VariableColour(this Image<Rgba32> img, Point pos, int cnt)
+        public static void VariableColour(this Image<Rgba32> img, System.Drawing.Point pos, int cnt)
         {
             img[pos.X, img.Height - pos.Y] = colours[cnt % colours.Length];
+        }
+
+        public static void VariableColourLine(this Image<Rgba32> img, System.Drawing.Point pos, System.Drawing.Point pos2, int cnt)
+        {
+            img.Mutate(x =>
+            x.DrawLines<Rgba32>(colours[cnt % colours.Length], 1f,new[]{new PointF(pos.X,img.Height- pos.Y), new PointF(pos2.X, img.Height-pos2.Y) }));
         }
     }
 }

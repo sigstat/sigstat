@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
+using System.Linq;
+
 namespace SigStat.FusionBenchmark.TrajectoryRecovery
 {
     [JsonObject(MemberSerialization.OptOut)]
@@ -38,6 +41,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             {
                 order.Add(CalculateIdx(stroke, baseTrajectory, stroke.Count, InputJump));
             }
+            signature["tmp"] = order.ToList();
             order.Sort( (Tuple<int, Stroke, double> p, Tuple<int, Stroke, double> q) =>
                               { return p.Item1 < q.Item1 ? -1 : 1; } );
             List<Stroke> strokeOrder = SelectStrokes(order);

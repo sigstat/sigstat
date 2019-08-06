@@ -86,6 +86,12 @@ namespace SigStat.FusionBenchmark
                     InputCog = FusionFeatures.Cog,
                     InputVertices = FusionFeatures.Vertices
                 },
+                new StrokePairSaver {
+                    InputImage = FusionFeatures.Image,
+                    InputTrajectory = FusionFeatures.Trajectory,
+                    InputBasePath = @"VisualResults",
+                    InputFileName = "sp"
+                },
                 new StrokeSaver {
                     InputComponents = FusionFeatures.Components,
                     InputImage = FusionFeatures.Image,
@@ -94,7 +100,7 @@ namespace SigStat.FusionBenchmark
                 },
                 new TrajectorySaver {
                     InputImage = FusionFeatures.Image,
-                    InputTrajectory = FusionFeatures.BaseTrajectory,
+                    InputTrajectory = FusionFeatures.Trajectory,
                     InputBasePath = @"VisualResults",
                     InputFileName = "traj"
                 },
@@ -106,7 +112,7 @@ namespace SigStat.FusionBenchmark
                 }
             };
             offlinepipeline.Logger = new SimpleConsoleLogger();
-            
+
             var marospipeline = new SequentialTransformPipeline
             {
                 new Binarization {
@@ -159,15 +165,15 @@ namespace SigStat.FusionBenchmark
             //Console.WriteLine("Maros");
             //ResultOut(maros);
 
-            int idx = 17;
+            int idx = 1;
             var signers = new List<Signer>(loader.EnumerateSigners(p => true));
             foreach (var sig in signers[idx].Signatures)
             {
                 offlinepipeline.Transform(sig);
             }
-            
+
             Console.ReadLine();
-            
+
         }
 
         private static BenchmarkResults BenchmarkingWithPipeline(SequentialTransformPipeline pipeline)
@@ -200,6 +206,6 @@ namespace SigStat.FusionBenchmark
             Console.WriteLine(results.FinalResult.Aer + " " + results.FinalResult.Far + " " + results.FinalResult.Frr);
         }
 
-        
+
     }
 }
