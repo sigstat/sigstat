@@ -78,10 +78,35 @@ namespace SigStat.FusionBenchmark
                     OutputX = FusionFeatures.X,
                     OutputY = FusionFeatures.Y,
                     OutputButton = FusionFeatures.Button
+                },
+                new VerticesSaver {
+                    InputBasePath = @"VisualResults",
+                    InputFileName = "vertices",
+                    InputImage = FusionFeatures.Image,
+                    InputCog = FusionFeatures.Cog,
+                    InputVertices = FusionFeatures.Vertices
+                },
+                new StrokeSaver {
+                    InputComponents = FusionFeatures.Components,
+                    InputImage = FusionFeatures.Image,
+                    InputBasePath = @"VisualResults",
+                    InputFileName = "stroke"
+                },
+                new TrajectorySaver {
+                    InputImage = FusionFeatures.Image,
+                    InputTrajectory = FusionFeatures.BaseTrajectory,
+                    InputBasePath = @"VisualResults",
+                    InputFileName = "traj"
+                },
+                new TrajectorySaver {
+                    InputImage = FusionFeatures.Image,
+                    InputTrajectory = FusionFeatures.BaseTrajectory,
+                    InputBasePath = @"VisualResults",
+                    InputFileName = "remade"
                 }
             };
-
-
+            offlinepipeline.Logger = new SimpleConsoleLogger();
+            
             var marospipeline = new SequentialTransformPipeline
             {
                 new Binarization {
@@ -122,36 +147,24 @@ namespace SigStat.FusionBenchmark
                     OutputButton = FusionFeatures.Button,
                     OutputX = FusionFeatures.X,
                     OutputY = FusionFeatures.Y
-                },
-                new VerticesSaver {
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "vertices",
-                    InputImage = FusionFeatures.Image,
-                    InputCog = FusionFeatures.Cog,
-                    InputVertices = FusionFeatures.Vertices
-                },
-                new StrokeSaver {
-                    InputComponents = FusionFeatures.Components,
-                    InputImage = FusionFeatures.Image,
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "stroke"
-                },
-                new TrajectorySaver {
-                    InputImage = FusionFeatures.Image,
-                    InputTrajectory = FusionFeatures.BaseTrajectory,
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "traj"
                 }
             };
             marospipeline.Logger = new SimpleConsoleLogger();
-            
+
             //var offline = BenchmarkingWithPipeline(offlinepipeline);
-            var maros = BenchmarkingWithPipeline(marospipeline);
+            //var maros = BenchmarkingWithPipeline(marospipeline);
 
             //Console.WriteLine("Offline");
             //ResultOut(offline);
-            Console.WriteLine("Maros");
-            ResultOut(maros);
+            //Console.WriteLine("Maros");
+            //ResultOut(maros);
+
+            int idx = 17;
+            var signers = new List<Signer>(loader.EnumerateSigners(p => true));
+            foreach (var sig in signers[idx].Signatures)
+            {
+                offlinepipeline.Transform(sig);
+            }
             
             Console.ReadLine();
             
