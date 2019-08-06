@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 using SigStat.FusionBenchmark.GraphExtraction;
-using SigStat.FusionBenchmark.TrajectoryReconsturction;
 
 namespace SigStat.FusionBenchmark
 {
@@ -61,32 +60,30 @@ namespace SigStat.FusionBenchmark
         /// </summary>
         public static readonly FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor.Get<bool[,]>("Skeleton");
 
-        public static readonly FeatureDescriptor<VertexCollection> Vertices = FeatureDescriptor.Get<VertexCollection>("Vertices");
+        /// <summary>
+        /// Vertices, 1 pixel in skeleton -> 1 vertex in vertices
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Vertex>> Vertices  = FeatureDescriptor.Get<List<Vertex>>("Vertices");
 
-        public static readonly FeatureDescriptor<VertexCollection> EndPoints = FeatureDescriptor.Get<VertexCollection>("EndPoints");
-
-        public static readonly FeatureDescriptor<VertexCollection> CrossingPoints = FeatureDescriptor.Get<VertexCollection>("CrossingPoints");
-
-        public static readonly FeatureDescriptor<VertexCollection> Connects = FeatureDescriptor.Get<VertexCollection>("Connects");
-
-        public static readonly FeatureDescriptor<StrokeCollection> Strokes = FeatureDescriptor.Get<StrokeCollection>("Strokes");
-
-        public static readonly FeatureDescriptor<List<StrokeEdge>> StrokeEdgeList = FeatureDescriptor.Get<List<StrokeEdge>>("StrokeEdgeList");
-
-        public static readonly FeatureDescriptor<List<StrokeEdge>> InDirectStrokeEdgeList = FeatureDescriptor.Get<List<StrokeEdge>>("InDirectStrokeEdgeList");
-
-        public static readonly FeatureDescriptor<VertexList> BaseTrajectory = FeatureDescriptor.Get<VertexList>("BaseTrajectory");
-
-        public static readonly FeatureDescriptor<VertexList> Trajectory = FeatureDescriptor.Get<VertexList>("Trajectory");
-
-        public static readonly FeatureDescriptor<List<double>> Curvature = FeatureDescriptor.Get<List<double>>("Curvature");
-
-        public static readonly FeatureDescriptor<Stroke> NullStroke = FeatureDescriptor.Get<Stroke>("NullStroke");
+        /// <summary>
+        /// Vertices, 1 pixel in skeleton -> 1 vertex in vertices
+        /// </summary>
+        public static readonly FeatureDescriptor<List<StrokeComponent>> Components = FeatureDescriptor.Get<List<StrokeComponent>>("Components");
 
         /// <summary>
         /// Center of gravity in a signature
         /// </summary>
         public static readonly FeatureDescriptor<Point> Cog = FeatureDescriptor.Get<Point>("Cog");
+
+        /// <summary>
+        /// BaseTrajectory
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Vertex>> BaseTrajectory = FeatureDescriptor.Get<List<Vertex>>("BaseTrajectory");
+
+        /// <summary>
+        /// Trajectory
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Vertex>> Trajectory = FeatureDescriptor.Get<List<Vertex>>("Trajectory");
 
         /// <summary>
         /// Returns a readonly list of all <see cref="FeatureDescriptor"/>s defined in <see cref="Features"/>
