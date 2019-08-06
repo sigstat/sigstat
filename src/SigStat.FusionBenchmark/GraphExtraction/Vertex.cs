@@ -8,36 +8,66 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Collections;
 using System.Drawing;
-using SigStat.FusionBenchmark.FusionFeatureExtraction;
 
 namespace SigStat.FusionBenchmark.GraphExtraction
 {
-    public class Vertex: ObjectWithID
+    public class Vertex
     {
-        public int ID { get; set; }
-
         public List<Vertex> Neighbours { get; set; }
-
-        public Vertex Parent { get; set; }
 
         public Point Pos { get; set; }
 
-        public PointD PosD { get; set; }
+        public PointF PosF { get; set; }
 
         public bool On { get; set; }
 
-        public double[] RelPos { get; set; }
+        public int Rutovitz { get; set; }
 
-        public Vertex(int iD, Point pos, bool on = true)
+        public Vertex(Point pos, bool on = true)
         {
-            ID = iD;
             Pos = pos;
             Neighbours = null;
-            Parent = null;
             On = on;
-            PosD = new PointD();
+            Rutovitz = -1;
         }
 
+        public override bool Equals(object obj)
+        {
+            Vertex rhs = obj as Vertex;
+            return rhs.Pos.X == this.Pos.X && rhs.Pos.Y == this.Pos.Y;
+        }
+
+        private static readonly VertexType[] rutovitz = new VertexType[5]
+                                                {
+                                                    VertexType.Endpoint,
+                                                    VertexType.Endpoint,
+                                                    VertexType.ConnectionPoint,
+                                                    VertexType.CrossingPoint,
+                                                    VertexType.CrossingPoint
+                                                };  
+        
+        public VertexType PointType  
+        {
+            get
+            {
+                return rutovitz[this.Rutovitz];
+            }
+        }
+
+        public static bool Equal(object objL, object objR)
+        {
+            Vertex lhs = objL as Vertex;
+            Vertex rhs = objR as Vertex;
+            return lhs.Pos.X == rhs.Pos.X && lhs.Pos.Y == rhs.Pos.Y;
+        }
+
+        public static bool AreNeighbours(object objL, object objR)
+        {
+            Vertex lhs = objL as Vertex;
+            Vertex rhs = objR as Vertex;
+            return Math.Abs(lhs.Pos.X - rhs.Pos.X) <= 1 && Math.Abs(lhs.Pos.Y - rhs.Pos.Y) <= 1 && !Vertex.Equal(lhs, rhs) 
+                   && lhs.On && rhs.On;
+        }
 
         public int Degree
         {

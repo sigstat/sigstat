@@ -4,35 +4,42 @@ using System.Text;
 
 namespace SigStat.FusionBenchmark.GraphExtraction
 {
-    class StrokeComponent : ObjectWithID
+    public class StrokeComponent
     {
-        public int ID { get; set; }
+        public List<Stroke> Strokes { get; private set; }
 
-        public Stroke A { get; set; }
-
-        public Stroke B { get; set; }
-
-        public StrokeComponent(int id)
+        public StrokeComponent(Stroke stroke)
         {
-            ID = id;
+            Strokes = new List<Stroke>();
+            Strokes.Add(stroke);
+            Strokes.Add(Stroke.CreateSibling(stroke));
+            InitializeStrokes();
+        }
+
+        public StrokeComponent(Stroke stroke1, Stroke stroke2)
+        {
+            Strokes = new List<Stroke>();
+            Strokes.Add(stroke1);
+            Strokes.Add(stroke2);
+            InitializeStrokes();
+        }
+
+        private void InitializeStrokes()
+        {
+            foreach (var stroke in Strokes)
+            {
+                stroke.Component = this;
+            }
         }
 
         public Stroke GetWithStart(Vertex start)
         {
-            if (A.Start().ID == start.ID)
-                return A;
-            if (B.Start().ID == start.ID)
-                return B;
-            throw new Exception();
+            return Strokes.Find(stroke => stroke.Start == start || Vertex.AreNeighbours(start, stroke.Start));
         }
 
         public Stroke GetWithEnd(Vertex end)
         {
-            if (A.End().ID == end.ID)
-                return A;
-            if (B.End().ID == end.ID)
-                return B;
-            throw new Exception();
+            return Strokes.Find(stroke => stroke.End == end || Vertex.AreNeighbours(end, stroke.End));
         }
     }
 }

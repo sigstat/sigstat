@@ -6,19 +6,23 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text;
 
 namespace SigStat.FusionBenchmark.VisualHelpers
 {
     [JsonObject(MemberSerialization.OptOut)]
-    class TrajectorySaver : PipelineBase, ITransformation
+    class VerticesSaver : PipelineBase, ITransformation
     {
         [Input]
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Input]
-        public FeatureDescriptor<List<Vertex>> InputTrajectory { get; set; }
+        public FeatureDescriptor<List<Vertex>> InputVertices { get; set; }
+
+        [Input]
+        public FeatureDescriptor<Point> InputCog { get; set; }
 
         [Input]
         public string InputBasePath { get; set; }
@@ -30,18 +34,25 @@ namespace SigStat.FusionBenchmark.VisualHelpers
         {
             string path = InputBasePath + "/" + signature.Signer.ID + "_" + signature.ID + InputFileName + ".png";
             var img = signature.GetFeature<Image<Rgba32>>(InputImage).Clone();
-            var trajectory = signature.GetFeature<List<Vertex>>(InputTrajectory);
-
-            int cnt = 0;
-            for (int i = 0; i < trajectory.Count; i++)
+            var vertices = signature.GetFeature<List<Vertex>>(InputVertices);
+            var endPoints = vertices.EndPoints();
+            var crossingPoints = vertices.CrossingPoints();
+            var cog = signature.GetFeature<Point>(FusionFeatures.Cog);
+            foreach (var p in vertices)
             {
-                if (i > 0 && trajectory[i] != trajectory[i-1] && !Vertex.AreNeighbours(trajectory[i - 1], trajectory[i]))
-                {
-                    cnt++;
-                }
-                img.VariableColour(trajectory[i].Pos, cnt);
+                img.ReColour(p, Rgba32.Red);
             }
+            foreach (var p in endPoints)
+            {
+                img.ReColour(p, Rgba32.Yellow);
+            }
+            foreach (var p in crossingPoints)
+            {
+                img.ReColour(p, Rgba32.Green);
+            }
+            img.ReColour(cog, Rgba32.Blue);
             img.SaveAsPng(File.Create(path));
         }
+
     }
 }
