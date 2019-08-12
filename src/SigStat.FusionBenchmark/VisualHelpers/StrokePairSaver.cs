@@ -48,7 +48,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
 
             for (int i = 0; i < referenceTrajectory.Count; i++)
             {
-                img.ReColour(referenceTrajectory[i].Pos, Rgba32.Black);
+                img.ReColour(referenceTrajectory[i].Pos.Move(30, 30), Rgba32.Black);
             }
 
 
@@ -63,7 +63,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
                 }
                 for (int i = 0; i < Math.Min(strokeMatch.Item4, stroke.Count); i += 7)
                 {
-                    img.VariableColourLine(stroke[i].Pos, referenceTrajectory[strokeMatch.Item1 + i].Pos, cnt);
+                    img.VariableColourLine(stroke[i].Pos, referenceTrajectory[strokeMatch.Item1 + i].Pos.Move(30, 30), cnt);
                 }
 
                 cnt++;

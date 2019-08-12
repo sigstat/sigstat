@@ -11,6 +11,10 @@ namespace SigStat.FusionBenchmark.VisualHelpers
 {
     public static class ImageHelper
     {
+        public static System.Drawing.Point Move(this System.Drawing.Point point, int dx, int dy)
+        {
+            return new System.Drawing.Point(Math.Max(point.X + dx,0), Math.Max(point.Y + dy,0));
+        }
         public static void ReColour(this Image<Rgba32> img, Vertex vertex, Rgba32 newCol)
         {
             if (!img.ValidCoord(vertex.Pos))

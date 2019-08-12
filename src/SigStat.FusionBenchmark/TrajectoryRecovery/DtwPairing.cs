@@ -10,6 +10,7 @@ using System.Text;
 
 using System.Linq;
 using SigStat.FusionBenchmark.FusionMathHelper;
+using System.Threading.Tasks;
 
 namespace SigStat.FusionBenchmark.TrajectoryRecovery
 {
@@ -37,6 +38,8 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
         [Output("Trajectory")]
         public FeatureDescriptor<List<Vertex>> OutputTrajectory { get; set; }
 
+        private object o = new object();
+
         public void Transform(Signature signature)
         {
             this.LogInformation("DtwPairing - DtwCompare started");
@@ -44,10 +47,18 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             var baseTrajectory = signature.GetFeature<List<Vertex>>(InputBaseTrajectory);
 
             List<Tuple<int, Stroke, double, int>> order = new List<Tuple<int, Stroke, double, int>>();
-            foreach (var stroke in strokes)
+            Parallel.ForEach(strokes, stroke =>
             {
-                order.Add(CalculatePairing(stroke, baseTrajectory));
-            }
+                var pairing = CalculatePairing(stroke, baseTrajectory);
+                lock (o)
+                {
+                    order.Add(pairing);
+                }
+            });
+            //foreach (var stroke in strokes)
+            //{
+                
+            //}
             signature["tmp"] = order.ToList();
             order.Sort( (Tuple<int, Stroke, double, int> p, Tuple<int, Stroke, double,int> q) =>
                               { return p.Item1 < q.Item1 ? -1 : 1; } );

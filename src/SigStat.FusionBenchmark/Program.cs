@@ -320,20 +320,40 @@ namespace SigStat.FusionBenchmark
         private static BenchmarkResults BenchmarkingWithPipeline(SequentialTransformPipeline pipeline)
         {
             Svc2004OfflineLoader loader = new Svc2004OfflineLoader(@"Databases/SVC(40).zip".GetPath());
+            //Svc2004OnlineLoader onlineLoader = new Svc2004OnlineLoader(@"Databases/SVC(40).zip".GetPath());
+            //Előfeldolgozásban mindent kézzel összeraknék
+
+
+
             var benchmark = new VerifierBenchmark
             {
                 Loader = loader,
                 Logger = new SimpleConsoleLogger(),
                 Verifier = new Verifier
                 {
-                    Pipeline = pipeline,
+                    Pipeline = new SequentialTransformPipeline(),
                     Classifier = new DtwClassifier(DtwPy.EuclideanDistance)
                     {
-                        Features = new List<FeatureDescriptor> { FusionFeatures.X, FusionFeatures.Y }
+                        Features = new List<FeatureDescriptor> { Features.X, Features.Y }
                     }
                 },
                 //Sampler = new SVC2004Sampler1(),
             };
+            //Svc2004OfflineLoader loader = new Svc2004OfflineLoader(@"Databases/SVC(40).zip".GetPath());
+            //var benchmark = new VerifierBenchmark
+            //{
+            //    Loader = loader,
+            //    Logger = new SimpleConsoleLogger(),
+            //    Verifier = new Verifier
+            //    {
+            //        Pipeline = pipeline,
+            //        Classifier = new DtwClassifier(DtwPy.EuclideanDistance)
+            //        {
+            //            Features = new List<FeatureDescriptor> { FusionFeatures.X, FusionFeatures.Y }
+            //        }
+            //    },
+            //    //Sampler = new SVC2004Sampler1(),
+            //};
             return benchmark.Execute();
         }
 
