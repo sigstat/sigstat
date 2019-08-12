@@ -32,7 +32,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
             string path = InputBasePath + "/" + signature.Signer.ID + "_" + signature.ID + InputFileName + ".png";
             var img = signature.GetFeature<Image<Rgba32>>(InputImage).Clone();
             var trajectory = signature.GetFeature<List<Vertex>>(InputTrajectory);
-            var strokeMatches = (List< Tuple<int, Stroke, double>>)signature["tmp"];
+            var strokeMatches = (List< Tuple<int, Stroke, double, int>>)signature["tmp"];
             strokeMatches = SelectStrokes(strokeMatches);
             //int cnt = 0;
             //for (int i = 0; i < trajectory.Count; i++)
@@ -48,7 +48,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
 
             for (int i = 0; i < referenceTrajectory.Count; i++)
             {
-                img.VariableColour(referenceTrajectory[i].Pos, 0);
+                img.ReColour(referenceTrajectory[i].Pos, Rgba32.Black);
             }
 
 
@@ -60,8 +60,10 @@ namespace SigStat.FusionBenchmark.VisualHelpers
                 for (int i = 0; i < stroke.Count; i++)
                 {
                     img.VariableColour(stroke[i].Pos, cnt);
-                    if (i%10==0)
-                        img.VariableColourLine(stroke[i].Pos, referenceTrajectory[strokeMatch.Item1+i].Pos, cnt);
+                }
+                for (int i = 0; i < Math.Min(strokeMatch.Item4, stroke.Count); i += 7)
+                {
+                    img.VariableColourLine(stroke[i].Pos, referenceTrajectory[strokeMatch.Item1 + i].Pos, cnt);
                 }
 
                 cnt++;
@@ -83,9 +85,9 @@ namespace SigStat.FusionBenchmark.VisualHelpers
             img.SaveAsPng(File.Create(path));
         }
 
-        private List<Tuple<int, Stroke, double>> SelectStrokes(List<Tuple<int, Stroke, double>> order)
+        private List<Tuple<int, Stroke, double, int>> SelectStrokes(List<Tuple<int, Stroke, double, int>> order)
         {
-            List<Tuple<int, Stroke, double>> res = new List<Tuple<int, Stroke, double>>();
+            List<Tuple<int, Stroke, double, int>> res = new List<Tuple<int, Stroke, double, int>>();
             foreach (var tuple in order)
             {
                 var sibling = order.Find(find => find.Item2 == tuple.Item2.Sibling);

@@ -13,11 +13,19 @@ namespace SigStat.FusionBenchmark.VisualHelpers
     {
         public static void ReColour(this Image<Rgba32> img, Vertex vertex, Rgba32 newCol)
         {
+            if (!img.ValidCoord(vertex.Pos))
+            {
+                return;
+            }
             img.ReColour(vertex.Pos, newCol);
         }
 
         public static void ReColour(this Image<Rgba32> img, System.Drawing.Point pos, Rgba32 newCol)
         {
+            if (!img.ValidCoord(pos))
+            {
+                return;
+            }
             img[pos.X, img.Height - pos.Y] = newCol;
         }
 
@@ -36,13 +44,26 @@ namespace SigStat.FusionBenchmark.VisualHelpers
 
         public static void VariableColour(this Image<Rgba32> img, System.Drawing.Point pos, int cnt)
         {
+            if (!img.ValidCoord(pos))
+            {
+                return;
+            }
             img[pos.X, img.Height - pos.Y] = colours[cnt % colours.Length];
         }
 
         public static void VariableColourLine(this Image<Rgba32> img, System.Drawing.Point pos, System.Drawing.Point pos2, int cnt)
         {
+            if (!img.ValidCoord(pos) || !img.ValidCoord(pos2))
+            {
+                return;
+            }
             img.Mutate(x =>
             x.DrawLines<Rgba32>(colours[cnt % colours.Length], 1f,new[]{new PointF(pos.X,img.Height- pos.Y), new PointF(pos2.X, img.Height-pos2.Y) }));
+        }
+
+        public static bool ValidCoord(this Image<Rgba32> img, System.Drawing.Point pos)
+        {
+            return 0 <= pos.X && pos.X < img.Width && 0 <= (img.Height - pos.Y) && (img.Height - pos.Y) < img.Height;
         }
     }
 }

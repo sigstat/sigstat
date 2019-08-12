@@ -22,7 +22,7 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
         [Output("curvature")]
         public FeatureDescriptor<List<double>> OutputCurvature { get; set; }
 
-        public static readonly double wLength = 8.0;
+        public static readonly double wLength = 5.0;
 
         public static readonly double mLength = 2.0;
 

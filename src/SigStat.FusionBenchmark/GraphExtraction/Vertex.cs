@@ -31,12 +31,14 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             Rutovitz = -1;
         }
 
+
         public override bool Equals(object obj)
         {
             Vertex rhs = obj as Vertex;
-            return rhs.Pos.X == this.Pos.X && rhs.Pos.Y == this.Pos.Y;
+            return ReferenceEquals(this, obj) || 
+                (!ReferenceEquals(obj, null) && (rhs.Pos.X == this.Pos.X && rhs.Pos.Y == this.Pos.Y));
         }
-
+        
         private static readonly VertexType[] rutovitz = new VertexType[5]
                                                 {
                                                     VertexType.Endpoint,
@@ -54,18 +56,11 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             }
         }
 
-        public static bool Equal(object objL, object objR)
-        {
-            Vertex lhs = objL as Vertex;
-            Vertex rhs = objR as Vertex;
-            return lhs.Pos.X == rhs.Pos.X && lhs.Pos.Y == rhs.Pos.Y;
-        }
-
         public static bool AreNeighbours(object objL, object objR)
         {
             Vertex lhs = objL as Vertex;
             Vertex rhs = objR as Vertex;
-            return Math.Abs(lhs.Pos.X - rhs.Pos.X) <= 1 && Math.Abs(lhs.Pos.Y - rhs.Pos.Y) <= 1 && !Vertex.Equal(lhs, rhs) 
+            return Math.Abs(lhs.Pos.X - rhs.Pos.X) <= 1 && Math.Abs(lhs.Pos.Y - rhs.Pos.Y) <= 1 && !lhs.Equals(rhs) 
                    && lhs.On && rhs.On;
         }
 

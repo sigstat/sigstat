@@ -9,6 +9,7 @@ using System.Text;
 
 
 using System.Linq;
+using SigStat.FusionBenchmark.FusionMathHelper;
 
 namespace SigStat.FusionBenchmark.TrajectoryRecovery
 {
@@ -25,7 +26,13 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
         public int InputJump { get; set; }
 
         [Input]
-        public int InputBaseSigIdx { get; set; }
+        public int InputWindowJump { get; set; }
+
+        [Input]
+        public int InputWindowFrom { get; set; }
+
+        [Input]
+        public int InputWindowTo { get; set; }
 
         [Output("Trajectory")]
         public FeatureDescriptor<List<Vertex>> OutputTrajectory { get; set; }
@@ -34,15 +41,15 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
         {
             this.LogInformation("DtwPairing - DtwCompare started");
             List<Stroke> strokes = signature.GetFeature<List<StrokeComponent>>(InputComponents).GetAllStrokes();
-            var baseTrajectory = signature.Signer.Signatures[InputBaseSigIdx].GetFeature<List<Vertex>>(InputBaseTrajectory);
+            var baseTrajectory = signature.GetFeature<List<Vertex>>(InputBaseTrajectory);
 
-            List<Tuple<int, Stroke, double>> order = new List<Tuple<int, Stroke, double>>();
+            List<Tuple<int, Stroke, double, int>> order = new List<Tuple<int, Stroke, double, int>>();
             foreach (var stroke in strokes)
             {
-                order.Add(CalculateIdx(stroke, baseTrajectory, stroke.Count, InputJump));
+                order.Add(CalculatePairing(stroke, baseTrajectory));
             }
             signature["tmp"] = order.ToList();
-            order.Sort( (Tuple<int, Stroke, double> p, Tuple<int, Stroke, double> q) =>
+            order.Sort( (Tuple<int, Stroke, double, int> p, Tuple<int, Stroke, double,int> q) =>
                               { return p.Item1 < q.Item1 ? -1 : 1; } );
             List<Stroke> strokeOrder = SelectStrokes(order);
             var trajectory = new List<Vertex>();
@@ -51,7 +58,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             this.LogInformation("DtwPairing - DtwCompare finished");
         }
 
-        private List<Stroke> SelectStrokes(List<Tuple<int, Stroke, double>> order)
+        private List<Stroke> SelectStrokes(List<Tuple<int, Stroke, double, int>> order)
         {
             List<Stroke> res = new List<Stroke>();
             foreach (var tuple in order)
@@ -62,36 +69,48 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             return res; 
         }
 
-        private double CalculateThres(List<Tuple<int, Stroke, double>> strokeOrder, int strokeCnt)
+        private Tuple<int, Stroke, double, int> CalculatePairing(Stroke stroke, List<Vertex> trajectory)
         {
-            double minThres = 0.0;
-            double maxThres = +10000.0;
-            while (maxThres - minThres > 1.0)
+            Tuple<int, Stroke, double, int> res = null;
+            for (int percent = InputWindowFrom; percent <= InputWindowTo; percent+= InputWindowJump)
             {
-                double newThres = (minThres + maxThres) / 2; 
-                int cnt = strokeOrder.FindAll(tuple => tuple.Item3 < newThres).Count;
-                if (cnt < strokeCnt)    { minThres = newThres; }
-                else                    { maxThres = newThres; }
+                var val = CalculateIdx(stroke, trajectory, CalcWindow(stroke, percent), InputJump);
+                if (res == null || val.Item3 < res.Item3)
+                {
+                    res = val;
+                }
             }
-            double thres = (minThres + maxThres / 2);
-            return thres;
+            return res;
         }
 
-        private Tuple<int, Stroke, double> CalculateIdx(Stroke stroke, List<Vertex> trajectory, int window, int jump = 1)
+        private static int CalcWindow(Stroke stroke, int percent)
+        {
+            return Math.Max(stroke.Count * percent / 100, 1);
+        }
+
+        private Tuple<int, Stroke, double, int> CalculateIdx(Stroke stroke, List<Vertex> trajectory, int window, int jump = 1)
         {
             int resIdx = int.MaxValue;
             double resVal = Double.MaxValue;
             for (int i = 0; i < trajectory.Count - window; i += jump)
             {
-                double val = DtwPy.Dtw<double[]>(stroke.GetXY(), trajectory.GetRange(i, window).GetXY(),
+                double valPosition = DtwPy.Dtw<double[]>(stroke.GetXY(), trajectory.GetRange(i, window).GetXY(),
                                                  DtwPy.EuclideanDistance);
+                double valShape = DtwPy.Dtw<double[]>(stroke.GetDirectionsFeature(), trajectory.GetRange(i, window).GetDirectionsFeature(),
+                                                Geometry.DiffVectorAngle);
+                double val = CalculateMixedVal(valPosition, valShape);
                 if (val < resVal)
                 {
                     resVal = val;
                     resIdx = i;
                 }
             }
-            return new Tuple<int, Stroke, double>(resIdx, stroke, resVal);
+            return new Tuple<int, Stroke, double, int>(resIdx, stroke, resVal, window);
+        }
+
+        private double CalculateMixedVal(double valPosition, double valShape)
+        {
+            return valPosition * valShape;
         }
     }
 }

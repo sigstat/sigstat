@@ -10,10 +10,12 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
 
-namespace SigStat.FusionBenchmark
+namespace SigStat.FusionBenchmark.Loaders
 {
     public class Svc2004OfflineLoader : DataSetLoader
     {
+        private static readonly FeatureDescriptor<Image<Rgba32>> OutputImage = FusionFeatures.Image;
+
         private struct SignatureFile
         {
             public string File { get; set; }
@@ -41,10 +43,10 @@ namespace SigStat.FusionBenchmark
         }
 
         public string DatabasePath { get; set; }
-        
+
         public Predicate<Signer> SignerFilter { get; set; }
 
-       
+
         public Svc2004OfflineLoader(string databasePath, Predicate<Signer> signerFilter = null)
         {
             DatabasePath = databasePath;
@@ -69,7 +71,7 @@ namespace SigStat.FusionBenchmark
                         this.LogInformation("SVC2004OfflineLoader - Predicate");
                         continue;
                     }
-                    
+
                     foreach (var signatureFile in group)
                     {
                         Signature signature = new Signature
@@ -77,7 +79,7 @@ namespace SigStat.FusionBenchmark
                             Signer = signer,
                             ID = signatureFile.SignatureID
                         };
-                        this.LoadOfflineSignature(signature, "Databases\\" + signatureFile.File.GetPath());
+                        this.LoadOfflineSignature(signature, (@"Databases\\" + signatureFile.File).GetPath());
                         signature.Origin = signatureFile.SignatureOrigin;
                         if (signature.Origin == Origin.Forged)
                         {
@@ -96,10 +98,10 @@ namespace SigStat.FusionBenchmark
         {
             this.LogInformation(file.GetPath());
             Image<Rgba32> image = Image.Load(file);
-            signature.SetFeature(FusionFeatures.Image, image);
+            signature.SetFeature(OutputImage, image);
         }
-    
-       
-        
+
+
+
     }
 }
