@@ -106,12 +106,12 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Database = "GERMAN");
-            //List<string> es = new List<string>() { "MCYT100", "DUTCH", "SVC2004", "CHINESE", "JAPANESE" };
-            //var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
-            //{
-            //    Database = e
-            //})).ToList();
-            //l.AddRange(ls);
+            List<string> es = new List<string>() { "MCYT100", "DUTCH", "SVC2004", "CHINESE", "JAPANESE" };
+            var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
+            {
+                Database = e
+            })).ToList();
+            l.AddRange(ls);
             return l;
         }
 
@@ -119,11 +119,11 @@ namespace SigStat.Common.Helpers
         {
 
             l.ForEach(c => c.Classifier = "OptimalDtw");
-            var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
-            {
-                Classifier = "Dtw"
-            });
-            l.AddRange(l2);
+            //var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
+            //{
+            //    Classifier = "Dtw"
+            //});
+            //l.AddRange(l2);
             return l;
         }
 
@@ -160,6 +160,7 @@ namespace SigStat.Common.Helpers
                 ("None","Y01X0prop"),
                 ("None","X01"),
                 ("None","Y01"),
+                ("None","P01"),
                 ("None","X01Y01"),
 
                 ("CogToOriginX","None"),
@@ -188,10 +189,6 @@ namespace SigStat.Common.Helpers
         {
             l.ForEach(c => c.ResamplingType_Filter = "None");
 
-            //db tol fugg, hogy milyen resampling/filter kell
-            //svc: None, SampleCount, FillPenUp
-            //other DBs: None, SampleCount, Filter, Filter+FillPenUp
-
             var s50 = l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "SampleCount",
@@ -214,16 +211,11 @@ namespace SigStat.Common.Helpers
             });
 
 
-            var fillpenup = l.Where(c => c.Database == "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                ResamplingType_Filter = "FillPenUp"
-            });
-
-            var p = l.Where(c => c.Database != "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var p = l.ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P"
             });
-            var p_fillpenup = l.Where(c => c.Database != "SVC2004").ToList().ConvertAll(c => new BenchmarkConfig(c)
+            var p_fillpenup = l.ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 ResamplingType_Filter = "P_FillPenUp"
             });
@@ -233,7 +225,6 @@ namespace SigStat.Common.Helpers
             l.AddRange(s500);
             l.AddRange(s1000);
 
-            l.AddRange(fillpenup);
             l.AddRange(p);
             l.AddRange(p_fillpenup);
 
@@ -257,27 +248,40 @@ namespace SigStat.Common.Helpers
         {
             l.ForEach(c => c.Features = "XYP");
 
-            var xypConfigs = l.Where(c => c.Database == "DUTCH" || c.Database == "GERMAN" || c.Database == "CHINESE" || c.Database == "JAPANESE");//ezeknek nincs azimuth, altitudeja (1.0 mind)
-
-            List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
-            var ls1 = es1.SelectMany(e => l.Except(xypConfigs).ToList().ConvertAll(c => new BenchmarkConfig(c)
-            {
-                Features = e
-            })).ToList();
-
-            List<string> es2 = new List<string>() { "X", "Y", "P", "XY" };
-            var ls2 = es2.SelectMany(e => xypConfigs.ToList().ConvertAll(c => new BenchmarkConfig(c)
+            List<string> es1 = new List<string>() { "X", "Y", "P", "XP", "YP", "XY"};
+            var ls1 = es1.SelectMany(e => l.ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Features = e
             })).ToList();
 
 
             l.AddRange(ls1);
-            l.AddRange(ls2);
-
-
 
             return l;
+
+            //l.ForEach(c => c.Features = "XYP");
+
+            //var xypConfigs = l.Where(c => c.Database == "DUTCH" || c.Database == "GERMAN" || c.Database == "CHINESE" || c.Database == "JAPANESE");//ezeknek nincs azimuth, altitudeja (1.0 mind)
+
+            //List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
+            //var ls1 = es1.SelectMany(e => l.Except(xypConfigs).ToList().ConvertAll(c => new BenchmarkConfig(c)
+            //{
+            //    Features = e
+            //})).ToList();
+
+            //List<string> es2 = new List<string>() { "X", "Y", "P", "XY" };
+            //var ls2 = es2.SelectMany(e => xypConfigs.ToList().ConvertAll(c => new BenchmarkConfig(c)
+            //{
+            //    Features = e
+            //})).ToList();
+
+
+            //l.AddRange(ls1);
+            //l.AddRange(ls2);
+
+
+
+            //return l;
         }
 
         public BenchmarkConfig() { }

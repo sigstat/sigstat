@@ -2695,6 +2695,31 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale">
+            <summary>
+            Maps values of a feature to a specific range.
+            <para>InputFeature: feature to be scaled.</para>
+            <para>OutputFeature: output feature for scaled InputFeature></para>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.InputFeature">
+            <summary>
+            Gets or sets the input feature.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.ReferenceFeature">
+            <summary>
+            Gets or sets the reference feature.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.OutputFeature">
+            <summary>
+            Gets or sets the output feature.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased">
             <summary>
             Resamples an online signature to a specific sample count using the specified <see cref="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation"/> algorithm

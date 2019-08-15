@@ -51,6 +51,8 @@ namespace SigStat.Common.Loaders
         static TranslatePreproc blyTranslate = new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.Y, OutputFeature = Features.Y };
         static Scale xScale = new Scale() { InputFeature = Features.X, OutputFeature = Features.X };
         static Scale yScale = new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y };
+        static Scale pScale = new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure };
+        static RelativeScale pRelativeScale = new RelativeScale() { InputFeature = Features.Pressure, ReferenceFeature = Features.Y, OutputFeature = Features.Pressure };
         static UniformScale xyUniformScale = new UniformScale() { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y };
         static UniformScale yxUniformScale = new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X };
         //static LinearInterpolation linearInterpolation = new LinearInterpolation();
@@ -188,24 +190,39 @@ namespace SigStat.Common.Loaders
             }
 
             switch (config.Translation_Scaling.Scaling)
-            {
+            { 
                 case "X01":
                     pipeline.Add(xScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
                     break;
                 case "Y01":
                     pipeline.Add(yScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
+                    break;
+                case "P01":
+                    pipeline.Add(pScale);
                     break;
                 case "X01Y01":
                     pipeline.Add(xScale);
                     pipeline.Add(yScale);
+                    pipeline.Add(pScale);
                     break;
                 case "X01Y0prop":
                     pipeline.Add(xyUniformScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
                     break;
                 case "Y01X0prop":
                     pipeline.Add(yxUniformScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
                     break;
                 case "None":
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pRelativeScale);
+                    break;
                 default:
                     break;
             }
@@ -263,8 +280,16 @@ namespace SigStat.Common.Loaders
                 case "X":
                     ClassifierFeatures.Add(Features.X);
                     break;
+                case "XP":
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Pressure);
+                    break;
                 case "Y":
                     ClassifierFeatures.Add(Features.Y);
+                    break;
+                case "YP":
+                    ClassifierFeatures.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Pressure);
                     break;
                 case "P":
                     ClassifierFeatures.Add(Features.Pressure);
