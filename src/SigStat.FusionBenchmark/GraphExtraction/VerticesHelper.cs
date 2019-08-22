@@ -31,32 +31,27 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             return res;
         }
 
-        public static List<double[]> GetXY(this List<Vertex> list)
+        public static List<double> GetXs(this List<Vertex> list)
         {
-            List<double[]> res = new List<double[]>();
-            foreach (var p in list)
+            List<double> res = new List<double>();
+            for (int i = 0; i < list.Count; i++)
             {
-                double[] xy = new double[2];
-                xy[0] = (double)p.PosF.X;
-                xy[1] = (double)p.PosF.Y;
-                res.Add(xy);
+                res.Add((double)list[i].PosF.X);
             }
             return res;
         }
 
-        public static List<double[]> GetRelXY(this List<Vertex> list)
+        public static List<double> GetYs(this List<Vertex> list)
         {
-            List<double[]> res = new List<double[]>();
-            var start = list[0].PosF;
-            foreach (var p in list)
+            List<double> res = new List<double>();
+            for (int i = 0; i < list.Count; i++)
             {
-                double[] xy = new double[2];
-                xy[0] = (double)(p.PosF.X - start.X);
-                xy[1] = (double)(p.PosF.Y - start.Y);
-                res.Add(xy);
+                res.Add((double)list[i].PosF.Y);
             }
             return res;
         }
+
+
 
         public static List<double> GetDirections(this List<Vertex> list)
         {
@@ -69,20 +64,49 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             return res;
         }
 
-        public static List<double[]> GetDirectionsFeature(this List<Vertex> list)
-        {
-            List<double[]> res = new List<double[]>();
 
-            List<double> direction0 = list.GetDirections();
-            List<double> direction1 = direction0.Differentiate();
-            for (int i = 0; i < list.Count; i++)
+        public static List<double[]> GetDtwPairingFeature(this List<Vertex> list, int inputScale = 1)
+        {
+            var xs = new List<double>();
+            var ys = new List<double>();
+            for (int i = 0, cnt = 0; i < list.Count; i++)
             {
-                double[] newVal = new double[2];
-                newVal[0] = direction0[i];
-                newVal[1] = direction1[i];
-                res.Add(newVal);
+                if (ScalePredicate(list, i, cnt, inputScale))
+                {
+                    xs.Add(list[i].PosF.X);
+                    ys.Add(list[i].PosF.Y);
+                    cnt = 0;
+                }
+                else
+                {
+                    cnt++;
+                }
             }
-            return res;
+            int n = xs.Count;
+            if (n != xs.Count || n != ys.Count)
+            {
+                throw new Exception();
+            }
+            var directions = Translations.GetDirections(xs, ys);
+            return Translations.MergeLists(new List<double>[]
+                                                {
+                                                    xs,
+                                                    ys,
+                                                    directions
+                                                }
+            );
+            
         }
+
+        private static bool ScalePredicate(List<Vertex> trajectory, int idx, int cnt, int inputScale)
+        {
+            return (cnt >= inputScale) ||
+                    (idx == 0 || idx == trajectory.Count - 1) ||
+                    (idx > 0 && !Vertex.AreNeighbours(trajectory[idx - 1], trajectory[idx]) &&
+                                                    !trajectory[idx - 1].Equals(trajectory[idx])) ||
+                    (idx < trajectory.Count - 1 && !Vertex.AreNeighbours(trajectory[idx], trajectory[idx + 1]) &&
+                                                !trajectory[idx].Equals(trajectory[idx + 1]));
+        }
+
     }
 }

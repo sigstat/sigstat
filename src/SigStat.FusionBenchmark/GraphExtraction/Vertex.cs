@@ -26,6 +26,7 @@ namespace SigStat.FusionBenchmark.GraphExtraction
         public Vertex(Point pos, bool on = true)
         {
             Pos = pos;
+            PosF = new PointF((float) pos.X, (float)pos.Y);
             Neighbours = null;
             On = on;
             Rutovitz = -1;

@@ -13,13 +13,17 @@ using System.Linq;
 namespace SigStat.FusionBenchmark.VisualHelpers
 {
     [JsonObject(MemberSerialization.OptOut)]
-    class StrokePairSaver : PipelineBase, ITransformation
+    public class StrokePairSaver : PipelineBase, ITransformation
     {
         [Input]
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
         [Input]
         public FeatureDescriptor<List<Vertex>> InputTrajectory { get; set; }
+
+        [Input]
+        public FeatureDescriptor<List<Tuple<int, Stroke, double, int>>> InputStrokeMatches { get; set; }
+
 
         [Input]
         public string InputBasePath { get; set; }
@@ -32,17 +36,8 @@ namespace SigStat.FusionBenchmark.VisualHelpers
             string path = InputBasePath + "/" + signature.Signer.ID + "_" + signature.ID + InputFileName + ".png";
             var img = signature.GetFeature<Image<Rgba32>>(InputImage).Clone();
             var trajectory = signature.GetFeature<List<Vertex>>(InputTrajectory);
-            var strokeMatches = (List< Tuple<int, Stroke, double, int>>)signature["tmp"];
+            var strokeMatches = signature.GetFeature<List<Tuple<int, Stroke, double, int>>>(InputStrokeMatches);
             strokeMatches = SelectStrokes(strokeMatches);
-            //int cnt = 0;
-            //for (int i = 0; i < trajectory.Count; i++)
-            //{
-            //    if (i > 0 && trajectory[i] != trajectory[i-1] && !Vertex.AreNeighbours(trajectory[i - 1], trajectory[i]))
-            //    {
-            //        cnt++;
-            //    }
-            //    img.VariableColour(trajectory[i].Pos, cnt);
-            //}
 
             var referenceTrajectory = signature.Signer.Signatures[0].GetFeature(FusionFeatures.BaseTrajectory);
 

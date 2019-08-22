@@ -86,6 +86,23 @@ namespace SigStat.FusionBenchmark
         public static readonly FeatureDescriptor<List<Vertex>> Trajectory = FeatureDescriptor.Get<List<Vertex>>("Trajectory");
 
         /// <summary>
+        /// Curvature
+        /// </summary>
+        public static readonly FeatureDescriptor<List<double>> Curvature = FeatureDescriptor.Get<List<double>>("Curvature");
+
+        /// <summary>
+        /// Curvature
+        /// </summary>
+        public static readonly FeatureDescriptor<List<double>> Directions = FeatureDescriptor.Get<List<double>>("Directions");
+
+        /// <summary>
+        /// StrokaMatches from DtwPairing
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Tuple<int, Stroke, double, int>>> StrokeMatches = FeatureDescriptor.Get<List<Tuple<int, Stroke, double, int>>>("StrokeMatches");
+
+        public static readonly FeatureDescriptor<List<double>> Tangent = FeatureDescriptor.Get<List<double>>("Tangent");
+
+        /// <summary>
         /// Returns a readonly list of all <see cref="FeatureDescriptor"/>s defined in <see cref="Features"/>
         /// </summary>
         public static readonly IReadOnlyList<FeatureDescriptor> All =

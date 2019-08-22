@@ -9,10 +9,13 @@ using System.Text;
 namespace SigStat.FusionBenchmark.FusionFeatureExtraction
 {
     [JsonObject(MemberSerialization.OptOut)]
-    class FusionFeatureTransform : PipelineBase, ITransformation
+    class OfflineToOnlineFeature : PipelineBase, ITransformation
     {
         [Input]
         public FeatureDescriptor<List<Vertex>> InputTrajectory { get; set; }
+
+        [Input]
+        public int InputScale { get; set; }
 
         [Output("X")]
         public FeatureDescriptor<List<double>> OutputX { get; set; }
@@ -30,16 +33,34 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
             var ys = new List<double>();
             var bs = new List<bool>();
             var trajectory = signature.GetFeature<List<Vertex>>(InputTrajectory);
-            foreach (var p in trajectory)
+            for (int i = 0, cnt = 0; i < trajectory.Count; i++)
             {
-                xs.Add((double)p.PosF.X);
-                ys.Add((double)p.PosF.Y);
-                bs.Add(p.On);
+                if (ScalePredicate(trajectory, i, cnt))
+                {
+                    xs.Add(trajectory[i].Pos.X);
+                    ys.Add(trajectory[i].Pos.Y);
+                    bs.Add(trajectory[i].On);
+                    cnt = 0;
+                }
+                else
+                {
+                    cnt++;
+                }
             }
             signature.SetFeature<List<double>>(OutputX, xs);
             signature.SetFeature<List<double>>(OutputY, ys);
             signature.SetFeature<List<bool>>(OutputButton, bs);
             this.LogInformation("FusionFeatureTransform - transform finished");
+        }
+
+        private bool ScalePredicate(List<Vertex> trajectory, int idx, int cnt)
+        {
+            return  (cnt >= InputScale) ||
+                    (idx == 0 || idx == trajectory.Count - 1) ||
+                    (idx > 0 && !Vertex.AreNeighbours(trajectory[idx - 1], trajectory[idx]) &&
+                                                    !trajectory[idx - 1].Equals(trajectory[idx])) ||
+                    (idx < trajectory.Count - 1 && !Vertex.AreNeighbours(trajectory[idx], trajectory[idx + 1]) &&
+                                                !trajectory[idx].Equals(trajectory[idx + 1]));
         }
     }
 }

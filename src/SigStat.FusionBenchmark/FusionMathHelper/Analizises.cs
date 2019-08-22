@@ -10,9 +10,18 @@ namespace SigStat.FusionBenchmark.FusionMathHelper
         public static List<double> Differentiate(this List<double> values, int diffIdx = 1)
         {
             List<double> res = new List<double>();
-            for (int i = 0; i < values.Count; i++)
+            int n = values.Count;
+            for (int i = 0; i < n - diffIdx; i++)
             {
-                res.Add(values[Math.Min(i + diffIdx, values.Count - 1)] - values[i]);
+                res.Add(values[i + diffIdx] - values[i]);
+            }
+            for (int i = n - diffIdx; i < n; i++)
+            {
+                res.Add(values[n - 1] - values[i]);
+            }
+            if (values.Count != res.Count)
+            {
+                throw new Exception();
             }
             return res;
         }
