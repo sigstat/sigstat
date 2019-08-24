@@ -24,8 +24,6 @@ namespace SigStat.FusionBenchmark
     {
         public static Tuple<double, double> MyRange = new Tuple<double, double>(0.0, 2.0);
 
-        public static readonly int strokeConnectMaxLength = 10;
-
         public static readonly int scalingConst = 7;
 
         public static List<FeatureDescriptor> MyFeatures = new List<FeatureDescriptor>
