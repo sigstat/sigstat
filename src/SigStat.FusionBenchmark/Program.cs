@@ -36,7 +36,12 @@ namespace SigStat.FusionBenchmark
         //Develop
         static void Main(string[] args)
         {
-            var results = BenchmarkingWithAllSigners();
+            //Alapoktol(0);
+            //Alapoktol(1);
+            //Alapoktol(2);
+            //Alapoktol(8);
+
+            var results = BenchmarkingWithSignerIdx(0);
             ResultOut(results);
             //AlterBenchmark();
             for (int i = 0; i < 10; i++)
@@ -44,7 +49,23 @@ namespace SigStat.FusionBenchmark
             Console.ReadLine();
         }
 
-        private static BenchmarkResults BenchmarkingWithAllSigners()
+        private static void Alapoktol(int idx)
+        {
+            Svc2004OfflineLoader offlineLoader = new Svc2004OfflineLoader(@"Databases\\SVC(40).zip".GetPath());
+            List<Signer> allsigners = offlineLoader.EnumerateSigners().ToList();
+
+            var signers = new List<Signer>();
+            signers.Add(allsigners[idx]);
+
+            var offlinepipeline = FusionPipelines.GetAlapoktol();
+            offlinepipeline.Logger = new SimpleConsoleLogger();
+            foreach (var signer in signers)
+            {
+                Parallel.ForEach(signer.Signatures, sig => offlinepipeline.Transform(sig));
+            }
+        }
+
+        private static BenchmarkResults BenchmarkingWithSignerIdx(int idx)
         {
 
             Svc2004OnlineLoader onlineLoader = new Svc2004OnlineLoader(@"Databases\\Online\\SVC2004\\Task2.zip".GetPath(), true);
@@ -53,9 +74,10 @@ namespace SigStat.FusionBenchmark
             var allSigners = new List<Signer>(offlineLoader.EnumerateSigners(p => true));
 
             var signers = new List<Signer>();
-            signers = allSigners;
+            signers.Add(allSigners[idx]);
 
-            var offlinepipeline = FusionPipelines.GetOfflinepipeline();
+            //var offlinepipeline = FusionPipelines.GetOfflinepipeline();
+            var offlinepipeline = FusionPipelines.GetAlapoktol();
             var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, true);
 
             foreach (var signer in signers)
@@ -63,6 +85,7 @@ namespace SigStat.FusionBenchmark
                 Console.WriteLine(signer.ID + " signer started at " + DateTime.Now.ToString("h:mm:ss tt"));
                 Parallel.ForEach(signer.Signatures, sig =>
                 {
+                    Console.WriteLine("PreProcessing of " + sig.ID + " signature started at " + DateTime.Now.ToString("h:mm:ss tt"));
                     offlinepipeline.Transform(sig);
                     var onlineTransform = FusionPipelines.GetOnlinePipeline(sig);
                     var onlinePair = onlineSigners.Find(onlineSigner => onlineSigner.ID == signer.ID).Signatures.Find(s => s.ID == sig.ID);
@@ -74,7 +97,7 @@ namespace SigStat.FusionBenchmark
                 var spSaver = FusionPipelines.GetStrokePairSaver();
                 Parallel.ForEach(signer.Signatures, sig =>
                 {
-                    Console.WriteLine(sig.ID + " signature started at " + DateTime.Now.ToString("h:mm:ss tt"));
+                    Console.WriteLine("Processing of " + sig.ID + " signature started at " + DateTime.Now.ToString("h:mm:ss tt"));
                     fusionPipeline.Transform(sig);
                     spSaver.Transform(sig);
                 }

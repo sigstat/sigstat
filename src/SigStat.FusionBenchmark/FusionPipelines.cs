@@ -22,13 +22,17 @@ namespace SigStat.FusionBenchmark
 {
     public class FusionPipelines
     {
-        public static Tuple<double, double> MyRange = new Tuple<double, double>(0.0, 3.0);
+        public static Tuple<double, double> MyRange = new Tuple<double, double>(0.0, 2.0);
+
+        public static readonly int strokeConnectMaxLength = 10;
+
+        public static readonly int scalingConst = 7;
 
         public static List<FeatureDescriptor> MyFeatures = new List<FeatureDescriptor>
         {
             FusionFeatures.X,
             FusionFeatures.Y,
-            FusionFeatures.Tangent
+            FusionFeatures.Directions
         };
 
         public static Func<double[], double[], double> MyDistFunc = DtwPairing.DtwPairingDistance;
@@ -248,12 +252,13 @@ namespace SigStat.FusionBenchmark
                 Verifier = new Verifier
                 {
                     Pipeline = new SequentialTransformPipeline(),
-                    Classifier = new DtwClassifier(MyDistFunc)
+                    Classifier = new OptimalDtwClassifier(MyDistFunc)
                     {
-                        Features = MyFeatures
+                        Features = MyFeatures,
+                        Sampler = new FirstNSampler(10)
                     }
                 },
-                Sampler = new EvenNSampler(10)
+                Sampler = new FirstNSampler(10)
             };
         }
 
@@ -278,6 +283,106 @@ namespace SigStat.FusionBenchmark
                 InputTrajectory = FusionFeatures.Trajectory
             };
         }
-        
+
+        public static SequentialTransformPipeline GetAlapoktol()
+        {
+            return new SequentialTransformPipeline
+            {
+                new Binarization
+                {
+                    InputImage = FusionFeatures.Image,
+                    OutputMask = FusionFeatures.Skeleton
+                },
+                new PreVertexExtract
+                {
+                    InputSkeleton = FusionFeatures.Skeleton,
+                    OutputAreaOfStrokes = FusionFeatures.AreaOfStrokes,
+                    OutputContour = FusionFeatures.Contour,
+                    OutputWidthOfPen = FusionFeatures.WidthOfPen
+                },
+                new HSCPThinning
+                {
+                    Input = FusionFeatures.Skeleton,
+                    Output = FusionFeatures.Skeleton
+                },
+                new OnePixelThinning
+                {
+                    Input = FusionFeatures.Skeleton,
+                    Output = FusionFeatures.Skeleton
+                },
+                new VertexExtract
+                {
+                    InputSkeleton = FusionFeatures.Skeleton,
+                    OutputVertices = FusionFeatures.Vertices
+                },
+                new BoundsOfflineExtract
+                {
+                    InputVertices = FusionFeatures.Vertices,
+                    OutputBounds = FusionFeatures.Bounds
+                },
+                new VertexNormalization
+                {
+                    InputVertices = FusionFeatures.Vertices,
+                    InputRange = MyRange,
+                    OutputVertices = FusionFeatures.Vertices
+                },
+                new CogExtraction
+                {
+                    InputVertices = FusionFeatures.Vertices,
+                    OutputCog = FusionFeatures.Cog
+                },/*
+                new AllVerticesSaver
+                {
+                    InputFileName = "all",
+                    InputBasePath = @"VisualResults",
+                    InputAreaOfStrokes = FusionFeatures.AreaOfStrokes,
+                    InputContour = FusionFeatures.Contour,
+                    InputImage = FusionFeatures.Image
+                },*/
+                new StrokeExtract
+                {
+                    InputVertices = FusionFeatures.Vertices,
+                    OutputComponents = FusionFeatures.Components
+                },/*
+                new StrokeSaver
+                {
+                    InputFileName = "stroke",
+                    InputBasePath = @"VisualResults",
+                    InputImage = FusionFeatures.Image,
+                    InputComponents = FusionFeatures.Components
+                },*/
+                new StrokeEliminating
+                {
+                    InputComponent = FusionFeatures.Components,
+                    InputContour = FusionFeatures.Contour,
+                    InputWidthOfPen = FusionFeatures.WidthOfPen,
+                    OutputComponent = FusionFeatures.Components,
+                    OutputSpuriousComps = FusionFeatures.SpuriousComps
+                },
+                new RealSpuriousSaver
+                {
+                    InputFileName = "rs",
+                    InputBasePath = @"VisualResults",
+                    InputImage = FusionFeatures.Image,
+                    InputSpuriousComps = FusionFeatures.SpuriousComps,
+                    InputComponents = FusionFeatures.Components
+                },
+                new StrokeMerging
+                {
+                    InputWidthOfPen = FusionFeatures.WidthOfPen,
+                    InputComponent = FusionFeatures.Components,
+                    InputConnectionNodes = FusionFeatures.SpuriousComps,
+                    OutputComponents = FusionFeatures.Components
+                },
+                new StrokeSaver
+                {
+                    InputFileName = "merged",
+                    InputBasePath = @"VisualResults",
+                    InputComponents = FusionFeatures.Components,
+                    InputImage = FusionFeatures.Image
+                }
+            };
+        }
+
     }
 }

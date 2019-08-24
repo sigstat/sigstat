@@ -7,19 +7,11 @@ namespace SigStat.FusionBenchmark.GraphExtraction
 {
     public class Stroke : List<Vertex>
     {
-        public List<Stroke> Neighbours { get; set; }
-
         public StrokeComponent Component { get; set; }
 
-        public Stroke(): base()
-        {
-            Neighbours = null;
-        }
+        public Stroke(): base() {}
 
-        public Stroke(List<Vertex> list) : base(list)
-        {
-            Neighbours = null;
-        }
+        public Stroke(List<Vertex> list) : base(list) {}
 
         public Vertex Start
         {
@@ -35,11 +27,6 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             {
                 return this[this.Count - 1];
             }
-        }
-
-        public bool IsNeighbour(Stroke stroke)
-        {
-            return this.End == stroke.Start || Vertex.AreNeighbours(this.End, stroke.Start);
         }
 
         public Stroke Sibling

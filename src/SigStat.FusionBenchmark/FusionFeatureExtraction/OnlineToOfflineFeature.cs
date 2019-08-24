@@ -11,7 +11,7 @@ using System.Linq;
 namespace SigStat.FusionBenchmark.FusionFeatureExtraction
 {
     [JsonObject(MemberSerialization.OptOut)]
-    class OnlineToOfflineFeature : PipelineBase, ITransformation
+    public class OnlineToOfflineFeature : PipelineBase, ITransformation
     {
         [Input]
         public FeatureDescriptor<List<double>> InputX { get; set; }
@@ -114,7 +114,7 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
             return new RectangleF((float)minX, (float)minY, width, height); 
         }
 
-        private static List<Vertex> MakeVertexLine(Vertex fromVertex, Vertex toVertex)
+        public static List<Vertex> MakeVertexLine(Vertex fromVertex, Vertex toVertex)
         {
             List<Vertex> res = new List<Vertex>();
             res.Add(fromVertex);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Linq;
+using SigStat.FusionBenchmark.GraphExtraction;
 
 namespace SigStat.FusionBenchmark.FusionMathHelper
 {
@@ -73,6 +74,34 @@ namespace SigStat.FusionBenchmark.FusionMathHelper
             if (lhs.X == rhs.X)
                 return 0;
             return lhs.X < rhs.X ? -1 : 1;
+        }
+
+        public static double StartDirection(this Stroke stroke, int diffIdx)
+        {
+            PointSection sect = new PointSection(stroke.Start.Pos, stroke[Math.Min(stroke.Count - 1, diffIdx)].Pos);
+            return sect.Direction();
+        }
+
+        public static double EndDirection(this Stroke stroke, int diffIdx)
+        {
+            PointSection sect = new PointSection(stroke[Math.Max(0, stroke.Count - 1 - diffIdx)].Pos,
+                                                 stroke[stroke.Count - 1].Pos);
+            return sect.Direction();
+        }
+
+        public static double DiffOfStrokes(Stroke fromStroke, Stroke toStroke)
+        {
+            PointSection fromSect = new PointSection(
+                                            fromStroke[Math.Max(0, fromStroke.Count - FusionPipelines.scalingConst)].Pos,
+                                            fromStroke[fromStroke.Count - 1].Pos
+                                                    );
+            double fromAngle = Direction(fromSect);
+            PointSection toSect = new PointSection(
+                                            toStroke[0].Pos,
+                                            toStroke[Math.Min(toStroke.Count, FusionPipelines.scalingConst)].Pos
+                                                    );
+            double toAngle = Direction(toSect);
+            return DiffAngle(fromAngle, toAngle);
         }
 
     }
