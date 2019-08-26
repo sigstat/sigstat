@@ -42,15 +42,7 @@ namespace SigStat.FusionBenchmark.GraphExtraction
                 {
 
                     var addToCompPairs = new Dictionary<Stroke, Stroke>();
-                    if (connectionNode.Degree(strokes) == 2)
-                    {
-                        addToCompPairs = MergeAtNodeD2(connectionNode, connectionNode.OutStrokes(strokes), widthOfPen);
-                    }
-                    else
-                    {
-                        addToCompPairs = MergingAtNode(connectionNode, connectionNode.OutStrokes(strokes), widthOfPen);
-                    }
-                    //
+                    addToCompPairs = MergingAtNode(connectionNode, connectionNode.OutStrokes(strokes), widthOfPen);
 
                     foreach (var pair in addToCompPairs)
                     {
@@ -139,19 +131,7 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             return new StrokeComponent(resStroke);
         }
 
-        private Dictionary<Stroke, Stroke> MergeAtNodeD2(ConnectionNode connectionNode, List<Stroke> outStrokes, double widthOfPen)
-        {
-            var res = new Dictionary<Stroke, Stroke>();
-            int n = outStrokes.Count;
-            if (n != 2)
-            {
-                throw new ArgumentException();
-            }
-            res.TryAdd(outStrokes[0].Sibling, outStrokes[1]);
-            res.TryAdd(outStrokes[1].Sibling, outStrokes[0]);
-            return res;
-        }
-
+       
         private static Dictionary<Stroke, Stroke> MergingAtNode(ConnectionNode conenctionNode, List<Stroke> outStrokes, double widthOfPen)
         {
             var res = new Dictionary<Stroke, Stroke>();

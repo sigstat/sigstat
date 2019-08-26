@@ -89,20 +89,7 @@ namespace SigStat.FusionBenchmark.FusionMathHelper
             return sect.Direction();
         }
 
-        public static double DiffOfStrokes(Stroke fromStroke, Stroke toStroke)
-        {
-            PointSection fromSect = new PointSection(
-                                            fromStroke[Math.Max(0, fromStroke.Count - FusionPipelines.scalingConst)].Pos,
-                                            fromStroke[fromStroke.Count - 1].Pos
-                                                    );
-            double fromAngle = Direction(fromSect);
-            PointSection toSect = new PointSection(
-                                            toStroke[0].Pos,
-                                            toStroke[Math.Min(toStroke.Count, FusionPipelines.scalingConst)].Pos
-                                                    );
-            double toAngle = Direction(toSect);
-            return DiffAngle(fromAngle, toAngle);
-        }
+        
 
     }
 }

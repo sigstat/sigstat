@@ -39,7 +39,6 @@ namespace SigStat.FusionBenchmark.VisualHelpers
             {
                 stroke.ForEach(p => img.ReColour(p.Pos, Rgba32.Red));
             }
-            int cnt = 0;
             foreach (var connectionNode in spuriousStrokes)
             {
                 foreach (var p in connectionNode)

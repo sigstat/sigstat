@@ -61,13 +61,13 @@ namespace SigStat.FusionBenchmark.GraphExtraction
                 if (!isIn.Contains(neighbour))
                 {
                     Traverse(neighbour, actualStroke, isIn, components);
-                }
+                }/*
                 else if (neighbour == actualStroke[0])
                 {
                     actualStroke.Add(neighbour);
                     AddCircle(new Stroke(actualStroke), components);
                     actualStroke.RemoveAt(actualStroke.Count - 1);
-                }
+                }*/
             }
             actualStroke.RemoveAt(actualStroke.Count - 1);
         }

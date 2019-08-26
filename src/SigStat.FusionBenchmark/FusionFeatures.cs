@@ -60,16 +60,10 @@ namespace SigStat.FusionBenchmark
         /// </summary>
         public static readonly FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor.Get<bool[,]>("Skeleton");
 
-
         /// <summary>
         /// Width of the pen
         /// </summary>
         public static readonly FeatureDescriptor<double> WidthOfPen = FeatureDescriptor.Get<double>("WidthOfPen");
-
-        /// <summary>
-        /// Vertices, 1 pixel in unthinned skeleton -> 1 vertex in areofstrokes
-        /// </summary>
-        public static readonly FeatureDescriptor<List<Vertex>> AreaOfStrokes = FeatureDescriptor.Get<List<Vertex>>("AreaOfStrokes");
 
         /// <summary>
         /// Vertices, 1 pixel in contour -> 1 vertex in contour

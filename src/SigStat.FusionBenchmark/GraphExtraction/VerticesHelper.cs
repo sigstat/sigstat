@@ -51,7 +51,32 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             return res;
         }
 
+        private static List<double> GetOriginalXs(this List<Vertex> list)
+        {
+            List<double> res = new List<double>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                res.Add((double)list[i].Pos.X);
+            }
+            return res;
+        }
 
+        private static List<double> GetOriginalYs(this List<Vertex> list)
+        {
+            List<double> res = new List<double>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                res.Add((double)list[i].Pos.Y);
+            }
+            return res;
+        }
+
+        public static List<double[]> GetOriginalXYs(this List<Vertex> list)
+        {
+            var xs = list.GetOriginalXs();
+            var ys = list.GetOriginalYs();
+            return Translations.MergeLists(new List<double>[] { xs, ys });
+        }
 
         public static List<double> GetDirections(this List<Vertex> list)
         {

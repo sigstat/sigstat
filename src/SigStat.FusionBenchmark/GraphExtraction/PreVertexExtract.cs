@@ -17,9 +17,6 @@ namespace SigStat.FusionBenchmark.GraphExtraction
         [Output("Contour")]
         public FeatureDescriptor<List<Vertex>> OutputContour { get; set; }
 
-        [Output("AreaOfStrokes")]
-        public FeatureDescriptor<List<Vertex>> OutputAreaOfStrokes { get; set; }
-
         [Output("OutputWidthOfPen")]
         public FeatureDescriptor<double> OutputWidthOfPen { get; set; }
 
@@ -55,7 +52,6 @@ namespace SigStat.FusionBenchmark.GraphExtraction
                 }
             }
             double widthOfPen = (double)outputVertices.Count / contour.Count * 2.0;
-            signature.SetFeature<List<Vertex>>(OutputAreaOfStrokes, outputVertices);
             signature.SetFeature<List<Vertex>>(OutputContour, contour);
             signature.SetFeature<double>(OutputWidthOfPen, widthOfPen);
             this.LogInformation("Width of pen: {0}", widthOfPen);
