@@ -36,9 +36,10 @@ namespace SigStat.FusionBenchmark.FusionDemos
                 }
                 );
 
-                int numOfRef = 6;
+                int numOfRef = 10;
+                int numOfGen = 20;
                 var references = onSigner.Signatures.FindAll(sig => sig.Origin == Origin.Genuine).Take(numOfRef).ToList();
-                var genuines = offSigner.Signatures.FindAll(sig => sig.Origin == Origin.Genuine).Take(numOfRef).ToList();
+                var genuines = offSigner.Signatures.FindAll(sig => sig.Origin == Origin.Genuine).Take(numOfGen).ToList();
 
                 double[,] results = new double[references.Count, genuines.Count];
 

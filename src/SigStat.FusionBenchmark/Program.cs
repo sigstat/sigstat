@@ -46,9 +46,12 @@ namespace SigStat.FusionBenchmark
             //Resultout(offOffRes, "Offline - offline");
             //ResultsToTxt(offOffRes, "offoffres");
 
-            DistanceViewing.Calculate(new[] { "001", "002", "003" });
-            Strokepairingmatrix.Calculate(new[] { "001", "002", "003" });
+            //DistanceViewing.Calculate(new[] { "001", "002", "003" });
+            //Strokepairingmatrix.Calculate(new[] { "001", "002", "003" });
 
+            var fusionResults = FusionVerifierBenchmark.BenchMarkingWithAllSigners(true);
+            Resultout(fusionResults);
+            ResultsToTxt(fusionResults, "fusion");
             for (int i = 0; i < 10; i++)
                 Console.ReadLine();
             Console.ReadLine();
@@ -64,9 +67,26 @@ namespace SigStat.FusionBenchmark
             Console.WriteLine("Avg {0} {1} {2}", results.FinalResult.Frr, results.FinalResult.Far, results.FinalResult.Aer);
         }
 
+        private static void Resultout(FusionBenchmarkResults fusionResults, string resultInfo = "")
+        {
+            Console.WriteLine(resultInfo);
+            Resultout(fusionResults.OffOffResults, "offoff");
+            Resultout(fusionResults.OffOnResults, "offon");
+            Resultout(fusionResults.OnOffResults, "onoff");
+            Resultout(fusionResults.OnOnResults, "onon");
+        }
+
         private static void ResultsToTxt(BenchmarkResults results, string fileName)
         {
             TxtHelper.Save(TxtHelper.BenchmarkResToLines(results), fileName);
+        }
+
+        private static void ResultsToTxt(FusionBenchmarkResults fusionResults, string fileName)
+        {
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OffOffResults), fileName + "offoff");
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OffOnResults), fileName + "offon");
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OnOffResults), fileName + "onoff");
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OnOnResults), fileName + "onon");
         }
 
     }

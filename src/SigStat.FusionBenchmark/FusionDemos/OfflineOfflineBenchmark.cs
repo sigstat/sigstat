@@ -10,7 +10,8 @@ using SigStat.FusionBenchmark.FusionFeatureExtraction;
 
 namespace SigStat.FusionBenchmark.FusionDemos
 {
-    class OfflineOflineBenchmark
+
+    class OfflineOfflineBenchmark
     {
         public static BenchmarkResults BenchMarkingWithAllSigners(bool isoptimal)
         {

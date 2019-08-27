@@ -324,5 +324,31 @@ namespace SigStat.FusionBenchmark
             };
         }
 
+        public static Signer GetMixedSigner(Signer refSigner, Signer testSigner)
+        {
+            if (refSigner.ID != testSigner.ID)
+            {
+                throw new ArgumentException();
+            }
+            var resSignatures = new List<Signature>();
+            for (int i = 0; i < NumOfRef; i++)
+            {
+                resSignatures.Add(refSigner.Signatures[i]);
+            }
+            for (int i = NumOfRef; i < testSigner.Signatures.Count; i++)
+            {
+                resSignatures.Add(testSigner.Signatures[i]);
+            }
+
+            return new Signer { Signatures = resSignatures, ID = refSigner.ID }; 
+        }
+
+
+        public static VerifierBenchmark GetBenchmarkWithOnlySigner(Signer signer, bool isOptimal)
+        {
+            List<Signer> signers = new List<Signer>() { signer };
+            return GetBenchmark(signers, isOptimal);
+        }
+
     }
 }
