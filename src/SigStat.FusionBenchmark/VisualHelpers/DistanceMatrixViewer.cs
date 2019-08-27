@@ -10,7 +10,7 @@ using System.Text;
 namespace SigStat.FusionBenchmark.VisualHelpers
 {
     [JsonObject(MemberSerialization.OptOut)]
-    public class DistanceMatrixViewer : PipelineBase, ITransformation
+    public class DistanceMatrixViewer : PipelineBase
     {
         [Input]
         public List<FeatureDescriptor> InputFeatures { get; set; }
@@ -21,28 +21,22 @@ namespace SigStat.FusionBenchmark.VisualHelpers
         [Input]
         public Func<double[], double[], double> InputFunc { get; set; }
 
-        public void Calculate()
+        public double[,] Calculate()
         {
             var distances = new double[InputSignatures.Count, InputSignatures.Count];
             for (int i = 0; i < InputSignatures.Count; i++){
                 for (int j = 0; j < InputSignatures.Count; j++)
                 {
-
-                    Console.Write(
-                        "{0} ",
+                    distances[i, j] =
                         DtwPy.Dtw<double[]>(
                             InputSignatures[i].GetAggregateFeature(InputFeatures),
                             InputSignatures[j].GetAggregateFeature(InputFeatures),
-                            InputFunc)
-                    );
+                            InputFunc);
                 }
-                Console.WriteLine();
             }
+            return distances;
         }
 
-        public void Transform(Signature signature)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

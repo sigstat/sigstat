@@ -89,6 +89,11 @@ namespace SigStat.FusionBenchmark
         public static readonly FeatureDescriptor<Point> Cog = FeatureDescriptor.Get<Point>("Cog");
 
         /// <summary>
+        /// Ideal trajectory
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Vertex>> IdealTrajectory = FeatureDescriptor.Get<List<Vertex>>("IdealTrajectory");
+
+        /// <summary>
         /// BaseTrajectory
         /// </summary>
         public static readonly FeatureDescriptor<List<Vertex>> BaseTrajectory = FeatureDescriptor.Get<List<Vertex>>("BaseTrajectory");

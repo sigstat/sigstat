@@ -37,14 +37,37 @@ namespace SigStat.FusionBenchmark
         //Develop
         static void Main(string[] args)
         {
-            StrokePairingExam.CalculateForID(new string[] {"001", "002", "003" });
+            //var onOnRes = OnlineOnlineBenchmark.BenchMarkWithAllSigners(true);
+            //var hackedOnOnRes = HackedOnlineOnlinePipeline.BenchmarkWithAllSigners(true);
+
+            //var offOffRes = OfflineOflineBenchmark.BenchMarkingWithAllSigners(true);
+            //Resultout(onOnRes, "Online - online");
+            //Resultout(hackedOnOnRes, "Hacked online - online");
+            //Resultout(offOffRes, "Offline - offline");
+            //ResultsToTxt(offOffRes, "offoffres");
+
+            DistanceViewing.Calculate(new[] { "001", "002", "003" });
+            Strokepairingmatrix.Calculate(new[] { "001", "002", "003" });
 
             for (int i = 0; i < 10; i++)
                 Console.ReadLine();
             Console.ReadLine();
         }
-        
 
+        private static void Resultout(BenchmarkResults results, string resultInfo = "")
+        {
+            Console.WriteLine(resultInfo);
+            foreach (var result in results.SignerResults)
+            {
+                Console.WriteLine(result.Signer + " {0} {1} {2}", result.Frr, result.Far, result.Aer);
+            }
+            Console.WriteLine("Avg {0} {1} {2}", results.FinalResult.Frr, results.FinalResult.Far, results.FinalResult.Aer);
+        }
+
+        private static void ResultsToTxt(BenchmarkResults results, string fileName)
+        {
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(results), fileName);
+        }
 
     }
 }

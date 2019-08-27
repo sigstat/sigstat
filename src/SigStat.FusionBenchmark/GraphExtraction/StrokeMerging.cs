@@ -24,7 +24,7 @@ namespace SigStat.FusionBenchmark.GraphExtraction
         [Input]
         public FeatureDescriptor<List<StrokeComponent>> OutputComponents { get; set; }
 
-        private static readonly double minSmooth = Math.PI / 180.0 * 155.0; 
+        private static readonly double minSmooth = Math.PI / 180.0 * 160.0; 
 
         public void Transform(Signature signature)
         {
