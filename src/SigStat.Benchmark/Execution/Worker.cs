@@ -105,7 +105,7 @@ namespace SigStat.Benchmark
                     debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
                     File.WriteAllText(debugFileName, debugInfo.ToString());
 
-                    if (!Program.Offline)
+                    //if (!Program.Offline)
                     {
                         var blob = Container.GetBlockBlobReference($"Results/{debugFileName}");
                         await blob.DeleteIfExistsAsync();
@@ -116,12 +116,12 @@ namespace SigStat.Benchmark
 
                 await ProcessResults();
 
-                if(Program.Offline)
+                /*if(Program.Offline)
                 {//delete input config and lock after processing
                     File.Delete(Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json"));
                     File.Delete(Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json.lock"));
                 }
-                else
+                else*/
                     await Queue.DeleteMessageAsync(CurrentMessage);
 
                 //LogProcessor.Dump(logger);
@@ -136,7 +136,7 @@ namespace SigStat.Benchmark
 
         internal static async Task<bool> Init(string inputDir)
         {
-            if (Program.Offline)
+            /*if (Program.Offline)
             {
                 InputDirectory = new DirectoryInfo(inputDir);
                 if (!InputDirectory.Exists)
@@ -146,7 +146,7 @@ namespace SigStat.Benchmark
                 }
 
             }
-            else
+            else*/
             {
                 Console.WriteLine("Initializing container: " + Program.Experiment);
                 var blobClient = Program.Account.CreateCloudBlobClient();
@@ -176,7 +176,7 @@ namespace SigStat.Benchmark
 
         internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
-            if (Program.Offline)
+            /*if (Program.Offline)
             {
                 Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
 
@@ -206,7 +206,7 @@ namespace SigStat.Benchmark
 
                 return null;
             }
-            else
+            else*/
             {
                 CurrentMessage = await Queue.GetMessageAsync(timeOut, null, null);
                 if (CurrentMessage == null)
@@ -226,13 +226,13 @@ namespace SigStat.Benchmark
             var filename = $"Result_{CurrentBenchmarkId}.xlsx";
             var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
 
-            if (Program.Offline)
+            //if (Program.Offline)
             {
                 Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
                 CurrentBenchmark.Dump(fullfilename, CurrentBenchmark.Parameters);
 
             }
-            else
+            /*else
             {
                 //TODO: szinten excelezni json results helyett
 
@@ -288,7 +288,7 @@ namespace SigStat.Benchmark
                 var database = client.GetDatabase("benchmarks");
                 var collection = database.GetCollection<BsonDocument>("results");
                 await collection.InsertOneAsync(document);
-            }
+            }*/
         }
     }
 }
