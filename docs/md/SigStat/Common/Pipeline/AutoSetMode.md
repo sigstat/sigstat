@@ -4,13 +4,14 @@ Namespace: [SigStat]() > [Common]() > [Pipeline]()
 Assembly: SigStat.Common.dll
 
 
+Default strategy to set the value of a property
 
 ##	Enum
 
 | Value | Name | Summary | 
 | --- | --- | --- | 
-| 0 | IfNull |  | 
-| 1 | Always |  | 
-| 2 | Never |  | 
+| 0 | IfNull | Set the value if it is null | 
+| 1 | Always | Always set the value | 
+| 2 | Never | Never set the value | 
 
 

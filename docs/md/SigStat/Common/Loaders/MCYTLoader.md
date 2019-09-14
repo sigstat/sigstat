@@ -6,20 +6,22 @@ Assembly: SigStat.Common.dll
 
 Implements [IDataSetLoader](./IDataSetLoader.md), [ILoggerObject](./../ILoggerObject.md)
 
+## Summary
+`SigStat.Common.Loaders.DataSetLoader` for the MCYT dataset
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| MCYTLoader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) |  | 
+| MCYTLoader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) | Initializes a new instance of the `SigStat.Common.Loaders.MCYTLoader` class. | 
 
 
 ## Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | DatabasePath |  | 
-| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | StandardFeatures |  | 
+| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | DatabasePath | Gets or sets the database path. | 
+| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | StandardFeatures | Gets or sets a value indicating whether features are also loaded as `SigStat.Common.Features` | 
 
 
 ## Methods

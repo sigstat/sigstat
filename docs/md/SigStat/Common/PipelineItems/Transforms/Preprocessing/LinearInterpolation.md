@@ -6,6 +6,8 @@ Assembly: SigStat.Common.dll
 
 Implements [IInterpolation](./IInterpolation.md)
 
+## Summary
+Performs linear interpolation on the input
 
 ## Constructors
 
@@ -26,6 +28,6 @@ Implements [IInterpolation](./IInterpolation.md)
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) |  | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the interpolated value at a given timestamp | 
 
 

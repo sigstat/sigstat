@@ -4,7 +4,7 @@ Namespace: [SigStat]() > [Common]() > [PipelineItems]() > [Classifiers]()
 
 Assembly: SigStat.Common.dll
 
-Implements [ILoggerObject](./../../ILoggerObject.md), [IProgress](./../../Helpers/IProgress.md), [IPipelineIO](./../../Pipeline/IPipelineIO.md), [IClassifier](./../../Pipeline/IClassifier.md)
+Implements [ILoggerObject](./../../ILoggerObject.md), [IProgress](./../../Helpers/IProgress.md), [IPipelineIO](./../../Pipeline/IPipelineIO.md), [IDistanceClassifier](./../../Pipeline/IDistanceClassifier.md), [IClassifier](./../../Pipeline/IClassifier.md)
 
 ## Summary
 Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
@@ -21,7 +21,9 @@ Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../FeatureDescriptor.md)> | Features |  | 
+| [Func](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | DistanceFunction | The function used to calculate the distance between two data points during DTW calculation | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../FeatureDescriptor.md)> | Features | Gets or sets the features to consider during distance calculation | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | MultiplicationFactor | Gets or sets the multiplication factor to be used during threshold calculation | 
 
 
 ## Methods

@@ -26,6 +26,6 @@ Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Commo
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | ToString (  ) |  | 
+| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | ToString (  ) | Returns a string representation of a Signer | 
 
 

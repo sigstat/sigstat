@@ -6,6 +6,8 @@ Assembly: SigStat.Common.dll
 
 Implements [IInterpolation](./IInterpolation.md)
 
+## Summary
+Cubic interpolation algorithm
 
 ## Constructors
 
@@ -18,14 +20,14 @@ Implements [IInterpolation](./IInterpolation.md)
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | FeatureValues |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | TimeValues |  | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | FeatureValues | FeatureValues | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | TimeValues | TimeValues | 
 
 
 ## Methods
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) |  | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the value. | 
 
 

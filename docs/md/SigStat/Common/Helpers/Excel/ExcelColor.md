@@ -1,0 +1,21 @@
+# [ExcelColor](./ExcelColor.md)
+Namespace: [SigStat]() > [Common]() > [Helpers]() > [Excel]()
+
+Assembly: SigStat.Common.dll
+
+
+Predefined color schemes for Excel
+
+##	Enum
+
+| Value | Name | Summary | 
+| --- | --- | --- | 
+| 0 | Primary | Primary color | 
+| 1 | Secondary | Secondary color | 
+| 2 | Succes | Succes color | 
+| 3 | Danger | Danger color | 
+| 4 | Warning | Warning color | 
+| 5 | Info | Info color | 
+| 6 | Transparent | Transparent color | 
+
+

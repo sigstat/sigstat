@@ -12,11 +12,9 @@
 - [`BenchmarkResults`](./SigStat/Common/BenchmarkResults.md)
 	- Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
 - [`DistanceMatrix`](./SigStat/Common/DistanceMatrix-3.md)\<[`TRowKey`](./README.md), [`TColumnKey`](./README.md), [`TValue`](./README.md)>
-- [`DutchSampler1`](./SigStat/Common/DutchSampler1.md)
-- [`DutchSampler2`](./SigStat/Common/DutchSampler2.md)
-- [`DutchSampler3`](./SigStat/Common/DutchSampler3.md)
-- [`DutchSampler4`](./SigStat/Common/DutchSampler4.md)
+	- A Sparse Matrix representation of a distance graph.
 - [`ErrorRate`](./SigStat/Common/ErrorRate.md)
+	- Represents the ErrorRates achieved in a benchmark
 - [`FeatureDescriptor`](./SigStat/Common/FeatureDescriptor.md)
 	- Represents a feature with name and type.
 - [`FeatureDescriptor`](./SigStat/Common/FeatureDescriptor-1.md)\<[`T`](./README.md)>
@@ -27,16 +25,14 @@
 	- Represents a type, that contains an ILogger property that can be used to perform logging.
 - [`ILoggerObjectExtensions`](./SigStat/Common/ILoggerObjectExtensions.md)
 	- ILoggerObject extension methods for common scenarios.
+- [`IOExtensions`](./SigStat/Common/IOExtensions.md)
+	- Extension methods for common IO operations
 - [`ITransformation`](./SigStat/Common/ITransformation.md)
 	- Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
 - [`Loop`](./SigStat/Common/Loop.md)
 	- Represents a loop in a signature
 - [`MathHelper`](./SigStat/Common/MathHelper.md)
 	- Common mathematical functions used by the SigStat framework
-- [`McytSampler1`](./SigStat/Common/McytSampler1.md)
-- [`McytSampler2`](./SigStat/Common/McytSampler2.md)
-- [`McytSampler3`](./SigStat/Common/McytSampler3.md)
-- [`McytSampler4`](./SigStat/Common/McytSampler4.md)
 - [`PipelineBase`](./SigStat/Common/PipelineBase.md)
 	- TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  ILoggerObject, IProgress, IPipelineIO default implementacioja.
 - [`Result`](./SigStat/Common/Result.md)
@@ -51,25 +47,32 @@
 	- Standard event identifiers used by the SigStat system
 - [`SimpleRenderingTransformation`](./SigStat/Common/SimpleRenderingTransformation.md)
 	- Renders an image of the signature based on the available online information (X,Y,Dpi)
-- [`SVC2004Sampler1`](./SigStat/Common/SVC2004Sampler1.md)
-- [`SVC2004Sampler2`](./SigStat/Common/SVC2004Sampler2.md)
-- [`SVC2004Sampler3`](./SigStat/Common/SVC2004Sampler3.md)
-- [`SVC2004Sampler4`](./SigStat/Common/SVC2004Sampler4.md)
+- [`StrokeHelper`](./SigStat/Common/StrokeHelper.md)
+	- Helper class for locating and manipulating strokes in an online signature
+- [`StrokeInterval`](./SigStat/Common/StrokeInterval.md)
+	- Represents a stroke in an online signature
 - [`VerifierBenchmark`](./SigStat/Common/VerifierBenchmark.md)
 	- Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
 ### Pipeline
 
 - [`IClassifier`](./SigStat/Common/Pipeline/IClassifier.md)
 	- Trains classification models based on reference signatures
+- [`IDistanceClassifier`](./SigStat/Common/Pipeline/IDistanceClassifier.md)
+	- Trains classification models based on reference signatures, by calculating the distances between signature pairs
 - [`Input`](./SigStat/Common/Pipeline/Input.md)
+	- Annotates an input `SigStat.Common.FeatureDescriptor` in a transformation pipeline
 - [`IPipelineIO`](./SigStat/Common/Pipeline/IPipelineIO.md)
+	- Supports the definition of `SigStat.Common.Pipeline.PipelineInput` and `SigStat.Common.Pipeline.PipelineOutput`
 - [`ISignerModel`](./SigStat/Common/Pipeline/ISignerModel.md)
 	- Analyzes signatures based on their similiarity to the trained model
 - [`Output`](./SigStat/Common/Pipeline/Output.md)
+	- Annotates an output `SigStat.Common.FeatureDescriptor` in a transformation pipeline
 - [`ParallelTransformPipeline`](./SigStat/Common/Pipeline/ParallelTransformPipeline.md)
 	- Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para>
 - [`PipelineInput`](./SigStat/Common/Pipeline/PipelineInput.md)
+	- Represents an input for a `SigStat.Common.Pipeline.PipelineInput.PipelineItem`
 - [`PipelineOutput`](./SigStat/Common/Pipeline/PipelineOutput.md)
+	- Represents an output for a `SigStat.Common.Pipeline.PipelineOutput.PipelineItem`
 - [`SequentialTransformPipeline`](./SigStat/Common/Pipeline/SequentialTransformPipeline.md)
 	- Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
 ### Transforms
@@ -125,16 +128,25 @@
 ### Preprocessing
 
 - [`CubicInterpolation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/CubicInterpolation.md)
+	- Cubic interpolation algorithm
 - [`FillPenUpDurations`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/FillPenUpDurations.md)
+	- This transformation will fill "holes" in the "Time" feature by interpolating the last known  feature values.
 - [`FilterPoints`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/FilterPoints.md)
+	- Removes samples based on a criteria from online signature time series
 - [`IInterpolation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md)
+	- Represents an interploation algorithm
 - [`LinearInterpolation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/LinearInterpolation.md)
+	- Performs linear interpolation on the input
 - [`NormalizeRotation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/NormalizeRotation.md)
+	- Performs rotation normalization on the online signature
+- [`RelativeScale`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/RelativeScale.md)
+	- Maps values of a feature to a specific range.  <para>InputFeature: feature to be scaled.</para><para>OutputFeature: output feature for scaled InputFeature&gt;</para>
 - [`ResampleSamplesCountBased`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/ResampleSamplesCountBased.md)
-- [`ResampleTimeBased`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/ResampleTimeBased.md)
+	- Resamples an online signature to a specific sample count using the specified `SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation` algorithm
 - [`Scale`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/Scale.md)
 	- Maps values of a feature to a specific range.  <para>InputFeature: feature to be scaled.</para><para>OutputFeature: output feature for scaled InputFeature&gt;</para>
 - [`TranslatePreproc`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md)
+	- This transformations can be used to translate the coordinates of an online signature
 - [`UniformScale`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/UniformScale.md)
 	- Maps values of a feature to a specific range and another proportional.  <para>BaseDimension: feature modelled the base dimension of the scaling. </para><para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para><para>BaseDimensionOutput: output feature for scaled BaseDimension&gt;</para><para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension&gt;</para>
 ### Classifiers
@@ -144,11 +156,11 @@
 - [`DtwSignerModel`](./SigStat/Common/PipelineItems/Classifiers/DtwSignerModel.md)
 	- Represents a trained model for `SigStat.Common.PipelineItems.Classifiers.DtwClassifier`
 - [`OptimalDtwClassifier`](./SigStat/Common/PipelineItems/Classifiers/OptimalDtwClassifier.md)
+	- This `SigStat.Common.Pipeline.IDistanceClassifier` implementation will consider both test and  training samples and claculate the threshold to separate the original and forged  signatures to approximate EER. Note that this classifier is not applicable for  real world scenarios. It was developed to test the theoratical boundaries of  threshold based classification
 - [`WeightedClassifier`](./SigStat/Common/PipelineItems/Classifiers/WeightedClassifier.md)
 	- Classifies Signatures by weighing other Classifier results.
 ### Loaders
 
-- [`BenchmarkBuilder`](./SigStat/Common/Loaders/BenchmarkBuilder.md)
 - [`DataSetLoader`](./SigStat/Common/Loaders/DataSetLoader.md)
 	- Abstract loader class to inherit from. Implements ILogger.
 - [`IDataSetLoader`](./SigStat/Common/Loaders/IDataSetLoader.md)
@@ -158,44 +170,64 @@
 - [`ImageSaver`](./SigStat/Common/Loaders/ImageSaver.md)
 	- Get the `SigStat.Common.Features.Image` of a `SigStat.Common.Signature` and save it as png file.
 - [`MCYTLoader`](./SigStat/Common/Loaders/MCYTLoader.md)
+	- `SigStat.Common.Loaders.DataSetLoader` for the MCYT dataset
+- [`SigComp11ChineseLoader`](./SigStat/Common/Loaders/SigComp11ChineseLoader.md)
+	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp11Chinese dataset
 - [`SigComp11DutchLoader`](./SigStat/Common/Loaders/SigComp11DutchLoader.md)
+	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp11Dutch dataset
+- [`SigComp13JapaneseLoader`](./SigStat/Common/Loaders/SigComp13JapaneseLoader.md)
+	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp13Japanese dataset
+- [`SigComp15GermanLoader`](./SigStat/Common/Loaders/SigComp15GermanLoader.md)
+	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp15German dataset
+- [`SigComp19OnlineLoader`](./SigStat/Common/Loaders/SigComp19OnlineLoader.md)
+	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp19 dataset
 - [`Svc2004`](./SigStat/Common/Loaders/Svc2004.md)
 	- Set of features containing raw data loaded from SVC2004-format database.
 - [`Svc2004Loader`](./SigStat/Common/Loaders/Svc2004Loader.md)
 	- Loads SVC2004-format database from .zip
 ### Helpers
 
-- [`BenchmarkConfig`](./SigStat/Common/Helpers/BenchmarkConfig.md)
+- [`ExcelHelper`](./SigStat/Common/Helpers/ExcelHelper.md)
+	- Extension methods for common EPPlus tasks
 - [`FeatureDescriptorJsonConverter`](./SigStat/Common/Helpers/FeatureDescriptorJsonConverter.md)
+	- Custom serializer for `SigStat.Common.FeatureDescriptor` objects
 - [`FeatureDescriptorTJsonConverter`](./SigStat/Common/Helpers/FeatureDescriptorTJsonConverter.md)
+	- Custom serializer for `SigStat.Common.FeatureDescriptor`1` objects
+- [`HierarchyElement`](./SigStat/Common/Helpers/HierarchyElement.md)
+	- Hierarchical structure to store object
 - [`IProgress`](./SigStat/Common/Helpers/IProgress.md)
 	- Enables progress tracking by expsoing the `SigStat.Common.Helpers.IProgress.Progress` property and the `SigStat.Common.Helpers.IProgress.ProgressChanged` event.
 - [`SerializationHelper`](./SigStat/Common/Helpers/SerializationHelper.md)
+	- Json serialization and deserialization using the custom resolver  `SigStat.Common.Helpers.Serialization.VerifierResolver`
 - [`SimpleConsoleLogger`](./SigStat/Common/Helpers/SimpleConsoleLogger.md)
 	- A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 ### Serialization
 
+- [`DistanceFunctionJsonConverter`](./SigStat/Common/Helpers/Serialization/DistanceFunctionJsonConverter.md)
+	- Helper class for serializing distance functions
 - [`FeatureStreamingContextState`](./SigStat/Common/Helpers/Serialization/FeatureStreamingContextState.md)
 	- SerializationContext for serializing SigStat objects
 - [`RectangleFConverter`](./SigStat/Common/Helpers/Serialization/RectangleFConverter.md)
+	- Custom serializer for `System.Drawing.RectangleF` objects
 ### Excel
 
-- [`CellHandler`](./SigStat/Common/Helpers/Excel/CellHandler.md)
-- [`HierarchyElement`](./SigStat/Common/Helpers/Excel/HierarchyElement.md)
-	- Hierarchical structure to store object
-### Palette
-
-- [`Palette`](./SigStat/Common/Helpers/Excel/Palette/Palette.md)
-### Level
-
+- [`Palette`](./SigStat/Common/Helpers/Excel/Palette.md)
 ### Model
 
 - [`Verifier`](./SigStat/Common/Model/Verifier.md)
 	- Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
-### Exceptions
+### Samplers
 
-- [`VerifierTestingException`](./SigStat/Common/Framework/Exceptions/VerifierTestingException.md)
-- [`VerifierTrainingException`](./SigStat/Common/Framework/Exceptions/VerifierTrainingException.md)
+- [`EvenNSampler`](./SigStat/Common/Framework/Samplers/EvenNSampler.md)
+	- Selects the first N signatures with even index for training
+- [`FirstNSampler`](./SigStat/Common/Framework/Samplers/FirstNSampler.md)
+	- Selects the first N signatures for training
+- [`LastNSampler`](./SigStat/Common/Framework/Samplers/LastNSampler.md)
+	- Selects the first N signatures for training
+- [`OddNSampler`](./SigStat/Common/Framework/Samplers/OddNSampler.md)
+	- Selects the first N signatures with odd index for training
+- [`UniversalSampler`](./SigStat/Common/Framework/Samplers/UniversalSampler.md)
+	- Selects a given number of signatures for training and testing
 ### Algorithms
 
 - [`Dtw`](./SigStat/Common/Algorithms/Dtw.md)

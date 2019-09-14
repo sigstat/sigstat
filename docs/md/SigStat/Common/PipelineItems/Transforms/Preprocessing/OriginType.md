@@ -4,14 +4,15 @@ Namespace: [SigStat]() > [Common]() > [PipelineItems]() > [Transforms]() > [Prep
 Assembly: SigStat.Common.dll
 
 
+Origin specification for `SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc`
 
 ##	Enum
 
 | Value | Name | Summary | 
 | --- | --- | --- | 
-| 0 | CenterOfGravity |  | 
-| 1 | Minimum |  | 
-| 2 | Maximum |  | 
-| 3 | Predefined |  | 
+| 0 | CenterOfGravity | Center of gravity | 
+| 1 | Minimum | Minimum | 
+| 2 | Maximum | Maximum | 
+| 3 | Predefined | Predefined | 
 
 

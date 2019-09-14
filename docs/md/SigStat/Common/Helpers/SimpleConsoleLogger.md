@@ -37,6 +37,6 @@ A easy-to-use class to log pipeline messages, complete with filtering levels and
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [ErrorEventHandler](./SimpleConsoleLogger.md) | Logged |  | 
+| [ErrorEventHandler](./SimpleConsoleLogger.md) | Logged | Occurs when an error is logged | 
 
 

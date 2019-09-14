@@ -22,12 +22,11 @@ Generates an image feature out of a binary raster.  Optionally, saves the image 
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [Rgba32](./ImageGenerator.md) | BackgroundColor |  | 
-| [Rgba32](./ImageGenerator.md) | ForegroundColor |  | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Input |  | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Output |  | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Image](./ImageGenerator.md)\<[Rgba32](./ImageGenerator.md)>> | OutputImage |  | 
-| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | WriteToFile |  | 
+| [Rgba32](./ImageGenerator.md) | BackgroundColor | Gets or sets the color of the backgroung used to render the signature | 
+| [Rgba32](./ImageGenerator.md) | ForegroundColor | Gets or sets the color of the foreground used to render the signature | 
+| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Input | Input `SigStat.Common.FeatureDescriptor` for the binary image of a signature | 
+| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Image](./ImageGenerator.md)\<[Rgba32](./ImageGenerator.md)>> | OutputImage | Input `SigStat.Common.FeatureDescriptor` for the binary image of a signature | 
+| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | WriteToFile | Gets or sets a value indicating whether the results should be saved to a file or not. | 
 
 
 ## Methods

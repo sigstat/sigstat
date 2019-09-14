@@ -4,6 +4,8 @@ Namespace: [SigStat]() > [Common]()
 
 Assembly: SigStat.Common.dll
 
+## Summary
+A Sparse Matrix representation of a distance graph.
 
 ## Constructors
 
@@ -16,7 +18,7 @@ Assembly: SigStat.Common.dll
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [TValue](./DistanceMatrix-3.md) | Item [ [`TRowKey`](./DistanceMatrix-3.md) ] |  | 
+| [TValue](./DistanceMatrix-3.md) | Item [ [`TRowKey`](./DistanceMatrix-3.md) ] | Gets or sets a distance for a given row and column | 
 
 
 ## Methods

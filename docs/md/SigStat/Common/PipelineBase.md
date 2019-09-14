@@ -13,7 +13,7 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 
 | Name | Summary | 
 | --- | --- | 
-| PipelineBase (  ) |  | 
+| PipelineBase (  ) | Initializes a new instance of the `SigStat.Common.PipelineBase` class. | 
 
 
 ## Properties
@@ -21,8 +21,8 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | [ILogger](./PipelineBase.md) | Logger |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineInput](./Pipeline/PipelineInput.md)> | PipelineInputs |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineOutput](./Pipeline/PipelineOutput.md)> | PipelineOutputs |  | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineInput](./Pipeline/PipelineInput.md)> | PipelineInputs | A collection of inputs for the pipeline elements | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineOutput](./Pipeline/PipelineOutput.md)> | PipelineOutputs | A collection of outputs for the pipeline elements | 
 | [Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) | Progress |  | 
 
 

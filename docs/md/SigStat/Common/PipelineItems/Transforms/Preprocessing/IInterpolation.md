@@ -4,19 +4,21 @@ Namespace: [SigStat]() > [Common]() > [PipelineItems]() > [Transforms]() > [Prep
 
 Assembly: SigStat.Common.dll
 
+## Summary
+Represents an interploation algorithm
 
 ## Properties
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | FeatureValues |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | TimeValues |  | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | FeatureValues | Gets or sets the feature values. | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | TimeValues | Timestamps | 
 
 
 ## Methods
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) |  | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the interpolated value at a given timestamp | 
 
 
