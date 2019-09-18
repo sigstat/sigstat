@@ -47,7 +47,7 @@ To reach the full potential of our project, we use some additional NuGet package
 - **Twitter** - Follow [Sigstat](https://twitter.com/sigstatorg)
 - **Facebook** - Follow [Sigstat](https://www.facebook.com/sigstat.org)
 - **Email** - Email us at [info@sigstat.org](mailto:info@sigstat.org)
-- **YouTube** - For tutorial videos, examples and other contents visit our [YouTube channel](https://www.youtube.com/user/sigstat)!
+- **YouTube** - For tutorial videos, examples and other contents visit our [YouTube channel](https://www.youtube.com/channel/UCsgpfv5o8h9l-tQ1AFD_rOQ)!
 
 
 # Feedback
