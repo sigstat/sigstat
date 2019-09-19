@@ -29,6 +29,7 @@ using SixLabors.ImageSharp.PixelFormats;
 using SigStat.Common.Framework.Samplers;
 using SigStat.FusionBenchmark.OfflineVerifier;
 using SigStat.FusionBenchmark.FusionDemos;
+using SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks;
 
 namespace SigStat.FusionBenchmark
 {
@@ -37,27 +38,29 @@ namespace SigStat.FusionBenchmark
         //Develop
         static void Main(string[] args)
         {
-            //var onOnRes = OnlineOnlineBenchmark.BenchMarkWithAllSigners(true);
-            //var hackedOnOnRes = HackedOnlineOnlinePipeline.BenchmarkWithAllSigners(true);
-
-            //var offOffRes = OfflineOflineBenchmark.BenchMarkingWithAllSigners(true);
-            //Resultout(onOnRes, "Online - online");
-            //Resultout(hackedOnOnRes, "Hacked online - online");
-            //Resultout(offOffRes, "Offline - offline");
-            //ResultsToTxt(offOffRes, "offoffres");
-
-            //DistanceViewing.Calculate(new[] { "001", "002", "003" });
-            //Strokepairingmatrix.Calculate(new[] { "001", "002", "003" });
-
-            var fusionResults = FusionVerifierBenchmark.BenchMarkingWithAllSigners(true);
-            Resultout(fusionResults);
-            ResultsToTxt(fusionResults, "fusion");
+            //ResultsToTxt(HackedOnlineOnlineBenchmark.BenchmarkWithAllSigners(true,
+            //                                    FusionPipelines.GetOfflineLoader(),
+            //                                    FusionPipelines.GetOnlineLoader()),
+            //            "hackedonon_svc_09_18");
+            //ResultsToTxt(MarosBenchmark.BenchmarkingWithAllSigners(true,
+            //                            new BiosecureIDOfflineLoader(@"Databases/BiosecureID/OfflineSynthetic/Ienhanced")),
+            //                            //FusionPipelines.GetOfflineLoader()),
+            //            "maros_biosecure_09_18");
+            ResultsToTxt(FusionVerifierBenchmark.BenchMarkingWithAllSigners(true,
+                                                                    FusionPipelines.GetOfflineLoader(),
+                                                                    FusionPipelines.GetOnlineLoader()),
+                         "fusion_svc_09_18");
+            //FusionVerifierBenchmark.BenchMarkingWithAllSigners(true, 
+            //    new BiosecureIDOfflineLoader(@"Databases/BiosecureID/OfflineSynthetic/Ienhanced"),
+            //    new BiosecureIDOnlineLoader(@"Databases/BiosecureID/OnlineRealTxt"));
+            //var results = OnlineOnlineBenchmark.BenchMarkWithAllSigners(true, new BiosecureIDOnlineLoader(@"Databases/BiosecureID/OnlineRealTxt"));
+            
             for (int i = 0; i < 10; i++)
                 Console.ReadLine();
             Console.ReadLine();
         }
 
-        private static void Resultout(BenchmarkResults results, string resultInfo = "")
+        public static void Resultout(BenchmarkResults results, string resultInfo = "")
         {
             Console.WriteLine(resultInfo);
             foreach (var result in results.SignerResults)
@@ -76,7 +79,7 @@ namespace SigStat.FusionBenchmark
             Resultout(fusionResults.OnOnResults, "onon");
         }
 
-        private static void ResultsToTxt(BenchmarkResults results, string fileName)
+        public static void ResultsToTxt(BenchmarkResults results, string fileName)
         {
             TxtHelper.Save(TxtHelper.BenchmarkResToLines(results), fileName);
         }

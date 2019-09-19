@@ -8,6 +8,7 @@ using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.Transforms;
 using SigStat.FusionBenchmark.FusionFeatureExtraction;
 using SigStat.FusionBenchmark.GraphExtraction;
+using SigStat.FusionBenchmark.LineTransforms;
 using SigStat.FusionBenchmark.Loaders;
 using SigStat.FusionBenchmark.OfflineFeatureExtraction;
 using SigStat.FusionBenchmark.TrajectoryRecovery;
@@ -27,12 +28,15 @@ namespace SigStat.FusionBenchmark
 
         public static Tuple<double, double> MyClassifierRange = new Tuple<double, double>(0.0, 1.0);
 
+        public static double DOSConst = 10.0;
 
         public static int DtwpairingJump = 4;
 
-        public static int DtwPairingScaling = 5;
+        public static double DtwPairingScaling = 0.004166;
 
-        public static int OffToOnScaling = 5;
+        public static double OffToOnScaling = 0.004166;
+
+        public static double OffToOnVMax = 0.016666;
 
         public static int NumOfRef = 10;
 
@@ -124,7 +128,7 @@ namespace SigStat.FusionBenchmark
             };
         }
 
-        public static SequentialTransformPipeline GetFusionPipeline(List<Signer> onlineSigners, bool isParallel, string baseSigID = "001")
+        public static SequentialTransformPipeline GetFusionPipeline(List<Signer> onlineSigners, bool isParallel, string baseSigID)
         {
             return new SequentialTransformPipeline
             {
@@ -141,20 +145,21 @@ namespace SigStat.FusionBenchmark
                     InputComponents = FusionFeatures.Components,
                     InputIsParallel = isParallel,
                     InputJump = DtwpairingJump,
-                    InputScale = DtwPairingScaling,
+                    InputScaleRate = DtwPairingScaling,
                     InputWindowFrom = 50,
                     InputWindowJump = 10,
                     InputWindowTo = 130,
                     OutputStrokeMatches = FusionFeatures.StrokeMatches,
                     OutputTrajectory = FusionFeatures.Trajectory
                 },
-                new OfflineToOnlineFeature
+                new Off2OnTransform
                 {
                     InputTrajectory = FusionFeatures.Trajectory,
-                    InputScale = OffToOnScaling,
                     OutputButton = FusionFeatures.Button,
                     OutputX = FusionFeatures.X,
-                    OutputY = FusionFeatures.Y
+                    OutputY = FusionFeatures.Y,
+                    InputScaleRate = OffToOnScaling,
+                    InputVMax = OffToOnVMax
                 }
             };
         }
@@ -230,13 +235,14 @@ namespace SigStat.FusionBenchmark
                     InputVertices = FusionFeatures.Vertices,
                     OutputVertices = FusionFeatures.Vertices
                 },
-                new OfflineToOnlineFeature
+                new Off2OnTransform
                 {
-                    InputScale = FusionPipelines.OffToOnScaling,
                     InputTrajectory = FusionFeatures.Trajectory,
                     OutputButton = FusionFeatures.Button,
                     OutputX = FusionFeatures.X,
-                    OutputY = FusionFeatures.Y
+                    OutputY = FusionFeatures.Y,
+                    InputScaleRate = OffToOnScaling,
+                    InputVMax = OffToOnVMax
                 },
             };
         }
@@ -244,13 +250,15 @@ namespace SigStat.FusionBenchmark
         public static SequentialTransformPipeline GetOffToOnTransform()
         {
             return new SequentialTransformPipeline {
-                new OfflineToOnlineFeature
+                new Off2OnTransform
                 {
-                    InputScale = FusionPipelines.OffToOnScaling,
                     InputTrajectory = FusionFeatures.Trajectory,
                     OutputButton = FusionFeatures.Button,
                     OutputX = FusionFeatures.X,
-                    OutputY = FusionFeatures.Y
+                    OutputY = FusionFeatures.Y,
+                    InputScaleRate = OffToOnScaling,
+                    InputVMax = OffToOnVMax
+
                 }
             };
         }
@@ -350,5 +358,90 @@ namespace SigStat.FusionBenchmark
             return GetBenchmark(signers, isOptimal);
         }
 
+        public static XYSaver GetXYSaver()
+        {
+            return new XYSaver
+            {
+                InputBasePath = @"VisualResults",
+                InputButton = FusionFeatures.Button,
+                InputFileName = "xy",
+                InputImage = FusionFeatures.Image,
+                InputX = FusionFeatures.X,
+                InputY = FusionFeatures.Y,
+            };
+        }
+
+        public static SequentialTransformPipeline GetMarosPipeline()
+        {
+            return new SequentialTransformPipeline
+            {
+                new Binarization
+                {
+                    InputImage = FusionFeatures.Image,
+                    OutputMask = FusionFeatures.Skeleton
+                },
+                new PreVertexExtract
+                {
+                    InputSkeleton = FusionFeatures.Skeleton,
+                    OutputContour = FusionFeatures.Contour,
+                    OutputWidthOfPen = FusionFeatures.WidthOfPen
+                },
+                new HSCPThinning
+                {
+                    Input = FusionFeatures.Skeleton,
+                    Output = FusionFeatures.Skeleton
+                },
+                new OnePixelThinning
+                {
+                    Input = FusionFeatures.Skeleton,
+                    Output = FusionFeatures.Skeleton
+                },
+                new VertexExtract
+                {
+                    InputSkeleton = FusionFeatures.Skeleton,
+                    OutputVertices = FusionFeatures.Vertices
+                },
+                new CogExtraction
+                {
+                    InputVertices = FusionFeatures.Vertices,
+                    OutputCog = FusionFeatures.Cog
+                },
+                new StrokeExtract
+                {
+                    InputVertices = FusionFeatures.Vertices,
+                    OutputComponents = FusionFeatures.Components
+                },
+                new StrokeEliminating
+                {
+                    InputComponent = FusionFeatures.Components,
+                    InputContour = FusionFeatures.Contour,
+                    InputWidthOfPen =FusionFeatures.WidthOfPen,
+                    OutputComponent = FusionFeatures.Components,
+                    OutputSpuriousComps = FusionFeatures.SpuriousComps
+                },
+                new StrokeMerging
+                {
+                    InputComponent = FusionFeatures.Components,
+                    InputWidthOfPen = FusionFeatures.WidthOfPen,
+                    InputConnectionNodes = FusionFeatures.SpuriousComps,
+                    OutputComponents = FusionFeatures.Components
+                },
+                new MarosAlgorithm
+                {
+                    InputComponents = FusionFeatures.Components,
+                    OutputTrajectory = FusionFeatures.Trajectory
+                },
+                new Off2OnTransform
+                {
+                    InputTrajectory = FusionFeatures.Trajectory,
+                    OutputButton = FusionFeatures.Button,
+                    OutputX = FusionFeatures.X,
+                    OutputY = FusionFeatures.Y,
+                    InputScaleRate = FusionPipelines.OffToOnScaling,
+                    InputVMax = OffToOnVMax
+
+                }
+            };
+        }
     }
 }

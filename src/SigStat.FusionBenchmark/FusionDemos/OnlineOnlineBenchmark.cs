@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
+using SigStat.Common.Loaders;
 
 namespace SigStat.FusionBenchmark.FusionDemos
 {
     public static class OnlineOnlineBenchmark
     {
-        public static BenchmarkResults BenchMarkWithAllSigners(bool isoptimal)
+        public static BenchmarkResults BenchMarkWithAllSigners(bool isoptimal, DataSetLoader onlineLoader)
         {
             Console.WriteLine("Online - online benchmark started");
-            var onlineLoader = FusionPipelines.GetOnlineLoader();
 
             var onlineSigners = onlineLoader.EnumerateSigners().ToList();
 

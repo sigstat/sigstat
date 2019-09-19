@@ -6,11 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CSMatIO\CSMatIO\src\zlib.net.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Databases\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>System.Windows.Forms\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="zlib.net">
+      <HintPath>CSMatIO\CSMatIO\src\zlib.net.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

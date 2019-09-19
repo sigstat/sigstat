@@ -27,7 +27,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
         public int InputJump { get; set; }
 
         [Input]
-        public int InputScale { get; set; }
+        public double InputScaleRate { get; set; }
 
         [Input]
         public int InputWindowJump { get; set; }
@@ -80,7 +80,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
 
             signature.SetFeature<List<Tuple<int, Stroke, double, int>>>(OutputStrokeMatches, order);
             order.Sort( (Tuple<int, Stroke, double, int> p, Tuple<int, Stroke, double,int> q) =>
-                              { return p.Item1 < q.Item1 ? -1 : 1; } );
+                              { return p.Item1 + p.Item4 / 2 < q.Item1 + q.Item4 / 2 ? -1 : 1; } );
             List<Stroke> strokeOrder = SelectStrokes(order);
             var trajectory = new List<Vertex>();
             strokeOrder.ForEach(stroke => trajectory.AddRange(stroke));
@@ -98,6 +98,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             }
             return res; 
         }
+
 
         private Tuple<int, Stroke, double, int> CalculatePairing(Stroke stroke, List<Vertex> trajectory)
         {
@@ -122,6 +123,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
         {
             int resIdx = int.MaxValue;
             double resVal = Double.MaxValue;
+            int inputScale = Math.Max((int)(trajectory.Count * InputScaleRate), 1);
             for (int i = 0; i < trajectory.Count - window; i += jump)
             {
                 /*
@@ -131,8 +133,8 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
                                                 Geometry.DiffVectorAngle);
                 double val = CalculateMixedVal(valPosition, valShape);
                 */
-                double val = DtwPy.Dtw<double[]>(stroke.GetDtwPairingFeature(InputScale), 
-                                                 trajectory.GetRange(i, window).GetDtwPairingFeature(InputScale),
+                double val = DtwPy.Dtw<double[]>(stroke.GetDtwPairingFeature(inputScale), 
+                                                 trajectory.GetRange(i, window).GetDtwPairingFeature(inputScale),
                                                  DtwPairingDistance);
                 if (val < resVal)
                 {

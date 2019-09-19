@@ -13,7 +13,7 @@ using System.Linq;
 namespace SigStat.FusionBenchmark.VisualHelpers
 {
     [JsonObject(MemberSerialization.OptOut)]
-    class XYSaver : PipelineBase, ITransformation
+    public class XYSaver : PipelineBase, ITransformation
     {
         [Input]
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
@@ -36,7 +36,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
         public void Transform(Signature signature)
         {
             string path = InputBasePath + "/" + signature.Signer.ID + "_" + signature.ID + InputFileName + ".png";
-            var img = signature.GetFeature<Image<Rgba32>>(InputImage).Clone();
+            var img = new Image<Rgba32>(signature.GetFeature<Image<Rgba32>>(InputImage).Width, signature.GetFeature<Image<Rgba32>>(InputImage).Height);
             var xs = signature.GetFeature<List<double>>(InputX);
             var ys = signature.GetFeature<List<double>>(InputY);
             var bs = signature.GetFeature<List<bool>>(InputButton);

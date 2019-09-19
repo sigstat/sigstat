@@ -4,17 +4,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
+using SigStat.Common.Loaders;
 
 namespace SigStat.FusionBenchmark.FusionDemos
 { 
     class HackedOnlineOnlineBenchmark
     {
-        public static BenchmarkResults BenchmarkWithAllSigners(bool isOptimal)
+        public static BenchmarkResults BenchmarkWithAllSigners(bool isOptimal, DataSetLoader offlineLoader, DataSetLoader onlineLoader)
         {
             Console.WriteLine("Hacked online - online benchmark started");
-
-            var onlineLoader = FusionPipelines.GetOnlineLoader();
-            var offlineLoader = FusionPipelines.GetOfflineLoader();
 
             var onlineSigners = onlineLoader.EnumerateSigners().ToList();
             var offlineSigners = offlineLoader.EnumerateSigners().ToList();
@@ -25,6 +23,7 @@ namespace SigStat.FusionBenchmark.FusionDemos
 
             foreach (var offSigner in offlineSigners)
             {
+                Console.WriteLine(offSigner.ID + " started at " + DateTime.Now.ToString("h:mm:ss tt"));
                 var onSigner = onlineSigners.Find(signer => signer.ID == offSigner.ID);
                 Parallel.ForEach(offSigner.Signatures, offSig =>
                 {

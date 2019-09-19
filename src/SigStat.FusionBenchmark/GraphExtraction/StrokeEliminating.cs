@@ -36,6 +36,7 @@ namespace SigStat.FusionBenchmark.GraphExtraction
         {
             this.LogInformation("StrokeEliminating - transform started");
             var origComponents = signature.GetFeature<List<StrokeComponent>>(InputComponent);
+
             var contour = signature.GetFeature<List<Vertex>>(InputContour);
             double widthOfPen = signature.GetFeature<double>(InputWidthOfPen);
             var components = new List<StrokeComponent>();

@@ -1,7 +1,9 @@
 ﻿using SigStat.FusionBenchmark.FusionFeatureExtraction;
 using SigStat.FusionBenchmark.FusionMathHelper;
+using SigStat.FusionBenchmark.LineTransforms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace SigStat.FusionBenchmark.GraphExtraction
@@ -80,10 +82,12 @@ namespace SigStat.FusionBenchmark.GraphExtraction
 
         public static List<double> GetDirections(this List<Vertex> list)
         {
+            var pointFs = new List<PointF>();
+            list.ForEach(vertex => pointFs.Add(vertex.Pos.ToPointF()));
             List<double> res = new List<double>();
             for (int i = 0; i < list.Count; i++)
             {
-                double newVal = DOSBasedExtract.MakeSection(list, i).Direction();
+                double newVal = DOSBasedAlgorithm.MakeSection(pointFs, i, 1, FusionPipelines.DOSConst).Direction;
                 res.Add(newVal);
             }
             return res;

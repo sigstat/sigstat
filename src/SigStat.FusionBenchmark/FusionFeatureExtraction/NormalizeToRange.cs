@@ -22,6 +22,7 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
 
         public void Transform(Signature signature)
         {
+            this.LogInformation("NormalizeToRange - transform started");
             if (InputRange.Item1 >= InputRange.Item2)
             {
                 throw new ArgumentException();
@@ -41,6 +42,8 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
                 Progress += 100 / values.Count;
             }
             signature.SetFeature(Output, values);
+            this.LogInformation("NormalizeToRange - transform finished");
+
         }
     }
 }
