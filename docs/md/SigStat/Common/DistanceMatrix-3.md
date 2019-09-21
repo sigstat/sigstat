@@ -1,6 +1,6 @@
 # [DistanceMatrix](./DistanceMatrix-3.md)\<[TRowKey](./DistanceMatrix-3.md), [TColumnKey](./DistanceMatrix-3.md), [TValue](./DistanceMatrix-3.md)>
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 

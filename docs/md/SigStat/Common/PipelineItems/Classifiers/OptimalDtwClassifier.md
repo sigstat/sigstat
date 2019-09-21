@@ -1,6 +1,6 @@
 # [OptimalDtwClassifier](./OptimalDtwClassifier.md)
 
-Namespace: [SigStat]() > [Common]() > [PipelineItems]() > [Classifiers]()
+Namespace: [SigStat]() > [Common](./../../README.md) > [PipelineItems]() > [Classifiers](./README.md)
 
 Assembly: SigStat.Common.dll
 

@@ -1,6 +1,6 @@
 # [SigComp19OnlineLoader](./SigComp19OnlineLoader.md)
 
-Namespace: [SigStat]() > [Common]() > [Loaders]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Loaders](./README.md)
 
 Assembly: SigStat.Common.dll
 

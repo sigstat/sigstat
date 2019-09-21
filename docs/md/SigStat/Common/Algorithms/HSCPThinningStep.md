@@ -1,6 +1,6 @@
 # [HSCPThinningStep](./HSCPThinningStep.md)
 
-Namespace: [SigStat]() > [Common]() > [Algorithms]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Algorithms](./README.md)
 
 Assembly: SigStat.Common.dll
 

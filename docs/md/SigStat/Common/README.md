@@ -1,0 +1,54 @@
+# [SigStat.Common](./README.md)
+
+## Types
+
+- [`ArrayExtension`](./ArrayExtension.md)
+	- Helper methods for processing arrays
+- [`Baseline`](./Baseline.md)
+- [`BasicMetadataExtraction`](./BasicMetadataExtraction.md)
+	- Extracts basic statistical signature (like `SigStat.Common.Features.Bounds` or `SigStat.Common.Features.Cog`) information from an Image
+- [`BenchmarkResults`](./BenchmarkResults.md)
+	- Contains the benchmark results of every `SigStat.Common.Signer` and the summarized final results.
+- [`DistanceMatrix`](./DistanceMatrix-3.md)\<[`TRowKey`](./README.md), [`TColumnKey`](./README.md), [`TValue`](./README.md)>
+	- A Sparse Matrix representation of a distance graph.
+- [`ErrorRate`](./ErrorRate.md)
+	- Represents the ErrorRates achieved in a benchmark
+- [`FeatureDescriptor`](./FeatureDescriptor.md)
+	- Represents a feature with name and type.
+- [`FeatureDescriptor`](./FeatureDescriptor-1.md)\<[`T`](./README.md)>
+	- Represents a feature with the type `type`
+- [`Features`](./Features.md)
+	- Standard set of features.
+- [`ILoggerObject`](./ILoggerObject.md)
+	- Represents a type, that contains an ILogger property that can be used to perform logging.
+- [`ILoggerObjectExtensions`](./ILoggerObjectExtensions.md)
+	- ILoggerObject extension methods for common scenarios.
+- [`IOExtensions`](./IOExtensions.md)
+	- Extension methods for common IO operations
+- [`ITransformation`](./ITransformation.md)
+	- Allows implementing a pipeline transform item capable of logging, progress tracking and IO rewiring.
+- [`Loop`](./Loop.md)
+	- Represents a loop in a signature
+- [`MathHelper`](./MathHelper.md)
+	- Common mathematical functions used by the SigStat framework
+- [`PipelineBase`](./PipelineBase.md)
+	- TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios interface be.  ILoggerObject, IProgress, IPipelineIO default implementacioja.
+- [`Result`](./Result.md)
+	- Contains the benchmark results of a single `SigStat.Common.Signer`
+- [`Sampler`](./Sampler.md)
+	- Takes samples from a set of `SigStat.Common.Signature`s by given sampling strategies.  Use this to fine-tune the `SigStat.Common.VerifierBenchmark`
+- [`Signature`](./Signature.md)
+	- Represents a signature as a collection of features, containing the data that flows in the pipeline.
+- [`Signer`](./Signer.md)
+	- Represents a person as a `SigStat.Common.Signer.ID` and a list of `SigStat.Common.Signer.Signatures`.
+- [`SigStatEvents`](./SigStatEvents.md)
+	- Standard event identifiers used by the SigStat system
+- [`SimpleRenderingTransformation`](./SimpleRenderingTransformation.md)
+	- Renders an image of the signature based on the available online information (X,Y,Dpi)
+- [`StrokeHelper`](./StrokeHelper.md)
+	- Helper class for locating and manipulating strokes in an online signature
+- [`StrokeInterval`](./StrokeInterval.md)
+	- Represents a stroke in an online signature
+- [`VerifierBenchmark`](./VerifierBenchmark.md)
+	- Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
+

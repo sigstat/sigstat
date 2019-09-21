@@ -1,6 +1,6 @@
 # [PatternMatching3x3](./PatternMatching3x3.md)
 
-Namespace: [SigStat]() > [Common]() > [Algorithms]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Algorithms](./README.md)
 
 Assembly: SigStat.Common.dll
 

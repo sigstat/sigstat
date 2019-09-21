@@ -1,6 +1,6 @@
 # [BasicMetadataExtraction](./BasicMetadataExtraction.md)
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 

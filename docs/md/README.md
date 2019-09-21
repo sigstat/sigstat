@@ -2,7 +2,7 @@
 
 ## Namespaces
 
-### Common
+### [SigStat.Common](./SigStat/Common/README.md)
 
 - [`ArrayExtension`](./SigStat/Common/ArrayExtension.md)
 	- Helper methods for processing arrays
@@ -53,7 +53,7 @@
 	- Represents a stroke in an online signature
 - [`VerifierBenchmark`](./SigStat/Common/VerifierBenchmark.md)
 	- Benchmarking class to test error rates of a `SigStat.Common.Model.Verifier`
-### Pipeline
+### [SigStat.Common.Pipeline](./SigStat/Common/Pipeline/README.md)
 
 - [`IClassifier`](./SigStat/Common/Pipeline/IClassifier.md)
 	- Trains classification models based on reference signatures
@@ -75,7 +75,7 @@
 	- Represents an output for a `SigStat.Common.Pipeline.PipelineOutput.PipelineItem`
 - [`SequentialTransformPipeline`](./SigStat/Common/Pipeline/SequentialTransformPipeline.md)
 	- Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
-### Transforms
+### [SigStat.Common.Transforms](./SigStat/Common/Transforms/README.md)
 
 - [`AddConst`](./SigStat/Common/Transforms/AddConst.md)
 	- Adds a constant value to a feature. Works with collection features too.  <para>Default Pipeline Output: Pipeline Input</para>
@@ -125,7 +125,7 @@
 	- Sequential pipeline to translate X and Y `SigStat.Common.Features` by specified vector (constant or feature).  The following Transforms are called: `SigStat.Common.Transforms.AddConst` twice, or `SigStat.Common.Transforms.AddVector`.  <para>Default Pipeline Input: `SigStat.Common.Features.X`, `SigStat.Common.Features.Y`</para><para>Default Pipeline Output: `SigStat.Common.Features.X`, `SigStat.Common.Features.Y`</para>
 - [`Trim`](./SigStat/Common/Transforms/Trim.md)
 	- Trims unnecessary empty space from a binary raster.  <para>Pipeline Input type: bool[,]</para><para>Default Pipeline Output: (bool[,]) Trimmed</para>
-### Preprocessing
+### [SigStat.Common.PipelineItems.Transforms.Preprocessing](./SigStat/Common/PipelineItems/Transforms/Preprocessing/README.md)
 
 - [`CubicInterpolation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/CubicInterpolation.md)
 	- Cubic interpolation algorithm
@@ -149,7 +149,7 @@
 	- This transformations can be used to translate the coordinates of an online signature
 - [`UniformScale`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/UniformScale.md)
 	- Maps values of a feature to a specific range and another proportional.  <para>BaseDimension: feature modelled the base dimension of the scaling. </para><para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para><para>BaseDimensionOutput: output feature for scaled BaseDimension&gt;</para><para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension&gt;</para>
-### Classifiers
+### [SigStat.Common.PipelineItems.Classifiers](./SigStat/Common/PipelineItems/Classifiers/README.md)
 
 - [`DtwClassifier`](./SigStat/Common/PipelineItems/Classifiers/DtwClassifier.md)
 	- Classifies Signatures with the `SigStat.Common.Algorithms.Dtw` algorithm.
@@ -159,7 +159,7 @@
 	- This `SigStat.Common.Pipeline.IDistanceClassifier` implementation will consider both test and  training samples and claculate the threshold to separate the original and forged  signatures to approximate EER. Note that this classifier is not applicable for  real world scenarios. It was developed to test the theoratical boundaries of  threshold based classification
 - [`WeightedClassifier`](./SigStat/Common/PipelineItems/Classifiers/WeightedClassifier.md)
 	- Classifies Signatures by weighing other Classifier results.
-### Loaders
+### [SigStat.Common.Loaders](./SigStat/Common/Loaders/README.md)
 
 - [`DataSetLoader`](./SigStat/Common/Loaders/DataSetLoader.md)
 	- Abstract loader class to inherit from. Implements ILogger.
@@ -185,7 +185,7 @@
 	- Set of features containing raw data loaded from SVC2004-format database.
 - [`Svc2004Loader`](./SigStat/Common/Loaders/Svc2004Loader.md)
 	- Loads SVC2004-format database from .zip
-### Helpers
+### [SigStat.Common.Helpers](./SigStat/Common/Helpers/README.md)
 
 - [`ExcelHelper`](./SigStat/Common/Helpers/ExcelHelper.md)
 	- Extension methods for common EPPlus tasks
@@ -201,7 +201,7 @@
 	- Json serialization and deserialization using the custom resolver  `SigStat.Common.Helpers.Serialization.VerifierResolver`
 - [`SimpleConsoleLogger`](./SigStat/Common/Helpers/SimpleConsoleLogger.md)
 	- A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
-### Serialization
+### [SigStat.Common.Helpers.Serialization](./SigStat/Common/Helpers/Serialization/README.md)
 
 - [`DistanceFunctionJsonConverter`](./SigStat/Common/Helpers/Serialization/DistanceFunctionJsonConverter.md)
 	- Helper class for serializing distance functions
@@ -209,14 +209,14 @@
 	- SerializationContext for serializing SigStat objects
 - [`RectangleFConverter`](./SigStat/Common/Helpers/Serialization/RectangleFConverter.md)
 	- Custom serializer for `System.Drawing.RectangleF` objects
-### Excel
+### [SigStat.Common.Helpers.Excel](./SigStat/Common/Helpers/Excel/README.md)
 
 - [`Palette`](./SigStat/Common/Helpers/Excel/Palette.md)
-### Model
+### [SigStat.Common.Model](./SigStat/Common/Model/README.md)
 
 - [`Verifier`](./SigStat/Common/Model/Verifier.md)
 	- Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
-### Samplers
+### [SigStat.Common.Framework.Samplers](./SigStat/Common/Framework/Samplers/README.md)
 
 - [`EvenNSampler`](./SigStat/Common/Framework/Samplers/EvenNSampler.md)
 	- Selects the first N signatures with even index for training
@@ -228,7 +228,7 @@
 	- Selects the first N signatures with odd index for training
 - [`UniversalSampler`](./SigStat/Common/Framework/Samplers/UniversalSampler.md)
 	- Selects a given number of signatures for training and testing
-### Algorithms
+### [SigStat.Common.Algorithms](./SigStat/Common/Algorithms/README.md)
 
 - [`Dtw`](./SigStat/Common/Algorithms/Dtw.md)
 	- Dynamic Time Warping algorithm

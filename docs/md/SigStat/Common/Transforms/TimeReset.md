@@ -1,6 +1,6 @@
 # [TimeReset](./TimeReset.md)
 
-Namespace: [SigStat]() > [Common]() > [Transforms]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Transforms](./README.md)
 
 Assembly: SigStat.Common.dll
 

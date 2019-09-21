@@ -1,6 +1,6 @@
 # [RectangleFConverter](./RectangleFConverter.md)
 
-Namespace: [SigStat]() > [Common]() > [Helpers]() > [Serialization]()
+Namespace: [SigStat]() > [Common](./../../README.md) > [Helpers](./../README.md) > [Serialization](./README.md)
 
 Assembly: SigStat.Common.dll
 

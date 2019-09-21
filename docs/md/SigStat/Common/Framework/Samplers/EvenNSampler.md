@@ -1,6 +1,6 @@
 # [EvenNSampler](./EvenNSampler.md)
 
-Namespace: [SigStat]() > [Common]() > [Framework]() > [Samplers]()
+Namespace: [SigStat]() > [Common](./../../README.md) > [Framework]() > [Samplers](./README.md)
 
 Assembly: SigStat.Common.dll
 

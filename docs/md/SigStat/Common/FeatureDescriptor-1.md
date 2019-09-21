@@ -1,6 +1,6 @@
 # [FeatureDescriptor](./FeatureDescriptor-1.md)\<[T](./FeatureDescriptor-1.md)>
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 
