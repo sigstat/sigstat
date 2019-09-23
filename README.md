@@ -8,7 +8,6 @@
 [![Follow SigStat on Twitter](https://img.shields.io/badge/twitter-@SigStatOrg-55acee.svg?style=flat-square)](https://twitter.com/sigstatorg)
 [![Issues](https://img.shields.io/github/issues/sigstat/sigstat)](https://github.com/sigstat/sigstat/issues)
 [![Contributors](https://img.shields.io/github/contributors/sigstat/sigstat)](https://github.com/sigstat/sigstat/graphs/contributors)
-[![Activities](https://img.shields.io/github/commit-activity/m/sigstat/sigstat)](https://github.com/sigstat/sigstat/graphs/commit-activity)
 ![Downloads](https://img.shields.io/github/downloads/sigstat/sigstat/total)
 
 
