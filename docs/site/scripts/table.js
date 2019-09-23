@@ -1,5 +1,5 @@
 $(function () {
-    var url = "Summary_short.xlsx";
+    var url = "https://cors-anywhere.herokuapp.com/https://github.com/sigstat/sigstat/blob/develop/docs/site/Summary_short.xlsx?raw=true";
     var oReq = new XMLHttpRequest();
     oReq.open("GET", url, true);
     oReq.responseType = "arraybuffer";
