@@ -51,26 +51,25 @@ th.rotate > div {
 
 
 .table-bordered{
+	width: 100%;
   text-align: center;
-  table-layout: fixed;
+  /*table-layout: fixed;*/
   overflow-x: auto;
   white-space: nowrap;
-  display: block;
-  width: 100%;
+  display: table;
   border-collapse: collapse;
 }
 
 table:not(#under){
   border: 10px solid white;
 }
-
 table tr:nth-child(odd) td:not(#underCell) {
   background: white;
   text-align: center;
   vertical-align: middle;
   display: table-cell;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 20px;
   color: black;
   border-bottom: solid 1px rgba(255, 255, 255, 100);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -82,14 +81,14 @@ table tr:nth-child(even) td:not(#underCell) {
   vertical-align: middle;
   display: table-cell;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 20px;
   color: black;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 p.summary{
-  font: bold 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: bold 22px "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0px;
   vertical-align: middle;
 }
