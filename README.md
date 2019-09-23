@@ -6,6 +6,10 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/sigstat/sigstat/blob/master/LICENSE.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Follow SigStat on Twitter](https://img.shields.io/badge/twitter-@SigStatOrg-55acee.svg?style=flat-square)](https://twitter.com/sigstatorg)
+[![Issues](https://img.shields.io/github/issues/sigstat/sigstat)](https://github.com/sigstat/sigstat/issues)
+[![Contributors](https://img.shields.io/github/contributors/sigstat/sigstat)](https://github.com/sigstat/sigstat/graphs/contributors)
+[![Activities](https://img.shields.io/github/commit-activity/m/sigstat/sigstat)](https://github.com/sigstat/sigstat/graphs/commit-activity)
+![Downloads](https://img.shields.io/github/downloads/sigstat/sigstat/total)
 
 
 | branch | build | tests | quality |
@@ -16,7 +20,8 @@
 
 # Introduction
 
-SigStat is an open source .NET class library for offline (static) and online (dynamic) signature verification. 
+SigStat is an open source .NET class library for offline (static) and online (dynamic) signature verification.<br>
+Website: www.sigstat.org
 
 # Motivation
 
