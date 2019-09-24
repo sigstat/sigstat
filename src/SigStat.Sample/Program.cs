@@ -51,12 +51,13 @@ namespace SigStat.Sample
             //TransformationPipeline();
             //Classifier();
             //OnlineToImage();
-            DatabaseLoaderDemo();
+            //DatabaseLoaderDemo();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
+            OnlineRotationBenchmarkDemo();
             //OnlineVerifierBenchmarkDemo();
-            PreprocessingBenchmarkDemo();
+            //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
@@ -382,6 +383,45 @@ namespace SigStat.Sample
             Signature questioned2 = signers[0].Signatures[25];
             bool isGenuine1 = verifier.Test(questioned1) > 0.5;//true
             bool isGenuine2 = verifier.Test(questioned2) > 0.5;//false
+        }
+
+        static void OnlineRotationBenchmarkDemo()
+        {
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            var benchmark = new VerifierBenchmark()
+            {
+                Loader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip").GetPath(), true),
+                Verifier = new Verifier()
+                {
+                    Pipeline = new SequentialTransformPipeline
+                    {
+                         new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                           new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                        //new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.X, OutputFeature = Features.X},
+                        //new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.Y, OutputFeature = Features.Y},
+                        //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+                    }
+                ,
+                    Classifier = new OptimalDtwClassifier()
+                    {
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                    }
+                },
+                Sampler = new FirstNSampler(10),
+                Logger = new SimpleConsoleLogger(),
+            };
+
+            benchmark.ProgressChanged += ProgressPrimary;
+            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+            var result = benchmark.Execute(true);
+
+            foreach (var signerResult in result.SignerResults)
+            {
+                Console.WriteLine($"{signerResult.Signer} {signerResult.Aer}");
+            }
+            Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
         static void OnlineVerifierBenchmarkDemo()
