@@ -108,6 +108,7 @@ namespace SigStat.Common.Loaders
         /// <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data (<see cref="Svc2004"/>) to standard <see cref="Features"/>.</param>
+        [JsonConstructor]
         public Svc2004Loader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
