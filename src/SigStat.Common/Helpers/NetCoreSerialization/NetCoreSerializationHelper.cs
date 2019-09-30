@@ -14,12 +14,13 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
             {
                 IgnoreNullValues = true,
                 MaxDepth = 64,
-                IgnoreReadOnlyProperties = true,
+                IgnoreReadOnlyProperties = false,
                 WriteIndented = true,
             };
             options.Converters.Add(new NetCoreFeatureDescriptorDictionaryConverter());
             options.Converters.Add(new NetCoreFeatureDescriptorConverter());
             options.Converters.Add(new NetCoreFeatureDescriptorTConverter());
+            options.Converters.Add(new NetCoreConcurrentDictionaryConverter());
             return options;
         }
         public static T Deserialize<T>(string s) where T : new()
@@ -39,7 +40,7 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
 
         public static T DeserializeFromFile<T>(string path) where T : new()
         {
-            return JsonSerializer.Deserialize<T>(File.ReadAllText(path));
+            return Deserialize<T>(File.ReadAllText(path));
         }
     }
 }
