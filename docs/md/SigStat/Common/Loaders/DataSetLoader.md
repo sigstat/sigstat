@@ -13,7 +13,7 @@ Abstract loader class to inherit from. Implements ILogger.
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [ILogger](./DataSetLoader.md) | Logger |  | 
+| [ILogger](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger) | Logger |  | 
 
 
 ## Methods

@@ -21,7 +21,7 @@ Benchmarking class to test error rates of a [SigStat.Common.Model.Verifier](http
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | [IDataSetLoader](./Loaders/IDataSetLoader.md) | Loader | The loader that will provide the database for benchmarking | 
-| [ILogger](./VerifierBenchmark.md) | Logger | Gets or sets the attached [Microsoft.Extensions.Logging.ILogger]() object used to log messages. Hands it over to the verifier. | 
+| [ILogger](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger) | Logger | Gets or sets the attached [Microsoft.Extensions.Logging.ILogger]() object used to log messages. Hands it over to the verifier. | 
 | [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[KeyValuePair](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.KeyValuePair-2)\<[String](https://docs.microsoft.com/en-us/dotnet/api/System.String), [String](https://docs.microsoft.com/en-us/dotnet/api/System.String)>> | Parameters | A key value store that can be used to store custom information about the benchmark | 
 | [Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) | Progress |  | 
 | [Sampler](./Sampler.md) | Sampler | The [SigStat.Common.Sampler](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Sampler.md) to be used for benchmarking | 

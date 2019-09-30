@@ -11,6 +11,6 @@ Represents a type, that contains an ILogger property that can be used to perform
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [ILogger](./ILoggerObject.md) | Logger | Gets or sets the ILogger implementation used to perform logging | 
+| [ILogger](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger) | Logger | Gets or sets the ILogger implementation used to perform logging | 
 
 
