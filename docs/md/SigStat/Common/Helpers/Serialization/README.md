@@ -7,5 +7,5 @@
 - [`FeatureStreamingContextState`](./FeatureStreamingContextState.md)
 	- SerializationContext for serializing SigStat objects
 - [`RectangleFConverter`](./RectangleFConverter.md)
-	- Custom serializer for `System.Drawing.RectangleF` objects
+	- Custom serializer for [System.Drawing.RectangleF]() objects
 

@@ -11,6 +11,6 @@ Represents a feature with the type `type`
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[T](./FeatureDescriptor-1.md)> | Get ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) |  | 
+| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[T](./FeatureDescriptor-1.md)> | Get ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) key ) |  | 
 
 

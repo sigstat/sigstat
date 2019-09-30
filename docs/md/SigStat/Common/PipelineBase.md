@@ -13,7 +13,7 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 
 | Name | Summary | 
 | --- | --- | 
-| PipelineBase (  ) | Initializes a new instance of the `SigStat.Common.PipelineBase` class. | 
+| PipelineBase (  ) | Initializes a new instance of the [SigStat.Common.PipelineBase](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/PipelineBase.md) class. | 
 
 
 ## Properties
@@ -30,6 +30,6 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| [EventHandler](https://docs.microsoft.com/en-us/dotnet/api/System.EventHandler-1)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | ProgressChanged | The event is raised whenever the value of `SigStat.Common.PipelineBase.Progress` changes | 
+| [EventHandler](https://docs.microsoft.com/en-us/dotnet/api/System.EventHandler-1)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | ProgressChanged | The event is raised whenever the value of [SigStat.Common.PipelineBase.Progress]() changes | 
 
 

@@ -11,7 +11,7 @@ Selects the first N signatures with odd index for training
 
 | Name | Summary | 
 | --- | --- | 
-| OddNSampler ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) | Constructor | 
+| OddNSampler ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) n ) | Constructor | 
 
 
 ## Properties

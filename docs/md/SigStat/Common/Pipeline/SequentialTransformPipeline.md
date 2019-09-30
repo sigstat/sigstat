@@ -7,7 +7,7 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./IPipelineIO.md), [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerable), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
+Runs pipeline items in a sequence.  <br>Default Pipeline Output: Output of the last Item in the sequence.
 
 ## Constructors
 
@@ -35,8 +35,8 @@ Runs pipeline items in a sequence.  <para>Default Pipeline Output: Output of the
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| void | Add ( [`ITransformation`](./../ITransformation.md) ) | Add new transform to the list. | 
+| void | Add ( [`ITransformation`](./../ITransformation.md) newItem ) | Add new transform to the list. | 
 | [IEnumerator](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerator) | GetEnumerator (  ) |  | 
-| void | Transform ( [`Signature`](./../Signature.md) ) | Executes transform `SigStat.Common.Pipeline.SequentialTransformPipeline.Items` in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
+| void | Transform ( [`Signature`](./../Signature.md) signature ) | Executes transform [SigStat.Common.Pipeline.SequentialTransformPipeline.Items]() in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence. | 
 
 

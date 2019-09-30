@@ -13,8 +13,8 @@ This transformations can be used to translate the coordinates of an online signa
 
 | Name | Summary | 
 | --- | --- | 
-| TranslatePreproc (  ) | Initializes a new instance of the `SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc` class. | 
-| TranslatePreproc ( [`OriginType`](./OriginType.md) ) | Initializes a new instance of the `SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc` class. | 
+| TranslatePreproc (  ) | Initializes a new instance of the [SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc]() class. | 
+| TranslatePreproc ( [`OriginType`](./OriginType.md) goalOrigin ) | Initializes a new instance of the [SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc]() class. | 
 
 
 ## Properties
@@ -22,15 +22,15 @@ This transformations can be used to translate the coordinates of an online signa
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | [OriginType](./OriginType.md) | GoalOrigin | Goal origin of the translation | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputFeature | Input `SigStat.Common.FeatureDescriptor` (e.g. `SigStat.Common.Features.X`) | 
+| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputFeature | Input [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [SigStat.Common.Features.X](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/FeatureDescriptor-1.md)) | 
 | [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | NewOrigin | New origin after the translation | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputFeature | Output `SigStat.Common.FeatureDescriptor` (e.g. `SigStat.Common.Features.X`) | 
+| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputFeature | Output [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [SigStat.Common.Features.X](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/FeatureDescriptor-1.md)) | 
 
 
 ## Methods
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) ) |  | 
+| void | Transform ( [`Signature`](./../../../Signature.md) signature ) |  | 
 
 

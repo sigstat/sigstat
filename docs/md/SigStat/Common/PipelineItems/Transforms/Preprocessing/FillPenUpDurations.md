@@ -21,7 +21,7 @@ This transformation will fill "holes" in the "Time" feature by interpolating the
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | InputFeatures | Gets or sets the features of an online signature that need to be altered | 
-| [Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type) | InterpolationType | An implementation of `SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation` | 
+| [Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type) | InterpolationType | An implementation of [SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation]() | 
 | [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | OutputFeatures | Gets or sets the features of an online signature that were altered | 
 | [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | TimeInputFeature | Gets or sets the feature representing the timestamps of an online signature | 
 | [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | TimeOutputFeature | Gets or sets the feature representing the modified timestamps of an online signature | 
@@ -31,6 +31,6 @@ This transformation will fill "holes" in the "Time" feature by interpolating the
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) ) |  | 
+| void | Transform ( [`Signature`](./../../../Signature.md) signature ) |  | 
 
 

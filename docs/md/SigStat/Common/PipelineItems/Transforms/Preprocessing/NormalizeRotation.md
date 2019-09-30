@@ -31,6 +31,6 @@ Performs rotation normalization on the online signature
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) ) |  | 
+| void | Transform ( [`Signature`](./../../../Signature.md) signature ) |  | 
 
 

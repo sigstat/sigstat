@@ -10,7 +10,7 @@ Assembly: SigStat.Common.dll
 | Name | Summary | 
 | --- | --- | 
 | Baseline (  ) | Initializes a Baseline instance | 
-| Baseline ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) | Initializes a Baseline instance with the given startpoint and endpoint | 
+| Baseline ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) x1, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) y1, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) x2, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) y2 ) | Initializes a Baseline instance with the given startpoint and endpoint | 
 
 
 ## Properties

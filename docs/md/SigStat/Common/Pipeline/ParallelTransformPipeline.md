@@ -7,7 +7,7 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./IPipelineIO.md), [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerable), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all the Item outputs.</para>
+Runs pipeline items in parallel.  <br>Default Pipeline Output: Range of all the Item outputs.
 
 ## Constructors
 
@@ -35,8 +35,8 @@ Runs pipeline items in parallel.  <para>Default Pipeline Output: Range of all th
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| void | Add ( [`ITransformation`](./../ITransformation.md) ) | Add new transform to the list. | 
+| void | Add ( [`ITransformation`](./../ITransformation.md) newItem ) | Add new transform to the list. | 
 | [IEnumerator](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerator) | GetEnumerator (  ) |  | 
-| void | Transform ( [`Signature`](./../Signature.md) ) | Executes transform `SigStat.Common.Pipeline.ParallelTransformPipeline.Items` parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
+| void | Transform ( [`Signature`](./../Signature.md) signature ) | Executes transform [SigStat.Common.Pipeline.ParallelTransformPipeline.Items]() parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
 
 

@@ -12,7 +12,7 @@ Dynamic Time Warping algorithm
 | Name | Summary | 
 | --- | --- | 
 | Dtw (  ) | Initialize the DTW algorithm with the default Euclidean distance method. | 
-| Dtw ( [`Func`](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> ) | Initialize the DTW algorithm with given distance method. | 
+| Dtw ( [`Func`](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> distMethod ) | Initialize the DTW algorithm with given distance method. | 
 
 
 ## Properties
@@ -26,7 +26,7 @@ Dynamic Time Warping algorithm
 
 | Return | Name | Summary | 
 | --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Compute ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[] ) |  | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Distance ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[] ) | Calculates distance between two points.  Distance method can be set in ctor. | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Compute ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[] signature1, [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[] signature2 ) |  | 
+| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Distance ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[] p1, [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[] p2 ) | Calculates distance between two points.  Distance method can be set in ctor. | 
 
 
