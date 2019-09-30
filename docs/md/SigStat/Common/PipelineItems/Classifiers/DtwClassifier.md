@@ -7,7 +7,7 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../../ILoggerObject.md), [IProgress](./../../Helpers/IProgress.md), [IPipelineIO](./../../Pipeline/IPipelineIO.md), [IDistanceClassifier](./../../Pipeline/IDistanceClassifier.md), [IClassifier](./../../Pipeline/IClassifier.md)
 
 ## Summary
-Classifies Signatures with the [SigStat.Common.Algorithms.Dtw](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Algorithms/Dtw.md) algorithm.
+Classifies Signatures with the [SigStat.Common.Algorithms.Dtw](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Algorithms/Dtw.md) algorithm.
 
 ## Constructors
 

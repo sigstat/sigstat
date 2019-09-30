@@ -13,8 +13,8 @@ Loads SVC2004-format database from .zip
 
 | Name | Summary | 
 | --- | --- | 
-| Svc2004Loader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) databasePath, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) standardFeatures ) | Initializes a new instance of the [SigStat.Common.Loaders.Svc2004Loader](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
-| Svc2004Loader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) databasePath, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) standardFeatures, [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> signerFilter ) | Initializes a new instance of the [SigStat.Common.Loaders.Svc2004Loader](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
+| Svc2004Loader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) databasePath, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) standardFeatures ) | Initializes a new instance of the [SigStat.Common.Loaders.Svc2004Loader](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
+| Svc2004Loader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) databasePath, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) standardFeatures, [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> signerFilter ) | Initializes a new instance of the [SigStat.Common.Loaders.Svc2004Loader](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
 
 
 ## Properties
@@ -23,7 +23,7 @@ Loads SVC2004-format database from .zip
 | --- | --- | --- | 
 | [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | DatabasePath | Gets or sets the database path. | 
 | [Predicate](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[Signer](./../Signer.md)> | SignerFilter | Ignores any signers during the loading, that do not match the predicate | 
-| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | StandardFeatures | Gets or sets a value indicating whether features are also loaded as [SigStat.Common.Features](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Features.md) | 
+| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | StandardFeatures | Gets or sets a value indicating whether features are also loaded as [SigStat.Common.Features](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Features.md) | 
 
 
 ## Methods

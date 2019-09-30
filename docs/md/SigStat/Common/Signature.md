@@ -25,7 +25,7 @@ Represents a signature as a collection of features, containing the data that flo
 | [Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object) | Item [ [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) featureKey ] | Gets or sets the specified feature. | 
 | [Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object) | Item [ [`FeatureDescriptor`](./FeatureDescriptor.md) featureDescriptor ] | Gets or sets the specified feature. | 
 | [Origin](./Origin.md) | Origin | Represents our knowledge on the origin of the signature. [SigStat.Common.Origin.Unknown]() may be used in practice before it is verified. | 
-| [Signer](./Signer.md) | Signer | A reference to the [SigStat.Common.Signer](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Signer.md) who this signature belongs to. (The origin is not constrained to be genuine.) | 
+| [Signer](./Signer.md) | Signer | A reference to the [SigStat.Common.Signer](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Signer.md) who this signature belongs to. (The origin is not constrained to be genuine.) | 
 
 
 ## Methods
@@ -37,7 +37,7 @@ Represents a signature as a collection of features, containing the data that flo
 | [T](./Signature.md) | GetFeature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) featureKey ) | Gets the specified feature. | 
 | [T](./Signature.md) | GetFeature ( [`FeatureDescriptor`](./FeatureDescriptor-1.md)\<[`T`](./Signature.md)> featureDescriptor ) | Gets the specified feature. This is the preferred way. | 
 | [T](./Signature.md) | GetFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md) featureDescriptor ) | Gets the specified feature. This is the preferred way. | 
-| [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1)\<[FeatureDescriptor](./FeatureDescriptor.md)> | GetFeatureDescriptors (  ) | Gets a collection of [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/FeatureDescriptor.md)s that are used in this signature. | 
+| [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1)\<[FeatureDescriptor](./FeatureDescriptor.md)> | GetFeatureDescriptors (  ) | Gets a collection of [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor.md)s that are used in this signature. | 
 | [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | HasFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md) featureDescriptor ) | Returns true if the signature contains the specified feature | 
 | [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | HasFeature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) featureKey ) | Returns true if the signature contains the specified feature | 
 | [Signature](./Signature.md) | SetFeature ( [`FeatureDescriptor`](./FeatureDescriptor.md) featureDescriptor, [`T`](./Signature.md) feature ) | Sets the specified feature. | 

@@ -21,8 +21,8 @@ This [SigStat.Common.Pipeline.IDistanceClassifier]() implementation will conside
 | Type | Name | Summary | 
 | --- | --- | --- | 
 | [Func](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | DistanceFunction | The function used to calculate the distance between two data points during DTW calculation | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../FeatureDescriptor.md)> | Features | [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/FeatureDescriptor.md)s to consider during classification | 
-| [Sampler](./../../Sampler.md) | Sampler | [SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.Sampler](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Sampler.md) used for selecting training and test sets during a benchmark | 
+| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../FeatureDescriptor.md)> | Features | [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor.md)s to consider during classification | 
+| [Sampler](./../../Sampler.md) | Sampler | [SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.Sampler](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Sampler.md) used for selecting training and test sets during a benchmark | 
 
 
 ## Methods

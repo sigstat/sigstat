@@ -11,7 +11,7 @@ Represents an input for a [SigStat.Common.Pipeline.PipelineInput.PipelineItem]()
 
 | Name | Summary | 
 | --- | --- | 
-| PipelineInput ( [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object) PipelineItem, [`PropertyInfo`](https://docs.microsoft.com/en-us/dotnet/api/System.Reflection.PropertyInfo) PI ) | Initializes a new instance of the [SigStat.Common.Pipeline.PipelineInput](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Pipeline/PipelineInput.md) class. | 
+| PipelineInput ( [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object) PipelineItem, [`PropertyInfo`](https://docs.microsoft.com/en-us/dotnet/api/System.Reflection.PropertyInfo) PI ) | Initializes a new instance of the [SigStat.Common.Pipeline.PipelineInput](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Pipeline/PipelineInput.md) class. | 
 
 
 ## Properties

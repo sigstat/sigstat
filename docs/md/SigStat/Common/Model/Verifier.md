@@ -7,15 +7,15 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md)
 
 ## Summary
-Uses pipelines to transform, train on, and classify [SigStat.Common.Signature](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Signature.md) objects.
+Uses pipelines to transform, train on, and classify [SigStat.Common.Signature](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Signature.md) objects.
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| Verifier ( [`ILogger`](./Verifier.md) logger ) | Initializes a new instance of the [SigStat.Common.Model.Verifier](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Model/Verifier.md) class | 
-| Verifier (  ) | Initializes a new instance of the [SigStat.Common.Model.Verifier](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Model/Verifier.md) class. | 
-| Verifier ( [`Verifier`](./Verifier.md) baseVerifier ) | Initializes a new instance of the [SigStat.Common.Model.Verifier](https://github.com/sigstat/sigstat/tree/master/docs/md/SigStat/Common/Model/Verifier.md) class based on another Verifier instance | 
+| Verifier ( [`ILogger`](./Verifier.md) logger ) | Initializes a new instance of the [SigStat.Common.Model.Verifier](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Model/Verifier.md) class | 
+| Verifier (  ) | Initializes a new instance of the [SigStat.Common.Model.Verifier](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Model/Verifier.md) class. | 
+| Verifier ( [`Verifier`](./Verifier.md) baseVerifier ) | Initializes a new instance of the [SigStat.Common.Model.Verifier](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Model/Verifier.md) class based on another Verifier instance | 
 
 
 ## Properties
