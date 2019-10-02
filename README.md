@@ -29,7 +29,6 @@ Signature verification plays a very important role in our lives. Companies and o
 
 - offline signature verification
 - online signature verification
-- etc.
 
 # How to use our library
 To use this project, you need to have **.NET Framework 4.6.1** and **.NET Core SDK 2.1.403** installed!
