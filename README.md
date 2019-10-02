@@ -1,5 +1,5 @@
 
-<img height="90" src="http://sigstat.org/site/resources/sigstat.png">
+<img src="http://sigstat.org/site/resources/sigstat.png" alt="SigStat" width=300/>
 <hr>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/sigstat/sigstat/blob/master/LICENSE.md)
