@@ -29,7 +29,7 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
         public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
         {
             var fd = (FeatureDescriptor)value;
-            writer.WriteString(fd.Key, fd.Name);
+            writer.WriteStringValue(fd.Name);
 
         }
     }

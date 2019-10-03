@@ -56,12 +56,12 @@ namespace SigStat.Sample
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();        
-            OnlineRotationBenchmarkDemo();
+           //OnlineRotationBenchmarkDemo();
             //OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
-            //JsonSerializeOnlineVerifier();
+            JsonSerializeOnlineVerifier();
             //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
@@ -1127,17 +1127,15 @@ namespace SigStat.Sample
                 }
             };
 
-            string path = @"VerifierSerialized.txt";
+            string path = @"OnlineVerifier.json";
+            string path3 = @"OnlineVerifier3.json";
 
             //File serialization example
-            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier, path);
+            SerializationHelper.JsonSerializeToFile(onlineverifier, path);
+            NetCoreSerializationHelper.SerializeToFile(onlineverifier, path3);
+
             Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(path);
-
-
-            //String serialization example
-            string json = SerializationHelper.JsonSerialize<Verifier>(onlineverifier);
-            Console.WriteLine(json);
-            Verifier deserializedOV2 = SerializationHelper.Deserialize<Verifier>(json);
+            Verifier deserializedOV2 = NetCoreSerializationHelper.DeserializeFromFile<Verifier>(path3);
 
         }
         static void JsonSerializeOnlineVerifierBenchmark()
