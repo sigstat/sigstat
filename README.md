@@ -1,6 +1,5 @@
-<p align="center"> 
-<img src="DefaultPicture.png">
-</p>
+
+<img src="http://sigstat.org/site/resources/sigstat.png" alt="SigStat" width=300/>
 <hr>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/sigstat/sigstat/blob/master/LICENSE.md)
@@ -30,7 +29,6 @@ Signature verification plays a very important role in our lives. Companies and o
 
 - offline signature verification
 - online signature verification
-- etc.
 
 # How to use our library
 To use this project, you need to have **.NET Framework 4.6.1** and **.NET Core SDK 2.1.403** installed!

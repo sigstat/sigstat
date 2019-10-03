@@ -19,9 +19,10 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
             if (reader.TokenType == JsonTokenType.StartArray)
             {
                 reader.Read();
-                String s = reader.GetString();
-                /*foreach (string fd in ja.Children())
+                while (reader.TokenType != JsonTokenType.EndArray)
                 {
+                    String fd = reader.GetString();
+                    reader.Read();
                     string[] strings = fd.Split('|');
                     string key = strings[0].Trim();
                     string featureType = strings[1].Trim();
@@ -30,22 +31,22 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
                     var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
 
                     features.Add(key, (FeatureDescriptor)get.Invoke(null, new object[] { key }));
-                }*/
-                // Return the result
+                }
             }
             return features;
         }
 
         public override void Write(Utf8JsonWriter writer, Dictionary<string, FeatureDescriptor> value, JsonSerializerOptions options)
         {
-            writer.WriteStartObject();
-            writer.WriteStartArray();
-            foreach (var fd in value.Values)
+            if (value.Count != 0)
             {
-                writer.WriteStringValue(fd.Key + " | " + fd.FeatureType.AssemblyQualifiedName);
+                writer.WriteStartArray();
+                foreach (var fd in value.Values)
+                {
+                    writer.WriteStringValue(fd.Key + " | " + fd.FeatureType.AssemblyQualifiedName);
+                }
+                writer.WriteEndArray();
             }
-            writer.WriteEndArray();
-            writer.WriteEndObject();
         }
     }
 }

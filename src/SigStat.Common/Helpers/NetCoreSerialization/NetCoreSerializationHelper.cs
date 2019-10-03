@@ -14,7 +14,7 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
             {
                 IgnoreNullValues = true,
                 MaxDepth = 64,
-                IgnoreReadOnlyProperties = false,
+                IgnoreReadOnlyProperties = true,
                 WriteIndented = true,
             };
             options.Converters.Add(new NetCoreFeatureDescriptorDictionaryConverter());
