@@ -13,7 +13,7 @@ namespace SigStat.Common.Helpers.Serialization
     /// <summary>
     /// Custom resolver for customizing the json serialization 
     /// </summary>
-    class VerifierResolver : DefaultContractResolver
+    public class VerifierResolver : DefaultContractResolver
     {
         /// <summary>
         /// Decides if the current property should be serialized or not
