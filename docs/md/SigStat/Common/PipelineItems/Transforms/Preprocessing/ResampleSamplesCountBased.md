@@ -7,31 +7,31 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../../../ILoggerObject.md), [IProgress](./../../../Helpers/IProgress.md), [IPipelineIO](./../../../Pipeline/IPipelineIO.md), [ITransformation](./../../../ITransformation.md)
 
 ## Summary
-Resamples an online signature to a specific sample count using the specified [SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation]() algorithm
+Resamples an online signature to a specific sample count using the specified [PipelineItems.Transforms.Preprocessing.IInterpolation](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md) algorithm
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| ResampleSamplesCountBased (  ) |  | 
+| <sub>ResampleSamplesCountBased (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | InputFeatures | Gets or sets the input features. | 
-| [Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type) | InterpolationType | Gets or sets the type of the interpolation. <seealso cref="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation" /> | 
-| [Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) | NumOfSamples | Gets or sets the number of samples. | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OriginalTFeature | Gets or sets the input timestamp feature. | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | OutputFeatures | Gets or sets the resampled  features. | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | ResampledTFeature | Gets or sets the resampled timestamp feature. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>InputFeatures</sub><img width=200/>| <sub>Gets or sets the input features.</sub>| <br>
+| <sub>InterpolationType</sub><img width=200/>| <sub>Gets or sets the type of the interpolation. <seealso cref="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation" /></sub>| <br>
+| <sub>NumOfSamples</sub><img width=200/>| <sub>Gets or sets the number of samples.</sub>| <br>
+| <sub>OriginalTFeature</sub><img width=200/>| <sub>Gets or sets the input timestamp feature.</sub>| <br>
+| <sub>OutputFeatures</sub><img width=200/>| <sub>Gets or sets the resampled  features.</sub>| <br>
+| <sub>ResampledTFeature</sub><img width=200/>| <sub>Gets or sets the resampled timestamp feature.</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) signature ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/ResampleSamplesCountBased-100663803.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

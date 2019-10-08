@@ -9,20 +9,20 @@ Standard set of features.
 
 ## Static Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [IReadOnlyList](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IReadOnlyList-1)\<[FeatureDescriptor](./FeatureDescriptor.md)> | All | Returns a readonly list of all [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor.md)s defined in [SigStat.Common.Features](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Features.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Altitude | Altitude of an online signature as a function of [SigStat.Common.Features.T](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Azimuth | Azimuth of an online signature as a function of [SigStat.Common.Features.T](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[RectangleF](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.RectangleF)> | Bounds | Actual bounds of the signature | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)>> | Button | Pen position of an online signature as a function of [SigStat.Common.Features.T](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[Point](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Point)> | Cog | Center of gravity in a signature | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | Dpi | Dots per inch | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[Image](./Features.md)\<[Rgba32](./Features.md)>> | Image | The visaul representation of a signature | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Pressure | Pressure of an online signature as a function of [SigStat.Common.Features.T](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | T | Timestamps for online signatures | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[Rectangle](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Rectangle)> | TrimmedBounds | Represents the main body of the signature [SigStat.Common.BasicMetadataExtraction](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/BasicMetadataExtraction.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | X | X coordinates of an online signature as a function of [SigStat.Common.Features.T](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) | 
-| [FeatureDescriptor](./FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Y | Y coordinates of an online signature as a function of [SigStat.Common.Features.T](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>All</sub><img width=200/>| <sub>Returns a readonly list of all [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md)s defined in [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| <sub>Altitude</sub><img width=200/>| <sub>Altitude of an online signature as a function of [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| <sub>Azimuth</sub><img width=200/>| <sub>Azimuth of an online signature as a function of [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| <sub>Bounds</sub><img width=200/>| <sub>Actual bounds of the signature</sub>| <br>
+| <sub>Button</sub><img width=200/>| <sub>Pen position of an online signature as a function of [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| <sub>Cog</sub><img width=200/>| <sub>Center of gravity in a signature</sub>| <br>
+| <sub>Dpi</sub><img width=200/>| <sub>Dots per inch</sub>| <br>
+| <sub>Image</sub><img width=200/>| <sub>The visaul representation of a signature</sub>| <br>
+| <sub>Pressure</sub><img width=200/>| <sub>Pressure of an online signature as a function of [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| <sub>T</sub><img width=200/>| <sub>Timestamps for online signatures</sub>| <br>
+| <sub>TrimmedBounds</sub><img width=200/>| <sub>Represents the main body of the signature [BasicMetadataExtraction](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/BasicMetadataExtraction.md)</sub>| <br>
+| <sub>X</sub><img width=200/>| <sub>X coordinates of an online signature as a function of [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| <sub>Y</sub><img width=200/>| <sub>Y coordinates of an online signature as a function of [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
 
 

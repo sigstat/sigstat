@@ -9,16 +9,16 @@ Represents the ErrorRates achieved in a benchmark
 
 ## Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Far | False Acceptance Rate | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Frr | False Rejection Rate | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Far</sub><img width=200/>| <sub>False Acceptance Rate</sub>| <br>
+| <sub>Frr</sub><img width=200/>| <sub>False Rejection Rate</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Aer | Average Error Rate (calculated from Far and Frr) | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Aer</sub><img width=200/>| <sub>Average Error Rate (calculated from Far and Frr)</sub>| <br>
 
 

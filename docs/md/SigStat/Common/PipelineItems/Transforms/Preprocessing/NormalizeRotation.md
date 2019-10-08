@@ -13,24 +13,24 @@ Performs rotation normalization on the online signature
 
 | Name | Summary | 
 | --- | --- | 
-| NormalizeRotation (  ) |  | 
+| <sub>NormalizeRotation (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputT | Gets or sets the input feature representing the timestamps of an online signature | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputX | Gets or sets the input feature representing the X coordinates of an online signature | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputY | Gets or sets the input feature representing the Y coordinates of an online signature | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputX | Gets or sets the output feature representing the X coordinates of an online signature | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputY | Gets or sets the input feature representing the Y coordinates of an online signature | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>InputT</sub><img width=200/>| <sub>Gets or sets the input feature representing the timestamps of an online signature</sub>| <br>
+| <sub>InputX</sub><img width=200/>| <sub>Gets or sets the input feature representing the X coordinates of an online signature</sub>| <br>
+| <sub>InputY</sub><img width=200/>| <sub>Gets or sets the input feature representing the Y coordinates of an online signature</sub>| <br>
+| <sub>OutputX</sub><img width=200/>| <sub>Gets or sets the output feature representing the X coordinates of an online signature</sub>| <br>
+| <sub>OutputY</sub><img width=200/>| <sub>Gets or sets the input feature representing the Y coordinates of an online signature</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) signature ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/NormalizeRotation-100663779.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

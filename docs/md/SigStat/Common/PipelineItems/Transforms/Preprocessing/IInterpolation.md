@@ -9,16 +9,16 @@ Represents an interploation algorithm
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | FeatureValues | Gets or sets the feature values. | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | TimeValues | Timestamps | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>FeatureValues</sub><img width=200/>| <sub>Gets or sets the feature values.</sub>| <br>
+| <sub>TimeValues</sub><img width=200/>| <sub>Timestamps</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) timestamp ) | Gets the interpolated value at a given timestamp | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[GetValue](./Methods/IInterpolation-100663762.md) ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub><img width=200/>| <sub>Gets the interpolated value at a given timestamp</sub>| <br>
 
 

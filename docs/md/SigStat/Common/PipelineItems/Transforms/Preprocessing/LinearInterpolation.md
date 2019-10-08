@@ -13,21 +13,21 @@ Performs linear interpolation on the input
 
 | Name | Summary | 
 | --- | --- | 
-| LinearInterpolation (  ) |  | 
+| <sub>LinearInterpolation (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | FeatureValues |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> | TimeValues |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>FeatureValues</sub><img width=200/>| <sub></sub>| <br>
+| <sub>TimeValues</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) timestamp ) | Gets the interpolated value at a given timestamp | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[GetValue](./Methods/LinearInterpolation-100663767.md) ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub><img width=200/>| <sub>Gets the interpolated value at a given timestamp</sub>| <br>
 
 

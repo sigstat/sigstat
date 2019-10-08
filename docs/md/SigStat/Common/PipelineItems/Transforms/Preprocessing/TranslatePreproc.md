@@ -13,24 +13,24 @@ This transformations can be used to translate the coordinates of an online signa
 
 | Name | Summary | 
 | --- | --- | 
-| TranslatePreproc (  ) | Initializes a new instance of the [SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc]() class. | 
-| TranslatePreproc ( [`OriginType`](./OriginType.md) goalOrigin ) | Initializes a new instance of the [SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc]() class. | 
+| <sub>TranslatePreproc (  )</sub><img width=200/>| <sub>Initializes a new instance of the [PipelineItems.Transforms.Preprocessing.TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class.</sub>| <br>
+| <sub>TranslatePreproc ( [`OriginType`](./OriginType.md) )</sub><img width=200/>| <sub>Initializes a new instance of the [PipelineItems.Transforms.Preprocessing.TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [OriginType](./OriginType.md) | GoalOrigin | Goal origin of the translation | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputFeature | Input [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [SigStat.Common.Features.X](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md)) | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | NewOrigin | New origin after the translation | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputFeature | Output [SigStat.Common.FeatureDescriptor](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [SigStat.Common.Features.X](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md)) | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>GoalOrigin</sub><img width=200/>| <sub>Goal origin of the translation</sub>| <br>
+| <sub>InputFeature</sub><img width=200/>| <sub>Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [Features.X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
+| <sub>NewOrigin</sub><img width=200/>| <sub>New origin after the translation</sub>| <br>
+| <sub>OutputFeature</sub><img width=200/>| <sub>Output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [Features.X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) signature ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/TranslatePreproc-100663827.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

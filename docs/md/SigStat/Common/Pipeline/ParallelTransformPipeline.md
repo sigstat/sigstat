@@ -13,30 +13,30 @@ Runs pipeline items in parallel.  <br>Default Pipeline Output: Range of all the 
 
 | Name | Summary | 
 | --- | --- | 
-| ParallelTransformPipeline (  ) |  | 
+| <sub>ParallelTransformPipeline (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[ITransformation](./../ITransformation.md)> | Items | List of transforms to be run parallel. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Items</sub><img width=200/>| <sub>List of transforms to be run parallel.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineInput](./PipelineInput.md)> | PipelineInputs | Gets the pipeline inputs. | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineOutput](./PipelineOutput.md)> | PipelineOutputs | Gets the pipeline outputs. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>PipelineInputs</sub><img width=200/>| <sub>Gets the pipeline inputs.</sub>| <br>
+| <sub>PipelineOutputs</sub><img width=200/>| <sub>Gets the pipeline outputs.</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Add ( [`ITransformation`](./../ITransformation.md) newItem ) | Add new transform to the list. | 
-| [IEnumerator](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerator) | GetEnumerator (  ) |  | 
-| void | Transform ( [`Signature`](./../Signature.md) signature ) | Executes transform [SigStat.Common.Pipeline.ParallelTransformPipeline.Items]() parallel.  Passes input features for each.  Output is a range of all the Item outputs. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Add](./Methods/ParallelTransformPipeline-100663504.md) ( [`ITransformation`](./../ITransformation.md) )</sub><img width=200/>| <sub>Add new transform to the list.</sub>| <br>
+| <sub>[GetEnumerator](./Methods/ParallelTransformPipeline-100663503.md) (  )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[Transform](./Methods/ParallelTransformPipeline-100663505.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub>Executes transform [Pipeline.ParallelTransformPipeline.Items](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md) parallel.  Passes input features for each.  Output is a range of all the Item outputs.</sub>| <br>
 
 

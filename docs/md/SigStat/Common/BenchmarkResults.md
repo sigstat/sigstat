@@ -5,13 +5,13 @@ Namespace: [SigStat]() > [Common](./README.md)
 Assembly: SigStat.Common.dll
 
 ## Summary
-Contains the benchmark results of every [SigStat.Common.Signer](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Signer.md) and the summarized final results.
+Contains the benchmark results of every [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and the summarized final results.
 
 ## Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Result](./Result.md) | FinalResult | Summarized, final result of the benchmark execution. | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Result](./Result.md)> | SignerResults | List that contains the [SigStat.Common.Result](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Result.md)s for each [SigStat.Common.Signer](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Signer.md) | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>FinalResult</sub><img width=200/>| <sub>Summarized, final result of the benchmark execution.</sub>| <br>
+| <sub>SignerResults</sub><img width=200/>| <sub>List that contains the [Result](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Result.md)s for each [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)</sub>| <br>
 
 

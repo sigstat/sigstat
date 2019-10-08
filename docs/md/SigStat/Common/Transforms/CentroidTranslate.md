@@ -7,22 +7,22 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.IEnumerable), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Sequential pipeline to translate X and Y [SigStat.Common.Features](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Features.md) to Centroid.  The following Transforms are called: [SigStat.Common.Transforms.CentroidExtraction](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Transforms/CentroidExtraction.md), [SigStat.Common.Transforms.Multiply](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Transforms/Multiply.md)(-1), [SigStat.Common.Transforms.Translate](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Transforms/Translate.md)<br>Default Pipeline Input: [SigStat.Common.Features.X](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md), [SigStat.Common.Features.Y](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md)<br>Default Pipeline Output: (List{double}) Centroid
+Sequential pipeline to translate X and Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) to Centroid.  The following Transforms are called: [Transforms.CentroidExtraction](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/CentroidExtraction.md), [Transforms.Multiply](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Multiply.md)(-1), [Transforms.Translate](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Translate.md)<br>Default Pipeline Input: [Features.X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Features.Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: (List{double}) Centroid
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| CentroidTranslate (  ) | Initializes a new instance of the [SigStat.Common.Transforms.CentroidTranslate](https://github.com/sigstat/sigstat/tree/develop/docs/md/SigStat/Common/Transforms/CentroidTranslate.md) class. | 
+| <sub>CentroidTranslate (  )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.CentroidTranslate](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/CentroidTranslate.md) class.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputX | Gets or sets the input feature representing the X coordinates of an online signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputY | Gets or sets the input feature representing the Y coordinates of an online signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputX | Gets or sets the output feature representing the X coordinates of an online signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | OutputY | Gets or sets the output feature representing the X coordinates of an online signature | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>InputX</sub><img width=200/>| <sub>Gets or sets the input feature representing the X coordinates of an online signature</sub>| <br>
+| <sub>InputY</sub><img width=200/>| <sub>Gets or sets the input feature representing the Y coordinates of an online signature</sub>| <br>
+| <sub>OutputX</sub><img width=200/>| <sub>Gets or sets the output feature representing the X coordinates of an online signature</sub>| <br>
+| <sub>OutputY</sub><img width=200/>| <sub>Gets or sets the output feature representing the X coordinates of an online signature</sub>| <br>
 
 
