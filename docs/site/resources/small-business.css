@@ -3,9 +3,26 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-small-business/blob/master/LICENSE)
  */
-body {
+body, html {
+  padding-top: 0px;
+  height: 100%;
+}
+.card_container {
+  height:65%;
+  display:flex;
+  align-items:center; /* vertically aligned! */
+  justify-content: center;
+}
+.container{
   padding-top: 70px;
 }
 .nav-link {
   font-size: 1.35em;
+}
+.bg{
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

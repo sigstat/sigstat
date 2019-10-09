@@ -7,6 +7,13 @@
   margin-bottom: 10px;
 }*/
 
+body{
+  padding-top: 55px;
+}
+a{
+  font-size: 1.3rem;
+}
+
 .tooltipster-base.tooltipster-top,
 .tooltipster-base.tooltipster-bottom {
   /* have some space from the screen sides */
