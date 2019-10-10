@@ -1105,25 +1105,10 @@ namespace SigStat.Sample
                     new Paper13FeatureExtractor(),*/
 
                 },
-                Classifier = new WeightedClassifier
+                Classifier = new OptimalDtwClassifier()
                 {
-                    {
-                        (new DtwClassifier(Accord.Math.Distance.Manhattan)
-                        {
-                            Features = { Features.X, Features.Y }
-                        },
-                           0.15)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { Features.Pressure }
-                        }, 0.3)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { MyFeatures.Tangent }
-                        }, 0.55)
-                    },
+                    Sampler = new FirstNSampler(10),
+                    Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                 }
             };
 

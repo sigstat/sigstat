@@ -15,12 +15,15 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
                 IgnoreNullValues = true,
                 MaxDepth = 64,
                 IgnoreReadOnlyProperties = true,
-                WriteIndented = true,
+                WriteIndented = true
             };
             options.Converters.Add(new NetCoreFeatureDescriptorDictionaryConverter());
             options.Converters.Add(new NetCoreFeatureDescriptorConverter());
             options.Converters.Add(new NetCoreFeatureDescriptorTConverter());
             options.Converters.Add(new NetCoreConcurrentDictionaryConverter());
+            options.Converters.Add(new NetCoreFeatureDescriptorListConverter());
+            options.Converters.Add(new NetCoreClassifierConverter());
+            options.Converters.Add(new NetCoreSamplerConverter());
             return options;
         }
         public static T Deserialize<T>(string s) where T : new()
@@ -42,5 +45,6 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
         {
             return Deserialize<T>(File.ReadAllText(path));
         }
+
     }
 }
