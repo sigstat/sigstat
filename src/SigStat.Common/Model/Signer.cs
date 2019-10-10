@@ -7,7 +7,7 @@ using System.Text;
 namespace SigStat.Common
 {
     /// <summary>
-    /// Represents a person as a <see cref="ID"/> and a list of <see cref="Signatures"/>.
+    /// Represents a person as an <see cref="ID"/> and a list of <see cref="Signatures"/>.
     /// </summary>
     public class Signer//TODO: <TSignature> where TSignature: Signature
     {

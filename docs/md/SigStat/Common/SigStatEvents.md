@@ -9,9 +9,9 @@ Standard event identifiers used by the SigStat system
 
 ## Static Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [EventId](./SigStatEvents.md) | BenchmarkEvent | Events originating from a benchmark | 
-| [EventId](./SigStatEvents.md) | VerifierEvent | Events originating from a verifier | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>BenchmarkEvent</sub><img width=200/>| <sub>Events originating from a benchmark</sub>| <br>
+| <sub>VerifierEvent</sub><img width=200/>| <sub>Events originating from a verifier</sub>| <br>
 
 

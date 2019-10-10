@@ -7,28 +7,28 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Extracts EndPoints and CrossingPoints from Skeleton.  <para>Default Pipeline Input: (bool[,]) Skeleton</para><para>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints </para>
+Extracts EndPoints and CrossingPoints from Skeleton.  <br>Default Pipeline Input: (bool[,]) Skeleton<br>Default Pipeline Output: (List{Point}) EndPoints, (List{Point}) CrossingPoints
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| EndpointExtraction (  ) |  | 
+| <sub>EndpointExtraction (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Point](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Point)>> | OutputCrossingPoints | OutputCrossingPoints | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Point](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Point)>> | OutputEndpoints | OutputEndpoints | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Skeleton | Binary representation of an image | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>OutputCrossingPoints</sub><img width=200/>| <sub>OutputCrossingPoints</sub>| <br>
+| <sub>OutputEndpoints</sub><img width=200/>| <sub>OutputEndpoints</sub>| <br>
+| <sub>Skeleton</sub><img width=200/>| <sub>Binary representation of an image</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/EndpointExtraction-100663590.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

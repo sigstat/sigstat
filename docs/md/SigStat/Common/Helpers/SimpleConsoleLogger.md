@@ -4,7 +4,7 @@ Namespace: [SigStat]() > [Common](./../README.md) > [Helpers](./README.md)
 
 Assembly: SigStat.Common.dll
 
-Implements [ILogger](./SimpleConsoleLogger.md)
+Implements [ILogger](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger)
 
 ## Summary
 A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
@@ -13,30 +13,30 @@ A easy-to-use class to log pipeline messages, complete with filtering levels and
 
 | Name | Summary | 
 | --- | --- | 
-| SimpleConsoleLogger (  ) | Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information | 
-| SimpleConsoleLogger ( [`LogLevel`](./SimpleConsoleLogger.md) ) | Initializes an instance of SimpleConsoleLogger with a custom LogLevel | 
+| <sub>SimpleConsoleLogger (  )</sub><img width=200/>| <sub>Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information</sub>| <br>
+| <sub>SimpleConsoleLogger ( [`LogLevel`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.LogLevel) )</sub><img width=200/>| <sub>Initializes an instance of SimpleConsoleLogger with a custom LogLevel</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [LogLevel](./SimpleConsoleLogger.md) | LogLevel | All events below this level will be filtered | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>LogLevel</sub><img width=200/>| <sub>All events below this level will be filtered</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [IDisposable](https://docs.microsoft.com/en-us/dotnet/api/System.IDisposable) | BeginScope ( [`TState`](./SimpleConsoleLogger.md) ) |  | 
-| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | IsEnabled ( [`LogLevel`](./SimpleConsoleLogger.md) ) |  | 
-| void | Log ( [`LogLevel`](./SimpleConsoleLogger.md), [`EventId`](./SimpleConsoleLogger.md), [`TState`](./SimpleConsoleLogger.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`Func`](./SimpleConsoleLogger.md)\<[`TState`](./SimpleConsoleLogger.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String)> ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[BeginScope](./Methods/SimpleConsoleLogger-100664041.md) ( [`TState`](./SimpleConsoleLogger.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[IsEnabled](./Methods/SimpleConsoleLogger-100664042.md) ( [`LogLevel`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.LogLevel) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[Log](./Methods/SimpleConsoleLogger-100664043.md) ( [`LogLevel`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.LogLevel), [`EventId`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.EventId), [`TState`](./SimpleConsoleLogger.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [Func](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[`TState`](./SimpleConsoleLogger.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String)> )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Events
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [ErrorEventHandler](./SimpleConsoleLogger.md) | Logged | Occurs when an error is logged | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Logged</sub><img width=200/>| <sub>Occurs when an error is logged</sub>| <br>
 
 

@@ -2326,7 +2326,7 @@
         </member>
         <member name="T:SigStat.Common.Signer">
             <summary>
-            Represents a person as a <see cref="P:SigStat.Common.Signer.ID"/> and a list of <see cref="P:SigStat.Common.Signer.Signatures"/>.
+            Represents a person as an <see cref="P:SigStat.Common.Signer.ID"/> and a list of <see cref="P:SigStat.Common.Signer.Signatures"/>.
             </summary>
         </member>
         <member name="P:SigStat.Common.Signer.ID">
@@ -2769,7 +2769,7 @@
             <summary>
             Maps values of a feature to a specific range.
             <para>InputFeature: feature to be scaled.</para>
-            <para>OutputFeature: output feature for scaled InputFeature></para>
+            <para>OutputFeature: output feature for scaled InputFeature</para>
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.InputFeature">
@@ -2874,7 +2874,7 @@
             <summary>
             Maps values of a feature to a specific range.
             <para>InputFeature: feature to be scaled.</para>
-            <para>OutputFeature: output feature for scaled InputFeature></para>
+            <para>OutputFeature: output feature for scaled InputFeature</para>
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.InputFeature">
@@ -2963,8 +2963,8 @@
             Maps values of a feature to a specific range and another proportional.
             <para>BaseDimension: feature modelled the base dimension of the scaling. </para>
             <para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para>
-            <para>BaseDimensionOutput: output feature for scaled BaseDimension></para>
-            <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension></para>
+            <para>BaseDimensionOutput: output feature for scaled BaseDimension</para>
+            <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension</para>
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.BaseDimension">

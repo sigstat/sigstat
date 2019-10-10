@@ -7,27 +7,27 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Multiplies the values of a feature with a given constant.  <para>Pipeline Input type: List{double}</para><para>Default Pipeline Output: (List{double}) Input</para>
+Multiplies the values of a feature with a given constant.  <br>Pipeline Input type: List{double}<br>Default Pipeline Output: (List{double}) Input
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| Multiply ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Initializes a new instance of the `SigStat.Common.Transforms.Multiply` class with specified settings. | 
+| <sub>Multiply ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.Multiply](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Multiply.md) class with specified settings.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | InputList | Input | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Output | Output | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>InputList</sub><img width=200/>| <sub>Input</sub>| <br>
+| <sub>Output</sub><img width=200/>| <sub>Output</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/Multiply-100663631.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

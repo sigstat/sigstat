@@ -10,7 +10,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// <summary>
     /// Maps values of a feature to a specific range.
     /// <para>InputFeature: feature to be scaled.</para>
-    /// <para>OutputFeature: output feature for scaled InputFeature></para>
+    /// <para>OutputFeature: output feature for scaled InputFeature</para>
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class Scale:PipelineBase, ITransformation

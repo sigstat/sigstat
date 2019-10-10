@@ -13,24 +13,24 @@ This transformation will fill "holes" in the "Time" feature by interpolating the
 
 | Name | Summary | 
 | --- | --- | 
-| FillPenUpDurations (  ) |  | 
+| <sub>FillPenUpDurations (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | InputFeatures | Gets or sets the features of an online signature that need to be altered | 
-| [Type](https://docs.microsoft.com/en-us/dotnet/api/System.Type) | InterpolationType | An implementation of `SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation` | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | OutputFeatures | Gets or sets the features of an online signature that were altered | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | TimeInputFeature | Gets or sets the feature representing the timestamps of an online signature | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | TimeOutputFeature | Gets or sets the feature representing the modified timestamps of an online signature | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>InputFeatures</sub><img width=200/>| <sub>Gets or sets the features of an online signature that need to be altered</sub>| <br>
+| <sub>InterpolationType</sub><img width=200/>| <sub>An implementation of [PipelineItems.Transforms.Preprocessing.IInterpolation](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md)</sub>| <br>
+| <sub>OutputFeatures</sub><img width=200/>| <sub>Gets or sets the features of an online signature that were altered</sub>| <br>
+| <sub>TimeInputFeature</sub><img width=200/>| <sub>Gets or sets the feature representing the timestamps of an online signature</sub>| <br>
+| <sub>TimeOutputFeature</sub><img width=200/>| <sub>Gets or sets the feature representing the modified timestamps of an online signature</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/FillPenUpDurations-100663741.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

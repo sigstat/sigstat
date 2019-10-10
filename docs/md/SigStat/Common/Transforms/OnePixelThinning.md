@@ -7,27 +7,27 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Iteratively thins the input binary raster with the `SigStat.Common.Algorithms.OnePixelThinningStep` algorithm.  <para>Pipeline Input type: bool[,]</para><para>Default Pipeline Output: (bool[,]) OnePixelThinningResult </para>
+Iteratively thins the input binary raster with the [Algorithms.OnePixelThinningStep](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/OnePixelThinningStep.md) algorithm.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) OnePixelThinningResult
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| OnePixelThinning (  ) |  | 
+| <sub>OnePixelThinning (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Input | Input `SigStat.Common.FeatureDescriptor` for the binary image of the signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Output | Output `SigStat.Common.FeatureDescriptor` for the binary image of the signature | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Input</sub><img width=200/>| <sub>Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) for the binary image of the signature</sub>| <br>
+| <sub>Output</sub><img width=200/>| <sub>Output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) for the binary image of the signature</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/OnePixelThinning-100663684.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

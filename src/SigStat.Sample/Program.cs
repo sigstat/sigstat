@@ -2,6 +2,7 @@
 using SigStat.Common;
 using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Helpers;
+using SigStat.Common.Helpers.NetCoreSerialization;
 using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
@@ -1166,13 +1167,14 @@ namespace SigStat.Sample
             signature.Signer.Signatures = null;
 
             //Serialize to a string
-            string json = SerializationHelper.JsonSerialize<Signature>(sig);
-            Console.WriteLine(json);
+            SerializationHelper.JsonSerializeToFile(sig,@"SignaturSerialized.txt");
+            NetCoreSerializationHelper.SerializeToFile(sig,@"SignaturSerializedNetCore3.txt");
 
             //Deserialize from a string
-            Signature desirializedSig = SerializationHelper.Deserialize<Signature>(json);
+            Signature desirializedSig = SerializationHelper.DeserializeFromFile<Signature>(@"SignaturSerialized.txt");
+            Signature desirializedSig3 = NetCoreSerializationHelper.DeserializeFromFile<Signature>(@"SignaturSerializedNetCore3.txt");
 
-            foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
+            /*foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
             {
                 if (!descriptor.IsCollection)
                 {
@@ -1187,7 +1189,7 @@ namespace SigStat.Sample
                         Console.WriteLine($" {i}.) {items[i]}");
                     }
                 }
-            }
+            }*/
         }
 
         static void JsonSerializeOnlineVerifier()
@@ -1209,39 +1211,22 @@ namespace SigStat.Sample
                     new Paper13FeatureExtractor(),*/
 
                 },
-                Classifier = new WeightedClassifier
+                Classifier = new OptimalDtwClassifier()
                 {
-                    {
-                        (new DtwClassifier(Accord.Math.Distance.Manhattan)
-                        {
-                            Features = { Features.X, Features.Y }
-                        },
-                           0.15)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { Features.Pressure }
-                        }, 0.3)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { MyFeatures.Tangent }
-                        }, 0.55)
-                    },
+                    Sampler = new FirstNSampler(10),
+                    Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                 }
             };
 
-            string path = @"VerifierSerialized.txt";
+            string path = @"OnlineVerifier.json";
+            string path3 = @"OnlineVerifier3.json";
 
             //File serialization example
-            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier, path);
+            SerializationHelper.JsonSerializeToFile(onlineverifier, path);
+            NetCoreSerializationHelper.SerializeToFile(onlineverifier, path3);
+
             Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(path);
-
-
-            //String serialization example
-            string json = SerializationHelper.JsonSerialize<Verifier>(onlineverifier);
-            Console.WriteLine(json);
-            Verifier deserializedOV2 = SerializationHelper.Deserialize<Verifier>(json);
+            Verifier deserializedOV2 = NetCoreSerializationHelper.DeserializeFromFile<Verifier>(path3);
 
         }
         static void JsonSerializeOnlineVerifierBenchmark()
@@ -1284,9 +1269,12 @@ namespace SigStat.Sample
 
             //Console.WriteLine($"AER: {result.FinalResult.Aer}");
             SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
+            NetCoreSerializationHelper.SerializeToFile(benchmark, @"VerifierBenchmarkSerializedNetCore3.txt");
             //SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
             VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
+            VerifierBenchmark deserializedBMNC = NetCoreSerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerializedNetCore3.txt");
         }
+
 
         static int primaryP = 0;
         static int secondaryP = 0;

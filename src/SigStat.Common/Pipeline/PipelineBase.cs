@@ -18,10 +18,12 @@ namespace SigStat.Common
         /// <summary>
         /// A collection of inputs for the pipeline elements
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual List<PipelineInput> PipelineInputs { get; private set; }
         /// <summary>
         /// A collection of outputs for the pipeline elements
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual List<PipelineOutput> PipelineOutputs { get; private set; }
 
         /// <summary>

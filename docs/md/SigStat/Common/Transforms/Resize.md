@@ -13,24 +13,24 @@ Resizes the image to a specified width and height
 
 | Name | Summary | 
 | --- | --- | 
-| Resize (  ) |  | 
+| <sub>Resize (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Nullable](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | Height | The new height. Leave it as null, if you do not want to explicitly specify a given height | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Image](./Resize.md)\<[Rgba32](./Resize.md)>> | InputImage | Input `SigStat.Common.FeatureDescriptor` describing the image of the signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Image](./Resize.md)\<[Rgba32](./Resize.md)>> | OutputImage | Output `SigStat.Common.FeatureDescriptor` describing the resized image of the signature | 
-| [Func](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2)\<[Image](./Resize.md)\<[Rgba32](./Resize.md)>, [Size](./Resize.md)> | ResizeFunction | Set a resize function if you want to dynamically calculate the new width and height of the image | 
-| [Nullable](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | Width | The new width. Leave it as null, if you do not want to explicitly specify a given width | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Height</sub><img width=200/>| <sub>The new height. Leave it as null, if you do not want to explicitly specify a given height</sub>| <br>
+| <sub>InputImage</sub><img width=200/>| <sub>Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) describing the image of the signature</sub>| <br>
+| <sub>OutputImage</sub><img width=200/>| <sub>Output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) describing the resized image of the signature</sub>| <br>
+| <sub>ResizeFunction</sub><img width=200/>| <sub>Set a resize function if you want to dynamically calculate the new width and height of the image</sub>| <br>
+| <sub>Width</sub><img width=200/>| <sub>The new width. Leave it as null, if you do not want to explicitly specify a given width</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/Resize-100663716.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

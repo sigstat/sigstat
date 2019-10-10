@@ -13,23 +13,23 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 
 | Name | Summary | 
 | --- | --- | 
-| PipelineBase (  ) | Initializes a new instance of the `SigStat.Common.PipelineBase` class. | 
+| <sub>PipelineBase (  )</sub><img width=200/>| <sub>Initializes a new instance of the [PipelineBase](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) class.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [ILogger](./PipelineBase.md) | Logger |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineInput](./Pipeline/PipelineInput.md)> | PipelineInputs | A collection of inputs for the pipeline elements | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineOutput](./Pipeline/PipelineOutput.md)> | PipelineOutputs | A collection of outputs for the pipeline elements | 
-| [Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) | Progress |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Logger</sub><img width=200/>| <sub></sub>| <br>
+| <sub>PipelineInputs</sub><img width=200/>| <sub>A collection of inputs for the pipeline elements</sub>| <br>
+| <sub>PipelineOutputs</sub><img width=200/>| <sub>A collection of outputs for the pipeline elements</sub>| <br>
+| <sub>Progress</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Events
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [EventHandler](https://docs.microsoft.com/en-us/dotnet/api/System.EventHandler-1)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | ProgressChanged | The event is raised whenever the value of `SigStat.Common.PipelineBase.Progress` changes | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>ProgressChanged</sub><img width=200/>| <sub>The event is raised whenever the value of [PipelineBase.Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) changes</sub>| <br>
 
 

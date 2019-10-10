@@ -9,15 +9,15 @@ Assembly: SigStat.Common.dll
 
 | Name | Summary | 
 | --- | --- | 
-| Palette ( [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) ) | Initializes a new instance of the `SigStat.Common.Helpers.Excel.Palette` class. | 
+| <sub>Palette ( [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) )</sub><img width=200/>| <sub>Initializes a new instance of the [Helpers.Excel.Palette](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Excel/Palette.md) class.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Color](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) | DarkColor | Gets or sets the color for rendering darker elements | 
-| [Color](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) | LightColor | Gets or sets the color for rendering bright elements | 
-| [Color](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) | MainColor | Gets or sets the main color used in the palette | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>DarkColor</sub><img width=200/>| <sub>Gets or sets the color for rendering darker elements</sub>| <br>
+| <sub>LightColor</sub><img width=200/>| <sub>Gets or sets the color for rendering bright elements</sub>| <br>
+| <sub>MainColor</sub><img width=200/>| <sub>Gets or sets the main color used in the palette</sub>| <br>
 
 

@@ -7,32 +7,32 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../../../ILoggerObject.md), [IProgress](./../../../Helpers/IProgress.md), [IPipelineIO](./../../../Pipeline/IPipelineIO.md), [ITransformation](./../../../ITransformation.md)
 
 ## Summary
-Maps values of a feature to a specific range and another proportional.  <para>BaseDimension: feature modelled the base dimension of the scaling. </para><para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para><para>BaseDimensionOutput: output feature for scaled BaseDimension&gt;</para><para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension&gt;</para>
+Maps values of a feature to a specific range and another proportional.  <br>BaseDimension: feature modelled the base dimension of the scaling. <br>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. <br>BaseDimensionOutput: output feature for scaled BaseDimension<br>ProportionalDimensionOutput: output feature for scaled ProportionalDimension
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| UniformScale (  ) |  | 
+| <sub>UniformScale (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | BaseDimension | Gets or sets the base dimension. | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | BaseDimensionOutput | Gets or sets the output base dimension output. | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | NewMaxBaseValue | Upper bound of the interval, in which the base dimension will be scaled | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | NewMinBaseValue | Lower bound of the interval, in which the base dimension will be scaled | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | NewMinProportionalValue | Lower bound of the interval, in which the proportional dimension will be scaled | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | ProportionalDimension | Gets or sets the ProportionalDimension. | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | ProportionalDimensionOutput | Gets or sets the output proportional dimension output. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>BaseDimension</sub><img width=200/>| <sub>Gets or sets the base dimension.</sub>| <br>
+| <sub>BaseDimensionOutput</sub><img width=200/>| <sub>Gets or sets the output base dimension output.</sub>| <br>
+| <sub>NewMaxBaseValue</sub><img width=200/>| <sub>Upper bound of the interval, in which the base dimension will be scaled</sub>| <br>
+| <sub>NewMinBaseValue</sub><img width=200/>| <sub>Lower bound of the interval, in which the base dimension will be scaled</sub>| <br>
+| <sub>NewMinProportionalValue</sub><img width=200/>| <sub>Lower bound of the interval, in which the proportional dimension will be scaled</sub>| <br>
+| <sub>ProportionalDimension</sub><img width=200/>| <sub>Gets or sets the ProportionalDimension.</sub>| <br>
+| <sub>ProportionalDimensionOutput</sub><img width=200/>| <sub>Gets or sets the output proportional dimension output.</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/UniformScale-100663845.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

@@ -7,32 +7,32 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Generates an image feature out of a binary raster.  Optionally, saves the image to a png file.  Useful for debugging pipeline steps.  <para>Pipeline Input type: bool[,]</para><para>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage</para>
+Generates an image feature out of a binary raster.  Optionally, saves the image to a png file.  Useful for debugging pipeline steps.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| ImageGenerator (  ) | Initializes a new instance of the `SigStat.Common.Transforms.ImageGenerator` class with default settings: skip file writing, Blue ink on white paper. | 
-| ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) | Initializes a new instance of the `SigStat.Common.Transforms.ImageGenerator` class with default settings. | 
-| ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`Rgba32`](./ImageGenerator.md), [`Rgba32`](./ImageGenerator.md) ) | Initializes a new instance of the `SigStat.Common.Transforms.ImageGenerator` class with specified settings. | 
+| <sub>ImageGenerator (  )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.ImageGenerator](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/ImageGenerator.md) class with default settings: skip file writing, Blue ink on white paper.</sub>| <br>
+| <sub>ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.ImageGenerator](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/ImageGenerator.md) class with default settings.</sub>| <br>
+| <sub>ImageGenerator ( [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`Rgba32`](./ImageGenerator.md), [`Rgba32`](./ImageGenerator.md) )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.ImageGenerator](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/ImageGenerator.md) class with specified settings.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Rgba32](./ImageGenerator.md) | BackgroundColor | Gets or sets the color of the backgroung used to render the signature | 
-| [Rgba32](./ImageGenerator.md) | ForegroundColor | Gets or sets the color of the foreground used to render the signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)[]> | Input | Input `SigStat.Common.FeatureDescriptor` for the binary image of a signature | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[Image](./ImageGenerator.md)\<[Rgba32](./ImageGenerator.md)>> | OutputImage | Input `SigStat.Common.FeatureDescriptor` for the binary image of a signature | 
-| [Boolean](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) | WriteToFile | Gets or sets a value indicating whether the results should be saved to a file or not. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>BackgroundColor</sub><img width=200/>| <sub>Gets or sets the color of the backgroung used to render the signature</sub>| <br>
+| <sub>ForegroundColor</sub><img width=200/>| <sub>Gets or sets the color of the foreground used to render the signature</sub>| <br>
+| <sub>Input</sub><img width=200/>| <sub>Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) for the binary image of a signature</sub>| <br>
+| <sub>OutputImage</sub><img width=200/>| <sub>Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) for the binary image of a signature</sub>| <br>
+| <sub>WriteToFile</sub><img width=200/>| <sub>Gets or sets a value indicating whether the results should be saved to a file or not.</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/ImageGenerator-100663679.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

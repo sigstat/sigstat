@@ -7,27 +7,27 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Adds a constant value to a feature. Works with collection features too.  <para>Default Pipeline Output: Pipeline Input</para>
+Adds a constant value to a feature. Works with collection features too.  <br>Default Pipeline Output: Pipeline Input
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| AddConst ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Initializes a new instance of the `SigStat.Common.Transforms.AddConst` class with specified settings. | 
+| <sub>AddConst ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.AddConst](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddConst.md) class with specified settings.</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Input | Input values for trasformation | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | Output | Output feature to store results | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Input</sub><img width=200/>| <sub>Input values for trasformation</sub>| <br>
+| <sub>Output</sub><img width=200/>| <sub>Output feature to store results</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/AddConst-100663605.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 

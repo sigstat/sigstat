@@ -5,20 +5,20 @@ Namespace: [SigStat]() > [Common](./../README.md) > [Pipeline](./README.md)
 Assembly: SigStat.Common.dll
 
 ## Summary
-Annotates an output `SigStat.Common.FeatureDescriptor` in a transformation pipeline
+Annotates an output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) in a transformation pipeline
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| Output ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) | Initializes a new instance of the `SigStat.Common.Pipeline.Output` class. | 
-| Output (  ) | Initializes a new instance of the `SigStat.Common.Pipeline.Output` class. | 
+| <sub>Output ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) )</sub><img width=200/>| <sub>Initializes a new instance of the [Pipeline.Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class.</sub>| <br>
+| <sub>Output (  )</sub><img width=200/>| <sub>Initializes a new instance of the [Pipeline.Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class.</sub>| <br>
 
 
 ## Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | Default | The default value for the property | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Default</sub><img width=200/>| <sub>The default value for the property</sub>| <br>
 
 

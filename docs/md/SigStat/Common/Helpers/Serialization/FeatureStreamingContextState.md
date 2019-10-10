@@ -11,13 +11,13 @@ SerializationContext for serializing SigStat objects
 
 | Name | Summary | 
 | --- | --- | 
-| FeatureStreamingContextState (  ) | Constructor | 
+| <sub>FeatureStreamingContextState (  )</sub><img width=200/>| <sub>Constructor</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[String](https://docs.microsoft.com/en-us/dotnet/api/System.String)> | KnownFeatureKeys | A list of already serialized FeatureDescriptor keys | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>KnownFeatureKeys</sub><img width=200/>| <sub>A list of already serialized FeatureDescriptor keys</sub>| <br>
 
 

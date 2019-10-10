@@ -5,23 +5,23 @@
 - [`DataSetLoader`](./DataSetLoader.md)
 	- Abstract loader class to inherit from. Implements ILogger.
 - [`IDataSetLoader`](./IDataSetLoader.md)
-	- Exposes a function to enable loading collections of `SigStat.Common.Signer`s.  Base abstract class: `SigStat.Common.Loaders.DataSetLoader`.
+	- Exposes a function to enable loading collections of [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)s.  Base abstract class: [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md).
 - [`ImageLoader`](./ImageLoader.md)
 	- DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but finds png images.
 - [`ImageSaver`](./ImageSaver.md)
-	- Get the `SigStat.Common.Features.Image` of a `SigStat.Common.Signature` and save it as png file.
+	- Get the [Features.Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) of a [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) and save it as png file.
 - [`MCYTLoader`](./MCYTLoader.md)
-	- `SigStat.Common.Loaders.DataSetLoader` for the MCYT dataset
+	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the MCYT dataset
 - [`SigComp11ChineseLoader`](./SigComp11ChineseLoader.md)
-	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp11Chinese dataset
+	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp11Chinese dataset
 - [`SigComp11DutchLoader`](./SigComp11DutchLoader.md)
-	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp11Dutch dataset
+	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp11Dutch dataset
 - [`SigComp13JapaneseLoader`](./SigComp13JapaneseLoader.md)
-	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp13Japanese dataset
+	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp13Japanese dataset
 - [`SigComp15GermanLoader`](./SigComp15GermanLoader.md)
-	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp15German dataset
+	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp15German dataset
 - [`SigComp19OnlineLoader`](./SigComp19OnlineLoader.md)
-	- `SigStat.Common.Loaders.DataSetLoader` for the SigComp19 dataset
+	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp19 dataset
 - [`Svc2004`](./Svc2004.md)
 	- Set of features containing raw data loaded from SVC2004-format database.
 - [`Svc2004Loader`](./Svc2004Loader.md)

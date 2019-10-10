@@ -7,33 +7,33 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md)
 
 ## Summary
-Uses pipelines to transform, train on, and classify `SigStat.Common.Signature` objects.
+Uses pipelines to transform, train on, and classify [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) objects.
 
 ## Constructors
 
 | Name | Summary | 
 | --- | --- | 
-| Verifier ( [`ILogger`](./Verifier.md) ) | Initializes a new instance of the `SigStat.Common.Model.Verifier` class | 
-| Verifier (  ) | Initializes a new instance of the `SigStat.Common.Model.Verifier` class. | 
-| Verifier ( [`Verifier`](./Verifier.md) ) | Initializes a new instance of the `SigStat.Common.Model.Verifier` class based on another Verifier instance | 
+| <sub>Verifier ( [`ILogger`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger) )</sub><img width=200/>| <sub>Initializes a new instance of the [Model.Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class</sub>| <br>
+| <sub>Verifier (  )</sub><img width=200/>| <sub>Initializes a new instance of the [Model.Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class.</sub>| <br>
+| <sub>Verifier ( [`Verifier`](./Verifier.md) )</sub><img width=200/>| <sub>Initializes a new instance of the [Model.Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class based on another Verifier instance</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Dictionary](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2)\<[String](https://docs.microsoft.com/en-us/dotnet/api/System.String), [FeatureDescriptor](./../FeatureDescriptor.md)> | AllFeatures | This property is used by the Serializer to access a list of all FeatureDescriptors | 
-| [IClassifier](./../Pipeline/IClassifier.md) | Classifier | Gets or sets the classifier pipeline. Hands over the Logger object. | 
-| [ILogger](./Verifier.md) | Logger | Gets or sets the class responsible for logging | 
-| [SequentialTransformPipeline](./../Pipeline/SequentialTransformPipeline.md) | Pipeline | Gets or sets the transform pipeline. Hands over the Logger object. | 
-| [ISignerModel](./../Pipeline/ISignerModel.md) | SignerModel | Gets or sets the signer model. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>AllFeatures</sub><img width=200/>| <sub>This property is used by the Serializer to access a list of all FeatureDescriptors</sub>| <br>
+| <sub>Classifier</sub><img width=200/>| <sub>Gets or sets the classifier pipeline. Hands over the Logger object.</sub>| <br>
+| <sub>Logger</sub><img width=200/>| <sub>Gets or sets the class responsible for logging</sub>| <br>
+| <sub>Pipeline</sub><img width=200/>| <sub>Gets or sets the transform pipeline. Hands over the Logger object.</sub>| <br>
+| <sub>SignerModel</sub><img width=200/>| <sub>Gets or sets the signer model.</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Test ( [`Signature`](./../Signature.md) ) | Verifies the genuinity of ``. | 
-| void | Train ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./../Signature.md)> ) | Trains the verifier with a list of signatures. Uses the `SigStat.Common.Model.Verifier.Pipeline` to extract features,  and `SigStat.Common.Model.Verifier.Classifier` to find an optimized limit. | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Test](./Methods/Verifier-100664119.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub>Verifies the genuinity of `signature`.</sub>| <br>
+| <sub>[Train](./Methods/Verifier-100664118.md) ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./../Signature.md)> )</sub><img width=200/>| <sub>Trains the verifier with a list of signatures. Uses the [Model.Verifier.Pipeline](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) to extract features,  and [Model.Verifier.Classifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) to find an optimized limit.</sub>| <br>
 
 

@@ -9,22 +9,22 @@ Assembly: SigStat.Common.dll
 
 | Name | Summary | 
 | --- | --- | 
-| Baseline (  ) | Initializes a Baseline instance | 
-| Baseline ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) | Initializes a Baseline instance with the given startpoint and endpoint | 
+| <sub>Baseline (  )</sub><img width=200/>| <sub>Initializes a Baseline instance</sub>| <br>
+| <sub>Baseline ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) )</sub><img width=200/>| <sub>Initializes a Baseline instance with the given startpoint and endpoint</sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [PointF](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.PointF) | End | Endpoint of the baseline | 
-| [PointF](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.PointF) | Start | Starting point of the baseline | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>End</sub><img width=200/>| <sub>Endpoint of the baseline</sub>| <br>
+| <sub>Start</sub><img width=200/>| <sub>Starting point of the baseline</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | ToString (  ) | Returns a string representation of the baseline | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[ToString](./Methods/Baseline-100663334.md) (  )</sub><img width=200/>| <sub>Returns a string representation of the baseline</sub>| <br>
 
 

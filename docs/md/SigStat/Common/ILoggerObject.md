@@ -9,8 +9,8 @@ Represents a type, that contains an ILogger property that can be used to perform
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [ILogger](./ILoggerObject.md) | Logger | Gets or sets the ILogger implementation used to perform logging | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>Logger</sub><img width=200/>| <sub>Gets or sets the ILogger implementation used to perform logging</sub>| <br>
 
 

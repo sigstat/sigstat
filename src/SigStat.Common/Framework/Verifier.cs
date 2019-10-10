@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SigStat.Common.Helpers;
+using SigStat.Common.Helpers.NetCoreSerialization;
 using SigStat.Common.Helpers.Serialization;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace SigStat.Common.Model
 {
@@ -18,7 +20,7 @@ namespace SigStat.Common.Model
     [JsonObject(MemberSerialization.OptOut)]
     public class Verifier : ILoggerObject
     {
-       
+
         /// <summary>
         /// This property is used by the Serializer to access a list of all FeatureDescriptors
         /// </summary>
@@ -28,6 +30,10 @@ namespace SigStat.Common.Model
             {
                 //TODO: We should only return the Descriptors that are actually used in the Verifier
                 return FeatureDescriptor.GetAll();
+            }
+            set
+            {
+
             }
         }
         //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");

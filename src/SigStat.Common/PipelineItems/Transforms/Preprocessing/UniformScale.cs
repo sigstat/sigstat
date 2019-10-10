@@ -11,8 +11,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// Maps values of a feature to a specific range and another proportional.
     /// <para>BaseDimension: feature modelled the base dimension of the scaling. </para>
     /// <para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para>
-    /// <para>BaseDimensionOutput: output feature for scaled BaseDimension></para>
-    /// <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension></para>
+    /// <para>BaseDimensionOutput: output feature for scaled BaseDimension</para>
+    /// <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension</para>
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class UniformScale : PipelineBase, ITransformation

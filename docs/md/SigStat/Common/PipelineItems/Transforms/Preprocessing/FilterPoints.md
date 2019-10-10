@@ -13,24 +13,24 @@ Removes samples based on a criteria from online signature time series
 
 | Name | Summary | 
 | --- | --- | 
-| FilterPoints (  ) |  | 
+| <sub>FilterPoints (  )</sub><img width=200/>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | InputFeatures | `SigStat.Common.FeatureDescriptor` list of all features to resample | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | KeyFeatureInput | `SigStat.Common.FeatureDescriptor` that controls the removal of samples (e.g. `SigStat.Common.Features.Pressure`) | 
-| [FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>> | KeyFeatureOutput | Resampled output for `SigStat.Common.FeatureDescriptor` that controls the removal of samples (e.g. `SigStat.Common.Features.Pressure`) | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[FeatureDescriptor](./../../../FeatureDescriptor-1.md)\<[List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>>> | OutputFeatures | Resampled output for all input features | 
-| [Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) | Percentile | The lowes percentile of the `SigStat.Common.PipelineItems.Transforms.Preprocessing.FilterPoints.KeyFeatureInput` will be removed during filtering | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>InputFeatures</sub><img width=200/>| <sub>[FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) list of all features to resample</sub>| <br>
+| <sub>KeyFeatureInput</sub><img width=200/>| <sub>[FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) that controls the removal of samples (e.g. [Features.Pressure](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
+| <sub>KeyFeatureOutput</sub><img width=200/>| <sub>Resampled output for [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) that controls the removal of samples (e.g. [Features.Pressure](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
+| <sub>OutputFeatures</sub><img width=200/>| <sub>Resampled output for all input features</sub>| <br>
+| <sub>Percentile</sub><img width=200/>| <sub>The lowes percentile of the [PipelineItems.Transforms.Preprocessing.FilterPoints.KeyFeatureInput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/FilterPoints.md) will be removed during filtering</sub>| <br>
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../../../Signature.md) ) |  | 
+| Name | Summary | 
+| --- | --- | 
+| <sub>[Transform](./Methods/FilterPoints-100663755.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
 
 
