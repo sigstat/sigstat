@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
 
@@ -26,6 +27,11 @@ namespace SigStat.Common.Helpers.NetCoreSerialization
             writer.WriteStartObject();
             writer.WritePropertyName("$Type");
             writer.WriteStringValue(value.GetType().ToString());
+
+            var converter = (JsonConverter<FirstNSampler>)options.GetConverter(value.Sampler.GetType());
+            converter.Write(writer, (FirstNSampler)value.Sampler, options);
+
+            
             writer.WriteStringValue(JsonSerializer.Serialize(value.Sampler, options));
             writer.WriteStringValue(JsonSerializer.Serialize(value.Features, options));
             writer.WriteEndObject();
