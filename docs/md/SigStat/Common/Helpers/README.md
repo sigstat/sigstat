@@ -11,9 +11,9 @@
 - [`HierarchyElement`](./HierarchyElement.md)
 	- Hierarchical structure to store object
 - [`IProgress`](./IProgress.md)
-	- Enables progress tracking by expsoing the [Helpers.IProgress.Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) property and the [Helpers.IProgress.ProgressChanged](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) event.
+	- Enables progress tracking by expsoing the [Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) property and the [ProgressChanged](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) event.
 - [`SerializationHelper`](./SerializationHelper.md)
-	- Json serialization and deserialization using the custom resolver  [Helpers.Serialization.VerifierResolver](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Serialization/VerifierResolver.md)
+	- Json serialization and deserialization using the custom resolver  [VerifierResolver](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Serialization/VerifierResolver.md)
 - [`SimpleConsoleLogger`](./SimpleConsoleLogger.md)
 	- A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 

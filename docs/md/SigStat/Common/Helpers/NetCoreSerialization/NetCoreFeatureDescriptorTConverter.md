@@ -7,17 +7,17 @@ Assembly: SigStat.Common.dll
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>NetCoreFeatureDescriptorTConverter (  )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>NetCoreFeatureDescriptorTConverter (  )</sub>| <sub></sub>| <br>
 
 
 ## Methods
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>[CanConvert](./Methods/NetCoreFeatureDescriptorTConverter-100664078.md) ( [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type) )</sub><img width=200/>| <sub></sub>| <br>
-| <sub>[Read](./Methods/NetCoreFeatureDescriptorTConverter-100664079.md) ( out [`Utf8JsonReader`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.Utf8JsonReader), [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type), [`JsonSerializerOptions`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.JsonSerializerOptions) )</sub><img width=200/>| <sub></sub>| <br>
-| <sub>[Write](./Methods/NetCoreFeatureDescriptorTConverter-100664080.md) ( [`Utf8JsonWriter`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.Utf8JsonWriter), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializerOptions`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.JsonSerializerOptions) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[CanConvert](./Methods/NetCoreFeatureDescriptorTConverter-100664126.md) ( [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type) )</sub>| <sub></sub>| <br>
+| <sub>[Read](./Methods/NetCoreFeatureDescriptorTConverter-100664127.md) ( out [`Utf8JsonReader`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.Utf8JsonReader), [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type), [`JsonSerializerOptions`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.JsonSerializerOptions) )</sub>| <sub></sub>| <br>
+| <sub>[Write](./Methods/NetCoreFeatureDescriptorTConverter-100664128.md) ( [`Utf8JsonWriter`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.Utf8JsonWriter), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializerOptions`](https://docs.microsoft.com/en-us/dotnet/api/System.Text.Json.JsonSerializerOptions) )</sub>| <sub></sub>| <br>
 
 

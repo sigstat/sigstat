@@ -8,10 +8,10 @@ Represents our knowledge on the origin of a signature.
 
 ##	Enum
 
-| Value | Name | Summary | 
+| Value<img width=475> | Name<img width=475> | Summary<img width=475> | 
 | --- | --- | --- | 
-| 0<img width=200/>| Unknown| Use this in practice before a signature is verified.<img width=200/>| <br>
-| 1<img width=200/>| Genuine| The [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md)'s origin is verified to be from [Signature.Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md)<img width=200/>| <br>
-| 2<img width=200/>| Forged| The [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) is a forgery.<img width=200/>| <br>
+| 0| Unknown| Use this in practice before a signature is verified.| <br>
+| 1| Genuine| The [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md)'s origin is verified to be from [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md)| <br>
+| 2| Forged| The [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) is a forgery.| <br>
 
 

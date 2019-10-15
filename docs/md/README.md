@@ -11,7 +11,7 @@ This is the root summary
 	- Helper methods for processing arrays
 - [`Baseline`](./SigStat/Common/Baseline.md)
 - [`BasicMetadataExtraction`](./SigStat/Common/BasicMetadataExtraction.md)
-	- Extracts basic statistical signature (like [Features.Bounds](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) or [Features.Cog](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) information from an Image
+	- Extracts basic statistical signature (like [Bounds](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) or [Cog](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) information from an Image
 - [`BenchmarkResults`](./SigStat/Common/BenchmarkResults.md)
 	- Contains the benchmark results of every [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and the summarized final results.
 - [`DistanceMatrix`](./SigStat/Common/DistanceMatrix-3.md)\<[`TRowKey`](./README.md), [`TColumnKey`](./README.md), [`TValue`](./README.md)>
@@ -45,7 +45,7 @@ This is the root summary
 - [`Signature`](./SigStat/Common/Signature.md)
 	- Represents a signature as a collection of features, containing the data that flows in the pipeline.
 - [`Signer`](./SigStat/Common/Signer.md)
-	- Represents a person as an [Signer.ID](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and a list of [Signer.Signatures](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md).
+	- Represents a person as an [ID](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and a list of [Signatures](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md).
 - [`SigStatEvents`](./SigStat/Common/SigStatEvents.md)
 	- Standard event identifiers used by the SigStat system
 - [`SimpleRenderingTransformation`](./SigStat/Common/SimpleRenderingTransformation.md)
@@ -55,7 +55,7 @@ This is the root summary
 - [`StrokeInterval`](./SigStat/Common/StrokeInterval.md)
 	- Represents a stroke in an online signature
 - [`VerifierBenchmark`](./SigStat/Common/VerifierBenchmark.md)
-	- Benchmarking class to test error rates of a [Model.Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md)
+	- Benchmarking class to test error rates of a [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md)
 ### [SigStat.Common.Pipeline](./SigStat/Common/Pipeline/README.md)
 
 - [`IClassifier`](./SigStat/Common/Pipeline/IClassifier.md)
@@ -65,7 +65,7 @@ This is the root summary
 - [`Input`](./SigStat/Common/Pipeline/Input.md)
 	- Annotates an input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) in a transformation pipeline
 - [`IPipelineIO`](./SigStat/Common/Pipeline/IPipelineIO.md)
-	- Supports the definition of [Pipeline.PipelineInput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/PipelineInput.md) and [Pipeline.PipelineOutput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/PipelineOutput.md)
+	- Supports the definition of [PipelineInput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/PipelineInput.md) and [PipelineOutput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/PipelineOutput.md)
 - [`ISignerModel`](./SigStat/Common/Pipeline/ISignerModel.md)
 	- Analyzes signatures based on their similiarity to the trained model
 - [`Output`](./SigStat/Common/Pipeline/Output.md)
@@ -73,9 +73,9 @@ This is the root summary
 - [`ParallelTransformPipeline`](./SigStat/Common/Pipeline/ParallelTransformPipeline.md)
 	- Runs pipeline items in parallel.  <br>Default Pipeline Output: Range of all the Item outputs.
 - [`PipelineInput`](./SigStat/Common/Pipeline/PipelineInput.md)
-	- Represents an input for a [Pipeline.PipelineInput.PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md)
+	- Represents an input for a [PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md)
 - [`PipelineOutput`](./SigStat/Common/Pipeline/PipelineOutput.md)
-	- Represents an output for a [Pipeline.PipelineOutput.PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md)
+	- Represents an output for a [PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md)
 - [`SequentialTransformPipeline`](./SigStat/Common/Pipeline/SequentialTransformPipeline.md)
 	- Runs pipeline items in a sequence.  <br>Default Pipeline Output: Output of the last Item in the sequence.
 ### [SigStat.Common.Transforms](./SigStat/Common/Transforms/README.md)
@@ -93,7 +93,7 @@ This is the root summary
 - [`CentroidExtraction`](./SigStat/Common/Transforms/CentroidExtraction.md)
 	- Extracts the Centroid (aka. Center Of Gravity) of the input features.  <br> Default Pipeline Output: (List{double}) Centroid.
 - [`CentroidTranslate`](./SigStat/Common/Transforms/CentroidTranslate.md)
-	- Sequential pipeline to translate X and Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) to Centroid.  The following Transforms are called: [Transforms.CentroidExtraction](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/CentroidExtraction.md), [Transforms.Multiply](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Multiply.md)(-1), [Transforms.Translate](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Translate.md)<br>Default Pipeline Input: [Features.X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Features.Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: (List{double}) Centroid
+	- Sequential pipeline to translate X and Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) to Centroid.  The following Transforms are called: [CentroidExtraction](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/CentroidExtraction.md), [Multiply](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Multiply.md)(-1), [Translate](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Translate.md)<br>Default Pipeline Input: [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: (List{double}) Centroid
 - [`ComponentExtraction`](./SigStat/Common/Transforms/ComponentExtraction.md)
 	- Extracts unsorted components by tracing through the binary Skeleton raster.  <br>Default Pipeline Input: (bool[,]) Skeleton, (List{Point}) EndPoints, (List{Point}) CrossingPoints<br>Default Pipeline Output: (List{List{PointF}}) Components
 - [`ComponentSorter`](./SigStat/Common/Transforms/ComponentSorter.md)
@@ -105,7 +105,7 @@ This is the root summary
 - [`Extrema`](./SigStat/Common/Transforms/Extrema.md)
 	- Extracts minimum and maximum values of given feature.  <br>Default Pipeline Output: (List{double}) Min, (List{double}) Max
 - [`HSCPThinning`](./SigStat/Common/Transforms/HSCPThinning.md)
-	- Iteratively thins the input binary raster with the [Algorithms.HSCPThinningStep](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/HSCPThinningStep.md) algorithm.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) HSCPThinningResult
+	- Iteratively thins the input binary raster with the [HSCPThinningStep](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/HSCPThinningStep.md) algorithm.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) HSCPThinningResult
 - [`ImageGenerator`](./SigStat/Common/Transforms/ImageGenerator.md)
 	- Generates an image feature out of a binary raster.  Optionally, saves the image to a png file.  Useful for debugging pipeline steps.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) Input, (Image{Rgba32}) InputImage
 - [`Map`](./SigStat/Common/Transforms/Map.md)
@@ -115,17 +115,17 @@ This is the root summary
 - [`Normalize`](./SigStat/Common/Transforms/Normalize.md)
 	- Maps values of a feature to 0.0 - 1.0 range.  <br>Pipeline Input type: List{double}<br>Default Pipeline Output: (List{double}) NormalizationResult
 - [`OnePixelThinning`](./SigStat/Common/Transforms/OnePixelThinning.md)
-	- Iteratively thins the input binary raster with the [Algorithms.OnePixelThinningStep](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/OnePixelThinningStep.md) algorithm.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) OnePixelThinningResult
+	- Iteratively thins the input binary raster with the [OnePixelThinningStep](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/OnePixelThinningStep.md) algorithm.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) OnePixelThinningResult
 - [`RealisticImageGenerator`](./SigStat/Common/Transforms/RealisticImageGenerator.md)
-	- Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.  <br>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [Features.Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
+	- Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.  <br>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
 - [`Resize`](./SigStat/Common/Transforms/Resize.md)
 	- Resizes the image to a specified width and height
 - [`TangentExtraction`](./SigStat/Common/Transforms/TangentExtraction.md)
 	- Extracts tangent values of the standard X, Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Input: X, Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: (List{double})  Tangent
 - [`TimeReset`](./SigStat/Common/Transforms/TimeReset.md)
-	- Sequential pipeline to reset time values to begin at 0.  The following Transforms are called: Extrema, Multiply, AddVector.  <br>Default Pipeline Input: [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [Features.T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
+	- Sequential pipeline to reset time values to begin at 0.  The following Transforms are called: Extrema, Multiply, AddVector.  <br>Default Pipeline Input: [T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
 - [`Translate`](./SigStat/Common/Transforms/Translate.md)
-	- Sequential pipeline to translate X and Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) by specified vector (constant or feature).  The following Transforms are called: [Transforms.AddConst](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddConst.md) twice, or [Transforms.AddVector](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddVector.md).  <br>Default Pipeline Input: [Features.X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Features.Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [Features.X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Features.Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
+	- Sequential pipeline to translate X and Y [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) by specified vector (constant or feature).  The following Transforms are called: [AddConst](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddConst.md) twice, or [AddVector](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddVector.md).  <br>Default Pipeline Input: [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md), [Y](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
 - [`Trim`](./SigStat/Common/Transforms/Trim.md)
 	- Trims unnecessary empty space from a binary raster.  <br>Pipeline Input type: bool[,]<br>Default Pipeline Output: (bool[,]) Trimmed
 ### [SigStat.Common.PipelineItems.Transforms.Preprocessing](./SigStat/Common/PipelineItems/Transforms/Preprocessing/README.md)
@@ -142,10 +142,16 @@ This is the root summary
 	- Performs linear interpolation on the input
 - [`NormalizeRotation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/NormalizeRotation.md)
 	- Performs rotation normalization on the online signature
+- [`NormalizeRotationForX`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/NormalizeRotationForX.md)
+	- Performs rotation normalization on the online signature
+- [`OrthognalRotation`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/OrthognalRotation.md)
+	- Performs rotation normalization on the online signature
 - [`RelativeScale`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/RelativeScale.md)
 	- Maps values of a feature to a specific range.  <br>InputFeature: feature to be scaled.<br>OutputFeature: output feature for scaled InputFeature
 - [`ResampleSamplesCountBased`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/ResampleSamplesCountBased.md)
-	- Resamples an online signature to a specific sample count using the specified [PipelineItems.Transforms.Preprocessing.IInterpolation](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md) algorithm
+	- Resamples an online signature to a specific sample count using the specified [IInterpolation](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md) algorithm
+- [`SampleRate`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/SampleRate.md)
+	- Performs rotation normalization on the online signature
 - [`Scale`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/Scale.md)
 	- Maps values of a feature to a specific range.  <br>InputFeature: feature to be scaled.<br>OutputFeature: output feature for scaled InputFeature
 - [`TranslatePreproc`](./SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md)
@@ -155,11 +161,11 @@ This is the root summary
 ### [SigStat.Common.PipelineItems.Classifiers](./SigStat/Common/PipelineItems/Classifiers/README.md)
 
 - [`DtwClassifier`](./SigStat/Common/PipelineItems/Classifiers/DtwClassifier.md)
-	- Classifies Signatures with the [Algorithms.Dtw](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/Dtw.md) algorithm.
+	- Classifies Signatures with the [Dtw](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Algorithms/Dtw.md) algorithm.
 - [`DtwSignerModel`](./SigStat/Common/PipelineItems/Classifiers/DtwSignerModel.md)
-	- Represents a trained model for [PipelineItems.Classifiers.DtwClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Classifiers/DtwClassifier.md)
+	- Represents a trained model for [DtwClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Classifiers/DtwClassifier.md)
 - [`OptimalDtwClassifier`](./SigStat/Common/PipelineItems/Classifiers/OptimalDtwClassifier.md)
-	- This [Pipeline.IDistanceClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/IDistanceClassifier.md) implementation will consider both test and  training samples and claculate the threshold to separate the original and forged  signatures to approximate EER. Note that this classifier is not applicable for  real world scenarios. It was developed to test the theoratical boundaries of  threshold based classification
+	- This [IDistanceClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/IDistanceClassifier.md) implementation will consider both test and  training samples and claculate the threshold to separate the original and forged  signatures to approximate EER. Note that this classifier is not applicable for  real world scenarios. It was developed to test the theoratical boundaries of  threshold based classification
 - [`WeightedClassifier`](./SigStat/Common/PipelineItems/Classifiers/WeightedClassifier.md)
 	- Classifies Signatures by weighing other Classifier results.
 ### [SigStat.Common.Loaders](./SigStat/Common/Loaders/README.md)
@@ -167,23 +173,23 @@ This is the root summary
 - [`DataSetLoader`](./SigStat/Common/Loaders/DataSetLoader.md)
 	- Abstract loader class to inherit from. Implements ILogger.
 - [`IDataSetLoader`](./SigStat/Common/Loaders/IDataSetLoader.md)
-	- Exposes a function to enable loading collections of [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)s.  Base abstract class: [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md).
+	- Exposes a function to enable loading collections of [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)s.  Base abstract class: [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md).
 - [`ImageLoader`](./SigStat/Common/Loaders/ImageLoader.md)
 	- DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but finds png images.
 - [`ImageSaver`](./SigStat/Common/Loaders/ImageSaver.md)
-	- Get the [Features.Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) of a [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) and save it as png file.
+	- Get the [Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) of a [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) and save it as png file.
 - [`MCYTLoader`](./SigStat/Common/Loaders/MCYTLoader.md)
-	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the MCYT dataset
+	- [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the MCYT dataset
 - [`SigComp11ChineseLoader`](./SigStat/Common/Loaders/SigComp11ChineseLoader.md)
-	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp11Chinese dataset
+	- [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp11Chinese dataset
 - [`SigComp11DutchLoader`](./SigStat/Common/Loaders/SigComp11DutchLoader.md)
-	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp11Dutch dataset
+	- [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp11Dutch dataset
 - [`SigComp13JapaneseLoader`](./SigStat/Common/Loaders/SigComp13JapaneseLoader.md)
-	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp13Japanese dataset
+	- [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp13Japanese dataset
 - [`SigComp15GermanLoader`](./SigStat/Common/Loaders/SigComp15GermanLoader.md)
-	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp15German dataset
+	- [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp15German dataset
 - [`SigComp19OnlineLoader`](./SigStat/Common/Loaders/SigComp19OnlineLoader.md)
-	- [Loaders.DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp19 dataset
+	- [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md) for the SigComp19 dataset
 - [`Svc2004`](./SigStat/Common/Loaders/Svc2004.md)
 	- Set of features containing raw data loaded from SVC2004-format database.
 - [`Svc2004Loader`](./SigStat/Common/Loaders/Svc2004Loader.md)
@@ -199,9 +205,9 @@ This is the root summary
 - [`HierarchyElement`](./SigStat/Common/Helpers/HierarchyElement.md)
 	- Hierarchical structure to store object
 - [`IProgress`](./SigStat/Common/Helpers/IProgress.md)
-	- Enables progress tracking by expsoing the [Helpers.IProgress.Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) property and the [Helpers.IProgress.ProgressChanged](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) event.
+	- Enables progress tracking by expsoing the [Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) property and the [ProgressChanged](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) event.
 - [`SerializationHelper`](./SigStat/Common/Helpers/SerializationHelper.md)
-	- Json serialization and deserialization using the custom resolver  [Helpers.Serialization.VerifierResolver](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Serialization/VerifierResolver.md)
+	- Json serialization and deserialization using the custom resolver  [VerifierResolver](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Serialization/VerifierResolver.md)
 - [`SimpleConsoleLogger`](./SigStat/Common/Helpers/SimpleConsoleLogger.md)
 	- A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
 ### [SigStat.Common.Helpers.Serialization](./SigStat/Common/Helpers/Serialization/README.md)
@@ -216,9 +222,12 @@ This is the root summary
 	- Custom resolver for customizing the json serialization
 ### [SigStat.Common.Helpers.NetCoreSerialization](./SigStat/Common/Helpers/NetCoreSerialization/README.md)
 
+- [`NetCoreClassifierConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreClassifierConverter.md)
 - [`NetCoreFeatureDescriptorConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorConverter.md)
 - [`NetCoreFeatureDescriptorDictionaryConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorDictionaryConverter.md)
+- [`NetCoreFeatureDescriptorListConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorListConverter.md)
 - [`NetCoreFeatureDescriptorTConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorTConverter.md)
+- [`NetCoreSamplerConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreSamplerConverter.md)
 - [`NetCoreSerializationHelper`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreSerializationHelper.md)
 ### [SigStat.Common.Helpers.Excel](./SigStat/Common/Helpers/Excel/README.md)
 

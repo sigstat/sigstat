@@ -7,27 +7,27 @@ Assembly: SigStat.Common.dll
 Implements [ISignerModel](./../../Pipeline/ISignerModel.md)
 
 ## Summary
-Represents a trained model for [PipelineItems.Classifiers.DtwClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Classifiers/DtwClassifier.md)
+Represents a trained model for [DtwClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Classifiers/DtwClassifier.md)
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>DtwSignerModel (  )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>DtwSignerModel (  )</sub>| <sub></sub>| <br>
 
 
 ## Fields
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>DistanceMatrix</sub><img width=200/>| <sub>DTW distance matrix of the genuine signatures</sub>| <br>
-| <sub>Threshold</sub><img width=200/>| <sub>A threshold, that will be used for classification. Signatures with  an average DTW distance from the genuines above this threshold will  be classified as forgeries</sub>| <br>
+| <sub>DistanceMatrix</sub>| <sub>DTW distance matrix of the genuine signatures</sub>| <br>
+| <sub>Threshold</sub>| <sub>A threshold, that will be used for classification. Signatures with  an average DTW distance from the genuines above this threshold will  be classified as forgeries</sub>| <br>
 
 
 ## Properties
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>GenuineSignatures</sub><img width=200/>| <sub>A list a of genuine signatures used for training</sub>| <br>
+| <sub>GenuineSignatures</sub>| <sub>A list a of genuine signatures used for training</sub>| <br>
 
 

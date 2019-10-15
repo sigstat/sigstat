@@ -11,25 +11,25 @@ Extracts standard [Features](https://github.com/sigstat/sigstat/blob/develop/doc
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>ComponentsToFeatures (  )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>ComponentsToFeatures (  )</sub>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>Button</sub><img width=200/>| <sub>Button</sub>| <br>
-| <sub>InputComponents</sub><img width=200/>| <sub>Components</sub>| <br>
-| <sub>X</sub><img width=200/>| <sub>X</sub>| <br>
-| <sub>Y</sub><img width=200/>| <sub>Y</sub>| <br>
+| <sub>Button</sub>| <sub>Button</sub>| <br>
+| <sub>InputComponents</sub>| <sub>Components</sub>| <br>
+| <sub>X</sub>| <sub>X</sub>| <br>
+| <sub>Y</sub>| <sub>Y</sub>| <br>
 
 
 ## Methods
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/ComponentsToFeatures-100663582.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[Transform](./Methods/ComponentsToFeatures-100663582.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
 
 
