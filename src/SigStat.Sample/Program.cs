@@ -55,18 +55,111 @@ namespace SigStat.Sample
             //DatabaseLoaderDemo();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
-            //OnlineVerifierDemo();        
-           //OnlineRotationBenchmarkDemo();
+            //OnlineVerifierDemo();
+            //SignatureToImageTesting();
+          OnlineRotationBenchmarkDemo();
+          // SampleRateTestingDemo();
             //OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
-            JsonSerializeOnlineVerifier();
+            //JsonSerializeOnlineVerifier();
             //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
+        }
+
+        private static void SignatureToImageTesting()
+        {
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            Svc2004Loader Loader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true);
+            Signature s1 = Loader.EnumerateSigners(p => (p.ID == "05")).ToList()[0].Signatures[10];//signer 10, signature 10
+            Signature s2 = s1;
+           
+                var tfs = new SequentialTransformPipeline
+            {
+                new ParallelTransformPipeline
+                {
+
+                   new Normalize() { Input = Features.X, Output = Features.X },
+                   new Normalize() { Input = Features.Y, Output = Features.Y },
+                },
+                new RealisticImageGenerator(1280, 720)
+            };
+                tfs.Logger = new SimpleConsoleLogger();
+                tfs.Transform(s1);
+
+                ImageSaver.Save(s1, $"{s1.Signer.ID }_{s1.ID }_0Before.png");
+
+            var tfs2 = new SequentialTransformPipeline
+            {
+                new ParallelTransformPipeline
+                {
+
+                   new Normalize() { Input = Features.X, Output = Features.X },
+                   new Normalize() { Input = Features.Y, Output = Features.Y },
+                   new NormalizeRotationForX() {InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y}
+                },
+                new RealisticImageGenerator(1280, 720)
+            };
+            tfs2.Logger = new SimpleConsoleLogger();
+            tfs2.Transform(s2);
+            ImageSaver.Save(s2, $"{s2.Signer.ID }_{s2.ID }_AfternORMALrOTATIONXX.png");
+
+        }
+
+        private static void SampleRateTestingDemo()
+        {
+            int s = 1;
+            for (s = 1; s < 20; s++)
+            {
+                var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+                var benchmark = new VerifierBenchmark()
+                {
+
+                    Loader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip"), true),
+
+                    Verifier = new Verifier()
+                    {
+                        Pipeline = new SequentialTransformPipeline
+                    {
+                 new OrthognalRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+
+               // new RotationTypeTwo(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+             new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+             new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.X, OutputFeature = Features.X},
+             new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.Y, OutputFeature = Features.Y},
+                    // new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+            new SampleRate(){samplerate=s,InputX=Features.X, InputY=Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+                        }
+                    ,
+                        Classifier = new OptimalDtwClassifier()
+                        {
+                            DistanceFunction = Accord.Math.Distance.Euclidean,
+                            Sampler = new FirstNSampler(10),
+                            Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
+                        }
+                    },
+                    Sampler = new FirstNSampler(10),
+                    Logger = new SimpleConsoleLogger(),
+                };
+
+                benchmark.ProgressChanged += ProgressPrimary;
+                //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+                var result = benchmark.Execute(true);
+
+                //foreach (var signerResult in result.SignerResults)
+                //{
+                //    Console.WriteLine($"{signerResult.Signer} {signerResult.Aer}");
+                //}
+                Console.WriteLine("S= " + s + $"   AER: {result.FinalResult.Aer}");
+            }
         }
 
         private static void RenderDatabase()
@@ -388,41 +481,54 @@ namespace SigStat.Sample
 
         static void OnlineRotationBenchmarkDemo()
         {
-            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
-            var benchmark = new VerifierBenchmark()
-            {
-                Loader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip").GetPath(), true),
-                Verifier = new Verifier()
+            
+                var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+                var benchmark = new VerifierBenchmark()
                 {
-                    Pipeline = new SequentialTransformPipeline
+
+                 Loader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip"), true),
+
+                    Verifier = new Verifier()
                     {
-                         new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
-                           new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
-                        //new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.X, OutputFeature = Features.X},
-                        //new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.Y, OutputFeature = Features.Y},
-                        //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
-                    }
-                ,
-                    Classifier = new OptimalDtwClassifier()
+                        Pipeline = new SequentialTransformPipeline
                     {
-                        Sampler = new FirstNSampler(10),
-                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
-                    }
-                },
-                Sampler = new FirstNSampler(10),
-                Logger = new SimpleConsoleLogger(),
-            };
+                                             //  new OrthognalRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
 
-            benchmark.ProgressChanged += ProgressPrimary;
-            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
-            var result = benchmark.Execute(true);
+                             new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                               new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                            new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.X, OutputFeature = Features.X},
+                            new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.Y, OutputFeature = Features.Y},
+                      //new NormalizeRotationForX(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
 
-            foreach (var signerResult in result.SignerResults)
-            {
-                Console.WriteLine($"{signerResult.Signer} {signerResult.Aer}");
-            }
-            Console.WriteLine($"AER: {result.FinalResult.Aer}");
+                    new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+
+                        }
+                    ,
+                        Classifier = new OptimalDtwClassifier()
+                        {
+                            DistanceFunction = Accord.Math.Distance.Euclidean,
+                            Sampler = new FirstNSampler(10),
+                            Features = new List<FeatureDescriptor>() {  Features.X }
+                        }
+                    },
+                    Sampler = new FirstNSampler(10),
+                    Logger = new SimpleConsoleLogger(),
+                };
+           
+           
+                benchmark.ProgressChanged += ProgressPrimary;
+                //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+                var result = benchmark.Execute(true);
+
+                //foreach (var signerResult in result.SignerResults)
+                //{
+                //    Console.WriteLine($"{signerResult.Signer} {signerResult.Aer}");
+                //}
+                Console.WriteLine( $"AER: {result.FinalResult.Aer}");
+          
         }
 
         static void OnlineVerifierBenchmarkDemo()

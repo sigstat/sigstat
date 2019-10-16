@@ -11,32 +11,32 @@ Runs pipeline items in a sequence.  <br>Default Pipeline Output: Output of the l
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>SequentialTransformPipeline (  )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>SequentialTransformPipeline (  )</sub>| <sub></sub>| <br>
 
 
 ## Fields
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>Items</sub><img width=200/>| <sub>List of transforms to be run in sequence.</sub>| <br>
+| <sub>Items</sub>| <sub>List of transforms to be run in sequence.</sub>| <br>
 
 
 ## Properties
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>PipelineInputs</sub><img width=200/>| <sub>Gets the pipeline inputs.</sub>| <br>
-| <sub>PipelineOutputs</sub><img width=200/>| <sub>Gets the pipeline outputs.</sub>| <br>
+| <sub>PipelineInputs</sub>| <sub>Gets the pipeline inputs.</sub>| <br>
+| <sub>PipelineOutputs</sub>| <sub>Gets the pipeline outputs.</sub>| <br>
 
 
 ## Methods
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>[Add](./Methods/SequentialTransformPipeline-100663510.md) ( [`ITransformation`](./../ITransformation.md) )</sub><img width=200/>| <sub>Add new transform to the list.</sub>| <br>
-| <sub>[GetEnumerator](./Methods/SequentialTransformPipeline-100663509.md) (  )</sub><img width=200/>| <sub></sub>| <br>
-| <sub>[Transform](./Methods/SequentialTransformPipeline-100663511.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub>Executes transform [Pipeline.SequentialTransformPipeline.Items](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md) in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence.</sub>| <br>
+| <sub>[Add](./Methods/SequentialTransformPipeline-100663510.md) ( [`ITransformation`](./../ITransformation.md) )</sub>| <sub>Add new transform to the list.</sub>| <br>
+| <sub>[GetEnumerator](./Methods/SequentialTransformPipeline-100663509.md) (  )</sub>| <sub></sub>| <br>
+| <sub>[Transform](./Methods/SequentialTransformPipeline-100663511.md) ( [`Signature`](./../Signature.md) )</sub>| <sub>Executes transform [Items](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md) in sequence.  Passes input features for each.  Output is the output of the last Item in the sequence.</sub>| <br>
 
 

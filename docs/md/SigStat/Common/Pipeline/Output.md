@@ -9,16 +9,16 @@ Annotates an output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>Output ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) )</sub><img width=200/>| <sub>Initializes a new instance of the [Pipeline.Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class.</sub>| <br>
-| <sub>Output (  )</sub><img width=200/>| <sub>Initializes a new instance of the [Pipeline.Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class.</sub>| <br>
+| <sub>Output ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) )</sub>| <sub>Initializes a new instance of the [Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class.</sub>| <br>
+| <sub>Output (  )</sub>| <sub>Initializes a new instance of the [Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class.</sub>| <br>
 
 
 ## Fields
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>Default</sub><img width=200/>| <sub>The default value for the property</sub>| <br>
+| <sub>Default</sub>| <sub>The default value for the property</sub>| <br>
 
 

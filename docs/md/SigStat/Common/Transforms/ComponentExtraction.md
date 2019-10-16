@@ -11,25 +11,25 @@ Extracts unsorted components by tracing through the binary Skeleton raster.  <br
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>ComponentExtraction ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.ComponentExtraction](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/ComponentExtraction.md) class with specified sampling resolution.</sub>| <br>
+| <sub>ComponentExtraction ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) )</sub>| <sub>Initializes a new instance of the [ComponentExtraction](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/ComponentExtraction.md) class with specified sampling resolution.</sub>| <br>
 
 
 ## Properties
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>CrossingPoints</sub><img width=200/>| <sub>crossing points</sub>| <br>
-| <sub>EndPoints</sub><img width=200/>| <sub>endpoints</sub>| <br>
-| <sub>OutputComponents</sub><img width=200/>| <sub>Output components</sub>| <br>
-| <sub>Skeleton</sub><img width=200/>| <sub>binary representation of a signature image</sub>| <br>
+| <sub>CrossingPoints</sub>| <sub>crossing points</sub>| <br>
+| <sub>EndPoints</sub>| <sub>endpoints</sub>| <br>
+| <sub>OutputComponents</sub>| <sub>Output components</sub>| <br>
+| <sub>Skeleton</sub>| <sub>binary representation of a signature image</sub>| <br>
 
 
 ## Methods
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/ComponentExtraction-100663567.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[Transform](./Methods/ComponentExtraction-100663567.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
 
 

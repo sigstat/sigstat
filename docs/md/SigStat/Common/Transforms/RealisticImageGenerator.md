@@ -7,19 +7,19 @@ Assembly: SigStat.Common.dll
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.  <br>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [Features.Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
+Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.  <br>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)<br>Default Pipeline Output: [Image](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>RealisticImageGenerator ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) )</sub><img width=200/>| <sub>Initializes a new instance of the [Transforms.RealisticImageGenerator](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/RealisticImageGenerator.md) class with specified settings.</sub>| <br>
+| <sub>RealisticImageGenerator ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) )</sub>| <sub>Initializes a new instance of the [RealisticImageGenerator](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/RealisticImageGenerator.md) class with specified settings.</sub>| <br>
 
 
 ## Methods
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/RealisticImageGenerator-100663701.md) ( [`Signature`](./../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[Transform](./Methods/RealisticImageGenerator-100663701.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
 
 

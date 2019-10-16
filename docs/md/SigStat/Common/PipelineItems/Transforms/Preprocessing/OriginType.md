@@ -4,15 +4,15 @@ Namespace: [SigStat]() > [Common](./../../../README.md) > [PipelineItems]() > [T
 Assembly: SigStat.Common.dll
 
 
-Origin specification for [PipelineItems.Transforms.Preprocessing.TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md)
+Origin specification for [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md)
 
 ##	Enum
 
-| Value | Name | Summary | 
+| Value<img width=475> | Name<img width=475> | Summary<img width=475> | 
 | --- | --- | --- | 
-| 0<img width=200/>| CenterOfGravity| Center of gravity<img width=200/>| <br>
-| 1<img width=200/>| Minimum| Minimum<img width=200/>| <br>
-| 2<img width=200/>| Maximum| Maximum<img width=200/>| <br>
-| 3<img width=200/>| Predefined| Predefined<img width=200/>| <br>
+| 0| CenterOfGravity| Center of gravity| <br>
+| 1| Minimum| Minimum| <br>
+| 2| Maximum| Maximum| <br>
+| 3| Predefined| Predefined| <br>
 
 

@@ -8,12 +8,12 @@ Paragraph style setting
 
 ##	Enum
 
-| Value | Name | Summary | 
+| Value<img width=475> | Name<img width=475> | Summary<img width=475> | 
 | --- | --- | --- | 
-| 0<img width=200/>| Title| Main title<img width=200/>| <br>
-| 1<img width=200/>| Heading1| Level 1 heading<img width=200/>| <br>
-| 2<img width=200/>| Heading2| Level 2 heading<img width=200/>| <br>
-| 3<img width=200/>| Heading3| Level 3 heading<img width=200/>| <br>
-| 4<img width=200/>| Normal| Normal document body style<img width=200/>| <br>
+| 0| Title| Main title| <br>
+| 1| Heading1| Level 1 heading| <br>
+| 2| Heading2| Level 2 heading| <br>
+| 3| Heading3| Level 3 heading| <br>
+| 4| Normal| Normal document body style| <br>
 
 

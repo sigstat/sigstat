@@ -8,14 +8,14 @@ Predefined color schemes for Excel
 
 ##	Enum
 
-| Value | Name | Summary | 
+| Value<img width=475> | Name<img width=475> | Summary<img width=475> | 
 | --- | --- | --- | 
-| 0<img width=200/>| Primary| Primary color<img width=200/>| <br>
-| 1<img width=200/>| Secondary| Secondary color<img width=200/>| <br>
-| 2<img width=200/>| Succes| Succes color<img width=200/>| <br>
-| 3<img width=200/>| Danger| Danger color<img width=200/>| <br>
-| 4<img width=200/>| Warning| Warning color<img width=200/>| <br>
-| 5<img width=200/>| Info| Info color<img width=200/>| <br>
-| 6<img width=200/>| Transparent| Transparent color<img width=200/>| <br>
+| 0| Primary| Primary color| <br>
+| 1| Secondary| Secondary color| <br>
+| 2| Succes| Succes color| <br>
+| 3| Danger| Danger color| <br>
+| 4| Warning| Warning color| <br>
+| 5| Info| Info color| <br>
+| 6| Transparent| Transparent color| <br>
 
 

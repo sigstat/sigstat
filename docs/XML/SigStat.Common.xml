@@ -2695,6 +2695,76 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputT">
+            <summary>
+            Gets or sets the input feature representing the timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.OutputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.InputT">
+            <summary>
+            Gets or sets the input feature representing the timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.OutputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale">
             <summary>
             Maps values of a feature to a specific range.
@@ -2758,6 +2828,46 @@
             </summary>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.samplerate">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputT">
+            <summary>
+            Gets or sets the input feature representing the timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.OutputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale">

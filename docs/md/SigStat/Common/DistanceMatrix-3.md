@@ -9,23 +9,23 @@ A Sparse Matrix representation of a distance graph.
 
 ## Constructors
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>DistanceMatrix (  )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>DistanceMatrix (  )</sub>| <sub></sub>| <br>
 
 
 ## Properties
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>Item [ [`TRowKey`](./DistanceMatrix-3.md) ]</sub><img width=200/>| <sub>Gets or sets a distance for a given row and column</sub>| <br>
+| <sub>Item [ [`TRowKey`](./DistanceMatrix-3.md) ]</sub>| <sub>Gets or sets a distance for a given row and column</sub>| <br>
 
 
 ## Methods
 
-| Name | Summary | 
+| Name<img width=475> | Summary<img width=475> | 
 | --- | --- | 
-| <sub>[ContainsKey](./Methods/DistanceMatrix`3-100663396.md) ( [`TRowKey`](./DistanceMatrix-3.md), [`TColumnKey`](./DistanceMatrix-3.md) )</sub><img width=200/>| <sub></sub>| <br>
-| <sub>[TryGetValue](./Methods/DistanceMatrix`3-100663395.md) ( [`TRowKey`](./DistanceMatrix-3.md), [`TColumnKey`](./DistanceMatrix-3.md), out [`TValue`](./DistanceMatrix-3.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <sub>[ContainsKey](./Methods/DistanceMatrix`3-100663396.md) ( [`TRowKey`](./DistanceMatrix-3.md), [`TColumnKey`](./DistanceMatrix-3.md) )</sub>| <sub></sub>| <br>
+| <sub>[TryGetValue](./Methods/DistanceMatrix`3-100663395.md) ( [`TRowKey`](./DistanceMatrix-3.md), [`TColumnKey`](./DistanceMatrix-3.md), out [`TValue`](./DistanceMatrix-3.md) )</sub>| <sub></sub>| <br>
 
 
