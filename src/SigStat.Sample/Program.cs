@@ -2,7 +2,6 @@
 using SigStat.Common;
 using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Helpers;
-using SigStat.Common.Helpers.NetCoreSerialization;
 using SigStat.Common.Loaders;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
@@ -1168,11 +1167,9 @@ namespace SigStat.Sample
 
             //Serialize to a string
             SerializationHelper.JsonSerializeToFile(sig,@"SignaturSerialized.txt");
-            NetCoreSerializationHelper.SerializeToFile(sig,@"SignaturSerializedNetCore3.txt");
 
             //Deserialize from a string
             Signature desirializedSig = SerializationHelper.DeserializeFromFile<Signature>(@"SignaturSerialized.txt");
-            Signature desirializedSig3 = NetCoreSerializationHelper.DeserializeFromFile<Signature>(@"SignaturSerializedNetCore3.txt");
 
             /*foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
             {
@@ -1223,10 +1220,8 @@ namespace SigStat.Sample
 
             //File serialization example
             SerializationHelper.JsonSerializeToFile(onlineverifier, path);
-            NetCoreSerializationHelper.SerializeToFile(onlineverifier, path3);
 
             Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(path);
-            Verifier deserializedOV2 = NetCoreSerializationHelper.DeserializeFromFile<Verifier>(path3);
 
         }
         static void JsonSerializeOnlineVerifierBenchmark()
@@ -1269,10 +1264,8 @@ namespace SigStat.Sample
 
             //Console.WriteLine($"AER: {result.FinalResult.Aer}");
             SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
-            NetCoreSerializationHelper.SerializeToFile(benchmark, @"VerifierBenchmarkSerializedNetCore3.txt");
             //SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
             VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
-            VerifierBenchmark deserializedBMNC = NetCoreSerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerializedNetCore3.txt");
         }
 
 

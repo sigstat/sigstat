@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SigStat.Common.Helpers;
-using SigStat.Common.Helpers.NetCoreSerialization;
 using SigStat.Common.Helpers.Serialization;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
