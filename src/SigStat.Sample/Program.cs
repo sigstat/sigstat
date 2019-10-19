@@ -56,14 +56,14 @@ namespace SigStat.Sample
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();
             //SignatureToImageTesting();
-          OnlineRotationBenchmarkDemo();
-          // SampleRateTestingDemo();
+            //OnlineRotationBenchmarkDemo();
+            //SampleRateTestingDemo();
             //OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            //JsonSerializeOnlineVerifierBenchmark();
+            JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
