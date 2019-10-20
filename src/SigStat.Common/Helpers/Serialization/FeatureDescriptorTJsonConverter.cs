@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SigStat.Common.Helpers.Serialization;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace SigStat.Common.Helpers
 {
