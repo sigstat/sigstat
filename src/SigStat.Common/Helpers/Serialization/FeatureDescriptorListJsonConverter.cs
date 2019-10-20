@@ -11,7 +11,7 @@ namespace SigStat.Common.Helpers.Serialization
     /// <summary>
     /// Custom serializer for lists containing <see cref="FeatureDescriptor"/> or  <see cref="FeatureDescriptor{T}"/> objects
     /// </summary>
-    class FeatureDescriptorListJsonConverter : JsonConverter
+    public class FeatureDescriptorListJsonConverter : JsonConverter
     {
         private FeatureDescriptorTJsonConverter helperConverter = new FeatureDescriptorTJsonConverter();
         /// <summary>
@@ -21,7 +21,7 @@ namespace SigStat.Common.Helpers.Serialization
         /// <returns>If the object can be converted or not</returns>
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(List<PipelineOutput>));
+            return (objectType == typeof(List<FeatureDescriptor>));
         }
         /// <summary>
         /// Overwrite of the <see cref="JsonConverter"/> method
@@ -66,7 +66,7 @@ namespace SigStat.Common.Helpers.Serialization
                 string key = strings[0].Trim();
                 string featureType = strings[1].Trim();
                 Type currType = Type.GetType(featureType);
-                var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType.GenericTypeArguments);
+                var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType);
                 var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
                 return get.Invoke(null, new object[] { key });
             }

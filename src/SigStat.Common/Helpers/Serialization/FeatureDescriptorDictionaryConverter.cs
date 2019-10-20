@@ -9,7 +9,7 @@ namespace SigStat.Common.Helpers.Serialization
     /// <summary>
     /// Custom serializer for a Dictionary of <see cref="FeatureDescriptor"/>
     /// </summary>
-    class FeatureDescriptorDictionaryConverter : JsonConverter
+    public class FeatureDescriptorDictionaryConverter : JsonConverter
     {
         /// <summary>
         /// Tells if the current object is of the correct type
