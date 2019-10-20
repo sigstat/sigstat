@@ -40,7 +40,7 @@ namespace SigStat.Common.Helpers
                 string key = strings[0].Trim();
                 string featureType = strings[1].Trim();
                 Type currType = Type.GetType(featureType);
-                var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType.GenericTypeArguments);
+                var fdType = typeof(FeatureDescriptor<>).MakeGenericType(currType);
                 var get = fdType.GetMethod("Get", BindingFlags.Public | BindingFlags.Static);
                 return get.Invoke(null, new object[] { key });
             }
