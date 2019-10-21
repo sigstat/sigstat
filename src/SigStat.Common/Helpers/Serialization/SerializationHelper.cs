@@ -31,7 +31,7 @@ namespace SigStat.Common.Helpers
         /// <typeparam name="T">A type which has a public parameterless constructor</typeparam>
         /// <param name="s">The serialized string</param>
         /// <returns>The object that was serialized</returns>
-        public static T Deserialize<T>(string s) where T : new()
+        public static T Deserialize<T>(string s) where T : class
         {
             return JsonConvert.DeserializeObject<T>(s, GetSettings());
         }
@@ -41,7 +41,7 @@ namespace SigStat.Common.Helpers
         /// <typeparam name="T">A type which has a public parameterless constructor</typeparam>
         /// <param name="path">Relative path to the file</param>
         /// <returns>The object that was serialized to the file</returns>
-        public static T DeserializeFromFile<T>(string path) where T : new()
+        public static T DeserializeFromFile<T>(string path) where T : class
         {
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(path), GetSettings());
         }

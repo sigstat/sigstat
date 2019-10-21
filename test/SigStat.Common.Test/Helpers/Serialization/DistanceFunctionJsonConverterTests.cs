@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -39,7 +40,9 @@ namespace SigStat.Common.Test.Helpers.Serialization
         {
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Cosine;
             var json = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, GetTestSettings());
-            var expectedJson = $"\"{distanceFunc.Method.DeclaringType.AssemblyQualifiedName}|{distanceFunc.Method}\"";
+            var enumerable = distanceFunc.Method.GetParameters().Select(x => x.ParameterType.FullName + ";");
+            var concated = string.Concat(enumerable).TrimEnd(';');
+            var expectedJson = $"\"{distanceFunc.Method.DeclaringType?.AssemblyQualifiedName}|{distanceFunc.Method.Name}|{concated}\"";
             Assert.AreEqual(expectedJson,json);
         }
 
@@ -47,7 +50,9 @@ namespace SigStat.Common.Test.Helpers.Serialization
         public void TestRead()
         {
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Euclidean;
-            var funcJson = $"\"{distanceFunc.Method.DeclaringType.AssemblyQualifiedName}|{distanceFunc.Method}\"";
+            var enumerable = distanceFunc.Method.GetParameters().Select(x => x.ParameterType.FullName + ";");
+            var concated = string.Concat(enumerable).TrimEnd(';');
+            var funcJson = $"\"{distanceFunc.Method.DeclaringType?.AssemblyQualifiedName}|{distanceFunc.Method.Name}|{concated}\"";
             var funcDeserialized =
                 JsonConvert.DeserializeObject<Func<double[], double[], double>>(funcJson, GetTestSettings());
             Assert.AreEqual(distanceFunc,funcDeserialized);
@@ -57,7 +62,9 @@ namespace SigStat.Common.Test.Helpers.Serialization
         public void TestReadWrongJson()
         {
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Euclidean;
-            var funcJson = $"{distanceFunc.Method.DeclaringType.AssemblyQualifiedName}|{distanceFunc.Method}\"";
+            var enumerable = distanceFunc.Method.GetParameters().Select(x => x.ParameterType.FullName + ";");
+            var concated = string.Concat(enumerable).TrimEnd(';');
+            var funcJson = $"{distanceFunc.Method.DeclaringType?.AssemblyQualifiedName}|{distanceFunc.Method.Name}|{concated}\"";
             Assert.ThrowsException<JsonReaderException>(() =>
                 JsonConvert.DeserializeObject<Dictionary<string, FeatureDescriptor>>(funcJson, GetTestSettings()));
         }
