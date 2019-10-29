@@ -9,16 +9,16 @@ Represents the ErrorRates achieved in a benchmark
 
 ## Fields
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Far</sub>| <sub>False Acceptance Rate</sub>| <br>
-| <sub>Frr</sub>| <sub>False Rejection Rate</sub>| <br>
+| Far | False Acceptance Rate | 
+| Frr | False Rejection Rate | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Aer</sub>| <sub>Average Error Rate (calculated from Far and Frr)</sub>| <br>
+| Aer | Average Error Rate (calculated from Far and Frr) | 
 
 

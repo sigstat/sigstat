@@ -11,26 +11,26 @@ Removes samples based on a criteria from online signature time series
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>FilterPoints (  )</sub>| <sub></sub>| <br>
+| FilterPoints (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>InputFeatures</sub>| <sub>[FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) list of all features to resample</sub>| <br>
-| <sub>KeyFeatureInput</sub>| <sub>[FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) that controls the removal of samples (e.g. [Pressure](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
-| <sub>KeyFeatureOutput</sub>| <sub>Resampled output for [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) that controls the removal of samples (e.g. [Pressure](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
-| <sub>OutputFeatures</sub>| <sub>Resampled output for all input features</sub>| <br>
-| <sub>Percentile</sub>| <sub>The lowes percentile of the [KeyFeatureInput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/FilterPoints.md) will be removed during filtering</sub>| <br>
+| InputFeatures | [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) list of all features to resample | 
+| KeyFeatureInput | [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) that controls the removal of samples (e.g. [Pressure](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) | 
+| KeyFeatureOutput | Resampled output for [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) that controls the removal of samples (e.g. [Pressure](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) | 
+| OutputFeatures | Resampled output for all input features | 
+| Percentile | The lowes percentile of the [KeyFeatureInput](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/FilterPoints.md) will be removed during filtering | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/FilterPoints-100663755.md) ( [`Signature`](./../../../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/FilterPoints--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
 
 

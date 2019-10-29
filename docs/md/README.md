@@ -73,9 +73,9 @@ This is the root summary
 - [`ParallelTransformPipeline`](./SigStat/Common/Pipeline/ParallelTransformPipeline.md)
 	- Runs pipeline items in parallel.  <br>Default Pipeline Output: Range of all the Item outputs.
 - [`PipelineInput`](./SigStat/Common/Pipeline/PipelineInput.md)
-	- Represents an input for a [PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md)
+	- Represents an input for a [PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/PipelineInput.md)
 - [`PipelineOutput`](./SigStat/Common/Pipeline/PipelineOutput.md)
-	- Represents an output for a [PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/.md)
+	- Represents an output for a [PipelineItem](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/PipelineOutput.md)
 - [`SequentialTransformPipeline`](./SigStat/Common/Pipeline/SequentialTransformPipeline.md)
 	- Runs pipeline items in a sequence.  <br>Default Pipeline Output: Output of the last Item in the sequence.
 ### [SigStat.Common.Transforms](./SigStat/Common/Transforms/README.md)
@@ -168,6 +168,16 @@ This is the root summary
 	- This [IDistanceClassifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/IDistanceClassifier.md) implementation will consider both test and  training samples and claculate the threshold to separate the original and forged  signatures to approximate EER. Note that this classifier is not applicable for  real world scenarios. It was developed to test the theoratical boundaries of  threshold based classification
 - [`WeightedClassifier`](./SigStat/Common/PipelineItems/Classifiers/WeightedClassifier.md)
 	- Classifies Signatures by weighing other Classifier results.
+### [SigStat.Common.Logging](./SigStat/Common/Logging/README.md)
+
+- [`BenchmarkKeyValueLogState`](./SigStat/Common/Logging/BenchmarkKeyValueLogState.md)
+- [`BenchmarkLogState`](./SigStat/Common/Logging/BenchmarkLogState.md)
+- [`BenchmarkSignerLogState`](./SigStat/Common/Logging/BenchmarkSignerLogState.md)
+- [`ClassifierDistanceLogState`](./SigStat/Common/Logging/ClassifierDistanceLogState.md)
+- [`SignatureKeyValueLogState`](./SigStat/Common/Logging/SignatureKeyValueLogState.md)
+- [`SignerKeyValueLogState`](./SigStat/Common/Logging/SignerKeyValueLogState.md)
+- [`SigStatLogState`](./SigStat/Common/Logging/SigStatLogState.md)
+- [`TransformLogState`](./SigStat/Common/Logging/TransformLogState.md)
 ### [SigStat.Common.Loaders](./SigStat/Common/Loaders/README.md)
 
 - [`DataSetLoader`](./SigStat/Common/Loaders/DataSetLoader.md)
@@ -214,21 +224,16 @@ This is the root summary
 
 - [`DistanceFunctionJsonConverter`](./SigStat/Common/Helpers/Serialization/DistanceFunctionJsonConverter.md)
 	- Helper class for serializing distance functions
+- [`FeatureDescriptorDictionaryConverter`](./SigStat/Common/Helpers/Serialization/FeatureDescriptorDictionaryConverter.md)
+	- Custom serializer for a Dictionary of [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md)
+- [`FeatureDescriptorListJsonConverter`](./SigStat/Common/Helpers/Serialization/FeatureDescriptorListJsonConverter.md)
+	- Custom serializer for lists containing [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) or  [FeatureDescriptor-1](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor-1.md) objects
 - [`FeatureStreamingContextState`](./SigStat/Common/Helpers/Serialization/FeatureStreamingContextState.md)
 	- SerializationContext for serializing SigStat objects
 - [`RectangleFConverter`](./SigStat/Common/Helpers/Serialization/RectangleFConverter.md)
-	- Custom serializer for [System.Drawing.RectangleF](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.RectangleF) objects
+	- Custom serializer for [RectangleF](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.RectangleF) objects
 - [`VerifierResolver`](./SigStat/Common/Helpers/Serialization/VerifierResolver.md)
 	- Custom resolver for customizing the json serialization
-### [SigStat.Common.Helpers.NetCoreSerialization](./SigStat/Common/Helpers/NetCoreSerialization/README.md)
-
-- [`NetCoreClassifierConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreClassifierConverter.md)
-- [`NetCoreFeatureDescriptorConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorConverter.md)
-- [`NetCoreFeatureDescriptorDictionaryConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorDictionaryConverter.md)
-- [`NetCoreFeatureDescriptorListConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorListConverter.md)
-- [`NetCoreFeatureDescriptorTConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreFeatureDescriptorTConverter.md)
-- [`NetCoreSamplerConverter`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreSamplerConverter.md)
-- [`NetCoreSerializationHelper`](./SigStat/Common/Helpers/NetCoreSerialization/NetCoreSerializationHelper.md)
 ### [SigStat.Common.Helpers.Excel](./SigStat/Common/Helpers/Excel/README.md)
 
 - [`Palette`](./SigStat/Common/Helpers/Excel/Palette.md)

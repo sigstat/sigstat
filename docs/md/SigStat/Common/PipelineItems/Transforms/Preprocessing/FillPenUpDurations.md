@@ -11,26 +11,26 @@ This transformation will fill "holes" in the "Time" feature by interpolating the
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>FillPenUpDurations (  )</sub>| <sub></sub>| <br>
+| FillPenUpDurations (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>InputFeatures</sub>| <sub>Gets or sets the features of an online signature that need to be altered</sub>| <br>
-| <sub>InterpolationType</sub>| <sub>An implementation of [IInterpolation](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md)</sub>| <br>
-| <sub>OutputFeatures</sub>| <sub>Gets or sets the features of an online signature that were altered</sub>| <br>
-| <sub>TimeInputFeature</sub>| <sub>Gets or sets the feature representing the timestamps of an online signature</sub>| <br>
-| <sub>TimeOutputFeature</sub>| <sub>Gets or sets the feature representing the modified timestamps of an online signature</sub>| <br>
+| InputFeatures | Gets or sets the features of an online signature that need to be altered | 
+| InterpolationType | An implementation of [IInterpolation](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/IInterpolation.md) | 
+| OutputFeatures | Gets or sets the features of an online signature that were altered | 
+| TimeInputFeature | Gets or sets the feature representing the timestamps of an online signature | 
+| TimeOutputFeature | Gets or sets the feature representing the modified timestamps of an online signature | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/FillPenUpDurations-100663741.md) ( [`Signature`](./../../../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/FillPenUpDurations--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
 
 

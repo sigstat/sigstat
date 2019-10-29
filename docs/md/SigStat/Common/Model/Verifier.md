@@ -11,29 +11,29 @@ Uses pipelines to transform, train on, and classify [Signature](https://github.c
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Verifier ( [`ILogger`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger) )</sub>| <sub>Initializes a new instance of the [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class</sub>| <br>
-| <sub>Verifier (  )</sub>| <sub>Initializes a new instance of the [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class.</sub>| <br>
-| <sub>Verifier ( [`Verifier`](./Verifier.md) )</sub>| <sub>Initializes a new instance of the [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class based on another Verifier instance</sub>| <br>
+| Verifier ( [`ILogger`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.ILogger) ) | Initializes a new instance of the [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class | 
+| Verifier (  ) | Initializes a new instance of the [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class. | 
+| Verifier ( [`Verifier`](./Verifier.md) ) | Initializes a new instance of the [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) class based on another Verifier instance | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>AllFeatures</sub>| <sub>This property is used by the Serializer to access a list of all FeatureDescriptors</sub>| <br>
-| <sub>Classifier</sub>| <sub>Gets or sets the classifier pipeline. Hands over the Logger object.</sub>| <br>
-| <sub>Logger</sub>| <sub>Gets or sets the class responsible for logging</sub>| <br>
-| <sub>Pipeline</sub>| <sub>Gets or sets the transform pipeline. Hands over the Logger object.</sub>| <br>
-| <sub>SignerModel</sub>| <sub>Gets or sets the signer model.</sub>| <br>
+| AllFeatures | This property is used by the Serializer to access a list of all FeatureDescriptors | 
+| Classifier | Gets or sets the classifier pipeline. Hands over the Logger object. | 
+| Logger | Gets or sets the class responsible for logging | 
+| Pipeline | Gets or sets the transform pipeline. Hands over the Logger object. | 
+| SignerModel | Gets or sets the signer model. | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Test](./Methods/Verifier-100664171.md) ( [`Signature`](./../Signature.md) )</sub>| <sub>Verifies the genuinity of `signature`.</sub>| <br>
-| <sub>[Train](./Methods/Verifier-100664170.md) ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./../Signature.md)> )</sub>| <sub>Trains the verifier with a list of signatures. Uses the [Pipeline](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) to extract features,  and [Classifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) to find an optimized limit.</sub>| <br>
+| [Test](./Methods/Verifier--Test.md) ( [`Signature`](./../Signature.md) ) | Verifies the genuinity of `signature`. | 
+| [Train](./Methods/Verifier--Train.md) ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./../Signature.md)> ) | Trains the verifier with a list of signatures. Uses the [Pipeline](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) to extract features,  and [Classifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md) to find an optimized limit. | 
 
 

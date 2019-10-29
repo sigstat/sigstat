@@ -7,17 +7,17 @@ Assembly: SigStat.Common.dll
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Palette ( [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) )</sub>| <sub>Initializes a new instance of the [Palette](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Excel/Palette.md) class.</sub>| <br>
+| Palette ( [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color), [`Color`](https://docs.microsoft.com/en-us/dotnet/api/System.Drawing.Color) ) | Initializes a new instance of the [Palette](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/Excel/Palette.md) class. | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>DarkColor</sub>| <sub>Gets or sets the color for rendering darker elements</sub>| <br>
-| <sub>LightColor</sub>| <sub>Gets or sets the color for rendering bright elements</sub>| <br>
-| <sub>MainColor</sub>| <sub>Gets or sets the main color used in the palette</sub>| <br>
+| DarkColor | Gets or sets the color for rendering darker elements | 
+| LightColor | Gets or sets the color for rendering bright elements | 
+| MainColor | Gets or sets the main color used in the palette | 
 
 

@@ -9,16 +9,16 @@ Represents an interploation algorithm
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>FeatureValues</sub>| <sub>Gets or sets the feature values.</sub>| <br>
-| <sub>TimeValues</sub>| <sub>Timestamps</sub>| <br>
+| FeatureValues | Gets or sets the feature values. | 
+| TimeValues | Timestamps | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[GetValue](./Methods/IInterpolation-100663762.md) ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub>| <sub>Gets the interpolated value at a given timestamp</sub>| <br>
+| [GetValue](./Methods/IInterpolation--GetValue.md) ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the interpolated value at a given timestamp | 
 
 

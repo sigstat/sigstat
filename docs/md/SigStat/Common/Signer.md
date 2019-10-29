@@ -9,23 +9,23 @@ Represents a person as an [ID](https://github.com/sigstat/sigstat/blob/develop/d
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Signer (  )</sub>| <sub></sub>| <br>
+| Signer (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>ID</sub>| <sub>An identifier for the Signer. Keep it unique to be useful for logs.</sub>| <br>
-| <sub>Signatures</sub>| <sub>List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.)</sub>| <br>
+| ID | An identifier for the Signer. Keep it unique to be useful for logs. | 
+| Signatures | List of signatures that belong to the signer.  (Their origin is not constrained to be genuine.) | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[ToString](./Methods/Signer-100663454.md) (  )</sub>| <sub>Returns a string representation of a Signer</sub>| <br>
+| [ToString](./Methods/Signer--ToString.md) (  ) | Returns a string representation of a Signer | 
 
 

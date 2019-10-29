@@ -11,22 +11,22 @@ DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but fi
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>ImageLoader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) )</sub>| <sub>Initializes a new instance of the [ImageLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/ImageLoader.md) class with specified database.</sub>| <br>
+| ImageLoader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) | Initializes a new instance of the [ImageLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/ImageLoader.md) class with specified database. | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[EnumerateSigners](./Methods/ImageLoader-100663926.md) ( [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> )</sub>| <sub></sub>| <br>
+| [EnumerateSigners](./Methods/ImageLoader--EnumerateSigners.md) ( [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> ) |  | 
 
 
 ## Static Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[LoadSignature](./Methods/ImageLoader-100663927.md) ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) )</sub>| <sub></sub>| <br>
+| [LoadSignature](./Methods/ImageLoader--LoadSignature.md) ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) |  | 
 
 

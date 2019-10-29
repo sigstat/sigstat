@@ -9,15 +9,15 @@ Annotates an input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/d
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Input ( [`AutoSetMode`](./AutoSetMode.md) )</sub>| <sub>Initializes a new instance of the [Input](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Input.md) class.</sub>| <br>
+| Input ( [`AutoSetMode`](./AutoSetMode.md) ) | Initializes a new instance of the [Input](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Input.md) class. | 
 
 
 ## Fields
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>AutoSetMode</sub>| <sub>The automatic set mode</sub>| <br>
+| AutoSetMode | The automatic set mode | 
 
 

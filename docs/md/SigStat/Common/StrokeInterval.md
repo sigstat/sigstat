@@ -9,17 +9,17 @@ Represents a stroke in an online signature
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>StrokeInterval ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`StrokeType`](./StrokeType.md) )</sub>| <sub>Initializes a new instance of the [StrokeInterval](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/StrokeInterval.md) struct.</sub>| <br>
+| StrokeInterval ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`StrokeType`](./StrokeType.md) ) | Initializes a new instance of the [StrokeInterval](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/StrokeInterval.md) struct. | 
 
 
 ## Fields
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>EndIndex</sub>| <sub>The index of the last element</sub>| <br>
-| <sub>StartIndex</sub>| <sub>The index of the firs element</sub>| <br>
-| <sub>StrokeType</sub>| <sub>The [StrokeType](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/StrokeInterval.md) of the stroke.</sub>| <br>
+| EndIndex | The index of the last element | 
+| StartIndex | The index of the firs element | 
+| StrokeType | The [StrokeType](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/StrokeInterval.md) of the stroke. | 
 
 

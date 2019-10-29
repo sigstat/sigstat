@@ -11,23 +11,23 @@ Adds a constant value to a feature. Works with collection features too.  <br>Def
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>AddConst ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub>| <sub>Initializes a new instance of the [AddConst](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddConst.md) class with specified settings.</sub>| <br>
+| AddConst ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Initializes a new instance of the [AddConst](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/AddConst.md) class with specified settings. | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Input</sub>| <sub>Input values for trasformation</sub>| <br>
-| <sub>Output</sub>| <sub>Output feature to store results</sub>| <br>
+| Input | Input values for trasformation | 
+| Output | Output feature to store results | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/AddConst-100663605.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/AddConst--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
 
 

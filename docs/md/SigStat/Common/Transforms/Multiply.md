@@ -11,23 +11,23 @@ Multiplies the values of a feature with a given constant.  <br>Pipeline Input ty
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Multiply ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) )</sub>| <sub>Initializes a new instance of the [Multiply](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Multiply.md) class with specified settings.</sub>| <br>
+| Multiply ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Initializes a new instance of the [Multiply](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Multiply.md) class with specified settings. | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>InputList</sub>| <sub>Input</sub>| <br>
-| <sub>Output</sub>| <sub>Output</sub>| <br>
+| InputList | Input | 
+| Output | Output | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/Multiply-100663631.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/Multiply--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
 
 

@@ -11,22 +11,22 @@ Extracts basic statistical signature (like [Bounds](https://github.com/sigstat/s
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>BasicMetadataExtraction (  )</sub>| <sub></sub>| <br>
+| BasicMetadataExtraction (  ) |  | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/BasicMetadataExtraction-100663458.md) ( [`Signature`](./Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/BasicMetadataExtraction--Transform.md) ( [`Signature`](./Signature.md) ) |  | 
 
 
 ## Static Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Trim</sub>| <sub>Represents theratio of significant pixels that should be trimmed  from each side while calculating [TrimmedBounds](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)</sub>| <br>
+| Trim | Represents theratio of significant pixels that should be trimmed  from each side while calculating [TrimmedBounds](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) | 
 
 

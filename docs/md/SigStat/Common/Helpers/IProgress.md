@@ -9,15 +9,15 @@ Enables progress tracking by expsoing the [Progress](https://github.com/sigstat/
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Progress</sub>| <sub>Gets the current progress in percentage.</sub>| <br>
+| Progress | Gets the current progress in percentage. | 
 
 
 ## Events
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>ProgressChanged</sub>| <sub>Invoked whenever the [Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) property is changed.</sub>| <br>
+| ProgressChanged | Invoked whenever the [Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Helpers/IProgress.md) property is changed. | 
 
 

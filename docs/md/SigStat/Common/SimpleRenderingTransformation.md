@@ -11,15 +11,15 @@ Renders an image of the signature based on the available online information (X,Y
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>SimpleRenderingTransformation (  )</sub>| <sub></sub>| <br>
+| SimpleRenderingTransformation (  ) |  | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/SimpleRenderingTransformation-100663461.md) ( [`Signature`](./Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/SimpleRenderingTransformation--Transform.md) ( [`Signature`](./Signature.md) ) |  | 
 
 

@@ -11,25 +11,25 @@ Maps values of a feature to a specific range.  <br>InputFeature: feature to be s
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>Scale (  )</sub>| <sub></sub>| <br>
+| Scale (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>InputFeature</sub>| <sub>Gets or sets the input feature.</sub>| <br>
-| <sub>NewMaxValue</sub>| <sub><br>NewMaxValue: upper bound of the interval, in which the input feature will be scaled</sub>| <br>
-| <sub>NewMinValue</sub>| <sub><br>NewMinValue: lower bound of the interval, in which the input feature will be scaled</sub>| <br>
-| <sub>OutputFeature</sub>| <sub>Gets or sets the output feature.</sub>| <br>
+| InputFeature | Gets or sets the input feature. | 
+| NewMaxValue | <br>NewMaxValue: upper bound of the interval, in which the input feature will be scaled | 
+| NewMinValue | <br>NewMinValue: lower bound of the interval, in which the input feature will be scaled | 
+| OutputFeature | Gets or sets the output feature. | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/Scale-100663855.md) ( [`Signature`](./../../../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/Scale--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
 
 

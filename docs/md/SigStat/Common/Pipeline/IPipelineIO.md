@@ -9,9 +9,9 @@ Supports the definition of [PipelineInput](https://github.com/sigstat/sigstat/bl
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>PipelineInputs</sub>| <sub>A collection of inputs for the pipeline elements</sub>| <br>
-| <sub>PipelineOutputs</sub>| <sub>A collection of outputs for the pipeline elements</sub>| <br>
+| PipelineInputs | A collection of inputs for the pipeline elements | 
+| PipelineOutputs | A collection of outputs for the pipeline elements | 
 
 

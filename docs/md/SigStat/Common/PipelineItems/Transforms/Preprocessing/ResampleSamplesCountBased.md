@@ -11,27 +11,27 @@ Resamples an online signature to a specific sample count using the specified [II
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>ResampleSamplesCountBased (  )</sub>| <sub></sub>| <br>
+| ResampleSamplesCountBased (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>InputFeatures</sub>| <sub>Gets or sets the input features.</sub>| <br>
-| <sub>InterpolationType</sub>| <sub>Gets or sets the type of the interpolation. <seealso cref="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation" /></sub>| <br>
-| <sub>NumOfSamples</sub>| <sub>Gets or sets the number of samples.</sub>| <br>
-| <sub>OriginalTFeature</sub>| <sub>Gets or sets the input timestamp feature.</sub>| <br>
-| <sub>OutputFeatures</sub>| <sub>Gets or sets the resampled  features.</sub>| <br>
-| <sub>ResampledTFeature</sub>| <sub>Gets or sets the resampled timestamp feature.</sub>| <br>
+| InputFeatures | Gets or sets the input features. | 
+| InterpolationType | Gets or sets the type of the interpolation. <seealso cref="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation" /> | 
+| NumOfSamples | Gets or sets the number of samples. | 
+| OriginalTFeature | Gets or sets the input timestamp feature. | 
+| OutputFeatures | Gets or sets the resampled  features. | 
+| ResampledTFeature | Gets or sets the resampled timestamp feature. | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/ResampleSamplesCountBased-100663829.md) ( [`Signature`](./../../../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/ResampleSamplesCountBased--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
 
 

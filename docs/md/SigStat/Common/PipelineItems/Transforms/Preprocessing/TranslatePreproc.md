@@ -11,26 +11,26 @@ This transformations can be used to translate the coordinates of an online signa
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>TranslatePreproc (  )</sub>| <sub>Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class.</sub>| <br>
-| <sub>TranslatePreproc ( [`OriginType`](./OriginType.md) )</sub>| <sub>Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class.</sub>| <br>
+| TranslatePreproc (  ) | Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class. | 
+| TranslatePreproc ( [`OriginType`](./OriginType.md) ) | Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class. | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>GoalOrigin</sub>| <sub>Goal origin of the translation</sub>| <br>
-| <sub>InputFeature</sub>| <sub>Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
-| <sub>NewOrigin</sub>| <sub>New origin after the translation</sub>| <br>
-| <sub>OutputFeature</sub>| <sub>Output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md))</sub>| <br>
+| GoalOrigin | Goal origin of the translation | 
+| InputFeature | Input [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) | 
+| NewOrigin | New origin after the translation | 
+| OutputFeature | Output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md) (e.g. [X](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/TranslatePreproc-100663868.md) ( [`Signature`](./../../../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/TranslatePreproc--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
 
 

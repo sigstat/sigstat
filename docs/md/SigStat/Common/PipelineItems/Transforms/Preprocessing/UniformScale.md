@@ -11,28 +11,28 @@ Maps values of a feature to a specific range and another proportional.  <br>Base
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>UniformScale (  )</sub>| <sub></sub>| <br>
+| UniformScale (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>BaseDimension</sub>| <sub>Gets or sets the base dimension.</sub>| <br>
-| <sub>BaseDimensionOutput</sub>| <sub>Gets or sets the output base dimension output.</sub>| <br>
-| <sub>NewMaxBaseValue</sub>| <sub>Upper bound of the interval, in which the base dimension will be scaled</sub>| <br>
-| <sub>NewMinBaseValue</sub>| <sub>Lower bound of the interval, in which the base dimension will be scaled</sub>| <br>
-| <sub>NewMinProportionalValue</sub>| <sub>Lower bound of the interval, in which the proportional dimension will be scaled</sub>| <br>
-| <sub>ProportionalDimension</sub>| <sub>Gets or sets the ProportionalDimension.</sub>| <br>
-| <sub>ProportionalDimensionOutput</sub>| <sub>Gets or sets the output proportional dimension output.</sub>| <br>
+| BaseDimension | Gets or sets the base dimension. | 
+| BaseDimensionOutput | Gets or sets the output base dimension output. | 
+| NewMaxBaseValue | Upper bound of the interval, in which the base dimension will be scaled | 
+| NewMinBaseValue | Lower bound of the interval, in which the base dimension will be scaled | 
+| NewMinProportionalValue | Lower bound of the interval, in which the proportional dimension will be scaled | 
+| ProportionalDimension | Gets or sets the ProportionalDimension. | 
+| ProportionalDimensionOutput | Gets or sets the output proportional dimension output. | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/UniformScale-100663886.md) ( [`Signature`](./../../../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/UniformScale--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
 
 

@@ -11,23 +11,23 @@ Represents a trained model for [DtwClassifier](https://github.com/sigstat/sigsta
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>DtwSignerModel (  )</sub>| <sub></sub>| <br>
+| DtwSignerModel (  ) |  | 
 
 
 ## Fields
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>DistanceMatrix</sub>| <sub>DTW distance matrix of the genuine signatures</sub>| <br>
-| <sub>Threshold</sub>| <sub>A threshold, that will be used for classification. Signatures with  an average DTW distance from the genuines above this threshold will  be classified as forgeries</sub>| <br>
+| DistanceMatrix | DTW distance matrix of the genuine signatures | 
+| Threshold | A threshold, that will be used for classification. Signatures with  an average DTW distance from the genuines above this threshold will  be classified as forgeries | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>GenuineSignatures</sub>| <sub>A list a of genuine signatures used for training</sub>| <br>
+| GenuineSignatures | A list a of genuine signatures used for training | 
 
 

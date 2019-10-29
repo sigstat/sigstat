@@ -11,24 +11,24 @@ Extracts EndPoints and CrossingPoints from Skeleton.  <br>Default Pipeline Input
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>EndpointExtraction (  )</sub>| <sub></sub>| <br>
+| EndpointExtraction (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>OutputCrossingPoints</sub>| <sub>OutputCrossingPoints</sub>| <br>
-| <sub>OutputEndpoints</sub>| <sub>OutputEndpoints</sub>| <br>
-| <sub>Skeleton</sub>| <sub>Binary representation of an image</sub>| <br>
+| OutputCrossingPoints | OutputCrossingPoints | 
+| OutputEndpoints | OutputEndpoints | 
+| Skeleton | Binary representation of an image | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/EndpointExtraction-100663590.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/EndpointExtraction--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
 
 

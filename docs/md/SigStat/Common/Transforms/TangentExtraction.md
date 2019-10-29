@@ -11,24 +11,24 @@ Extracts tangent values of the standard X, Y [Features](https://github.com/sigst
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>TangentExtraction (  )</sub>| <sub></sub>| <br>
+| TangentExtraction (  ) |  | 
 
 
 ## Properties
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>OutputTangent</sub>| <sub>Gets or sets the output feature representing the tangent angles of an online signature</sub>| <br>
-| <sub>X</sub>| <sub>Gets or sets the input feature representing the X coordinates of an online signature</sub>| <br>
-| <sub>Y</sub>| <sub>Gets or sets the input feature representing the Y coordinates of an online signature</sub>| <br>
+| OutputTangent | Gets or sets the output feature representing the tangent angles of an online signature | 
+| X | Gets or sets the input feature representing the X coordinates of an online signature | 
+| Y | Gets or sets the input feature representing the Y coordinates of an online signature | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[Transform](./Methods/TangentExtraction-100663598.md) ( [`Signature`](./../Signature.md) )</sub>| <sub></sub>| <br>
+| [Transform](./Methods/TangentExtraction--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
 
 

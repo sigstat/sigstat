@@ -9,17 +9,16 @@ Helper class for serializing distance functions
 
 ## Constructors
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>DistanceFunctionJsonConverter (  )</sub>| <sub></sub>| <br>
+| DistanceFunctionJsonConverter (  ) |  | 
 
 
 ## Methods
 
-| Name<img width=475> | Summary<img width=475> | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| <sub>[CanConvert](./Methods/DistanceFunctionJsonConverter-100664085.md) ( [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type) )</sub>| <sub></sub>| <br>
-| <sub>[ReadJson](./Methods/DistanceFunctionJsonConverter-100664086.md) ( [`JsonReader`](./DistanceFunctionJsonConverter.md), [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializer`](./DistanceFunctionJsonConverter.md) )</sub>| <sub></sub>| <br>
-| <sub>[WriteJson](./Methods/DistanceFunctionJsonConverter-100664087.md) ( [`JsonWriter`](./DistanceFunctionJsonConverter.md), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializer`](./DistanceFunctionJsonConverter.md) )</sub>| <sub></sub>| <br>
+| [ReadJson](./Methods/DistanceFunctionJsonConverter--ReadJson.md) ( [`JsonReader`](./DistanceFunctionJsonConverter.md), [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type), [Func](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`JsonSerializer`](./DistanceFunctionJsonConverter.md) ) |  | 
+| [WriteJson](./Methods/DistanceFunctionJsonConverter--WriteJson.md) ( [`JsonWriter`](./DistanceFunctionJsonConverter.md), [Func](https://docs.microsoft.com/en-us/dotnet/api/System.Func-3)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)[], [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>, [`JsonSerializer`](./DistanceFunctionJsonConverter.md) ) |  | 
 
 
