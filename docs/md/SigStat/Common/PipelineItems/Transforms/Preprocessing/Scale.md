@@ -30,6 +30,6 @@ Maps values of a feature to a specific range.  <br>InputFeature: feature to be s
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/Scale--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
+| [Transform](./Methods/Scale--Transform.md) ([`Signature`](./../../../Signature.md) ) |  | 
 
 

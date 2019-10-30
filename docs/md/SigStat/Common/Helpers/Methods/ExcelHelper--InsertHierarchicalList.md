@@ -4,7 +4,7 @@ Insert a hierarchical list in tree style into the worksheet
 
 | Return<div><a href="#"><img width=225></a></div> | Name<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Void](https://docs.microsoft.com/en-us/dotnet/api/System.Void) | [InsertHierarchicalList](./ExcelHelper--InsertHierarchicalList.md) ( [`ExcelWorksheet`](./ExcelHelper--InsertHierarchicalList.md) ws, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) row, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) col, [`HierarchyElement`](./../HierarchyElement.md) root, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) title, [`ExcelColor`](./../Excel/ExcelColor.md) color ) | 
+| [Void](https://docs.microsoft.com/en-us/dotnet/api/System.Void) | [InsertHierarchicalList](./ExcelHelper--InsertHierarchicalList.md) ([`ExcelWorksheet`](./ExcelHelper--InsertHierarchicalList.md) ws, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) row, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) col, [`HierarchyElement`](./../HierarchyElement.md) root, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) title, [`ExcelColor`](./../Excel/ExcelColor.md) color ) | 
 
 
 #### Parameters

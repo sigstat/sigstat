@@ -28,6 +28,6 @@ Extracts the Centroid (aka. Center Of Gravity) of the input features.  <br> Defa
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/CentroidExtraction--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
+| [Transform](./Methods/CentroidExtraction--Transform.md) ([`Signature`](./../Signature.md) ) |  | 
 
 

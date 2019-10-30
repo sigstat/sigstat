@@ -28,6 +28,6 @@ Multiplies the values of a feature with a given constant.  <br>Pipeline Input ty
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/Multiply--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
+| [Transform](./Methods/Multiply--Transform.md) ([`Signature`](./../Signature.md) ) |  | 
 
 

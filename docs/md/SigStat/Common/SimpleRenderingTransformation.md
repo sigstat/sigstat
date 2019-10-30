@@ -20,6 +20,6 @@ Renders an image of the signature based on the available online information (X,Y
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/SimpleRenderingTransformation--Transform.md) ( [`Signature`](./Signature.md) ) |  | 
+| [Transform](./Methods/SimpleRenderingTransformation--Transform.md) ([`Signature`](./Signature.md) ) |  | 
 
 

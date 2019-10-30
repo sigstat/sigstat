@@ -28,6 +28,6 @@ Iteratively thins the input binary raster with the [OnePixelThinningStep](https:
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/OnePixelThinning--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
+| [Transform](./Methods/OnePixelThinning--Transform.md) ([`Signature`](./../Signature.md) ) |  | 
 
 

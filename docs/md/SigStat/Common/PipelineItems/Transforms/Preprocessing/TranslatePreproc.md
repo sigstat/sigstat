@@ -31,6 +31,6 @@ This transformations can be used to translate the coordinates of an online signa
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/TranslatePreproc--Transform.md) ( [`Signature`](./../../../Signature.md) ) |  | 
+| [Transform](./Methods/TranslatePreproc--Transform.md) ([`Signature`](./../../../Signature.md) ) |  | 
 
 

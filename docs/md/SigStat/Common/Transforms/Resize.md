@@ -31,6 +31,6 @@ Resizes the image to a specified width and height
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Transform](./Methods/Resize--Transform.md) ( [`Signature`](./../Signature.md) ) |  | 
+| [Transform](./Methods/Resize--Transform.md) ([`Signature`](./../Signature.md) ) |  | 
 
 

@@ -27,8 +27,8 @@ Takes samples from a set of [Signature](https://github.com/sigstat/sigstat/blob/
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [SampleForgeryTests](./Methods/Sampler--SampleForgeryTests.md) ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./Signature.md)> ) |  | 
-| [SampleGenuineTests](./Methods/Sampler--SampleGenuineTests.md) ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./Signature.md)> ) |  | 
-| [SampleReferences](./Methods/Sampler--SampleReferences.md) ( [`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./Signature.md)> ) |  | 
+| [SampleForgeryTests](./Methods/Sampler--SampleForgeryTests.md) ([`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./Signature.md)> ) |  | 
+| [SampleGenuineTests](./Methods/Sampler--SampleGenuineTests.md) ([`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./Signature.md)> ) |  | 
+| [SampleReferences](./Methods/Sampler--SampleReferences.md) ([`List`](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[`Signature`](./Signature.md)> ) |  | 
 
 

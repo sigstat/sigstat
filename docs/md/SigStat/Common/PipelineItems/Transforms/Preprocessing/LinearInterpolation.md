@@ -28,6 +28,6 @@ Performs linear interpolation on the input
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [GetValue](./Methods/LinearInterpolation--GetValue.md) ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the interpolated value at a given timestamp | 
+| [GetValue](./Methods/LinearInterpolation--GetValue.md) ([`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the interpolated value at a given timestamp | 
 
 

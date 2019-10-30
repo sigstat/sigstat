@@ -4,7 +4,7 @@ Gets the [FeatureDescriptor-1](https://github.com/sigstat/sigstat/blob/develop/d
 
 | Return<div><a href="#"><img width=225></a></div> | Name<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[T](./FeatureDescriptor--Get.md)> | [Get](./FeatureDescriptor--Get.md) ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) key ) | 
+| [FeatureDescriptor](./../FeatureDescriptor-1.md)\<[T](./FeatureDescriptor--Get.md)> | [Get](./FeatureDescriptor--Get.md) ([`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) key ) | 
 
 
 #### Parameters

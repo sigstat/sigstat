@@ -29,10 +29,10 @@ Hierarchical structure to store object
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| [Add](./Methods/HierarchyElement--Add.md) ( [`HierarchyElement`](./HierarchyElement.md) ) |  | 
-| [GetCount](./Methods/HierarchyElement--GetCount.md) (  ) | Returns number of elements under this node and itself | 
-| [GetDepth](./Methods/HierarchyElement--GetDepth.md) (  ) | Return the hierarchy's depth from this node | 
-| [GetEnumerator](./Methods/HierarchyElement--GetEnumerator.md) (  ) | Returns an enumerator that iterates through the collection. | 
-| [ToString](./Methods/HierarchyElement--ToString.md) (  ) | Converts to string. | 
+| [Add](./Methods/HierarchyElement--Add.md) ([`HierarchyElement`](./HierarchyElement.md) ) |  | 
+| [GetCount](./Methods/HierarchyElement--GetCount.md) ( ) | Returns number of elements under this node and itself | 
+| [GetDepth](./Methods/HierarchyElement--GetDepth.md) ( ) | Return the hierarchy's depth from this node | 
+| [GetEnumerator](./Methods/HierarchyElement--GetEnumerator.md) ( ) | Returns an enumerator that iterates through the collection. | 
+| [ToString](./Methods/HierarchyElement--ToString.md) ( ) | Converts to string. | 
 
 
