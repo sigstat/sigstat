@@ -2,9 +2,9 @@
 
 Formats and writes a trace log message.
 
-| Return<div><a href="#"><img width=225></a></div> | Name<div><a href="#"><img width=525></a></div> | 
-| --- | --- | 
-| [Void](https://docs.microsoft.com/en-us/dotnet/api/System.Void) | [LogTrace](./ILoggerObjectExtensions--LogTrace.md) ([`ILoggerObject`](./../ILoggerObject.md) obj, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) message, [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] args ) | 
+| <span>Return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Name | 
+| :--- | :--- | 
+| [Void](https://docs.microsoft.com/en-us/dotnet/api/System.Void) | [LogTrace](./ILoggerObjectExtensions--LogTrace.md) ([`ILoggerObject`](./../ILoggerObject.md) obj, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) message, [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] args) | 
 
 
 #### Parameters

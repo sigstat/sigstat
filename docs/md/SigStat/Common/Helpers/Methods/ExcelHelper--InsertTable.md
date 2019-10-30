@@ -2,9 +2,9 @@
 
 Insert a table filled with data from an IEnumerable
 
-| Return<div><a href="#"><img width=225></a></div> | Name<div><a href="#"><img width=525></a></div> | 
-| --- | --- | 
-| [ExcelRange](./ExcelHelper--InsertTable.md) | [InsertTable](./ExcelHelper--InsertTable.md) ([`ExcelWorksheet`](./ExcelHelper--InsertTable.md) ws, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) row, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) col, [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Ienumerable)\<[`T`](./ExcelHelper--InsertTable.md)> data, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) title, [`ExcelColor`](./../Excel/ExcelColor.md) color, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) showHeader, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) Name ) | 
+| <span>Return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Name | 
+| :--- | :--- | 
+| [ExcelRange](./ExcelHelper--InsertTable.md) | [InsertTable](./ExcelHelper--InsertTable.md) ([`ExcelWorksheet`](./ExcelHelper--InsertTable.md) ws, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) row, [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) col, [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Ienumerable)\<[`T`](./ExcelHelper--InsertTable.md)> data, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) title, [`ExcelColor`](./../Excel/ExcelColor.md) color, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) showHeader, [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) Name) | 
 
 
 #### Parameters

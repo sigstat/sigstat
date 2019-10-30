@@ -2,9 +2,9 @@
 
 Loads one signature from specified stream.
 
-| Return<div><a href="#"><img width=225></a></div> | Name<div><a href="#"><img width=525></a></div> | 
-| --- | --- | 
-| [Void](https://docs.microsoft.com/en-us/dotnet/api/System.Void) | [LoadSignature](./Svc2004Loader--LoadSignature.md) ([`Signature`](./../../Signature.md) signature, [`Stream`](https://docs.microsoft.com/en-us/dotnet/api/System.IO.Stream) stream, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) standardFeatures ) | 
+| <span>Return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Name | 
+| :--- | :--- | 
+| [Void](https://docs.microsoft.com/en-us/dotnet/api/System.Void) | [LoadSignature](./Svc2004Loader--LoadSignature.md) ([`Signature`](./../../Signature.md) signature, [`Stream`](https://docs.microsoft.com/en-us/dotnet/api/System.IO.Stream) stream, [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) standardFeatures) | 
 
 
 #### Parameters

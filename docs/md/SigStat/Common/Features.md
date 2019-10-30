@@ -9,8 +9,8 @@ Standard set of features.
 
 ## Static Fields
 
-| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
-| --- | --- | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
 | All | Returns a readonly list of all [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md)s defined in [Features](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) | 
 | Altitude | Altitude of an online signature as a function of [T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) | 
 | Azimuth | Azimuth of an online signature as a function of [T](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) | 
