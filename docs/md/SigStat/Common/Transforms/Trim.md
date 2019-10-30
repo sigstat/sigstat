@@ -13,7 +13,7 @@ Trims unnecessary empty space from a binary raster.  <br>Pipeline Input type: bo
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| Trim ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) ) |  | 
+| Trim ([`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)) |  | 
 
 
 ## Properties

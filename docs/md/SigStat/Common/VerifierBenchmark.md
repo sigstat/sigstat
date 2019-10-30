@@ -13,7 +13,7 @@ Benchmarking class to test error rates of a [Verifier](https://github.com/sigsta
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| VerifierBenchmark (  ) | Initializes a new instance of the [VerifierBenchmark](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/VerifierBenchmark.md) class.  Sets the [Sampler](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Sampler.md) to the default [FirstNSampler](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Framework/Samplers/FirstNSampler.md). | 
+| VerifierBenchmark () | Initializes a new instance of the [VerifierBenchmark](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/VerifierBenchmark.md) class.  Sets the [Sampler](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Sampler.md) to the default [FirstNSampler](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Framework/Samplers/FirstNSampler.md). | 
 
 
 ## Properties

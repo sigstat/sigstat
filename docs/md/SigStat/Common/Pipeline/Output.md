@@ -11,8 +11,8 @@ Annotates an output [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| Output ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) | Initializes a new instance of the [Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class. | 
-| Output (  ) | Initializes a new instance of the [Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class. | 
+| Output ([`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String)) | Initializes a new instance of the [Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class. | 
+| Output () | Initializes a new instance of the [Output](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Pipeline/Output.md) class. | 
 
 
 ## Fields

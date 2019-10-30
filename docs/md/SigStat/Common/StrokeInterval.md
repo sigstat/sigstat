@@ -11,7 +11,7 @@ Represents a stroke in an online signature
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| StrokeInterval ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`StrokeType`](./StrokeType.md) ) | Initializes a new instance of the [StrokeInterval](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/StrokeInterval.md) struct. | 
+| StrokeInterval ([`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`StrokeType`](./StrokeType.md)) | Initializes a new instance of the [StrokeInterval](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/StrokeInterval.md) struct. | 
 
 
 ## Fields

@@ -13,8 +13,8 @@ This transformations can be used to translate the coordinates of an online signa
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| TranslatePreproc (  ) | Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class. | 
-| TranslatePreproc ( [`OriginType`](./OriginType.md) ) | Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class. | 
+| TranslatePreproc () | Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class. | 
+| TranslatePreproc ([`OriginType`](./OriginType.md)) | Initializes a new instance of the [TranslatePreproc](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineItems/Transforms/Preprocessing/TranslatePreproc.md) class. | 
 
 
 ## Properties

@@ -13,7 +13,7 @@ Resamples an online signature to a specific sample count using the specified [II
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| ResampleSamplesCountBased (  ) |  | 
+| ResampleSamplesCountBased () |  | 
 
 
 ## Properties

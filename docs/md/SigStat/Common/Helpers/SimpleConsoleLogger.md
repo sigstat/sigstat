@@ -13,8 +13,8 @@ A easy-to-use class to log pipeline messages, complete with filtering levels and
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| SimpleConsoleLogger (  ) | Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information | 
-| SimpleConsoleLogger ( [`LogLevel`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.LogLevel) ) | Initializes an instance of SimpleConsoleLogger with a custom LogLevel | 
+| SimpleConsoleLogger () | Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information | 
+| SimpleConsoleLogger ([`LogLevel`](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.Logging.LogLevel)) | Initializes an instance of SimpleConsoleLogger with a custom LogLevel | 
 
 
 ## Properties

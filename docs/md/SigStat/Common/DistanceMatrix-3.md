@@ -11,7 +11,7 @@ A Sparse Matrix representation of a distance graph.
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| DistanceMatrix (  ) |  | 
+| DistanceMatrix () |  | 
 
 
 ## Properties

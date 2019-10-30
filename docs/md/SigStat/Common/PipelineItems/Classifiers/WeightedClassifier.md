@@ -13,7 +13,7 @@ Classifies Signatures by weighing other Classifier results.
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| WeightedClassifier (  ) |  | 
+| WeightedClassifier () |  | 
 
 
 ## Fields

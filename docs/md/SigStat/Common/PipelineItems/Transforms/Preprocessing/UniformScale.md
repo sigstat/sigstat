@@ -13,7 +13,7 @@ Maps values of a feature to a specific range and another proportional.  <br>Base
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| UniformScale (  ) |  | 
+| UniformScale () |  | 
 
 
 ## Properties

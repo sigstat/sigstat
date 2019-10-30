@@ -13,8 +13,8 @@ Generates a binary raster version of the input image with the iterative threshol
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| Binarization (  ) | Initializes a new instance of the [Binarization](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Binarization.md) class with default settings: Iterative threshold and [Dark](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Binarization/ForegroundType.md). | 
-| Binarization ( [`ForegroundType`](./Binarization.md), [`Nullable`](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)> ) |  | 
+| Binarization () | Initializes a new instance of the [Binarization](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Binarization.md) class with default settings: Iterative threshold and [Dark](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Transforms/Binarization/ForegroundType.md). | 
+| Binarization ([`ForegroundType`](./Binarization.md), [`Nullable`](https://docs.microsoft.com/en-us/dotnet/api/System.Nullable-1)\<[`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)>) |  | 
 
 
 ## Properties

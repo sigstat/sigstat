@@ -13,8 +13,8 @@ Loads SVC2004-format database from .zip
 
 | Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
 | --- | --- | 
-| Svc2004Loader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean) ) | Initializes a new instance of the [Svc2004Loader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
-| Svc2004Loader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> ) | Initializes a new instance of the [Svc2004Loader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
+| Svc2004Loader ([`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean)) | Initializes a new instance of the [Svc2004Loader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
+| Svc2004Loader ([`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Boolean`](https://docs.microsoft.com/en-us/dotnet/api/System.Boolean), [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)>) | Initializes a new instance of the [Svc2004Loader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/Svc2004Loader.md) class with specified database. | 
 
 
 ## Properties
