@@ -38,24 +38,20 @@ namespace SigStat.Common.Test.Helpers.Serialization
         [TestMethod]
         public void TestWrite()
         {
+            var jsonSerializerSettings = GetTestSettings();
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Cosine;
-            var json = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, GetTestSettings());
-            var enumerable = distanceFunc.Method.GetParameters().Select(x => x.ParameterType.FullName + ";");
-            var concated = string.Concat(enumerable).TrimEnd(';');
-            var expectedJson = $"\"{distanceFunc.Method.DeclaringType?.AssemblyQualifiedName}|{distanceFunc.Method.Name}|{concated}\"";
-            Assert.AreEqual(expectedJson,json);
+            var json = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, jsonSerializerSettings);
+            TestHelper.AssertJson(distanceFunc,json, jsonSerializerSettings);
         }
 
         [TestMethod]
         public void TestRead()
         {
+            var jsonSerializerSettings = GetTestSettings();
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Euclidean;
-            var enumerable = distanceFunc.Method.GetParameters().Select(x => x.ParameterType.FullName + ";");
-            var concated = string.Concat(enumerable).TrimEnd(';');
-            var funcJson = $"\"{distanceFunc.Method.DeclaringType?.AssemblyQualifiedName}|{distanceFunc.Method.Name}|{concated}\"";
-            var funcDeserialized =
-                JsonConvert.DeserializeObject<Func<double[], double[], double>>(funcJson, GetTestSettings());
-            Assert.AreEqual(distanceFunc,funcDeserialized);
+            var funcJson = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, jsonSerializerSettings);
+            var funcDeserialized = JsonConvert.DeserializeObject<Func<double[], double[], double>>(funcJson, jsonSerializerSettings);
+            TestHelper.AssertJson(distanceFunc, funcDeserialized, jsonSerializerSettings);
         }
 
         [TestMethod]
