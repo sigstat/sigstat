@@ -77,14 +77,14 @@ namespace SigStat.Common.Test.Loader
         public void TestLoadSignatureFromFile()
         {
 
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Test\SVC2004\Test.zip", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners());
 
-            Assert.AreEqual(1, signers.Count);
+            Assert.AreEqual(40, signers.Count);
             var signer = signers[0];
-            Assert.AreEqual("01", signer.ID);
+            Assert.AreEqual("10", signer.ID);
 
-            Assert.AreEqual(2, signer.Signatures.Count);
+            Assert.AreEqual(40, signer.Signatures.Count);
             Assert.AreEqual("01", signer.Signatures[0].ID);
 
             Assert.AreEqual(signer, signer.Signatures[0].Signer, "The loaded signer object and the signer instance referenced by the signer are not the same");
@@ -115,7 +115,7 @@ namespace SigStat.Common.Test.Loader
     
         public void TestParseSignature()
         {
-            Svc2004Loader loader = new Svc2004Loader(@"Databases\Test\SVC2004\Test.zip", true);
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip", true);
             var signers = new List<Signer>(loader.EnumerateSigners());
 
             Signature signature = signers[0].Signatures[0];
