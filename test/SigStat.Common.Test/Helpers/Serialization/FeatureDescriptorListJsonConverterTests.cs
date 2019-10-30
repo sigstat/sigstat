@@ -42,28 +42,44 @@ namespace SigStat.Common.Test.Helpers.Serialization
         [TestMethod]
         public void TestWrite()
         {
-            var converter = new FeatureDescriptorListJsonConverter();
+            var jsonSerializerSettings = GetTestSettings();
+            var cleanSerializerSettings = new JsonSerializerSettings
+
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new VerifierResolver(),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Converters = new List<JsonConverter> { new FeatureDescriptorListJsonConverter() }
+            };
             var featureList = new List<FeatureDescriptor>
             {
                 Features.X,
                 Features.Y
             };
-            var json = JsonConvert.SerializeObject(featureList, Formatting.Indented, GetTestSettings());
-            var expectedJson = $"[\"{Features.X.Key} | {Features.X.FeatureType.AssemblyQualifiedName}\",\"{Features.Y.Key} | {Features.Y.FeatureType.AssemblyQualifiedName}\"]";
-            Assert.AreEqual(expectedJson, json);
+            var json = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
+            TestHelper.AssertJson(featureList, json, cleanSerializerSettings);
+            var shortJson = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
+            TestHelper.AssertJson(featureList, shortJson, jsonSerializerSettings);
         }
 
         [TestMethod]
         public void TestRead()
         {
-            var featureListJson = $"[\"{Features.X.Key} | {Features.X.FeatureType.AssemblyQualifiedName}\",\"{Features.Y.Key} | {Features.Y.FeatureType.AssemblyQualifiedName}\"]";
+            var jsonSerializerSettings = GetTestSettings();
             var featureList = new List<FeatureDescriptor>
             {
                 Features.X,
                 Features.Y
             };
+            var json = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
+            var shortJson = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
             var featureListDeserialized =
-                JsonConvert.DeserializeObject<List<FeatureDescriptor>>(featureListJson, GetTestSettings());
+                JsonConvert.DeserializeObject<List<FeatureDescriptor>>(json, GetTestSettings());
+            TestHelper.AssertJson(featureList, featureListDeserialized, jsonSerializerSettings);
+            var shortFeatureListDeserialized =
+                JsonConvert.DeserializeObject<List<FeatureDescriptor>>(shortJson, GetTestSettings());
+            TestHelper.AssertJson(featureList,shortFeatureListDeserialized, jsonSerializerSettings);
         }
 
         [TestMethod]

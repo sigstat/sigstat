@@ -13,17 +13,16 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var firstNSampler = new FirstNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(firstNSampler);
-            var expectedJson = "{\r\n  \"N\": 10\r\n}";
-            Assert.AreEqual(expectedJson, json);
+            TestHelper.AssertJson(firstNSampler, json);
         }
 
         [TestMethod]
         public void TestDeserialization()
         {
             var expectedFirstNSampler = new FirstNSampler {N = 10};
-            var firstNSamplerJson = "{\r\n  \"N\": 10\r\n}";
+            var firstNSamplerJson = SerializationHelper.JsonSerialize(expectedFirstNSampler);
             var deserializedFirstNSampler = JsonConvert.DeserializeObject<FirstNSampler>(firstNSamplerJson);
-            Assert.AreEqual(deserializedFirstNSampler.N, expectedFirstNSampler.N);
+            TestHelper.AssertJson(expectedFirstNSampler, deserializedFirstNSampler);
         }
     }
 }

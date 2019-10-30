@@ -12,17 +12,16 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var evenNSampler = new EvenNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(evenNSampler);
-            var expectedJson = "{\r\n  \"N\": 10\r\n}";
-            Assert.AreEqual(expectedJson, json);
+            TestHelper.AssertJson(evenNSampler, json);
         }
 
         [TestMethod]
         public void TestDeserialization()
         {
             var expectedEvenNSampler = new EvenNSampler {N = 10};
-            var evenNSamplerJson = "{\r\n  \"N\": 10\r\n}";
+            var evenNSamplerJson = SerializationHelper.JsonSerialize(expectedEvenNSampler);
             var deserializedEvenNSampler = SerializationHelper.Deserialize<EvenNSampler>(evenNSamplerJson);
-            Assert.AreEqual(deserializedEvenNSampler.N, expectedEvenNSampler.N);
+            TestHelper.AssertJson(expectedEvenNSampler, deserializedEvenNSampler);
         }
     }
 }

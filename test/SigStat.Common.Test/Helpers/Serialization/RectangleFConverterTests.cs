@@ -39,26 +39,26 @@ namespace SigStat.Common.Test.Helpers.Serialization
         [TestMethod]
         public void TestWrite()
         {
+            var jsonSerializerSettings = GetTestSettings();
             var rectangleF = new RectangleF(1.0f, 1.0f, 1.0f, 1.0f);
-            var json = JsonConvert.SerializeObject(rectangleF,Formatting.Indented,GetTestSettings());
-            var expectedJson =
-                "{\r\n  \"X\": 1.0,\r\n  \"Y\": 1.0,\r\n  \"Width\": 1.0,\r\n  \"Height\": 1.0\r\n}";
-            Assert.AreEqual(expectedJson,json);
+            var json = JsonConvert.SerializeObject(rectangleF,Formatting.Indented,jsonSerializerSettings);
+            TestHelper.AssertJson(rectangleF, json,jsonSerializerSettings);
         }
 
         [TestMethod]
         public void TestRead()
         {
-            var json = "{\r\n  \"X\": 1.0,\r\n  \"Y\": 1.0,\r\n  \"Width\": 1.0,\r\n  \"Height\": 1.0\r\n}";
-            var rectangleFDeserialized = JsonConvert.DeserializeObject<RectangleF>(json, GetTestSettings());
+            var jsonSerializerSettings = GetTestSettings();
             var rectangleF = new RectangleF(1.0f, 1.0f, 1.0f, 1.0f);
-            Assert.AreEqual(rectangleF, rectangleFDeserialized);
+            var json = JsonConvert.SerializeObject(rectangleF, jsonSerializerSettings);
+            var rectangleFDeserialized = JsonConvert.DeserializeObject<RectangleF>(json, jsonSerializerSettings);
+            TestHelper.AssertJson(rectangleF, rectangleFDeserialized);
         }
 
         [TestMethod]
         public void TestReadWrongJson()
         {
-            var json = "\r\n  \"X\": 1.0,\r\n  \"Y\": 1.0,\r\n  \"Width\": 1.0,\r\n  \"Height\": 1.0\r\n}";
+            var json = @" ""X"": 1.0, ""Y"": 1.0,""Width"": 1.0,""Height""}";
                 Assert.ThrowsException<InvalidCastException>(() =>
                     JsonConvert.DeserializeObject<RectangleF>(json, GetTestSettings()));
         }

@@ -38,25 +38,24 @@ namespace SigStat.Common.Test.Helpers.Serialization
         public void TestWrite()
         {
             var features = new Dictionary<string, FeatureDescriptor>();
+            var jsonSerializerSettings = GetTestSettings();
             features.Add("Pressure", Features.Pressure);
             features.Add("Altitude", Features.Altitude);
-            var json = JsonConvert.SerializeObject(features, Formatting.Indented, GetTestSettings());
-            var expectedJson = $"[\r\n  \"{Features.Pressure.Key} | {Features.Pressure.FeatureType.AssemblyQualifiedName}\",\r\n  \"{Features.Altitude.Key} | {Features.Altitude.FeatureType.AssemblyQualifiedName}\"\r\n]";
-            Assert.AreEqual(expectedJson, json);
+            var json = JsonConvert.SerializeObject(features, Formatting.Indented, jsonSerializerSettings);
+            TestHelper.AssertJson(features,json, jsonSerializerSettings);
         }
 
 
         [TestMethod]
         public void TestRead()
         {
-            var featuresJson = $"[\r\n  \"{Features.Pressure.Key} | {Features.Pressure.FeatureType.AssemblyQualifiedName}\",\r\n  \"{Features.Altitude.Key} | {Features.Altitude.FeatureType.AssemblyQualifiedName}\"\r\n]";
-            var featuresDeserialized = JsonConvert.DeserializeObject<Dictionary<string,FeatureDescriptor>>(featuresJson, GetTestSettings());
             var features = new Dictionary<string, FeatureDescriptor>();
+            var jsonSerializerSettings = GetTestSettings();
             features.Add("Pressure", Features.Pressure);
             features.Add("Altitude", Features.Altitude);
-            Assert.AreEqual(featuresDeserialized.Count, features.Count);
-            Assert.AreEqual(featuresDeserialized["Pressure"], features["Pressure"]);
-            Assert.AreEqual(featuresDeserialized["Altitude"], features["Altitude"]);
+            var json = JsonConvert.SerializeObject(features, Formatting.Indented, jsonSerializerSettings);
+            var featuresDeserialized = JsonConvert.DeserializeObject<Dictionary<string,FeatureDescriptor>>(json, jsonSerializerSettings);
+            TestHelper.AssertJson(features, featuresDeserialized, jsonSerializerSettings);
         }
 
         [TestMethod]

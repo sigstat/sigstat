@@ -12,17 +12,16 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var lastNSampler = new LastNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(lastNSampler);
-            var expectedJson = "{\r\n  \"N\": 10\r\n}";
-            Assert.AreEqual(expectedJson, json);
+            TestHelper.AssertJson(lastNSampler, json);
         }
 
         [TestMethod]
         public void TestDeserialization()
         {
             var expectedLastNSampler = new LastNSampler { N = 10 };
-            var lastNSamplerJson = "{\r\n  \"N\": 10\r\n}";
+            var lastNSamplerJson = SerializationHelper.JsonSerialize(expectedLastNSampler);
             var deserializedLastNSampler = SerializationHelper.Deserialize<LastNSampler>(lastNSamplerJson);
-            Assert.AreEqual(deserializedLastNSampler.N, expectedLastNSampler.N);
+            TestHelper.AssertJson(expectedLastNSampler, deserializedLastNSampler);
         }
     }
 }

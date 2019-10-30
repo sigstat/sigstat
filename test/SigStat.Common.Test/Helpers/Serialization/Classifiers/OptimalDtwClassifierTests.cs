@@ -10,24 +10,19 @@ namespace SigStat.Common.Test.Helpers.Serialization.Classifiers
         [TestMethod]
         public void TestSerialization()
         {
-            var dtwClassifier = new OptimalDtwClassifier();
-            var json = SerializationHelper.JsonSerialize(dtwClassifier);
-            var expectedJson = @"{
-  ""DistanceFunction"": ""Accord.Math.Distance, Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=null|Euclidean|System.Double[];System.Double[]""
-}";
-            Assert.AreEqual(expectedJson, json);
+            var optimalDtwClassifier = new OptimalDtwClassifier();
+            var json = SerializationHelper.JsonSerialize(optimalDtwClassifier);
+            TestHelper.AssertJson(optimalDtwClassifier, json);
         }
 
         [TestMethod]
         public void TestDeserialize()
         {
-            var expecteddtw = new OptimalDtwClassifier();
-            var dtwJson = @"{
-  ""DistanceFunction"": ""Accord.Math.Distance, Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=null|Euclidean|System.Double[];System.Double[]""
-}";
+            var optimalDtwClassifier = new OptimalDtwClassifier();
+            var dtwJson = SerializationHelper.JsonSerialize(optimalDtwClassifier);
             var deserializedDtw = SerializationHelper.Deserialize<OptimalDtwClassifier>(dtwJson);
-            Assert.AreEqual(deserializedDtw.Sampler, expecteddtw.Sampler);
-            Assert.AreEqual(deserializedDtw.DistanceFunction.Method, expecteddtw.DistanceFunction.Method);
+            Assert.AreEqual(deserializedDtw.Sampler, optimalDtwClassifier.Sampler);
+            Assert.AreEqual(deserializedDtw.DistanceFunction.Method, optimalDtwClassifier.DistanceFunction.Method);
         }
     }
 }

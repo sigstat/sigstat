@@ -12,18 +12,16 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var universalSampler = new UniversalSampler(5,20);
             var json = SerializationHelper.JsonSerialize(universalSampler);
-            var expectedJson = "{\r\n  \"TrainingCount\": 5,\r\n  \"TestCount\": 20\r\n}";
-            Assert.AreEqual(expectedJson, json);
+            TestHelper.AssertJson(universalSampler, json);
         }
 
         [TestMethod]
         public void TestDeserialization()
         {
             var expectedUniversalSampler = new UniversalSampler(5,20);
-            var universalNSamplerJson = "{\r\n  \"TrainingCount\": 5,\r\n  \"TestCount\": 20\r\n}";
+            var universalNSamplerJson = SerializationHelper.JsonSerialize(expectedUniversalSampler);
             var deserializedUniversalNSampler = SerializationHelper.Deserialize<UniversalSampler>(universalNSamplerJson);
-            Assert.AreEqual(deserializedUniversalNSampler.TrainingCount, expectedUniversalSampler.TrainingCount);
-            Assert.AreEqual(deserializedUniversalNSampler.TestCount, expectedUniversalSampler.TestCount);
+            TestHelper.AssertJson(expectedUniversalSampler, deserializedUniversalNSampler);
         }
     }
 }

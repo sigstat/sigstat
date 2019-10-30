@@ -38,26 +38,36 @@ namespace SigStat.Common.Test.Helpers.Serialization
         [TestMethod]
         public void TestWrite()
         {
-            var setting = GetTestSettings();
+            var jsonSerializerSettings = GetTestSettings();
+            var cleanSerializerSettings = new JsonSerializerSettings
+
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new VerifierResolver(),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Converters = new List<JsonConverter> { new FeatureDescriptorTJsonConverter() }
+            };
             var feature = Features.Pressure;
-            var json = JsonConvert.SerializeObject(feature, Formatting.Indented, setting);
-            var expectedJson = $"\"{Features.Pressure.Key} | {Features.Pressure.FeatureType.AssemblyQualifiedName}\"";
-            Assert.AreEqual(expectedJson,json);
-            var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, setting);
-            var expectedShortJson = $"\"{Features.Pressure.Key}\"";
-            Assert.AreEqual(expectedShortJson,shortJson);
+            var json = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
+            TestHelper.AssertJson(feature,json,cleanSerializerSettings);
+            var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
+            TestHelper.AssertJson(feature,shortJson,jsonSerializerSettings);
         }
 
         [TestMethod]
         public void TestRead()
         {
-            var feature = $"\"{Features.Pressure.Key} | {Features.Pressure.FeatureType.AssemblyQualifiedName}\"";
-            var featureDeserialized = JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(feature,GetTestSettings());
-            Assert.AreSame(featureDeserialized,Features.Pressure);
-            var shortFeature = $"\"{Features.Pressure.Key}\"";
+            var jsonSerializerSettings = GetTestSettings();
+            var feature = Features.Pressure;
+            var json = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
+            var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
+
+            var featureDeserialized = JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(json,GetTestSettings());
+            TestHelper.AssertJson(feature, featureDeserialized, jsonSerializerSettings);
             var featureDeserializedShort =
-                JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(shortFeature, GetTestSettings());
-            Assert.AreSame(featureDeserializedShort,Features.Pressure);
+                JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(shortJson, GetTestSettings());
+            TestHelper.AssertJson(feature, featureDeserializedShort, jsonSerializerSettings);
         }
         [TestMethod]
         public void TestReadWrongJson()
