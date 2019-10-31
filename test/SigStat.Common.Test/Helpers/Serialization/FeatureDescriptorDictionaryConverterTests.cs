@@ -42,7 +42,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             features.Add("Pressure", Features.Pressure);
             features.Add("Altitude", Features.Altitude);
             var json = JsonConvert.SerializeObject(features, Formatting.Indented, jsonSerializerSettings);
-            TestHelper.AssertJson(features,json, jsonSerializerSettings);
+            JsonAssert.AreEqual(features,json, jsonSerializerSettings);
         }
 
 
@@ -55,7 +55,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             features.Add("Altitude", Features.Altitude);
             var json = JsonConvert.SerializeObject(features, Formatting.Indented, jsonSerializerSettings);
             var featuresDeserialized = JsonConvert.DeserializeObject<Dictionary<string,FeatureDescriptor>>(json, jsonSerializerSettings);
-            TestHelper.AssertJson(features, featuresDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(features, featuresDeserialized, jsonSerializerSettings);
         }
 
         [TestMethod]

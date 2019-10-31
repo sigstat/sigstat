@@ -12,7 +12,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Classifiers
         {
             var optimalDtwClassifier = new OptimalDtwClassifier();
             var json = SerializationHelper.JsonSerialize(optimalDtwClassifier);
-            TestHelper.AssertJson(optimalDtwClassifier, json);
+            JsonAssert.AreEqual(optimalDtwClassifier, json);
         }
 
         [TestMethod]

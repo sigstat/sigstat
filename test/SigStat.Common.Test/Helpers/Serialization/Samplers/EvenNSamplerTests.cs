@@ -12,7 +12,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var evenNSampler = new EvenNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(evenNSampler);
-            TestHelper.AssertJson(evenNSampler, json);
+            JsonAssert.AreEqual(evenNSampler, json);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
             var expectedEvenNSampler = new EvenNSampler {N = 10};
             var evenNSamplerJson = SerializationHelper.JsonSerialize(expectedEvenNSampler);
             var deserializedEvenNSampler = SerializationHelper.Deserialize<EvenNSampler>(evenNSamplerJson);
-            TestHelper.AssertJson(expectedEvenNSampler, deserializedEvenNSampler);
+            JsonAssert.AreEqual(expectedEvenNSampler, deserializedEvenNSampler);
         }
     }
 }

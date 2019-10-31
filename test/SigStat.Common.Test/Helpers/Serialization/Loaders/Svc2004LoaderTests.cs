@@ -12,7 +12,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Loaders
         {
             var svc2004Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             var json = SerializationHelper.JsonSerialize(svc2004Loader);
-            TestHelper.AssertJson(svc2004Loader, json);
+            JsonAssert.AreEqual(svc2004Loader, json);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Loaders
             var expectedSvcLoader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             var svcLoaderJson = SerializationHelper.JsonSerialize(expectedSvcLoader);
             var deserializedLoader = SerializationHelper.Deserialize<Svc2004Loader>(svcLoaderJson);
-            TestHelper.AssertJson(expectedSvcLoader, deserializedLoader);
+            JsonAssert.AreEqual(expectedSvcLoader, deserializedLoader);
         }
     }
 }

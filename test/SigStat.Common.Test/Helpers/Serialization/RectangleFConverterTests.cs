@@ -42,7 +42,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var jsonSerializerSettings = GetTestSettings();
             var rectangleF = new RectangleF(1.0f, 1.0f, 1.0f, 1.0f);
             var json = JsonConvert.SerializeObject(rectangleF,Formatting.Indented,jsonSerializerSettings);
-            TestHelper.AssertJson(rectangleF, json,jsonSerializerSettings);
+            JsonAssert.AreEqual(rectangleF, json,jsonSerializerSettings);
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var rectangleF = new RectangleF(1.0f, 1.0f, 1.0f, 1.0f);
             var json = JsonConvert.SerializeObject(rectangleF, jsonSerializerSettings);
             var rectangleFDeserialized = JsonConvert.DeserializeObject<RectangleF>(json, jsonSerializerSettings);
-            TestHelper.AssertJson(rectangleF, rectangleFDeserialized);
+            JsonAssert.AreEqual(rectangleF, rectangleFDeserialized);
         }
 
         [TestMethod]

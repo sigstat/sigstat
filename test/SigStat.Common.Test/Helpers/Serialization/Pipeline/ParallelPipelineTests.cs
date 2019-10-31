@@ -18,7 +18,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Pipeline
                 new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
             };
             var json = SerializationHelper.JsonSerialize(parallelPipeline);
-            TestHelper.AssertJson(parallelPipeline, json);
+            JsonAssert.AreEqual(parallelPipeline, json);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Pipeline
             };
             var parallelPipelineJson = SerializationHelper.JsonSerialize(expectedParallelTransformPipeline);
             var deserializedParallelTransformPipeline= SerializationHelper.Deserialize<ParallelTransformPipeline>(parallelPipelineJson);
-            TestHelper.AssertJson(expectedParallelTransformPipeline, deserializedParallelTransformPipeline);
+            JsonAssert.AreEqual(expectedParallelTransformPipeline, deserializedParallelTransformPipeline);
         }
     }
 }

@@ -10,38 +10,38 @@ namespace SigStat.Common.Test.Helpers.Serialization
         [TestMethod]
         public void TestSerialization()
         {
-            var signature =  TestHelper.BuildSignature();
+            var signature =  JsonAssert.BuildSignature();
             var json = SerializationHelper.JsonSerialize(signature);
-            TestHelper.AssertJson(signature, json);
+            JsonAssert.AreEqual(signature, json);
         }
 
         [TestMethod]
         public void TestDeserialization()
         {
-            var signature = TestHelper.BuildSignature();
+            var signature = JsonAssert.BuildSignature();
             var signatureJson = SerializationHelper.JsonSerialize(signature);
             var deserializedSignature = SerializationHelper.Deserialize<Signature>(signatureJson);
-            TestHelper.AssertJson(signature, deserializedSignature);
+            JsonAssert.AreEqual(signature, deserializedSignature);
         }
 
         [TestMethod]
         public void TestSerializationToFile()
         {
-            var signature = TestHelper.BuildSignature();
+            var signature = JsonAssert.BuildSignature();
             var path = "TestSerialization.json";
             SerializationHelper.JsonSerializeToFile(signature,path);
             var json = File.ReadAllText(path);
-            TestHelper.AssertJson(signature, json);
+            JsonAssert.AreEqual(signature, json);
         }
 
         [TestMethod]
         public void TestDeserializationFromFile()
         {
-            var expectedSignature = TestHelper.BuildSignature();
+            var expectedSignature = JsonAssert.BuildSignature();
             var path = "TestSerialization.json";
             SerializationHelper.JsonSerializeToFile(expectedSignature, path);
             var deserializedSignature = SerializationHelper.DeserializeFromFile<Signature>(path);
-            TestHelper.AssertJson(expectedSignature,deserializedSignature);
+            JsonAssert.AreEqual(expectedSignature,deserializedSignature);
         }
     }
 }

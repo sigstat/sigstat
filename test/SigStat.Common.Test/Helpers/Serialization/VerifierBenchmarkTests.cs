@@ -48,7 +48,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 Logger = new SimpleConsoleLogger(),
             };
             var json = SerializationHelper.JsonSerialize(verifier);
-            TestHelper.AssertJson(verifier, json);
+            JsonAssert.AreEqual(verifier, json);
         }
 
         [TestMethod]
@@ -86,7 +86,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             };
             var verifierJson = SerializationHelper.JsonSerialize(expectedVerifier);
             var deserializedVerifier = SerializationHelper.Deserialize<VerifierBenchmark>(verifierJson);
-            TestHelper.AssertJson(expectedVerifier, deserializedVerifier);
+            JsonAssert.AreEqual(expectedVerifier, deserializedVerifier);
         }
     }
 }

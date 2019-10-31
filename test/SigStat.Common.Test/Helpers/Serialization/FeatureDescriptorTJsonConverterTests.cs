@@ -50,9 +50,9 @@ namespace SigStat.Common.Test.Helpers.Serialization
             };
             var feature = Features.Pressure;
             var json = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
-            TestHelper.AssertJson(feature,json,cleanSerializerSettings);
+            JsonAssert.AreEqual(feature,json,cleanSerializerSettings);
             var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
-            TestHelper.AssertJson(feature,shortJson,jsonSerializerSettings);
+            JsonAssert.AreEqual(feature,shortJson,jsonSerializerSettings);
         }
 
         [TestMethod]
@@ -64,10 +64,10 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
 
             var featureDeserialized = JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(json,GetTestSettings());
-            TestHelper.AssertJson(feature, featureDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(feature, featureDeserialized, jsonSerializerSettings);
             var featureDeserializedShort =
                 JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(shortJson, GetTestSettings());
-            TestHelper.AssertJson(feature, featureDeserializedShort, jsonSerializerSettings);
+            JsonAssert.AreEqual(feature, featureDeserializedShort, jsonSerializerSettings);
         }
         [TestMethod]
         public void TestReadWrongJson()

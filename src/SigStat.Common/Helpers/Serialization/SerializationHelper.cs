@@ -62,8 +62,10 @@ namespace SigStat.Common.Helpers
         /// <typeparam name="T">The type of the object</typeparam>
         /// <param name="o">The object</param>
         /// <returns>The json string constructed from the object</returns>
-        public static string JsonSerialize<T>(T o)
+        public static string JsonSerialize<T>(T o, bool compactFeatures = false)
         {
+            // TODO: Settingsből kikényszeríthető, hogy a tömör Feature sorosítást használja
+
             return JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings());
         }
     }

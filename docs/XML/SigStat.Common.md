@@ -521,7 +521,7 @@
   - [Deserialize\`\`1(s)](#M-SigStat-Common-Helpers-SerializationHelper-Deserialize``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.Deserialize``1(System.String)')
   - [GetSettings()](#M-SigStat-Common-Helpers-SerializationHelper-GetSettings 'SigStat.Common.Helpers.SerializationHelper.GetSettings')
   - [JsonSerializeToFile\`\`1(o,path)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String)')
-  - [JsonSerialize\`\`1(o)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0- 'SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0)')
+  - [JsonSerialize\`\`1(o)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)')
 - [SigComp11](#T-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11')
   - [T](#F-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11-T 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.T')
   - [X](#F-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11-X 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.X')
@@ -6456,7 +6456,7 @@ Writes object to file to the given by path in json format
 | ---- | ----------- |
 | T | The type of the object |
 
-<a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0-'></a>
+<a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean-'></a>
 ### JsonSerialize\`\`1(o) `method`
 
 ##### Summary

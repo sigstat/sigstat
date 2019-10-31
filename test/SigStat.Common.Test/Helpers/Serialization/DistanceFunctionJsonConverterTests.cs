@@ -29,8 +29,8 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var converter = new DistanceFunctionJsonConverter();
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Euclidean;
             var convertible = converter.CanConvert(distanceFunc.GetType());
-            Assert.IsTrue(convertible); 
-            var otherObj = new object();
+            Assert.IsTrue(convertible);
+            Func<int[], double[], double> otherObj = (i, d) => 0;
             var notConvertible = converter.CanConvert(otherObj.GetType());
             Assert.IsFalse(notConvertible);
         }
@@ -41,7 +41,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var jsonSerializerSettings = GetTestSettings();
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Cosine;
             var json = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, jsonSerializerSettings);
-            TestHelper.AssertJson(distanceFunc,json, jsonSerializerSettings);
+            JsonAssert.AreEqual(distanceFunc,json, jsonSerializerSettings);
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Euclidean;
             var funcJson = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, jsonSerializerSettings);
             var funcDeserialized = JsonConvert.DeserializeObject<Func<double[], double[], double>>(funcJson, jsonSerializerSettings);
-            TestHelper.AssertJson(distanceFunc, funcDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(distanceFunc, funcDeserialized, jsonSerializerSettings);
         }
 
         [TestMethod]

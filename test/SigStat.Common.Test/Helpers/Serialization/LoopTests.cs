@@ -17,7 +17,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
         {
             var loop = new Loop(1.0f,2.0f);
             var json = SerializationHelper.JsonSerialize(loop);
-            TestHelper.AssertJson(loop,json);
+            JsonAssert.AreEqual(loop,json);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var expectedLoop = new Loop(1.0f, 2.0f);
             var expectedLoopJson = SerializationHelper.JsonSerialize(expectedLoop);
             var deserializedLoop = SerializationHelper.Deserialize<Loop>(expectedLoopJson);
-            TestHelper.AssertJson(expectedLoop, deserializedLoop);
+            JsonAssert.AreEqual(expectedLoop, deserializedLoop);
         }
     }
 }

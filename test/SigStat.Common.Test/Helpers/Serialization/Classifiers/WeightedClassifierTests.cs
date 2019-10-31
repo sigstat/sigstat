@@ -18,7 +18,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Classifiers
                     0.5),
             };
             var json = SerializationHelper.JsonSerialize(weightedClassifier);
-            TestHelper.AssertJson(weightedClassifier, json);
+            JsonAssert.AreEqual(weightedClassifier, json);
         }
 
         [TestMethod]

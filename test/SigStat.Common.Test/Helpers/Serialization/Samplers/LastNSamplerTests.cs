@@ -12,7 +12,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var lastNSampler = new LastNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(lastNSampler);
-            TestHelper.AssertJson(lastNSampler, json);
+            JsonAssert.AreEqual(lastNSampler, json);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
             var expectedLastNSampler = new LastNSampler { N = 10 };
             var lastNSamplerJson = SerializationHelper.JsonSerialize(expectedLastNSampler);
             var deserializedLastNSampler = SerializationHelper.Deserialize<LastNSampler>(lastNSamplerJson);
-            TestHelper.AssertJson(expectedLastNSampler, deserializedLastNSampler);
+            JsonAssert.AreEqual(expectedLastNSampler, deserializedLastNSampler);
         }
     }
 }

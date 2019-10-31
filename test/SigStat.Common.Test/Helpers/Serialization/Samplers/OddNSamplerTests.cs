@@ -12,7 +12,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var oddNSampler = new OddNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(oddNSampler);
-            TestHelper.AssertJson(oddNSampler, json);
+            JsonAssert.AreEqual(oddNSampler, json);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
             var expectedOddNSampler = new OddNSampler { N = 10 };
             var oddNSamplerJson = SerializationHelper.JsonSerialize(expectedOddNSampler);
             var deserializedOddNSampler = SerializationHelper.Deserialize<OddNSampler>(oddNSamplerJson);
-            TestHelper.AssertJson(expectedOddNSampler, deserializedOddNSampler);
+            JsonAssert.AreEqual(expectedOddNSampler, deserializedOddNSampler);
         }
     }
 }

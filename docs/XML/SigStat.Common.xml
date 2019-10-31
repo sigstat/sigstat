@@ -1297,7 +1297,7 @@
             <param name="o">The object</param>
             <param name="path">Relative path</param>
         </member>
-        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0)">
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)">
             <summary>
             Creates json string from object
             </summary>

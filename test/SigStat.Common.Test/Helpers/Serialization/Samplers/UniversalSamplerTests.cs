@@ -12,7 +12,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var universalSampler = new UniversalSampler(5,20);
             var json = SerializationHelper.JsonSerialize(universalSampler);
-            TestHelper.AssertJson(universalSampler, json);
+            JsonAssert.AreEqual(universalSampler, json);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
             var expectedUniversalSampler = new UniversalSampler(5,20);
             var universalNSamplerJson = SerializationHelper.JsonSerialize(expectedUniversalSampler);
             var deserializedUniversalNSampler = SerializationHelper.Deserialize<UniversalSampler>(universalNSamplerJson);
-            TestHelper.AssertJson(expectedUniversalSampler, deserializedUniversalNSampler);
+            JsonAssert.AreEqual(expectedUniversalSampler, deserializedUniversalNSampler);
         }
     }
 }
