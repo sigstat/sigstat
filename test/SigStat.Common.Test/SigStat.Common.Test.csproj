@@ -16,4 +16,15 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Databases\DutchSample.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Databases\McytSample.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Databases\Test.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

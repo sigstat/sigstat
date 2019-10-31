@@ -11,26 +11,26 @@ Performs rotation normalization on the online signature
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>NormalizeRotation (  )</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| NormalizeRotation () |  | 
 
 
 ## Properties
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>InputT</sub><img width=200/>| <sub>Gets or sets the input feature representing the timestamps of an online signature</sub>| <br>
-| <sub>InputX</sub><img width=200/>| <sub>Gets or sets the input feature representing the X coordinates of an online signature</sub>| <br>
-| <sub>InputY</sub><img width=200/>| <sub>Gets or sets the input feature representing the Y coordinates of an online signature</sub>| <br>
-| <sub>OutputX</sub><img width=200/>| <sub>Gets or sets the output feature representing the X coordinates of an online signature</sub>| <br>
-| <sub>OutputY</sub><img width=200/>| <sub>Gets or sets the input feature representing the Y coordinates of an online signature</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| InputT | Gets or sets the input feature representing the timestamps of an online signature | 
+| InputX | Gets or sets the input feature representing the X coordinates of an online signature | 
+| InputY | Gets or sets the input feature representing the Y coordinates of an online signature | 
+| OutputX | Gets or sets the output feature representing the X coordinates of an online signature | 
+| OutputY | Gets or sets the input feature representing the Y coordinates of an online signature | 
 
 
 ## Methods
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>[Transform](./Methods/NormalizeRotation-100663779.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [Transform](./Methods/NormalizeRotation--Transform.md) ([`Signature`](./../../../Signature.md)) |  | 
 
 

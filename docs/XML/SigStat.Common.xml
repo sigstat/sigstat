@@ -1137,15 +1137,6 @@
             </summary>
             <seealso cref="T:Newtonsoft.Json.JsonConverter" />
         </member>
-        <member name="M:SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.CanConvert(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
-            <inheritdoc/>
-        </member>
         <member name="T:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter">
             <summary>
             Custom serializer for a Dictionary of <see cref="T:SigStat.Common.FeatureDescriptor"/>
@@ -1337,7 +1328,7 @@
             <param name="o">The object</param>
             <param name="path">Relative path</param>
         </member>
-        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0)">
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)">
             <summary>
             Creates json string from object
             </summary>

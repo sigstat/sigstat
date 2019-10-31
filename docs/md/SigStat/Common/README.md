@@ -6,7 +6,7 @@
 	- Helper methods for processing arrays
 - [`Baseline`](./Baseline.md)
 - [`BasicMetadataExtraction`](./BasicMetadataExtraction.md)
-	- Extracts basic statistical signature (like [Features.Bounds](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) or [Features.Cog](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) information from an Image
+	- Extracts basic statistical signature (like [Bounds](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md) or [Cog](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Features.md)) information from an Image
 - [`BenchmarkResults`](./BenchmarkResults.md)
 	- Contains the benchmark results of every [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and the summarized final results.
 - [`DistanceMatrix`](./DistanceMatrix-3.md)\<[`TRowKey`](./README.md), [`TColumnKey`](./README.md), [`TValue`](./README.md)>
@@ -40,7 +40,7 @@
 - [`Signature`](./Signature.md)
 	- Represents a signature as a collection of features, containing the data that flows in the pipeline.
 - [`Signer`](./Signer.md)
-	- Represents a person as an [Signer.ID](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and a list of [Signer.Signatures](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md).
+	- Represents a person as an [ID](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md) and a list of [Signatures](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md).
 - [`SigStatEvents`](./SigStatEvents.md)
 	- Standard event identifiers used by the SigStat system
 - [`SimpleRenderingTransformation`](./SimpleRenderingTransformation.md)
@@ -50,5 +50,5 @@
 - [`StrokeInterval`](./StrokeInterval.md)
 	- Represents a stroke in an online signature
 - [`VerifierBenchmark`](./VerifierBenchmark.md)
-	- Benchmarking class to test error rates of a [Model.Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md)
+	- Benchmarking class to test error rates of a [Verifier](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Model/Verifier.md)
 

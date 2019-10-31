@@ -11,28 +11,28 @@ Hierarchical structure to store object
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>HierarchyElement (  )</sub><img width=200/>| <sub>Create an emty element</sub>| <br>
-| <sub>HierarchyElement ( [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object) )</sub><img width=200/>| <sub>Create a new element with content</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| HierarchyElement () | Create an emty element | 
+| HierarchyElement ([`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)) | Create a new element with content | 
 
 
 ## Properties
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>Children</sub><img width=200/>| <sub>Gets the children.</sub>| <br>
-| <sub>Content</sub><img width=200/>| <sub>Gets or sets the content.</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Children | Gets the children. | 
+| Content | Gets or sets the content. | 
 
 
 ## Methods
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>[Add](./Methods/HierarchyElement-100664012.md) ( [`HierarchyElement`](./HierarchyElement.md) )</sub><img width=200/>| <sub></sub>| <br>
-| <sub>[GetCount](./Methods/HierarchyElement-100664014.md) (  )</sub><img width=200/>| <sub>Returns number of elements under this node and itself</sub>| <br>
-| <sub>[GetDepth](./Methods/HierarchyElement-100664013.md) (  )</sub><img width=200/>| <sub>Return the hierarchy's depth from this node</sub>| <br>
-| <sub>[GetEnumerator](./Methods/HierarchyElement-100664016.md) (  )</sub><img width=200/>| <sub>Returns an enumerator that iterates through the collection.</sub>| <br>
-| <sub>[ToString](./Methods/HierarchyElement-100664015.md) (  )</sub><img width=200/>| <sub>Converts to string.</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [Add](./Methods/HierarchyElement--Add.md) ([`HierarchyElement`](./HierarchyElement.md)) |  | 
+| [GetCount](./Methods/HierarchyElement--GetCount.md) () | Returns number of elements under this node and itself | 
+| [GetDepth](./Methods/HierarchyElement--GetDepth.md) () | Return the hierarchy's depth from this node | 
+| [GetEnumerator](./Methods/HierarchyElement--GetEnumerator.md) () | Returns an enumerator that iterates through the collection. | 
+| [ToString](./Methods/HierarchyElement--ToString.md) () | Converts to string. | 
 
 

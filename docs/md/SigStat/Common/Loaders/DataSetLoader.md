@@ -11,16 +11,16 @@ Abstract loader class to inherit from. Implements ILogger.
 
 ## Properties
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>Logger</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Logger |  | 
 
 
 ## Methods
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>[EnumerateSigners](./Methods/DataSetLoader-100663879.md) (  )</sub><img width=200/>| <sub></sub>| <br>
-| <sub>[EnumerateSigners](./Methods/DataSetLoader-100663880.md) ( [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> )</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [EnumerateSigners](./Methods/DataSetLoader--EnumerateSigners.md) () |  | 
+| [EnumerateSigners](./Methods/DataSetLoader--EnumerateSigners.md) ([`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)>) |  | 
 
 

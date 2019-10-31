@@ -11,25 +11,25 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>PipelineBase (  )</sub><img width=200/>| <sub>Initializes a new instance of the [PipelineBase](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) class.</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| PipelineBase () | Initializes a new instance of the [PipelineBase](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) class. | 
 
 
 ## Properties
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>Logger</sub><img width=200/>| <sub></sub>| <br>
-| <sub>PipelineInputs</sub><img width=200/>| <sub>A collection of inputs for the pipeline elements</sub>| <br>
-| <sub>PipelineOutputs</sub><img width=200/>| <sub>A collection of outputs for the pipeline elements</sub>| <br>
-| <sub>Progress</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Logger |  | 
+| PipelineInputs | A collection of inputs for the pipeline elements | 
+| PipelineOutputs | A collection of outputs for the pipeline elements | 
+| Progress |  | 
 
 
 ## Events
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>ProgressChanged</sub><img width=200/>| <sub>The event is raised whenever the value of [PipelineBase.Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) changes</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| ProgressChanged | The event is raised whenever the value of [Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) changes | 
 
 

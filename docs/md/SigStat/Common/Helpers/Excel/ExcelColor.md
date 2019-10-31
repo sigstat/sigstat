@@ -8,14 +8,14 @@ Predefined color schemes for Excel
 
 ##	Enum
 
-| Value | Name | Summary | 
-| --- | --- | --- | 
-| 0<img width=200/>| Primary| Primary color<img width=200/>| <br>
-| 1<img width=200/>| Secondary| Secondary color<img width=200/>| <br>
-| 2<img width=200/>| Succes| Succes color<img width=200/>| <br>
-| 3<img width=200/>| Danger| Danger color<img width=200/>| <br>
-| 4<img width=200/>| Warning| Warning color<img width=200/>| <br>
-| 5<img width=200/>| Info| Info color<img width=200/>| <br>
-| 6<img width=200/>| Transparent| Transparent color<img width=200/>| <br>
+| <span>Value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Name | <span>Summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | 
+| :--- | :--- | :--- | 
+| 0 | Primary | Primary color | 
+| 1 | Secondary | Secondary color | 
+| 2 | Succes | Succes color | 
+| 3 | Danger | Danger color | 
+| 4 | Warning | Warning color | 
+| 5 | Info | Info color | 
+| 6 | Transparent | Transparent color | 
 
 

@@ -31,7 +31,7 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
         [TestMethod]
         public void TestTransform()
         {
-            var signature = TestHelper.BuildSignature()
+            var signature = JsonAssert.BuildSignature()
                 .SetFeature(Features.X, new List<double> { 1, 2, 3 })
                 .SetFeature(Features.Y, new List<double> { 1, 2, 3 });
 

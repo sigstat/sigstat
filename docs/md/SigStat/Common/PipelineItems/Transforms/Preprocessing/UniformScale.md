@@ -11,28 +11,28 @@ Maps values of a feature to a specific range and another proportional.  <br>Base
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>UniformScale (  )</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| UniformScale () |  | 
 
 
 ## Properties
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>BaseDimension</sub><img width=200/>| <sub>Gets or sets the base dimension.</sub>| <br>
-| <sub>BaseDimensionOutput</sub><img width=200/>| <sub>Gets or sets the output base dimension output.</sub>| <br>
-| <sub>NewMaxBaseValue</sub><img width=200/>| <sub>Upper bound of the interval, in which the base dimension will be scaled</sub>| <br>
-| <sub>NewMinBaseValue</sub><img width=200/>| <sub>Lower bound of the interval, in which the base dimension will be scaled</sub>| <br>
-| <sub>NewMinProportionalValue</sub><img width=200/>| <sub>Lower bound of the interval, in which the proportional dimension will be scaled</sub>| <br>
-| <sub>ProportionalDimension</sub><img width=200/>| <sub>Gets or sets the ProportionalDimension.</sub>| <br>
-| <sub>ProportionalDimensionOutput</sub><img width=200/>| <sub>Gets or sets the output proportional dimension output.</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| BaseDimension | Gets or sets the base dimension. | 
+| BaseDimensionOutput | Gets or sets the output base dimension output. | 
+| NewMaxBaseValue | Upper bound of the interval, in which the base dimension will be scaled | 
+| NewMinBaseValue | Lower bound of the interval, in which the base dimension will be scaled | 
+| NewMinProportionalValue | Lower bound of the interval, in which the proportional dimension will be scaled | 
+| ProportionalDimension | Gets or sets the ProportionalDimension. | 
+| ProportionalDimensionOutput | Gets or sets the output proportional dimension output. | 
 
 
 ## Methods
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>[Transform](./Methods/UniformScale-100663845.md) ( [`Signature`](./../../../Signature.md) )</sub><img width=200/>| <sub></sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [Transform](./Methods/UniformScale--Transform.md) ([`Signature`](./../../../Signature.md)) |  | 
 
 

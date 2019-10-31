@@ -7,24 +7,24 @@ Assembly: SigStat.Common.dll
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>Baseline (  )</sub><img width=200/>| <sub>Initializes a Baseline instance</sub>| <br>
-| <sub>Baseline ( [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) )</sub><img width=200/>| <sub>Initializes a Baseline instance with the given startpoint and endpoint</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Baseline () | Initializes a Baseline instance | 
+| Baseline ([`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32), [`Int32`](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)) | Initializes a Baseline instance with the given startpoint and endpoint | 
 
 
 ## Properties
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>End</sub><img width=200/>| <sub>Endpoint of the baseline</sub>| <br>
-| <sub>Start</sub><img width=200/>| <sub>Starting point of the baseline</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| End | Endpoint of the baseline | 
+| Start | Starting point of the baseline | 
 
 
 ## Methods
 
-| Name | Summary | 
-| --- | --- | 
-| <sub>[ToString](./Methods/Baseline-100663334.md) (  )</sub><img width=200/>| <sub>Returns a string representation of the baseline</sub>| <br>
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [ToString](./Methods/Baseline--ToString.md) () | Returns a string representation of the baseline | 
 
 
