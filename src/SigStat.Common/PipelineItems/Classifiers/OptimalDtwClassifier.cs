@@ -75,6 +75,11 @@ namespace SigStat.Common.PipelineItems.Classifiers
         public Func<double[], double[], double> DistanceFunction { get; set; }
 
         /// <summary>
+        /// Length of the warping window to be used with DTW
+        /// </summary>
+        public int WarpingWindowLength { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="OptimalDtwClassifier"/> class.
         /// </summary>
         /// <param name="distanceFunction">The distance function.</param>
@@ -106,7 +111,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
+                    dtwDistances[test.ID, train.ID] = DtwPyWindow.Dtw(train.Values, test.Values, DistanceFunction, WarpingWindowLength);
                 }
             }
 

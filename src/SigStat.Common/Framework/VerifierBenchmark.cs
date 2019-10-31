@@ -25,16 +25,19 @@ namespace SigStat.Common
     {
         /// <summary>Identifier of the <see cref="Signer"/></summary>
         [JsonProperty]
-        public readonly string Signer;
+        public string Signer { get; set; }
         /// <summary>False Rejection Rate</summary>
         [JsonProperty]
-        public readonly double Frr;
+        public double Frr { get; set; }
+
         /// <summary>False Acceptance Rate</summary>
         [JsonProperty]
-        public readonly double Far;
+        public double Far { get; set; }
+
         /// <summary>Average Error Rate</summary>
         [JsonProperty]
-        public readonly double Aer;
+        public double Aer { get; set; }
+
 
         /// HACK: Consider removing this after benchmark
         public readonly ISignerModel Model;
@@ -138,6 +141,7 @@ namespace SigStat.Common
                     FAR = s.Far,
                     FRR = s.Frr,
                     AER = s.Aer
+                    
                 });
 
                 resultsSheet.InsertTable(2, 2, signerSummaries);

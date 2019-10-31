@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace SigStat.Common.Loaders
     [JsonObject(MemberSerialization.OptOut)]
     public class MCYTLoader : DataSetLoader
     {
+
         /// <summary>
         /// Set of features containing raw data loaded from MCYT-format database.
         /// </summary>
         public static class MCYT
         {
+
             /// <summary>
             /// X cooridnates from the online signature imported from the MCYT database
             /// </summary>
@@ -72,6 +75,13 @@ namespace SigStat.Common.Loaders
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
+
+        /// <summary>
+        /// Set MCYT sampling frequenct to 100hz
+        /// </summary>
+        public override int SamplingFrequency { get { return 100; } }
+
+
         /// <summary>
         /// Gets or sets the database path.
         /// </summary>
@@ -120,15 +130,14 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
-
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
                     yield return signer;
                 }
             }
             this.LogInformation("Enumerating signers finished.");
-        }
-
+           }
+        
         /// <summary>
         /// Loads one signature from specified stream.
         /// </summary>
@@ -192,7 +201,7 @@ namespace SigStat.Common.Loaders
                 Azimuth.Add(reader.ReadSingle());
                 Altitude.Add(reader.ReadSingle());
             }
-
+            
             //set signature features
             signature.SetFeature(MCYT.X, X);
             signature.SetFeature(MCYT.Y, Y);
@@ -216,10 +225,10 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.T, Time);
                 //Pendown sincs MCYT-ben, mindig lent van? Pressure alapjan lehetne egy threshold
                 signature.SetFeature(Features.Button, Enumerable.Repeat(true, X.Count).ToList());
+                signature.CalculateStandardStatistics();
             }
-
-
         }
-
+           
     }
+   
 }

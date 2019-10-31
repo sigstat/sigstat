@@ -54,5 +54,24 @@ namespace SigStat.Common
             valueList.Sort();
             return valueList[valueList.Count / 2];
         }
+        /// <summary>
+        /// return standard diviation of a feature values
+        /// </summary>
+        /// <param name="feature"></param>
+        /// <returns></returns>
+        public static double StdDiviation(this IEnumerable<double> values)
+        {
+            double mean = values.Average();
+            double sum = 0;
+            foreach (double value in values)
+            {
+                sum = sum + ((value - mean) * (value - mean));
+            }
+            sum = sum / values.Count();
+
+            return Math.Sqrt(sum);
+        }
     }
+
+   
 }

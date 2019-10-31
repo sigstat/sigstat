@@ -19,8 +19,8 @@ namespace SigStat.Common
         /// List of signatures that belong to the signer. 
         /// (Their origin is not constrained to be genuine.)
         /// </summary>
-        public virtual List<Signature> Signatures { get; set; } = new List<Signature>();
-
+        public virtual List<Signature> Signatures { get; set; } = new List<Signature>();     
+        
         /// <summary>
         /// Returns a string representation of a Signer
         /// </summary>
@@ -57,5 +57,7 @@ namespace SigStat.Common
             else
                 return $"{ID} (G:{genuine} F:{forged} U:{unknown})";
         }
+ 
+      
     }
 }

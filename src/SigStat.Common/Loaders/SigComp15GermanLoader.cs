@@ -13,6 +13,10 @@ namespace SigStat.Common.Loaders
     public class SigComp15GermanLoader : DataSetLoader
     {
         /// <summary>
+        /// Sampling Frequency of this database
+        /// </summary>
+        public override int SamplingFrequency { get { return 75; } }
+        /// <summary>
         /// Set of features containing raw data loaded from SigComp15German-format database.
         /// </summary>
         public static class SigComp15
@@ -134,9 +138,11 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
+                        
 
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                    
                     yield return signer;
                 }
             }
@@ -210,9 +216,12 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                signature.CalculateStandardStatistics();
+
 
 
             }
+
         }
 
     }

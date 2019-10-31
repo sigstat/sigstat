@@ -16,6 +16,7 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public class ImageLoader : DataSetLoader
     {
+        public override int SamplingFrequency { get { return 100; } }
         private readonly string DatabasePath;
 
         /// <summary>

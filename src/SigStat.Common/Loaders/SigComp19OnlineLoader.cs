@@ -13,6 +13,10 @@ namespace SigStat.Common.Loaders
     public class SigComp19OnlineLoader : DataSetLoader
     {
         /// <summary>
+        /// sampling frequency for this database
+        /// </summary>
+        public override int SamplingFrequency { get { return 0; } }
+        /// <summary>
         /// Set of features containing raw data loaded from SigComp19-format database.
         /// </summary>
         public static class SigComp19
@@ -201,6 +205,8 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Button, lines.Select(l => l[0] == 3).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[6]).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
+                SignatureHelper.CalculateStandardStatistics(signature);
+
             }
         }
     }

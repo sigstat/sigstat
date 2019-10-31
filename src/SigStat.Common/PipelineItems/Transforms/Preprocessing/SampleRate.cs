@@ -20,7 +20,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// Gets or sets the input feature representing the X coordinates of an online signature
         /// </summary>
         [Input]
-        public int samplerate { get; set; } = 1;
+        public int samplerate { get; set; } 
         /// <summary>
         /// Gets or sets the input feature representing the X coordinates of an online signature
         /// </summary>
@@ -37,7 +37,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// Gets or sets the input feature representing the timestamps of an online signature
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<double>> InputT { get; set; } = Features.T;
+        public FeatureDescriptor<List<double>> InputP { get; set; } = Features.Pressure;
 
         /// <summary>
         /// Gets or sets the output feature representing the X coordinates of an online signature
@@ -50,6 +50,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
+        [Output]
+        public FeatureDescriptor<List<double>> OutputP { get; set; } = Features.Pressure;
 
         /// <inheritdoc/>
         public void Transform(Signature signature)
@@ -57,26 +59,27 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             //Console.WriteLine(signature.Signer.ID + "   " + signature.ID);
             var xValues = new List<double>(signature.GetFeature(InputX));
             var yValues = new List<double>(signature.GetFeature(InputY));
-           
+            var pValues = new List<double>(signature.GetFeature(InputP));
 
-            int pointsNum = xValues.Count();
+
+            int pointsNum = xValues.Count;
           
             var newX = new List<double>();
             var newY = new List<double>();
-            int s = 0;
-            
-                for (int i = 0; i < pointsNum; i = i + samplerate)
+            var newP = new List<double>();
+
+            for (int i = 0; i < pointsNum; i = i + samplerate)
                 {
                     newX.Add(xValues[i]);
                     newY.Add(yValues[i]);
-               
+                    newP.Add(pValues[i]);
+
 
             }
-            if ((signature.Signer.ID == "0043" && signature.ID == "0043v01") || (signature.Signer.ID == "01" && signature.ID == "01"))
-                Console.WriteLine("Signer= " + signature.Signer.ID + "   points= " + newX.Count());
-
+            
             signature.SetFeature(OutputX, newX);
             signature.SetFeature(OutputY, newY);
+            signature.SetFeature(OutputP, newP);
 
         }
 

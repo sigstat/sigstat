@@ -13,10 +13,16 @@ namespace SigStat.Common.Loaders
     public class SigComp11ChineseLoader : DataSetLoader
     {
         /// <summary>
+        /// Sampling Frequency of this database
+        /// </summary>
+        public override int SamplingFrequency { get { return 200; } }
+        /// <summary>
         /// Set of features containing raw data loaded from SigComp11Chinese-format database.
         /// </summary>
         public static class SigComp11Ch
         {
+            
+
             /// <summary>
             /// X cooridnates from the online signature imported from the SigComp11Chinese database  
             /// </summary>
@@ -33,6 +39,7 @@ namespace SigStat.Common.Loaders
             /// T values from the online signature imported from the SigComp11Chinese database
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp15.T");
+            // sample rate for the database
         }
 
         private struct SigComp11ChineseSignatureFile
@@ -154,9 +161,11 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
+                        
 
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                   
                     yield return signer;
                 }
             }
@@ -213,9 +222,10 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
-
+                signature.CalculateStandardStatistics();
 
             }
+           
         }
 
     }

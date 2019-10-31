@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using SixLabors.Primitives;
 
 namespace SigStat.Common
 {

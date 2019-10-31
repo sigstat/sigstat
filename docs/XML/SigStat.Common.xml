@@ -64,6 +64,30 @@
             <returns></returns>
             <remarks>The two vectors must have the same length</remarks>
         </member>
+        <member name="T:SigStat.Common.Algorithms.DtwPyWindow">
+            <summary>
+            A simple implementation of the DTW algorithm.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwPyWindow.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+            <summary>
+            Calculates the distance between two time sequences
+            </summary>
+            <typeparam name="P">the type of data points</typeparam>
+            <param name="sequence1">time sequence 1</param>
+            <param name="sequence2">time sequence 2</param>
+            <param name="distance">a function to calculate the distance between two points</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwPyWindow.EuclideanDistance(System.Double[],System.Double[])">
+            <summary>
+            Calculates the euclidean distance of two vectors
+            </summary>
+            <param name="vector1">vector1</param>
+            <param name="vector2">vector2</param>
+            <returns></returns>
+            <remarks>The two vectors must have the same length</remarks>
+        </member>
         <member name="T:SigStat.Common.Algorithms.HSCPThinningStep">
             <summary>
             HSCP thinning algorithm
@@ -178,7 +202,7 @@
             Standard set of features.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Features.Bounds">
+        <member name="F:SigStat.Common.Features.Size">
             <summary>
             Actual bounds of the signature
             </summary>
@@ -569,19 +593,26 @@
             <param name="signature"></param>
             <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:SigStat.Common.Model.SampleRateResults.step" -->
+        <!-- Badly formed XML comment ignored for member "P:SigStat.Common.Model.SampleRateResults.pointsAvg" -->
+        <member name="P:SigStat.Common.Model.SampleRateResults.AER">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Result">
             <summary>Contains the benchmark results of a single <see cref="T:SigStat.Common.Signer"/></summary>
         </member>
-        <member name="F:SigStat.Common.Result.Signer">
-            <summary>Identifier of the <see cref="F:SigStat.Common.Result.Signer"/></summary>
+        <member name="P:SigStat.Common.Result.Signer">
+            <summary>Identifier of the <see cref="P:SigStat.Common.Result.Signer"/></summary>
         </member>
-        <member name="F:SigStat.Common.Result.Frr">
+        <member name="P:SigStat.Common.Result.Frr">
             <summary>False Rejection Rate</summary>
         </member>
-        <member name="F:SigStat.Common.Result.Far">
+        <member name="P:SigStat.Common.Result.Far">
             <summary>False Acceptance Rate</summary>
         </member>
-        <member name="F:SigStat.Common.Result.Aer">
+        <member name="P:SigStat.Common.Result.Aer">
             <summary>Average Error Rate</summary>
         </member>
         <member name="F:SigStat.Common.Result.Model">
@@ -1314,6 +1345,48 @@
             <param name="o">The object</param>
             <returns>The json string constructed from the object</returns>
         </member>
+        <member name="M:SigStat.Common.Helpers.SignerStatisticsHelper.GetLengthAverage(SigStat.Common.Signer)">
+            <summary>
+            Return the average od signatures points number
+            </summary>
+            <param name="signer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SignerStatisticsHelper.GetWidthAvg(SigStat.Common.Signer)">
+            <summary>
+            Return signer width average
+            </summary>
+            <param name="signer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SignerStatisticsHelper.GetHeightAvg(SigStat.Common.Signer)">
+            <summary>
+            return signer height average
+            </summary>
+            <param name="signer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SignerStatisticsHelper.GetPointsAvg(SigStat.Common.Signer)">
+            <summary>
+            return signer points average
+            </summary>
+            <param name="signer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SignerStatisticsHelper.GetMinSignaturePoints(SigStat.Common.Signer)">
+            <summary>
+            return the min signature points number of a signer
+            </summary>
+            <param name="signer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.SignerStatisticsHelper.GetMaxSignaturePoints(SigStat.Common.Signer)">
+            <summary>
+            return the min signature points number of a signer
+            </summary>
+            <param name="signer"></param>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.Helpers.SimpleConsoleLogger">
             <summary>
             A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
@@ -1466,6 +1539,27 @@
             <param name="values">The data series</param>
             <returns></returns>
         </member>
+        <member name="M:SigStat.Common.MathHelper.StdDiviation(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            return standard diviation of a feature values
+            </summary>
+            <param name="feature"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.SignatureHelper.SaveImage(SigStat.Common.Signature,System.String)">
+            <summary>
+            Save online signature as file
+            </summary>
+            <param name="sig"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:SigStat.Common.SignatureHelper.GetSignatureLength(SigStat.Common.Signature)">
+            <summary>
+            Return the signature length using Eculidan distance
+            </summary>
+            <param name="signature"></param>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.StrokeHelper">
             <summary>
             Helper class for locating and manipulating strokes in an online signature
@@ -1548,6 +1642,11 @@
         </member>
         <member name="M:SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.Loaders.DataSetLoader.SamplingFrequency">
+            <summary>
+            Sampling frequency for each database
+            </summary>
         </member>
         <member name="T:SigStat.Common.Loaders.IDataSetLoader">
             <summary>
@@ -1651,6 +1750,11 @@
             <param name="databasePath">The database path.</param>
             <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
+        <member name="P:SigStat.Common.Loaders.MCYTLoader.SamplingFrequency">
+            <summary>
+            Set MCYT sampling frequenct to 100hz
+            </summary>
+        </member>
         <member name="P:SigStat.Common.Loaders.MCYTLoader.DatabasePath">
             <summary>
             Gets or sets the database path.
@@ -1678,6 +1782,11 @@
         <member name="T:SigStat.Common.Loaders.SigComp11ChineseLoader">
             <summary>
             <see cref="T:SigStat.Common.Loaders.DataSetLoader"/> for the SigComp11Chinese dataset
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.SigComp11ChineseLoader.SamplingFrequency">
+            <summary>
+            Sampling Frequency of this database
             </summary>
         </member>
         <member name="T:SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch">
@@ -1741,6 +1850,11 @@
             <see cref="T:SigStat.Common.Loaders.DataSetLoader"/> for the SigComp11Dutch dataset
             </summary>
         </member>
+        <member name="P:SigStat.Common.Loaders.SigComp11DutchLoader.SamplingFrequency">
+            <summary>
+            Sampling Frequency of this database
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11">
             <summary>
             Set of features containing raw data loaded from MCYT-format database.
@@ -1800,6 +1914,11 @@
         <member name="T:SigStat.Common.Loaders.SigComp13JapaneseLoader">
             <summary>
             <see cref="T:SigStat.Common.Loaders.DataSetLoader"/> for the SigComp13Japanese dataset
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.SigComp13JapaneseLoader.SamplingFrequency">
+            <summary>
+            Sampling Frequency of this database
             </summary>
         </member>
         <member name="T:SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese">
@@ -1863,6 +1982,11 @@
             <see cref="T:SigStat.Common.Loaders.DataSetLoader"/> for the SigComp15German dataset
             </summary>
         </member>
+        <member name="P:SigStat.Common.Loaders.SigComp15GermanLoader.SamplingFrequency">
+            <summary>
+            Sampling Frequency of this database
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15">
             <summary>
             Set of features containing raw data loaded from SigComp15German-format database.
@@ -1922,6 +2046,11 @@
         <member name="T:SigStat.Common.Loaders.SigComp19OnlineLoader">
             <summary>
             <see cref="T:SigStat.Common.Loaders.DataSetLoader"/> for the SigComp19 dataset
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.SigComp19OnlineLoader.SamplingFrequency">
+            <summary>
+            sampling frequency for this database
             </summary>
         </member>
         <member name="T:SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19">
@@ -2048,6 +2177,11 @@
         <member name="T:SigStat.Common.Loaders.Svc2004Loader">
             <summary>
             Loads SVC2004-format database from .zip
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.Svc2004Loader.SamplingFrequency">
+            <summary>
+            Sampling Frequency of the SVC database
             </summary>
         </member>
         <member name="P:SigStat.Common.Loaders.Svc2004Loader.DatabasePath">
@@ -2348,7 +2482,7 @@
         </member>
         <member name="T:SigStat.Common.BasicMetadataExtraction">
             <summary>
-            Extracts basic statistical signature (like <see cref="F:SigStat.Common.Features.Bounds"/> or <see cref="F:SigStat.Common.Features.Cog"/>) information from an Image
+            Extracts basic statistical signature (like <see cref="!:Features.Bounds"/> or <see cref="F:SigStat.Common.Features.Cog"/>) information from an Image
             </summary>
         </member>
         <member name="P:SigStat.Common.BasicMetadataExtraction.Trim">
@@ -2466,6 +2600,11 @@
         <member name="P:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.DistanceFunction">
             <summary>
             The function used to calculate the distance between two data points during DTW calculation
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.WarpingWindowLength">
+            <summary>
+            Length of the warping window to be used with DTW
             </summary>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.#ctor(System.Func{System.Double[],System.Double[],System.Double})">
@@ -2852,7 +2991,7 @@
             Gets or sets the input feature representing the Y coordinates of an online signature
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputT">
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputP">
             <summary>
             Gets or sets the input feature representing the timestamps of an online signature
             </summary>
@@ -3003,6 +3142,26 @@
             </summary>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization">
+            <summary>
+            Maps values of a feature to a specific range.
+            <para>InputFeature: feature to be scaled.</para>
+            <para>OutputFeature: output feature for scaled InputFeature</para>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.InputFeature">
+            <summary>
+            Gets or sets the input feature.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.OutputFeature">
+            <summary>
+            Gets or sets the output feature.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.SimpleRenderingTransformation">
