@@ -12,7 +12,16 @@ namespace SigStat.Common.Test.Helpers.Serialization
         {
             var signature =  JsonAssert.BuildSignature();
             var json = SerializationHelper.JsonSerialize(signature);
-            JsonAssert.AreEqual(signature, json);
+            var expectedJson = @"{
+              ""features"": {},
+              ""ID"": ""Demo"",
+              ""Origin"": 1,
+              ""Signer"": {
+              ""ID"": ""S01"",
+              ""Signatures"": []
+              }
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]
@@ -31,7 +40,16 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var path = "TestSerialization.json";
             SerializationHelper.JsonSerializeToFile(signature,path);
             var json = File.ReadAllText(path);
-            JsonAssert.AreEqual(signature, json);
+            var expectedJson = @"{
+              ""features"": {},
+              ""ID"": ""Demo"",
+              ""Origin"": 1,
+              ""Signer"": {
+              ""ID"": ""S01"",
+              ""Signatures"": []
+              }
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

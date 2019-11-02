@@ -13,12 +13,33 @@ namespace SigStat.Common.Test.Helpers.Serialization.Classifiers
             var weightedClassifier = new WeightedClassifier
             {
                 (new DtwClassifier(Accord.Math.Distance.Manhattan),
-                    0.15),                
+                    0.15),
                 (new OptimalDtwClassifier(Accord.Math.Distance.Euclidean),
                     0.5),
             };
             var json = SerializationHelper.JsonSerialize(weightedClassifier);
-            JsonAssert.AreEqual(weightedClassifier, json);
+            var expectedJson = @"{
+              ""Items"": [
+                {
+                  ""Item1"": {
+                    ""$type"": ""SigStat.Common.PipelineItems.Classifiers.DtwClassifier, SigStat.Common"",
+                    ""DistanceFunction"": ""Accord.Math.Distance.Manhattan, Accord.Math"",
+                    ""Features"":[],
+                    ""MultiplicationFactor"": 1.0
+                  },
+                  ""Item2"": 0.15
+                },
+                {
+                  ""Item1"": {
+                    ""$type"": ""SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier, SigStat.Common"",
+                    ""DistanceFunction"": ""Accord.Math.Distance.Euclidean, Accord.Math"",
+                    ""WarpingWindowLength"": 0
+                  },
+                  ""Item2"": 0.5
+                }
+              ]
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]
@@ -33,7 +54,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Classifiers
             };
             var weightedJson = SerializationHelper.JsonSerialize(weightedClassifier);
             var deserializedWeightedClassifier = SerializationHelper.Deserialize<WeightedClassifier>(weightedJson);
-            Assert.AreEqual(weightedClassifier.Items.Count, deserializedWeightedClassifier.Items.Count);
+            JsonAssert.AreEqual(weightedClassifier,deserializedWeightedClassifier);
         }
     }
 }

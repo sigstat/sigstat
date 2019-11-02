@@ -12,7 +12,11 @@ namespace SigStat.Common.Test.Helpers.Serialization.Loaders
         {
             var svc2004Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
             var json = SerializationHelper.JsonSerialize(svc2004Loader);
-            JsonAssert.AreEqual(svc2004Loader, json);
+            var expectedJson = @"{
+              ""DatabasePath"": ""Databases\\Online\\SVC2004\\Task2.zip"",
+              ""StandardFeatures"": true
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

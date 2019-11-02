@@ -17,7 +17,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
                 Converters = new List<JsonConverter> { new FeatureDescriptorDictionaryConverter() }
             };
         }
@@ -42,7 +42,12 @@ namespace SigStat.Common.Test.Helpers.Serialization
             features.Add("Pressure", Features.Pressure);
             features.Add("Altitude", Features.Altitude);
             var json = JsonConvert.SerializeObject(features, Formatting.Indented, jsonSerializerSettings);
-            JsonAssert.AreEqual(features,json, jsonSerializerSettings);
+
+            var expectedJson = @"[
+            ""Pressure | System.Collections.Generic.List`1[[System.Double, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"",
+            ""Altitude | System.Collections.Generic.List`1[[System.Double, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e""
+            ]";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
 
@@ -55,7 +60,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
             features.Add("Altitude", Features.Altitude);
             var json = JsonConvert.SerializeObject(features, Formatting.Indented, jsonSerializerSettings);
             var featuresDeserialized = JsonConvert.DeserializeObject<Dictionary<string,FeatureDescriptor>>(json, jsonSerializerSettings);
-            JsonAssert.AreEqual(features, featuresDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(features, featuresDeserialized);
         }
 
         [TestMethod]

@@ -18,8 +18,8 @@ namespace SigStat.Common.Test.Helpers.Serialization.Classifiers
             };
             var json = SerializationHelper.JsonSerialize(dtwClassifier, true);
             var expectedJson = @"{
-              ""DistanceFunction"": ""Accord.Math.Distance, Accord.Math, Version=3.8.0.0, Culture=neutral, PublicKeyToken=null|Manhattan|System.Double[];System.Double[]"",
-              ""Features"":[X, Y],
+              ""DistanceFunction"": ""Accord.Math.Distance.Manhattan, Accord.Math"",
+              ""Features"": [""X"", ""Y""],
               ""MultiplicationFactor"": 3.0
             }";
             JsonAssert.AreEqual(expectedJson, json);

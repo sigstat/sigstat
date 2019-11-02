@@ -12,7 +12,10 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var oddNSampler = new OddNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(oddNSampler);
-            JsonAssert.AreEqual(oddNSampler, json);
+            var expectedJson = @"{
+              ""N"": 10
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

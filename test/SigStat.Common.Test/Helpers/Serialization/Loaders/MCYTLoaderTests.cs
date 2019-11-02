@@ -12,7 +12,11 @@ namespace SigStat.Common.Test.Helpers.Serialization.Loaders
         {
             var mcytLoader = new MCYTLoader(@"Databases\Online\MCYT\Task2.zip".GetPath(), true);
             var json = SerializationHelper.JsonSerialize(mcytLoader);
-            JsonAssert.AreEqual(mcytLoader, json);
+            var expectedJson = @"{
+              ""DatabasePath"": ""Databases\\Online\\MCYT\\Task2.zip"",
+              ""StandardFeatures"": true
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]
@@ -20,7 +24,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Loaders
         {
             var expectedMcytLoader = new MCYTLoader(@"Databases\Online\MCYT\Task2.zip".GetPath(), true);
             var mcytLoaderJson = SerializationHelper.JsonSerialize(expectedMcytLoader);
-            var deserializedLoader = SerializationHelper.Deserialize<Svc2004Loader>(mcytLoaderJson);
+            var deserializedLoader = SerializationHelper.Deserialize<MCYTLoader>(mcytLoaderJson);
             JsonAssert.AreEqual(expectedMcytLoader, deserializedLoader);
         }
     }
