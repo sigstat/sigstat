@@ -18,7 +18,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
                 Converters = new List<JsonConverter> { new FeatureDescriptorTJsonConverter() }
             };
         }
@@ -45,7 +45,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
                 Converters = new List<JsonConverter> { new FeatureDescriptorTJsonConverter() }
             };
             var feature = Features.Pressure;

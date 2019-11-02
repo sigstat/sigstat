@@ -59,7 +59,7 @@ namespace SigStat.Common.Helpers
             writer.Formatting = Formatting.None;
             var state = serializer.Context.Context as FeatureStreamingContextState;
             var fd = (FeatureDescriptor)value;
-            if (!state.KnownFeatureKeys.Contains(fd.Key))
+            if (!state.KnownFeatureKeys.Contains(fd.Key) && state.CompactFeatures == false)
             {
                 serializer.Serialize(writer, fd.Key + " | " + fd.FeatureType.AssemblyQualifiedName);
                 state.KnownFeatureKeys.Add(fd.Key);

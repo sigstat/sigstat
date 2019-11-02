@@ -14,7 +14,7 @@ namespace SigStat.Common.Helpers
         /// Settings used for the serialization methods
         /// </summary>
         /// <returns>A new settings object</returns>
-        public static JsonSerializerSettings GetSettings()
+        public static JsonSerializerSettings GetSettings(bool compactFeatures = false)
         {
             return new JsonSerializerSettings
 
@@ -22,7 +22,7 @@ namespace SigStat.Common.Helpers
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState())
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(compactFeatures))
             };
         }
         /// <summary>
@@ -52,9 +52,9 @@ namespace SigStat.Common.Helpers
         /// <typeparam name="T">The type of the object</typeparam>
         /// <param name="o">The object</param>
         /// <param name="path">Relative path</param>
-        public static void JsonSerializeToFile<T>(T o, string path)
+        public static void JsonSerializeToFile<T>(T o, string path, bool compactFeatures = false)
         {
-            File.WriteAllText(path, JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings()));
+            File.WriteAllText(path, JsonSerialize(o, compactFeatures));
         }
         /// <summary>
         /// Creates json string from object
@@ -66,7 +66,7 @@ namespace SigStat.Common.Helpers
         {
             // TODO: Settingsből kikényszeríthető, hogy a tömör Feature sorosítást használja
 
-            return JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings());
+            return JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings(compactFeatures));
         }
     }
 }
