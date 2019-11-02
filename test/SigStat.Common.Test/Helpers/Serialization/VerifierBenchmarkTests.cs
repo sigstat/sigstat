@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;

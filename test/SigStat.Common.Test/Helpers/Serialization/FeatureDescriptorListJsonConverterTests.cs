@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using System.Runtime.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using SigStat.Common.Helpers.Serialization;
-using SigStat.Common.Pipeline;
 
 namespace SigStat.Common.Test.Helpers.Serialization
 {

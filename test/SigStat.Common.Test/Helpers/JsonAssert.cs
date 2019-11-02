@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Test
@@ -160,18 +159,6 @@ namespace SigStat.Common.Test
                 s.ID == actualSignatures[i].ID && s.Origin.Equals(actualSignatures[i].Origin) &&
                 s.Signer.Equals(expected.Signer) && actualSignatures[i].Signer.Equals(actual.Signer)).Count(),
             expectedSignature.Count);
-        }
-        public static void AreEqual(object expected, string json, JsonSerializerSettings jsonSerializerSettings)
-        {
-            var expectedJsonToken = JToken.FromObject(expected, JsonSerializer.Create(jsonSerializerSettings));
-            var realJsonToken = JToken.Parse(json);
-            Assert.IsTrue(JToken.EqualityComparer.Equals(expectedJsonToken, realJsonToken));
-        }
-        public static void AreEqual(object expected, object actual, JsonSerializerSettings jsonSerializerSettings)
-        {
-            var originalJsonToken = JToken.FromObject(expected, JsonSerializer.Create(jsonSerializerSettings));
-            var deserializedJsonToken = JToken.FromObject(actual, JsonSerializer.Create(jsonSerializerSettings));
-            Assert.IsTrue(JToken.EqualityComparer.Equals(originalJsonToken, deserializedJsonToken));
         }
     }
 }
