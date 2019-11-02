@@ -41,17 +41,18 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var jsonSerializerSettings = GetTestSettings();
             Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Cosine;
             var json = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, jsonSerializerSettings);
-            JsonAssert.AreEqual(distanceFunc,json, jsonSerializerSettings);
+            var expectedJson = "\"Accord.Math.Distance.Cosine, Accord.Math\"";
+            Assert.AreEqual(expectedJson,json);
         }
 
         [TestMethod]
         public void TestRead()
         {
             var jsonSerializerSettings = GetTestSettings();
-            Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Euclidean;
+            Func<double[], double[], double> distanceFunc = Accord.Math.Distance.Cosine;
             var funcJson = JsonConvert.SerializeObject(distanceFunc, Formatting.Indented, jsonSerializerSettings);
             var funcDeserialized = JsonConvert.DeserializeObject<Func<double[], double[], double>>(funcJson, jsonSerializerSettings);
-            JsonAssert.AreEqual(distanceFunc, funcDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(distanceFunc, funcDeserialized);
         }
 
         [TestMethod]

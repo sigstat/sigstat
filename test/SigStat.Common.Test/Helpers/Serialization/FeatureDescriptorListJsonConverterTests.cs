@@ -19,7 +19,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(true)),
                 Converters = new List<JsonConverter> { new FeatureDescriptorListJsonConverter() }
             };
         }
@@ -43,24 +43,14 @@ namespace SigStat.Common.Test.Helpers.Serialization
         public void TestWrite()
         {
             var jsonSerializerSettings = GetTestSettings();
-            var cleanSerializerSettings = new JsonSerializerSettings
-
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
-                Converters = new List<JsonConverter> { new FeatureDescriptorListJsonConverter() }
-            };
             var featureList = new List<FeatureDescriptor>
             {
                 Features.X,
                 Features.Y
             };
             var json = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
-            JsonAssert.AreEqual(featureList, json, cleanSerializerSettings);
-            var shortJson = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
-            JsonAssert.AreEqual(featureList, shortJson, jsonSerializerSettings);
+            var expectedJson = @"[""X"",""Y""]";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]
@@ -73,13 +63,9 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 Features.Y
             };
             var json = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
-            var shortJson = JsonConvert.SerializeObject(featureList, Formatting.Indented, jsonSerializerSettings);
             var featureListDeserialized =
                 JsonConvert.DeserializeObject<List<FeatureDescriptor>>(json, GetTestSettings());
-            JsonAssert.AreEqual(featureList, featureListDeserialized, jsonSerializerSettings);
-            var shortFeatureListDeserialized =
-                JsonConvert.DeserializeObject<List<FeatureDescriptor>>(shortJson, GetTestSettings());
-            JsonAssert.AreEqual(featureList,shortFeatureListDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(featureList, featureListDeserialized);
         }
 
         [TestMethod]

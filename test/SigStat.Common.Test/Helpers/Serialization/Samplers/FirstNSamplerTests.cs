@@ -13,7 +13,10 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var firstNSampler = new FirstNSampler {N = 10};
             var json = SerializationHelper.JsonSerialize(firstNSampler);
-            JsonAssert.AreEqual(firstNSampler, json);
+            var expectedJson = @"{
+              ""N"": 10
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

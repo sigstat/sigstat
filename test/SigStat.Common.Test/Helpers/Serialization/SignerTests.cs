@@ -15,7 +15,11 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var signer = new Signer();
             signer.ID = "Test";
             var json = SerializationHelper.JsonSerialize(signer);
-            JsonAssert.AreEqual(signer, json);
+            var expectedJson = @"{
+              ""ID"": ""Test"",
+              ""Signatures"": []
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

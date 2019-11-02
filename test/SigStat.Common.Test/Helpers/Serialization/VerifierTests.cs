@@ -12,30 +12,6 @@ namespace SigStat.Common.Test.Helpers.Serialization
     [TestClass]
     public class VerifierTests
     {
-        [TestMethod]
-        public void TestSerializer()
-        {
-            var verifier = new Verifier()
-            {
-                Pipeline = new SequentialTransformPipeline
-                {
-                    new NormalizeRotation()
-                    {
-                        InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X,
-                        OutputY = Features.Y
-                    },
-                    new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
-
-                },
-                Classifier = new OptimalDtwClassifier()
-                {
-                    Sampler = new FirstNSampler(10),
-                    Features = new List<FeatureDescriptor>() {Features.X, Features.Y, Features.Pressure}
-                }
-            };
-            var json = SerializationHelper.JsonSerialize(verifier);
-            JsonAssert.AreEqual(verifier, json);
-        }
 
         [TestMethod]
         public void TestDeserialization()
