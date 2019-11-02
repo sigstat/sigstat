@@ -64,8 +64,6 @@ namespace SigStat.Common.Helpers
         /// <returns>The json string constructed from the object</returns>
         public static string JsonSerialize<T>(T o, bool compactFeatures = false)
         {
-            // TODO: Settingsből kikényszeríthető, hogy a tömör Feature sorosítást használja
-
             return JsonConvert.SerializeObject(o, Formatting.Indented, GetSettings(compactFeatures));
         }
     }

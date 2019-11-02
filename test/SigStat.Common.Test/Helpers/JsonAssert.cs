@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -37,14 +36,14 @@ namespace SigStat.Common.Test
             Assert.IsTrue(JToken.EqualityComparer.Equals(expectedJsonToken, actualJsonToken), $"The following json strings are not equal:\r\nExpected:{expected}\r\nActual: {actual}");
         }
 
-        public static void AreEqual(object original, string json)
+        public static void AreEqual(object expected, string json)
         {
-            var expectedJsonToken = JToken.FromObject(original, JsonSerializer.Create(SerializationHelper.GetSettings()));
+            var expectedJsonToken = JToken.FromObject(expected, JsonSerializer.Create(SerializationHelper.GetSettings()));
             var realJsonToken = JToken.Parse(json);
             Assert.IsTrue(JToken.EqualityComparer.Equals(expectedJsonToken, realJsonToken));
         }
 
-        public static void AreEqual(object original, object deserialized)
+        public static void AreEqual(object expected, object actual)
         {
             //TODO: propertyk alapján végigmenni és egyesével összenézni őket
             //... kivételek
@@ -54,21 +53,67 @@ namespace SigStat.Common.Test
             //  - stringeknél mehet az összehasonlítás
             //  - többinél rekurzívan kell menni tovább
 
-            var originalJsonToken = JToken.FromObject(original, JsonSerializer.Create(SerializationHelper.GetSettings()));
-            var deserializedJsonToken = JToken.FromObject(deserialized, JsonSerializer.Create(SerializationHelper.GetSettings()));
-            Assert.IsTrue(JToken.EqualityComparer.Equals(originalJsonToken,deserializedJsonToken));
+            var expectedType = expected.GetType();
+            var expectedProperties = expectedType.GetProperties();
+            var actualType = actual.GetType();
+            var actualProperties = actualType.GetProperties();
+
+            Assert.AreEqual(expectedType,actualType);
+            Assert.AreEqual(expectedProperties.Length, actualProperties.Length);
+
+            if ((expectedType == typeof(List<FeatureDescriptor>) && actualType == typeof(List<FeatureDescriptor>)))
+            {
+                Assert.IsTrue(AreFeatureListEqual(expected as List<FeatureDescriptor>, actual as List<FeatureDescriptor>));
+            }
+            else
+            {
+                for (var index = 0; index < expectedProperties.Length; index++)
+                {
+                    var expectedProperty = expectedProperties[index];
+                    var expectedValue = expectedProperty.GetValue(expected);
+
+                    var actualProperty = actualProperties[index];
+                    var actualValue = actualProperty.GetValue(actual);
+
+                    if (!actualProperty.CanWrite && !expectedProperty.CanWrite) continue;
+                    var expectedAttributes = expectedProperty.GetCustomAttributes(true)
+                        .Select(a => a is JsonIgnoreAttribute).ToArray();
+                    var actualAttributes = actualProperty.GetCustomAttributes(true)
+                        .Select(a => a is JsonIgnoreAttribute).ToArray();
+                    if (expectedAttributes.Any(a => a) && actualAttributes.Any(a => a)) continue;
+                    if (actualProperty.PropertyType == typeof(string) &&
+                        expectedProperty.PropertyType == typeof(string))
+                    {
+                        Assert.AreEqual(expectedValue, actualValue);
+                    }
+                    else if (actualProperty.PropertyType.IsClass && expectedProperty.PropertyType.IsClass)
+                    {
+                        AreEqual(expectedValue, actualValue);
+                    }
+                    else
+                    {
+                        Assert.AreEqual(expectedValue, actualValue);
+                    }
+                }
+            }
         }
 
-        public static void AreEqual(object original, string json, JsonSerializerSettings jsonSerializerSettings)
+        public static bool AreFeatureListEqual(List<FeatureDescriptor> expected, List<FeatureDescriptor> actual)
         {
-            var expectedJsonToken = JToken.FromObject(original, JsonSerializer.Create(jsonSerializerSettings));
+            Assert.AreEqual(expected.Count, actual.Count);
+            return !expected.Where((f, i) => f.Key != actual[i].Key).Any();
+        }
+
+        public static void AreEqual(object expected, string json, JsonSerializerSettings jsonSerializerSettings)
+        {
+            var expectedJsonToken = JToken.FromObject(expected, JsonSerializer.Create(jsonSerializerSettings));
             var realJsonToken = JToken.Parse(json);
             Assert.IsTrue(JToken.EqualityComparer.Equals(expectedJsonToken, realJsonToken));
         }
-        public static void AreEqual(object original, object deserialized, JsonSerializerSettings jsonSerializerSettings)
+        public static void AreEqual(object expected, object actual, JsonSerializerSettings jsonSerializerSettings)
         {
-            var originalJsonToken = JToken.FromObject(original, JsonSerializer.Create(jsonSerializerSettings));
-            var deserializedJsonToken = JToken.FromObject(deserialized, JsonSerializer.Create(jsonSerializerSettings));
+            var originalJsonToken = JToken.FromObject(expected, JsonSerializer.Create(jsonSerializerSettings));
+            var deserializedJsonToken = JToken.FromObject(actual, JsonSerializer.Create(jsonSerializerSettings));
             Assert.IsTrue(JToken.EqualityComparer.Equals(originalJsonToken, deserializedJsonToken));
         }
     }
