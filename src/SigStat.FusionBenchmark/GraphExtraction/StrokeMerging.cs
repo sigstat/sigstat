@@ -91,16 +91,19 @@ namespace SigStat.FusionBenchmark.GraphExtraction
             {
                 actualStrokeChain = new List<Stroke>();
                 var actualStroke = FindNextStartStroke(strokes, connectionNodes, isInRes);
+
                 while (actualStroke != null)
                 {
                     actualStrokeChain.Add(actualStroke);
                     isInRes.Add(actualStroke.Component);
                     actualStroke = compPairs.GetValueOrDefault(actualStroke);
-                    if (actualStroke == actualStrokeChain[actualStrokeChain.Count - 1])
+                    if (actualStroke == null || isInRes.Contains(actualStroke.Component))
                     {
                         actualStroke = null;
                     }
                 }
+
+ 
                 res.Add(actualStrokeChain);
             }
             return res;

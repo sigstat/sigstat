@@ -105,7 +105,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             Tuple<int, Stroke, double, int> res = null;
             for (int percent = InputWindowFrom; percent <= InputWindowTo; percent+= InputWindowJump)
             {
-                var val = CalculateIdx(stroke, trajectory, CalcWindow(stroke, percent), InputJump);
+                var val = CalculateIdx(stroke, trajectory, CalcWindow(stroke, percent));
                 if (res == null || val.Item3 < res.Item3)
                 {
                     res = val;
@@ -119,20 +119,14 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
             return Math.Max(stroke.Count * percent / 100, 1);
         }
 
-        private Tuple<int, Stroke, double, int> CalculateIdx(Stroke stroke, List<Vertex> trajectory, int window, int jump = 1)
+        private Tuple<int, Stroke, double, int> CalculateIdx(Stroke stroke, List<Vertex> trajectory, int window)
         {
             int resIdx = int.MaxValue;
             double resVal = Double.MaxValue;
             int inputScale = Math.Max((int)(trajectory.Count * InputScaleRate), 1);
+            int jump = Math.Max((int)(trajectory.Count * InputScaleRate), 1);
             for (int i = 0; i < trajectory.Count - window; i += jump)
             {
-                /*
-                double valPosition = DtwPy.Dtw<double[]>(stroke.GetXY(), trajectory.GetRange(i, window).GetXY(),
-                                                 DtwPy.EuclideanDistance);
-                double valShape = DtwPy.Dtw<double[]>(stroke.GetDirectionsFeature(), trajectory.GetRange(i, window).GetDirectionsFeature(),
-                                                Geometry.DiffVectorAngle);
-                double val = CalculateMixedVal(valPosition, valShape);
-                */
                 double val = DtwPy.Dtw<double[]>(stroke.GetDtwPairingFeature(inputScale), 
                                                  trajectory.GetRange(i, window).GetDtwPairingFeature(inputScale),
                                                  DtwPairingDistance);
@@ -143,11 +137,6 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
                 }
             }
             return new Tuple<int, Stroke, double, int>(resIdx, stroke, resVal, window);
-        }
-
-        private double CalculateMixedVal(double valPosition, double valShape)
-        {
-            return valPosition * valShape;
         }
 
         public static double DtwPairingDistance(double[] vec1, double[] vec2)

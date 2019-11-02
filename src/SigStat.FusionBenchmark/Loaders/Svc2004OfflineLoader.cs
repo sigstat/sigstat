@@ -25,7 +25,7 @@ namespace SigStat.FusionBenchmark.Loaders
             public SignatureFile(string file)
             {
                 File = file;
-                string name = file.Split('/').Last();//handle if file is in zip directory
+                string name = file.Split(Path.PathSeparator).Last();//handle if file is in zip directory
                 var parts = Path.GetFileNameWithoutExtension(name).Split("_e_");
                 SignatureOrigin = Origin.Genuine;
                 if (parts.Length != 2)
@@ -58,39 +58,38 @@ namespace SigStat.FusionBenchmark.Loaders
             List<Signer> signers = new List<Signer>();
             this.LogInformation("SVC2004OfflineLoader - EnumerateSigners started");
             this.LogInformation(DatabasePath);
-            using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
+            var signatureGroups = Directory.GetFileSystemEntries(DatabasePath, "*.png", SearchOption.AllDirectories).Select(f => new SignatureFile(f)).GroupBy(sf => sf.SignerID);
+
+            this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
+            foreach (var group in signatureGroups)
             {
-                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".png")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
-                this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
-                foreach (var group in signatureGroups)
+                Signer signer = new Signer { ID = group.Key };
+
+                if (signerFilter != null && !signerFilter(signer))
                 {
-                    Signer signer = new Signer { ID = group.Key };
-
-                    if (signerFilter != null && !signerFilter(signer))
-                    {
-                        this.LogInformation("SVC2004OfflineLoader - Predicate");
-                        continue;
-                    }
-
-                    foreach (var signatureFile in group)
-                    {
-                        Signature signature = new Signature
-                        {
-                            Signer = signer,
-                            ID = signatureFile.SignatureID
-                        };
-                        this.LoadOfflineSignature(signature, (@"Databases\\" + signatureFile.File).GetPath());
-                        signature.Origin = signatureFile.SignatureOrigin;
-                        if (signature.Origin == Origin.Forged)
-                        {
-                            signature.ID = (int.Parse(signature.ID) + 20).ToString().PadLeft(3, '0');
-                        }
-                        signer.Signatures.Add(signature);
-                    }
-                    signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
-                    signers.Add(signer);
+                    this.LogInformation("SVC2004OfflineLoader - Predicate");
+                    continue;
                 }
+
+                foreach (var signatureFile in group)
+                {
+                    Signature signature = new Signature
+                    {
+                        Signer = signer,
+                        ID = signatureFile.SignatureID
+                    };
+                    this.LoadOfflineSignature(signature, (signatureFile.File).GetPath());
+                    signature.Origin = signatureFile.SignatureOrigin;
+                    if (signature.Origin == Origin.Forged)
+                    {
+                        signature.ID = (int.Parse(signature.ID) + 20).ToString().PadLeft(3, '0');
+                    }
+                    signer.Signatures.Add(signature);
+                }
+                signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                signers.Add(signer);
             }
+            
             this.LogInformation("SVC2004OfflineLoader - EnumerateSigners finished");
             return signers;
         }

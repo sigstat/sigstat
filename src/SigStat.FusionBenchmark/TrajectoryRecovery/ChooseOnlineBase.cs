@@ -10,7 +10,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
     class ChooseOnlineBase : PipelineBase, ITransformation
     {
         [Input]
-        public string InputID { get; set; }
+        public int InputCntID { get; set; }
 
         [Input]
         public FeatureDescriptor<List<Vertex>> InputBaseTrajectory { get; set; }
@@ -24,7 +24,7 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
         public void Transform(Signature signature)
         {
             this.LogInformation("ChooseOnlineBase - transform started");
-            var onlineSig = OnlineSigners.Find(signer => signer.ID == signature.Signer.ID).Signatures.Find(sig => sig.ID == InputID);
+            var onlineSig = OnlineSigners.Find(signer => signer.ID == signature.Signer.ID).Signatures.FindAll(sig => sig.Origin == Origin.Genuine)[InputCntID];
             if (onlineSig.Origin == Origin.Forged)
             {
                 throw new Exception();

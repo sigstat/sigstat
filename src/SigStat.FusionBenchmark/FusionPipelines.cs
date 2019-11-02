@@ -128,7 +128,7 @@ namespace SigStat.FusionBenchmark
             };
         }
 
-        public static SequentialTransformPipeline GetFusionPipeline(List<Signer> onlineSigners, bool isParallel, string baseSigID)
+        public static SequentialTransformPipeline GetFusionPipeline(List<Signer> onlineSigners, bool isParallel, int baseSigInputCntID)
         {
             return new SequentialTransformPipeline
             {
@@ -136,7 +136,7 @@ namespace SigStat.FusionBenchmark
                 {
                     OnlineSigners = onlineSigners,
                     InputBaseTrajectory = FusionFeatures.Trajectory,
-                    InputID = baseSigID,
+                    InputCntID = baseSigInputCntID,
                     OutputBaseTrajectory = FusionFeatures.BaseTrajectory
                 },
                 new DtwPairing
@@ -263,14 +263,22 @@ namespace SigStat.FusionBenchmark
             };
         }
 
-        public static Svc2004OfflineLoader GetOfflineLoader(string path = @"Databases\\SVC(40).zip")
+        public static Svc2004OfflineLoader GetSVCOfflineLoader(string path = "")
         {
             return new Svc2004OfflineLoader(path.GetPath());
         }
 
-        public static Svc2004OnlineLoader GetOnlineLoader(string path = @"Databases\\Online\\SVC2004\\Task2.zip")
+        public static Svc2004OnlineLoader GetSVCOnlineLoader(string path = "")
         {
             return new Svc2004OnlineLoader(path.GetPath(), true);
+        }
+
+        public static BiosecureIDOnlineLoader GetBiosecureIDOnlineLoader(string path = "") {
+            return new BiosecureIDOnlineLoader(path.GetPath()); 
+        }
+
+        public static BiosecureIDOfflineLoader GetBiosecureIDOfflineLoader(string path = "") {
+            return new BiosecureIDOfflineLoader(path.GetPath());
         }
 
         public static VerifierBenchmark GetBenchmark(List<Signer> signers, bool isOptimal)
