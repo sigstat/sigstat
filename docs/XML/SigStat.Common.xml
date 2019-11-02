@@ -40,6 +40,35 @@
             <param name="p2">Point 2</param>
             <returns>Distance between <paramref name="p1"/> and <paramref name="p2"/></returns>
         </member>
+        <member name="T:SigStat.Common.Algorithms.DtwExperiments">
+            <summary>
+            A simple implementation of the DTW algorithm.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.MyDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)">
+            <summary>
+            Complex, optimized DTW calculation
+            </summary>
+            <typeparam name="P"></typeparam>
+            <param name="sequence1"></param>
+            <param name="sequence2"></param>
+            <param name="distance"></param>
+            <param name="m"></param>
+            <param name="r"></param>
+            <returns></returns>
+            <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+            Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+            <summary>
+            Calculates the distance between two time sequences
+            </summary>
+            <typeparam name="P">the type of data points</typeparam>
+            <param name="sequence1">time sequence 1</param>
+            <param name="sequence2">time sequence 2</param>
+            <param name="distance">a function to calculate the distance between two points</param>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.Algorithms.DtwPy">
             <summary>
             A simple implementation of the DTW algorithm.
