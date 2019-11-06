@@ -4,22 +4,21 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using SigStat.FusionBenchmark.VisualHelpers;
+using SigStat.Common.Loaders;
 
 namespace SigStat.FusionBenchmark.FusionDemos
 {
     public static class StrokePairingExam
     {
-        public static void CalculateForID(string[] ids)
+        public static void CalculateForID(string[] ids, DataSetLoader offlineLoader, DataSetLoader onlineLoader)
         {
-            var offlineLoader = FusionPipelines.GetOfflineLoader();
-            var onlineLoader = FusionPipelines.GetOnlineLoader();
 
             var offlineSigners = offlineLoader.EnumerateSigners(signer => ids.Contains(signer.ID)).ToList();
             var onlineSigners = onlineLoader.EnumerateSigners(signer => ids.Contains(signer.ID)).ToList();
 
 
             var offlinePipeline = FusionPipelines.GetOfflinePipeline();
-            var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, "001");
+            var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, 0);
             foreach (var offSigner in offlineSigners)
             {
                 Console.WriteLine(offSigner.ID + " started at " + DateTime.Now.ToString("h:mm:ss tt"));

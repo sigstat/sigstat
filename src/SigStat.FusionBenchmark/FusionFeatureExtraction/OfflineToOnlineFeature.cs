@@ -15,7 +15,7 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
         public FeatureDescriptor<List<Vertex>> InputTrajectory { get; set; }
 
         [Input]
-        public int InputScale { get; set; }
+        public double InputScaleRate { get; set; }
 
         [Output("X")]
         public FeatureDescriptor<List<double>> OutputX { get; set; }
@@ -33,9 +33,10 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
             var ys = new List<double>();
             var bs = new List<bool>();
             var trajectory = signature.GetFeature<List<Vertex>>(InputTrajectory);
+            int inputScale = Math.Max((int)(trajectory.Count * InputScaleRate), 1);
             for (int i = 0, cnt = 0; i < trajectory.Count; i++)
             {
-                if (ScalePredicate(trajectory, i, cnt))
+                if (ScalePredicate(trajectory, i, cnt, inputScale))
                 {
                     xs.Add(trajectory[i].Pos.X);
                     ys.Add(trajectory[i].Pos.Y);
@@ -53,9 +54,9 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
             this.LogInformation("FusionFeatureTransform - transform finished");
         }
 
-        private bool ScalePredicate(List<Vertex> trajectory, int idx, int cnt)
+        private bool ScalePredicate(List<Vertex> trajectory, int idx, int cnt, int inputScale)
         {
-            return  (cnt >= InputScale) ||
+            return  (cnt >= inputScale) ||
                     (idx == 0 || idx == trajectory.Count - 1) ||
                     (idx > 0 && !Vertex.AreNeighbours(trajectory[idx - 1], trajectory[idx]) &&
                                                     !trajectory[idx - 1].Equals(trajectory[idx])) ||

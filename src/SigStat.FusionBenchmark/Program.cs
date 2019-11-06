@@ -30,6 +30,9 @@ using SigStat.Common.Framework.Samplers;
 using SigStat.FusionBenchmark.OfflineVerifier;
 using SigStat.FusionBenchmark.FusionDemos;
 using SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks;
+using SigStat.FusionBenchmark.ReSamplingFeatures;
+using SigStat.FusionBenchmark.FusionDemos.ReSamplingBenchmarks;
+using SigStat.FusionBenchmark.FusionDemos.FinalPipelines;
 
 namespace SigStat.FusionBenchmark
 {
@@ -38,26 +41,130 @@ namespace SigStat.FusionBenchmark
         //Develop
         static void Main(string[] args)
         {
-            //ResultsToTxt(HackedOnlineOnlineBenchmark.BenchmarkWithAllSigners(true,
-            //                                    FusionPipelines.GetOfflineLoader(),
-            //                                    FusionPipelines.GetOnlineLoader()),
-            //            "hackedonon_svc_09_18");
-            //ResultsToTxt(MarosBenchmark.BenchmarkingWithAllSigners(true,
-            //                            new BiosecureIDOfflineLoader(@"Databases/BiosecureID/OfflineSynthetic/Ienhanced")),
-            //                            //FusionPipelines.GetOfflineLoader()),
-            //            "maros_biosecure_09_18");
-            ResultsToTxt(FusionVerifierBenchmark.BenchMarkingWithAllSigners(true,
-                                                                    FusionPipelines.GetOfflineLoader(),
-                                                                    FusionPipelines.GetOnlineLoader()),
-                         "fusion_svc_09_18");
-            //FusionVerifierBenchmark.BenchMarkingWithAllSigners(true, 
-            //    new BiosecureIDOfflineLoader(@"Databases/BiosecureID/OfflineSynthetic/Ienhanced"),
-            //    new BiosecureIDOnlineLoader(@"Databases/BiosecureID/OnlineRealTxt"));
-            //var results = OnlineOnlineBenchmark.BenchMarkWithAllSigners(true, new BiosecureIDOnlineLoader(@"Databases/BiosecureID/OnlineRealTxt"));
-            
-            for (int i = 0; i < 10; i++)
-                Console.ReadLine();
-            Console.ReadLine();
+            try
+            {
+                string svcOn = "Databases/Online/SVC2004/Task2";
+                string svcOff = "Databases/SVC (40)";
+                string bioOn = "Databases/BiosecureID/OnlineRealTxt";
+                string bioOff = "Databases/BiosecureID/OfflineSynthetic/Ienhanced";
+
+                var svcOnLoader = FusionPipelines.GetSVCOnlineLoader(svcOn);
+                var svcOffLoader = FusionPipelines.GetSVCOfflineLoader(svcOff);
+                var bioOnLoader = FusionPipelines.GetBiosecureIDOnlineLoader(bioOn);
+                var bioOffLoader = FusionPipelines.GetBiosecureIDOfflineLoader(bioOff);
+
+                
+                List<Tuple<DataSetLoader, DataSetLoader>> onOffLoaders = new List<Tuple<DataSetLoader, DataSetLoader>>()
+                {
+                    new Tuple<DataSetLoader, DataSetLoader>(bioOnLoader, bioOffLoader),
+                    new Tuple<DataSetLoader, DataSetLoader>(svcOnLoader, svcOffLoader)
+                };
+
+
+                List<SequentialTransformPipeline> offlinePipelines1 = new List<SequentialTransformPipeline>()
+                {
+                    FinalFusionPipelines.GetOfflinePipelineAlap(),
+                    FinalFusionPipelines.GetOfflinePipelineMerging()
+                };
+
+                List<SequentialTransformPipeline> onlinePipelines1 = new List<SequentialTransformPipeline>()
+                {
+                    FinalFusionPipelines.GetOnlinePipeline1(),
+                    FinalFusionPipelines.GetOnlinePipeline2()
+                };
+                //Console.WriteLine("MarosFusion---------------------------------");
+                //foreach (var loaderTuple in onOffLoaders)
+                //{
+                //    foreach (var onPipe in onlinePipelines1)
+                //    {
+                //        try
+                //        {
+                //            var benchmark = new MarosFinalFusionPipelines()
+                //            {
+                //                InputBaseSigInputCntID = 0,
+                //                OfflineLoader = loaderTuple.Item2,
+                //                MarosPipeline = FinalFusionPipelines.GetOfflinePipelineMaros(),
+                //                OnlineLoader = loaderTuple.Item1,
+                //                OnlinePipeline = onPipe,
+                //                IsOptimal = true
+                //            };
+                //            Resultout(benchmark.Execute());
+                //        }
+                //        catch (Exception e)
+                //        {
+                //            Console.WriteLine(e.ToString());
+                //        }
+                //    }
+                //}
+                //Console.WriteLine("Maros---------------------------------");
+                //foreach (var loaderTuple in onOffLoaders) {
+                //    foreach (var onPipe in onlinePipelines1)
+                //    {
+                //        try
+                //        {
+                //            var benchmark = new MarosPipelineBenchmark()
+                //            {
+                //                InputBaseSigInputCntID = 0,
+                //                OfflineLoader = loaderTuple.Item2,
+                //                MarosPipeline = FinalFusionPipelines.GetOfflinePipelineMaros(),
+                //                OnlineLoader = loaderTuple.Item1,
+                //                OnlinePipeline = onPipe,
+                //                IsOptimal = true
+                //            };
+                //            Resultout(benchmark.Execute());
+                //        }
+                //        catch (Exception e)
+                //        {
+                //            Console.WriteLine(e.ToString());
+                //        }
+                //    }
+                //}
+                //Console.WriteLine("Fusion---------------------------------");
+                //foreach (var loaderTuple in onOffLoaders)
+                //{
+                //    foreach (var offPipe in offlinePipelines1)
+                //    {
+                //        foreach (var onPipe in onlinePipelines1)
+                //        {
+                //            try
+                //            {
+                //                var benchmark = new FusionPipelineBenchmark()
+                //                {
+                //                    InputBaseSigInputCntID = 0,
+                //                    OfflineLoader = loaderTuple.Item2,
+                //                    OfflinePipeline = offPipe,
+                //                    OnlineLoader = loaderTuple.Item1,
+                //                    OnlinePipeline = onPipe,
+                //                    IsOptimal = true
+                //                };
+                //                Resultout(benchmark.Execute());
+                //            }
+                //            catch(Exception e)
+                //            {
+                //                Console.WriteLine(e.ToString());
+                //            }
+                //        }
+                //    }
+                //}
+                Console.WriteLine("Online----------------------------");
+                foreach (var loaderTuple in onOffLoaders)
+                {
+                    foreach (var onPipe in onlinePipelines1)
+                    {
+                        var benchmark = new FinalOnlinePipeline
+                        {
+                            IsOptimal = true,
+                            OnlineLoader = loaderTuple.Item1,
+                            OnlinePipeline = onPipe
+                        };
+                        Resultout(benchmark.Execute());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
 
         public static void Resultout(BenchmarkResults results, string resultInfo = "")

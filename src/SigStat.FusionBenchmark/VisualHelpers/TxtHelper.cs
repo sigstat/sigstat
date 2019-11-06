@@ -1,6 +1,7 @@
 ﻿using SigStat.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace SigStat.FusionBenchmark.VisualHelpers
@@ -12,7 +13,7 @@ namespace SigStat.FusionBenchmark.VisualHelpers
         public static void Save(string[] lines, string fileName)
         {
             using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter((BasePath + '\\' + fileName + ".txt").GetPath()))
+            new System.IO.StreamWriter((Path.Combine(BasePath, fileName + ".txt")).GetPath()))
             {
                 foreach (string line in lines)
                 {
@@ -60,6 +61,35 @@ namespace SigStat.FusionBenchmark.VisualHelpers
                 res.Add(newLine);
             }
             return res.ToArray();
+        }
+
+        public static string[] ReSamplingResultsToLines(Tuple<List<double>, List<List<double>>> results)
+        {
+            return ReSamplingResultsToLines(results.Item1, results.Item2);
+        }
+
+        public static string[] ReSamplingResultsToLines(List<double> resList, List<List<double>> dataLists)
+        {
+            int n = resList.Count;
+            for (int i = 0; i < dataLists.Count; i++)
+            {
+                if (dataLists[i].Count != n)
+                {
+                    throw new Exception();
+                }
+            }
+            string[] res = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                res[i] += resList[i].ToString();
+                res[i] += " ";
+                for (int j = 0; j < dataLists.Count; j++)
+                { 
+                    res[i] += dataLists[j][i].ToString();
+                    res[i] += " ";
+                }
+            }
+            return res;
         }
     }
 }
