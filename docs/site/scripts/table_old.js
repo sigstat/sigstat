@@ -78,7 +78,7 @@ $(function () {
         tooltipInstance.tooltipster('open');
       })
 
-      $("#myTable tbody tr td:first-child").on('mouseover', function () {
+      $(".table-bordered tbody tr td:first-child").on('mouseover', function () {
         var tooltipInstance = null;
         var temp = ($(this).html());
         var sep = ": ";

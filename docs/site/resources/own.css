@@ -7,10 +7,10 @@
   margin-bottom: 10px;
 }*/
 
-body{
+body {
   padding-top: 55px;
 }
-a{
+a {
   font-size: 1.3rem;
 }
 
@@ -29,7 +29,7 @@ a{
   padding-left: 15px;
 }
 
-#myTable tbody tr td:first-child {
+.table-bordered tbody tr td:first-child {
   font-style: italic;
 }
 
@@ -56,18 +56,23 @@ th.rotate > div {
 }
 
 .table-bordered {
-  width: 100%;
+  max-width: 100%;
   text-align: center;
-  /*table-layout: fixed;*/
   overflow-x: auto;
   white-space: nowrap;
   display: table;
   border-collapse: collapse;
-}
-
-#myTable {
   border: 10px solid white;
 }
+.footer {
+  height: 50px;
+  background-color: black;
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
 table tr:nth-child(odd) td:not(#underCell) {
   background: white;
   text-align: center;
