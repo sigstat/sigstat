@@ -45,9 +45,9 @@
             A simple implementation of the DTW algorithm.
             </summary>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.MyDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)">
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)">
             <summary>
-            Complex, optimized DTW calculation
+            Complex, optimized DTW calculation (Abdullah Mueen, Eamonn J. Keogh)
             </summary>
             <typeparam name="P"></typeparam>
             <param name="sequence1"></param>
@@ -59,15 +59,53 @@
             <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
             Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ExactDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
             <summary>
-            Calculates the distance between two time sequences
+            Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
             </summary>
-            <typeparam name="P">the type of data points</typeparam>
-            <param name="sequence1">time sequence 1</param>
-            <param name="sequence2">time sequence 2</param>
-            <param name="distance">a function to calculate the distance between two points</param>
+            <typeparam name="P"></typeparam>
+            <param name="sequence1">The sequence1.</param>
+            <param name="sequence2">The sequence2.</param>
+            <param name="distance">The distance.</param>
             <returns></returns>
+            <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+            Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+            <summary>
+            Constrained DTW implementation  (Abdullah Mueen, Eamonn J. Keogh)
+            </summary>
+            <typeparam name="P"></typeparam>
+            <param name="sequence1">The sequence1.</param>
+            <param name="sequence2">The sequence2.</param>
+            <param name="distance">The distance.</param>
+            <param name="w">The w.</param>
+            <returns></returns>
+            <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+            Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
+            <summary>
+            Exact DTW implementation (Wikipedia)
+            </summary>
+            <typeparam name="P"></typeparam>
+            <param name="sequence1">The sequence1.</param>
+            <param name="sequence2">The sequence2.</param>
+            <param name="distance">The distance.</param>
+            <returns></returns>
+            <remarks>https://en.wikipedia.org/wiki/Dynamic_time_warping</remarks>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+            <summary>
+            Constrained DTW implementation  (Wikipedia)
+            </summary>
+            <typeparam name="P"></typeparam>
+            <param name="sequence1">The sequence1.</param>
+            <param name="sequence2">The sequence2.</param>
+            <param name="distance">The distance.</param>
+            <param name="w">The w.</param>
+            <returns></returns>
+            <remarks>https://en.wikipedia.org/wiki/Dynamic_time_warping</remarks>
         </member>
         <member name="T:SigStat.Common.Algorithms.DtwPy">
             <summary>
@@ -1219,7 +1257,7 @@
             SerializationContext for serializing SigStat objects
             </summary>
         </member>
-        <member name="M:SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor">
+        <member name="M:SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor(System.Boolean)">
             <summary>
             Constructor
             </summary>
@@ -1327,7 +1365,7 @@
             Json serialization and deserialization using the custom resolver  <see cref="T:SigStat.Common.Helpers.Serialization.VerifierResolver"/>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Helpers.SerializationHelper.GetSettings">
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.GetSettings(System.Boolean)">
             <summary>
             Settings used for the serialization methods
             </summary>
@@ -1349,7 +1387,7 @@
             <param name="path">Relative path to the file</param>
             <returns>The object that was serialized to the file</returns>
         </member>
-        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String)">
+        <member name="M:SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String,System.Boolean)">
             <summary>
             Writes object to file to the given by path in json format
             </summary>

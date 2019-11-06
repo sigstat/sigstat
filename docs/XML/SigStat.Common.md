@@ -122,8 +122,11 @@
   - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
   - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [DtwExperiments](#T-SigStat-Common-Algorithms-DtwExperiments 'SigStat.Common.Algorithms.DtwExperiments')
-  - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwExperiments-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
-  - [MyDtw\`\`1(sequence1,sequence2,distance,m,r)](#M-SigStat-Common-Algorithms-DtwExperiments-MyDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.MyDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)')
+  - [ConstrainedDTw\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
+  - [ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
+  - [ExactDTw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwExperiments-ExactDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwExperiments.ExactDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
+  - [ExactDtwWikipedia\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwExperiments-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwExperiments.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
+  - [OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r)](#M-SigStat-Common-Algorithms-DtwExperiments-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)')
 - [DtwPy](#T-SigStat-Common-Algorithms-DtwPy 'SigStat.Common.Algorithms.DtwPy')
   - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwPy-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwPy.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
   - [EuclideanDistance(vector1,vector2)](#M-SigStat-Common-Algorithms-DtwPy-EuclideanDistance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.DtwPy.EuclideanDistance(System.Double[],System.Double[])')
@@ -204,7 +207,7 @@
 - [FeatureDescriptor\`1](#T-SigStat-Common-FeatureDescriptor`1 'SigStat.Common.FeatureDescriptor`1')
   - [Get()](#M-SigStat-Common-FeatureDescriptor`1-Get-System-String- 'SigStat.Common.FeatureDescriptor`1.Get(System.String)')
 - [FeatureStreamingContextState](#T-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState')
-  - [#ctor()](#M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor')
+  - [#ctor()](#M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor-System-Boolean- 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor(System.Boolean)')
   - [KnownFeatureKeys](#P-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-KnownFeatureKeys 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.KnownFeatureKeys')
 - [Features](#T-SigStat-Common-Features 'SigStat.Common.Features')
   - [All](#F-SigStat-Common-Features-All 'SigStat.Common.Features.All')
@@ -531,8 +534,8 @@
 - [SerializationHelper](#T-SigStat-Common-Helpers-SerializationHelper 'SigStat.Common.Helpers.SerializationHelper')
   - [DeserializeFromFile\`\`1(path)](#M-SigStat-Common-Helpers-SerializationHelper-DeserializeFromFile``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.DeserializeFromFile``1(System.String)')
   - [Deserialize\`\`1(s)](#M-SigStat-Common-Helpers-SerializationHelper-Deserialize``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.Deserialize``1(System.String)')
-  - [GetSettings()](#M-SigStat-Common-Helpers-SerializationHelper-GetSettings 'SigStat.Common.Helpers.SerializationHelper.GetSettings')
-  - [JsonSerializeToFile\`\`1(o,path)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String)')
+  - [GetSettings()](#M-SigStat-Common-Helpers-SerializationHelper-GetSettings-System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.GetSettings(System.Boolean)')
+  - [JsonSerializeToFile\`\`1(o,path)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String,System.Boolean)')
   - [JsonSerialize\`\`1(o)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)')
 - [SigComp11](#T-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11')
   - [T](#F-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11-T 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.T')
@@ -2148,12 +2151,12 @@ SigStat.Common.Algorithms
 
 A simple implementation of the DTW algorithm.
 
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
-### Dtw\`\`1(sequence1,sequence2,distance) `method`
+<a name='M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
+### ConstrainedDTw\`\`1(sequence1,sequence2,distance,w) `method`
 
 ##### Summary
 
-Calculates the distance between two time sequences
+Constrained DTW implementation  (Abdullah Mueen, Eamonn J. Keogh)
 
 ##### Returns
 
@@ -2163,22 +2166,117 @@ Calculates the distance between two time sequences
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 1 |
-| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 2 |
-| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | a function to calculate the distance between two points |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+| w | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The w. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| P | the type of data points |
+| P |  |
 
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-MyDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32-'></a>
-### MyDtw\`\`1(sequence1,sequence2,distance,m,r) `method`
+##### Remarks
+
+Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
+
+<a name='M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
+### ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w) `method`
 
 ##### Summary
 
-Complex, optimized DTW calculation
+Constrained DTW implementation  (Wikipedia)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+| w | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The w. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
+
+##### Remarks
+
+https://en.wikipedia.org/wiki/Dynamic_time_warping
+
+<a name='M-SigStat-Common-Algorithms-DtwExperiments-ExactDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
+### ExactDTw\`\`1(sequence1,sequence2,distance) `method`
+
+##### Summary
+
+Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
+
+##### Remarks
+
+Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
+
+<a name='M-SigStat-Common-Algorithms-DtwExperiments-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
+### ExactDtwWikipedia\`\`1(sequence1,sequence2,distance) `method`
+
+##### Summary
+
+Exact DTW implementation (Wikipedia)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
+
+##### Remarks
+
+https://en.wikipedia.org/wiki/Dynamic_time_warping
+
+<a name='M-SigStat-Common-Algorithms-DtwExperiments-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32-'></a>
+### OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r) `method`
+
+##### Summary
+
+Complex, optimized DTW calculation (Abdullah Mueen, Eamonn J. Keogh)
 
 ##### Returns
 
@@ -3281,7 +3379,7 @@ SigStat.Common.Helpers.Serialization
 
 SerializationContext for serializing SigStat objects
 
-<a name='M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor'></a>
+<a name='M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor-System-Boolean-'></a>
 ### #ctor() `constructor`
 
 ##### Summary
@@ -6631,7 +6729,7 @@ The object that was serialized
 | ---- | ----------- |
 | T | A type which has a public parameterless constructor |
 
-<a name='M-SigStat-Common-Helpers-SerializationHelper-GetSettings'></a>
+<a name='M-SigStat-Common-Helpers-SerializationHelper-GetSettings-System-Boolean-'></a>
 ### GetSettings() `method`
 
 ##### Summary
@@ -6646,7 +6744,7 @@ A new settings object
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String-'></a>
+<a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean-'></a>
 ### JsonSerializeToFile\`\`1(o,path) `method`
 
 ##### Summary
