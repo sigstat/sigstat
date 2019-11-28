@@ -9,15 +9,15 @@ ILoggerObject extension methods for common scenarios.
 
 ## Static Methods
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
-| [LogCritical](./Methods/ILoggerObjectExtensions--LogCritical.md) ([`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an critical error log message. | 
-| [LogDebug](./Methods/ILoggerObjectExtensions--LogDebug.md) ([`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an debug log message. | 
-| [LogError](./Methods/ILoggerObjectExtensions--LogError.md) ([`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an error log message. | 
-| [LogError](./Methods/ILoggerObjectExtensions--LogError.md) ([`ILoggerObject`](./ILoggerObject.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an error log message. | 
-| [LogInformation](./Methods/ILoggerObjectExtensions--LogInformation.md) ([`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an informational log message. | 
-| [LogTrace](./Methods/ILoggerObjectExtensions--LogTrace.md) ([`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes a trace log message. | 
-| [LogWarning](./Methods/ILoggerObjectExtensions--LogWarning.md) ([`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an warning log message. | 
-| [LogWarning](./Methods/ILoggerObjectExtensions--LogWarning.md) ([`ILoggerObject`](./ILoggerObject.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[]) | Formats and writes an warning log message. | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| LogCritical ( [`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an critical error log message. | 
+| LogDebug ( [`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an debug log message. | 
+| LogError ( [`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an error log message. | 
+| LogError ( [`ILoggerObject`](./ILoggerObject.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an error log message. | 
+| LogInformation ( [`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an informational log message. | 
+| LogTrace ( [`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes a trace log message. | 
+| LogWarning ( [`ILoggerObject`](./ILoggerObject.md), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an warning log message. | 
+| LogWarning ( [`ILoggerObject`](./ILoggerObject.md), [`Exception`](https://docs.microsoft.com/en-us/dotnet/api/System.Exception), [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object)[] ) | Formats and writes an warning log message. | 
 
 
