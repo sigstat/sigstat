@@ -5,15 +5,29 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    /// <summary>
+    /// Cubic interpolation algorithm
+    /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class CubicInterpolation : IInterpolation
     {
-        
+        /// <summary>
+        /// FeatureValues
+        /// </summary>
         public List<double> FeatureValues { get; set; }
 
-        
+        /// <summary>
+        /// TimeValues
+        /// </summary>
         public List<double> TimeValues { get; set; }
 
+        /// <summary>Gets the value.</summary>
+        /// <param name="timestamp">The timestamp.</param>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException">List of timestamps is null
+        /// or
+        /// List of feature values is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The given timestamp is not in the range of TimeValues</exception>
         public double GetValue(double timestamp)
         {
             if (TimeValues == null)

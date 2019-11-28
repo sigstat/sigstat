@@ -16,6 +16,7 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public static class Svc2004
     {
+        
         /// <summary>
         /// X cooridnates from the online signature imported from the SVC2004 database
         /// </summary>
@@ -44,6 +45,7 @@ namespace SigStat.Common.Loaders
         /// Pressure values from the online signature imported from the SVC2004 database
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("Svc2004.Pressure");
+       
 
         /// <summary>
         /// A list of all Svc2004 feature descriptors
@@ -63,6 +65,11 @@ namespace SigStat.Common.Loaders
    [JsonObject(MemberSerialization.OptOut)]
     public class Svc2004Loader : DataSetLoader
     {
+        /// <summary>
+        /// Sampling Frequency of the SVC database
+        /// </summary>
+        public override int SamplingFrequency { get { return 100; } }
+
         private struct SignatureFile
         {
             public string File { get; set; }
@@ -83,16 +90,38 @@ namespace SigStat.Common.Loaders
             }
         }
 
+        /// <summary>
+        /// Gets or sets the database path.
+        /// </summary>
         public string DatabasePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+        /// </summary>
         public bool StandardFeatures { get; set; }
         /// <summary>
         /// Ignores any signers during the loading, that do not match the predicate
         /// </summary>
-        
         public Predicate<Signer> SignerFilter { get; set; }
 
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
+        /// </summary>
+        /// <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+        /// <list type="bullet">
+        /// <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+        /// <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+        /// </list></param>
+        /// <param name="standardFeatures">Convert loaded data (<see cref="Svc2004"/>) to standard <see cref="Features"/>.</param>
+        [JsonConstructor]
+        public Svc2004Loader(string databasePath, bool standardFeatures)
+        {
+            DatabasePath = databasePath;
+            StandardFeatures = standardFeatures;
+            SignerFilter = null;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Svc2004Loader"/> class with specified database.
@@ -114,8 +143,9 @@ namespace SigStat.Common.Loaders
         /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-            signerFilter = signerFilter ?? SignerFilter ;
+           
+        //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
+        signerFilter = signerFilter ?? SignerFilter ;
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
@@ -144,9 +174,11 @@ namespace SigStat.Common.Loaders
                         }
                         signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
                         signer.Signatures.Add(signature);
+                  
                         
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                  
                     yield return signer;
                 }
             }
@@ -208,6 +240,8 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.Button, lines.Select(l => (l[3]==1)).ToList());
+                SignatureHelper.CalculateStandardStatistics(signature);
+
             }
 
             if (lines[0].Length == 7) // Task2
@@ -226,8 +260,12 @@ namespace SigStat.Common.Loaders
                     signature.SetFeature(Features.Azimuth, azimuth.Select(a => a / azimuthmax * 2 * Math.PI).ToList());
                     signature.SetFeature(Features.Altitude, altitude.Select(a => a / altitudemax).ToList());
                     signature.SetFeature(Features.Pressure, pressure.Select(a => a / pressuremax).ToList());
+                    SignatureHelper.CalculateStandardStatistics(signature);
+
                 }
             }
+
+           
         }
     }
 }

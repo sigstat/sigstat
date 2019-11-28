@@ -1,6 +1,6 @@
 # [ImageLoader](./ImageLoader.md)
 
-Namespace: [SigStat]() > [Common]() > [Loaders]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Loaders](./README.md)
 
 Assembly: SigStat.Common.dll
 
@@ -11,22 +11,22 @@ DataSetLoader for Image type databases.  Similar format to Svc2004Loader, but fi
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| ImageLoader ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) | Initializes a new instance of the `SigStat.Common.Loaders.ImageLoader` class with specified database. | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| ImageLoader ([`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String)) | Initializes a new instance of the [ImageLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/ImageLoader.md) class with specified database. | 
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1)\<[Signer](./../Signer.md)> | EnumerateSigners ( [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> ) |  | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [EnumerateSigners](./Methods/ImageLoader--EnumerateSigners.md) ([`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)>) |  | 
 
 
 ## Static Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [Signature](./../Signature.md) | LoadSignature ( [`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String) ) |  | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [LoadSignature](./Methods/ImageLoader--LoadSignature.md) ([`String`](https://docs.microsoft.com/en-us/dotnet/api/System.String)) |  | 
 
 

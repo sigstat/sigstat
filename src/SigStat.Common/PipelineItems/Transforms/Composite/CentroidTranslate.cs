@@ -20,17 +20,27 @@ namespace SigStat.Common.Transforms
     public class CentroidTranslate : SequentialTransformPipeline
     {
 
+        /// <summary>
+        /// Gets or sets the input feature representing the X coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// Gets or sets the input feature representing the Y coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
+        /// <summary>
+        /// Gets or sets the output feature representing the X coordinates of an online signature
+        /// </summary>
         [Output("X")]
         public FeatureDescriptor<List<double>> OutputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// Gets or sets the output feature representing the X coordinates of an online signature
+        /// </summary>
         [Output("Y")]
         public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
 

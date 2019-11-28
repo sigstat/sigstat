@@ -17,10 +17,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class HSCPThinning : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> for the binary image of the signature 
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<bool[,]> Input { get; set; }
 
+        /// <summary>
+        /// Output <see cref="FeatureDescriptor"/> for the binary image of the signature 
+        /// </summary>
         [Output("HSCPThinningResult")]
         public FeatureDescriptor<bool[,]> Output { get; set; }
 

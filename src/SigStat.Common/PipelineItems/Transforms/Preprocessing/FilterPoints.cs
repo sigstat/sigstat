@@ -7,22 +7,43 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    /// <summary>
+    /// Removes samples based on a criteria from online signature time series
+    /// </summary>
+    /// <seealso cref="SigStat.Common.PipelineBase" />
+    /// <seealso cref="SigStat.Common.ITransformation" />
     public class FilterPoints : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// <see cref="FeatureDescriptor"/> that controls the removal of samples (e.g. <see cref="Features.Pressure"/>)
+        /// </summary>
         [Input]
         public FeatureDescriptor<List<double>> KeyFeatureInput { get; set; } = Features.Pressure;
 
+        /// <summary>
+        /// <see cref="FeatureDescriptor"/> list of all features to resample
+        /// </summary>
         [Input]
-        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; } // nem minden feature-t lehet filterezni
+        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
 
+        /// <summary>
+        /// Resampled output for <see cref="FeatureDescriptor"/> that controls the removal of samples (e.g. <see cref="Features.Pressure"/>)
+        /// </summary>
         [Output("FilterKeyFeatureOutput")]
         public FeatureDescriptor<List<double>> KeyFeatureOutput { get; set; }
 
+        /// <summary>
+        /// Resampled output for all input features
+        /// </summary>
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
 
+        /// <summary>
+        /// The lowes percentile of the <see cref="KeyFeatureInput"/> will be removed during filtering
+        /// </summary>
         public int Percentile { get; set; } = 5;
 
+        ///<inheritdoc/>
         public void Transform(Signature signature)
         {
             var keyFeatureValues = new List<double>(signature.GetFeature(KeyFeatureInput));

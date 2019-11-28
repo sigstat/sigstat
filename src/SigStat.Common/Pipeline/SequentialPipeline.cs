@@ -22,7 +22,13 @@ namespace SigStat.Common.Pipeline
         
         /// <summary>List of transforms to be run in sequence.</summary>
         public List<ITransformation> Items = new List<ITransformation>();
+        /// <summary>
+        /// Gets the pipeline inputs.
+        /// </summary>
         public override List<PipelineInput> PipelineInputs { get => Items[0].PipelineInputs; }
+        /// <summary>
+        /// Gets the pipeline outputs.
+        /// </summary>
         public override List<PipelineOutput> PipelineOutputs { get => Items.Last().PipelineOutputs; }
 
         /// <inheritdoc/>

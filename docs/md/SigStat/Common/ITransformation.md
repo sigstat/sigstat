@@ -1,6 +1,6 @@
 # [ITransformation](./ITransformation.md)
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 
@@ -11,8 +11,8 @@ Allows implementing a pipeline transform item capable of logging, progress track
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./Signature.md) ) | Executes the transform on the `` parameter.  This function gets called by the pipeline. | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [Transform](./Methods/ITransformation--Transform.md) ([`Signature`](./Signature.md)) | Executes the transform on the `signature` parameter.  This function gets called by the pipeline. | 
 
 

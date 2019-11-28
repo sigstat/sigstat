@@ -1,4 +1,5 @@
 ﻿
+using OfficeOpenXml;
 using SigStat.Common;
 using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Helpers;
@@ -12,11 +13,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using static SigStat.Common.Loaders.MCYTLoader;
+using static SigStat.Common.Loaders.SigComp11ChineseLoader;
+using static SigStat.Common.Loaders.SigComp13JapaneseLoader;
+using SixLabors.Primitives;
+using System.Drawing;
 
 namespace SigStat.Sample
 {
@@ -34,7 +39,7 @@ namespace SigStat.Sample
         class MySignature : Signature
         {
             public List<Loop> Loops { get { return GetFeature(MyFeatures.Loop); } set { SetFeature(MyFeatures.Loop, value); } }
-            public RectangleF Bounds { get { return GetFeature(Features.Bounds); } set { SetFeature(Features.Bounds, value); } }
+            public SixLabors.Primitives.SizeF Size { get { return GetFeature(Features.Size); } set { SetFeature(Features.Size, value); } }
 
             public bool[,] Binarized { get { return GetFeature(MyFeatures.Binarized); } set { SetFeature(MyFeatures.Binarized, value); } }
             public List<double> Tangent { get { return GetFeature(MyFeatures.Tangent); } set { SetFeature(MyFeatures.Tangent, value); } }
@@ -51,21 +56,209 @@ namespace SigStat.Sample
             //TransformationPipeline();
             //Classifier();
             //OnlineToImage();
-            DatabaseLoaderDemo();
+            //DatabaseLoaderDemo();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
-            //OnlineVerifierDemo();        
+            //OnlineVerifierDemo();
+           // SignatureToImageTesting();
+           //OnlineRotationBenchmarkDemo();
+            SampleRateTestingDemo();
+          // SampleRateTestingDemoForSigners();
             //OnlineVerifierBenchmarkDemo();
-            PreprocessingBenchmarkDemo();
+            //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            //JsonSerializeOnlineVerifierBenchmark();
+            JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
         }
+
+       
+           
+
+        
+
+        private static void SignatureToImageTesting()
+        {
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            Svc2004Loader Loader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true);
+            Signature s1 = Loader.EnumerateSigners(p => (p.ID == "05")).ToList()[0].Signatures[10];//signer 10, signature 10
+            Signature s2 = s1;
+
+            var tfs = new SequentialTransformPipeline
+            {
+                new ParallelTransformPipeline
+                {
+
+                   new Normalize() { Input = Features.X, Output = Features.X },
+                   new Normalize() { Input = Features.Y, Output = Features.Y },
+                },
+                new RealisticImageGenerator(1280, 720)
+            };
+            tfs.Logger = new SimpleConsoleLogger();
+            tfs.Transform(s1);
+
+           ImageSaver.Save(s1, $"{s1.Signer.ID }_{s1.ID }_0BeforeTest.png");
+
+            var tfs2 = new SequentialTransformPipeline
+            {
+                new ParallelTransformPipeline
+                {
+
+                   new Normalize() { Input = Features.X, Output = Features.X },
+                   new Normalize() { Input = Features.Y, Output = Features.Y },
+                   new OrthognalRotation() {InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y}
+                },
+                new RealisticImageGenerator(1280, 720)
+            };
+            tfs2.Logger = new SimpleConsoleLogger();
+            tfs2.Transform(s2);
+            ImageSaver.Save(s2, $"{s2.Signer.ID }_{s2.ID }_AfterNormalizationTest.png");
+            int i = 0;
+            
+            foreach(double y  in s1.GetFeature(Features.Y)) {
+                Console.WriteLine("Y1=  " + y + "  Y2= " + s2.GetFeature(Features.Y)[i]+ " dif=  "+(s1.GetFeature(Features.Y)[i] - s2.GetFeature(Features.Y)[i]));
+                i++;
+            }
+           
+
+            }
+
+        private static void SampleRateTestingDemo()
+        {
+            var p = new ExcelPackage();
+
+            using (p)
+            {
+                var databaseDir2 = Environment.GetEnvironmentVariable("SigStatDB");
+               var Loader = new Svc2004Loader(Path.Combine(databaseDir2, "svc2004.zip"), true);
+               List<Signer> signers2 = Loader.EnumerateSigners(null).ToList();
+            foreach (Signer s2 in signers2)
+            {
+                var resultsSheet3 = p.Workbook.Worksheets.Add($"Signer({s2.ID})");
+                resultsSheet3.Cells[1, 4].Value = "ID";
+                resultsSheet3.Cells[1, 5].Value = "Points";
+                resultsSheet3.Cells[1, 6].Value = "S";
+                resultsSheet3.Cells[1, 7].Value = "AER";
+
+             
+            }
+
+            var samplerate = new List<SampleRateResults>();
+            int s = 1;
+                for (s = 1; s <= 100; s=s+5)
+                {
+                    var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+                    var benchmark = new VerifierBenchmark()
+                    {
+
+                        Loader = new Svc2004Loader(Path.Combine(databaseDir, "svc2004.zip"), true),
+
+                        Verifier = new Verifier()
+                        {
+                            Pipeline = new SequentialTransformPipeline
+                    {
+            new SampleRate(){samplerate=s,InputX=Features.X, InputY=Features.Y, InputP = Features.Pressure, OutputX = Features.X, OutputY=Features.Y,OutputP=Features.Pressure},
+       //                   new SampleRate(){samplerate=s,InputX=Features.X, InputY=Features.Y, InputP = Features.Pressure, OutputX = Features.X, OutputY=Features.Y},
+
+       //      new OrthognalRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+     //   new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+    //   new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+     //    new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.X, OutputFeature = Features.X},
+      //      new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.Y, OutputFeature = Features.Y},
+       //      new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+            new ZNormalization(){InputFeature = Features.X, OutputFeature = Features.X},
+             new ZNormalization(){InputFeature = Features.Y, OutputFeature = Features.Y},
+       //      new ZNormalization(){InputFeature = Features.Pressure, OutputFeature = Features.Pressure},
+       //      new ZNormalization(){InputFeature = Features.Pressure, OutputFeature = Features.Pressure}
+                        }
+                        ,
+                            Classifier = new OptimalDtwClassifier()
+                            {
+                                DistanceFunction = Accord.Math.Distance.Euclidean,
+                                Sampler = new EvenNSampler(10),
+                               // Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                                Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
+                            }
+                        },
+                        Sampler = new EvenNSampler(10),
+                        // OddNSampler 
+                        Logger = new SimpleConsoleLogger(),
+
+                    };
+                    
+                    benchmark.ProgressChanged += ProgressPrimary;
+
+                    var result = benchmark.Execute(true);
+
+                    List<Signer> signers = benchmark.Loader.EnumerateSigners(null).ToList();
+                    double avg = 0;
+                    int ii = 0;
+                    foreach (Signer sig in signers)
+                    {
+                        avg = avg+ SignerStatisticsHelper.GetPointsAvg(sig);
+                       
+                         var Sheet = p.Workbook.Worksheets.Single(se => se.Name == $"Signer({sig.ID})");
+                        Sheet.Cells[s + 1, 4].Value = sig.ID;
+                       Sheet.Cells[s + 1, 5].Value = (avg/s);
+                        Sheet.Cells[s + 1, 6].Value = Loader.SamplingFrequency / s;
+                        Sheet.Cells[s + 1, 7].Value = result.SignerResults[ii].Aer;
+
+                        ii++;
+                    }
+                    avg = avg / signers.Count();
+                    var samplingrate = Loader.SamplingFrequency;
+
+                    var obj = new SampleRateResults();
+                    obj.step = s; obj.AER = result.FinalResult.Aer; obj.samplerate = samplingrate / s;
+                    obj.pointsAvg = avg / obj.step;
+                    samplerate.Add(obj);
+
+
+                }
+               
+                    var summarySheet = p.Workbook.Worksheets.Add("Summary");
+                    summarySheet.Cells[2, 2].Value = "SampleRate testing on Chinese_ translation and scaling (X,y) applied_ xy features, Even sampler";
+                    summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
+
+                    var resultsSheet = p.Workbook.Worksheets.Add("Results");
+                    resultsSheet.InsertTable(1, 1, samplerate);
+
+                    var resultsSheet2 = p.Workbook.Worksheets.Add("Signers_Statistics");
+                    resultsSheet2.Cells[1, 4].Value = "ID";
+                    resultsSheet2.Cells[1, 5].Value = "signerPointsAvg";
+                    resultsSheet2.Cells[1, 6].Value = "LegthAvg";
+                    resultsSheet2.Cells[1, 7].Value = "pointsNumMin";
+                    resultsSheet2.Cells[1, 8].Value = "pointsNumMax";
+                    resultsSheet2.Cells[1, 9].Value = "widthAvg";
+                    resultsSheet2.Cells[1, 10].Value = "heightAvg";
+
+                int i = 2;
+                foreach (Signer s2 in signers2)
+                {
+                    resultsSheet2.Cells[i, 4].Value = s2.ID;
+                    resultsSheet2.Cells[i, 5].Value = SignerStatisticsHelper.GetPointsAvg(s2);
+                    resultsSheet2.Cells[i, 6].Value = SignerStatisticsHelper.GetLengthAverage(s2);
+                    resultsSheet2.Cells[i, 7].Value = SignerStatisticsHelper.GetMinSignaturePoints(s2);
+                    resultsSheet2.Cells[i, 8].Value = SignerStatisticsHelper.GetMaxSignaturePoints(s2);
+                    resultsSheet2.Cells[i, 9].Value = s2.GetWidthAvg();
+                    resultsSheet2.Cells[i, 10].Value = s2.GetHeightAvg();
+
+                    i++;
+                }
+
+
+                p.SaveAs(new FileInfo("Report.xlsx"));
+                }
+            }
+
+
+        
+
+
 
         private static void RenderDatabase()
         {
@@ -384,6 +577,79 @@ namespace SigStat.Sample
             bool isGenuine2 = verifier.Test(questioned2) > 0.5;//false
         }
 
+        static void OnlineRotationBenchmarkDemo()
+        {
+
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            var benchmark = new VerifierBenchmark()
+            {
+
+                //Loader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip"), true),
+                Loader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true),
+
+                Verifier = new Verifier()
+                {
+                    Pipeline = new SequentialTransformPipeline
+                    {
+                                             //  new OrthognalRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+
+                             new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                               new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                            new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.X, OutputFeature = Features.X},
+                            new TranslatePreproc(OriginType.CenterOfGravity){InputFeature = Features.Y, OutputFeature = Features.Y},
+                      //new NormalizeRotationForX(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+                    new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
+
+
+                        }
+                ,
+                    Classifier = new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X }
+                    }
+                },
+                Sampler = new FirstNSampler(10),
+                Logger = new SimpleConsoleLogger(),
+            };
+
+
+            benchmark.ProgressChanged += ProgressPrimary;
+            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+            //var result = benchmark.Execute(true);
+
+            //benchmark.Dump("results.xlsx", new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("chinese11", "scale, COG") });
+            //using (var p = new ExcelPackage())
+            //{
+            //    var summarySheet = p.Workbook.Worksheets.Add("Summary");
+            //    summarySheet.Cells[2, 2].Value = "Preprocessing benchmark";
+            //    summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
+
+            //    var resultsSheet = p.Workbook.Worksheets.Add("Results");
+            //   resultsSheet.InsertTable(1, 1, result.SignerResults);
+
+            //    resultsSheet.InsertTable(1, 1, new object[3, 3] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } });
+
+            //    p.SaveAs(new FileInfo("Report.xlsx"));
+            //}
+
+            var signers = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true).EnumerateSigners().ToList();
+            //signers[2].Signatures;
+            SignatureHelper.SaveImage(signers[1].Signatures[2], "signature1-2.png");
+
+
+            //foreach (var signerResult in result.SignerResults)
+            //{
+            //    Console.WriteLine($"{signerResult.Signer} {signerResult.Aer}");
+            //}
+            //Console.WriteLine($"AER: {result.FinalResult.Aer}");
+
+        }
+
         static void OnlineVerifierBenchmarkDemo()
         {
             var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
@@ -392,42 +658,43 @@ namespace SigStat.Sample
                 Loader = new SigComp13JapaneseLoader(Path.Combine(databaseDir, "SigWiComp2013_Japanese.zip").GetPath(), true),
                 Verifier = new Verifier()
                 {
-                    Pipeline = new SequentialTransformPipeline {
+                    Pipeline = new SequentialTransformPipeline
+                    {
                         //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
                         //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
                         //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
                         //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
 
-                       // new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
-                          //   new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
-                             //new ResampleSamplesCountBased() {
-                             //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                             //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
-                             //    InterpolationType = typeof(CubicInterpolation),
-                             //    NumOfSamples = 500,
-                             //    OriginalTFeature = Features.T,
-                             //    ResampledTFeature = Features.T,
-                             //},
-                             //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
-                             //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
-                             //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
-                              //new FillPenUpDurations()
-                              //{
-                              //    InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
-                              //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                              //    InterpolationType = typeof(CubicInterpolation),
-                              //    TimeInputFeature =Features.T,
-                              //    TimeOutputFeature = Features.T
-                              //}
-                        }
+                        // new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
+                        //   new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
+                        //new ResampleSamplesCountBased() {
+                        //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                        //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
+                        //    InterpolationType = typeof(CubicInterpolation),
+                        //    NumOfSamples = 500,
+                        //    OriginalTFeature = Features.T,
+                        //    ResampledTFeature = Features.T,
+                        //},
+                        //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                        //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                        //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                        //new FillPenUpDurations()
+                        //{
+                        //    InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
+                        //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
+                        //    InterpolationType = typeof(CubicInterpolation),
+                        //    TimeInputFeature =Features.T,
+                        //    TimeOutputFeature = Features.T
+                        //}
+                    }
                 ,
                     Classifier = new OptimalDtwClassifier()
                     {
-                        Sampler = new JapaneseSampler1(),
+                        Sampler = new FirstNSampler(10),
                         Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
-                Sampler = new JapaneseSampler1(),
+                Sampler = new FirstNSampler(10),
                 Logger = new SimpleConsoleLogger(),
             };
 
@@ -1010,7 +1277,7 @@ namespace SigStat.Sample
 
             sig.SetFeature(heightDescriptor, 4);
             var loops = new List<Loop>() { new Loop(1, 1), new Loop(3, 3) };
-            RectangleF bound = new RectangleF(10, 10, 5, 3);
+            System.Drawing.RectangleF bound = new System.Drawing.RectangleF(10, 10, 5, 3);
             loops[0].Bounds = bound;
             sig.SetFeature(MyFeatures.Loop, loops);
 
@@ -1020,13 +1287,12 @@ namespace SigStat.Sample
             signature.Signer.Signatures = null;
 
             //Serialize to a string
-            string json = SerializationHelper.JsonSerialize<Signature>(sig);
-            Console.WriteLine(json);
+            SerializationHelper.JsonSerializeToFile(sig,@"SignaturSerialized.txt");
 
             //Deserialize from a string
-            Signature desirializedSig = SerializationHelper.Deserialize<Signature>(json);
+            Signature desirializedSig = SerializationHelper.DeserializeFromFile<Signature>(@"SignaturSerialized.txt");
 
-            foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
+            /*foreach (var descriptor in desirializedSig.GetFeatureDescriptors())
             {
                 if (!descriptor.IsCollection)
                 {
@@ -1041,7 +1307,7 @@ namespace SigStat.Sample
                         Console.WriteLine($" {i}.) {items[i]}");
                     }
                 }
-            }
+            }*/
         }
 
         static void JsonSerializeOnlineVerifier()
@@ -1063,39 +1329,20 @@ namespace SigStat.Sample
                     new Paper13FeatureExtractor(),*/
 
                 },
-                Classifier = new WeightedClassifier
+                Classifier = new OptimalDtwClassifier()
                 {
-                    {
-                        (new DtwClassifier(Accord.Math.Distance.Manhattan)
-                        {
-                            Features = { Features.X, Features.Y }
-                        },
-                           0.15)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { Features.Pressure }
-                        }, 0.3)
-                    },
-                    {
-                        (new DtwClassifier(){
-                            Features = { MyFeatures.Tangent }
-                        }, 0.55)
-                    },
+                    Sampler = new FirstNSampler(10),
+                    Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                 }
             };
 
-            string path = @"VerifierSerialized.txt";
+            string path = @"OnlineVerifier.json";
+            string path3 = @"OnlineVerifier3.json";
 
             //File serialization example
-            SerializationHelper.JsonSerializeToFile<Verifier>(onlineverifier, path);
+            SerializationHelper.JsonSerializeToFile(onlineverifier, path);
+
             Verifier deserializedOV = SerializationHelper.DeserializeFromFile<Verifier>(path);
-
-
-            //String serialization example
-            string json = SerializationHelper.JsonSerialize<Verifier>(onlineverifier);
-            Console.WriteLine(json);
-            Verifier deserializedOV2 = SerializationHelper.Deserialize<Verifier>(json);
 
         }
         static void JsonSerializeOnlineVerifierBenchmark()
@@ -1123,11 +1370,11 @@ namespace SigStat.Sample
                     ,
                     Classifier = new OptimalDtwClassifier()
                     {
-                        Sampler = new SVC2004Sampler1(),
+                        Sampler = new FirstNSampler(10),
                         Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                     }
                 },
-                Sampler = new SVC2004Sampler1(),
+                Sampler = new FirstNSampler(10),
                 Logger = new SimpleConsoleLogger(),
             };
 
@@ -1141,6 +1388,7 @@ namespace SigStat.Sample
             //SerializationHelper.JsonSerializeToFile<BenchmarkResults>(result, @"BenchmarkResultSerialized.txt");
             VerifierBenchmark deserializedBM = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
         }
+
 
         static int primaryP = 0;
         static int secondaryP = 0;

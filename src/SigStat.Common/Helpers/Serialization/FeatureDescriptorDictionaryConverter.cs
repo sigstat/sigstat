@@ -1,17 +1,15 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace SigStat.Common.Helpers.Serialization
 {
     /// <summary>
     /// Custom serializer for a Dictionary of <see cref="FeatureDescriptor"/>
     /// </summary>
-    class FeatureDescriptorDictionaryConverter : JsonConverter
+    public class FeatureDescriptorDictionaryConverter : JsonConverter
     {
         /// <summary>
         /// Tells if the current object is of the correct type

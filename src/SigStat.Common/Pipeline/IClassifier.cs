@@ -30,8 +30,15 @@ namespace SigStat.Common.Pipeline
         double Test(ISignerModel model, Signature signature);
     }
 
+
+    /// <summary>
+    /// Trains classification models based on reference signatures, by calculating the distances between signature pairs
+    /// </summary>
     public interface IDistanceClassifier: IClassifier
     {
+        /// <summary>
+        /// A function to calculate the distance between two online signature points
+        /// </summary>
         Func<double[], double[], double> DistanceFunction { get; }
     }
 

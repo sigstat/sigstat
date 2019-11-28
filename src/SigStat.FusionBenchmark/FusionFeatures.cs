@@ -61,19 +61,37 @@ namespace SigStat.FusionBenchmark
         public static readonly FeatureDescriptor<bool[,]> Skeleton = FeatureDescriptor.Get<bool[,]>("Skeleton");
 
         /// <summary>
+        /// Width of the pen
+        /// </summary>
+        public static readonly FeatureDescriptor<double> WidthOfPen = FeatureDescriptor.Get<double>("WidthOfPen");
+
+        /// <summary>
+        /// Vertices, 1 pixel in contour -> 1 vertex in contour
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Vertex>> Contour = FeatureDescriptor.Get<List<Vertex>>("Contour");
+
+        /// <summary>
         /// Vertices, 1 pixel in skeleton -> 1 vertex in vertices
         /// </summary>
         public static readonly FeatureDescriptor<List<Vertex>> Vertices  = FeatureDescriptor.Get<List<Vertex>>("Vertices");
 
         /// <summary>
-        /// Vertices, 1 pixel in skeleton -> 1 vertex in vertices
+        /// Components -> strokes in two direction
         /// </summary>
         public static readonly FeatureDescriptor<List<StrokeComponent>> Components = FeatureDescriptor.Get<List<StrokeComponent>>("Components");
+
+        public static readonly FeatureDescriptor<List<ConnectionNode>> SpuriousComps = FeatureDescriptor.Get<List<ConnectionNode>>("SpuriousComps");
+
 
         /// <summary>
         /// Center of gravity in a signature
         /// </summary>
         public static readonly FeatureDescriptor<Point> Cog = FeatureDescriptor.Get<Point>("Cog");
+
+        /// <summary>
+        /// Ideal trajectory
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Vertex>> IdealTrajectory = FeatureDescriptor.Get<List<Vertex>>("IdealTrajectory");
 
         /// <summary>
         /// BaseTrajectory
@@ -84,6 +102,23 @@ namespace SigStat.FusionBenchmark
         /// Trajectory
         /// </summary>
         public static readonly FeatureDescriptor<List<Vertex>> Trajectory = FeatureDescriptor.Get<List<Vertex>>("Trajectory");
+
+        /// <summary>
+        /// Curvature
+        /// </summary>
+        public static readonly FeatureDescriptor<List<double>> Curvature = FeatureDescriptor.Get<List<double>>("Curvature");
+
+        /// <summary>
+        /// Curvature
+        /// </summary>
+        public static readonly FeatureDescriptor<List<double>> Directions = FeatureDescriptor.Get<List<double>>("Directions");
+
+        /// <summary>
+        /// StrokaMatches from DtwPairing
+        /// </summary>
+        public static readonly FeatureDescriptor<List<Tuple<int, Stroke, double, int>>> StrokeMatches = FeatureDescriptor.Get<List<Tuple<int, Stroke, double, int>>>("StrokeMatches");
+
+        public static readonly FeatureDescriptor<List<double>> Tangent = FeatureDescriptor.Get<List<double>>("Tangent");
 
         /// <summary>
         /// Returns a readonly list of all <see cref="FeatureDescriptor"/>s defined in <see cref="Features"/>

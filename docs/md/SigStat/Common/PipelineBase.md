@@ -1,6 +1,6 @@
 # [PipelineBase](./PipelineBase.md)
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 
@@ -11,25 +11,25 @@ TODO: Ideiglenes osztaly, C# 8.0 ban ezt atalakitani default implementacios inte
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| PipelineBase (  ) |  | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| PipelineBase () | Initializes a new instance of the [PipelineBase](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) class. | 
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [ILogger](./PipelineBase.md) | Logger |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineInput](./Pipeline/PipelineInput.md)> | PipelineInputs |  | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[PipelineOutput](./Pipeline/PipelineOutput.md)> | PipelineOutputs |  | 
-| [Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32) | Progress |  | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Logger |  | 
+| PipelineInputs | A collection of inputs for the pipeline elements | 
+| PipelineOutputs | A collection of outputs for the pipeline elements | 
+| Progress |  | 
 
 
 ## Events
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [EventHandler](https://docs.microsoft.com/en-us/dotnet/api/System.EventHandler-1)\<[Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32)> | ProgressChanged | The event is raised whenever the value of `SigStat.Common.PipelineBase.Progress` changes | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| ProgressChanged | The event is raised whenever the value of [Progress](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/PipelineBase.md) changes | 
 
 

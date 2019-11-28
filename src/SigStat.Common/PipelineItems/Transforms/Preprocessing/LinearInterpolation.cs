@@ -5,14 +5,27 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
+    /// <summary>
+    /// Performs linear interpolation on the input
+    /// </summary>
+    /// <seealso cref="SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation" />
     [JsonObject(MemberSerialization.OptOut)]
     public class LinearInterpolation : IInterpolation
     {
-        
+        ///<inheritdoc/>
         public List<double> FeatureValues { get; set; }
-        
+
+        ///<inheritdoc/>
         public List<double> TimeValues { get; set; }
 
+        /// <summary>
+        /// Gets the interpolated value at a given timestamp
+        /// </summary>
+        /// <param name="timestamp">The timestamp.</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">TimeValues is not initialized</exception>
+        /// <exception cref="NullReferenceException">FeatureValues is not initialized</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The given timestamp is not in the range of TimeValues</exception>
         public double GetValue(double timestamp)
         {
             if (TimeValues == null)

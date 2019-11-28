@@ -1,19 +1,16 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using SigStat.Common.Pipeline;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace SigStat.Common.Helpers.Serialization
 {
     /// <summary>
     /// Custom resolver for customizing the json serialization 
     /// </summary>
-    class VerifierResolver : DefaultContractResolver
+    public class VerifierResolver : DefaultContractResolver
     {
         /// <summary>
         /// Decides if the current property should be serialized or not

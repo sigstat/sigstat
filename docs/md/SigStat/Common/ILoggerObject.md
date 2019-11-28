@@ -1,6 +1,6 @@
 # [ILoggerObject](./ILoggerObject.md)
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 
@@ -9,8 +9,8 @@ Represents a type, that contains an ILogger property that can be used to perform
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [ILogger](./ILoggerObject.md) | Logger | Gets or sets the ILogger implementation used to perform logging | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Logger | Gets or sets the ILogger implementation used to perform logging | 
 
 

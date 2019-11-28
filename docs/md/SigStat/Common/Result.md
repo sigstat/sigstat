@@ -1,20 +1,20 @@
 # [Result](./Result.md)
 
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 
 ## Summary
-Contains the benchmark results of a single `SigStat.Common.Signer`
+Contains the benchmark results of a single [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)
 
 ## Fields
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Aer | Average Error Rate | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Far | False Acceptance Rate | 
-| [Double](https://docs.microsoft.com/en-us/dotnet/api/System.Double) | Frr | False Rejection Rate | 
-| [ISignerModel](./Pipeline/ISignerModel.md) | Model |  | 
-| [String](https://docs.microsoft.com/en-us/dotnet/api/System.String) | Signer | Identifier of the `SigStat.Common.Result.Signer` | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| Aer | Average Error Rate | 
+| Far | False Acceptance Rate | 
+| Frr | False Rejection Rate | 
+| Model |  | 
+| Signer | Identifier of the [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Result.md) | 
 
 

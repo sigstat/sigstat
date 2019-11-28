@@ -16,11 +16,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class Trim : PipelineBase, ITransformation
     {
-
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the image of the signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<bool[,]> Input { get; set; }
 
+        /// <summary>
+        /// Output <see cref="FeatureDescriptor"/> describing the trimed image of the signature
+        /// </summary>
         [Output("Trimmed")]
         public FeatureDescriptor<bool[,]> Output { get; set; }
 

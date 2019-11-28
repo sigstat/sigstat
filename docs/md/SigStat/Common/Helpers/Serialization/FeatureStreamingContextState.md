@@ -1,6 +1,6 @@
 # [FeatureStreamingContextState](./FeatureStreamingContextState.md)
 
-Namespace: [SigStat]() > [Common]() > [Helpers]() > [Serialization]()
+Namespace: [SigStat]() > [Common](./../../README.md) > [Helpers](./../README.md) > [Serialization](./README.md)
 
 Assembly: SigStat.Common.dll
 
@@ -9,15 +9,15 @@ SerializationContext for serializing SigStat objects
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| FeatureStreamingContextState (  ) | Constructor | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| FeatureStreamingContextState () | Constructor | 
 
 
 ## Properties
 
-| Type | Name | Summary | 
-| --- | --- | --- | 
-| [List](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.List-1)\<[String](https://docs.microsoft.com/en-us/dotnet/api/System.String)> | KnownFeatureKeys | A list of already serialized FeatureDescriptor keys | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| KnownFeatureKeys | A list of already serialized FeatureDescriptor keys | 
 
 

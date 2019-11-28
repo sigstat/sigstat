@@ -21,18 +21,33 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class ImageGenerator : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> for the binary image of a signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<bool[,]> Input { get; set; }
-        [Output("Binarized")]
-        public FeatureDescriptor<bool[,]> Output { get; set; }
 
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> for the binary image of a signature
+        /// </summary>
         [Output("Image")]
         public FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the results should be saved to a file or not.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if results should be saved to a file otherwise, <c>false</c>.
+        /// </value>
         public bool WriteToFile { get; set; }
 
+        /// <summary>
+        /// Gets or sets the color of the foreground used to render the signature
+        /// </summary>
         public Rgba32 ForegroundColor { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the backgroung used to render the signature
+        /// </summary>
         public Rgba32 BackgroundColor { get; set; }
 
         /// <summary> Initializes a new instance of the <see cref="ImageGenerator"/> class with default settings: skip file writing, Blue ink on white paper. </summary>
@@ -54,8 +69,6 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //default output is '{input}', '{input}Image'
-            Output = Input;
             if (OutputImage == null)
             {
                 OutputImage = FeatureDescriptor<Image<Rgba32>>.Get(Input.Name + "Image");//TODO: <T> template-es Register()

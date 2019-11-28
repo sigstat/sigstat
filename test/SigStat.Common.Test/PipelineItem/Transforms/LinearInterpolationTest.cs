@@ -22,7 +22,7 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("List of timestamps is null", ex.Message);
+                Assert.AreEqual("TimeValues is not initialized", ex.Message);
             }
 
             try
@@ -33,7 +33,7 @@ namespace SigStat.Common.Test.PipelineItem.Transforms
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("List of feature values is null", ex.Message);
+                Assert.AreEqual("FeatureValues is not initialized", ex.Message);
             }
         }
 

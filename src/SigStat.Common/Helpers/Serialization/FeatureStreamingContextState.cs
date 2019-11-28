@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SigStat.Common.Helpers.Serialization
 {
@@ -13,13 +10,16 @@ namespace SigStat.Common.Helpers.Serialization
         /// <summary>
         /// Constructor
         /// </summary>
-        public FeatureStreamingContextState()
+        public FeatureStreamingContextState(bool compactFeatures)
         {
+            CompactFeatures = compactFeatures;
         }
 
         /// <summary>
         /// A list of already serialized FeatureDescriptor keys
         /// </summary>
         public List<string> KnownFeatureKeys { get; set; } = new List<string>();
+
+        public bool CompactFeatures { get; set; }
     }
 }

@@ -22,190 +22,182 @@ using SigStat.FusionBenchmark.VisualHelpers;
 using SigStat.FusionBenchmark.VertexTransFormations;
 using SigStat.FusionBenchmark.TrajectoryRecovery;
 using SigStat.FusionBenchmark.FusionFeatureExtraction;
+using SigStat.FusionBenchmark.Loaders;
 using SigStat.Common.Algorithms;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SigStat.Common.Framework.Samplers;
+using SigStat.FusionBenchmark.OfflineVerifier;
+using SigStat.FusionBenchmark.FusionDemos;
+using SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks;
+using SigStat.FusionBenchmark.ReSamplingFeatures;
+using SigStat.FusionBenchmark.FusionDemos.ReSamplingBenchmarks;
+using SigStat.FusionBenchmark.FusionDemos.FinalPipelines;
 
 namespace SigStat.FusionBenchmark
 {
     class Program
     {
+        //Develop
         static void Main(string[] args)
         {
-            Svc2004OfflineLoader loader = new Svc2004OfflineLoader(@"Databases/SVC(40).zip".GetPath());
-            var offlinepipeline = new SequentialTransformPipeline
+            try
             {
-                new Binarization {
-                    InputImage = FusionFeatures.Image,
-                    OutputMask = FusionFeatures.Skeleton
-                },
-                new HSCPThinning {
-                    Input = FusionFeatures.Skeleton,
-                    Output = FusionFeatures.Skeleton
-                },
-                new OnePixelThinning {
-                    Input = FusionFeatures.Skeleton,
-                    Output = FusionFeatures.Skeleton
-                },
-                new VertexExtract {
-                    InputSkeleton = FusionFeatures.Skeleton,
-                    OutputVertices = FusionFeatures.Vertices
-                },
-                new CogExtraction {
-                    InputVertices = FusionFeatures.Vertices,
-                    OutputCog = FusionFeatures.Cog
-                },
-                new VertexTranslate {
-                    InputVertices = FusionFeatures.Vertices,
-                    InputCog = FusionFeatures.Cog
-                },
-                new StrokeExtract {
-                    InputVertices = FusionFeatures.Vertices,
-                    OutputComponents = FusionFeatures.Components
-                },
-                new MarosAlgorithm {
-                    InputVertices = FusionFeatures.Vertices,
-                    InputComponents = FusionFeatures.Components,
-                    OutputBaseTrajectory = FusionFeatures.BaseTrajectory
-                },
-                new DtwPairing {
-                    InputBaseTrajectory = FusionFeatures.BaseTrajectory,
-                    InputComponents = FusionFeatures.Components,
-                    InputJump = 10,
-                    InputBaseSigIdx = 0,
-                    OutputTrajectory = FusionFeatures.Trajectory
-                },
-                new FusionFeatureTransform {
-                    InputTrajectory = FusionFeatures.Trajectory,
-                    OutputX = FusionFeatures.X,
-                    OutputY = FusionFeatures.Y,
-                    OutputButton = FusionFeatures.Button
-                },
-                new VerticesSaver {
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "vertices",
-                    InputImage = FusionFeatures.Image,
-                    InputCog = FusionFeatures.Cog,
-                    InputVertices = FusionFeatures.Vertices
-                },
-                new StrokePairSaver {
-                    InputImage = FusionFeatures.Image,
-                    InputTrajectory = FusionFeatures.Trajectory,
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "sp"
-                },
-                new StrokeSaver {
-                    InputComponents = FusionFeatures.Components,
-                    InputImage = FusionFeatures.Image,
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "stroke"
-                },
-                new TrajectorySaver {
-                    InputImage = FusionFeatures.Image,
-                    InputTrajectory = FusionFeatures.Trajectory,
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "traj"
-                },
-                new TrajectorySaver {
-                    InputImage = FusionFeatures.Image,
-                    InputTrajectory = FusionFeatures.BaseTrajectory,
-                    InputBasePath = @"VisualResults",
-                    InputFileName = "remade"
-                }
-            };
-            offlinepipeline.Logger = new SimpleConsoleLogger();
+                string svcOn = "Databases/Online/SVC2004/Task2";
+                string svcOff = "Databases/SVC (40)";
+                string bioOn = "Databases/BiosecureID/OnlineRealTxt";
+                string bioOff = "Databases/BiosecureID/OfflineSynthetic/Ienhanced";
 
-            var marospipeline = new SequentialTransformPipeline
-            {
-                new Binarization {
-                    InputImage = FusionFeatures.Image,
-                    OutputMask = FusionFeatures.Skeleton
-                },
-                new HSCPThinning {
-                    Input = FusionFeatures.Skeleton,
-                    Output = FusionFeatures.Skeleton
-                },
-                new OnePixelThinning {
-                    Input = FusionFeatures.Skeleton,
-                    Output = FusionFeatures.Skeleton
-                },
-                new VertexExtract {
-                    InputSkeleton = FusionFeatures.Skeleton,
-                    OutputVertices = FusionFeatures.Vertices
-                },
-                new CogExtraction {
-                    InputVertices = FusionFeatures.Vertices,
-                    OutputCog = FusionFeatures.Cog
-                },
-                new VertexTranslate {
-                    InputVertices = FusionFeatures.Vertices,
-                    InputCog = FusionFeatures.Cog
-                },
-                new StrokeExtract {
-                    InputVertices = FusionFeatures.Vertices,
-                    OutputComponents = FusionFeatures.Components
-                },
-                new MarosAlgorithm {
-                    InputVertices = FusionFeatures.Vertices,
-                    InputComponents = FusionFeatures.Components,
-                    OutputBaseTrajectory = FusionFeatures.BaseTrajectory
-                },
-                new FusionFeatureTransform {
-                    InputTrajectory = FusionFeatures.BaseTrajectory,
-                    OutputButton = FusionFeatures.Button,
-                    OutputX = FusionFeatures.X,
-                    OutputY = FusionFeatures.Y
-                }
-            };
-            marospipeline.Logger = new SimpleConsoleLogger();
+                var svcOnLoader = FusionPipelines.GetSVCOnlineLoader(svcOn);
+                var svcOffLoader = FusionPipelines.GetSVCOfflineLoader(svcOff);
+                var bioOnLoader = FusionPipelines.GetBiosecureIDOnlineLoader(bioOn);
+                var bioOffLoader = FusionPipelines.GetBiosecureIDOfflineLoader(bioOff);
 
-            //var offline = BenchmarkingWithPipeline(offlinepipeline);
-            //var maros = BenchmarkingWithPipeline(marospipeline);
-
-            //Console.WriteLine("Offline");
-            //ResultOut(offline);
-            //Console.WriteLine("Maros");
-            //ResultOut(maros);
-
-            int idx = 1;
-            var signers = new List<Signer>(loader.EnumerateSigners(p => true));
-            foreach (var sig in signers[idx].Signatures)
-            {
-                offlinepipeline.Transform(sig);
-            }
-
-            Console.ReadLine();
-
-        }
-
-        private static BenchmarkResults BenchmarkingWithPipeline(SequentialTransformPipeline pipeline)
-        {
-            Svc2004OfflineLoader loader = new Svc2004OfflineLoader(@"Databases/SVC(40).zip".GetPath());
-            var benchmark = new VerifierBenchmark
-            {
-                Loader = loader,
-                Logger = new SimpleConsoleLogger(),
-                Verifier = new Verifier
+                
+                List<Tuple<DataSetLoader, DataSetLoader>> onOffLoaders = new List<Tuple<DataSetLoader, DataSetLoader>>()
                 {
-                    Pipeline = pipeline,
-                    Classifier = new DtwClassifier(DtwPy.EuclideanDistance)
+                    new Tuple<DataSetLoader, DataSetLoader>(bioOnLoader, bioOffLoader),
+                    new Tuple<DataSetLoader, DataSetLoader>(svcOnLoader, svcOffLoader)
+                };
+
+
+                List<SequentialTransformPipeline> offlinePipelines1 = new List<SequentialTransformPipeline>()
+                {
+                    FinalFusionPipelines.GetOfflinePipelineAlap(),
+                    FinalFusionPipelines.GetOfflinePipelineMerging()
+                };
+
+                List<SequentialTransformPipeline> onlinePipelines1 = new List<SequentialTransformPipeline>()
+                {
+                    FinalFusionPipelines.GetOnlinePipeline1(),
+                    FinalFusionPipelines.GetOnlinePipeline2()
+                };
+                //Console.WriteLine("MarosFusion---------------------------------");
+                //foreach (var loaderTuple in onOffLoaders)
+                //{
+                //    foreach (var onPipe in onlinePipelines1)
+                //    {
+                //        try
+                //        {
+                //            var benchmark = new MarosFinalFusionPipelines()
+                //            {
+                //                InputBaseSigInputCntID = 0,
+                //                OfflineLoader = loaderTuple.Item2,
+                //                MarosPipeline = FinalFusionPipelines.GetOfflinePipelineMaros(),
+                //                OnlineLoader = loaderTuple.Item1,
+                //                OnlinePipeline = onPipe,
+                //                IsOptimal = true
+                //            };
+                //            Resultout(benchmark.Execute());
+                //        }
+                //        catch (Exception e)
+                //        {
+                //            Console.WriteLine(e.ToString());
+                //        }
+                //    }
+                //}
+                //Console.WriteLine("Maros---------------------------------");
+                //foreach (var loaderTuple in onOffLoaders) {
+                //    foreach (var onPipe in onlinePipelines1)
+                //    {
+                //        try
+                //        {
+                //            var benchmark = new MarosPipelineBenchmark()
+                //            {
+                //                InputBaseSigInputCntID = 0,
+                //                OfflineLoader = loaderTuple.Item2,
+                //                MarosPipeline = FinalFusionPipelines.GetOfflinePipelineMaros(),
+                //                OnlineLoader = loaderTuple.Item1,
+                //                OnlinePipeline = onPipe,
+                //                IsOptimal = true
+                //            };
+                //            Resultout(benchmark.Execute());
+                //        }
+                //        catch (Exception e)
+                //        {
+                //            Console.WriteLine(e.ToString());
+                //        }
+                //    }
+                //}
+                //Console.WriteLine("Fusion---------------------------------");
+                //foreach (var loaderTuple in onOffLoaders)
+                //{
+                //    foreach (var offPipe in offlinePipelines1)
+                //    {
+                //        foreach (var onPipe in onlinePipelines1)
+                //        {
+                //            try
+                //            {
+                //                var benchmark = new FusionPipelineBenchmark()
+                //                {
+                //                    InputBaseSigInputCntID = 0,
+                //                    OfflineLoader = loaderTuple.Item2,
+                //                    OfflinePipeline = offPipe,
+                //                    OnlineLoader = loaderTuple.Item1,
+                //                    OnlinePipeline = onPipe,
+                //                    IsOptimal = true
+                //                };
+                //                Resultout(benchmark.Execute());
+                //            }
+                //            catch(Exception e)
+                //            {
+                //                Console.WriteLine(e.ToString());
+                //            }
+                //        }
+                //    }
+                //}
+                Console.WriteLine("Online----------------------------");
+                foreach (var loaderTuple in onOffLoaders)
+                {
+                    foreach (var onPipe in onlinePipelines1)
                     {
-                        Features = new List<FeatureDescriptor> { FusionFeatures.X, FusionFeatures.Y }
+                        var benchmark = new FinalOnlinePipeline
+                        {
+                            IsOptimal = true,
+                            OnlineLoader = loaderTuple.Item1,
+                            OnlinePipeline = onPipe
+                        };
+                        Resultout(benchmark.Execute());
                     }
-                },
-                Sampler = new SVC2004Sampler1(),
-            };
-            return benchmark.Execute();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
 
-        private static void ResultOut(BenchmarkResults results)
+        public static void Resultout(BenchmarkResults results, string resultInfo = "")
         {
+            Console.WriteLine(resultInfo);
             foreach (var result in results.SignerResults)
             {
-                Console.WriteLine(result.Signer + ": " + result.Frr.ToString() +
-                                    " " + result.Far.ToString() + " " + result.Aer.ToString());
+                Console.WriteLine(result.Signer + " {0} {1} {2}", result.Frr, result.Far, result.Aer);
             }
-            Console.WriteLine(results.FinalResult.Aer + " " + results.FinalResult.Far + " " + results.FinalResult.Frr);
+            Console.WriteLine("Avg {0} {1} {2}", results.FinalResult.Frr, results.FinalResult.Far, results.FinalResult.Aer);
         }
 
+        private static void Resultout(FusionBenchmarkResults fusionResults, string resultInfo = "")
+        {
+            Console.WriteLine(resultInfo);
+            Resultout(fusionResults.OffOffResults, "offoff");
+            Resultout(fusionResults.OffOnResults, "offon");
+            Resultout(fusionResults.OnOffResults, "onoff");
+            Resultout(fusionResults.OnOnResults, "onon");
+        }
+
+        public static void ResultsToTxt(BenchmarkResults results, string fileName)
+        {
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(results), fileName);
+        }
+
+        private static void ResultsToTxt(FusionBenchmarkResults fusionResults, string fileName)
+        {
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OffOffResults), fileName + "offoff");
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OffOnResults), fileName + "offon");
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OnOffResults), fileName + "onoff");
+            TxtHelper.Save(TxtHelper.BenchmarkResToLines(fusionResults.OnOnResults), fileName + "onon");
+        }
 
     }
 }

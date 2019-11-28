@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SigStat.Common.Helpers.Excel;
+using SigStat.Common.Helpers;
 using System.Diagnostics;
 
 namespace SigStat.Benchmark

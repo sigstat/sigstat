@@ -21,10 +21,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class AddVector : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Inputs
+        /// </summary>
         [Input]
-        
         public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
+        /// <summary>
+        /// Outputs
+        /// </summary>
         [Output]
         public List<FeatureDescriptor<List<double>>> Outputs { get; set; }
 

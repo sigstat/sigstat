@@ -1,8 +1,13 @@
-[![](sigstat.gif)](https://sigstat.org)
+
+<img src="http://sigstat.org/site/resources/sigstat.png" alt="SigStat" width=300/>
+<hr>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/sigstat/sigstat/blob/master/LICENSE.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Follow SigStat on Twitter](https://img.shields.io/badge/twitter-@SigStatOrg-55acee.svg?style=flat-square)](https://twitter.com/sigstatorg)
+[![Issues](https://img.shields.io/github/issues/sigstat/sigstat)](https://github.com/sigstat/sigstat/issues)
+[![Contributors](https://img.shields.io/github/contributors/sigstat/sigstat)](https://github.com/sigstat/sigstat/graphs/contributors)
+![Downloads](https://img.shields.io/github/downloads/sigstat/sigstat/total)
 
 
 | branch | build | tests | quality |
@@ -13,7 +18,8 @@
 
 # Introduction
 
-SigStat is an open source .NET class library for offline (static) and online (dynamic) signature verification. 
+SigStat is an open source .NET class library for offline (static) and online (dynamic) signature verification.<br>
+Website: www.sigstat.org
 
 # Motivation
 
@@ -23,7 +29,6 @@ Signature verification plays a very important role in our lives. Companies and o
 
 - offline signature verification
 - online signature verification
-- etc.
 
 # How to use our library
 To use this project, you need to have **.NET Framework 4.6.1** and **.NET Core SDK 2.1.403** installed!
@@ -46,8 +51,8 @@ To reach the full potential of our project, we use some additional NuGet package
 
 - **Twitter** - Follow [Sigstat](https://twitter.com/sigstatorg)
 - **Facebook** - Follow [Sigstat](https://www.facebook.com/sigstat.org)
-- **Email** - Subscribe to our [newsletter] (1 or 2 per month)
-- **YouTube** - For tutorial videos, examples and other contents visit our [YouTube channel](https://www.youtube.com/user/sigstat)!
+- **Email** - Email us at [info@sigstat.org](mailto:info@sigstat.org)
+- **YouTube** - For tutorial videos, examples and other contents visit our [YouTube channel](https://www.youtube.com/channel/UCsgpfv5o8h9l-tQ1AFD_rOQ)!
 
 
 # Feedback

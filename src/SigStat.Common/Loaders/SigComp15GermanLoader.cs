@@ -7,8 +7,15 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
+    /// <summary>
+    /// <see cref="DataSetLoader"/> for the SigComp15German dataset
+    /// </summary>
     public class SigComp15GermanLoader : DataSetLoader
     {
+        /// <summary>
+        /// Sampling Frequency of this database
+        /// </summary>
+        public override int SamplingFrequency { get { return 75; } }
         /// <summary>
         /// Set of features containing raw data loaded from SigComp15German-format database.
         /// </summary>
@@ -71,15 +78,29 @@ namespace SigStat.Common.Loaders
             }
         }
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SigComp15GermanLoader"/> class.
+        /// </summary>
+        /// <param name="databasePath">The database path.</param>
+        /// <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="Features"/>.</param>
         public SigComp15GermanLoader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
 
-        public string DatabasePath { get; set;  }
+        /// <summary>
+        /// Gets or sets the database path.
+        /// </summary>
+        public string DatabasePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+        /// </summary>
         public bool StandardFeatures { get; set; }
 
+        /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
@@ -117,9 +138,11 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
+                        
 
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                    
                     yield return signer;
                 }
             }
@@ -161,6 +184,22 @@ namespace SigStat.Common.Loaders
             {
                 lines.RemoveAt(lines.Count - 1);
             }
+            // The database uses special datapoints to signal stroke boundaries
+            // We are going to replace them with averaged values to allow for smoother comparison
+            for (int i = 1; i < lines.Count-1; i++)
+            {
+                if (lines[i][0] != -1) continue;
+                if (lines[i][0] == -1 && lines[i + 1][0] == -1)
+                {
+                    // Remove duplicate stroke boundaries
+                    lines.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                lines[i][0] = (lines[i - 1][0] + lines[i + 1][0]) / 2;
+                lines[i][1] = (lines[i - 1][1] + lines[i + 1][1]) / 2;
+                lines[i][2] = 0;
+            }
 
             signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
             signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
@@ -177,9 +216,12 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                signature.CalculateStandardStatistics();
+
 
 
             }
+
         }
 
     }

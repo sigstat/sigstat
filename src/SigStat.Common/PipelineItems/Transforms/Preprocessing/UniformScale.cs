@@ -11,19 +11,22 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
     /// Maps values of a feature to a specific range and another proportional.
     /// <para>BaseDimension: feature modelled the base dimension of the scaling. </para>
     /// <para>ProportionalDimension: feature modelled the dimension scaled proportionally to the base dimension. </para>
-    /// <para>BaseDimensionOutput: output feature for scaled BaseDimension></para>
-    /// <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension></para>
+    /// <para>BaseDimensionOutput: output feature for scaled BaseDimension</para>
+    /// <para>ProportionalDimensionOutput: output feature for scaled ProportionalDimension</para>
     /// </summary>
-    /// <remarks> This is a specific case of the <see cref="Map"/> transform. </remarks>
     [JsonObject(MemberSerialization.OptOut)]
     public class UniformScale : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Gets or sets the base dimension.
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> BaseDimension { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ProportionalDimension.
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> ProportionalDimension { get; set; }
 
         /// <summary>
@@ -41,9 +44,15 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         public double NewMinProportionalValue { get; set; } = 0;
 
+        /// <summary>
+        /// Gets or sets the output base dimension output.
+        /// </summary>
         [Output("UniformScaledBaseDimension")]
         public FeatureDescriptor<List<double>> BaseDimensionOutput { get; set; }
 
+        /// <summary>
+        /// Gets or sets the output proportional dimension output.
+        /// </summary>
         [Output("UniformScaledProportionalDimension")]
         public FeatureDescriptor<List<double>> ProportionalDimensionOutput { get; set; }
 

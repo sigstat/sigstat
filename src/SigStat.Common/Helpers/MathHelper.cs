@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace SigStat.Common
 {
@@ -41,5 +42,36 @@ namespace SigStat.Common
                 }
             }
         }
+
+        /// <summary>
+        /// Calculates the median of the given data series
+        /// </summary>
+        /// <param name="values">The data series</param>
+        /// <returns></returns>
+        public static double Median(this IEnumerable<double> values)
+        {
+            var valueList = new List<double>(values);
+            valueList.Sort();
+            return valueList[valueList.Count / 2];
+        }
+        /// <summary>
+        /// return standard diviation of a feature values
+        /// </summary>
+        /// <param name="feature"></param>
+        /// <returns></returns>
+        public static double StdDiviation(this IEnumerable<double> values)
+        {
+            double mean = values.Average();
+            double sum = 0;
+            foreach (double value in values)
+            {
+                sum = sum + ((value - mean) * (value - mean));
+            }
+            sum = sum / values.Count();
+
+            return Math.Sqrt(sum);
+        }
     }
+
+   
 }

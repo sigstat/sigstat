@@ -1,17 +1,17 @@
 # [IDataSetLoader](./IDataSetLoader.md)
 
-Namespace: [SigStat]() > [Common]() > [Loaders]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Loaders](./README.md)
 
 Assembly: SigStat.Common.dll
 
 ## Summary
-Exposes a function to enable loading collections of `SigStat.Common.Signer`s.  Base abstract class: `SigStat.Common.Loaders.DataSetLoader`.
+Exposes a function to enable loading collections of [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)s.  Base abstract class: [DataSetLoader](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Loaders/DataSetLoader.md).
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1)\<[Signer](./../Signer.md)> | EnumerateSigners (  ) | Enumerates all signers of the database | 
-| [IEnumerable](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1)\<[Signer](./../Signer.md)> | EnumerateSigners ( [`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)> ) | Enumerates all `SigStat.Common.Signer`s that match the ``. | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [EnumerateSigners](./Methods/IDataSetLoader--EnumerateSigners.md) () | Enumerates all signers of the database | 
+| [EnumerateSigners](./Methods/IDataSetLoader--EnumerateSigners.md) ([`Predicate`](https://docs.microsoft.com/en-us/dotnet/api/System.Predicate-1)\<[`Signer`](./../Signer.md)>) | Enumerates all [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)s that match the `signerFilter`. | 
 
 

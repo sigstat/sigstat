@@ -17,17 +17,17 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class CentroidExtraction : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// List of features to process
+        /// </summary>
         [Input]
-        
         public List<FeatureDescriptor<List<double>>> Inputs { get; set; }
 
+        /// <summary>
+        /// List of centroid values
+        /// </summary>
         [Output("Centroid")]
         public FeatureDescriptor<List<double>> OutputCentroid { get; set; }
-
-        public CentroidExtraction()
-        {
-
-        }
 
         /// <inheritdoc/>
         public void Transform(Signature signature)

@@ -8,7 +8,7 @@ dotnet tool install --global igloo15.MarkdownApi.Tool --version 1.0.5 > nul 2>&1
 echo [96mUpdating documentation has started... [0m 
 echo.
 dotnet build ..\src\SigStat.Common\SigStat.Common.csproj --configuration Debug /p:WarningLevel=0
-markdownapi ../src/SigStat.Common/bin/Debug/net461/SigStat.Common.dll --title="API Documentation" %cd%\md
+markdownapi ../src/SigStat.Common/bin/Debug/net461/SigStat.Common.dll --title="API Documentation" --namespace-page %cd%\md
 dotnet tool uninstall --global igloo15.MarkdownApi.Tool > nul 2>&1
 echo.
 echo [96mThis is it! You can find the newly generated documentation at docs\md.[0m 

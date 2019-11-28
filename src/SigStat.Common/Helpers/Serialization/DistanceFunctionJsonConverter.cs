@@ -1,40 +1,53 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Reflection;
 
 namespace SigStat.Common.Helpers.Serialization
 {
+
     /// <summary>
+    /// Helper class for serializing distance functions
     /// </summary>
-    public class DistanceFunctionJsonConverter : JsonConverter
+    /// <seealso cref="Newtonsoft.Json.JsonConverter" />
+    public class DistanceFunctionJsonConverter : JsonConverter<Func<double[], double[], double>>
     {
-        public override bool CanConvert(Type objectType)
+        public override Func<double[], double[], double> ReadJson(JsonReader reader, Type objectType, Func<double[], double[], double> existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            return (objectType == typeof(FeatureDescriptor));
-        }
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            switch ((string)reader.Value)
+            var distanceFunc = (string)reader.Value;
+            var names = distanceFunc.Split(',');
+            
+            var type = Type.GetType($"{names[0].Substring(0,names[0].LastIndexOf('.'))},{names[1]}");
+
+            Func<double[], double[], double> resultFunc;
+
+            if (type != null)
             {
-                case "Manhattan": return (Func<double[], double[], double>)Accord.Math.Distance.Manhattan;
-                case "Euclidean": return (Func<double[], double[], double>)Accord.Math.Distance.Euclidean;
-                default:
-                    throw new Exception("Unsopported distance function");
+                var paramTypes = new List<Type>()
+                {
+                    typeof(double[]),
+                    typeof(double[]),
+                };
+                var method = type.GetMethod(names[0].Split('.').Last(), paramTypes.ToArray());
+                resultFunc = (Func<double[], double[], double>)
+                    Delegate.CreateDelegate(typeof(Func<double[], double[], double>), method);
             }
-        }
-        /// <summary>
-        /// Overwrite of the <see cref="JsonConverter"/> method
-        /// Serializes the <see cref="FeatureDescriptor"/> to json with type depending on if it was serialized earlier or not
-        /// </summary>
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            // HACK: !!!!!!!!!
-            var func = (Func<double[], double[], double>)value;
-            if (func(new[] { 0d, 0 }, new[] { 1d, 1 }) == 2)
-                serializer.Serialize(writer, "Manhattan");
             else
-                serializer.Serialize(writer, "Euclidean");
+            {
+                throw new Exception("Unsopported distance function");
+            }
+
+            return resultFunc;
+
+        }
+
+        public override void WriteJson(JsonWriter writer, Func<double[], double[], double> value, JsonSerializer serializer)
+        {
+            if (value.Method.DeclaringType != null)
+            {
+                serializer.Serialize(writer, $"{value.Method.DeclaringType}.{value.Method.Name}, {value.Method.DeclaringType.Assembly.GetName().Name}");
+            }
         }
     }
 }

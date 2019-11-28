@@ -2,15 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace SigStat.Common.Helpers.Excel
+namespace SigStat.Common.Helpers
 {
     /// <summary>
     /// Hierarchical structure to store object
     /// </summary>
     public class HierarchyElement : IEnumerable<HierarchyElement>
     {
+        /// <summary>
+        /// Gets the children.
+        /// </summary>
         public List<HierarchyElement> Children { get; }
 
+        /// <summary>
+        /// Gets or sets the content.
+        /// </summary>
         public Object Content { get; set; }
 
         /// <summary>
@@ -31,6 +37,9 @@ namespace SigStat.Common.Helpers.Excel
             this.Content = Content;
         }
 
+        /// <summary>
+        /// Adds the specified element as a child
+        /// </summary>
         public void Add(HierarchyElement child)
         {
             Children.Add(child);
@@ -73,11 +82,20 @@ namespace SigStat.Common.Helpers.Excel
             return count;
         }
 
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return this.Content.ToString();
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
         public IEnumerator<HierarchyElement> GetEnumerator()
         {
             return ((IEnumerable<HierarchyElement>)Children).GetEnumerator();

@@ -14,63 +14,36 @@ namespace SigStat.FusionBenchmark.TrajectoryRecovery
     [JsonObject(MemberSerialization.OptOut)]
     class MarosAlgorithm : PipelineBase, ITransformation
     {
-        [Input]
-        public FeatureDescriptor<List<Vertex>> InputVertices { get; set; }
 
         [Input]
         public FeatureDescriptor<List<StrokeComponent>> InputComponents { get; set; }
 
-        [Output("BaseTrajectory")]
-        public FeatureDescriptor<List<Vertex>> OutputBaseTrajectory { get; set; }
+        [Output("Trajectory")]
+        public FeatureDescriptor<List<Vertex>> OutputTrajectory { get; set; }
 
         public void Transform(Signature signature)
         {
-            this.LogInformation("MarosAlgorithm - transform started");
-            var strokes = signature.GetFeature<List<StrokeComponent>>(InputComponents).GetAllStrokes();
-            var vertices = signature.GetFeature<List<Vertex>>(InputVertices);
+            var components = signature.GetFeature<List<StrokeComponent>>(InputComponents);
+            var strokes = new List<Stroke>();
+            foreach (var comp in components)
+            {
+                Stroke lefterStroke = null; 
+                comp.Strokes.ForEach(stroke =>
+                {
+                    if (ReferenceEquals(null, lefterStroke) || stroke.First().Pos.X < lefterStroke.First().Pos.X)
+                    { lefterStroke = stroke; }
+                }
+                );
+                strokes.Add(lefterStroke);
+            }
+            strokes.Sort((p, q) => { return p.First().Pos.X < q.First().Pos.X ? -1 : 1; });
             var trajectory = new List<Vertex>();
-
-            var strokeEnds = new List<Vertex>();
-            var endPoints = vertices.EndPoints();
-            endPoints.Sort((p,q) => Geometry.Lefter(p.Pos, q.Pos));
-            var crossingPoints = vertices.CrossingPoints();
-            crossingPoints.Sort((p, q) => Geometry.Lefter(p.Pos, q.Pos));
-            strokeEnds.AddRange(endPoints);
-            strokeEnds.AddRange(crossingPoints);
-            var isIn = new HashSet<StrokeComponent>();
-            foreach (var end in strokeEnds)
+            foreach (var stroke in strokes)
             {
-                Stroke actualStroke = strokes.Find(stroke => stroke.Start == end && !isIn.Contains(stroke.Component));
-                while (actualStroke != null)
-                {
-                    trajectory.AddRange(actualStroke);
-                    isIn.Add(actualStroke.Component);
-                    actualStroke = FindNextStroke(actualStroke, strokes, isIn);
-                }
+                trajectory.AddRange(stroke);
             }
-            signature.SetFeature<List<Vertex>>(OutputBaseTrajectory, trajectory);
-            this.LogInformation(trajectory.Count.ToString() + " vertices - " + isIn.Count.ToString() + " components");
-            this.LogInformation("MarosAlgorithm - transfrom finished");
+            signature.SetFeature<List<Vertex>>(OutputTrajectory, trajectory);
         }
-
-        private Stroke FindNextStroke(Stroke actualStroke, List<Stroke> strokes, HashSet<StrokeComponent> isIn)
-        {
-            Stroke res = null;
-            double minVal = Double.MaxValue;
-            double actualAngle = DOSBasedExtract.MakeSectionReverse(actualStroke, actualStroke.Count - 1).Direction();
-            List<Stroke> neighbours = strokes.FindAll(stroke => actualStroke.IsNeighbour(stroke) && !isIn.Contains(stroke.Component));
-            foreach (var stroke in neighbours)
-            {
-                double strokeAngle = DOSBasedExtract.MakeSection(stroke, 0).Direction();
-                double val = Geometry.DiffAngle(actualAngle, strokeAngle);
-                if (val < minVal)
-                {
-                    minVal = val;
-                    res = stroke; 
-                }
-            }
-            return res;
-        }
-           
+         
     }
 }

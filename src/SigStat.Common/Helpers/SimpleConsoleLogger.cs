@@ -27,6 +27,12 @@ namespace SigStat.Common.Helpers
     /// </example>
     public class SimpleConsoleLogger : ILogger
     {
+        /// <summary>
+        /// The event is raised whenever an error is logged
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="exception">The exception.</param>
+        /// <param name="level">The level.</param>
         public delegate void ErrorEventHandler(string message, Exception exception, LogLevel level);
 
         /// <summary>
@@ -34,6 +40,9 @@ namespace SigStat.Common.Helpers
         /// </summary>
         public LogLevel LogLevel { get; set; }
 
+        /// <summary>
+        /// Occurs when an error is logged
+        /// </summary>
         public event ErrorEventHandler Logged;
 
         /// <summary>

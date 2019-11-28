@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using SigStat.Common.Helpers.Excel;
+using SigStat.Common.Helpers;
 using System.Collections.Concurrent;
 
 namespace SigStat.PreprocessingBenchmark

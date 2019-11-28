@@ -17,10 +17,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class Normalize : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> Input { get; set; }
 
+        /// <summary>
+        /// Output
+        /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> Output { get; set; }
 

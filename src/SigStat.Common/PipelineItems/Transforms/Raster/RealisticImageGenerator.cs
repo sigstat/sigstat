@@ -23,33 +23,47 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class RealisticImageGenerator : PipelineBase, ITransformation
     {
-
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the X coordinates of an online signature
+        /// </summary>
         [Input]
-        
-        FeatureDescriptor<List<double>> X { get; set; } = Features.X;
+        public FeatureDescriptor<List<double>> X { get; set; } = Features.X;
 
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the Y coordinates of an online signature
+        /// </summary>
         [Input]
-        
-        FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
+        public FeatureDescriptor<List<double>> Y { get; set; } = Features.Y;
 
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the stroke endings of an online signature
+        /// </summary>
         [Input]
-        
-        FeatureDescriptor<List<bool>> Button { get; set; } = Features.Button;
+        public FeatureDescriptor<List<bool>> Button { get; set; } = Features.Button;
 
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the pressure values of an online signature
+        /// </summary>
         [Input]
-        
-        FeatureDescriptor<List<double>> Pressure { get; set; } = Features.Pressure;
+        public FeatureDescriptor<List<double>> Pressure { get; set; } = Features.Pressure;
 
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the altitude values of an online signature
+        /// </summary>
         [Input]
-        
-        FeatureDescriptor<List<double>> Altitude { get; set; } = Features.Altitude;
+        public FeatureDescriptor<List<double>> Altitude { get; set; } = Features.Altitude;
 
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the azimuth values of an online signature
+        /// </summary>
         [Input]
-        
-        FeatureDescriptor<List<double>> Azimuth { get; set; } = Features.Azimuth;
+        public FeatureDescriptor<List<double>> Azimuth { get; set; } = Features.Azimuth;
 
+        /// <summary>
+        /// Output <see cref="FeatureDescriptor"/> describing the generated image of the signature
+        /// </summary>
         [Output("RealisticImage")]
-        FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; } = Features.Image;
+        public FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; } = Features.Image;
 
         private readonly int w;
         private readonly int h;

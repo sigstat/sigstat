@@ -11,25 +11,15 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
+#pragma warning disable 1591
+    [Obsolete]
     public static class BenchmarkBuilder
     {
 
         //Elejen letrehozzuk oket: nem kell mindenkinek kulon instance, mert allapotmentesek vagyunk (ahol igen..)
         //miert static? Mert a Builder is static. Lehetne a Buildben is letrehozni oket, de mi sokszor hivjuk meg ezt a Buildet.
 
-        //TODO: replace db specific samplers with universal ones where possible
-        static SVC2004Sampler1 svcSampler1 = new SVC2004Sampler1();
-        static SVC2004Sampler2 svcSampler2 = new SVC2004Sampler2();
-        static SVC2004Sampler3 svcSampler3 = new SVC2004Sampler3();
-        static SVC2004Sampler4 svcSampler4 = new SVC2004Sampler4();
-        static McytSampler1 mcytSampler1 = new McytSampler1();
-        static McytSampler2 mcytSampler2 = new McytSampler2();
-        static McytSampler3 mcytSampler3 = new McytSampler3();
-        static McytSampler4 mcytSampler4 = new McytSampler4();
-        static DutchSampler1 dutchSampler1 = new DutchSampler1();
-        static DutchSampler2 dutchSampler2 = new DutchSampler2();
-        static DutchSampler3 dutchSampler3 = new DutchSampler3();
-        static DutchSampler4 dutchSampler4 = new DutchSampler4();
+      
 
         static FirstNSampler first10Sampler = new FirstNSampler(10);
         static LastNSampler last10Sampler = new LastNSampler(10);
@@ -61,6 +51,8 @@ namespace SigStat.Common.Loaders
         static TranslatePreproc blyTranslate = new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.Y, OutputFeature = Features.Y };
         static Scale xScale = new Scale() { InputFeature = Features.X, OutputFeature = Features.X };
         static Scale yScale = new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y };
+        static Scale pScale = new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure };
+        static RelativeScale pRelativeScale = new RelativeScale() { InputFeature = Features.Pressure, ReferenceFeature = Features.Y, OutputFeature = Features.Pressure };
         static UniformScale xyUniformScale = new UniformScale() { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y };
         static UniformScale yxUniformScale = new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X };
         //static LinearInterpolation linearInterpolation = new LinearInterpolation();
@@ -96,24 +88,24 @@ namespace SigStat.Common.Loaders
             {
                 case "SVC2004":
                     b.Loader = svcLoader;
-                    sampler1 = svcSampler1;
-                    sampler2 = svcSampler2;
-                    sampler3 = svcSampler3;
-                    sampler4 = svcSampler4;
+                    sampler1 = first10Sampler;
+                    sampler2 = last10Sampler;
+                    sampler3 = even10Sampler;
+                    sampler4 = odd10Sampler;
                     break;
                 case "MCYT100":
                     b.Loader = mcytLoader;
-                    sampler1 = mcytSampler1;
-                    sampler2 = mcytSampler2;
-                    sampler3 = mcytSampler3;
-                    sampler4 = mcytSampler4;
+                    sampler1 = first10Sampler;
+                    sampler2 = last10Sampler;
+                    sampler3 = even10Sampler;
+                    sampler4 = odd10Sampler;
                     break;
                 case "DUTCH":
                     b.Loader = dutchLoader;
-                    sampler1 = dutchSampler1;
-                    sampler2 = dutchSampler2;
-                    sampler3 = dutchSampler3;
-                    sampler4 = dutchSampler4;
+                    sampler1 = first10Sampler;
+                    sampler2 = last10Sampler;
+                    sampler3 = even10Sampler;
+                    sampler4 = odd10Sampler;
                     break;
                 case "GERMAN":
                     b.Loader = germanLoader;
@@ -198,24 +190,39 @@ namespace SigStat.Common.Loaders
             }
 
             switch (config.Translation_Scaling.Scaling)
-            {
+            { 
                 case "X01":
                     pipeline.Add(xScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
                     break;
                 case "Y01":
                     pipeline.Add(yScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
+                    break;
+                case "P01":
+                    pipeline.Add(pScale);
                     break;
                 case "X01Y01":
                     pipeline.Add(xScale);
                     pipeline.Add(yScale);
+                    pipeline.Add(pScale);
                     break;
                 case "X01Y0prop":
                     pipeline.Add(xyUniformScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
                     break;
                 case "Y01X0prop":
                     pipeline.Add(yxUniformScale);
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pScale);
                     break;
                 case "None":
+                    if (config.Features.Contains("P"))
+                        pipeline.Add(pRelativeScale);
+                    break;
                 default:
                     break;
             }
@@ -273,8 +280,16 @@ namespace SigStat.Common.Loaders
                 case "X":
                     ClassifierFeatures.Add(Features.X);
                     break;
+                case "XP":
+                    ClassifierFeatures.Add(Features.X);
+                    ClassifierFeatures.Add(Features.Pressure);
+                    break;
                 case "Y":
                     ClassifierFeatures.Add(Features.Y);
+                    break;
+                case "YP":
+                    ClassifierFeatures.Add(Features.Y);
+                    ClassifierFeatures.Add(Features.Pressure);
                     break;
                 case "P":
                     ClassifierFeatures.Add(Features.Pressure);
@@ -345,4 +360,5 @@ namespace SigStat.Common.Loaders
 
         }
     }
+#pragma warning restore 1591
 }

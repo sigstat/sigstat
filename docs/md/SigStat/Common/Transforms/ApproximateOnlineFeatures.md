@@ -1,25 +1,25 @@
 # [ApproximateOnlineFeatures](./ApproximateOnlineFeatures.md)
 
-Namespace: [SigStat]() > [Common]() > [Transforms]()
+Namespace: [SigStat]() > [Common](./../README.md) > [Transforms](./README.md)
 
 Assembly: SigStat.Common.dll
 
 Implements [ILoggerObject](./../ILoggerObject.md), [IProgress](./../Helpers/IProgress.md), [IPipelineIO](./../Pipeline/IPipelineIO.md), [ITransformation](./../ITransformation.md)
 
 ## Summary
-init Pressure, Altitude, Azimuth features with default values.  <para>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth</para>
+init Pressure, Altitude, Azimuth features with default values.  <br>Default Pipeline Output: Features.Pressure, Features.Altitude, Features.Azimuth
 
 ## Constructors
 
-| Name | Summary | 
-| --- | --- | 
-| ApproximateOnlineFeatures (  ) |  | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| ApproximateOnlineFeatures () |  | 
 
 
 ## Methods
 
-| Return | Name | Summary | 
-| --- | --- | --- | 
-| void | Transform ( [`Signature`](./../Signature.md) ) |  | 
+| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
+| :--- | :--- | 
+| [Transform](./Methods/ApproximateOnlineFeatures--Transform.md) ([`Signature`](./../Signature.md)) |  | 
 
 

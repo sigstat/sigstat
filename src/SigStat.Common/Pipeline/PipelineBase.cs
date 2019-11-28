@@ -15,9 +15,18 @@ namespace SigStat.Common
     /// </summary>
     public abstract class PipelineBase : ILoggerObject, IProgress, IPipelineIO
     {
+        /// <summary>
+        /// A collection of inputs for the pipeline elements
+        /// </summary>
         public virtual List<PipelineInput> PipelineInputs { get; private set; }
+        /// <summary>
+        /// A collection of outputs for the pipeline elements
+        /// </summary>
         public virtual List<PipelineOutput> PipelineOutputs { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PipelineBase"/> class.
+        /// </summary>
         public PipelineBase()
         {
             //init io

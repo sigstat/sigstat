@@ -2,11 +2,11 @@
 using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Reflection;
 using System.Text;
 using System.Linq;
 using Newtonsoft.Json;
+using SixLabors.Primitives;
 
 namespace SigStat.Common
 {
@@ -20,7 +20,7 @@ namespace SigStat.Common
         /// <summary>
         /// Actual bounds of the signature
         /// </summary>
-        public static readonly FeatureDescriptor<RectangleF> Bounds = FeatureDescriptor.Get<RectangleF>("Bounds");
+        public static readonly FeatureDescriptor<SizeF> Size = FeatureDescriptor.Get<SizeF>("Size");
         /// <summary>
         /// Represents the main body of the signature <see cref="BasicMetadataExtraction"/>
         /// </summary>

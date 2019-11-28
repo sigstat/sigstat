@@ -42,14 +42,21 @@ namespace SigStat.Common.PipelineItems.Classifiers
     [JsonObject(MemberSerialization.OptOut)]
     public class DtwClassifier : PipelineBase, IDistanceClassifier
     {
+        /// <summary>
+        /// The function used to calculate the distance between two data points during DTW calculation
+        /// </summary>
         [JsonConverter(typeof(DistanceFunctionJsonConverter))]
         public Func<double[], double[], double> DistanceFunction { get; set; }
 
+        /// <summary>
+        /// Gets or sets the features to consider during distance calculation
+        /// </summary>
         [Input]
-
         public List<FeatureDescriptor> Features { get; set; }
 
-
+        /// <summary>
+        /// Gets or sets the multiplication factor to be used during threshold calculation
+        /// </summary>
         public double MultiplicationFactor { get; set; } = 1;
 
         /// <summary>Initializes a new instance of the <see cref="DtwClassifier"/> class with the default Manhattan distance method.</summary>

@@ -87,7 +87,7 @@ namespace SigStat.Common
             }
             while (sum < limit);
 
-            signature.SetFeature(Features.Bounds, bounds);
+            signature.SetFeature(Features.Size, bounds);
             signature.SetFeature(Features.Cog, cog);
             signature.SetFeature(Features.TrimmedBounds, new Rectangle(left, top, right - left, bottom - top));
 

@@ -11,6 +11,9 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public interface IDataSetLoader
     {
+
+       // int SamplingFrequency { get; }
+
         /// <summary>
         /// Enumerates all signers of the database
         /// </summary>

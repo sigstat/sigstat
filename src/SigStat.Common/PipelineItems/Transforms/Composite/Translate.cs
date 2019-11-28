@@ -17,17 +17,27 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class Translate : SequentialTransformPipeline
     {
+        /// <summary>
+        /// The feature representing the horizontal coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// The feature representing the vertical coordinates of an online signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<double>> InputY { get; set; } = Features.Y;
 
+        /// <summary>
+        /// Target feature for storing the transformed horizontal coordinates
+        /// </summary>
         [Output("X")]
         public FeatureDescriptor<List<double>> OutputX { get; set; } = Features.X;
 
+        /// <summary>
+        /// Target feature for storing the transformed vertical coordinates
+        /// </summary>
         [Output("Y")]
         public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
 
@@ -40,8 +50,8 @@ namespace SigStat.Common.Transforms
             OutputY = InputY;
             Items = new List<ITransformation>
             {
-                new AddConst(xAdd) { InputList = InputX },
-                new AddConst(yAdd) { InputList = InputY },
+                new AddConst(xAdd) { Input = InputX },
+                new AddConst(yAdd) { Input = InputY },
             };
 
         }

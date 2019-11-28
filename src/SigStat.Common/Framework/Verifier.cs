@@ -8,7 +8,6 @@ using SigStat.Common.Transforms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SigStat.Common.Model
 {
@@ -18,12 +17,20 @@ namespace SigStat.Common.Model
     [JsonObject(MemberSerialization.OptOut)]
     public class Verifier : ILoggerObject
     {
-        
+
+        /// <summary>
+        /// This property is used by the Serializer to access a list of all FeatureDescriptors
+        /// </summary>
         public Dictionary<string, FeatureDescriptor> AllFeatures
         {
             get
             {
+                //TODO: We should only return the Descriptors that are actually used in the Verifier
                 return FeatureDescriptor.GetAll();
+            }
+            set
+            {
+
             }
         }
         //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
@@ -45,7 +52,9 @@ namespace SigStat.Common.Model
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
         
         public IClassifier Classifier { get; set; }
-        
+
+        /// <summary>Gets or sets the signer model.</summary>
+        /// <value>The signer model.</value>
         public ISignerModel SignerModel { get; set; }
        
         /// <summary> Gets or sets the class responsible for logging</summary>
@@ -63,16 +72,23 @@ namespace SigStat.Common.Model
             this.LogTrace("Verifier created");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Verifier"/> class.
+        /// </summary>
         public Verifier(){
             this.Logger = null;
             this.LogTrace("Verifier created");
         }
 
-        public Verifier(Verifier v)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Verifier"/> class based on another Verifier instance
+        /// </summary>
+        /// <param name="baseVerifier">The reference verifier</param>
+        public Verifier(Verifier baseVerifier)
         {
-            this.Logger = v.Logger;
-            this.Pipeline = v.Pipeline;
-            this.Classifier = v.Classifier;
+            this.Logger = baseVerifier.Logger;
+            this.Pipeline = baseVerifier.Pipeline;
+            this.Classifier = baseVerifier.Classifier;
         }
 
         /// <summary>

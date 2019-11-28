@@ -9,6 +9,15 @@ using System.Text;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
+    /// <summary>
+    /// This <see cref="IDistanceClassifier"/> implementation will consider both test and 
+    /// training samples and claculate the threshold to separate the original and forged
+    /// signatures to approximate EER. Note that this classifier is not applicable for 
+    /// real world scenarios. It was developed to test the theoratical boundaries of 
+    /// threshold based classification
+    /// </summary>
+    /// <seealso cref="SigStat.Common.PipelineBase" />
+    /// <seealso cref="SigStat.Common.Pipeline.IDistanceClassifier" />
     [JsonObject(MemberSerialization.OptOut)]
     public class OptimalDtwClassifier : PipelineBase, IDistanceClassifier
     {
@@ -18,6 +27,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// </summary>
         public class OptimalDtwSignerModel : ISignerModel
         {
+            /// <summary>
+            /// Gets or sets the signature distance from training.
+            /// </summary>
             public Dictionary<string, double> SignatureDistanceFromTraining { get; set; }
             /// <summary>
             /// A threshold, that will be used for classification. Signatures with
@@ -27,6 +39,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
             public double Threshold { get; set; }
 
 
+            /// <summary>
+            /// Gets or sets the error rates corresponding to specific thresholds
+            /// </summary>
             public List<KeyValuePair<double, ErrorRate>> ErrorRates { get; set; }
             /// <summary>
             /// DTW distance matrix of the signatures
@@ -41,19 +56,39 @@ namespace SigStat.Common.PipelineItems.Classifiers
             public double Distance;
         }
 
+        /// <summary>
+        /// <see cref="FeatureDescriptor"/>s to consider during classification
+        /// </summary>
         [Input]
-        
         public List<FeatureDescriptor> Features { get; set; }
 
+        /// <summary>
+        /// <see cref="Sampler"/> used for selecting training and test sets during a benchmark
+        /// </summary>
         public Sampler Sampler { get; set; }
+
+
+        /// <summary>
+        /// The function used to calculate the distance between two data points during DTW calculation
+        /// </summary>
         [JsonConverter(typeof(DistanceFunctionJsonConverter))]
         public Func<double[], double[], double> DistanceFunction { get; set; }
 
+        /// <summary>
+        /// Length of the warping window to be used with DTW
+        /// </summary>
+        public int WarpingWindowLength { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptimalDtwClassifier"/> class.
+        /// </summary>
+        /// <param name="distanceFunction">The distance function.</param>
         public OptimalDtwClassifier(Func<double[], double[], double> distanceFunction = null)
         {
             DistanceFunction = distanceFunction ?? Accord.Math.Distance.Euclidean;
         }
 
+        /// <inheritdoc/>
         public ISignerModel Train(List<Signature> signatures)
         {
 
@@ -76,7 +111,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
+                    dtwDistances[test.ID, train.ID] = DtwPyWindow.Dtw(train.Values, test.Values, DistanceFunction, WarpingWindowLength);
                 }
             }
 

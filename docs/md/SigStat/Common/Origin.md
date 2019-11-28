@@ -1,5 +1,5 @@
 # [Origin](./Origin.md)
-Namespace: [SigStat]() > [Common]()
+Namespace: [SigStat]() > [Common](./README.md)
 
 Assembly: SigStat.Common.dll
 
@@ -8,10 +8,10 @@ Represents our knowledge on the origin of a signature.
 
 ##	Enum
 
-| Value | Name | Summary | 
-| --- | --- | --- | 
+| <span>Value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Name | <span>Summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | 
+| :--- | :--- | :--- | 
 | 0 | Unknown | Use this in practice before a signature is verified. | 
-| 1 | Genuine | The `SigStat.Common.Signature`'s origin is verified to be from `SigStat.Common.Signature.Signer` | 
-| 2 | Forged | The `SigStat.Common.Signature` is a forgery. | 
+| 1 | Genuine | The [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md)'s origin is verified to be from [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) | 
+| 2 | Forged | The [Signature](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signature.md) is a forgery. | 
 
 

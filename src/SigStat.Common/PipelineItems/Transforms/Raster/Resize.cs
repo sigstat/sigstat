@@ -19,10 +19,15 @@ namespace SigStat.Common.Transforms
     [JsonObject(MemberSerialization.OptOut)]
     public class Resize : PipelineBase, ITransformation
     {
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> describing the image of the signature
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<Image<Rgba32>> InputImage { get; set; }
 
+        /// <summary>
+        /// Output <see cref="FeatureDescriptor"/> describing the resized image of the signature
+        /// </summary>
         [Output("Resized")]
         public FeatureDescriptor<Image<Rgba32>> OutputImage { get; set; }
 

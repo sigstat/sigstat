@@ -29,14 +29,14 @@ namespace SigStat.FusionBenchmark.GraphExtraction
         {
             bool[] res = new bool[]
             {
-                skeleton.Valid(x, y) && skeleton[x-1, y-1],
-                skeleton.Valid(x, y) && skeleton[x-1, y],
-                skeleton.Valid(x, y) && skeleton[x-1, y+1],
-                skeleton.Valid(x, y) && skeleton[x, y+1],
-                skeleton.Valid(x, y) && skeleton[x+1, y+1],
-                skeleton.Valid(x, y) && skeleton[x+1, y],
-                skeleton.Valid(x, y) && skeleton[x+1, y-1],
-                skeleton.Valid(x, y) && skeleton[x, y-1],
+                skeleton.Valid(x-1, y-1) && skeleton[x-1, y-1],
+                skeleton.Valid(x-1, y) && skeleton[x-1, y],
+                skeleton.Valid(x-1, y+1) && skeleton[x-1, y+1],
+                skeleton.Valid(x, y+1) && skeleton[x, y+1],
+                skeleton.Valid(x+1, y+1) && skeleton[x+1, y+1],
+                skeleton.Valid(x+1, y) && skeleton[x+1, y],
+                skeleton.Valid(x+1, y-1) && skeleton[x+1, y-1],
+                skeleton.Valid(x, y-1) && skeleton[x, y-1],
             };
             return res;
         }
@@ -48,8 +48,8 @@ namespace SigStat.FusionBenchmark.GraphExtraction
 
         public static bool Valid(this bool[,] skeleton, int x, int y)
         {
-            return x >= 0 && x <= skeleton.GetLength(0) &&
-                    y >= 0 && y <= skeleton.GetLength(1);
+            return x >= 0 && x < skeleton.GetLength(0) &&
+                    y >= 0 && y < skeleton.GetLength(1);
         }
     }
 }

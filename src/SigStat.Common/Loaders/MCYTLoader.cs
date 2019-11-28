@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -8,14 +9,19 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
+    /// <summary>
+    /// <see cref="DataSetLoader"/> for the MCYT dataset
+    /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class MCYTLoader : DataSetLoader
     {
+
         /// <summary>
         /// Set of features containing raw data loaded from MCYT-format database.
         /// </summary>
         public static class MCYT
         {
+
             /// <summary>
             /// X cooridnates from the online signature imported from the MCYT database
             /// </summary>
@@ -59,15 +65,34 @@ namespace SigStat.Common.Loaders
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MCYTLoader"/> class.
+        /// </summary>
+        /// <param name="databasePath">The database path.</param>
+        /// <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="Features"/>.</param>
         public MCYTLoader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
 
+        /// <summary>
+        /// Set MCYT sampling frequenct to 100hz
+        /// </summary>
+        public override int SamplingFrequency { get { return 100; } }
+
+
+        /// <summary>
+        /// Gets or sets the database path.
+        /// </summary>
         public string DatabasePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+        /// </summary>
         public bool StandardFeatures { get; set; }
 
+        /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
@@ -105,15 +130,14 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
-
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
                     yield return signer;
                 }
             }
             this.LogInformation("Enumerating signers finished.");
-        }
-
+           }
+        
         /// <summary>
         /// Loads one signature from specified stream.
         /// </summary>
@@ -177,7 +201,7 @@ namespace SigStat.Common.Loaders
                 Azimuth.Add(reader.ReadSingle());
                 Altitude.Add(reader.ReadSingle());
             }
-
+            
             //set signature features
             signature.SetFeature(MCYT.X, X);
             signature.SetFeature(MCYT.Y, Y);
@@ -201,10 +225,10 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.T, Time);
                 //Pendown sincs MCYT-ben, mindig lent van? Pressure alapjan lehetne egy threshold
                 signature.SetFeature(Features.Button, Enumerable.Repeat(true, X.Count).ToList());
+                signature.CalculateStandardStatistics();
             }
-
-
         }
-
+           
     }
+   
 }

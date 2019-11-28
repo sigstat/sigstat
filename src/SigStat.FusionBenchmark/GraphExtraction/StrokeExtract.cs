@@ -32,7 +32,23 @@ namespace SigStat.FusionBenchmark.GraphExtraction
                 components.GetAllStrokes().ForEach(stroke => stroke.ForEach(p => isIn.Add(p)));
                 strokeEnds.ForEach(p => isIn.Remove(p));
                 Traverse(end, new Stroke(), isIn, components);
+
+
+                /////bugfixing
+                int compCnt = 0;
+                int ciklCnt = 0;
+                while (compCnt != components.Count && ciklCnt < 5)
+                {
+                    compCnt = components.Count;
+                    ciklCnt++;
+                    isIn = new HashSet<Vertex>();
+                    components.GetAllStrokes().ForEach(stroke => stroke.ForEach(p => isIn.Add(p)));
+                    strokeEnds.ForEach(p => isIn.Remove(p));
+                    Traverse(end, new Stroke(), isIn, components);
+                }
+
             }
+
             signature.SetFeature<List<StrokeComponent>>(OutputComponents, components);
             this.LogInformation(components.Count.ToString() + " components were extracted");
             this.LogInformation("StrokeExtraction - transform finished");

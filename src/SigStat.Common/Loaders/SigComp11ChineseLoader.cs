@@ -7,13 +7,22 @@ using System.Text;
 
 namespace SigStat.Common.Loaders
 {
-  public  class SigComp11ChineseLoader: DataSetLoader
+    /// <summary>
+    /// <see cref="DataSetLoader"/> for the SigComp11Chinese dataset
+    /// </summary>
+    public class SigComp11ChineseLoader : DataSetLoader
     {
-       /// <summary>
+        /// <summary>
+        /// Sampling Frequency of this database
+        /// </summary>
+        public override int SamplingFrequency { get { return 200; } }
+        /// <summary>
         /// Set of features containing raw data loaded from SigComp11Chinese-format database.
         /// </summary>
         public static class SigComp11Ch
         {
+            
+
             /// <summary>
             /// X cooridnates from the online signature imported from the SigComp11Chinese database  
             /// </summary>
@@ -30,6 +39,7 @@ namespace SigStat.Common.Loaders
             /// T values from the online signature imported from the SigComp11Chinese database
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp15.T");
+            // sample rate for the database
         }
 
         private struct SigComp11ChineseSignatureFile
@@ -39,9 +49,9 @@ namespace SigStat.Common.Loaders
             public string SignatureIndex { get; set; }
             public string ForgerID { get; set; }
             public string SignatureID { get; set; }
-            
 
-            public SigComp11ChineseSignatureFile(string filepath): this()
+
+            public SigComp11ChineseSignatureFile(string filepath) : this()
             {
                 // TODO: Support original filename format
                 FilePath = filepath;
@@ -92,15 +102,28 @@ namespace SigStat.Common.Loaders
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SigComp11ChineseLoader"/> class.
+        /// </summary>
+        /// <param name="databasePath">The database path.</param>
+        /// <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="Features"/>.</param>
         public SigComp11ChineseLoader(string databasePath, bool standardFeatures)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
 
+        /// <summary>
+        /// Gets or sets the database path.
+        /// </summary>
         public string DatabasePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
+        /// </summary>
         public bool StandardFeatures { get; set; }
 
+        /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
@@ -138,9 +161,11 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
+                        
 
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                   
                     yield return signer;
                 }
             }
@@ -197,9 +222,10 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
-
+                signature.CalculateStandardStatistics();
 
             }
+           
         }
 
     }

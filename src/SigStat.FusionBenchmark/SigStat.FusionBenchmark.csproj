@@ -6,17 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Databases\**" />
+    <EmbeddedResource Remove="Databases\**" />
+    <None Remove="Databases\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CSMatIO\CSMatIO\src\zlib.net.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Databases\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Databases\SVC%2840%29.zip">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>System.Windows.Forms\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="zlib.net">
+      <HintPath>CSMatIO\CSMatIO\src\zlib.net.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

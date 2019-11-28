@@ -1,17 +1,19 @@
 ﻿using OfficeOpenXml;
 using OfficeOpenXml.Drawing.Chart;
-using SigStat.Common.Helpers.Excel.Palette;
+using SigStat.Common.Helpers.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using SigStat.Common.Helpers.Excel.Level;
 
-namespace SigStat.Common.Helpers.Excel
+namespace SigStat.Common.Helpers
 {
-    public static class CellHandler
+    /// <summary>
+    /// Extension methods for common EPPlus tasks
+    /// </summary>
+    public static class ExcelHelper
     {
 
 
@@ -479,7 +481,7 @@ namespace SigStat.Common.Helpers.Excel
         /// <param name="name">Id and default title of the graph</param>
         /// <param name="xLabel">Label for x axis of the graph</param>
         /// <param name="yLabel">Label for y axis of the graph</param>
-        /// <param name="serieLabels">If the graph hase more than one series, each can be named separately</param>
+        /// <param name="SerieLabels">Label of the series</param>
         /// <param name="width">Graph's width in px</param>
         /// <param name="height">Graph's height in px</param>
         /// <param name="title">Title of the graph if the defauolt name has to be overwritten</param>

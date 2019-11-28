@@ -18,17 +18,27 @@ namespace SigStat.Common.Transforms
     public class ComponentExtraction : PipelineBase, ITransformation
     {
 
+        /// <summary>
+        /// binary representation of a signature image
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<bool[,]> Skeleton { get; set; }// = FeatureDescriptor<bool[,]>.Get("Skeleton");
 
+        /// <summary>
+        /// endpoints
+        /// </summary>
         [Input]
-        
         public FeatureDescriptor<List<Point>> EndPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("EndPoints");
 
+        /// <summary>
+        /// crossing points
+        /// </summary>
         [Input]
         public FeatureDescriptor<List<Point>> CrossingPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
 
+        /// <summary>
+        /// Output components
+        /// </summary>
         [Output("Components")]
         public FeatureDescriptor<List<List<PointF>>> OutputComponents { get; set; }
 

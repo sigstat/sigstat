@@ -7,6 +7,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Collections;
+using SixLabors.Primitives;
 
 namespace SigStat.Common
 {
@@ -16,6 +17,7 @@ namespace SigStat.Common
     [JsonObject(MemberSerialization.OptOut)]
     public class Signature: IEnumerable<KeyValuePair<FeatureDescriptor, object>>
     {
+
         /// <summary>An identifier for the Signature. Keep it unique to be useful for logs. </summary>
         public string ID { get; set; }
         /// <summary>Represents our knowledge on the origin of the signature. <see cref="Origin.Unknown"/> may be used in practice before it is verified.</summary>
@@ -205,6 +207,12 @@ namespace SigStat.Common
             return ID??"";
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the features.
+        /// </summary>
+        /// <returns>
+        /// An enumerator that can be used to iterate through the features.
+        /// </returns>
         public IEnumerator<KeyValuePair<FeatureDescriptor, object>> GetEnumerator()
         {
             return features.Select(kvp => new KeyValuePair<FeatureDescriptor, object>(FeatureDescriptor.Get(kvp.Key), kvp.Value)).GetEnumerator();
@@ -219,5 +227,9 @@ namespace SigStat.Common
         //{
         //    SetFeature(featureDescriptor, featureValue);
         //}
+
+
+        // calculate the signature length based on the distances between the end points
+
     }
 }

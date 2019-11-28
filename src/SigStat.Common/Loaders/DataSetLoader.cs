@@ -11,9 +11,12 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public abstract class DataSetLoader : IDataSetLoader, ILoggerObject
     {
-        /// <inheritdoc/>
-        public ILogger Logger { get; set; }
+        
+    /// <inheritdoc/>
+    public ILogger Logger { get; set; }
+
        
+
         /// <inheritdoc/>
         public IEnumerable<Signer> EnumerateSigners()
         {
@@ -21,6 +24,9 @@ namespace SigStat.Common.Loaders
         }
         /// <inheritdoc/>
         public abstract IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter);
-
-    }
+        /// <summary>
+        /// Sampling frequency for each database
+        /// </summary>
+        public abstract int SamplingFrequency {get;}
+}
 }

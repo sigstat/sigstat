@@ -7,7 +7,7 @@ using System.Text;
 namespace SigStat.Common
 {
     /// <summary>
-    /// Represents a person as a <see cref="ID"/> and a list of <see cref="Signatures"/>.
+    /// Represents a person as an <see cref="ID"/> and a list of <see cref="Signatures"/>.
     /// </summary>
     public class Signer//TODO: <TSignature> where TSignature: Signature
     {
@@ -19,8 +19,12 @@ namespace SigStat.Common
         /// List of signatures that belong to the signer. 
         /// (Their origin is not constrained to be genuine.)
         /// </summary>
-        public virtual List<Signature> Signatures { get; set; } = new List<Signature>();
-
+        public virtual List<Signature> Signatures { get; set; } = new List<Signature>();     
+        
+        /// <summary>
+        /// Returns a string representation of a Signer
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             if (Signatures == null)
@@ -53,5 +57,7 @@ namespace SigStat.Common
             else
                 return $"{ID} (G:{genuine} F:{forged} U:{unknown})";
         }
+ 
+      
     }
 }
