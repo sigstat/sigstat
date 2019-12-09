@@ -17,6 +17,7 @@ using SigStat.Common.Pipeline;
 using static SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier;
 using Newtonsoft.Json;
 using SigStat.Common.Framework.Samplers;
+using SigStat.Common.Logging;
 
 namespace SigStat.Common
 {
@@ -286,6 +287,27 @@ namespace SigStat.Common
             this.LogInformation("Benchmark execution finished.");
             benchmarkResults = new BenchmarkResults(results, new Result(null, frrFinal, farFinal, aerFinal, null));
             duration = stopwatch.Elapsed;
+
+            //log benchmark results
+            this.LogTrace(new BenchmarkResultsLogState(benchmarkResults.FinalResult.Aer, benchmarkResults.FinalResult.Far, benchmarkResults.FinalResult.Frr));
+
+            //log becnhmark name
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Name", this.GetType().ToString()));
+
+            //log benchmark date
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Date", DateTime.Now.ToString()));
+
+            //log benchmark agent
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Agent", Environment.MachineName));
+
+            //log benchmark duration
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Duration", stopwatch.ElapsedMilliseconds.ToString() + "ms"));
+
+            //log parameters
+            foreach (var parameter in this.Parameters)
+            {
+                this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ParametersGroupName, parameter.Key, parameter.Value));
+            }
             return benchmarkResults;
         }
 
@@ -368,6 +390,10 @@ namespace SigStat.Common
 
             pCnt += 1.0 / (cntSigners - 1);
             Progress = (int)(pCnt * 100);
+
+            //log signer results
+            this.LogTrace(new SignerResultsLogState(iSigner.ID, AER, FAR, FRR));
+
             yield return new Result(iSigner.ID, FRR, FAR, AER, vClone.SignerModel);
         }
 

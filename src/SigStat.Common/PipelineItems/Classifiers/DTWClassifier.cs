@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SigStat.Common.Helpers.Serialization;
+using SigStat.Common.Logging;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
@@ -134,6 +135,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, DistanceFunction);
                 dtwModel.DistanceMatrix[signature.ID, dtwModel.GenuineSignatures[i].Key] = distances[i];
+
+                this.LogTrace(new ClassifierDistanceLogState(signature.Signer.ID, null, dtwModel.GenuineSignatures[i].Key, signature.ID, distances[i]));
             }
 
             // returns value between 0 and 1, how confident is the decision about genuineness

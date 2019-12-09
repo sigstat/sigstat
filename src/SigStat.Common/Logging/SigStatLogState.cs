@@ -1,74 +1,216 @@
 ﻿using System;
+
 using System.Collections.Generic;
+
 using System.Text;
 
+
+
 namespace SigStat.Common.Logging
+
 {
+    /// <summary>
+    /// Base state used in report information logging.
+    /// </summary>
     public class SigStatLogState
+
     {
-        //public Guid ProcessId { get; set; } // benchmarkID
-        //public string SignerID { get; set; }
-        //public string SignatureID { get; set; }
+        /// <summary>
+        /// Object from which the state originates.
+        /// </summary>
         public string Source { get; set; }
+
+
     }
 
-    public class BenchmarkLogState : SigStatLogState
+
+    /// <summary>
+    /// Specific state used for signer information transiting
+    /// </summary>
+    public class SignerLogState : SigStatLogState
+
     {
-        string Aer { get; set; }
-        string Far { get; set; }
-        string Frr { get; set; }
+        /// <summary>
+        /// Id of the signer
+        /// </summary>
+        public string SignerID { get; set; }
     }
 
+
+    /// <summary>
+    /// Specific state used for signature information transiting
+    /// </summary>
+    public class SignatureLogState : SigStatLogState
+
+    {
+        /// <summary>
+        /// Id of the owning signer
+        /// </summary>
+
+        public string SignerID { get; set; }
+
+        /// <summary>
+        /// Id of the signature
+        /// </summary>
+        public string SignatureID { get; set; }
+
+    }
+
+
+    /// <summary>
+    /// Specific state used for Benchmark result transiting
+    /// </summary>
+    public class BenchmarkResultsLogState : SigStatLogState
+    {
+        /// <summary>
+        /// Average error rate
+        /// </summary>
+        public double Aer { get; set; }
+
+        /// <summary>
+        /// False accaptance rate
+        /// </summary>
+        public double Far { get; set; }
+
+        /// <summary>
+        /// False rejection rate
+        /// </summary>
+        public double Frr { get; set; }
+
+        /// <summary>
+        /// Creates a BenchmarkResultsLogState
+        /// </summary>
+        /// <param name="aer"> Aer</param>
+        /// <param name="far"> Far</param>
+        /// <param name="frr"> Frr</param>
+        public BenchmarkResultsLogState(double aer, double far, double frr)
+        {
+            Aer = aer;
+            Far = far;
+            Frr = frr;
+        }
+    }
+
+    /// <summary>
+    /// Specific state used for Signer result transiting
+    /// </summary>
+    public class SignerResultsLogState : SignerLogState
+    {
+        /// <summary>
+        /// Average error rate
+        /// </summary>
+        public double Aer { get; set; }
+
+        /// <summary>
+        /// False accaptance rate
+        /// </summary>
+        public double Far { get; set; }
+
+        /// <summary>
+        /// False rejection rate
+        /// </summary>
+        public double Frr { get; set; }
+
+        /// <summary>
+        /// Creates a SignerResultsLogState
+        /// </summary>
+        /// /// <param name="signerId"> Id of the signer</param>
+        /// <param name="aer"> Aer</param>
+        /// <param name="far"> Far</param>
+        /// <param name="frr"> Frr</param>
+        public SignerResultsLogState(string signerId, double aer, double far, double frr)
+        {
+            SignerID = signerId;
+            Aer = aer;
+            Far = far;
+            Frr = frr;
+        }
+    }
+
+
+    /// <summary>
+    /// Specific state used for Benchmarks key-value information transiting
+    /// </summary>
     public class BenchmarkKeyValueLogState : SigStatLogState
+
     {
-        string Group { get; set; }
-        string Key { get; set; }
-        string Value { get; set; }
+        /// <summary>
+        /// Group of the key-value pair
+        /// </summary>
+        public string Group { get; set; }
+
+        /// <summary>
+        /// Key
+        /// </summary>
+        public string Key { get; set; }
+
+        /// <summary>
+        /// Value
+        /// </summary>
+        public object Value { get; set; }
+
+        /// <summary>
+        /// Creates a BenchmarkKeyValueLogState
+        /// </summary>
+        /// <param name="group">Group</param>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        public BenchmarkKeyValueLogState(string group, string key, object value)
+        {
+            Group = group;
+            Key = key;
+            Value = value;
+        }
     }
 
-    public class SignerKeyValueLogState : SigStatLogState
-    {
-        string SignerID { get; set; }
-        string Scope { get; set; }
-        string Key { get; set; }
-        string Value { get; set; }
-    }
 
-    public class SignatureKeyValueLogState : SigStatLogState
-    {
-        string SignerID { get; set; }
-        string SignatureID { get; set; }
-
-        string Scope { get; set; }
-        string Key { get; set; }
-        string Value { get; set; }
-    }
-
-    public class BenchmarkSignerLogState : SigStatLogState
-    {
-        string Aer { get; set; }
-        string Far { get; set; }
-        string Frr { get; set; }
-        string SignerID { get; set; }
-    }
-
-    public class TransformLogState : SigStatLogState
-    {
-        string Aer { get; set; }
-        string Far { get; set; }
-        string Frr { get; set; }
-        string SignerID { get; set; }
-        string SignatureID { get; set; }
-    }
-
+    /// <summary>
+    /// Specific state for signature distance information transiting
+    /// </summary>
     public class ClassifierDistanceLogState : SigStatLogState
+
     {
-        string Signer1ID { get; set; }
-        string Signature1ID { get; set; }
-        string Signer2ID { get; set; }
-        string Signature2ID { get; set; }
-        double distance { get; set; }
+        /// <summary>
+        /// Id of the first signature's signer
+        /// </summary>
+        public string Signer1Id { get; set; }
 
+        /// <summary>
+        /// /// Id of the second signature's signer
+        /// </summary>
+        public string Signer2Id { get; set; }
+
+        /// <summary>
+        /// Id of the first signature
+        /// </summary>
+        public string Signature1Id { get; set; }
+
+        /// <summary>
+        /// Id of the second signature
+        /// </summary>
+        public string Signature2Id { get; set; }
+
+        /// <summary>
+        /// Distance values between the signatures
+        /// </summary>
+        public double distance { get; set; }
+
+        /// <summary>
+        /// Creates a ClassifierDistanceLogState
+        /// </summary>
+        /// <param name="signer1Id">Id of the first signature's signer</param>
+        /// <param name="signer2Id">Id of the second signature's signer</param>
+        /// <param name="signature1Id">Id of the first signature</param>
+        /// <param name="signature2Id">Id of the second signature</param>
+        /// <param name="distance">Distance values between the signatures</param>
+        public ClassifierDistanceLogState(string signer1Id, string signer2Id, string signature1Id, string signature2Id, double distance)
+        {
+            Signer1Id = signer1Id;
+            Signer2Id = signer2Id;
+            Signature1Id = signature1Id;
+            Signature2Id = signature2Id;
+            this.distance = distance;
+        }
     }
-}
 
+}

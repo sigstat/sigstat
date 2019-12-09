@@ -83,6 +83,20 @@ namespace SigStat.Common
         }
 
         /// <summary>
+        /// Formats and writes a trace log message with state.
+        /// </summary>
+        /// <typeparam name="TState">The type of the object to be written (preferably a descendant of SigstatLogState).</typeparam>
+        /// <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>
+        /// <param name="state">The entry to be written.</param>
+        /// <param name="eventId">Id of the event.</param>
+        /// <param name="exception">The exception related to this entry.</param>
+        /// <param name="formatter">Function to create a String message of the state and exception.</param>
+        public static void LogTrace<TState>(this ILoggerObject obj, TState state, EventId eventId = default, Exception exception = null, Func<TState, Exception, string> formatter = null)
+        {
+            obj.Logger?.Log(LogLevel.Trace, eventId, state, exception, formatter);
+        }
+
+        /// <summary>
         /// Formats and writes an critical error log message.
         /// </summary>
         /// <param name="obj">The SigStat.Common.ILoggerObject containing the Logger to write to.</param>

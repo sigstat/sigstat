@@ -43,9 +43,29 @@
   - [ToJsonString()](#M-SigStat-Common-Helpers-BenchmarkConfig-ToJsonString 'SigStat.Common.Helpers.BenchmarkConfig.ToJsonString')
   - [ToKeyValuePairs()](#M-SigStat-Common-Helpers-BenchmarkConfig-ToKeyValuePairs 'SigStat.Common.Helpers.BenchmarkConfig.ToKeyValuePairs')
   - [ToShortString()](#M-SigStat-Common-Helpers-BenchmarkConfig-ToShortString 'SigStat.Common.Helpers.BenchmarkConfig.ToShortString')
+- [BenchmarkKeyValueLogState](#T-SigStat-Common-Logging-BenchmarkKeyValueLogState 'SigStat.Common.Logging.BenchmarkKeyValueLogState')
+  - [#ctor(group,key,value)](#M-SigStat-Common-Logging-BenchmarkKeyValueLogState-#ctor-System-String,System-String,System-Object- 'SigStat.Common.Logging.BenchmarkKeyValueLogState.#ctor(System.String,System.String,System.Object)')
+  - [Group](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Group 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Group')
+  - [Key](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Key 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Key')
+  - [Value](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Value 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Value')
+- [BenchmarkLogModel](#T-SigStat-Common-Logging-BenchmarkLogModel 'SigStat.Common.Logging.BenchmarkLogModel')
+  - [#ctor()](#M-SigStat-Common-Logging-BenchmarkLogModel-#ctor 'SigStat.Common.Logging.BenchmarkLogModel.#ctor')
+  - [BenchmarkResultsGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName')
+  - [ExecutionGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ExecutionGroupName')
+  - [ParametersGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ParametersGroupName')
+  - [BenchmarkResults](#P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResults 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResults')
+  - [Excecution](#P-SigStat-Common-Logging-BenchmarkLogModel-Excecution 'SigStat.Common.Logging.BenchmarkLogModel.Excecution')
+  - [KeyValueGroups](#P-SigStat-Common-Logging-BenchmarkLogModel-KeyValueGroups 'SigStat.Common.Logging.BenchmarkLogModel.KeyValueGroups')
+  - [Parameters](#P-SigStat-Common-Logging-BenchmarkLogModel-Parameters 'SigStat.Common.Logging.BenchmarkLogModel.Parameters')
+  - [SignerResults](#P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults 'SigStat.Common.Logging.BenchmarkLogModel.SignerResults')
 - [BenchmarkResults](#T-SigStat-Common-BenchmarkResults 'SigStat.Common.BenchmarkResults')
   - [FinalResult](#F-SigStat-Common-BenchmarkResults-FinalResult 'SigStat.Common.BenchmarkResults.FinalResult')
   - [SignerResults](#F-SigStat-Common-BenchmarkResults-SignerResults 'SigStat.Common.BenchmarkResults.SignerResults')
+- [BenchmarkResultsLogState](#T-SigStat-Common-Logging-BenchmarkResultsLogState 'SigStat.Common.Logging.BenchmarkResultsLogState')
+  - [#ctor(aer,far,frr)](#M-SigStat-Common-Logging-BenchmarkResultsLogState-#ctor-System-Double,System-Double,System-Double- 'SigStat.Common.Logging.BenchmarkResultsLogState.#ctor(System.Double,System.Double,System.Double)')
+  - [Aer](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Aer 'SigStat.Common.Logging.BenchmarkResultsLogState.Aer')
+  - [Far](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Far 'SigStat.Common.Logging.BenchmarkResultsLogState.Far')
+  - [Frr](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Frr 'SigStat.Common.Logging.BenchmarkResultsLogState.Frr')
 - [Binarization](#T-SigStat-Common-Transforms-Binarization 'SigStat.Common.Transforms.Binarization')
   - [#ctor()](#M-SigStat-Common-Transforms-Binarization-#ctor 'SigStat.Common.Transforms.Binarization.#ctor')
   - [#ctor(foregroundType,binThreshold)](#M-SigStat-Common-Transforms-Binarization-#ctor-SigStat-Common-Transforms-Binarization-ForegroundType,System-Nullable{System-Double}- 'SigStat.Common.Transforms.Binarization.#ctor(SigStat.Common.Transforms.Binarization.ForegroundType,System.Nullable{System.Double})')
@@ -71,6 +91,13 @@
   - [InputY](#P-SigStat-Common-Transforms-CentroidTranslate-InputY 'SigStat.Common.Transforms.CentroidTranslate.InputY')
   - [OutputX](#P-SigStat-Common-Transforms-CentroidTranslate-OutputX 'SigStat.Common.Transforms.CentroidTranslate.OutputX')
   - [OutputY](#P-SigStat-Common-Transforms-CentroidTranslate-OutputY 'SigStat.Common.Transforms.CentroidTranslate.OutputY')
+- [ClassifierDistanceLogState](#T-SigStat-Common-Logging-ClassifierDistanceLogState 'SigStat.Common.Logging.ClassifierDistanceLogState')
+  - [#ctor(signer1Id,signer2Id,signature1Id,signature2Id,distance)](#M-SigStat-Common-Logging-ClassifierDistanceLogState-#ctor-System-String,System-String,System-String,System-String,System-Double- 'SigStat.Common.Logging.ClassifierDistanceLogState.#ctor(System.String,System.String,System.String,System.String,System.Double)')
+  - [Signature1Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature1Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signature1Id')
+  - [Signature2Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature2Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signature2Id')
+  - [Signer1Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer1Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signer1Id')
+  - [Signer2Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer2Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signer2Id')
+  - [distance](#P-SigStat-Common-Logging-ClassifierDistanceLogState-distance 'SigStat.Common.Logging.ClassifierDistanceLogState.distance')
 - [ComponentExtraction](#T-SigStat-Common-Transforms-ComponentExtraction 'SigStat.Common.Transforms.ComponentExtraction')
   - [#ctor(samplingResolution)](#M-SigStat-Common-Transforms-ComponentExtraction-#ctor-System-Int32- 'SigStat.Common.Transforms.ComponentExtraction.#ctor(System.Int32)')
   - [CrossingPoints](#P-SigStat-Common-Transforms-ComponentExtraction-CrossingPoints 'SigStat.Common.Transforms.ComponentExtraction.CrossingPoints')
@@ -143,6 +170,7 @@
   - [Skeleton](#P-SigStat-Common-Transforms-EndpointExtraction-Skeleton 'SigStat.Common.Transforms.EndpointExtraction.Skeleton')
   - [Transform()](#M-SigStat-Common-Transforms-EndpointExtraction-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)')
 - [ErrorEventHandler](#T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler 'SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler')
+- [ErrorEventHandler](#T-SigStat-Common-Logging-ReportInformationLogger-ErrorEventHandler 'SigStat.Common.Logging.ReportInformationLogger.ErrorEventHandler')
 - [ErrorRate](#T-SigStat-Common-ErrorRate 'SigStat.Common.ErrorRate')
   - [Far](#F-SigStat-Common-ErrorRate-Far 'SigStat.Common.ErrorRate.Far')
   - [Frr](#F-SigStat-Common-ErrorRate-Frr 'SigStat.Common.ErrorRate.Frr')
@@ -173,6 +201,8 @@
   - [InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable``1(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.String)')
   - [InsertText(ws,row,col,text,level)](#M-SigStat-Common-Helpers-ExcelHelper-InsertText-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-String,SigStat-Common-Helpers-Excel-TextLevel- 'SigStat.Common.Helpers.ExcelHelper.InsertText(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.String,SigStat.Common.Helpers.Excel.TextLevel)')
   - [Merge(range)](#M-SigStat-Common-Helpers-ExcelHelper-Merge-OfficeOpenXml-ExcelRangeBase- 'SigStat.Common.Helpers.ExcelHelper.Merge(OfficeOpenXml.ExcelRangeBase)')
+- [ExcelReportGenerator](#T-SigStat-Common-Logging-ExcelReportGenerator 'SigStat.Common.Logging.ExcelReportGenerator')
+  - [GenerateReport(model,fileName)](#M-SigStat-Common-Logging-ExcelReportGenerator-GenerateReport-SigStat-Common-Logging-BenchmarkLogModel,System-String- 'SigStat.Common.Logging.ExcelReportGenerator.GenerateReport(SigStat.Common.Logging.BenchmarkLogModel,System.String)')
 - [Extrema](#T-SigStat-Common-Transforms-Extrema 'SigStat.Common.Transforms.Extrema')
   - [Transform()](#M-SigStat-Common-Transforms-Extrema-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Extrema.Transform(SigStat.Common.Signature)')
 - [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')
@@ -282,6 +312,7 @@
   - [LogError(obj,exception,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogError-SigStat-Common-ILoggerObject,System-Exception,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogError(SigStat.Common.ILoggerObject,System.Exception,System.String,System.Object[])')
   - [LogInformation(obj,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogInformation-SigStat-Common-ILoggerObject,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogInformation(SigStat.Common.ILoggerObject,System.String,System.Object[])')
   - [LogTrace(obj,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogTrace-SigStat-Common-ILoggerObject,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogTrace(SigStat.Common.ILoggerObject,System.String,System.Object[])')
+  - [LogTrace\`\`1(obj,state,eventId,exception,formatter)](#M-SigStat-Common-ILoggerObjectExtensions-LogTrace``1-SigStat-Common-ILoggerObject,``0,Microsoft-Extensions-Logging-EventId,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.ILoggerObjectExtensions.LogTrace``1(SigStat.Common.ILoggerObject,``0,Microsoft.Extensions.Logging.EventId,System.Exception,System.Func{``0,System.Exception,System.String})')
   - [LogWarning(obj,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogWarning-SigStat-Common-ILoggerObject,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogWarning(SigStat.Common.ILoggerObject,System.String,System.Object[])')
   - [LogWarning(obj,exception,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogWarning-SigStat-Common-ILoggerObject,System-Exception,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogWarning(SigStat.Common.ILoggerObject,System.Exception,System.String,System.Object[])')
 - [IOExtensions](#T-SigStat-Common-IOExtensions 'SigStat.Common.IOExtensions')
@@ -314,6 +345,10 @@
 - [Input](#T-SigStat-Common-Pipeline-Input 'SigStat.Common.Pipeline.Input')
   - [#ctor(AutoSetMode)](#M-SigStat-Common-Pipeline-Input-#ctor-SigStat-Common-Pipeline-AutoSetMode- 'SigStat.Common.Pipeline.Input.#ctor(SigStat.Common.Pipeline.AutoSetMode)')
   - [AutoSetMode](#F-SigStat-Common-Pipeline-Input-AutoSetMode 'SigStat.Common.Pipeline.Input.AutoSetMode')
+- [KeyValueGroup](#T-SigStat-Common-Logging-KeyValueGroup 'SigStat.Common.Logging.KeyValueGroup')
+  - [#ctor(name)](#M-SigStat-Common-Logging-KeyValueGroup-#ctor-System-String- 'SigStat.Common.Logging.KeyValueGroup.#ctor(System.String)')
+  - [Items](#P-SigStat-Common-Logging-KeyValueGroup-Items 'SigStat.Common.Logging.KeyValueGroup.Items')
+  - [Name](#P-SigStat-Common-Logging-KeyValueGroup-Name 'SigStat.Common.Logging.KeyValueGroup.Name')
 - [LastNSampler](#T-SigStat-Common-Framework-Samplers-LastNSampler 'SigStat.Common.Framework.Samplers.LastNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-LastNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.LastNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-LastNSampler-N 'SigStat.Common.Framework.Samplers.LastNSampler.N')
@@ -323,6 +358,8 @@
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.TimeValues')
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.GetValue(System.Double)')
+- [LogAnalyzer](#T-SigStat-Common-Logging-LogAnalyzer 'SigStat.Common.Logging.LogAnalyzer')
+  - [GetBenchmarkLogModel(logs)](#M-SigStat-Common-Logging-LogAnalyzer-GetBenchmarkLogModel-System-Collections-Generic-IEnumerable{SigStat-Common-Logging-SigStatLogState}- 'SigStat.Common.Logging.LogAnalyzer.GetBenchmarkLogModel(System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState})')
 - [Loop](#T-SigStat-Common-Loop 'SigStat.Common.Loop')
   - [#ctor()](#M-SigStat-Common-Loop-#ctor 'SigStat.Common.Loop.#ctor')
   - [#ctor(centerX,centerY)](#M-SigStat-Common-Loop-#ctor-System-Single,System-Single- 'SigStat.Common.Loop.#ctor(System.Single,System.Single)')
@@ -479,6 +516,13 @@
   - [OutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-OutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.OutputFeature')
   - [ReferenceFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-ReferenceFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.ReferenceFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.Transform(SigStat.Common.Signature)')
+- [ReportInformationLogger](#T-SigStat-Common-Logging-ReportInformationLogger 'SigStat.Common.Logging.ReportInformationLogger')
+  - [#ctor()](#M-SigStat-Common-Logging-ReportInformationLogger-#ctor 'SigStat.Common.Logging.ReportInformationLogger.#ctor')
+  - [reportLogs](#F-SigStat-Common-Logging-ReportInformationLogger-reportLogs 'SigStat.Common.Logging.ReportInformationLogger.reportLogs')
+  - [ReportLogs](#P-SigStat-Common-Logging-ReportInformationLogger-ReportLogs 'SigStat.Common.Logging.ReportInformationLogger.ReportLogs')
+  - [BeginScope\`\`1()](#M-SigStat-Common-Logging-ReportInformationLogger-BeginScope``1-``0- 'SigStat.Common.Logging.ReportInformationLogger.BeginScope``1(``0)')
+  - [IsEnabled()](#M-SigStat-Common-Logging-ReportInformationLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.ReportInformationLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
+  - [Log\`\`1()](#M-SigStat-Common-Logging-ReportInformationLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.ReportInformationLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
 - [ResampleSamplesCountBased](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased')
   - [InputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased-InputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.InputFeatures')
   - [InterpolationType](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased-InterpolationType 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.InterpolationType')
@@ -604,6 +648,8 @@
 - [SigStatEvents](#T-SigStat-Common-SigStatEvents 'SigStat.Common.SigStatEvents')
   - [BenchmarkEvent](#F-SigStat-Common-SigStatEvents-BenchmarkEvent 'SigStat.Common.SigStatEvents.BenchmarkEvent')
   - [VerifierEvent](#F-SigStat-Common-SigStatEvents-VerifierEvent 'SigStat.Common.SigStatEvents.VerifierEvent')
+- [SigStatLogState](#T-SigStat-Common-Logging-SigStatLogState 'SigStat.Common.Logging.SigStatLogState')
+  - [Source](#P-SigStat-Common-Logging-SigStatLogState-Source 'SigStat.Common.Logging.SigStatLogState.Source')
 - [Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature')
   - [#ctor()](#M-SigStat-Common-Signature-#ctor 'SigStat.Common.Signature.#ctor')
   - [#ctor(signatureID,origin,signer)](#M-SigStat-Common-Signature-#ctor-System-String,SigStat-Common-Origin,SigStat-Common-Signer- 'SigStat.Common.Signature.#ctor(System.String,SigStat.Common.Origin,SigStat.Common.Signer)')
@@ -626,10 +672,27 @@
 - [SignatureHelper](#T-SigStat-Common-SignatureHelper 'SigStat.Common.SignatureHelper')
   - [GetSignatureLength(signature)](#M-SigStat-Common-SignatureHelper-GetSignatureLength-SigStat-Common-Signature- 'SigStat.Common.SignatureHelper.GetSignatureLength(SigStat.Common.Signature)')
   - [SaveImage(sig,fileName)](#M-SigStat-Common-SignatureHelper-SaveImage-SigStat-Common-Signature,System-String- 'SigStat.Common.SignatureHelper.SaveImage(SigStat.Common.Signature,System.String)')
+- [SignatureLogState](#T-SigStat-Common-Logging-SignatureLogState 'SigStat.Common.Logging.SignatureLogState')
+  - [SignatureID](#P-SigStat-Common-Logging-SignatureLogState-SignatureID 'SigStat.Common.Logging.SignatureLogState.SignatureID')
+  - [SignerID](#P-SigStat-Common-Logging-SignatureLogState-SignerID 'SigStat.Common.Logging.SignatureLogState.SignerID')
 - [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')
   - [ID](#P-SigStat-Common-Signer-ID 'SigStat.Common.Signer.ID')
   - [Signatures](#P-SigStat-Common-Signer-Signatures 'SigStat.Common.Signer.Signatures')
   - [ToString()](#M-SigStat-Common-Signer-ToString 'SigStat.Common.Signer.ToString')
+- [SignerLogState](#T-SigStat-Common-Logging-SignerLogState 'SigStat.Common.Logging.SignerLogState')
+  - [SignerID](#P-SigStat-Common-Logging-SignerLogState-SignerID 'SigStat.Common.Logging.SignerLogState.SignerID')
+- [SignerResults](#T-SigStat-Common-Logging-SignerResults 'SigStat.Common.Logging.SignerResults')
+  - [#ctor(signerId)](#M-SigStat-Common-Logging-SignerResults-#ctor-System-String- 'SigStat.Common.Logging.SignerResults.#ctor(System.String)')
+  - [Aer](#F-SigStat-Common-Logging-SignerResults-Aer 'SigStat.Common.Logging.SignerResults.Aer')
+  - [Far](#F-SigStat-Common-Logging-SignerResults-Far 'SigStat.Common.Logging.SignerResults.Far')
+  - [Frr](#F-SigStat-Common-Logging-SignerResults-Frr 'SigStat.Common.Logging.SignerResults.Frr')
+  - [DistanceMatrix](#P-SigStat-Common-Logging-SignerResults-DistanceMatrix 'SigStat.Common.Logging.SignerResults.DistanceMatrix')
+  - [SignerID](#P-SigStat-Common-Logging-SignerResults-SignerID 'SigStat.Common.Logging.SignerResults.SignerID')
+- [SignerResultsLogState](#T-SigStat-Common-Logging-SignerResultsLogState 'SigStat.Common.Logging.SignerResultsLogState')
+  - [#ctor(signerId,aer,far,frr)](#M-SigStat-Common-Logging-SignerResultsLogState-#ctor-System-String,System-Double,System-Double,System-Double- 'SigStat.Common.Logging.SignerResultsLogState.#ctor(System.String,System.Double,System.Double,System.Double)')
+  - [Aer](#P-SigStat-Common-Logging-SignerResultsLogState-Aer 'SigStat.Common.Logging.SignerResultsLogState.Aer')
+  - [Far](#P-SigStat-Common-Logging-SignerResultsLogState-Far 'SigStat.Common.Logging.SignerResultsLogState.Far')
+  - [Frr](#P-SigStat-Common-Logging-SignerResultsLogState-Frr 'SigStat.Common.Logging.SignerResultsLogState.Frr')
 - [SignerStatisticsHelper](#T-SigStat-Common-Helpers-SignerStatisticsHelper 'SigStat.Common.Helpers.SignerStatisticsHelper')
   - [GetHeightAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetHeightAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetHeightAvg(SigStat.Common.Signer)')
   - [GetLengthAverage(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetLengthAverage-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetLengthAverage(SigStat.Common.Signer)')
@@ -1278,6 +1341,131 @@ Helper
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Logging-BenchmarkKeyValueLogState'></a>
+## BenchmarkKeyValueLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for Benchmarks key-value information transiting
+
+<a name='M-SigStat-Common-Logging-BenchmarkKeyValueLogState-#ctor-System-String,System-String,System-Object-'></a>
+### #ctor(group,key,value) `constructor`
+
+##### Summary
+
+Creates a BenchmarkKeyValueLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| group | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Group |
+| key | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key |
+| value | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | Value |
+
+<a name='P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Group'></a>
+### Group `property`
+
+##### Summary
+
+Group of the key-value pair
+
+<a name='P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Key'></a>
+### Key `property`
+
+##### Summary
+
+Key
+
+<a name='P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Value'></a>
+### Value `property`
+
+##### Summary
+
+Value
+
+<a name='T-SigStat-Common-Logging-BenchmarkLogModel'></a>
+## BenchmarkLogModel `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Represents the results of a benchmark
+
+<a name='M-SigStat-Common-Logging-BenchmarkLogModel-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Default constructor creating a blank model.
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName'></a>
+### BenchmarkResultsGroupName `constants`
+
+##### Summary
+
+Name of the "BenchmarkResults" group
+
+<a name='F-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName'></a>
+### ExecutionGroupName `constants`
+
+##### Summary
+
+Name of the "Excecution" group
+
+<a name='F-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName'></a>
+### ParametersGroupName `constants`
+
+##### Summary
+
+Name of the "Parameters" group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResults'></a>
+### BenchmarkResults `property`
+
+##### Summary
+
+Benchmark results group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-Excecution'></a>
+### Excecution `property`
+
+##### Summary
+
+Excecution group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-KeyValueGroups'></a>
+### KeyValueGroups `property`
+
+##### Summary
+
+Benchmark results stored in Key-Value groups
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-Parameters'></a>
+### Parameters `property`
+
+##### Summary
+
+Parameters group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults'></a>
+### SignerResults `property`
+
+##### Summary
+
+Results belonging to signers
+
 <a name='T-SigStat-Common-BenchmarkResults'></a>
 ## BenchmarkResults `type`
 
@@ -1302,6 +1490,53 @@ Summarized, final result of the benchmark execution.
 ##### Summary
 
 List that contains the [Result](#T-SigStat-Common-Result 'SigStat.Common.Result')s for each [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')
+
+<a name='T-SigStat-Common-Logging-BenchmarkResultsLogState'></a>
+## BenchmarkResultsLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for Benchmark result transiting
+
+<a name='M-SigStat-Common-Logging-BenchmarkResultsLogState-#ctor-System-Double,System-Double,System-Double-'></a>
+### #ctor(aer,far,frr) `constructor`
+
+##### Summary
+
+Creates a BenchmarkResultsLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| aer | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Aer |
+| far | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Far |
+| frr | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Frr |
+
+<a name='P-SigStat-Common-Logging-BenchmarkResultsLogState-Aer'></a>
+### Aer `property`
+
+##### Summary
+
+Average error rate
+
+<a name='P-SigStat-Common-Logging-BenchmarkResultsLogState-Far'></a>
+### Far `property`
+
+##### Summary
+
+False accaptance rate
+
+<a name='P-SigStat-Common-Logging-BenchmarkResultsLogState-Frr'></a>
+### Frr `property`
+
+##### Summary
+
+False rejection rate
 
 <a name='T-SigStat-Common-Transforms-Binarization'></a>
 ## Binarization `type`
@@ -1568,6 +1803,69 @@ Gets or sets the output feature representing the X coordinates of an online sign
 ##### Summary
 
 Gets or sets the output feature representing the X coordinates of an online signature
+
+<a name='T-SigStat-Common-Logging-ClassifierDistanceLogState'></a>
+## ClassifierDistanceLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state for signature distance information transiting
+
+<a name='M-SigStat-Common-Logging-ClassifierDistanceLogState-#ctor-System-String,System-String,System-String,System-String,System-Double-'></a>
+### #ctor(signer1Id,signer2Id,signature1Id,signature2Id,distance) `constructor`
+
+##### Summary
+
+Creates a ClassifierDistanceLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signer1Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the first signature's signer |
+| signer2Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the second signature's signer |
+| signature1Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the first signature |
+| signature2Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the second signature |
+| distance | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Distance values between the signatures |
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature1Id'></a>
+### Signature1Id `property`
+
+##### Summary
+
+Id of the first signature
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature2Id'></a>
+### Signature2Id `property`
+
+##### Summary
+
+Id of the second signature
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer1Id'></a>
+### Signer1Id `property`
+
+##### Summary
+
+Id of the first signature's signer
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer2Id'></a>
+### Signer2Id `property`
+
+##### Summary
+
+/// Id of the second signature's signer
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-distance'></a>
+### distance `property`
+
+##### Summary
+
+Distance values between the signatures
 
 <a name='T-SigStat-Common-Transforms-ComponentExtraction'></a>
 ## ComponentExtraction `type`
@@ -2517,6 +2815,23 @@ The event is raised whenever an error is logged
 | ---- | ---- | ----------- |
 | message | [T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler](#T-T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler 'T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler') | The message. |
 
+<a name='T-SigStat-Common-Logging-ReportInformationLogger-ErrorEventHandler'></a>
+## ErrorEventHandler `type`
+
+##### Namespace
+
+SigStat.Common.Logging.ReportInformationLogger
+
+##### Summary
+
+The event is raised whenever an error is logged
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| message | [T:SigStat.Common.Logging.ReportInformationLogger.ErrorEventHandler](#T-T-SigStat-Common-Logging-ReportInformationLogger-ErrorEventHandler 'T:SigStat.Common.Logging.ReportInformationLogger.ErrorEventHandler') | The message. |
+
 <a name='T-SigStat-Common-ErrorRate'></a>
 ## ErrorRate `type`
 
@@ -2936,6 +3251,31 @@ Merge all cells into one in the range.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | range | [OfficeOpenXml.ExcelRangeBase](#T-OfficeOpenXml-ExcelRangeBase 'OfficeOpenXml.ExcelRangeBase') | Cells to merge |
+
+<a name='T-SigStat-Common-Logging-ExcelReportGenerator'></a>
+## ExcelReportGenerator `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+This class is used to generate a report in Excel file format, form a Benchmark model.
+
+<a name='M-SigStat-Common-Logging-ExcelReportGenerator-GenerateReport-SigStat-Common-Logging-BenchmarkLogModel,System-String-'></a>
+### GenerateReport(model,fileName) `method`
+
+##### Summary
+
+Generates an Excel file that contains the report.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| model | [SigStat.Common.Logging.BenchmarkLogModel](#T-SigStat-Common-Logging-BenchmarkLogModel 'SigStat.Common.Logging.BenchmarkLogModel') | The model of the report |
+| fileName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The name of the generated excel file |
 
 <a name='T-SigStat-Common-Transforms-Extrema'></a>
 ## Extrema `type`
@@ -4157,6 +4497,29 @@ Formats and writes a trace log message.
 | message | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Format string of the log message in message template format. Example: "User {User} logged in from {Address}" |
 | args | [System.Object[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object[] 'System.Object[]') | An object array that contains zero or more objects to format. |
 
+<a name='M-SigStat-Common-ILoggerObjectExtensions-LogTrace``1-SigStat-Common-ILoggerObject,``0,Microsoft-Extensions-Logging-EventId,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+### LogTrace\`\`1(obj,state,eventId,exception,formatter) `method`
+
+##### Summary
+
+Formats and writes a trace log message with state.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| obj | [SigStat.Common.ILoggerObject](#T-SigStat-Common-ILoggerObject 'SigStat.Common.ILoggerObject') | The SigStat.Common.ILoggerObject containing the Logger to write to. |
+| state | [\`\`0](#T-``0 '``0') | The entry to be written. |
+| eventId | [Microsoft.Extensions.Logging.EventId](#T-Microsoft-Extensions-Logging-EventId 'Microsoft.Extensions.Logging.EventId') | Id of the event. |
+| exception | [System.Exception](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Exception 'System.Exception') | The exception related to this entry. |
+| formatter | [System.Func{\`\`0,System.Exception,System.String}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,System.Exception,System.String}') | Function to create a String message of the state and exception. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TState | The type of the object to be written (preferably a descendant of SigstatLogState). |
+
 <a name='M-SigStat-Common-ILoggerObjectExtensions-LogWarning-SigStat-Common-ILoggerObject,System-String,System-Object[]-'></a>
 ### LogWarning(obj,message,args) `method`
 
@@ -4520,6 +4883,44 @@ Initializes a new instance of the [Input](#T-SigStat-Common-Pipeline-Input 'SigS
 
 The automatic set mode
 
+<a name='T-SigStat-Common-Logging-KeyValueGroup'></a>
+## KeyValueGroup `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+A group of key-value pairs
+
+<a name='M-SigStat-Common-Logging-KeyValueGroup-#ctor-System-String-'></a>
+### #ctor(name) `constructor`
+
+##### Summary
+
+Creates an emty key-value group
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| name | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Name if the new group |
+
+<a name='P-SigStat-Common-Logging-KeyValueGroup-Items'></a>
+### Items `property`
+
+##### Summary
+
+Key-Value pairs in the group
+
+<a name='P-SigStat-Common-Logging-KeyValueGroup-Name'></a>
+### Name `property`
+
+##### Summary
+
+Name of the group
+
 <a name='T-SigStat-Common-Framework-Samplers-LastNSampler'></a>
 ## LastNSampler `type`
 
@@ -4629,6 +5030,34 @@ Gets the interpolated value at a given timestamp
 | [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | TimeValues is not initialized |
 | [System.NullReferenceException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.NullReferenceException 'System.NullReferenceException') | FeatureValues is not initialized |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | The given timestamp is not in the range of TimeValues |
+
+<a name='T-SigStat-Common-Logging-LogAnalyzer'></a>
+## LogAnalyzer `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Analizes logs and creates a model from the gained information
+
+<a name='M-SigStat-Common-Logging-LogAnalyzer-GetBenchmarkLogModel-System-Collections-Generic-IEnumerable{SigStat-Common-Logging-SigStatLogState}-'></a>
+### GetBenchmarkLogModel(logs) `method`
+
+##### Summary
+
+Creates a BenchmarkLogModel from previous logs
+
+##### Returns
+
+The Benchmark model filled with information according to the logs
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| logs | [System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState}') | The collection of logs, that contains the required information for a BenchmarkLogModel |
 
 <a name='T-SigStat-Common-Loop'></a>
 ## Loop `type`
@@ -6201,6 +6630,75 @@ Gets or sets the reference feature.
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Logging-ReportInformationLogger'></a>
+## ReportInformationLogger `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Logger for logging report informations
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes an instance of ReportInformationLogger
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='F-SigStat-Common-Logging-ReportInformationLogger-reportLogs'></a>
+### reportLogs `constants`
+
+##### Summary
+
+Stored logs that contain information for the report
+
+<a name='P-SigStat-Common-Logging-ReportInformationLogger-ReportLogs'></a>
+### ReportLogs `property`
+
+##### Summary
+
+Public read-only interface to reach logged states.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-BeginScope``1-``0-'></a>
+### BeginScope\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
+### IsEnabled() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+### Log\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased'></a>
 ## ResampleSamplesCountBased `type`
 
@@ -7415,6 +7913,24 @@ Events originating from a benchmark
 
 Events originating from a verifier
 
+<a name='T-SigStat-Common-Logging-SigStatLogState'></a>
+## SigStatLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Base state used in report information logging.
+
+<a name='P-SigStat-Common-Logging-SigStatLogState-Source'></a>
+### Source `property`
+
+##### Summary
+
+Object from which the state originates.
+
 <a name='T-SigStat-Common-Signature'></a>
 ## Signature `type`
 
@@ -7721,6 +8237,31 @@ Save online signature as file
 | sig | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') |  |
 | fileName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') |  |
 
+<a name='T-SigStat-Common-Logging-SignatureLogState'></a>
+## SignatureLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for signature information transiting
+
+<a name='P-SigStat-Common-Logging-SignatureLogState-SignatureID'></a>
+### SignatureID `property`
+
+##### Summary
+
+Id of the signature
+
+<a name='P-SigStat-Common-Logging-SignatureLogState-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+Id of the owning signer
+
 <a name='T-SigStat-Common-Signer'></a>
 ## Signer `type`
 
@@ -7761,6 +8302,131 @@ Returns a string representation of a Signer
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-Logging-SignerLogState'></a>
+## SignerLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for signer information transiting
+
+<a name='P-SigStat-Common-Logging-SignerLogState-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+Id of the signer
+
+<a name='T-SigStat-Common-Logging-SignerResults'></a>
+## SignerResults `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Informations of a signer
+
+<a name='M-SigStat-Common-Logging-SignerResults-#ctor-System-String-'></a>
+### #ctor(signerId) `constructor`
+
+##### Summary
+
+Creates a signer result with emty result values
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signerId | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The id of the signer |
+
+<a name='F-SigStat-Common-Logging-SignerResults-Aer'></a>
+### Aer `constants`
+
+##### Summary
+
+Average Error Rate of the signer
+
+<a name='F-SigStat-Common-Logging-SignerResults-Far'></a>
+### Far `constants`
+
+##### Summary
+
+False Acceptance Rate of the signer
+
+<a name='F-SigStat-Common-Logging-SignerResults-Frr'></a>
+### Frr `constants`
+
+##### Summary
+
+False Rejection Rate of the signer
+
+<a name='P-SigStat-Common-Logging-SignerResults-DistanceMatrix'></a>
+### DistanceMatrix `property`
+
+##### Summary
+
+Distacne matrix of the signers signatures
+
+<a name='P-SigStat-Common-Logging-SignerResults-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+The ID of the signer
+
+<a name='T-SigStat-Common-Logging-SignerResultsLogState'></a>
+## SignerResultsLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for Signer result transiting
+
+<a name='M-SigStat-Common-Logging-SignerResultsLogState-#ctor-System-String,System-Double,System-Double,System-Double-'></a>
+### #ctor(signerId,aer,far,frr) `constructor`
+
+##### Summary
+
+Creates a SignerResultsLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signerId | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the signer |
+| aer | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Aer |
+| far | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Far |
+| frr | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Frr |
+
+<a name='P-SigStat-Common-Logging-SignerResultsLogState-Aer'></a>
+### Aer `property`
+
+##### Summary
+
+Average error rate
+
+<a name='P-SigStat-Common-Logging-SignerResultsLogState-Far'></a>
+### Far `property`
+
+##### Summary
+
+False accaptance rate
+
+<a name='P-SigStat-Common-Logging-SignerResultsLogState-Frr'></a>
+### Frr `property`
+
+##### Summary
+
+False rejection rate
 
 <a name='T-SigStat-Common-Helpers-SignerStatisticsHelper'></a>
 ## SignerStatisticsHelper `type`

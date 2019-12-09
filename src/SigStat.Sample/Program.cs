@@ -22,6 +22,7 @@ using static SigStat.Common.Loaders.SigComp11ChineseLoader;
 using static SigStat.Common.Loaders.SigComp13JapaneseLoader;
 using SixLabors.Primitives;
 using System.Drawing;
+using SigStat.Common.Logging;
 
 namespace SigStat.Sample
 {
@@ -60,26 +61,68 @@ namespace SigStat.Sample
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();
-           // SignatureToImageTesting();
-           //OnlineRotationBenchmarkDemo();
-            SampleRateTestingDemo();
-          // SampleRateTestingDemoForSigners();
+            // SignatureToImageTesting();
+            //OnlineRotationBenchmarkDemo();
+            //SampleRateTestingDemo();
+            // SampleRateTestingDemoForSigners();
             //OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            JsonSerializeOnlineVerifierBenchmark();
+            //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
+            ExcelReportGeneratorTest();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
         }
 
-       
-           
+        private static void ExcelReportGeneratorTest()
+        {
+            var logger = new ReportInformationLogger();
+            var benchmark = new VerifierBenchmark()
+            {
+                Parameters = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("Translation", "none"),
+                    new KeyValuePair<string, string>("Classifier", "DtwClassifier"),
+                },
+                Loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true),
+                Verifier = new Verifier()
+                {
+                    Pipeline = new SequentialTransformPipeline {
+                        new Scale() {InputFeature = Features.X, OutputFeature= Features.X },
+                        new Scale() {InputFeature = Features.Y, OutputFeature= Features.Y },
 
-        
+                        new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
+                        InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
+                        OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
+                    },
+
+
+                    Classifier = new DtwClassifier()
+                    {
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure },
+                        MultiplicationFactor = 1.7
+                    }
+                },
+                Sampler = new UniversalSampler(3, 10),
+                Logger = logger,
+            };
+
+            benchmark.ProgressChanged += ProgressPrimary;
+            //benchmark.Verifier.ProgressChanged += ProgressSecondary;
+
+            var result = benchmark.Execute(true);
+
+            var model = LogAnalyzer.GetBenchmarkLogModel(logger.ReportLogs);
+
+            ExcelReportGenerator.GenerateReport(model);
+
+
+            Console.WriteLine($"AER: {result.FinalResult.Aer}");
+        }
 
         private static void SignatureToImageTesting()
         {
