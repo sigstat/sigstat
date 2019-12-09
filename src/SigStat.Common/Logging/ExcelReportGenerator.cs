@@ -27,7 +27,8 @@ namespace SigStat.Common.Logging
 
             using (ExcelPackage pkg = new ExcelPackage(new System.IO.FileInfo(fileName)))
             {
-
+                const int graphWidth = 1400;
+                const int graphHeight = 700;
                 //Write the summary sheet
                 ExcelWorksheet summarySheet = pkg.Workbook.Worksheets.Add("Summary");
 
@@ -50,7 +51,9 @@ namespace SigStat.Common.Logging
                     signerResults.Add(new { Signer = signerResult.Value.SignerID, FAR = signerResult.Value.Far, FRR = signerResult.Value.Frr, AER = signerResult.Value.Aer });
                 }
 
-                resultsSheet.InsertTable(2, 2, signerResults);
+                resultsSheet.InsertTable(2, 2, signerResults, "Signer results", Helpers.Excel.ExcelColor.Primary, true, "SignerResults");
+                var signerTable = resultsSheet.Cells[resultsSheet.Names["SignerResults"].Start.Row, resultsSheet.Names["SignerResults"].Start.Column, resultsSheet.Names["SignerResults"].End.Row, resultsSheet.Names["SignerResults"].End.Column];
+                resultsSheet.InsertColumnChart(signerTable, 3, 8, "Error rates", "SignerId", "Error rate", resultsSheet.Cells["C3:E3"], graphWidth, graphHeight);
 
                 foreach (var signerResult in model.SignerResults)
                 {
