@@ -35,7 +35,7 @@ namespace SigStat.Common.Model
         }
         //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
 
-        private SequentialTransformPipeline pipeline;
+        private SequentialTransformPipeline pipeline = new SequentialTransformPipeline();
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
         
         public SequentialTransformPipeline Pipeline { get => pipeline;

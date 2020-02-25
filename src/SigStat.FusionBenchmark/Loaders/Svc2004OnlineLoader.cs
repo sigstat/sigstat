@@ -87,6 +87,8 @@ namespace SigStat.FusionBenchmark.Loaders
         /// </summary>
         public Predicate<Signer> SignerFilter { get; set; }
 
+        public override int SamplingFrequency => throw new NotImplementedException();
+
 
 
         /// <summary>

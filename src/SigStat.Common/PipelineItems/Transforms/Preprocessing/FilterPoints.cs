@@ -64,6 +64,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             for (int i = 0; i < InputFeatures.Count; i++)
             {
+                if (InputFeatures[i] == KeyFeatureInput)
+                    continue;
                 var values = new List<double>(signature.GetFeature(InputFeatures[i]));
                 foreach (var index in indexes)
                 {

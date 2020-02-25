@@ -137,6 +137,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             for (int i = 0; i < InputFeatures.Count; i++)
             {
+                if (InputFeatures[i] == TimeInputFeature)
+                    continue;
                 var values = new List<double>(signature.GetFeature(InputFeatures[i]));
                 interpolation.FeatureValues = new List<double>(values);
                 interpolation.TimeValues = originalTimeValues;

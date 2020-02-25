@@ -94,6 +94,7 @@ namespace SigStat.FusionBenchmark.Loaders
 
         public Predicate<Signer> SignerFilter { get; set; }
 
+        public override int SamplingFrequency => throw new NotImplementedException();
 
         public BiosecureIDOnlineLoader(string databasePath, Predicate<Signer> signerFilter = null)
         {

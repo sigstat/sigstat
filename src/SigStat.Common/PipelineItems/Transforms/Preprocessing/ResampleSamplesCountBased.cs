@@ -72,15 +72,16 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 throw new NullReferenceException("Interpolation is not defined");
             }
 
-            var featureValues = new List<double>[InputFeatures.Count];
 
             var originalTimestamps = new List<double>(signature.GetFeature(OriginalTFeature));
             var resampledTimestamps = GenerateNewTimestamps(originalTimestamps);
 
             for (int i = 0; i < InputFeatures.Count; i++)
             {
-                featureValues[i] = new List<double>(signature.GetFeature(InputFeatures[i]));
-                signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues[i], originalTimestamps, resampledTimestamps));
+                if (InputFeatures[i] == OriginalTFeature)
+                    continue;
+                var featureValues = new List<double>(signature.GetFeature(InputFeatures[i]));
+                signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues, originalTimestamps, resampledTimestamps));
             }
             signature.SetFeature(ResampledTFeature, resampledTimestamps);
         }
