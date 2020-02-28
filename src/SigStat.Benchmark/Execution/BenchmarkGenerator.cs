@@ -29,7 +29,7 @@ namespace SigStat.Benchmark
                 [Distance] -> Manhattan | Euclidean
                 [Pipeline]-> [Rotation]_[Gap]_[Resampling]_[Translation]_[Scaling]
                 [Rotation] -> none, rotation
-                [Gap]-> none | filter | fill_[FillInterpolation]
+                [Gap]-> none | filter | fill_[FillInterpolation] | filterandfill_[FillInterpolation]
                 [FillInterpolation] -> linear | cubic
                 [Resampling] -> none | [SampleCount]samples_[ResamplingInterpolation]
                 [SampleCount] -> 50 | 100 | 500 | 1000
