@@ -12,13 +12,11 @@ namespace SigStat.Benchmark.Options
     [Verb("monitor", HelpText = "Monitoring mode for checking HTCondor jobs or Azure Queue status.")]
     public class MonitorOptions : OptionsBase
     {
-        [Option('c', "configsPath", Required = false, Default = null, HelpText = "Path of benchmark configurations directory. Defaults to Azure queue.")]
-        public string ConfigsPath { get; set; }
-        [Option('r', "resultsPath", Required = false, Default = null, HelpText = "Path of benchmark results directory. Defaults to Azure queue.")]
-        public string ResultsPath { get; set; }
+        // monitor options
+
         public override Task RunAsync()
         {
-            return Monitor.RunAsync(ConfigsPath, ResultsPath);
+            return Monitor.RunAsync();
         }
     }
 }

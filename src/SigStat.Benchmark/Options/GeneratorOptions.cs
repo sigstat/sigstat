@@ -12,12 +12,11 @@ namespace SigStat.Benchmark.Options
     [Verb("generate", HelpText = "Generator mode for generating benchmarks to process.")]
     class GeneratorOptions : OptionsBase
     {
-        [Option('d', "ConnectionString", Required = false, Default = null, HelpText = "MongoDB connection string in Uri format (see: https://docs.mongodb.com/manual/reference/connection-string)")]
-        public string ConnectionString { get; set; }
+        //generator options
 
         public override Task RunAsync()
         {
-            return BenchmarkGenerator.RunAsync(ConnectionString);
+            return BenchmarkGenerator.RunAsync();
         }
     }
 }

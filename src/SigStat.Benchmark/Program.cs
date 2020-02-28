@@ -1,6 +1,6 @@
 ﻿using CommandLine;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
+using MongoDB.Driver;
+using SigStat.Benchmark.Helpers;
 using SigStat.Benchmark.Options;
 using System;
 using System.IO;
@@ -10,50 +10,31 @@ namespace SigStat.Benchmark
 {
     class Program
     {
-        public static CloudStorageAccount Account;
+        public static MongoClient client;
+        public static IMongoDatabase db;
         public static string Experiment;
-        public static bool Offline = false;
 
-        public static bool AzureAuth(OptionsBase o)
+        public static async Task<bool> MongoInit(OptionsBase o)
         {
-            if (o.AccountKey is null)
-            {
-                Offline = true;
-                return true;
-            }
-
-            if (o.AccountKey.EndsWith(".txt"))
-            {
-                if (!File.Exists(o.AccountKey))
-                {
-                    Console.WriteLine($"Account key file '{o.AccountKey}' does not exist. Aborting...");
-                    return false;
-                }
-                o.AccountKey = File.ReadAllText(o.AccountKey);
-            }
-
-            try
-            {
-                var credentials = new StorageCredentials(o.AccountName, o.AccountKey);
-                Account = new CloudStorageAccount(credentials, true);
-                Experiment = o.Experiment;
-                return true;
-            }
-            catch (Exception e)
-            {
-                File.WriteAllText("log.txt", e.ToString());
-                Console.WriteLine("Azure authentication failed. Aborting...");
-                return false;
-            }
+            return await DatabaseHelper.InitializeConnection(o.ConnectionString);
+            //var collection = db.GetCollection<BsonDocument>("experiments");
+            
+            //catch (Exception e)
+            //{
+            //    //mongodb connection failed
+            //    return false;
+            //}
         }
 
         static async Task Main(string[] args)
         {
             await Parser.Default.ParseArguments<MonitorOptions, WorkerOptions, GeneratorOptions, AnalyserOptions>(args)
-                .MapResult<OptionsBase, Task>(o =>
+                .MapResult<OptionsBase, Task>(async o =>
                 {
-                    if (AzureAuth(o)) return o.RunAsync();
-                    else return Task.FromResult(-1);
+                    if (await MongoInit(o))
+                        await o.RunAsync();
+                    else
+                        return;
                 },
                 errs => Task.FromResult(-1));
             Console.WriteLine($"{DateTime.Now}: Execution finished.");
@@ -62,6 +43,9 @@ namespace SigStat.Benchmark
                 Console.WriteLine("Press any key to exit the application...");
                 Console.ReadKey();
             }
+
+            
+
         }
     }
 

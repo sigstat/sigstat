@@ -12,12 +12,6 @@ namespace SigStat.Benchmark.Options
     [Verb("work", HelpText = "Worker mode for processing benchmarks.")]
     class WorkerOptions : OptionsBase
     {
-        [Option('i', "inputDir", Required = false, Default = "configs", HelpText = "Input directory for loading benchmarks locally. Azure Queue will be used by default.")]
-        public string InputDirectory { get; set; }
-
-        [Option('o', "outputDir", Required = false, Default = "results", HelpText = "Output directory for storing benchmark results locally.")]
-        public string OutputDirectory { get; set; }
-
         [Option('p', "procId", Required = false, Default = 0, HelpText = "Worker Process Id.")]
         public int ProcessId { get; set; }
 
@@ -26,7 +20,7 @@ namespace SigStat.Benchmark.Options
 
         public override Task RunAsync()
         {
-            return Worker.RunAsync(InputDirectory, OutputDirectory, ProcessId, MaxThreads);
+            return Worker.RunAsync(ProcessId, MaxThreads);
         }
     }
 }

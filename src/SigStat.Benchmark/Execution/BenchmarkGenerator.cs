@@ -8,12 +8,11 @@ using System.Collections.Generic;
 using System.Text;
 using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.Helpers;
-using Microsoft.WindowsAzure.Storage.Blob;
-using Microsoft.WindowsAzure.Storage.Queue;
 using System.Threading.Tasks;
 using System.IO;
 using SigStat.Benchmark.Model;
 using System.Linq;
+using SigStat.Benchmark.Helpers;
 
 namespace SigStat.Benchmark
 {
@@ -48,12 +47,11 @@ namespace SigStat.Benchmark
         }
 
 
-        static string ConnectionString;
 
         internal static async Task RunAsync(string connectionString)
         {
             Console.WriteLine("Generating benchmark configurations...");
-            await BenchmarkGenerator.GenerateBenchmarks();
+            await GenerateBenchmarks();
         }
 
         internal static async Task GenerateBenchmarks()
@@ -61,8 +59,8 @@ namespace SigStat.Benchmark
             try
             {
 
-                Console.WriteLine("Initializing database: " + Program.Experiment);
-                //TODO: Create or reset database
+                Console.WriteLine("Initializing experiment: " + Program.Experiment);
+                await DatabaseHelper.InitializeExperiment(Program.Experiment);
 
                 //if ((Queue.ApproximateMessageCount ?? 0) > 0)
                 //{
@@ -82,15 +80,15 @@ namespace SigStat.Benchmark
                 Console.WriteLine($"Enqueueing {count} combinations...");
                 int i = 0;
 
-                foreach (var configuration in EnumerateBenchmarks())
-                {
-                    if (i % 100 == 0)
-                        Console.WriteLine($"{i}/{count}");
-                    
+                //foreach (var configuration in EnumerateBenchmarks())
+                //{
+                //    if (i % 100 == 0)
+                //        Console.WriteLine($"{i}/{count}");
+                //    i++;
+                //}
+                Console.WriteLine("Writing configurations to db...");
+                //DatabaseHelper.InsertConfigs(Program.Experiment, );
 
-                    // TODO: add record to DB
-                    i++;
-                }
                 Console.WriteLine("Ready.");
             }
             catch (Exception e)
