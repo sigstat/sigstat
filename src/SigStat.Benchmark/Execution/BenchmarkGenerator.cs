@@ -54,41 +54,20 @@ namespace SigStat.Benchmark
             await GenerateBenchmarks();
         }
 
+        /// <summary>
+        /// Clear old configs, generate new configs, write to db
+        /// </summary>
+        /// <returns></returns>
         internal static async Task GenerateBenchmarks()
         {
             try
             {
-
                 Console.WriteLine("Initializing experiment: " + Program.Experiment);
                 await DatabaseHelper.InitializeExperiment(Program.Experiment);
 
-                //if ((Queue.ApproximateMessageCount ?? 0) > 0)
-                //{
-                //    if (!Console.IsInputRedirected)
-                //    {
-                //        Console.WriteLine($"There are {Queue.ApproximateMessageCount} jobs pending in the queue. Should I clear them? [Y|N]");
-                //        if (Console.ReadKey(true).Key != ConsoleKey.Y)
-                //        {
-                //            await Queue.ClearAsync();
-                //        }
-                //    }
-                //    else
-                //        await Queue.ClearAsync();//clear queue by default
-                //}
-
-                var count = EnumerateBenchmarks().Count();
-                Console.WriteLine($"Enqueueing {count} combinations...");
-                int i = 0;
-
-                //foreach (var configuration in EnumerateBenchmarks())
-                //{
-                //    if (i % 100 == 0)
-                //        Console.WriteLine($"{i}/{count}");
-                //    i++;
-                //}
-                Console.WriteLine("Writing configurations to db...");
-                //DatabaseHelper.InsertConfigs(Program.Experiment, );
-
+                Console.WriteLine($"Generating combinations, writing to db...");
+                var configs = EnumerateBenchmarks();
+                await DatabaseHelper.InsertConfigs(Program.Experiment, configs);
                 Console.WriteLine("Ready.");
             }
             catch (Exception e)

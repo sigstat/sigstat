@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Blob;
-using Microsoft.WindowsAzure.Storage.Queue;
-using Microsoft.WindowsAzure.Storage.Table;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SigStat.Benchmark.Helpers;
 using SigStat.Benchmark.Model;
 using SigStat.Common;
 using SigStat.Common.Helpers;
@@ -23,31 +21,26 @@ namespace SigStat.Benchmark
     class Worker
     {
         static TimeSpan timeOut = new TimeSpan(0, 30, 0);
-        static CloudBlobContainer Container;
-        static CloudQueue Queue;
-        static DirectoryInfo InputDirectory;
-        static DirectoryInfo OutputDirectory;
 
         static Queue<VerifierBenchmark> LocalBenchmarks = new Queue<VerifierBenchmark>();
 
         static VerifierBenchmark CurrentBenchmark;
         static string CurrentBenchmarkId;
-        static CloudQueueMessage CurrentMessage;
         static BenchmarkResults CurrentResults;
         static string CurrentResultType;
+        static int ProcessId;
 
-        internal static async Task RunAsync(string inputDir, string outputDir, int procId, int maxThreads)
+        internal static async Task RunAsync(int procId, int maxThreads)
         {
             //stop worker process after 3 days
             DateTime stopTime = DateTime.Now.AddHours(71);
 
+            ProcessId = procId;
             //delayed start
-            await Task.Delay(100 * procId);
-
-            OutputDirectory = Directory.CreateDirectory(outputDir);
-
-            var initSuccess = await Init(inputDir);
-            if (!initSuccess) return;
+            await Task.Delay(100 * ProcessId);
+            
+            //var initSuccess = await Init(inputDir);
+            //if (!initSuccess) return;
 
             Console.WriteLine($"{DateTime.Now}: Worker is running.");
             if (!Console.IsInputRedirected)
@@ -134,90 +127,46 @@ namespace SigStat.Benchmark
             }
         }
 
-        internal static async Task<bool> Init(string inputDir)
-        {
-            if (Program.Offline)
-            {
-                InputDirectory = new DirectoryInfo(inputDir);
-                if (!InputDirectory.Exists)
-                {
-                    Console.WriteLine("Input directory doesn't exist. Aborting...");
-                    return false;
-                }
-
-            }
-            else
-            {
-                Console.WriteLine("Initializing container: " + Program.Experiment);
-                var blobClient = Program.Account.CreateCloudBlobClient();
-                Container = blobClient.GetContainerReference(Program.Experiment);
-                if (!(await Container.ExistsAsync()))
-                {
-                    Console.WriteLine("Container does not exist. Aborting...");
-                    return false;
-                }
-
-                Console.WriteLine("Initializing queue: " + Program.Experiment);
-                var queueClient = Program.Account.CreateCloudQueueClient();
-                Queue = queueClient.GetQueueReference(Program.Experiment);
-                if (!(await Queue.ExistsAsync()))
-                {
-                    Console.WriteLine("Queue does not exist. Aborting...");
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static FileInfo findNextUnprocessedConfig()
-        {
-            return InputDirectory.EnumerateFiles("*.json").FirstOrDefault(j => !File.Exists(j.FullName + ".lock"));
-        }
+        //internal static async Task<bool> Init(string inputDir)
+        //{
+        //        Console.WriteLine("Initializing container: " + Program.Experiment);
+        //        
+        //        //get configs collection
+        //
+        //        Console.WriteLine("Initializing queue: " + Program.Experiment);
+        //        var queueClient = Program.Account.CreateCloudQueueClient();
+        //        Queue = queueClient.GetQueueReference(Program.Experiment);
+        //        if (!(await Queue.ExistsAsync()))
+        //        {
+        //            Console.WriteLine("Queue does not exist. Aborting...");
+        //            return false;
+        //        }
+        //
+        //    return true;
+        //}
 
         internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
-            if (Program.Offline)
-            {
-                Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
+            Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
+            string next = null;
 
-                FileInfo next = findNextUnprocessedConfig();
-                int tries = 3;
-                while (tries > 0 && next!=null)
-                {
-                    try
-                    {
-                        var f = File.Create(next.FullName + ".lock");
-                        CurrentBenchmarkId = next.Name.Split(".json")[0];
-                        Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
-
-                        return SerializationHelper.DeserializeFromFile<VerifierBenchmark>(next.FullName);
-                    }
-                    catch
-                    {
-                        Console.WriteLine($"{DateTime.Now}: Failed to lock config {next.Name}. Skipping ({tries})..");
-                        await Task.Delay(1000);
-                        tries--;
-                        next = findNextUnprocessedConfig();
-                    }
-                }
-
+            int tries = 3;
+            while (tries > 0)
+            {//Try get next configuration 3 times
+                next = await DatabaseHelper.TryGetNextConfig(Program.Experiment, ProcessId);
                 if (next == null)
-                    Console.WriteLine($"{DateTime.Now}: No more tasks in queue.");
+                    tries--;
+                else break;
+            }
 
+            if (next == null)
+            {
+                Console.WriteLine($"{DateTime.Now}: No more tasks in queue.");
                 return null;
             }
-            else
-            {
-                CurrentMessage = await Queue.GetMessageAsync(timeOut, null, null);
-                if (CurrentMessage == null)
-                {
-                    Console.WriteLine("No more tasks in queue.");
-                    return null;
-                }
-                CurrentBenchmarkId = CurrentMessage.Id;
-                Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
-                return SerializationHelper.Deserialize<VerifierBenchmark>(CurrentMessage.AsString);
-            }
+
+            Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
+            return SerializationHelper.Deserialize<VerifierBenchmark>(next);
         }
 
         internal static async Task ProcessResults()

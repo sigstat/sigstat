@@ -13,10 +13,11 @@ namespace SigStat.Benchmark.Options
     class GeneratorOptions : OptionsBase
     {
         //generator options
+        //clear configs, clear results, clear summary
 
         public override Task RunAsync()
         {
-            return BenchmarkGenerator.RunAsync();
+            return BenchmarkGenerator.RunAsync(ConnectionString);
         }
     }
 }
