@@ -17,7 +17,7 @@ namespace SigStat.Benchmark.Options
 
         public override async Task RunAsync()
         {
-            return await Analyser.RunAsync();
+            await Analyser.RunAsync();
         }
     }
 }

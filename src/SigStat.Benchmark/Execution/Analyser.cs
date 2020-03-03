@@ -44,11 +44,11 @@ namespace SigStat.Benchmark
             public double FAR { get; set; }
             public double AER { get; set; }
         }
-        internal static async Task RunAsync(string inputDir, string output)
+        internal static async Task RunAsync()
         {
             Stopwatch sw = Stopwatch.StartNew();
-            InputDirectory = inputDir;
-            OutputFile = output;
+            //InputDirectory = inputDir;
+            //OutputFile = output;
 
             var reportFiles = Directory.EnumerateFiles(InputDirectory, "*.xlsx").ToList();
             reportFiles.Sort();

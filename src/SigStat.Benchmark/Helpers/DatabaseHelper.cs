@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using SigStat.Common;
+using SigStat.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace SigStat.Benchmark.Helpers
 
             //
 
-            db = client.GetDatabase("sigstat");
+            db = client.GetDatabase("benchmarks");
 
             //catch..
             return false;
@@ -33,11 +35,11 @@ namespace SigStat.Benchmark.Helpers
             Console.WriteLine($"Deleted {result.DeletedCount} old configurations.");
 
             //insert or update experiment (date etc.)
-            await db.GetCollection<BsonDocument>("experiments")
-                .UpdateOneAsync(
-                    d => d["name"] == experimentName, 
-                    Builders<BsonDocument>.Update.Set("date", DateTime.Now.ToString()), 
-                    new UpdateOptions{ IsUpsert = true });
+            //await db.GetCollection<BsonDocument>("experiments")
+            //    .UpdateOneAsync(
+            //        d => d["name"] == experimentName, 
+            //        Builders<BsonDocument>.Update.Set("date", DateTime.Now.ToString()), 
+            //        new UpdateOptions{ IsUpsert = true });
 
             //Clear configs,results,summaries collection items of this experiment?
         }
@@ -54,38 +56,57 @@ namespace SigStat.Benchmark.Helpers
         }
 
         /// <summary>
-        /// This is atomic, locks the config. Returns null if no config can be locked
+        /// This is atomic. Returns null if no config can be locked
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> TryGetNextConfig(string experimentName, int procId)
+        public static async Task<string> LockNextConfig(string experimentName, int procId)
         {
             var configs = db.GetCollection<BsonDocument>("configs");
             var result = await configs.FindOneAndUpdateAsync<BsonDocument>(d => 
-                d["experiment"] == experimentName && d["lock"] == BsonNull.Value,
+                d["experiment"] == experimentName && d["lockId"] == BsonNull.Value,
                 Builders<BsonDocument>.Update
-                    .Set("lockId", procId)
-                    .Set("date", DateTime.Now.ToString()),
+                    .Set("lockId", procId),
                 new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false }
                 );
             if (result == null)
                 return null;
             else
                 return (string)result["data"];
-            /*using (var session = await client.StartSessionAsync())
-            {
-                session.StartTransaction();
-                try
-                {
-                    //find one
-                    await configs.find
-                    //lock
-                    //get
-                }
-                catch
-                {
-                    await session.AbortTransactionAsync();
-                }
-            }*/
+        }
+
+        /// <summary>
+        /// Inserts the result and deletes the locked config
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SendResults(string experimentName, int procId, string benchmarkId, string resultType, BenchmarkResults results)
+        {
+
+            var document = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize<BenchmarkResults>(results));
+            document.Add("benchmark", benchmarkId);
+            document.Add("machine", Environment.MachineName);
+            document.Add("procId", procId);
+            document.Add("end_date", DateTime.Now.ToString());
+            document.Add("resultType", resultType);
+            var collection = db.GetCollection<BsonDocument>("results");
+            await collection.InsertOneAsync(document);
+
+            //Delete config file
+            var configs = db.GetCollection<BsonDocument>("configs");
+            var result = await configs.FindOneAndDeleteAsync(d =>
+                d["experiment"] == experimentName && d["lockId"] == procId);            
+
+        }
+
+        public static async Task SendLog(string experimentName, int procId, string benchmarkId, string logString)
+        {
+            var logs = db.GetCollection<BsonDocument>("logs");
+            await logs.InsertOneAsync(new BsonDocument {
+                { "experiment", experimentName },
+                { "procId", procId },
+                { "machine", System.Environment.MachineName },
+                { "benchmarkId", benchmarkId },
+                { "log", logString }
+            });
         }
 
     }

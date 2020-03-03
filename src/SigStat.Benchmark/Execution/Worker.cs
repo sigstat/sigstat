@@ -93,29 +93,15 @@ namespace SigStat.Benchmark
                     CurrentResultType = "Error";
                     Console.WriteLine(exc.ToString());
                     debugInfo.AppendLine(exc.ToString());
-                    var debugFileName = $"Result_{CurrentBenchmarkId}_Log.txt";
+                    //Save to File?
 
-                    debugFileName = Path.Combine(OutputDirectory.ToString(), debugFileName);
-                    File.WriteAllText(debugFileName, debugInfo.ToString());
+                    await DatabaseHelper.SendLog(Program.Experiment, ProcessId, CurrentBenchmarkId, debugInfo.ToString());
 
-                    if (!Program.Offline)
-                    {
-                        var blob = Container.GetBlockBlobReference($"Results/{debugFileName}");
-                        await blob.DeleteIfExistsAsync();
-                        await blob.UploadFromFileAsync(debugFileName);
-                    }
                     continue;
                 }
 
-                await ProcessResults();
-
-                if(Program.Offline)
-                {//delete input config and lock after processing
-                    File.Delete(Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json"));
-                    File.Delete(Path.Combine(InputDirectory.ToString(), CurrentBenchmarkId + ".json.lock"));
-                }
-                else
-                    await Queue.DeleteMessageAsync(CurrentMessage);
+                Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
+                await DatabaseHelper.SendResults(Program.Experiment, procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
 
                 //LogProcessor.Dump(logger);
                 // MongoDB 
@@ -124,26 +110,9 @@ namespace SigStat.Benchmark
                 // DynamoDB ==> MongoDB $$$$$$$
                 // DateTime, MachineName, ....ExecutionTime,..., ResultType, Result json{40*60 táblázat}
                 //benchmark.Dump(filename, config.ToKeyValuePairs());
+
             }
         }
-
-        //internal static async Task<bool> Init(string inputDir)
-        //{
-        //        Console.WriteLine("Initializing container: " + Program.Experiment);
-        //        
-        //        //get configs collection
-        //
-        //        Console.WriteLine("Initializing queue: " + Program.Experiment);
-        //        var queueClient = Program.Account.CreateCloudQueueClient();
-        //        Queue = queueClient.GetQueueReference(Program.Experiment);
-        //        if (!(await Queue.ExistsAsync()))
-        //        {
-        //            Console.WriteLine("Queue does not exist. Aborting...");
-        //            return false;
-        //        }
-        //
-        //    return true;
-        //}
 
         internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
@@ -153,7 +122,7 @@ namespace SigStat.Benchmark
             int tries = 3;
             while (tries > 0)
             {//Try get next configuration 3 times
-                next = await DatabaseHelper.TryGetNextConfig(Program.Experiment, ProcessId);
+                next = await DatabaseHelper.LockNextConfig(Program.Experiment, ProcessId);
                 if (next == null)
                     tries--;
                 else break;
@@ -165,79 +134,9 @@ namespace SigStat.Benchmark
                 return null;
             }
 
+            CurrentBenchmarkId = next;
             Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
             return SerializationHelper.Deserialize<VerifierBenchmark>(next);
-        }
-
-        internal static async Task ProcessResults()
-        {
-            //CurrentBenchmarkFileId helyett: VerifierBenchmark.ToString()
-            var filename = $"Result_{CurrentBenchmarkId}.xlsx";
-            var fullfilename = Path.Combine(OutputDirectory.ToString(), filename);
-
-            if (Program.Offline)
-            {
-                Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
-                CurrentBenchmark.Dump(fullfilename, CurrentBenchmark.Parameters);
-
-            }
-            else
-            {
-                //TODO: szinten excelezni json results helyett
-
-                Console.WriteLine($"{DateTime.Now}: Writing results to disk...");
-                SerializationHelper.JsonSerializeToFile<BenchmarkResults>(CurrentResults, fullfilename);
-
-                Console.WriteLine($"{DateTime.Now}: Uploading results to Azure Blob store...");
-                var blob = Container.GetBlockBlobReference($"Results/{filename}");
-                await blob.DeleteIfExistsAsync();
-                await blob.UploadFromFileAsync(fullfilename);
-
-                Console.WriteLine($"{DateTime.Now}: Writing results to Azure Table store...");
-                CloudTableClient tableClient = Program.Account.CreateCloudTableClient();
-                CloudTable table = tableClient.GetTableReference(Program.Experiment + "FinalResults");
-                await table.CreateIfNotExistsAsync();
-
-                var finalResultEntity = new DynamicTableEntity();
-                finalResultEntity.PartitionKey = filename;
-
-                finalResultEntity.RowKey = CurrentResultType;
-                finalResultEntity.Properties.Add("Machine", EntityProperty.CreateEntityPropertyFromObject(System.Environment.MachineName));
-                finalResultEntity.Properties.Add("Frr", EntityProperty.CreateEntityPropertyFromObject(CurrentResults.FinalResult.Frr));
-                finalResultEntity.Properties.Add("Far", EntityProperty.CreateEntityPropertyFromObject(CurrentResults.FinalResult.Far));
-                finalResultEntity.Properties.Add("Aer", EntityProperty.CreateEntityPropertyFromObject(CurrentResults.FinalResult.Aer));
-                
-                var tableOperation = TableOperation.InsertOrReplace(finalResultEntity);
-                await table.ExecuteAsync(tableOperation);
-
-                table = tableClient.GetTableReference(Program.Experiment + "SignerResults");
-                await table.CreateIfNotExistsAsync();
-
-                var signerResultEntity = new DynamicTableEntity();
-                signerResultEntity.PartitionKey = filename;
-
-                foreach (var signerResult in CurrentResults.SignerResults)
-                {
-                    signerResultEntity.RowKey = signerResult.Signer;
-                    signerResultEntity.Properties["Frr"] = EntityProperty.CreateEntityPropertyFromObject(signerResult.Frr);
-                    signerResultEntity.Properties["Far"] = EntityProperty.CreateEntityPropertyFromObject(signerResult.Far);
-                    signerResultEntity.Properties["Aer"] = EntityProperty.CreateEntityPropertyFromObject(signerResult.Aer);
-
-                    tableOperation = TableOperation.InsertOrReplace(signerResultEntity);
-                    await table.ExecuteAsync(tableOperation);
-                }
-
-                Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
-                var document = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize<BenchmarkResults>(CurrentResults));
-                document.Add("Benchmark", filename);
-                document.Add("Machine", System.Environment.MachineName);
-                document.Add("Time", DateTime.Now);
-                document.Add("ResultType", CurrentResultType);
-                var client = new MongoClient("mongodb+srv://sigstat:sigstat@benchmarktest-4josb.azure.mongodb.net/test?retryWrites=true");
-                var database = client.GetDatabase("benchmarks");
-                var collection = database.GetCollection<BsonDocument>("results");
-                await collection.InsertOneAsync(document);
-            }
         }
     }
 }
