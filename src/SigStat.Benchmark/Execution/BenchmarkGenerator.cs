@@ -38,12 +38,12 @@ namespace SigStat.Benchmark
                 [Scaling] -> none| 01| s";*/
 
 
-        public static IEnumerable<string> EnumerateBenchmarks(string ruleString)
+        public static IEnumerable<Dictionary<string,string>> EnumerateBenchmarks(string ruleString)
         {
             var rules = GrammarEngine.ParseRules(ruleString);
             foreach (var derivedSentence in GrammarEngine.GenerateAllSentences(rules))
             {
-                yield return derivedSentence.Sentence;
+                yield return GrammarEngine.ParseSentence(derivedSentence.Sentence, rules);
             }
         }
 

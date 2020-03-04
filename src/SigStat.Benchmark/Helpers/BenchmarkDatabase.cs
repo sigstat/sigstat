@@ -48,13 +48,11 @@ namespace SigStat.Benchmark.Helpers
 
         }
 
-        public static async Task InsertConfigs(IEnumerable<string> configs)
+        public static async Task InsertConfigs(IEnumerable<Dictionary<string,string>> configs)
         {
-            IEnumerable<BsonDocument> documents = configs.Select(c => new BsonDocument {
-                { "experiment", Program.Experiment },
-                { "data", c },
-                //{ "lockId", BsonNull.Value }
-            });
+            IEnumerable<BsonDocument> documents = configs.Select(c => 
+                new BsonDocument(c)
+                .Add("experiment", Program.Experiment));
 
             await db.GetCollection<BsonDocument>("configs").InsertManyAsync(documents);
         }
@@ -63,7 +61,7 @@ namespace SigStat.Benchmark.Helpers
         /// This is atomic. Returns null if no config can be locked
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> LockNextConfig(int procId)
+        public static async Task<Dictionary<string,string>> LockNextConfig(int procId)
         {
             var configs = db.GetCollection<BsonDocument>("configs");
             var result = await configs.FindOneAndUpdateAsync<BsonDocument>(d =>
@@ -75,7 +73,8 @@ namespace SigStat.Benchmark.Helpers
             if (result == null)
                 return null;
             else
-                return (string)result["data"];
+                return new Dictionary<string,string>(result.ToDictionary()
+                    .Select(p => KeyValuePair.Create(p.Key,p.Value.ToString())));
         }
 
         /// <summary>

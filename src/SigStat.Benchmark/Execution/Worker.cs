@@ -24,6 +24,7 @@ namespace SigStat.Benchmark
 
         static Queue<VerifierBenchmark> LocalBenchmarks = new Queue<VerifierBenchmark>();
 
+        static BenchmarkBuilder benchmarkBuilder;
         static VerifierBenchmark CurrentBenchmark;
         static string CurrentBenchmarkId;
         static BenchmarkResults CurrentResults;
@@ -38,9 +39,8 @@ namespace SigStat.Benchmark
             ProcessId = procId;
             //delayed start
             await Task.Delay(100 * ProcessId);
-            
-            //var initSuccess = await Init(inputDir);
-            //if (!initSuccess) return;
+
+            benchmarkBuilder = new BenchmarkBuilder();
 
             Console.WriteLine($"{DateTime.Now}: Worker is running.");
             if (!Console.IsInputRedirected)
@@ -120,26 +120,26 @@ namespace SigStat.Benchmark
         internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
             Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
-            string next = null;
+            Dictionary<string,string> config = null;
 
             int tries = 3;
             while (tries > 0)
             {//Try get next configuration 3 times
-                next = await BenchmarkDatabase.LockNextConfig(ProcessId);
-                if (next == null)
+                config = await BenchmarkDatabase.LockNextConfig(ProcessId);
+                if (config == null)
                     tries--;
                 else break;
             }
 
-            if (next == null)
+            if (config == null)
             {
                 Console.WriteLine($"{DateTime.Now}: No more tasks in queue.");
                 return null;
             }
 
-            CurrentBenchmarkId = next;
-            Console.WriteLine($"{DateTime.Now}: Loading benchmark {CurrentBenchmarkId}...");
-            return SerializationHelper.Deserialize<VerifierBenchmark>(next);
+            CurrentBenchmarkId = config.GetHashCode().ToString();
+            Console.WriteLine($"{DateTime.Now}: Loading benchmark id {CurrentBenchmarkId}...");
+            return benchmarkBuilder.Build(config);
         }
     }
 }
