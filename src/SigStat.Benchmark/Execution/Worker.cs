@@ -26,7 +26,7 @@ namespace SigStat.Benchmark
 
         static BenchmarkBuilder benchmarkBuilder;
         static VerifierBenchmark CurrentBenchmark;
-        static string CurrentBenchmarkId;
+        static Dictionary<string,string> CurrentBenchmarkConfig;
         static BenchmarkResults CurrentResults;
         static string CurrentResultType;
         static int ProcessId;
@@ -95,7 +95,7 @@ namespace SigStat.Benchmark
                     debugInfo.AppendLine(exc.ToString());
                     //Save to File?
 
-                    await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markExceptionOccured: true);
+                    await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkConfig, debugInfo.ToString(), markExceptionOccured: true);
 
                     continue;
                 }
@@ -104,7 +104,7 @@ namespace SigStat.Benchmark
                 //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markErrorOccured: false);
 
                 Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
-                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
+                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkConfig, CurrentResultType, CurrentResults);
 
                 //LogProcessor.Dump(logger);
                 // MongoDB 
@@ -137,9 +137,9 @@ namespace SigStat.Benchmark
                 return null;
             }
 
-            CurrentBenchmarkId = config.GetHashCode().ToString();
-            Console.WriteLine($"{DateTime.Now}: Loading benchmark id {CurrentBenchmarkId}...");
-            return benchmarkBuilder.Build(config);
+            CurrentBenchmarkConfig = config;
+            Console.WriteLine($"{DateTime.Now}: Loading next benchmark...");
+            return benchmarkBuilder.Build(CurrentBenchmarkConfig);
         }
     }
 }

@@ -81,14 +81,13 @@ namespace SigStat.Benchmark.Helpers
         /// Inserts the result and deletes the locked config
         /// </summary>
         /// <returns></returns>
-        public static async Task SendResults(int procId, string benchmarkId, string resultType, BenchmarkResults results)
+        public static async Task SendResults(int procId, Dictionary<string,string> benchmarkConfig, string resultType, BenchmarkResults results)
         {
-
-            var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize<BenchmarkResults>(results));
+            var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
             var document = new BsonDocument
             {
                 { "experiment", Program.Experiment },
-                { "benchmark", benchmarkId },
+                { "config", new BsonDocument(benchmarkConfig) },
                 { "machine", Environment.MachineName },
                 { "procId", procId },
                 { "end_date", DateTime.Now.ToString() },
@@ -105,14 +104,14 @@ namespace SigStat.Benchmark.Helpers
 
         }
 
-        public static async Task SendLog(int procId, string benchmarkId, string logString, bool markExceptionOccured)
+        public static async Task SendLog(int procId, Dictionary<string,string> benchmarkConfig, string logString, bool markExceptionOccured)
         {
             var logs = db.GetCollection<BsonDocument>("logs");
             await logs.InsertOneAsync(new BsonDocument {
                 { "experiment", Program.Experiment },
                 { "procId", procId },
                 { "machine", System.Environment.MachineName },
-                { "benchmarkId", benchmarkId },
+                { "config", new BsonDocument(benchmarkConfig) },
                 { "log", logString },
                 { "exception_occured", markExceptionOccured }
             });
