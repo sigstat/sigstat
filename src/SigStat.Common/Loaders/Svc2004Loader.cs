@@ -16,7 +16,7 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public static class Svc2004
     {
-        
+
         /// <summary>
         /// X cooridnates from the online signature imported from the SVC2004 database
         /// </summary>
@@ -45,7 +45,7 @@ namespace SigStat.Common.Loaders
         /// Pressure values from the online signature imported from the SVC2004 database
         /// </summary>
         public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("Svc2004.Pressure");
-       
+
 
         /// <summary>
         /// A list of all Svc2004 feature descriptors
@@ -54,7 +54,7 @@ namespace SigStat.Common.Loaders
             typeof(Svc2004)
             .GetFields(BindingFlags.Static | BindingFlags.Public)
             .Where(f => f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition() == typeof(FeatureDescriptor<>))
-            .Select(f=>(FeatureDescriptor)f.GetValue(null))
+            .Select(f => (FeatureDescriptor)f.GetValue(null))
             .ToArray();
 
     }
@@ -62,7 +62,7 @@ namespace SigStat.Common.Loaders
     /// <summary>
     /// Loads SVC2004-format database from .zip
     /// </summary>
-   [JsonObject(MemberSerialization.OptOut)]
+    [JsonObject(MemberSerialization.OptOut)]
     public class Svc2004Loader : DataSetLoader
     {
         /// <summary>
@@ -143,15 +143,15 @@ namespace SigStat.Common.Loaders
         /// <inheritdoc/>
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-           
-        //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-        signerFilter = signerFilter ?? SignerFilter ;
+
+            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
+            signerFilter = signerFilter ?? SignerFilter;
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
             {
                 //cut names if the files are in directories
-                var signatureGroups = zip.Entries.Where(f=>f.Name.EndsWith(".TXT")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
+                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".TXT")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
                 this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
                 foreach (var group in signatureGroups)
                 {
@@ -174,11 +174,11 @@ namespace SigStat.Common.Loaders
                         }
                         signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
                         signer.Signatures.Add(signature);
-                  
-                        
+
+
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
-                  
+
                     yield return signer;
                 }
             }
@@ -206,7 +206,7 @@ namespace SigStat.Common.Loaders
         {
             using (StreamReader sr = new StreamReader(stream))
             {
-                ParseSignature(signature, sr.ReadToEnd().Split( new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None), standardFeatures);
+                ParseSignature(signature, sr.ReadToEnd().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None), standardFeatures);
             }
         }
 
@@ -214,14 +214,14 @@ namespace SigStat.Common.Loaders
         {
             var lines = linesArray
                 .Skip(1)
-                .Where(l=>l!="")
+                .Where(l => l != "")
                 .Select(l => l.Split(' ').Select(s => int.Parse(s)).ToArray())
                 .ToList();
 
             //HACK: same timestamp for measurements does not make sense
             // therefore, we remove the second entry
             // a better solution would be to change the timestamps based on their environments
-            for (int i = 0; i < lines.Count-1; i++)
+            for (int i = 0; i < lines.Count - 1; i++)
             {
                 if (lines[i][2] == lines[i + 1][2])
                 {
@@ -239,8 +239,8 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => (l[3]==1)).ToList());
-                SignatureHelper.CalculateStandardStatistics(signature);
+                signature.SetFeature(Features.Button, lines.Select(l => (l[3] == 1)).ToList());
+                //SignatureHelper.CalculateStandardStatistics(signature); //it's better after gap handling
 
             }
 
@@ -260,12 +260,98 @@ namespace SigStat.Common.Loaders
                     signature.SetFeature(Features.Azimuth, azimuth.Select(a => a / azimuthmax * 2 * Math.PI).ToList());
                     signature.SetFeature(Features.Altitude, altitude.Select(a => a / altitudemax).ToList());
                     signature.SetFeature(Features.Pressure, pressure.Select(a => a / pressuremax).ToList());
-                    SignatureHelper.CalculateStandardStatistics(signature);
+                    //SignatureHelper.CalculateStandardStatistics(signature); //this is redundant
 
                 }
             }
 
-           
+
+            //standardize gap handling
+            //1. find all indexes with button status 0
+            var buttonUpIndexes = signature.GetFeature(Svc2004.Button)
+                .Select((button, index) => new { button, index })
+                .Where(sample => sample.button == 0)
+                .Select(sample => sample.index).ToArray();
+
+            //2. get captured feature lists
+            var features = signature.GetFeatureDescriptors();
+
+            //3. add zero pressure points before points with button status 0
+            foreach (var feature in features)
+            {
+                //insert gap values to List<bool> feature 
+                if (feature.Key == "Button")
+                {
+                    var featureValues = signature.GetFeature<List<bool>>(feature);
+                    InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues);
+                    signature.SetFeature(feature, featureValues);
+                }
+                //insert gap values to List<int> feature 
+                else if (feature.Key.ToUpper().Contains("SVC"))
+                {
+                    //insert zero pressure values for gaps
+                    if (feature.Key.ToUpper().Contains("PRESSURE"))
+                    {
+                        var featureValues = signature.GetFeature<List<int>>(feature);
+                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues, true);
+                        signature.SetFeature(feature, featureValues);
+                    }
+                    //insert gap values to List<int> feature
+                    else
+                    {
+                        var featureValues = signature.GetFeature<List<int>>(feature);
+                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues);
+                        signature.SetFeature(feature, featureValues);
+                    }
+                }
+                //insert gap values to List<double> feature 
+                else
+                {
+                    //insert zero pressure values for gaps
+                    if (feature.Key.ToUpper().Contains("PRESSURE"))
+                    {
+                        var featureValues = signature.GetFeature<List<double>>(feature);
+                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues, true);
+                        signature.SetFeature(feature, featureValues);
+                    }
+                    //insert gap values to List<int> feature
+                    else
+                    {
+                        var featureValues = signature.GetFeature<List<double>>(feature);
+                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues);
+                        signature.SetFeature(feature, featureValues);
+                    }
+                }
+
+                //code moved from standard feature setups
+                if (standardFeatures)
+                    SignatureHelper.CalculateStandardStatistics(signature);
+            }
+        }
+
+        private static void InsertZeroPressurePointsForGapBorders<T>(int[] buttonUpIndexes, List<T> featureValues, bool isPressure = false)
+        {
+            if (isPressure)
+            {
+                foreach (var index in buttonUpIndexes)
+                {
+                    featureValues.Insert(index, default); //insert zero pressure point at the end of the gap
+
+                    if (index != 0)
+                        featureValues.Insert(index, default); //insert zero pressure point in the beginning of the gap
+                }
+            }
+
+            else
+            {
+                foreach (var index in buttonUpIndexes)
+                {
+                    featureValues.Insert(index, featureValues[index]); //insert value of the point which is after the gap
+
+                    if (index != 0)
+                        featureValues.Insert(index, featureValues[index - 1]); //insert value of the point which is before the gap
+                }
+            }
         }
     }
 }
