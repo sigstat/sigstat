@@ -11,7 +11,7 @@ namespace SigStat.Benchmark.Options
     /// </summary>
     public abstract class OptionsBase
     {
-        private const string DefaultConnectionString = "mongodb://localhost:27017/sigstat";
+        private const string DefaultConnectionString = "mongodb://localhost:27017/";
 
         [Option('d', "ConnectionString", Required = false, Default = DefaultConnectionString, HelpText = "MongoDB connection string in Uri format (see: https://docs.mongodb.com/manual/reference/connection-string). Defaults to localhost.")]
         public string ConnectionString { get; set; }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SigStat.Common.Helpers;
 using System.Diagnostics;
+using SigStat.Benchmark.Helpers;
 
 namespace SigStat.Benchmark
 {
@@ -50,27 +51,28 @@ namespace SigStat.Benchmark
             //InputDirectory = inputDir;
             //OutputFile = output;
 
-            var reportFiles = Directory.EnumerateFiles(InputDirectory, "*.xlsx").ToList();
-            reportFiles.Sort();
+            Console.WriteLine($"{DateTime.Now}: Gathering results for experiment {Program.Experiment}...");
+            var results = (await BenchmarkDatabase.GetResults()).ToList();//szebben
 
-            var reports = new ConcurrentBag<ReportLine>();
-            Parallel.ForEach(reportFiles, new ParallelOptions { MaxDegreeOfParallelism = 16 }, rf =>
-            {
-                long eta = reports.Count>0? sw.ElapsedMilliseconds * (reportFiles.Count - reports.Count) / reports.Count:0; 
-                if (reports.Count % 100 == 0)
-                    Console.WriteLine(DateTime.Now + ": " + reports.Count + "/" + reportFiles.Count+" ETA: "+TimeSpan.FromMilliseconds(eta) );
-                reports.Add(LoadReportLine(rf));
-
-            });
-
-
-
-            using (var p = new ExcelPackage())
-            {
-                var sheet = p.Workbook.Worksheets.Add("Summary");
-                sheet.InsertTable(2, 2, reports);
-                p.SaveAs(new FileInfo(OutputFile));
-            }
+            //var reportFiles = Directory.EnumerateFiles(InputDirectory, "*.xlsx").ToList();
+            //reportFiles.Sort();
+            //
+            //var reports = new ConcurrentBag<ReportLine>();
+            //Parallel.ForEach(reportFiles, new ParallelOptions { MaxDegreeOfParallelism = 16 }, rf =>
+            //{
+            //    long eta = reports.Count>0? sw.ElapsedMilliseconds * (reportFiles.Count - reports.Count) / reports.Count:0; 
+            //    if (reports.Count % 100 == 0)
+            //        Console.WriteLine(DateTime.Now + ": " + reports.Count + "/" + reportFiles.Count+" ETA: "+TimeSpan.FromMilliseconds(eta) );
+            //    reports.Add(LoadReportLine(rf));
+            //
+            //});
+            //
+            //using (var p = new ExcelPackage())
+            //{
+            //    var sheet = p.Workbook.Worksheets.Add("Summary");
+            //    sheet.InsertTable(2, 2, reports);
+            //    p.SaveAs(new FileInfo(OutputFile));
+            //}
         }
 
         private static ReportLine LoadReportLine(string filename)

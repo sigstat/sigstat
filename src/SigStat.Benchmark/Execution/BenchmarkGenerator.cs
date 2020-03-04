@@ -18,26 +18,27 @@ namespace SigStat.Benchmark
 {
     class BenchmarkGenerator
     {
-        const string ruleString = @"                
+        //Example ruleString
+        /*const string ruleString = @"                
                 [Benchmark] -> [Database]_[Split]_[Feature]_[Verifier]
-                [Database] -> scv2004 | mcyt100 | dutch | svc2004 | chinese | japanese
+                [Database] -> svc2004 | mcyt100 | dutch | chinese | japanese
                 [Feature] -> X | Y | P | XY | XYP | XP | YP
                 [Split] -> s1 | s2 | s3 | s4
                 [Verifier] -> [Pipeline]_[Classifier]
                 [Classifier] -> Dtw_[Distance] | OptimalDtw_[Distance]
                 [Distance] -> Manhattan | Euclidean
-                [Pipeline]-> [Rotation]_[Gap]_[Resampling]_[Translation]_[Scaling]
-                [Rotation] -> none, rotation
-                [Gap]-> none | filter | fill_[FillInterpolation] | filterandfill_[FillInterpolation]
+                [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Translation]_[Scaling]
+                [Rotation] -> none | rotation
+                [Gap] -> none | filter | fill_[FillInterpolation] | filterandfill_[FillInterpolation]
                 [FillInterpolation] -> linear | cubic
                 [Resampling] -> none | [SampleCount]samples_[ResamplingInterpolation]
                 [SampleCount] -> 50 | 100 | 500 | 1000
                 [ResamplingInterpolation] -> linear | cubic
-                [Translation] -> X0|Y0|XY0|CogX|CogY|CogXY| none 
-                [Scaling] -> none| 01| s";
+                [Translation] -> X0|Y0|XY0|CogX|CogY|CogXY| none
+                [Scaling] -> none| 01| s";*/
 
 
-        public static IEnumerable<string> EnumerateBenchmarks()
+        public static IEnumerable<string> EnumerateBenchmarks(string ruleString)
         {
             var rules = GrammarEngine.ParseRules(ruleString);
             foreach (var derivedSentence in GrammarEngine.GenerateAllSentences(rules))
@@ -47,27 +48,25 @@ namespace SigStat.Benchmark
         }
 
 
-
-        internal static async Task RunAsync(string connectionString)
-        {
-            Console.WriteLine("Generating benchmark configurations...");
-            await GenerateBenchmarks();
-        }
-
         /// <summary>
         /// Clear old configs, generate new configs, write to db
         /// </summary>
         /// <returns></returns>
-        internal static async Task GenerateBenchmarks()
+        internal static async Task RunAsync()
         {
             try
             {
-                Console.WriteLine("Initializing experiment: " + Program.Experiment);
-                await DatabaseHelper.InitializeExperiment(Program.Experiment);
+                //Using the 'rules' db collection to load rules for current experiment
+                Console.WriteLine($"Loading rules for experiment {Program.Experiment}...");
+                string ruleString = await BenchmarkDatabase.GetGrammarRules();
 
-                Console.WriteLine($"Generating combinations, writing to db...");
-                var configs = EnumerateBenchmarks();
-                await DatabaseHelper.InsertConfigs(Program.Experiment, configs);
+                Console.WriteLine("Initializing experiment: " + Program.Experiment);
+                await BenchmarkDatabase.InitializeExperiment();
+
+                Console.WriteLine($"Generating combinations, writing to database...");
+                var configs = EnumerateBenchmarks(ruleString);
+                await BenchmarkDatabase.InsertConfigs(configs);
+
                 Console.WriteLine("Ready.");
             }
             catch (Exception e)

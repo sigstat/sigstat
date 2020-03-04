@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Benchmark.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace SigStat.Benchmark
     {
         enum Action { Run, Refresh, Abort };
 
-        internal static async Task RunAsync(string configsPath = null, string resultsPath = null)
+        internal static async Task RunAsync()
         {        
 
             Action action = Action.Run;
@@ -36,13 +37,18 @@ namespace SigStat.Benchmark
 
                 if (((DateTime.Now - lastRefresh).TotalMinutes > 1) || action == Action.Refresh)
                 {
+                    var finished = BenchmarkDatabase.CountFinished();
+                    var locked = BenchmarkDatabase.CountLocked();
+                    var queued = BenchmarkDatabase.CountQueued();
+                    var errors = BenchmarkDatabase.CountExceptions();
+                    Task.WaitAll(finished, locked, queued, errors);
 
-                    //TODO: mongodb get collection configs, count d=>d.Count
-
-                    //var finishedCnt = Directory.EnumerateFiles(resultsPath, "*.xlsx").Count();
-                    //var lockedCnt = Directory.EnumerateFiles(configsPath, "*.json.lock").Count();
-                    //var queuedCnt = Directory.EnumerateFiles(configsPath, "*.json").Count();
-                    //Console.WriteLine($"{DateTime.Now}: Finished: {finishedCnt}. In progress: {lockedCnt}. Queued: {queuedCnt}");
+                    Console.WriteLine(
+                        $"{DateTime.Now}: " +
+                        $"Finished: {finished.Result}. " +
+                        $"Locked: {locked.Result}. " +
+                        $"Queued: {queued.Result}. " +
+                        $"Errors: {errors.Result}.");
 
                     lastRefresh = DateTime.Now;
                     action = Action.Run;

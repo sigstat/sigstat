@@ -95,13 +95,16 @@ namespace SigStat.Benchmark
                     debugInfo.AppendLine(exc.ToString());
                     //Save to File?
 
-                    await DatabaseHelper.SendLog(Program.Experiment, ProcessId, CurrentBenchmarkId, debugInfo.ToString());
+                    await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markExceptionOccured: true);
 
                     continue;
                 }
 
+                //Send log even if no error
+                //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markErrorOccured: false);
+
                 Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
-                await DatabaseHelper.SendResults(Program.Experiment, procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
+                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
 
                 //LogProcessor.Dump(logger);
                 // MongoDB 
@@ -122,7 +125,7 @@ namespace SigStat.Benchmark
             int tries = 3;
             while (tries > 0)
             {//Try get next configuration 3 times
-                next = await DatabaseHelper.LockNextConfig(Program.Experiment, ProcessId);
+                next = await BenchmarkDatabase.LockNextConfig(ProcessId);
                 if (next == null)
                     tries--;
                 else break;

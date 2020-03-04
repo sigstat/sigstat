@@ -17,7 +17,7 @@ namespace SigStat.Benchmark.Options
 
         public override Task RunAsync()
         {
-            return BenchmarkGenerator.RunAsync(ConnectionString);
+            return BenchmarkGenerator.RunAsync();
         }
     }
 }
