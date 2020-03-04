@@ -65,7 +65,7 @@ namespace SigStat.Benchmark.Helpers
         {
             var configs = db.GetCollection<BsonDocument>("configs");
             var result = await configs.FindOneAndUpdateAsync<BsonDocument>(d =>
-                d["experiment"] == Program.Experiment && d["lockId"] == BsonNull.Value,
+                d["experiment"] == Program.Experiment && d["lockId"] == BsonNull.Value,// nincs result && +1 órája lockolva && nincs error
                 Builders<BsonDocument>.Update
                     .Set("lockId", procId),
                 new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false }

@@ -21,21 +21,23 @@ namespace SigStat.Benchmark
         //Example ruleString
         /*const string ruleString = @"                
                 [Benchmark] -> [Database]_[Split]_[Feature]_[Verifier]
-                [Database] -> svc2004 | mcyt100 | dutch | chinese | japanese
-                [Feature] -> X | Y | P | XY | XYP | XP | YP
-                [Split] -> s1 | s2 | s3 | s4
+                [Database] -> *svc2004 | mcyt100 | dutch | chinese | japanese
+                [Feature] -> *X | Y | P | XY | XYP | XP | YP
+                [Split] -> *s1 | s2 | s3 | s4
                 [Verifier] -> [Pipeline]_[Classifier]
-                [Classifier] -> Dtw_[Distance] | OptimalDtw_[Distance]
-                [Distance] -> Manhattan | Euclidean
-                [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Translation]_[Scaling]
-                [Rotation] -> none | rotation
-                [Gap] -> none | filter | fill_[FillInterpolation] | filterandfill_[FillInterpolation]
+                [Classifier] -> *Dtw_[Distance] | OptimalDtw_[Distance]
+                [Distance] -> *Manhattan | Euclidean
+                [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Scaling]_[Translation]
+                [Rotation] -> *none | rotation
+                [Gap] -> [FilterGap]_[FillGap]
+                [FilterGap] -> none | filter 
+                [FillGap] -> none | fill_[FillInterpolation]
                 [FillInterpolation] -> linear | cubic
                 [Resampling] -> none | [SampleCount]samples_[ResamplingInterpolation]
                 [SampleCount] -> 50 | 100 | 500 | 1000
                 [ResamplingInterpolation] -> linear | cubic
-                [Translation] -> X0|Y0|XY0|CogX|CogY|CogXY| none
-                [Scaling] -> none| 01| s";*/
+                [Scaling] -> none| scale1| scaleS
+                [Translation] -> X0|Y0|XY0|CogX|CogY|CogXY| none";*/
 
 
         public static IEnumerable<Dictionary<string,string>> EnumerateBenchmarks(string ruleString)
