@@ -59,17 +59,20 @@ namespace SigStat.Benchmark
             try
             {
                 //Using the 'rules' db collection to load rules for current experiment
-                Console.WriteLine($"Loading rules for experiment {Program.Experiment}...");
+                Console.WriteLine($"{DateTime.Now}: Loading rules for experiment {Program.Experiment}...");
                 string ruleString = await BenchmarkDatabase.GetGrammarRules();
 
-                Console.WriteLine("Initializing experiment: " + Program.Experiment);
+                Console.WriteLine($"{DateTime.Now}: Initializing experiment...");
                 await BenchmarkDatabase.InitializeExperiment();
 
-                Console.WriteLine($"Generating combinations, writing to database...");
+                Console.WriteLine($"{DateTime.Now}: Generating combinations...");
                 var configs = EnumerateBenchmarks(ruleString);
+
+                Console.WriteLine($"{DateTime.Now}: Writing {configs.Count()} items to database...");
+
                 await BenchmarkDatabase.InsertConfigs(configs);
 
-                Console.WriteLine("Ready.");
+                Console.WriteLine($"{DateTime.Now}: Ready.");
             }
             catch (Exception e)
             {
