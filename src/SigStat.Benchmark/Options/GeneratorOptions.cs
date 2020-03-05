@@ -13,7 +13,7 @@ namespace SigStat.Benchmark.Options
     class GeneratorOptions : OptionsBase
     {
         //generator options
-        //clear configs, clear results, clear summary
+        //clear previous experiment. Deafult: true
 
         public override Task RunAsync()
         {

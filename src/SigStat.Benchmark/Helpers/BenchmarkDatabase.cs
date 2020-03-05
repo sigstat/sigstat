@@ -18,11 +18,14 @@ namespace SigStat.Benchmark.Helpers
     {
         private static MongoClient client;
         private static IMongoDatabase db;
+        private static IMongoCollection<BsonDocument> experimentCollection;
+
 
         public static async Task<bool> InitializeConnection(string connectionString)
         {
             client = new MongoClient(connectionString);
             db = client.GetDatabase("benchmarks");
+            experimentCollection = db.GetCollection<BsonDocument>(Program.Experiment);
 
             //TODO: Test connection, with throttling similar to Worker..
             //return false;
@@ -32,19 +35,34 @@ namespace SigStat.Benchmark.Helpers
 
         public static async Task InitializeExperiment()
         {
-            //TODO: add arguments to clear results, logs etc. of previous experiment run
+            bool experimentExists = await (await db.ListCollectionsAsync(new ListCollectionsOptions
+            {
+                Filter = new BsonDocument("name", Program.Experiment)
+            })).AnyAsync();
 
-            var result = await db.GetCollection<BsonDocument>("configs")
-                .DeleteManyAsync(d => d["experiment"] == Program.Experiment);
-            Console.WriteLine($"Deleted {result.DeletedCount} old configurations.");
+            //Clear previous experiment
+            bool clear = true;//default
+            if (experimentExists)
+            {
+                if (!Console.IsInputRedirected)
+                {
+                    Console.WriteLine("This experiment already exists. Clear previous results? (y/n)");
+                    if (Console.ReadKey(true).Key != ConsoleKey.Y)
+                    {
+                        clear = false;
+                    }
+                }
+            }
 
-            //TODO: Keep track of experiments and their previous runs?
-            //insert or update experiment (date etc.)
-            //await db.GetCollection<BsonDocument>("experiments")
-            //    .UpdateOneAsync(
-            //        d => d["name"] == experimentName, 
-            //        Builders<BsonDocument>.Update.Set("date", DateTime.Now.ToString()), 
-            //        new UpdateOptions{ IsUpsert = true });
+            if (clear)
+            {
+                Console.WriteLine($"{DateTime.Now}: Clearing...");
+                var result = await experimentCollection.DeleteManyAsync(d => true);
+                Console.WriteLine($"{DateTime.Now}: Deleted {result.DeletedCount} documents.");
+            }
+
+            //TODO: Keep track of previous runs of the experiment?
+            //TODO: Store initialization DateTime?
 
         }
 
@@ -52,10 +70,9 @@ namespace SigStat.Benchmark.Helpers
         {
             IEnumerable<BsonDocument> documents = configs.Select(c => 
                 new BsonDocument()
-                .Add("config", c)
-                .Add("experiment", Program.Experiment));
+                .Add("config", c));
 
-            await db.GetCollection<BsonDocument>("configs").InsertManyAsync(documents);
+            await experimentCollection.InsertManyAsync(documents);
         }
 
         /// <summary>
@@ -64,13 +81,14 @@ namespace SigStat.Benchmark.Helpers
         /// <returns></returns>
         public static async Task<string> LockNextConfig(int procId)
         {
-            var configs = db.GetCollection<BsonDocument>("configs");
-            var result = await configs.FindOneAndUpdateAsync<BsonDocument>(d =>
-                d["experiment"] == Program.Experiment && d["lockId"] == BsonNull.Value,// nincs result && +1 órája lockolva && nincs error
+            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                d["result"] == BsonNull.Value && ((d["exception"] == BsonNull.Value && d["lockDate"] == BsonNull.Value) || d["lockDate"].AsBsonDateTime < new BsonDateTime(DateTime.Now.AddHours(-1))),
                 Builders<BsonDocument>.Update
-                    .Set("lockId", procId),
-                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false }
-                );
+                    .Set("lockDate", DateTime.Now)
+                    .Set("machine", Environment.MachineName)
+                    .Set("procId", procId),
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+
             if (result == null)
                 return null;
             else
@@ -78,84 +96,81 @@ namespace SigStat.Benchmark.Helpers
         }
 
         /// <summary>
-        /// Inserts the result and deletes the locked config
+        /// Inserts the results
         /// </summary>
         /// <returns></returns>
         public static async Task SendResults(int procId, string benchmarkConfig, string resultType, BenchmarkResults results)
         {
             var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
-            var document = new BsonDocument
-            {
-                { "experiment", Program.Experiment },
-                { "config", benchmarkConfig },
-                { "machine", Environment.MachineName },
-                { "procId", procId },
-                { "end_date", DateTime.Now.ToString() },
-                { "resultType", resultType },
-                { "results", bsonResults }
-            };
-            var collection = db.GetCollection<BsonDocument>("results");
-            await collection.InsertOneAsync(document);
 
-            //Delete config file
-            var configs = db.GetCollection<BsonDocument>("configs");
-            var result = await configs.FindOneAndDeleteAsync(d =>
-                d["experiment"] == Program.Experiment && d["lockId"] == procId);
+            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
+                Builders<BsonDocument>.Update
+                    .Set("end_date", DateTime.Now)
+                    .Set("resultType", resultType)
+                    .Set("results", bsonResults),
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
         }
 
-        public static async Task SendLog(int procId, string benchmarkConfig, string logString, bool markExceptionOccured)
+        /// <summary>
+        /// Send log after exception.
+        /// </summary>
+        public static async Task SendException(int procId, string benchmarkConfig, string logString)
         {
-            var logs = db.GetCollection<BsonDocument>("logs");
-            await logs.InsertOneAsync(new BsonDocument {
-                { "experiment", Program.Experiment },
-                { "procId", procId },
-                { "machine", System.Environment.MachineName },
-                { "config", benchmarkConfig },
-                { "log", logString },
-                { "exception_occured", markExceptionOccured }
-            });
+            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
+                Builders<BsonDocument>.Update
+                    .Set("end_date", DateTime.Now)
+                    //.Set("resultType", "exception")
+                    .Set("exception", logString),
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+
         }
 
         //IAsyncEnumerable..
         //Sort?
         public static async Task<IEnumerable<BenchmarkResults>> GetResults()
         {
-            var resultsCollection = db.GetCollection<BsonDocument>("results");
-            var cursor = await resultsCollection.Find(d => d["experiment"] == Program.Experiment).ToCursorAsync();
+            //var resultsCollection = db.GetCollection<BsonDocument>("results");
+            var cursor = await experimentCollection.Find(d => d["experiment"] == Program.Experiment).ToCursorAsync();
             return cursor.ToEnumerable().Select(d => BsonSerializer.Deserialize<BenchmarkResults>(d));
-        }
-
-        public static async Task<int> CountFinished()
-        {
-            var resultsCollection = db.GetCollection<BsonDocument>("results");
-            return (int) await resultsCollection.CountDocumentsAsync(d => d["experiment"] == Program.Experiment);
-        }
-
-        public static async Task<int> CountLocked()
-        {
-            var configsCollection = db.GetCollection<BsonDocument>("configs");
-            return (int)await configsCollection.CountDocumentsAsync(d => d["experiment"] == Program.Experiment && d["lockId"] != BsonNull.Value);
         }
 
         public static async Task<int> CountQueued()
         {
-            var configsCollection = db.GetCollection<BsonDocument>("configs");
-            return (int)await configsCollection.CountDocumentsAsync(d => d["experiment"] == Program.Experiment && d["lockId"] == BsonNull.Value);
+            return (int) await experimentCollection.CountDocumentsAsync(d =>
+                d["results"] == BsonNull.Value &&
+                d["exception"] == BsonNull.Value &&
+                d["lockDate"] == BsonNull.Value);
         }
-        
-        public static async Task<int> CountExceptions()
+        public static async Task<int> CountLocked()
         {
-            var logsCollection = db.GetCollection<BsonDocument>("logs");
-            return (int)await logsCollection.CountDocumentsAsync(d => d["experiment"] == Program.Experiment && d["exception_occured"] ==true);
+            return (int) await experimentCollection.CountDocumentsAsync(d =>
+                d["results"] == BsonNull.Value &&
+                d["exception"] == BsonNull.Value &&
+                d["lockDate"] != BsonNull.Value);
         }
 
+        public static async Task<int> CountFinished()
+        {
+            return (int) await experimentCollection.CountDocumentsAsync(d => 
+                d["results"] != BsonNull.Value);
+        }
+
+        public static async Task<int> CountExceptions()
+        {
+            return (int) await experimentCollection.CountDocumentsAsync(d => 
+                d["exception"] != BsonNull.Value);
+        }
+
+        //TODO: Review rules collection
         public static async Task<string> GetGrammarRules()
         {
             var rulesCollection = db.GetCollection<BsonDocument>("rules");
             var doc = await rulesCollection.Find(d => d["experiment"] == Program.Experiment).FirstAsync();
             var rules = doc["rules"].AsBsonArray.Select(v=>v.AsString);
-            return String.Join(Environment.NewLine, rules);
+            return string.Join(Environment.NewLine, rules);
         }
 
     }

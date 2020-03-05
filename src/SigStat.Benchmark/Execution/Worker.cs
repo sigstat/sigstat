@@ -99,13 +99,13 @@ namespace SigStat.Benchmark
                     debugInfo.AppendLine(exc.ToString());
                     //Save to File?
 
-                    await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markExceptionOccured: true);
+                    await BenchmarkDatabase.SendException(ProcessId, CurrentBenchmarkId, debugInfo.ToString());
 
                     continue;
                 }
 
                 //Send log even if no error
-                //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markErrorOccured: false);
+                //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString());
 
                 Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
                 await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
