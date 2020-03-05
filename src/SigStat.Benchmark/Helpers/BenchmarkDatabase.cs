@@ -48,10 +48,11 @@ namespace SigStat.Benchmark.Helpers
 
         }
 
-        public static async Task InsertConfigs(IEnumerable<Dictionary<string,string>> configs)
+        public static async Task InsertConfigs(IEnumerable<string> configs)
         {
             IEnumerable<BsonDocument> documents = configs.Select(c => 
-                new BsonDocument(c)
+                new BsonDocument()
+                .Add("config", c)
                 .Add("experiment", Program.Experiment));
 
             await db.GetCollection<BsonDocument>("configs").InsertManyAsync(documents);
@@ -61,7 +62,7 @@ namespace SigStat.Benchmark.Helpers
         /// This is atomic. Returns null if no config can be locked
         /// </summary>
         /// <returns></returns>
-        public static async Task<Dictionary<string,string>> LockNextConfig(int procId)
+        public static async Task<string> LockNextConfig(int procId)
         {
             var configs = db.GetCollection<BsonDocument>("configs");
             var result = await configs.FindOneAndUpdateAsync<BsonDocument>(d =>
@@ -73,21 +74,20 @@ namespace SigStat.Benchmark.Helpers
             if (result == null)
                 return null;
             else
-                return new Dictionary<string,string>(result.ToDictionary()
-                    .Select(p => KeyValuePair.Create(p.Key,p.Value.ToString())));
+                return (string)result["config"];
         }
 
         /// <summary>
         /// Inserts the result and deletes the locked config
         /// </summary>
         /// <returns></returns>
-        public static async Task SendResults(int procId, Dictionary<string,string> benchmarkConfig, string resultType, BenchmarkResults results)
+        public static async Task SendResults(int procId, string benchmarkConfig, string resultType, BenchmarkResults results)
         {
             var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
             var document = new BsonDocument
             {
                 { "experiment", Program.Experiment },
-                { "config", new BsonDocument(benchmarkConfig) },
+                { "config", benchmarkConfig },
                 { "machine", Environment.MachineName },
                 { "procId", procId },
                 { "end_date", DateTime.Now.ToString() },
@@ -104,14 +104,14 @@ namespace SigStat.Benchmark.Helpers
 
         }
 
-        public static async Task SendLog(int procId, Dictionary<string,string> benchmarkConfig, string logString, bool markExceptionOccured)
+        public static async Task SendLog(int procId, string benchmarkConfig, string logString, bool markExceptionOccured)
         {
             var logs = db.GetCollection<BsonDocument>("logs");
             await logs.InsertOneAsync(new BsonDocument {
                 { "experiment", Program.Experiment },
                 { "procId", procId },
                 { "machine", System.Environment.MachineName },
-                { "config", new BsonDocument(benchmarkConfig) },
+                { "config", benchmarkConfig },
                 { "log", logString },
                 { "exception_occured", markExceptionOccured }
             });

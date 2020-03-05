@@ -26,10 +26,11 @@ namespace SigStat.Benchmark
 
         static BenchmarkBuilder benchmarkBuilder;
         static VerifierBenchmark CurrentBenchmark;
-        static Dictionary<string,string> CurrentBenchmarkConfig;
+        static string CurrentBenchmarkId;
         static BenchmarkResults CurrentResults;
         static string CurrentResultType;
         static int ProcessId;
+        static GrammarEngine.ProductionRule[] rules;
 
         internal static async Task RunAsync(int procId, int maxThreads)
         {
@@ -39,6 +40,9 @@ namespace SigStat.Benchmark
             ProcessId = procId;
             //delayed start
             await Task.Delay(100 * ProcessId);
+
+            string rulesString = await BenchmarkDatabase.GetGrammarRules();
+            rules = GrammarEngine.ParseRules(rulesString);
 
             benchmarkBuilder = new BenchmarkBuilder();
 
@@ -95,7 +99,7 @@ namespace SigStat.Benchmark
                     debugInfo.AppendLine(exc.ToString());
                     //Save to File?
 
-                    await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkConfig, debugInfo.ToString(), markExceptionOccured: true);
+                    await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markExceptionOccured: true);
 
                     continue;
                 }
@@ -104,7 +108,7 @@ namespace SigStat.Benchmark
                 //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString(), markErrorOccured: false);
 
                 Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
-                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkConfig, CurrentResultType, CurrentResults);
+                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
 
                 //LogProcessor.Dump(logger);
                 // MongoDB 
@@ -120,7 +124,7 @@ namespace SigStat.Benchmark
         internal static async Task<VerifierBenchmark> GetNextBenchmark()
         {
             Console.WriteLine($"{DateTime.Now}: Looking for unprocessed configurations...");
-            Dictionary<string,string> config = null;
+            string config = null;
 
             int tries = 3;
             while (tries > 0)
@@ -137,9 +141,10 @@ namespace SigStat.Benchmark
                 return null;
             }
 
-            CurrentBenchmarkConfig = config;
-            Console.WriteLine($"{DateTime.Now}: Loading next benchmark...");
-            return benchmarkBuilder.Build(CurrentBenchmarkConfig);
+            CurrentBenchmarkId = config;
+            Console.WriteLine($"{DateTime.Now}: Building benchmark {CurrentBenchmarkId} ...");
+            var configDict = GrammarEngine.ParseSentence(CurrentBenchmarkId, rules);
+            return benchmarkBuilder.Build(configDict);
         }
     }
 }

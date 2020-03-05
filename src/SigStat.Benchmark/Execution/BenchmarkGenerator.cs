@@ -40,12 +40,12 @@ namespace SigStat.Benchmark
                 [Translation] -> X0|Y0|XY0|CogX|CogY|CogXY| none";*/
 
 
-        public static IEnumerable<Dictionary<string,string>> EnumerateBenchmarks(string ruleString)
+        public static IEnumerable<string> EnumerateBenchmarks(string ruleString)
         {
             var rules = GrammarEngine.ParseRules(ruleString);
             foreach (var derivedSentence in GrammarEngine.GenerateAllSentences(rules))
             {
-                yield return GrammarEngine.ParseSentence(derivedSentence.Sentence, rules);
+                yield return derivedSentence.Sentence;
             }
         }
 
