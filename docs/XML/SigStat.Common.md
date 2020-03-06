@@ -122,6 +122,11 @@
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.TimeValues')
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.GetValue(System.Double)')
+- [DataCleaningHelper](#T-SigStat-Common-Helpers-DataCleaningHelper 'SigStat.Common.Helpers.DataCleaningHelper')
+  - [InsertDuplicatedValuesForGapBorderPoints\`\`1(gapIndexes,featureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertDuplicatedValuesForGapBorderPoints``1-System-Int32[],System-Collections-Generic-List{``0}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints``1(System.Int32[],System.Collections.Generic.List{``0})')
+  - [InsertPenUpValuesForGapBorderPoints(gapIndexes,penUpValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})')
+  - [InsertPressureValuesForGapBorderPoints(gapIndexes,pressureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPressureValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPressureValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double})')
+  - [InsertTimestampsForGapBorderPoints(gapIndexes,timestamps,difference)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertTimestampsForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double},System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.InsertTimestampsForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double},System.Double)')
 - [DataSetLoader](#T-SigStat-Common-Loaders-DataSetLoader 'SigStat.Common.Loaders.DataSetLoader')
   - [Logger](#P-SigStat-Common-Loaders-DataSetLoader-Logger 'SigStat.Common.Loaders.DataSetLoader.Logger')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-DataSetLoader-SamplingFrequency 'SigStat.Common.Loaders.DataSetLoader.SamplingFrequency')
@@ -2125,6 +2130,80 @@ Gets the value.
 or
 List of feature values is null |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | The given timestamp is not in the range of TimeValues |
+
+<a name='T-SigStat-Common-Helpers-DataCleaningHelper'></a>
+## DataCleaningHelper `type`
+
+##### Namespace
+
+SigStat.Common.Helpers
+
+##### Summary
+
+Helper class for cleaning online signature data in loaders
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertDuplicatedValuesForGapBorderPoints``1-System-Int32[],System-Collections-Generic-List{``0}-'></a>
+### InsertDuplicatedValuesForGapBorderPoints\`\`1(gapIndexes,featureValues) `method`
+
+##### Summary
+
+Insert feature values for border points of gaps in an online signature using duplicated neighbour values
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| gapIndexes | [System.Int32[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32[] 'System.Int32[]') | Indexes of points where the gaps end in the signature |
+| featureValues | [System.Collections.Generic.List{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{``0}') | Feature values of the signature |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Type of the values in featureValues |
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}-'></a>
+### InsertPenUpValuesForGapBorderPoints(gapIndexes,penUpValues) `method`
+
+##### Summary
+
+Insert PenUp values for border points of gaps in an online signature
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| gapIndexes | [System.Int32[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32[] 'System.Int32[]') | Indexes of points where the gaps end in the signature |
+| penUpValues | [System.Collections.Generic.List{System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Boolean}') | PenUp values of the signature |
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertPressureValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double}-'></a>
+### InsertPressureValuesForGapBorderPoints(gapIndexes,pressureValues) `method`
+
+##### Summary
+
+Insert zero pressure values for border points of gaps in an online signature
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| gapIndexes | [System.Int32[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32[] 'System.Int32[]') | Indexes of points where the gaps end in the signature |
+| pressureValues | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | Pressure values of the signature |
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertTimestampsForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double},System-Double-'></a>
+### InsertTimestampsForGapBorderPoints(gapIndexes,timestamps,difference) `method`
+
+##### Summary
+
+Inserts timestamps for border points of gaps in an online signature
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| gapIndexes | [System.Int32[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32[] 'System.Int32[]') | Indexes of points where the gaps end in the signature |
+| timestamps | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | Timestamps of the signature |
+| difference | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Defines the difference between the inserted timestamps and their neighbour timestamp |
 
 <a name='T-SigStat-Common-Loaders-DataSetLoader'></a>
 ## DataSetLoader `type`

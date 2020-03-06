@@ -90,7 +90,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 case OriginType.Minimum:
                     ExtremaTransform(signature, false);
                     break;
-                case OriginType.Maximum:
+                case OriginType.Maximum: //TODO: think over the proper behavior
                     ExtremaTransform(signature, true);
                     break;
                 case OriginType.Predefined:

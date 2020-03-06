@@ -872,6 +872,41 @@
             <param name="l"></param>
             <returns></returns>
         </member>
+        <member name="T:SigStat.Common.Helpers.DataCleaningHelper">
+            <summary>
+            Helper class for cleaning online signature data in loaders
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertTimestampsForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double},System.Double)">
+            <summary>
+            Inserts timestamps for border points of gaps in an online signature
+            </summary>
+            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
+            <param name="timestamps">Timestamps of the signature</param>
+            <param name="difference">Defines the difference between the inserted timestamps and their neighbour timestamp</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})">
+            <summary>
+            Insert PenUp values for border points of gaps in an online signature
+            </summary>
+            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
+            <param name="penUpValues">PenUp values of the signature</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertPressureValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double})">
+            <summary>
+            Insert zero pressure values for border points of gaps in an online signature
+            </summary>
+            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
+            <param name="pressureValues">Pressure values of the signature</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints``1(System.Int32[],System.Collections.Generic.List{``0})">
+            <summary>
+            Insert feature values for border points of gaps in an online signature using duplicated neighbour values
+            </summary>
+            <typeparam name="T">Type of the values in featureValues</typeparam>
+            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
+            <param name="featureValues">Feature values of the signature</param>
+        </member>
         <member name="T:SigStat.Common.Helpers.ExcelHelper">
             <summary>
             Extension methods for common EPPlus tasks

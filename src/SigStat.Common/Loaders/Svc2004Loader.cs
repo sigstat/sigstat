@@ -240,8 +240,6 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.Button, lines.Select(l => (l[3] == 1)).ToList());
-                //SignatureHelper.CalculateStandardStatistics(signature); //it's better after gap handling
-
             }
 
             if (lines[0].Length == 7) // Task2
@@ -260,98 +258,58 @@ namespace SigStat.Common.Loaders
                     signature.SetFeature(Features.Azimuth, azimuth.Select(a => a / azimuthmax * 2 * Math.PI).ToList());
                     signature.SetFeature(Features.Altitude, altitude.Select(a => a / altitudemax).ToList());
                     signature.SetFeature(Features.Pressure, pressure.Select(a => a / pressuremax).ToList());
-                    //SignatureHelper.CalculateStandardStatistics(signature); //this is redundant
-
                 }
             }
 
-
-            //standardize gap handling
-            //1. find all indexes with button status 0
-            var buttonUpIndexes = signature.GetFeature(Svc2004.Button)
+            if (standardFeatures)
+            {
+                //Standardize gap handling
+                //1. Find all indexes with button status 0
+                var buttonUpIndexes = signature.GetFeature(Svc2004.Button)
                 .Select((button, index) => new { button, index })
                 .Where(sample => sample.button == 0)
                 .Select(sample => sample.index).ToArray();
 
-            //2. get captured feature lists
-            var features = signature.GetFeatureDescriptors();
+                //2. Get captured feature lists
+                var features = signature.GetFeatureDescriptors();
 
-            //3. add zero pressure points before points with button status 0
-            foreach (var feature in features)
-            {
-                //insert gap values to List<bool> feature 
-                if (feature.Key == "Button")
+                //3. Insert 2 zero pressure points before points with button status 0
+                foreach (var feature in features)
                 {
-                    var featureValues = signature.GetFeature<List<bool>>(feature);
-                    InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues);
-                    signature.SetFeature(feature, featureValues);
-                }
-                //insert gap values to List<int> feature 
-                else if (feature.Key.ToUpper().Contains("SVC"))
-                {
-                    //insert zero pressure values for gaps
-                    if (feature.Key.ToUpper().Contains("PRESSURE"))
+                    if (!feature.Key.Contains("Svc"))
                     {
-                        var featureValues = signature.GetFeature<List<int>>(feature);
-                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues, true);
-                        signature.SetFeature(feature, featureValues);
-                    }
-                    //insert gap values to List<int> feature
-                    else
-                    {
-                        var featureValues = signature.GetFeature<List<int>>(feature);
-                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues);
-                        signature.SetFeature(feature, featureValues);
-                    }
-                }
-                //insert gap values to List<double> feature 
-                else
-                {
-                    //insert zero pressure values for gaps
-                    if (feature.Key.ToUpper().Contains("PRESSURE"))
-                    {
-                        var featureValues = signature.GetFeature<List<double>>(feature);
-                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues, true);
-                        signature.SetFeature(feature, featureValues);
-                    }
-                    //insert gap values to List<int> feature
-                    else
-                    {
-                        var featureValues = signature.GetFeature<List<double>>(feature);
-                        InsertZeroPressurePointsForGapBorders(buttonUpIndexes, featureValues);
-                        signature.SetFeature(feature, featureValues);
+                        switch (feature.Key)
+                        {
+                            case "T":
+                                var timestamps = signature.GetFeature(Features.T);
+                                DataCleaningHelper.InsertTimestampsForGapBorderPoints(buttonUpIndexes, timestamps, 1);
+                                signature.SetFeature(Features.T, timestamps);
+                                break;
+                            case "Pressure":
+                                var pressureValues = signature.GetFeature(Features.Pressure);
+                                DataCleaningHelper.InsertPressureValuesForGapBorderPoints(buttonUpIndexes, pressureValues);
+                                signature.SetFeature(Features.Pressure, pressureValues);
+                                break;
+                            case "Button":
+                                var penUpValues = signature.GetFeature(Features.Button);
+                                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(buttonUpIndexes, penUpValues);
+                                signature.SetFeature(Features.Button, penUpValues);
+                                break;
+                            default:
+                                var featureValues = signature.GetFeature<List<double>>(feature);
+                                DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints(buttonUpIndexes, featureValues);
+                                signature.SetFeature(feature, featureValues);
+                                break;
+                        }
                     }
                 }
 
-                //code moved from standard feature setups
-                if (standardFeatures)
-                    SignatureHelper.CalculateStandardStatistics(signature);
+                //This function adds a new feature to the signature, which would cause errors during the gap handling data cleaning
+                SignatureHelper.CalculateStandardStatistics(signature);
             }
         }
 
-        private static void InsertZeroPressurePointsForGapBorders<T>(int[] buttonUpIndexes, List<T> featureValues, bool isPressure = false)
-        {
-            if (isPressure)
-            {
-                foreach (var index in buttonUpIndexes)
-                {
-                    featureValues.Insert(index, default); //insert zero pressure point at the end of the gap
 
-                    if (index != 0)
-                        featureValues.Insert(index, default); //insert zero pressure point in the beginning of the gap
-                }
-            }
 
-            else
-            {
-                foreach (var index in buttonUpIndexes)
-                {
-                    featureValues.Insert(index, featureValues[index]); //insert value of the point which is after the gap
-
-                    if (index != 0)
-                        featureValues.Insert(index, featureValues[index - 1]); //insert value of the point which is before the gap
-                }
-            }
-        }
     }
 }

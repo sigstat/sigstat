@@ -158,7 +158,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 }
 
                 if (i == 0) { signature.SetFeature(TimeOutputFeature, timeValues); }
-                signature.SetFeature(OutputFeatures[i], values);
+                signature.SetFeature(OutputFeatures[i], values); //TODO: make sure InputFeatures-OutputFeatures are in pairs
             }
 
 
