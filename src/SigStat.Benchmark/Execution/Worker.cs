@@ -1,18 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SigStat.Benchmark.Helpers;
-using SigStat.Benchmark.Model;
 using SigStat.Common;
-using SigStat.Common.Helpers;
-using SigStat.Common.Loaders;
+using SigStat.Common.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +18,6 @@ namespace SigStat.Benchmark
         static BenchmarkBuilder benchmarkBuilder;
         static VerifierBenchmark CurrentBenchmark;
         static string CurrentBenchmarkId;
-        static BenchmarkResults CurrentResults;
         static string CurrentResultType;
         static int ProcessId;
         static GrammarEngine.ProductionRule[] rules;
@@ -67,7 +57,7 @@ namespace SigStat.Benchmark
                 }
 
 
-                var logger = new SimpleConsoleLogger();//default log level: Information
+                var logger = new ReportInformationLogger();
                 logger.Logged += (m, e, l) =>
                 {
                     debugInfo.AppendLine(m);
@@ -87,9 +77,9 @@ namespace SigStat.Benchmark
                 try
                 {
                     if (maxThreads>0)
-                        CurrentResults = CurrentBenchmark.Execute(maxThreads);
+                        CurrentBenchmark.Execute(maxThreads);
                     else
-                        CurrentResults = CurrentBenchmark.Execute(true);//default: no restriction 
+                        CurrentBenchmark.Execute(true);//default: no restriction 
                     CurrentResultType = "Success";
                 }
                 catch (Exception exc)
@@ -108,7 +98,8 @@ namespace SigStat.Benchmark
                 //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString());
 
                 Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
-                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, CurrentResults);
+                var logmodel = LogAnalyzer.GetBenchmarkLogModel(logger.ReportLogs);
+                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, logmodel);
 
                 //LogProcessor.Dump(logger);
                 // MongoDB 
