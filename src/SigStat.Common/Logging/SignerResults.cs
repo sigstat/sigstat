@@ -33,7 +33,7 @@ namespace SigStat.Common.Logging
         /// <summary>
         /// Distacne matrix of the signers signatures
         /// </summary>
-        public DistanceMatrix<string, string, object> DistanceMatrix { get; set; } = new DistanceMatrix<string, string, object>();
+        public DistanceMatrix<string, string, double> DistanceMatrix { get; set; } = new DistanceMatrix<string, string, double>();
 
         /// <summary>
         /// Creates a signer result with emty result values
@@ -42,7 +42,7 @@ namespace SigStat.Common.Logging
         public SignerResults(string signerId)
         {
             this.SignerID = signerId;
-            DistanceMatrix = new DistanceMatrix<string, string, object>();
+            DistanceMatrix = new DistanceMatrix<string, string, double>();
         }
     }
 }
