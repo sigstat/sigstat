@@ -100,7 +100,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             var distances = distanceMatrix.GetValues().Where(v => v != 0);
             var mean = distances.Average();
-            var stdev = Math.Sqrt(distances.Select(d => (d - mean) * (d - mean)).Sum() / distances.Count());
+            var stdev = Math.Sqrt(distances.Select(d => (d - mean) * (d - mean)).Sum() / (distances.Count()-1));
 
             double med;
             var orderedDistances = new List<double>(distances).OrderBy(d => d);

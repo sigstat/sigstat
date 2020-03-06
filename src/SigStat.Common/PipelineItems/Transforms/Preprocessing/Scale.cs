@@ -75,14 +75,15 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             {
                 case ScalingMode.Scaling1:
                     var oldMaxValue = values.Max();
+                    var range = oldMaxValue - oldMinValue;
                     //scale values between 0 and 1
-                    values = values.Select(v => (v - oldMinValue) / (oldMaxValue - oldMinValue)).ToList();
+                    values = values.Select(v => v / range).ToList();
                     break;
                 case ScalingMode.ScalingS:
                     var mean = values.Average();
-                    var stdev = Math.Sqrt(values.Select(d => (d - mean) * (d - mean)).Sum() / values.Count());
+                    var stdev = Math.Sqrt(values.Select(d => (d - mean) * (d - mean)).Sum() / (values.Count()-1));
                     //scale values based on standard deviation
-                    values = values.Select(v => (v - oldMinValue) / stdev).ToList();
+                    values = values.Select(v => v / stdev).ToList();
                     break;
                 default:
                     break;
