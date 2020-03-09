@@ -34,7 +34,7 @@ namespace SigStat.Benchmark.Helpers
             return true;
         }
 
-        public static async Task InitializeExperiment()
+        public static async Task<bool> InitializeExperiment()
         {
             bool experimentExists = await (await db.ListCollectionsAsync(new ListCollectionsOptions
             {
@@ -42,7 +42,6 @@ namespace SigStat.Benchmark.Helpers
             })).AnyAsync();
 
             //Clear previous experiment
-            bool clear = true;//default
             if (experimentExists)
             {
                 if (!Console.IsInputRedirected)
@@ -50,21 +49,19 @@ namespace SigStat.Benchmark.Helpers
                     Console.WriteLine("This experiment already exists. Clear previous results? (y/n)");
                     if (Console.ReadKey(true).Key != ConsoleKey.Y)
                     {
-                        clear = false;
+                        return false;
                     }
                 }
             }
 
-            if (clear)
-            {
-                Console.WriteLine($"{DateTime.Now}: Clearing...");
-                var result = await experimentCollection.DeleteManyAsync(d => true);
-                Console.WriteLine($"{DateTime.Now}: Deleted {result.DeletedCount} documents.");
-            }
+            Console.WriteLine($"{DateTime.Now}: Clearing...");
+            var result = await experimentCollection.DeleteManyAsync(d => true);
+            Console.WriteLine($"{DateTime.Now}: Deleted {result.DeletedCount} documents.");
 
             //TODO: Keep track of previous runs of the experiment?
             //TODO: Store initialization DateTime?
 
+            return true;
         }
 
         public static async Task InsertConfigs(IEnumerable<string> configs)

@@ -63,7 +63,9 @@ namespace SigStat.Benchmark
                 string ruleString = await BenchmarkDatabase.GetGrammarRules();
 
                 Console.WriteLine($"{DateTime.Now}: Initializing experiment...");
-                await BenchmarkDatabase.InitializeExperiment();
+                bool success = await BenchmarkDatabase.InitializeExperiment();
+                if (!success)
+                    return;
 
                 Console.WriteLine($"{DateTime.Now}: Generating combinations...");
                 var configs = EnumerateBenchmarks(ruleString);
