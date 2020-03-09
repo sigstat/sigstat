@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using SigStat.Common;
+using SigStat.Common.Helpers;
 using SigStat.Common.Logging;
 using System;
 using System.Collections.Generic;
@@ -101,9 +102,7 @@ namespace SigStat.Benchmark.Helpers
         /// <returns></returns>
         public static async Task SendResults(int procId, string benchmarkConfig, string resultType, BenchmarkLogModel results)
         {
-            //TODO: fix BenchmarkLogModel serialization
-            //var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
-            var bsonResults = results.ToBsonDocument();
+            var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
             var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
                 d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,

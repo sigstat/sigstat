@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -33,6 +34,7 @@ namespace SigStat.Common.Logging
         /// <summary>
         /// Distacne matrix of the signers signatures
         /// </summary>
+        [Newtonsoft.Json.JsonConverter(typeof(DistanceMatrixConverter))]
         public DistanceMatrix<string, string, double> DistanceMatrix { get; set; } = new DistanceMatrix<string, string, double>();
 
         /// <summary>
