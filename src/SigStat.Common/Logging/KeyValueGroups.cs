@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,6 +8,7 @@ namespace SigStat.Common.Logging
     /// <summary>
     /// A group of key-value pairs
     /// </summary>
+    [Newtonsoft.Json.JsonConverter(typeof(KeyValueGroupConverter))]
     public class KeyValueGroup
 
     {
