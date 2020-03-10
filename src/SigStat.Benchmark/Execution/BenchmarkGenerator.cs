@@ -18,26 +18,29 @@ namespace SigStat.Benchmark
 {
     class BenchmarkGenerator
     {
-        //Example ruleString
-        /*const string ruleString = @"                
+        /// <summary>
+        /// Example rules that generate test benchmark configurations.
+        /// This is used when no input file is provided.
+        /// </summary>
+        const string defaultRuleString = @"                
                 [Benchmark] -> [Database]_[Split]_[Feature]_[Verifier]
                 [Database] -> *svc2004 | mcyt100 | dutch | chinese | japanese
-                [Feature] -> *X | Y | P | XY | XYP | XP | YP
+                [Feature] -> *X | *Y | P | XY | XYP | XP | YP
                 [Split] -> *s1 | s2 | s3 | s4
                 [Verifier] -> [Pipeline]_[Classifier]
                 [Classifier] -> *Dtw_[Distance] | OptimalDtw_[Distance]
-                [Distance] -> *Manhattan | Euclidean
+                [Distance] -> Manhattan | Euclidean
                 [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Scaling]_[Translation]
                 [Rotation] -> *none | rotation
                 [Gap] -> [FilterGap]_[FillGap]
-                [FilterGap] -> none | filter 
-                [FillGap] -> none | fill_[FillInterpolation]
-                [FillInterpolation] -> linear | cubic
-                [Resampling] -> none | [SampleCount]samples_[ResamplingInterpolation]
-                [SampleCount] -> 50 | 100 | 500 | 1000
-                [ResamplingInterpolation] -> linear | cubic
-                [Scaling] -> none| scale1| scaleS
-                [Translation] -> X0|Y0|XY0|CogX|CogY|CogXY| none";*/
+                [FilterGap] -> *none | filter 
+                [FillGap] -> *none | fill_[FillInterpolation]
+                [FillInterpolation] -> *linear | cubic
+                [Resampling] -> *none | [SampleCount]samples_[ResamplingInterpolation]
+                [SampleCount] -> *50 | 100 | 500 | 1000
+                [ResamplingInterpolation] -> *linear | cubic
+                [Scaling] -> *none | scale1| scaleS
+                [Translation] -> *none | X0 | Y0 | XY0 | CogX | CogY | CogXY";
 
 
         public static IEnumerable<string> EnumerateBenchmarks(string ruleString)
@@ -54,21 +57,30 @@ namespace SigStat.Benchmark
         /// Clear old configs, generate new configs, write to db
         /// </summary>
         /// <returns></returns>
-        internal static async Task RunAsync()
+        internal static async Task RunAsync(string rulesFilePath)
         {
             try
             {
-                //Using the 'rules' db collection to load rules for current experiment
-                Console.WriteLine($"{DateTime.Now}: Loading rules for experiment {Program.Experiment}...");
-                string ruleString = await BenchmarkDatabase.GetGrammarRules();
+
+                string rulesString;
+                if (File.Exists(rulesFilePath))
+                {//read rules from file
+                    Console.WriteLine($"{DateTime.Now}: Loading rules for experiment {Program.Experiment}...");
+                    rulesString = await File.ReadAllTextAsync(rulesFilePath);
+                }
+                else
+                {
+                    Console.WriteLine($"{DateTime.Now}: Rules file not provided. Using default test rules.");
+                    rulesString = defaultRuleString;
+                }
 
                 Console.WriteLine($"{DateTime.Now}: Initializing experiment...");
-                bool success = await BenchmarkDatabase.InitializeExperiment();
+                bool success = await BenchmarkDatabase.InitializeExperiment(rulesString);
                 if (!success)
                     return;
 
                 Console.WriteLine($"{DateTime.Now}: Generating combinations...");
-                var configs = EnumerateBenchmarks(ruleString);
+                var configs = EnumerateBenchmarks(rulesString);
 
                 Console.WriteLine($"{DateTime.Now}: Writing {configs.Count()} items to database...");
 

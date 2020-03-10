@@ -12,12 +12,14 @@ namespace SigStat.Benchmark.Options
     [Verb("generate", HelpText = "Generator mode for generating benchmarks to process.")]
     class GeneratorOptions : OptionsBase
     {
-        //generator options
-        //clear previous experiment. Deafult: true
+        [Option('r', "rules", Required = false, Default = null, HelpText = "Path to the file containing grammar rules that describe the combinations.")]
+        public string RulesFilePath { get; set; }
+
+        //TODO: options to clear previous experiment. Deafult: clear all
 
         public override Task RunAsync()
         {
-            return BenchmarkGenerator.RunAsync();
+            return BenchmarkGenerator.RunAsync(RulesFilePath);
         }
     }
 }

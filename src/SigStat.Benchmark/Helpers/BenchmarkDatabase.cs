@@ -34,7 +34,7 @@ namespace SigStat.Benchmark.Helpers
             return true;
         }
 
-        public static async Task<bool> InitializeExperiment()
+        public static async Task<bool> InitializeExperiment(string rulesString)
         {
             bool experimentExists = await (await db.ListCollectionsAsync(new ListCollectionsOptions
             {
@@ -57,6 +57,9 @@ namespace SigStat.Benchmark.Helpers
             Console.WriteLine($"{DateTime.Now}: Clearing...");
             var result = await experimentCollection.DeleteManyAsync(d => true);
             Console.WriteLine($"{DateTime.Now}: Deleted {result.DeletedCount} documents.");
+
+            Console.WriteLine($"{DateTime.Now}: Setting grammar rules...");
+            await setGrammarRules(rulesString);
 
             //TODO: Keep track of previous runs of the experiment?
             //TODO: Store initialization DateTime?
@@ -130,9 +133,9 @@ namespace SigStat.Benchmark.Helpers
         //Sort?
         public static async Task<IEnumerable<BenchmarkResults>> GetResults()
         {
-            //var resultsCollection = db.GetCollection<BsonDocument>("results");
-            var cursor = await experimentCollection.Find(d => d["experiment"] == Program.Experiment).ToCursorAsync();
-            return cursor.ToEnumerable().Select(d => BsonSerializer.Deserialize<BenchmarkResults>(d));
+            throw new NotImplementedException();
+            //var cursor = await experimentCollection.Find(d => van result).ToCursorAsync();
+            //return cursor.ToEnumerable().Select(d => BsonSerializer.Deserialize<@@@>(d));
         }
 
         public static async Task<int> CountQueued()
@@ -163,12 +166,25 @@ namespace SigStat.Benchmark.Helpers
         }
 
         //TODO: Review rules collection
+        private static async Task setGrammarRules(string rulesString)
+        {
+            var rulesCollection = db.GetCollection<BsonDocument>("rules");
+            var result = await rulesCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                d["experiment"] == Program.Experiment,
+                Builders<BsonDocument>.Update
+                    .Set("rulesString", rulesString),
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = true });
+
+        }
+
+        //TODO: Review rules collection
         public static async Task<string> GetGrammarRules()
         {
             var rulesCollection = db.GetCollection<BsonDocument>("rules");
-            var doc = await rulesCollection.Find(d => d["experiment"] == Program.Experiment).FirstAsync();
-            var rules = doc["rules"].AsBsonArray.Select(v=>v.AsString);
-            return string.Join(Environment.NewLine, rules);
+            var doc = await rulesCollection
+                .Find(d => d["experiment"] == Program.Experiment)
+                .FirstAsync();
+            return doc["rulesString"].AsString;
         }
 
     }
