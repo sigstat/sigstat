@@ -190,7 +190,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => l[2] == 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
                 signature.CalculateStandardStatistics();

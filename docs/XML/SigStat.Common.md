@@ -123,6 +123,7 @@
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.TimeValues')
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.GetValue(System.Double)')
 - [DataCleaningHelper](#T-SigStat-Common-Helpers-DataCleaningHelper 'SigStat.Common.Helpers.DataCleaningHelper')
+  - [Insert2DPointsForGapBorders(gapIndexes,signature,unitTimeSlot)](#M-SigStat-Common-Helpers-DataCleaningHelper-Insert2DPointsForGapBorders-System-Int32[],SigStat-Common-Signature,System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.Insert2DPointsForGapBorders(System.Int32[],SigStat.Common.Signature,System.Double)')
   - [InsertDuplicatedValuesForGapBorderPoints\`\`1(gapIndexes,featureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertDuplicatedValuesForGapBorderPoints``1-System-Int32[],System-Collections-Generic-List{``0}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints``1(System.Int32[],System.Collections.Generic.List{``0})')
   - [InsertPenUpValuesForGapBorderPoints(gapIndexes,penUpValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})')
   - [InsertPressureValuesForGapBorderPoints(gapIndexes,pressureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPressureValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPressureValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double})')
@@ -569,10 +570,12 @@
   - [SampleReferences()](#M-SigStat-Common-Sampler-SampleReferences-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.Sampler.SampleReferences(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [Scale](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale')
   - [InputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-InputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.InputFeature')
-  - [NewMaxValue](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMaxValue 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMaxValue')
-  - [NewMinValue](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMinValue 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMinValue')
+  - [Mode](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-Mode 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.Mode')
   - [OutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-OutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.OutputFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.Transform(SigStat.Common.Signature)')
+- [ScalingMode](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode')
+  - [Scaling1](#F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-Scaling1 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.Scaling1')
+  - [ScalingS](#F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-ScalingS 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.ScalingS')
 - [SequentialTransformPipeline](#T-SigStat-Common-Pipeline-SequentialTransformPipeline 'SigStat.Common.Pipeline.SequentialTransformPipeline')
   - [Items](#F-SigStat-Common-Pipeline-SequentialTransformPipeline-Items 'SigStat.Common.Pipeline.SequentialTransformPipeline.Items')
   - [PipelineInputs](#P-SigStat-Common-Pipeline-SequentialTransformPipeline-PipelineInputs 'SigStat.Common.Pipeline.SequentialTransformPipeline.PipelineInputs')
@@ -760,7 +763,6 @@
   - [#ctor()](#M-SigStat-Common-Transforms-TimeReset-#ctor 'SigStat.Common.Transforms.TimeReset.#ctor')
 - [TimeSlot](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot')
   - [EndTime](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-EndTime 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.EndTime')
-  - [Length](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-Length 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.Length')
   - [StartTime](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-StartTime 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.StartTime')
 - [Translate](#T-SigStat-Common-Transforms-Translate 'SigStat.Common.Transforms.Translate')
   - [#ctor(xAdd,yAdd)](#M-SigStat-Common-Transforms-Translate-#ctor-System-Double,System-Double- 'SigStat.Common.Transforms.Translate.#ctor(System.Double,System.Double)')
@@ -2141,6 +2143,22 @@ SigStat.Common.Helpers
 ##### Summary
 
 Helper class for cleaning online signature data in loaders
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-Insert2DPointsForGapBorders-System-Int32[],SigStat-Common-Signature,System-Double-'></a>
+### Insert2DPointsForGapBorders(gapIndexes,signature,unitTimeSlot) `method`
+
+##### Summary
+
+Inserts two points as border points of gaps in an online signature.
+The inserted values are X- and Y-coordinates and a calculated timestamp.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| gapIndexes | [System.Int32[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32[] 'System.Int32[]') | Indexes of points where the gaps end in the signature |
+| signature | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') | The online signature in which the points are inserted |
+| unitTimeSlot | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The unit time slot between two points of the signature |
 
 <a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertDuplicatedValuesForGapBorderPoints``1-System-Int32[],System-Collections-Generic-List{``0}-'></a>
 ### InsertDuplicatedValuesForGapBorderPoints\`\`1(gapIndexes,featureValues) `method`
@@ -3927,8 +3945,8 @@ SigStat.Common.PipelineItems.Transforms.Preprocessing
 
 ##### Summary
 
-This transformation will fill "holes" in the "Time" feature by interpolating the last known
-feature values.
+This transformation fills the gaps of the signature by interpolating the last known
+feature values. The gaps are identified using time and pressure.
 
 ##### See Also
 
@@ -7144,19 +7162,12 @@ OutputFeature: output feature for scaled InputFeature
 
 Gets or sets the input feature.
 
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMaxValue'></a>
-### NewMaxValue `property`
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-Mode'></a>
+### Mode `property`
 
 ##### Summary
 
-NewMaxValue: upper bound of the interval, in which the input feature will be scaled
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMinValue'></a>
-### NewMinValue `property`
-
-##### Summary
-
-NewMinValue: lower bound of the interval, in which the input feature will be scaled
+Type of the scaling which defines the scaling behavior
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-OutputFeature'></a>
 ### OutputFeature `property`
@@ -7175,6 +7186,31 @@ Gets or sets the output feature.
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode'></a>
+## ScalingMode `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Mode specification for [Scale](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale')
+
+<a name='F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-Scaling1'></a>
+### Scaling1 `constants`
+
+##### Summary
+
+Values are scaled into an interval, where the difference between the lower and upper bounds is 1
+
+<a name='F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-ScalingS'></a>
+### ScalingS `constants`
+
+##### Summary
+
+Values are scaled based on their standard deviation
 
 <a name='T-SigStat-Common-Pipeline-SequentialTransformPipeline'></a>
 ## SequentialTransformPipeline `type`
@@ -9163,13 +9199,6 @@ Helper class for [FillPenUpDurations](#T-SigStat-Common-PipelineItems-Transforms
 ##### Summary
 
 Gets or sets the end time of the slot
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-Length'></a>
-### Length `property`
-
-##### Summary
-
-Gets the length of the slot
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-StartTime'></a>
 ### StartTime `property`

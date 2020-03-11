@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -184,8 +185,17 @@ namespace SigStat.Common.Loaders
             {
                 lines.RemoveAt(lines.Count - 1);
             }
+
+            signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
+            signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
+            signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
+            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
+            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0 / 75.0) * 1000).ToList());
+
             // The database uses special datapoints to signal stroke boundaries
-            // We are going to replace them with averaged values to allow for smoother comparison
+            // We are going to replace them with two zero pressure points in standard features for smoother comparison
+            // New zero pressure points are located at the same corrdinates as the point before and the point after the stroke boundary
+            var gapIndexes = new List<int>();
             for (int i = 1; i < lines.Count-1; i++)
             {
                 if (lines[i][0] != -1) continue;
@@ -196,33 +206,42 @@ namespace SigStat.Common.Loaders
                     i--;
                     continue;
                 }
-                lines[i][0] = (lines[i - 1][0] + lines[i + 1][0]) / 2;
-                lines[i][1] = (lines[i - 1][1] + lines[i + 1][1]) / 2;
-                lines[i][2] = 0;
+                // Save the index of the point after the gap and remove the special datapoint
+                gapIndexes.Add(i);
+                lines.RemoveAt(i);
+                i--;
+                //lines[i][0] = (lines[i - 1][0] + lines[i + 1][0]) / 2;
+                //lines[i][1] = (lines[i - 1][1] + lines[i + 1][1]) / 2;
+                //lines[i][2] = 0;
             }
-
-            signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
-            signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
-            signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
-            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
-            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0/75.0)*1000).ToList());
 
             if (standardFeatures)
             {
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
-                signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
-                signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => false).ToList());
+
+                //Insert 2 zero pressure points before points at gapIndexes in Pressure
+                var pressureValues = signature.GetFeature(Features.Pressure);
+                DataCleaningHelper.InsertPressureValuesForGapBorderPoints(gapIndexes.ToArray(), pressureValues);
+                signature.SetFeature(Features.Pressure, pressureValues);
+                //Insert 2 zero pressure points before points at gapIndexes in Button
+                var penUpValues = signature.GetFeature(Features.Button);
+                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(gapIndexes.ToArray(), penUpValues);
+                signature.SetFeature(Features.Button, penUpValues);
+                //Insert 2 zero points before points at gapIndexes in X, Y, T
+                // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
+                var unitTimeSlot = (1.0 / 75.0) * 1000;
+                DataCleaningHelper.Insert2DPointsForGapBorders(gapIndexes.ToArray(), signature, unitTimeSlot);
+
+                var x = signature.GetFeature(Features.X);
+                signature.SetFeature(Features.Azimuth, x.Select(x => 1d).ToList());
+                signature.SetFeature(Features.Altitude, x.Select(x => 1d).ToList());
+
                 signature.CalculateStandardStatistics();
-
-
-
             }
 
         }
-
     }
 }

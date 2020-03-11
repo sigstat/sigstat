@@ -239,7 +239,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => (l[3] == 1)).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => (l[3] == 0)).ToList());
             }
 
             if (lines[0].Length == 7) // Task2

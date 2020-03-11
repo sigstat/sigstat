@@ -2,13 +2,14 @@
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     /// <summary>
-    /// This transformation will fill "holes" in the "Time" feature by interpolating the last known
-    /// feature values. 
+    /// This transformation fills the gaps of the signature by interpolating the last known
+    /// feature values. The gaps are identified using time and pressure.
     /// </summary>
     /// <seealso cref="SigStat.Common.PipelineBase" />
     /// <seealso cref="SigStat.Common.ITransformation" />
@@ -22,8 +23,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             private double _startTime;
             private double _endTime;
-            private bool isStartInitialized = false;
-            private bool isEndInitialized = false;
+            //private bool isStartInitialized = false;
+            //private bool isEndInitialized = false;
 
             /// <summary>
             /// Gets or sets the start time of the slot
@@ -34,11 +35,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 set
                 {
                     _startTime = value;
-                    isStartInitialized = true;
-                    if (isEndInitialized)
-                    {
-                        Length = _endTime - _startTime;
-                    }
+                    //isStartInitialized = true;
+                    //if (isEndInitialized)
+                    //{
+                    //    Length = _endTime - _startTime;
+                    //}
                 }
             }
 
@@ -51,25 +52,25 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 set
                 {
                     _endTime = value;
-                    isEndInitialized = true;
-                    if (isStartInitialized)
-                    {
-                        Length = _endTime - _startTime;
-                    }
+                    //isEndInitialized = true;
+                    //if (isStartInitialized)
+                    //{
+                    //    Length = _endTime - _startTime;
+                    //}
                 }
             }
 
-            /// <summary>
-            /// Gets the length of the slot
-            /// </summary>
-            public double Length { get; private set; }
+            ///// <summary>
+            ///// Gets the length of the slot
+            ///// </summary>
+            //public double Length { get; private set; }
         }
 
 
         /// <summary>
         /// Gets or sets the feature representing the timestamps of an online signature
         /// </summary>
-        [Input]        
+        [Input]
         public FeatureDescriptor<List<double>> TimeInputFeature { get; set; } = Features.T;
 
         /// <summary>
@@ -117,21 +118,25 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             }
 
 
-            var timeSlots = CalculateTimeSlots(signature);
+            //var timeSlots = CalculateTimeSlots(signature);
 
-            var timeSlotMedian = CalculateTimeSlotsMedian(timeSlots);
+            //var timeSlotMedian = CalculateTimeSlotsMedian(timeSlots);
 
-            var longTimeSlots = new List<TimeSlot>(timeSlots.Count);
-            foreach (var ts in timeSlots)
-            {
-                if (ts.Length > timeSlotMedian)
-                {
-                    longTimeSlots.Add(ts);
-                }
-            }
+            //var longTimeSlots = new List<TimeSlot>(timeSlots.Count);
+            //foreach (var ts in timeSlots)
+            //{
+            //    if (ts.Length > timeSlotMedian)
+            //    {
+            //        longTimeSlots.Add(ts);
+            //    }
+            //}
+
+            var penUpTimeSlots = CalculatePenUpTimeSlots(signature, TimeInputFeature);
 
             var originalTimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
             var timeValues = new List<double>(signature.GetFeature(TimeInputFeature));
+            var timeSlotMedian = timeValues.Select((ts, i) => ts - timeValues[i > 0 ? i - 1 : 0]).Skip(1).Median();
+
 
             var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
 
@@ -143,7 +148,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 interpolation.FeatureValues = new List<double>(values);
                 interpolation.TimeValues = originalTimeValues;
 
-                foreach (var ts in longTimeSlots)
+                foreach (var ts in penUpTimeSlots)
                 {
                     var actualTimestamp = ts.StartTime + timeSlotMedian;
                     int actualIndex = timeValues.IndexOf(ts.StartTime) + 1;
@@ -164,38 +169,52 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         }
 
-        private double CalculateTimeSlotsMedian(List<TimeSlot> timeSlots)
+        private List<TimeSlot> CalculatePenUpTimeSlots(Signature signature, FeatureDescriptor<List<double>> timeInputFeature)
         {
-            var timeSlotsLength = new List<double>(timeSlots.Count);
-            foreach (var ts in timeSlots)
-            {
-                timeSlotsLength.Add(ts.Length);
-            }
-            timeSlotsLength.Sort();
+            var penUpStrokes = StrokeHelper.GetStrokes(signature).FindAll(s => s.StrokeType == StrokeType.Up);
+            var timeValues = signature.GetFeature(timeInputFeature);
 
-            if (timeSlotsLength.Count % 2 == 0)
+            var penUpTimeSlots = new List<TimeSlot>();
+            foreach (var stroke in penUpStrokes)
             {
-                int i = (timeSlotsLength.Count / 2) - 1;
-                return (timeSlotsLength[i] + timeSlotsLength[i + 1]) / 2;
+                penUpTimeSlots.Add(new TimeSlot() { StartTime = timeValues[stroke.StartIndex], EndTime = timeValues[stroke.EndIndex] });
             }
-            else
-            {
-                int i = timeSlotsLength.Count / 2;
-                return timeSlotsLength[i];
-            }
+
+            return penUpTimeSlots;
         }
 
-        private List<TimeSlot> CalculateTimeSlots(Signature signature)
-        {
-            var timesValues = signature.GetFeature(TimeInputFeature);
-            var timeSlots = new List<TimeSlot>(timesValues.Count - 1);
+        //private double CalculateTimeSlotsMedian(List<TimeSlot> timeSlots)
+        //{
+        //    var timeSlotsLength = new List<double>(timeSlots.Count);
+        //    foreach (var ts in timeSlots)
+        //    {
+        //        timeSlotsLength.Add(ts.Length);
+        //    }
+        //    timeSlotsLength.Sort();
 
-            for (int i = 0; i < timesValues.Count - 1; i++)
-            {
-                timeSlots.Add(new TimeSlot() { StartTime = timesValues[i], EndTime = timesValues[i + 1] });
-            }
+        //    if (timeSlotsLength.Count % 2 == 0)
+        //    {
+        //        int i = (timeSlotsLength.Count / 2) - 1;
+        //        return (timeSlotsLength[i] + timeSlotsLength[i + 1]) / 2;
+        //    }
+        //    else
+        //    {
+        //        int i = timeSlotsLength.Count / 2;
+        //        return timeSlotsLength[i];
+        //    }
+        //}
 
-            return timeSlots;
-        }
+        //private List<TimeSlot> CalculateTimeSlots(Signature signature)
+        //{
+        //    var timesValues = signature.GetFeature(TimeInputFeature);
+        //    var timeSlots = new List<TimeSlot>(timesValues.Count - 1);
+
+        //    for (int i = 0; i < timesValues.Count - 1; i++)
+        //    {
+        //        timeSlots.Add(new TimeSlot() { StartTime = timesValues[i], EndTime = timesValues[i + 1] });
+        //    }
+
+        //    return timeSlots;
+        //}
     }
 }

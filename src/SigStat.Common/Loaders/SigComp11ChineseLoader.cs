@@ -211,15 +211,16 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(SigComp11Ch.X, lines.Select(l => l[0]).ToList());
             signature.SetFeature(SigComp11Ch.Y, lines.Select(l => l[1]).ToList());
             signature.SetFeature(SigComp11Ch.P, lines.Select(l => l[2]).ToList());
-            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
+            
 
             if (standardFeatures)
             {
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
+                // Sampling frequency is 200Hz ==> time should be increased by 5 msec for each slot
                 signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
+                signature.SetFeature(Features.Button, lines.Select(l => l[2] == 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
                 signature.CalculateStandardStatistics();

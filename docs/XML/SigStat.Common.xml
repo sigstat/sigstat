@@ -877,6 +877,15 @@
             Helper class for cleaning online signature data in loaders
             </summary>
         </member>
+        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.Insert2DPointsForGapBorders(System.Int32[],SigStat.Common.Signature,System.Double)">
+            <summary>
+            Inserts two points as border points of gaps in an online signature.
+            The inserted values are X- and Y-coordinates and a calculated timestamp.
+            </summary>
+            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
+            <param name="signature">The online signature in which the points are inserted</param>
+            <param name="unitTimeSlot">The unit time slot between two points of the signature</param>
+        </member>
         <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertTimestampsForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double},System.Double)">
             <summary>
             Inserts timestamps for border points of gaps in an online signature
@@ -3103,8 +3112,8 @@
         </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations">
             <summary>
-            This transformation will fill "holes" in the "Time" feature by interpolating the last known
-            feature values. 
+            This transformation fills the gaps of the signature by interpolating the last known
+            feature values. The gaps are identified using time and pressure.
             </summary>
             <seealso cref="T:SigStat.Common.PipelineBase" />
             <seealso cref="T:SigStat.Common.ITransformation" />
@@ -3122,11 +3131,6 @@
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.EndTime">
             <summary>
             Gets or sets the end time of the slot
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.Length">
-            <summary>
-            Gets the length of the slot
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeInputFeature">
@@ -3446,6 +3450,21 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode">
+            <summary>
+            Mode specification for <see cref="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale"/>
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.Scaling1">
+            <summary>
+            Values are scaled into an interval, where the difference between the lower and upper bounds is 1
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.ScalingS">
+            <summary>
+            Values are scaled based on their standard deviation
+            </summary>
+        </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale">
             <summary>
             Maps values of a feature to a specific range.
@@ -3458,14 +3477,9 @@
             Gets or sets the input feature.
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMinValue">
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.Mode">
             <summary>
-            <para>NewMinValue: lower bound of the interval, in which the input feature will be scaled</para> 
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMaxValue">
-            <summary>
-            <para>NewMaxValue: upper bound of the interval, in which the input feature will be scaled</para>
+            Type of the scaling which defines the scaling behavior
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.OutputFeature">
