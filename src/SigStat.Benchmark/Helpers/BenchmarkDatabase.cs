@@ -7,7 +7,7 @@ using SigStat.Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Helpers
@@ -21,6 +21,26 @@ namespace SigStat.Benchmark.Helpers
         private static IMongoDatabase db;
         private static IMongoCollection<BsonDocument> experimentCollection;
 
+        private static readonly Expression<Func<BsonDocument, bool>> queuedFilter = d =>
+                d["results"] == BsonNull.Value &&
+                d["exception"] == BsonNull.Value &&
+                d["lockDate"] == BsonNull.Value;
+
+        private static readonly Expression<Func<BsonDocument, bool>> lockedFilter = d =>
+                d["results"] == BsonNull.Value &&
+                d["exception"] == BsonNull.Value &&
+                d["lockDate"] != BsonNull.Value;
+
+        private static readonly Expression<Func<BsonDocument, bool>> faultedFilter = d =>
+                d["exception"] != BsonNull.Value;
+
+        private static readonly Expression<Func<BsonDocument, bool>> finishedFilter = d =>
+                d["results"] != BsonNull.Value;
+
+        private static readonly Expression<Func<BsonDocument, bool>> lockableFilter = d =>
+                d["result"] == BsonNull.Value && 
+                ((d["exception"] == BsonNull.Value && d["lockDate"] == BsonNull.Value)
+                 || d["lockDate"].AsBsonDateTime < new BsonDateTime(DateTime.Now.AddHours(-1)));
 
         public static async Task<bool> InitializeConnection(string connectionString)
         {
@@ -34,56 +54,51 @@ namespace SigStat.Benchmark.Helpers
             return true;
         }
 
-        public static async Task<bool> InitializeExperiment(string rulesString)
+        public static async Task<bool> ExperimentExists()
         {
-            bool experimentExists = await (await db.ListCollectionsAsync(new ListCollectionsOptions
+            return await (await db.ListCollectionsAsync(new ListCollectionsOptions
             {
                 Filter = new BsonDocument("name", Program.Experiment)
             })).AnyAsync();
-
-            //Clear previous experiment
-            if (experimentExists)
-            {
-                if (!Console.IsInputRedirected)
-                {
-                    Console.WriteLine("This experiment already exists. Clear previous results? (y/n)");
-                    if (Console.ReadKey(true).Key != ConsoleKey.Y)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            Console.WriteLine($"{DateTime.Now}: Clearing...");
-            var result = await experimentCollection.DeleteManyAsync(d => true);
-            Console.WriteLine($"{DateTime.Now}: Deleted {result.DeletedCount} documents.");
-
-            Console.WriteLine($"{DateTime.Now}: Setting grammar rules...");
-            await setGrammarRules(rulesString);
-
-            //TODO: Keep track of previous runs of the experiment?
-            //TODO: Store initialization DateTime?
-
-            return true;
         }
 
-        public static async Task InsertConfigs(IEnumerable<string> configs)
+        /// <summary>
+        /// Insert congifurations if they don't exist already.
+        /// This does not remove locks, results and logs on existing items.
+        /// </summary>
+        /// <param name="configs"></param>
+        /// <returns>Number of new configurations inserted.</returns>
+        public static async Task<int> UpsertConfigs(IEnumerable<string> configs)
         {
-            IEnumerable<BsonDocument> documents = configs.Select(c => 
-                new BsonDocument()
-                .Add("config", c));
-
-            await experimentCollection.InsertManyAsync(documents);
+            var bulkOps = new List<WriteModel<BsonDocument>>();
+            foreach (var c in configs)
+            {
+                var upsertOne = new UpdateOneModel<BsonDocument>(
+                    Builders<BsonDocument>.Filter.Where(d => d["config"] == c),
+                    new BsonDocument
+                    {
+                        {"$set", 
+                            new BsonDocument{ 
+                                {"config", c}
+                                //{"old", d} //Idea: Use ReplaceOneModel & store old version?
+                            }
+                        }
+                    })
+                { IsUpsert = true };
+                bulkOps.Add(upsertOne);
+            }
+            var result = await experimentCollection.BulkWriteAsync(bulkOps, 
+                new BulkWriteOptions { IsOrdered = false });//enables parallel exec
+            return configs.Count() - (int)result.MatchedCount;
         }
 
         /// <summary>
         /// This is atomic. Returns null if no config can be locked
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Configuration string</returns>
         public static async Task<string> LockNextConfig(int procId)
         {
-            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
-                d["result"] == BsonNull.Value && ((d["exception"] == BsonNull.Value && d["lockDate"] == BsonNull.Value) || d["lockDate"].AsBsonDateTime < new BsonDateTime(DateTime.Now.AddHours(-1))),
+            var result = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
                 Builders<BsonDocument>.Update
                     .Set("lockDate", DateTime.Now)
                     .Set("machine", Environment.MachineName)
@@ -97,9 +112,8 @@ namespace SigStat.Benchmark.Helpers
         }
 
         /// <summary>
-        /// Inserts the results
+        /// Add results to a specified benchmark item.
         /// </summary>
-        /// <returns></returns>
         public static async Task SendResults(int procId, string benchmarkConfig, string resultType, BenchmarkLogModel results)
         {
             var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
@@ -140,33 +154,58 @@ namespace SigStat.Benchmark.Helpers
 
         public static async Task<int> CountQueued()
         {
-            return (int) await experimentCollection.CountDocumentsAsync(d =>
-                d["results"] == BsonNull.Value &&
-                d["exception"] == BsonNull.Value &&
-                d["lockDate"] == BsonNull.Value);
+            return (int) await experimentCollection.CountDocumentsAsync(queuedFilter);
         }
         public static async Task<int> CountLocked()
         {
-            return (int) await experimentCollection.CountDocumentsAsync(d =>
-                d["results"] == BsonNull.Value &&
-                d["exception"] == BsonNull.Value &&
-                d["lockDate"] != BsonNull.Value);
+            return (int) await experimentCollection.CountDocumentsAsync(lockedFilter);
+        }
+
+        public static async Task<int> CountFaulted()
+        {
+            return (int)await experimentCollection.CountDocumentsAsync(faultedFilter);
         }
 
         public static async Task<int> CountFinished()
         {
-            return (int) await experimentCollection.CountDocumentsAsync(d => 
-                d["results"] != BsonNull.Value);
+            return (int)await experimentCollection.CountDocumentsAsync(finishedFilter);
         }
 
-        public static async Task<int> CountExceptions()
+        /// <returns>Number of deleted configurations.</returns>
+        public static async Task<int> ClearExperiment()
         {
-            return (int) await experimentCollection.CountDocumentsAsync(d => 
-                d["exception"] != BsonNull.Value);
+            var result = await experimentCollection.DeleteManyAsync(d => true);
+            return (int)result.DeletedCount;
         }
 
-        //TODO: Review rules collection
-        private static async Task setGrammarRules(string rulesString)
+        /// <summary>
+        /// Remove locks from unfinished configurations.
+        /// </summary>
+        /// <returns>Number of locks removed.</returns>
+        public static async Task<int> RemoveLocks()
+        {
+            var result = await experimentCollection.UpdateManyAsync(lockedFilter,
+               Builders<BsonDocument>.Update
+                .Unset("lockDate"),
+               new UpdateOptions() { IsUpsert = false });
+            return (int)result.MatchedCount;
+        }
+
+        /// <summary>
+        /// Remove locks and logs from configurations that ran into exceptions.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<int> ResetFaulted()
+        {
+            var result = await experimentCollection.UpdateManyAsync(faultedFilter,
+               Builders<BsonDocument>.Update
+                .Unset("exception")
+                .Unset("lockDate"),
+               new UpdateOptions() { IsUpsert = false });
+            return (int)result.MatchedCount;
+        }
+
+        public static async Task SetGrammarRules(string rulesString)
         {
             var rulesCollection = db.GetCollection<BsonDocument>("rules");
             var result = await rulesCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
@@ -177,7 +216,6 @@ namespace SigStat.Benchmark.Helpers
 
         }
 
-        //TODO: Review rules collection
         public static async Task<string> GetGrammarRules()
         {
             var rulesCollection = db.GetCollection<BsonDocument>("rules");

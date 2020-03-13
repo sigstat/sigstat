@@ -37,18 +37,18 @@ namespace SigStat.Benchmark
 
                 if (((DateTime.Now - lastRefresh).TotalMinutes > 1) || action == Action.Refresh)
                 {
-                    var finished = BenchmarkDatabase.CountFinished();
-                    var locked = BenchmarkDatabase.CountLocked();
                     var queued = BenchmarkDatabase.CountQueued();
-                    var errors = BenchmarkDatabase.CountExceptions();
-                    Task.WaitAll(finished, locked, queued, errors);
+                    var locked = BenchmarkDatabase.CountLocked();
+                    var errors = BenchmarkDatabase.CountFaulted();
+                    var finished = BenchmarkDatabase.CountFinished();
+                    Task.WaitAll(queued, locked, errors, finished);
 
                     Console.WriteLine(
                         $"{DateTime.Now}: " +
-                        $"Finished: {finished.Result}. " +
-                        $"Locked: {locked.Result}. " +
                         $"Queued: {queued.Result}. " +
-                        $"Errors: {errors.Result}.");
+                        $"Locked: {locked.Result}. " +
+                        $"Errors: {errors.Result}." +
+                        $"Finished: {finished.Result}. ");
 
                     lastRefresh = DateTime.Now;
                     action = Action.Run;
