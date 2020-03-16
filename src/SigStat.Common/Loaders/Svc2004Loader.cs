@@ -239,7 +239,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => (l[3] == 0)).ToList());
+                signature.SetFeature(Features.PenDown, lines.Select(l => (l[3] == 1)).ToList());
             }
 
             if (lines[0].Length == 7) // Task2
@@ -252,12 +252,9 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Svc2004.Pressure, pressure);
                 if (standardFeatures)
                 {
-                    double azimuthmax = azimuth.Max();
-                    double altitudemax = altitude.Max();
-                    double pressuremax = pressure.Max();
-                    signature.SetFeature(Features.Azimuth, azimuth.Select(a => a / azimuthmax * 2 * Math.PI).ToList());
-                    signature.SetFeature(Features.Altitude, altitude.Select(a => a / altitudemax).ToList());
-                    signature.SetFeature(Features.Pressure, pressure.Select(a => a / pressuremax).ToList());
+                    signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[4]).ToList());
+                    signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
+                    signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[6]).ToList().ToList());
                 }
             }
 
@@ -290,10 +287,10 @@ namespace SigStat.Common.Loaders
                                 DataCleaningHelper.InsertPressureValuesForGapBorderPoints(buttonUpIndexes, pressureValues);
                                 signature.SetFeature(Features.Pressure, pressureValues);
                                 break;
-                            case "Button":
-                                var penUpValues = signature.GetFeature(Features.Button);
-                                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(buttonUpIndexes, penUpValues);
-                                signature.SetFeature(Features.Button, penUpValues);
+                            case "PenDown":
+                                var penDownValues = signature.GetFeature(Features.PenDown);
+                                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(buttonUpIndexes, penDownValues);
+                                signature.SetFeature(Features.PenDown, penDownValues);
                                 break;
                             default:
                                 var featureValues = signature.GetFeature<List<double>>(feature);

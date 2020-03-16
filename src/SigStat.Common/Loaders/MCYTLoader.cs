@@ -136,8 +136,8 @@ namespace SigStat.Common.Loaders
                 }
             }
             this.LogInformation("Enumerating signers finished.");
-           }
-        
+        }
+
         /// <summary>
         /// Loads one signature from specified stream.
         /// </summary>
@@ -185,7 +185,7 @@ namespace SigStat.Common.Loaders
             if (res != 32)
             {
                 //TODO: ezt loggolni
-                 new NotSupportedException("Only 32 bit floating point values are supported at the moment");
+                new NotSupportedException("Only 32 bit floating point values are supported at the moment");
             }
 
             List<double> X = new List<double>();
@@ -201,34 +201,28 @@ namespace SigStat.Common.Loaders
                 Azimuth.Add(reader.ReadSingle());
                 Altitude.Add(reader.ReadSingle());
             }
-            
+
             //set signature features
             signature.SetFeature(MCYT.X, X);
             signature.SetFeature(MCYT.Y, Y);
             signature.SetFeature(MCYT.Pressure, Pressure);//TODO: readme-bol feltetelezzuk, hogy ez a sorrend
             signature.SetFeature(MCYT.Azimuth, Azimuth);
             signature.SetFeature(MCYT.Altitude, Altitude);
-            if(standardFeatures)
+            if (standardFeatures)
             {
                 signature.SetFeature(Features.X, X);
                 signature.SetFeature(Features.Y, Y);
                 signature.SetFeature(Features.Pressure, Pressure);
                 signature.SetFeature(Features.Azimuth, Azimuth);
                 signature.SetFeature(Features.Altitude, Altitude);
-                //Time nincs MCYT-ben, de tudjuk, hogy 100 samples / sec
-                //nem kell svc-hez ragaszkodni.. pl adjuk meg millisec-ben, 0 tol kezdve
-                List<double> Time = new List<double>();
-                for (int i = 0; i < X.Count; i++)
-                {
-                    Time.Add(i * 10);//ms
-                }
-                signature.SetFeature(Features.T, Time);
-                //Pendown sincs MCYT-ben, mindig lent van? Pressure alapjan lehetne egy threshold
-                signature.SetFeature(Features.Button, Enumerable.Repeat(true, X.Count).ToList());
+                // Sampling frequency is 100Hz ==> time should be increased by 10 msec for each slot
+                signature.SetFeature(Features.T, Enumerable.Range(0, X.Count).Select(i => i * 10d).ToList());
+                signature.SetFeature(Features.PenDown, Pressure.Select(p => p > 0).ToList());
                 signature.CalculateStandardStatistics();
             }
+
         }
-           
+
     }
-   
+
 }

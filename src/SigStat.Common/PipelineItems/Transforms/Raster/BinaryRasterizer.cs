@@ -38,7 +38,7 @@ namespace SigStat.Common.Transforms
         /// Gets or sets the <see cref="FeatureDescriptor"/> representing the stroke endings of an online signature
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<bool>> InputButton { get; set; } = Features.Button;
+        public FeatureDescriptor<List<bool>> InputButton { get; set; } = Features.PenDown;
 
         /// <summary>
         /// Gets or sets the <see cref="FeatureDescriptor"/> representing the output of the transformation

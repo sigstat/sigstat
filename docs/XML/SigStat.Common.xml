@@ -299,9 +299,10 @@
             Timestamps for online signatures
             </summary>
         </member>
-        <member name="F:SigStat.Common.Features.Button">
+        <member name="F:SigStat.Common.Features.PenDown">
             <summary>
-            Pen position of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
+            Pen position of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>.
+            It is true when the pen touches the paper.
             </summary>
         </member>
         <member name="F:SigStat.Common.Features.Azimuth">
@@ -899,7 +900,7 @@
             Insert PenUp values for border points of gaps in an online signature
             </summary>
             <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-            <param name="penUpValues">PenUp values of the signature</param>
+            <param name="penDownValues">PenDown values of the signature</param>
         </member>
         <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertPressureValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double})">
             <summary>
@@ -3112,8 +3113,8 @@
         </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations">
             <summary>
-            This transformation fills the gaps of the signature by interpolating the last known
-            feature values. The gaps are identified using time and pressure.
+            This transformation fills gaps of online signature by interpolating the last known
+            feature values. Gaps should be represented in the signature with two zero pressure border points.
             </summary>
             <seealso cref="T:SigStat.Common.PipelineBase" />
             <seealso cref="T:SigStat.Common.ITransformation" />
@@ -3133,9 +3134,24 @@
             Gets or sets the end time of the slot
             </summary>
         </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.Length">
+            <summary>
+            Gets the length of the slot
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.PenDown">
+            <summary>
+            This indicates whether the pen touches the paper during the time slot
+            </summary>
+        </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeInputFeature">
             <summary>
             Gets or sets the feature representing the timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureInputFeature">
+            <summary>
+            Gets or sets the feature representing pressure in an online signature
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InputFeatures">
@@ -3146,6 +3162,11 @@
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeOutputFeature">
             <summary>
             Gets or sets the feature representing the modified timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureOutputFeature">
+            <summary>
+            Gets or sets the feature representing the modified pressure values of an online signature
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.OutputFeatures">

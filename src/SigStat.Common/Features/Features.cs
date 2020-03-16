@@ -43,9 +43,10 @@ namespace SigStat.Common
         /// </summary>
         public static readonly FeatureDescriptor<List<double>> T = FeatureDescriptor.Get<List<double>>("T");
         /// <summary>
-        /// Pen position of an online signature as a function of <see cref="T"/>
+        /// Pen position of an online signature as a function of <see cref="T"/>.
+        /// It is true when the pen touches the paper.
         /// </summary>
-        public static readonly FeatureDescriptor<List<bool>> Button = FeatureDescriptor.Get<List<bool>>("Button");
+        public static readonly FeatureDescriptor<List<bool>> PenDown = FeatureDescriptor.Get<List<bool>>("PenDown");
         /// <summary>
         /// Azimuth of an online signature as a function of <see cref="T"/>
         /// </summary>

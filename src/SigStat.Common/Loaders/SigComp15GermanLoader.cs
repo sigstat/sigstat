@@ -210,9 +210,6 @@ namespace SigStat.Common.Loaders
                 gapIndexes.Add(i);
                 lines.RemoveAt(i);
                 i--;
-                //lines[i][0] = (lines[i - 1][0] + lines[i + 1][0]) / 2;
-                //lines[i][1] = (lines[i - 1][1] + lines[i + 1][1]) / 2;
-                //lines[i][2] = 0;
             }
 
             if (standardFeatures)
@@ -220,16 +217,16 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => false).ToList());
+                signature.SetFeature(Features.PenDown, lines.Select(l => true).ToList());
 
                 //Insert 2 zero pressure points before points at gapIndexes in Pressure
                 var pressureValues = signature.GetFeature(Features.Pressure);
                 DataCleaningHelper.InsertPressureValuesForGapBorderPoints(gapIndexes.ToArray(), pressureValues);
                 signature.SetFeature(Features.Pressure, pressureValues);
-                //Insert 2 zero pressure points before points at gapIndexes in Button
-                var penUpValues = signature.GetFeature(Features.Button);
-                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(gapIndexes.ToArray(), penUpValues);
-                signature.SetFeature(Features.Button, penUpValues);
+                //Insert 2 zero pressure points before points at gapIndexes in PenDown
+                var penDownValues = signature.GetFeature(Features.PenDown);
+                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(gapIndexes.ToArray(), penDownValues);
+                signature.SetFeature(Features.PenDown, penDownValues);
                 //Insert 2 zero points before points at gapIndexes in X, Y, T
                 // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
                 var unitTimeSlot = (1.0 / 75.0) * 1000;

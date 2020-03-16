@@ -125,7 +125,7 @@
 - [DataCleaningHelper](#T-SigStat-Common-Helpers-DataCleaningHelper 'SigStat.Common.Helpers.DataCleaningHelper')
   - [Insert2DPointsForGapBorders(gapIndexes,signature,unitTimeSlot)](#M-SigStat-Common-Helpers-DataCleaningHelper-Insert2DPointsForGapBorders-System-Int32[],SigStat-Common-Signature,System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.Insert2DPointsForGapBorders(System.Int32[],SigStat.Common.Signature,System.Double)')
   - [InsertDuplicatedValuesForGapBorderPoints\`\`1(gapIndexes,featureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertDuplicatedValuesForGapBorderPoints``1-System-Int32[],System-Collections-Generic-List{``0}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints``1(System.Int32[],System.Collections.Generic.List{``0})')
-  - [InsertPenUpValuesForGapBorderPoints(gapIndexes,penUpValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})')
+  - [InsertPenUpValuesForGapBorderPoints(gapIndexes,penDownValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})')
   - [InsertPressureValuesForGapBorderPoints(gapIndexes,pressureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPressureValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPressureValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double})')
   - [InsertTimestampsForGapBorderPoints(gapIndexes,timestamps,difference)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertTimestampsForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double},System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.InsertTimestampsForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double},System.Double)')
 - [DataSetLoader](#T-SigStat-Common-Loaders-DataSetLoader 'SigStat.Common.Loaders.DataSetLoader')
@@ -249,10 +249,10 @@
   - [All](#F-SigStat-Common-Features-All 'SigStat.Common.Features.All')
   - [Altitude](#F-SigStat-Common-Features-Altitude 'SigStat.Common.Features.Altitude')
   - [Azimuth](#F-SigStat-Common-Features-Azimuth 'SigStat.Common.Features.Azimuth')
-  - [Button](#F-SigStat-Common-Features-Button 'SigStat.Common.Features.Button')
   - [Cog](#F-SigStat-Common-Features-Cog 'SigStat.Common.Features.Cog')
   - [Dpi](#F-SigStat-Common-Features-Dpi 'SigStat.Common.Features.Dpi')
   - [Image](#F-SigStat-Common-Features-Image 'SigStat.Common.Features.Image')
+  - [PenDown](#F-SigStat-Common-Features-PenDown 'SigStat.Common.Features.PenDown')
   - [Pressure](#F-SigStat-Common-Features-Pressure 'SigStat.Common.Features.Pressure')
   - [Size](#F-SigStat-Common-Features-Size 'SigStat.Common.Features.Size')
   - [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
@@ -263,6 +263,8 @@
   - [InputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-InputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InputFeatures')
   - [InterpolationType](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-InterpolationType 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InterpolationType')
   - [OutputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-OutputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.OutputFeatures')
+  - [PressureInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureInputFeature')
+  - [PressureOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureOutputFeature')
   - [TimeInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeInputFeature')
   - [TimeOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeOutputFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.Transform(SigStat.Common.Signature)')
@@ -763,6 +765,8 @@
   - [#ctor()](#M-SigStat-Common-Transforms-TimeReset-#ctor 'SigStat.Common.Transforms.TimeReset.#ctor')
 - [TimeSlot](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot')
   - [EndTime](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-EndTime 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.EndTime')
+  - [Length](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-Length 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.Length')
+  - [PenDown](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-PenDown 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.PenDown')
   - [StartTime](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-StartTime 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.StartTime')
 - [Translate](#T-SigStat-Common-Transforms-Translate 'SigStat.Common.Transforms.Translate')
   - [#ctor(xAdd,yAdd)](#M-SigStat-Common-Transforms-Translate-#ctor-System-Double,System-Double- 'SigStat.Common.Transforms.Translate.#ctor(System.Double,System.Double)')
@@ -2181,7 +2185,7 @@ Insert feature values for border points of gaps in an online signature using dup
 | T | Type of the values in featureValues |
 
 <a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}-'></a>
-### InsertPenUpValuesForGapBorderPoints(gapIndexes,penUpValues) `method`
+### InsertPenUpValuesForGapBorderPoints(gapIndexes,penDownValues) `method`
 
 ##### Summary
 
@@ -2192,7 +2196,7 @@ Insert PenUp values for border points of gaps in an online signature
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | gapIndexes | [System.Int32[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32[] 'System.Int32[]') | Indexes of points where the gaps end in the signature |
-| penUpValues | [System.Collections.Generic.List{System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Boolean}') | PenUp values of the signature |
+| penDownValues | [System.Collections.Generic.List{System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Boolean}') | PenDown values of the signature |
 
 <a name='M-SigStat-Common-Helpers-DataCleaningHelper-InsertPressureValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Double}-'></a>
 ### InsertPressureValuesForGapBorderPoints(gapIndexes,pressureValues) `method`
@@ -3866,13 +3870,6 @@ Altitude of an online signature as a function of [T](#F-SigStat-Common-Features-
 
 Azimuth of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
 
-<a name='F-SigStat-Common-Features-Button'></a>
-### Button `constants`
-
-##### Summary
-
-Pen position of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
-
 <a name='F-SigStat-Common-Features-Cog'></a>
 ### Cog `constants`
 
@@ -3893,6 +3890,14 @@ Dots per inch
 ##### Summary
 
 The visaul representation of a signature
+
+<a name='F-SigStat-Common-Features-PenDown'></a>
+### PenDown `constants`
+
+##### Summary
+
+Pen position of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T').
+It is true when the pen touches the paper.
 
 <a name='F-SigStat-Common-Features-Pressure'></a>
 ### Pressure `constants`
@@ -3945,8 +3950,8 @@ SigStat.Common.PipelineItems.Transforms.Preprocessing
 
 ##### Summary
 
-This transformation fills the gaps of the signature by interpolating the last known
-feature values. The gaps are identified using time and pressure.
+This transformation fills gaps of online signature by interpolating the last known
+feature values. Gaps should be represented in the signature with two zero pressure border points.
 
 ##### See Also
 
@@ -3973,6 +3978,20 @@ An implementation of [IInterpolation](#T-SigStat-Common-PipelineItems-Transforms
 ##### Summary
 
 Gets or sets the features of an online signature that were altered
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureInputFeature'></a>
+### PressureInputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing pressure in an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureOutputFeature'></a>
+### PressureOutputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing the modified pressure values of an online signature
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeInputFeature'></a>
 ### TimeInputFeature `property`
@@ -9199,6 +9218,20 @@ Helper class for [FillPenUpDurations](#T-SigStat-Common-PipelineItems-Transforms
 ##### Summary
 
 Gets or sets the end time of the slot
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-Length'></a>
+### Length `property`
+
+##### Summary
+
+Gets the length of the slot
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-PenDown'></a>
+### PenDown `property`
+
+##### Summary
+
+This indicates whether the pen touches the paper during the time slot
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-StartTime'></a>
 ### StartTime `property`

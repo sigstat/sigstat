@@ -54,12 +54,12 @@ namespace SigStat.Common.Helpers
                     var shift = Math.Sqrt((xShift * xShift) + (yShift * yShift));
 
                     x.Insert(i, x[i]); //duplicate the value after the gap
-                    x.Insert(i, x[i - 1]); //duolicate the value before the gap
+                    x.Insert(i, x[i - 1]); //duplicate the value before the gap
                     y.Insert(i, y[i]); //duplicate the value after the gap
-                    y.Insert(i, y[i - 1]); //duolicate the value before the gap
+                    y.Insert(i, y[i - 1]); //duplicate the value before the gap
 
                     t.Add(t[i - 1] + epszilonTime); //timestamp of the gap start
-                    t.Add((shift * unitTimeSlot) / avgShift); //timestamp of the gap end (length of the gap)
+                    t.Add(t[i] + (shift * unitTimeSlot) / avgShift); //timestamp of the gap end (length of the gap)
                     t.Add(t[i + 1] + epszilonTime); //timestamp of the point after the gap
 
                     //update indexes after insertation of two points
@@ -101,18 +101,18 @@ namespace SigStat.Common.Helpers
         /// Insert PenUp values for border points of gaps in an online signature
         /// </summary>
         /// <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-        /// <param name="penUpValues">PenUp values of the signature</param>
-        public static void InsertPenUpValuesForGapBorderPoints(int[] gapIndexes, List<bool> penUpValues)
+        /// <param name="penDownValues">PenDown values of the signature</param>
+        public static void InsertPenUpValuesForGapBorderPoints(int[] gapIndexes, List<bool> penDownValues)
         {
             foreach (var index in gapIndexes.Reverse())
             {
-                penUpValues[index] = false; //set pen down point after the gap
+                penDownValues[index] = true; //set pen down point after the gap
 
                 if (index != 0)
                 {
-                    penUpValues.Insert(index, true); //insert pen up point at the end of the gap
-                    penUpValues.Insert(index, true); //insert pen up point in the beginning of the gap
-                    penUpValues[index - 1] = false; //set pen down point before the gap
+                    penDownValues.Insert(index, false); //insert pen up point at the end of the gap
+                    penDownValues.Insert(index, false); //insert pen up point in the beginning of the gap
+                    penDownValues[index - 1] = true; //set pen down point before the gap
                 }
             }
         }
