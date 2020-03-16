@@ -134,6 +134,9 @@
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [DistanceFunctionJsonConverter](#T-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter 'SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter')
+- [DistanceMatrixConverter](#T-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter')
+  - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},System.Boolean,Newtonsoft.Json.JsonSerializer)')
+  - [WriteJson()](#M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},Newtonsoft.Json.JsonSerializer)')
 - [DistanceMatrix\`3](#T-SigStat-Common-DistanceMatrix`3 'SigStat.Common.DistanceMatrix`3')
   - [Item](#P-SigStat-Common-DistanceMatrix`3-Item-`0,`1- 'SigStat.Common.DistanceMatrix`3.Item(`0,`1)')
   - [ContainsKey(row,column)](#M-SigStat-Common-DistanceMatrix`3-ContainsKey-`0,`1- 'SigStat.Common.DistanceMatrix`3.ContainsKey(`0,`1)')
@@ -357,6 +360,9 @@
   - [#ctor(name)](#M-SigStat-Common-Logging-KeyValueGroup-#ctor-System-String- 'SigStat.Common.Logging.KeyValueGroup.#ctor(System.String)')
   - [Items](#P-SigStat-Common-Logging-KeyValueGroup-Items 'SigStat.Common.Logging.KeyValueGroup.Items')
   - [Name](#P-SigStat-Common-Logging-KeyValueGroup-Name 'SigStat.Common.Logging.KeyValueGroup.Name')
+- [KeyValueGroupConverter](#T-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter 'SigStat.Common.Helpers.Serialization.KeyValueGroupConverter')
+  - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-Logging-KeyValueGroup,System-Boolean,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.KeyValueGroupConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.Logging.KeyValueGroup,System.Boolean,Newtonsoft.Json.JsonSerializer)')
+  - [WriteJson()](#M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-Logging-KeyValueGroup,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.KeyValueGroupConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.Logging.KeyValueGroup,Newtonsoft.Json.JsonSerializer)')
 - [LastNSampler](#T-SigStat-Common-Framework-Samplers-LastNSampler 'SigStat.Common.Framework.Samplers.LastNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-LastNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.LastNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-LastNSampler-N 'SigStat.Common.Framework.Samplers.LastNSampler.N')
@@ -2288,6 +2294,39 @@ Helper class for serializing distance functions
 ##### See Also
 
 - [Newtonsoft.Json.JsonConverter](#T-Newtonsoft-Json-JsonConverter 'Newtonsoft.Json.JsonConverter')
+
+<a name='T-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter'></a>
+## DistanceMatrixConverter `type`
+
+##### Namespace
+
+SigStat.Common.Helpers.Serialization
+
+##### Summary
+
+Serializes/Deserializes a [](#!-DistanceMatrix<string,string,double> 'DistanceMatrix<string,string,double>') object using its ToArray() and FromArray() methods.
+
+<a name='M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer-'></a>
+### ReadJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},Newtonsoft-Json-JsonSerializer-'></a>
+### WriteJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-DistanceMatrix`3'></a>
 ## DistanceMatrix\`3 `type`
@@ -5036,6 +5075,39 @@ Key-Value pairs in the group
 ##### Summary
 
 Name of the group
+
+<a name='T-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter'></a>
+## KeyValueGroupConverter `type`
+
+##### Namespace
+
+SigStat.Common.Helpers.Serialization
+
+##### Summary
+
+Serializes / Deserializes a logging dictionary [KeyValueGroup](#T-SigStat-Common-Logging-KeyValueGroup 'SigStat.Common.Logging.KeyValueGroup')
+
+<a name='M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-Logging-KeyValueGroup,System-Boolean,Newtonsoft-Json-JsonSerializer-'></a>
+### ReadJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-Logging-KeyValueGroup,Newtonsoft-Json-JsonSerializer-'></a>
+### WriteJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-Framework-Samplers-LastNSampler'></a>
 ## LastNSampler `type`

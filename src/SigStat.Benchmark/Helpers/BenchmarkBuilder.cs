@@ -35,7 +35,7 @@ namespace SigStat.Benchmark
 
             loaders = new Dictionary<string, DataSetLoader>()
             {
-                { "svc", new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true)},
+                { "svc2004", new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true)},
                 { "mcyt", new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true)},
                 { "dutch", new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true)},
                 { "chinese", new SigComp11ChineseLoader(Path.Combine(databasePath, "SigComp11Chinese.zip"), true)},
@@ -68,7 +68,14 @@ namespace SigStat.Benchmark
             };
 
             var features = ParseFeatures(config["Feature"]);
-            var distance = (Func<double[], double[], double>)typeof(Accord.Math.Distance).GetField(config["Distance"]).GetValue(null);
+            var dft = typeof(Func<double[], double[], double>);
+            var distance = (Func<double[], double[], double>)typeof(Accord.Math.Distance)
+                    //.GetMethod(config["Distance"], new Type[] { dft })
+                    .GetMethods().First(i => 
+                        i.Name == config["Distance"] && 
+                        i.GetParameters()[0].ParameterType == typeof(double[]))
+                    .CreateDelegate(dft);
+
             switch (config["Classifier"])
             {
                 case "Dtw":
@@ -97,21 +104,33 @@ namespace SigStat.Benchmark
                 }
             }
 
-            if (config.ContainsKey("Gap"))
+            if (config.ContainsKey("FilterGap"))
             {
-                switch (config["Gap"])
+                switch (config["FilterGap"])
                 {
                     case "none":
                         // Nothing to do here
                         break;
                     case "filter":
-                        b.Verifier.Pipeline.Add(new FilterPoints() 
-                        { 
-                            InputFeatures = features, 
-                            OutputFeatures = features, 
-                            KeyFeatureInput = Features.Pressure, 
-                            KeyFeatureOutput = Features.Pressure 
+                        b.Verifier.Pipeline.Add(new FilterPoints()
+                        {
+                            InputFeatures = features,
+                            OutputFeatures = features,
+                            KeyFeatureInput = Features.Pressure,
+                            KeyFeatureOutput = Features.Pressure
                         });
+                        break;
+                    default:
+                        throw new NotSupportedException("Unsupported gap filter: " + config["FilterGap"]);
+                }
+            }
+
+            if (config.ContainsKey("FillGap"))
+            {
+                switch (config["FillGap"])
+                {
+                    case "none":
+                        // Nothing to do here
                         break;
                     case "fill":
                         b.Verifier.Pipeline.Add(new FillPenUpDurations()
@@ -124,7 +143,7 @@ namespace SigStat.Benchmark
                         });
                         break;
                     default:
-                        throw new NotSupportedException("Unsupported gap: " + config["Gap"]);
+                        throw new NotSupportedException("Unsupported gap fill: " + config["FillGap"]);
                 }
             }
 
@@ -152,6 +171,31 @@ namespace SigStat.Benchmark
                         throw new NotSupportedException("Unsupported resampling: " + config["Resampling"]);
                 }
             }
+
+            if (config.ContainsKey("Scaling"))
+            {
+                switch (config["Scaling"])
+                {
+                    case "none":
+                        // Nothing to do here
+                        break;
+                    case "scale1":
+                        foreach (var f in features)
+                        {
+                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f });
+                        }
+                        break;
+                    case "scaleS":
+                        foreach (var f in features)
+                        {
+                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f });
+                        }
+                        break;
+                    default:
+                        throw new NotSupportedException("Unsupported classifier: " + config["Classifier"]);
+                }
+            }
+
 
             var cxTranslate = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X };
             var cyTranslate = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y };
@@ -190,29 +234,6 @@ namespace SigStat.Benchmark
                 }
             }
             
-            if (config.ContainsKey("Scaling"))
-            {
-                switch (config["Scaling"])
-                {
-                    case "none":
-                        // Nothing to do here
-                        break;
-                    case "01":
-                        foreach (var f in features)
-                        {
-                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f });
-                        }
-                        break;
-                    case "s":
-                        foreach (var f in features)
-                        {
-                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f });
-                        }
-                        break;
-                    default:
-                        throw new NotSupportedException("Unsupported classifier: " + config["Classifier"]);
-                }
-            }
 
 
 
