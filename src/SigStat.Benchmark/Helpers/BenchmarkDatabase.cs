@@ -37,10 +37,19 @@ namespace SigStat.Benchmark.Helpers
         private static readonly Expression<Func<BsonDocument, bool>> finishedFilter = d =>
                 d["results"] != BsonNull.Value;
 
-        private static readonly Expression<Func<BsonDocument, bool>> lockableFilter = d =>
-                d["result"] == BsonNull.Value && 
-                ((d["exception"] == BsonNull.Value && d["lockDate"] == BsonNull.Value)
-                 || d["lockDate"].AsBsonDateTime < new BsonDateTime(DateTime.Now.AddHours(-1)));
+        /// <summary>
+        /// This filter ensures to only lock items that are in the queue or have been locked for 1+ hours.
+        /// </summary>
+        /// <remarks>
+        /// Since BsonDateTime comparison does not work in Expression filters, this must be defined with Filter Builders.
+        /// </remarks>
+        private static readonly FilterDefinition<BsonDocument> lockableFilter = Builders<BsonDocument>.Filter
+            .Or(
+                queuedFilter,
+                Builders<BsonDocument>.Filter.And(
+                    lockedFilter,
+                    Builders<BsonDocument>.Filter.Lt(d => d["lockDate"], new BsonDateTime(DateTime.Now.AddHours(-1)))
+            ));
 
         public static async Task<bool> InitializeConnection(string connectionString)
         {
@@ -77,8 +86,8 @@ namespace SigStat.Benchmark.Helpers
                     Builders<BsonDocument>.Filter.Where(d => d["config"] == c),
                     new BsonDocument
                     {
-                        {"$set", 
-                            new BsonDocument{ 
+                        {"$set",
+                            new BsonDocument{
                                 {"config", c}
                                 //{"old", d} //Idea: Use ReplaceOneModel & store old version?
                             }
@@ -87,7 +96,7 @@ namespace SigStat.Benchmark.Helpers
                 { IsUpsert = true };
                 bulkOps.Add(upsertOne);
             }
-            var result = await experimentCollection.BulkWriteAsync(bulkOps, 
+            var result = await experimentCollection.BulkWriteAsync(bulkOps,
                 new BulkWriteOptions { IsOrdered = false });//enables parallel exec
             return configs.Count() - (int)result.MatchedCount;
         }
