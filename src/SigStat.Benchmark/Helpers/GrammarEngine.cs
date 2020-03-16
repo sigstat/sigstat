@@ -182,7 +182,7 @@ namespace SigStat.Benchmark
             string pattern = mainParts[0].Trim();
             //if (!pattern.StartsWith("["))
             //    pattern = $"[{pattern}]";
-            string[] terms = mainParts[1].Split(",").Select(s => s.Trim()).ToArray();
+            string[] terms = mainParts[1].Split("|").Select(s => s.Trim()).ToArray();
             if (terms.Any(t => t.StartsWith("*")))
                 terms = terms.Where(t => t.StartsWith("*")).Select(t => t.Substring(1)).ToArray();
             return new ProductionRule(pattern, terms);

@@ -59,7 +59,7 @@ namespace SigStat.Common.Logging
         {
             KeyValueGroups = new Dictionary<string, KeyValueGroup>();
             KeyValueGroups.Add(BenchmarkResultsGroupName, new KeyValueGroup(BenchmarkResultsGroupName));
-            KeyValueGroups.Add(ParametersGroupName, new KeyValueGroup(BenchmarkResultsGroupName));
+            KeyValueGroups.Add(ParametersGroupName, new KeyValueGroup(ParametersGroupName));
             KeyValueGroups.Add(ExecutionGroupName, new KeyValueGroup(ExecutionGroupName));
             SignerResults = new SortedDictionary<string, SignerResults>();
         }

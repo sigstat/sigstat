@@ -9,7 +9,7 @@ jobcnt=$((jobcnt>maxjobcnt ? maxjobcnt : jobcnt))
 
 universe = vanilla
 executable = /home/1/sigstat/sigstat/SigStat.Benchmark
-arguments = work --procId $(Process) --inputDir benchmarks --outputDir results --maxThreads 1
+arguments = work --procId $(Process) --maxThreads 1 --connection mongodb://localhost:27017/ --experiment test
 output = output/$(Process).out
 error = output/$(Process).err
 log = output/$(Process).log

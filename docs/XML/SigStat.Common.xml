@@ -1250,6 +1250,17 @@
             </summary>
             <seealso cref="T:Newtonsoft.Json.JsonConverter" />
         </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.DistanceMatrixConverter">
+            <summary>
+            Serializes/Deserializes a <see cref="!:DistanceMatrix&lt;string,string,double&gt;"/> object using its ToArray() and FromArray() methods.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},System.Boolean,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter">
             <summary>
             Custom serializer for a Dictionary of <see cref="T:SigStat.Common.FeatureDescriptor"/>
@@ -1312,6 +1323,17 @@
             <summary>
             A list of already serialized FeatureDescriptor keys
             </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.Serialization.KeyValueGroupConverter">
+            <summary>
+            Serializes / Deserializes a logging dictionary <see cref="T:SigStat.Common.Logging.KeyValueGroup"/>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.KeyValueGroupConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.Logging.KeyValueGroup,System.Boolean,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Helpers.Serialization.KeyValueGroupConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.Logging.KeyValueGroup,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Helpers.Serialization.RectangleFConverter">
             <summary>
