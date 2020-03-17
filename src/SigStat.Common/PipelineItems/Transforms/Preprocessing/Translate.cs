@@ -119,7 +119,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             var translatedValues = new List<double>(sig.GetFeature(InputFeature));
 
-            var origin = isMax ? translatedValues.Max() : translatedValues.Min();
+            var min = translatedValues.Min();
+            if (InputFeature == Features.Pressure)
+                min = 0;
+
+            var origin = isMax ? translatedValues.Max() : min;
             _newOrigin = origin;
 
             for (int i = 0; i < translatedValues.Count; i++)

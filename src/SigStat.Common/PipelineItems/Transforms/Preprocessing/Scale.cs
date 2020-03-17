@@ -65,8 +65,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             List<double> values = new List<double>(signature.GetFeature(InputFeature).ToList());
 
-            //find actual min value 
+            //find actual min value            
             var oldMinValue = values.Min();
+
+            if (InputFeature == Features.Pressure)
+                oldMinValue = 0;
 
             //translation to 0
             values = values.Select(v => v - oldMinValue).ToList();

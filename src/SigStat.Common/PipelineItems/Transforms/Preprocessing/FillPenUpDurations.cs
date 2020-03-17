@@ -88,7 +88,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// Gets or sets the features of an online signature that need to be altered
         /// </summary>
         [Input]
-        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
+        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
         /// <summary>
         /// Gets or sets the feature representing the modified timestamps of an online signature
@@ -106,7 +106,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// Gets or sets the features of an online signature that were altered
         /// </summary>
         [Output]
-        public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
+        public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
         //public List<TimeSlot> TimeSlots { get; set; }
 

@@ -112,10 +112,14 @@ namespace SigStat.Benchmark
                         // Nothing to do here
                         break;
                     case "filter":
+                        var filterFeatures = features.ToList();
+                        if (!filterFeatures.Contains(Features.T))
+                            filterFeatures.Add(Features.T);
+
                         b.Verifier.Pipeline.Add(new FilterPoints()
                         {
-                            InputFeatures = features,
-                            OutputFeatures = features,
+                            InputFeatures = filterFeatures,
+                            OutputFeatures = filterFeatures,
                             KeyFeatureInput = Features.Pressure,
                             KeyFeatureOutput = Features.Pressure
                         });
@@ -139,6 +143,8 @@ namespace SigStat.Benchmark
                             OutputFeatures = features,
                             TimeInputFeature = Features.T,
                             TimeOutputFeature = Features.T,
+                            PressureInputFeature = Features.Pressure,
+                            PressureOutputFeature = Features.Pressure,
                             InterpolationType = interpolations[config["FillInterpolation"]]
                         });
                         break;
@@ -182,13 +188,13 @@ namespace SigStat.Benchmark
                     case "scale1":
                         foreach (var f in features)
                         {
-                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f });
+                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f, Mode = ScalingMode.Scaling1 });
                         }
                         break;
                     case "scaleS":
                         foreach (var f in features)
                         {
-                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f });
+                            b.Verifier.Pipeline.Add(new Scale() { InputFeature = f, OutputFeature = f, Mode = ScalingMode.ScalingS });
                         }
                         break;
                     default:
@@ -209,25 +215,17 @@ namespace SigStat.Benchmark
                     case "none":
                         // Nothing to do here
                         break;
-                    case "X0":
-                        b.Verifier.Pipeline.Add(x0Translate);
+                    case "to0":
+                        foreach (var f in features)
+                        {
+                            b.Verifier.Pipeline.Add(new TranslatePreproc(OriginType.Minimum) { InputFeature = f, OutputFeature = f });
+                        }
                         break;
-                    case "Y0":
-                        b.Verifier.Pipeline.Add(y0Translate);
-                        break;
-                    case "XY0":
-                        b.Verifier.Pipeline.Add(x0Translate); 
-                        b.Verifier.Pipeline.Add(y0Translate);
-                        break;
-                    case "CogX":
-                        b.Verifier.Pipeline.Add(cxTranslate);
-                        break;
-                    case "CogY":
-                        b.Verifier.Pipeline.Add(cyTranslate);
-                        break;
-                    case "CogXY":
-                        b.Verifier.Pipeline.Add(cxTranslate);
-                        b.Verifier.Pipeline.Add(cyTranslate);
+                    case "toCog":
+                        foreach (var f in features)
+                        {
+                            b.Verifier.Pipeline.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = f, OutputFeature = f });
+                        }
                         break;
                     default:
                         throw new NotSupportedException("Unsupported translation: " + config["Translation"]);
