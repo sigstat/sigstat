@@ -233,8 +233,8 @@ namespace SigStat.Common.Loaders
                 DataCleaningHelper.Insert2DPointsForGapBorders(gapIndexes.ToArray(), signature, unitTimeSlot);
 
                 var x = signature.GetFeature(Features.X);
-                signature.SetFeature(Features.Azimuth, x.Select(x => 1d).ToList());
-                signature.SetFeature(Features.Altitude, x.Select(x => 1d).ToList());
+                signature.SetFeature(Features.Azimuth, x.Select(v => 1d).ToList());
+                signature.SetFeature(Features.Altitude, x.Select(v => 1d).ToList());
 
                 signature.CalculateStandardStatistics();
             }

@@ -6,6 +6,7 @@ using SigStat.Common.Helpers;
 using SigStat.Common.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -51,16 +52,27 @@ namespace SigStat.Benchmark.Helpers
                     Builders<BsonDocument>.Filter.Lt(d => d["lockDate"], new BsonDateTime(DateTime.Now.AddHours(-1)))
             ));
 
-        public static async Task<bool> InitializeConnection(string connectionString)
+        public static async Task InitializeConnection(string connectionString)
         {
+            if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
+            if (!connectionString.StartsWith("mongodb://"))
+            {
+                try
+                {
+                    connectionString = await File.ReadAllTextAsync(connectionString);
+                }
+                catch(IOException exc)
+                {
+                    throw new IOException($"Couldn't load connection string from '{connectionString}'", exc);
+                }
+            }
+
+
             client = new MongoClient(connectionString);
-            db = client.GetDatabase("benchmarks");
+            db = client.GetDatabase("Benchmark");
             experimentCollection = db.GetCollection<BsonDocument>(Program.Experiment);
 
-            //TODO: Test connection, with throttling similar to Worker..
-            //return false;
 
-            return true;
         }
 
         public static async Task<bool> ExperimentExists()

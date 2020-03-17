@@ -64,7 +64,7 @@ namespace SigStat.Common.Helpers
 
                     //update indexes after insertation of two points
                     gapIndexes = Array.FindAll(gapIndexes, idx => idx != i);
-                    gapIndexes = gapIndexes.Select(i => i + 2).ToArray();
+                    gapIndexes = gapIndexes.Select(v => v + 2).ToArray();
                     i = i + 2;
 
                 }

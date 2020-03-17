@@ -18,11 +18,8 @@ namespace SigStat.Benchmark
                     Experiment = o.Experiment;
                     try
                     {
-                        bool connected = await BenchmarkDatabase.InitializeConnection(o.ConnectionString);
-                        if (connected)
-                            await o.RunAsync();
-                        else
-                            return;
+                        await BenchmarkDatabase.InitializeConnection(o.Connection);
+                        await o.RunAsync();
                     }
                     catch (TimeoutException tex)
                     {
