@@ -85,32 +85,47 @@ namespace SigStat.Benchmark.Helpers
 
         /// <summary>
         /// Insert congifurations if they don't exist already.
-        /// This does not remove locks, results and logs on existing items.
+        /// Due to the 400 RU/s restriction, documents are sent in small batches 
+        /// and client-side throttling is applied when required.
+        /// Note: This method does not remove locks, results and logs on existing items.
         /// </summary>
         /// <param name="configs"></param>
         /// <returns>Number of new configurations inserted.</returns>
         public static async Task<int> UpsertConfigs(IEnumerable<string> configs)
         {
-            var bulkOps = new List<WriteModel<BsonDocument>>();
-            foreach (var c in configs)
+            int delayMs = 1000;
+            int batchSize = 25;
+
+            int matchedCnt = 0;
+            List<string> remaining = configs.ToList();
+            while (remaining.Count>0)
             {
-                var upsertOne = new UpdateOneModel<BsonDocument>(
-                    Builders<BsonDocument>.Filter.Where(d => d["config"] == c),
-                    new BsonDocument
-                    {
-                        {"$set",
-                            new BsonDocument{
-                                {"config", c}
-                                //{"old", d} //Idea: Use ReplaceOneModel & store old version?
-                            }
-                        }
-                    })
-                { IsUpsert = true };
-                bulkOps.Add(upsertOne);
+
+                //create write models
+                var bulkOps = remaining.Take(batchSize).Select(config => new UpdateOneModel<BsonDocument>(
+                    Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
+                    Builders<BsonDocument>.Update.SetOnInsert(d => d["config"], config))
+                    { IsUpsert = true });
+
+                try
+                {
+                    var res = await experimentCollection.BulkWriteAsync(bulkOps,
+                        new BulkWriteOptions { IsOrdered = false });//enables parallel exec*/
+
+                    remaining = remaining.Skip(batchSize).ToList();
+                    matchedCnt += (int)res.MatchedCount;
+
+                    Console.WriteLine($"{configs.Count() - remaining.Count} / {configs.Count()}");
+                }
+                catch (MongoCommandException)
+                {
+                    Console.WriteLine("Throttling...");
+                    await Task.Delay(delayMs);
+                }
+
             }
-            var result = await experimentCollection.BulkWriteAsync(bulkOps,
-                new BulkWriteOptions { IsOrdered = false });//enables parallel exec
-            return configs.Count() - (int)result.MatchedCount;
+
+            return configs.Count()/* - matchedCnt*/;//TODO: fix: First request matches more configs???
         }
 
         /// <summary>
