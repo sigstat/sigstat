@@ -1523,61 +1523,6 @@
             <param name="signer"></param>
             <returns></returns>
         </member>
-        <member name="T:SigStat.Common.Helpers.SimpleConsoleLogger">
-            <summary>
-            A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
-            </summary>
-            <remarks>
-            <list type="bullet">
-            <item>A producer-consumer pattern is implemented with a concurrent queue to support multi-threaded pipelines.</item>
-            <item>Holding the StreamWriter open is more efficient than repeatedly opening and closing it.</item>
-            </list>
-            </remarks>
-            <example>
-            <code>
-            Logger l1 = new Logger(LogLevel.Info);
-            Logger.Warn(this, "Training on non-genuine signature.");
-            </code>
-            </example>
-        </member>
-        <member name="T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler">
-            <summary>
-            The event is raised whenever an error is logged
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-            <param name="level">The level.</param>
-        </member>
-        <member name="P:SigStat.Common.Helpers.SimpleConsoleLogger.LogLevel">
-            <summary>
-            All events below this level will be filtered
-            </summary>
-        </member>
-        <member name="E:SigStat.Common.Helpers.SimpleConsoleLogger.Logged">
-            <summary>
-            Occurs when an error is logged
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.#ctor">
-            <summary>
-            Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
-            <summary>
-            Initializes an instance of SimpleConsoleLogger with a custom LogLevel
-            </summary>
-            <param name="logLevel">initial value for LogLevel</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.BeginScope``1(``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SigStat.Common.Helpers.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
-            <inheritdoc/>
-        </member>
         <member name="T:SigStat.Common.DistanceMatrix`3">
             <summary>
             A Sparse Matrix representation of a distance graph.
@@ -2709,6 +2654,50 @@
             <param name="signature1Id">Id of the first signature</param>
             <param name="signature2Id">Id of the second signature</param>
             <param name="distance">Distance values between the signatures</param>
+        </member>
+        <member name="T:SigStat.Common.Logging.SimpleConsoleLogger">
+            <summary>
+            Logs messages to <see cref="T:System.Console"/>. 
+            The font color is determined by the severity level.
+            </summary>
+        </member>
+        <member name="T:SigStat.Common.Logging.SimpleConsoleLogger.ErrorEventHandler">
+            <summary>
+            The event is raised whenever an error is logged
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="level">The level.</param>
+        </member>
+        <member name="P:SigStat.Common.Logging.SimpleConsoleLogger.LogLevel">
+            <summary>
+            All events below this level will be filtered
+            </summary>
+        </member>
+        <member name="E:SigStat.Common.Logging.SimpleConsoleLogger.Logged">
+            <summary>
+            Occurs when an error is logged
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
+            <summary>
+            Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            Initializes an instance of SimpleConsoleLogger with a custom LogLevel
+            </summary>
+            <param name="logLevel">initial value for LogLevel</param>
+        </member>
+        <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.BeginScope``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.FeatureDescriptor">
             <summary>
