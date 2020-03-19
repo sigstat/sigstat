@@ -17,6 +17,19 @@ namespace SigStat.Common.Logging
         public List<ILogger> Loggers { get; set; } = new List<ILogger>();
 
         /// <summary>
+        /// The event is raised whenever an error is logged.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="exception">The exception.</param>
+        /// <param name="level">The level.</param>
+        public delegate void ErrorEventHandler(string message, Exception exception, LogLevel level);
+
+        /// <summary>
+        /// Occurs when an error is logged.
+        /// </summary>
+        public event ErrorEventHandler Logged;
+
+        /// <summary>
         /// Calls <see cref="ILogger.BeginScope{TState}(TState)"/> on each component.
         /// </summary>
         public IDisposable BeginScope<TState>(TState state)
@@ -42,6 +55,12 @@ namespace SigStat.Common.Logging
         {
             Loggers.ForEach(l =>
                 l.Log(logLevel, eventId, state, exception, formatter));
+
+            if (formatter == null)
+                formatter = (s, e) => s.ToString();
+            string formattedMessage = formatter(state, exception);
+
+            Logged?.Invoke(formattedMessage, exception, logLevel);
         }
     }
 }

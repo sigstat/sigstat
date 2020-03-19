@@ -44,8 +44,8 @@ namespace SigStat.Benchmark
 
             while (DateTime.Now < stopTime)
             {
-                StringBuilder debugInfo = new StringBuilder();
-                debugInfo.AppendLine(DateTime.Now.ToString());
+                StringBuilder errorLog = new StringBuilder();
+                errorLog.AppendLine(DateTime.Now.ToString());
 
                 if (!Console.IsInputRedirected)
                 {
@@ -56,15 +56,24 @@ namespace SigStat.Benchmark
                     }
                 }
 
-
-                var logger = new ReportInformationLogger();
+                var reportInformationLogger = new ReportInformationLogger();
+                var logger = new CompositeLogger
+                {
+                    Loggers = new List<ILogger>
+                    {
+                        reportInformationLogger,
+                        new SimpleConsoleLogger()
+                    }
+                };
                 logger.Logged += (m, e, l) =>
                 {
-                    debugInfo.AppendLine(m);
-                    if (e != null)
-                        debugInfo.AppendLine(e.ToString());
-                    if (l == LogLevel.Error || l == LogLevel.Critical)
+                    if (l == LogLevel.Error || l == LogLevel.Critical || e != null)
+                    {
+                        errorLog.AppendLine(m);
+                        if (e != null)
+                            errorLog.AppendLine(e.ToString());
                         CurrentResultType = "Error";
+                    }
                 };
 
                 CurrentBenchmark = await GetNextBenchmark();
@@ -76,38 +85,32 @@ namespace SigStat.Benchmark
 
                 try
                 {
+                    CurrentResultType = "Success";
                     if (maxThreads>0)
                         CurrentBenchmark.Execute(maxThreads);
                     else
-                        CurrentBenchmark.Execute(true);//default: no restriction 
-                    CurrentResultType = "Success";
+                        CurrentBenchmark.Execute(true);//default: no restriction
                 }
                 catch (Exception exc)
                 {
                     CurrentResultType = "Error";
                     Console.WriteLine(exc.ToString());
-                    debugInfo.AppendLine(exc.ToString());
-                    //Save to File?
-
-                    await BenchmarkDatabase.SendException(ProcessId, CurrentBenchmarkId, debugInfo.ToString());
-
-                    continue;
+                    errorLog.AppendLine(exc.ToString());
                 }
 
-                //Send log even if no error
-                //await BenchmarkDatabase.SendLog(ProcessId, CurrentBenchmarkId, debugInfo.ToString());
-
-                Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
-                var logmodel = LogAnalyzer.GetBenchmarkLogModel(logger.ReportLogs);
-                await BenchmarkDatabase.SendResults(procId, CurrentBenchmarkId, CurrentResultType, logmodel);
-
-                //LogProcessor.Dump(logger);
-                // MongoDB 
-                // TableStorage
-                // Json => utólag, json-ben szűrni lehet
-                // DynamoDB ==> MongoDB $$$$$$$
-                // DateTime, MachineName, ....ExecutionTime,..., ResultType, Result json{40*60 táblázat}
-                //benchmark.Dump(filename, config.ToKeyValuePairs());
+                if (CurrentResultType == "Success")
+                {
+                    Console.WriteLine($"{DateTime.Now}: Analyzing report...");
+                    var logmodel = LogAnalyzer.GetBenchmarkLogModel(reportInformationLogger.ReportLogs);
+                    Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
+                    await BenchmarkDatabase.SendResults(ProcessId, CurrentBenchmarkId, logmodel);
+                }
+                else if (CurrentResultType=="Error")
+                {
+                    Console.WriteLine($"{DateTime.Now}: Writing error log to MongoDB...");
+                    //Save to File?
+                    await BenchmarkDatabase.SendErrorLog(ProcessId, CurrentBenchmarkId, errorLog.ToString());
+                }
 
             }
         }
