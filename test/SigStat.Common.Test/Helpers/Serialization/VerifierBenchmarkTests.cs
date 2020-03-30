@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigStat.Common.Framework.Samplers;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
+using SigStat.Common.Logging;
 using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;

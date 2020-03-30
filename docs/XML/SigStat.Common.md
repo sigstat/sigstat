@@ -118,6 +118,12 @@
   - [X](#P-SigStat-Common-Transforms-ComponentsToFeatures-X 'SigStat.Common.Transforms.ComponentsToFeatures.X')
   - [Y](#P-SigStat-Common-Transforms-ComponentsToFeatures-Y 'SigStat.Common.Transforms.ComponentsToFeatures.Y')
   - [Transform()](#M-SigStat-Common-Transforms-ComponentsToFeatures-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.ComponentsToFeatures.Transform(SigStat.Common.Signature)')
+- [CompositeLogger](#T-SigStat-Common-Logging-CompositeLogger 'SigStat.Common.Logging.CompositeLogger')
+  - [Loggers](#P-SigStat-Common-Logging-CompositeLogger-Loggers 'SigStat.Common.Logging.CompositeLogger.Loggers')
+  - [BeginScope\`\`1()](#M-SigStat-Common-Logging-CompositeLogger-BeginScope``1-``0- 'SigStat.Common.Logging.CompositeLogger.BeginScope``1(``0)')
+  - [IsEnabled()](#M-SigStat-Common-Logging-CompositeLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.CompositeLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
+  - [Log\`\`1()](#M-SigStat-Common-Logging-CompositeLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.CompositeLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
+- [ConsoleMessageLoggedEventHandler](#T-SigStat-Common-Logging-SimpleConsoleLogger-ConsoleMessageLoggedEventHandler 'SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler')
 - [CubicInterpolation](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation')
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.TimeValues')
@@ -178,8 +184,7 @@
   - [OutputEndpoints](#P-SigStat-Common-Transforms-EndpointExtraction-OutputEndpoints 'SigStat.Common.Transforms.EndpointExtraction.OutputEndpoints')
   - [Skeleton](#P-SigStat-Common-Transforms-EndpointExtraction-Skeleton 'SigStat.Common.Transforms.EndpointExtraction.Skeleton')
   - [Transform()](#M-SigStat-Common-Transforms-EndpointExtraction-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)')
-- [ErrorEventHandler](#T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler 'SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler')
-- [ErrorEventHandler](#T-SigStat-Common-Logging-ReportInformationLogger-ErrorEventHandler 'SigStat.Common.Logging.ReportInformationLogger.ErrorEventHandler')
+- [ErrorEventHandler](#T-SigStat-Common-Logging-CompositeLogger-ErrorEventHandler 'SigStat.Common.Logging.CompositeLogger.ErrorEventHandler')
 - [ErrorRate](#T-SigStat-Common-ErrorRate 'SigStat.Common.ErrorRate')
   - [Far](#F-SigStat-Common-ErrorRate-Far 'SigStat.Common.ErrorRate.Far')
   - [Frr](#F-SigStat-Common-ErrorRate-Frr 'SigStat.Common.ErrorRate.Frr')
@@ -374,6 +379,7 @@
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.GetValue(System.Double)')
 - [LogAnalyzer](#T-SigStat-Common-Logging-LogAnalyzer 'SigStat.Common.Logging.LogAnalyzer')
   - [GetBenchmarkLogModel(logs)](#M-SigStat-Common-Logging-LogAnalyzer-GetBenchmarkLogModel-System-Collections-Generic-IEnumerable{SigStat-Common-Logging-SigStatLogState}- 'SigStat.Common.Logging.LogAnalyzer.GetBenchmarkLogModel(System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState})')
+- [LogStateLoggedEventHandler](#T-SigStat-Common-Logging-ReportInformationLogger-LogStateLoggedEventHandler 'SigStat.Common.Logging.ReportInformationLogger.LogStateLoggedEventHandler')
 - [Loop](#T-SigStat-Common-Loop 'SigStat.Common.Loop')
   - [#ctor()](#M-SigStat-Common-Loop-#ctor 'SigStat.Common.Loop.#ctor')
   - [#ctor(centerX,centerY)](#M-SigStat-Common-Loop-#ctor-System-Single,System-Single- 'SigStat.Common.Loop.#ctor(System.Single,System.Single)')
@@ -728,13 +734,13 @@
   - [GetMinSignaturePoints(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetMinSignaturePoints-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetMinSignaturePoints(SigStat.Common.Signer)')
   - [GetPointsAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetPointsAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetPointsAvg(SigStat.Common.Signer)')
   - [GetWidthAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetWidthAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetWidthAvg(SigStat.Common.Signer)')
-- [SimpleConsoleLogger](#T-SigStat-Common-Helpers-SimpleConsoleLogger 'SigStat.Common.Helpers.SimpleConsoleLogger')
-  - [#ctor()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor 'SigStat.Common.Helpers.SimpleConsoleLogger.#ctor')
-  - [#ctor(logLevel)](#M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Helpers.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)')
-  - [LogLevel](#P-SigStat-Common-Helpers-SimpleConsoleLogger-LogLevel 'SigStat.Common.Helpers.SimpleConsoleLogger.LogLevel')
-  - [BeginScope\`\`1()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-BeginScope``1-``0- 'SigStat.Common.Helpers.SimpleConsoleLogger.BeginScope``1(``0)')
-  - [IsEnabled()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Helpers.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
-  - [Log\`\`1()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Helpers.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
+- [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger')
+  - [#ctor()](#M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor 'SigStat.Common.Logging.SimpleConsoleLogger.#ctor')
+  - [#ctor(logLevel)](#M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)')
+  - [LogLevel](#P-SigStat-Common-Logging-SimpleConsoleLogger-LogLevel 'SigStat.Common.Logging.SimpleConsoleLogger.LogLevel')
+  - [BeginScope\`\`1()](#M-SigStat-Common-Logging-SimpleConsoleLogger-BeginScope``1-``0- 'SigStat.Common.Logging.SimpleConsoleLogger.BeginScope``1(``0)')
+  - [IsEnabled()](#M-SigStat-Common-Logging-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
+  - [Log\`\`1()](#M-SigStat-Common-Logging-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
 - [SimpleRenderingTransformation](#T-SigStat-Common-SimpleRenderingTransformation 'SigStat.Common.SimpleRenderingTransformation')
   - [Transform()](#M-SigStat-Common-SimpleRenderingTransformation-Transform-SigStat-Common-Signature- 'SigStat.Common.SimpleRenderingTransformation.Transform(SigStat.Common.Signature)')
 - [StrokeHelper](#T-SigStat-Common-StrokeHelper 'SigStat.Common.StrokeHelper')
@@ -2104,6 +2110,74 @@ Y
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Logging-CompositeLogger'></a>
+## CompositeLogger `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Forwards messages to [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') components.
+
+<a name='P-SigStat-Common-Logging-CompositeLogger-Loggers'></a>
+### Loggers `property`
+
+##### Summary
+
+The list of [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') components that messages are forwarded to. Empty by default.
+
+<a name='M-SigStat-Common-Logging-CompositeLogger-BeginScope``1-``0-'></a>
+### BeginScope\`\`1() `method`
+
+##### Summary
+
+Calls [BeginScope\`\`1](#M-Microsoft-Extensions-Logging-ILogger-BeginScope``1-``0- 'Microsoft.Extensions.Logging.ILogger.BeginScope``1(``0)') on each component.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-CompositeLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
+### IsEnabled() `method`
+
+##### Summary
+
+Returns true if any of the [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') components are enabled on the specified [LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel').
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-CompositeLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+### Log\`\`1() `method`
+
+##### Summary
+
+Forwards the message to each [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') component.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Logging-SimpleConsoleLogger-ConsoleMessageLoggedEventHandler'></a>
+## ConsoleMessageLoggedEventHandler `type`
+
+##### Namespace
+
+SigStat.Common.Logging.SimpleConsoleLogger
+
+##### Summary
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| consoleMessage | [T:SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler](#T-T-SigStat-Common-Logging-SimpleConsoleLogger-ConsoleMessageLoggedEventHandler 'T:SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler') |  |
+
 <a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation'></a>
 ## CubicInterpolation `type`
 
@@ -2950,39 +3024,22 @@ Binary representation of an image
 
 This method has no parameters.
 
-<a name='T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler'></a>
+<a name='T-SigStat-Common-Logging-CompositeLogger-ErrorEventHandler'></a>
 ## ErrorEventHandler `type`
 
 ##### Namespace
 
-SigStat.Common.Helpers.SimpleConsoleLogger
+SigStat.Common.Logging.CompositeLogger
 
 ##### Summary
 
-The event is raised whenever an error is logged
+The event is raised whenever an error is logged.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| message | [T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler](#T-T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler 'T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler') | The message. |
-
-<a name='T-SigStat-Common-Logging-ReportInformationLogger-ErrorEventHandler'></a>
-## ErrorEventHandler `type`
-
-##### Namespace
-
-SigStat.Common.Logging.ReportInformationLogger
-
-##### Summary
-
-The event is raised whenever an error is logged
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| message | [T:SigStat.Common.Logging.ReportInformationLogger.ErrorEventHandler](#T-T-SigStat-Common-Logging-ReportInformationLogger-ErrorEventHandler 'T:SigStat.Common.Logging.ReportInformationLogger.ErrorEventHandler') | The message. |
+| message | [T:SigStat.Common.Logging.CompositeLogger.ErrorEventHandler](#T-T-SigStat-Common-Logging-CompositeLogger-ErrorEventHandler 'T:SigStat.Common.Logging.CompositeLogger.ErrorEventHandler') | The message. |
 
 <a name='T-SigStat-Common-ErrorRate'></a>
 ## ErrorRate `type`
@@ -5259,6 +5316,17 @@ The Benchmark model filled with information according to the logs
 | ---- | ---- | ----------- |
 | logs | [System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState}') | The collection of logs, that contains the required information for a BenchmarkLogModel |
 
+<a name='T-SigStat-Common-Logging-ReportInformationLogger-LogStateLoggedEventHandler'></a>
+## LogStateLoggedEventHandler `type`
+
+##### Namespace
+
+SigStat.Common.Logging.ReportInformationLogger
+
+##### Summary
+
+The event is raised whenever a SigStatLogState is logged.
+
 <a name='T-SigStat-Common-Loop'></a>
 ## Loop `type`
 
@@ -6949,14 +7017,14 @@ SigStat.Common.Logging
 
 ##### Summary
 
-Logger for logging report informations
+Logger for logging report informations.
 
 <a name='M-SigStat-Common-Logging-ReportInformationLogger-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
 
-Initializes an instance of ReportInformationLogger
+Initializes a new instance of [ReportInformationLogger](#T-SigStat-Common-Logging-ReportInformationLogger 'SigStat.Common.Logging.ReportInformationLogger').
 
 ##### Parameters
 
@@ -6967,7 +7035,7 @@ This constructor has no parameters.
 
 ##### Summary
 
-Stored logs that contain information for the report
+Stored logs that contain information for the report.
 
 <a name='P-SigStat-Common-Logging-ReportInformationLogger-ReportLogs'></a>
 ### ReportLogs `property`
@@ -8865,60 +8933,50 @@ Return signer width average
 | ---- | ---- | ----------- |
 | signer | [SigStat.Common.Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer') |  |
 
-<a name='T-SigStat-Common-Helpers-SimpleConsoleLogger'></a>
+<a name='T-SigStat-Common-Logging-SimpleConsoleLogger'></a>
 ## SimpleConsoleLogger `type`
 
 ##### Namespace
 
-SigStat.Common.Helpers
+SigStat.Common.Logging
 
 ##### Summary
 
-A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+Logs messages to [Console](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Console 'System.Console'). 
+The font color is determined by the severity level.
 
-##### Example
-
-```
-Logger l1 = new Logger(LogLevel.Info);
-Logger.Warn(this, "Training on non-genuine signature.");
-```
-
-##### Remarks
-
-
-
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
 
-Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 
 This constructor has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel-'></a>
 ### #ctor(logLevel) `constructor`
 
 ##### Summary
 
-Initializes an instance of SimpleConsoleLogger with a custom LogLevel
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with a custom [LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel').
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| logLevel | [Microsoft.Extensions.Logging.LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel') | initial value for LogLevel |
+| logLevel | [Microsoft.Extensions.Logging.LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel') | Initial value for LogLevel. |
 
-<a name='P-SigStat-Common-Helpers-SimpleConsoleLogger-LogLevel'></a>
+<a name='P-SigStat-Common-Logging-SimpleConsoleLogger-LogLevel'></a>
 ### LogLevel `property`
 
 ##### Summary
 
 All events below this level will be filtered
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-BeginScope``1-``0-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-BeginScope``1-``0-'></a>
 ### BeginScope\`\`1() `method`
 
 ##### Summary
@@ -8929,7 +8987,7 @@ All events below this level will be filtered
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
 ### IsEnabled() `method`
 
 ##### Summary
@@ -8940,7 +8998,7 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
 ### Log\`\`1() `method`
 
 ##### Summary

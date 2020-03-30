@@ -1,39 +1,19 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
-namespace SigStat.Common.Helpers
+namespace SigStat.Common.Logging
 {
     /// <summary>
-    /// A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+    /// Logs messages to <see cref="Console"/>. 
+    /// The font color is determined by the severity level.
     /// </summary>
-    /// <remarks>
-    /// <list type="bullet">
-    /// <item>A producer-consumer pattern is implemented with a concurrent queue to support multi-threaded pipelines.</item>
-    /// <item>Holding the StreamWriter open is more efficient than repeatedly opening and closing it.</item>
-    /// </list>
-    /// </remarks>
-    /// <example>
-    /// <code>
-    /// Logger l1 = new Logger(LogLevel.Info);
-    /// Logger.Warn(this, "Training on non-genuine signature.");
-    /// </code>
-    /// </example>
     public class SimpleConsoleLogger : ILogger
     {
         /// <summary>
-        /// The event is raised whenever an error is logged
+        /// The event is raised whenever a console message is logged
         /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        /// <param name="level">The level.</param>
-        public delegate void ErrorEventHandler(string message, Exception exception, LogLevel level);
+        /// <param name="consoleMessage"></param>
+        public delegate void ConsoleMessageLoggedEventHandler(string consoleMessage);
 
         /// <summary>
         /// All events below this level will be filtered
@@ -41,12 +21,12 @@ namespace SigStat.Common.Helpers
         public LogLevel LogLevel { get; set; }
 
         /// <summary>
-        /// Occurs when an error is logged
+        /// Occurs when a console message is logged
         /// </summary>
-        public event ErrorEventHandler Logged;
+        public event ConsoleMessageLoggedEventHandler Logged;
 
         /// <summary>
-        /// Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
+        /// Initializes a new instance of <see cref="SimpleConsoleLogger"/> with LogLevel set to <see cref="LogLevel.Information"/>.
         /// </summary>
         public SimpleConsoleLogger(): this(LogLevel.Information)
         {
@@ -54,9 +34,9 @@ namespace SigStat.Common.Helpers
         }
 
         /// <summary>
-        /// Initializes an instance of SimpleConsoleLogger with a custom LogLevel
+        /// Initializes a new instance of <see cref="SimpleConsoleLogger"/> with a custom <see cref="Microsoft.Extensions.Logging.LogLevel"/>.
         /// </summary>
-        /// <param name="logLevel">initial value for LogLevel</param>
+        /// <param name="logLevel">Initial value for LogLevel.</param>
         public SimpleConsoleLogger(LogLevel logLevel)
         {
             LogLevel = logLevel;
@@ -79,6 +59,9 @@ namespace SigStat.Common.Helpers
         {
             if (!IsEnabled(logLevel))
                 return;
+
+            if (formatter == null)
+                formatter = (s, e) => s.ToString();
 
             var oldColor = Console.ForegroundColor;
 
@@ -108,9 +91,9 @@ namespace SigStat.Common.Helpers
             {
                 Console.WriteLine(exception);
             }
-            Logged?.Invoke(msg, exception, logLevel);
-
             Console.ForegroundColor = oldColor;
+
+            Logged?.Invoke(msg);
         }
     }
 

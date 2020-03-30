@@ -24,16 +24,16 @@ namespace SigStat.Benchmark.Helpers
 
         private static readonly Expression<Func<BsonDocument, bool>> queuedFilter = d =>
                 d["results"] == BsonNull.Value &&
-                d["exception"] == BsonNull.Value &&
+                d["errorLog"] == BsonNull.Value &&
                 d["lockDate"] == BsonNull.Value;
 
         private static readonly Expression<Func<BsonDocument, bool>> lockedFilter = d =>
                 d["results"] == BsonNull.Value &&
-                d["exception"] == BsonNull.Value &&
+                d["errorLog"] == BsonNull.Value &&
                 d["lockDate"] != BsonNull.Value;
 
         private static readonly Expression<Func<BsonDocument, bool>> faultedFilter = d =>
-                d["exception"] != BsonNull.Value;
+                d["errorLog"] != BsonNull.Value;
 
         private static readonly Expression<Func<BsonDocument, bool>> finishedFilter = d =>
                 d["results"] != BsonNull.Value;
@@ -150,7 +150,7 @@ namespace SigStat.Benchmark.Helpers
         /// <summary>
         /// Add results to a specified benchmark item.
         /// </summary>
-        public static async Task SendResults(int procId, string benchmarkConfig, string resultType, BenchmarkLogModel results)
+        public static async Task SendResults(int procId, string benchmarkConfig, BenchmarkLogModel results)
         {
             var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
@@ -158,7 +158,7 @@ namespace SigStat.Benchmark.Helpers
                 d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
                 Builders<BsonDocument>.Update
                     .Set("end_date", DateTime.Now)
-                    .Set("resultType", resultType)
+                    .Set("resultType", "Success")
                     .Set("results", bsonResults),
                 new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
@@ -167,14 +167,14 @@ namespace SigStat.Benchmark.Helpers
         /// <summary>
         /// Send log after exception.
         /// </summary>
-        public static async Task SendException(int procId, string benchmarkConfig, string logString)
+        public static async Task SendErrorLog(int procId, string benchmarkConfig, string logString)
         {
             var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
                 d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
                 Builders<BsonDocument>.Update
                     .Set("end_date", DateTime.Now)
-                    //.Set("resultType", "exception")
-                    .Set("exception", logString),
+                    .Set("resultType", "Error")
+                    .Set("errorLog", logString),
                 new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
         }
@@ -235,7 +235,7 @@ namespace SigStat.Benchmark.Helpers
         {
             var result = await experimentCollection.UpdateManyAsync(faultedFilter,
                Builders<BsonDocument>.Update
-                .Unset("exception")
+                .Unset("errorLog")
                 .Unset("lockDate"),
                new UpdateOptions() { IsUpsert = false });
             return (int)result.MatchedCount;
