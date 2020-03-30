@@ -3318,6 +3318,66 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.OutputY">
+            <summary>
+            Gets or sets the output feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.OutputY">
+            <summary>
+            Gets or sets the output feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX">
             <summary>
             Performs rotation normalization on the online signature

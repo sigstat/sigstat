@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
+using SigStat.Common;
 using SigStat.Common.Loaders;
+using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +26,7 @@ namespace SigStat.UI
     public partial class MainWindow : Window
     {
         public MainViewModel VM { get; set; } = new MainViewModel();
+        public object NormalizeRotaiton2 { get; private set; }
 
         public MainWindow()
         {
@@ -41,7 +44,28 @@ namespace SigStat.UI
                 return;
             var ctor = VM.SelectedDatasetLoader.GetConstructor(new[] { typeof(string), typeof(bool) });
             var loader = (IDataSetLoader)ctor.Invoke(new object[] { dlg.FileName, true });
-            VM.Signers = new ObservableCollection<Common.Signer>(loader.EnumerateSigners().OrderBy(s => s.ID));
+            //VM.Signers = new ObservableCollection<Common.Signer>(loader.EnumerateSigners().OrderBy(s => s.ID));
+            
+            
+            var signers = new ObservableCollection<Common.Signer>(loader.EnumerateSigners().OrderBy(s => s.ID));
+            NormalizeRotation2 tr = new NormalizeRotation2()
+            {
+                InputX = Features.X,
+                OutputX = Features.X,
+                InputY = Features.Y,
+                OutputY = Features.Y
+            };
+            for (int signerId = 0; signerId < signers.Count(); signerId++)
+            {
+                int n = signers[signerId].Signatures.Count;
+                for (int signatureId = 0; signatureId < n; signatureId++)
+                {
+                    var signature = signers[signerId].Signatures[signatureId];
+                    tr.Transform(signature);
+                }
+            }
+            
+            VM.Signers = signers;
 
         }
     }

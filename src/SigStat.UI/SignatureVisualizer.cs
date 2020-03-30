@@ -101,18 +101,18 @@ namespace SigStat.UI
             var sig = Signature;
             if (sig == null)
                 return;
-            FillPenUpDurations tr = new FillPenUpDurations()
-            {
-                InputFeatures = { Features.X, Features.Y },
-                OutputFeatures = { Features.X, Features.Y },
-                PressureInputFeature = Features.Pressure,
-                PressureOutputFeature = Features.Pressure,
-                TimeInputFeature = Features.T,
-                TimeOutputFeature = Features.T,
-                InterpolationType = typeof(CubicInterpolation)
-            };
+            //FillPenUpDurations tr = new FillPenUpDurations()
+            //{
+            //    InputFeatures = { Features.X, Features.Y },
+            //    OutputFeatures = { Features.X, Features.Y },
+            //    PressureInputFeature = Features.Pressure,
+            //    PressureOutputFeature = Features.Pressure,
+            //    TimeInputFeature = Features.T,
+            //    TimeOutputFeature = Features.T,
+            //    InterpolationType = typeof(CubicInterpolation)
+            //};
 
-            tr.Transform(sig);
+            //tr.Transform(sig);
             var strokes = sig.GetStrokes();
             var xt = sig.GetFeature(Features.X);
             var yt = sig.GetFeature(Features.Y);
