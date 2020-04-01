@@ -19,7 +19,7 @@ namespace SigStat.Benchmark.Options
 
         public override Task RunAsync()
         {
-            return BenchmarkGenerator.RunAsync(RulesFilePath);
+            return Generator.RunAsync(RulesFilePath);
         }
     }
 }

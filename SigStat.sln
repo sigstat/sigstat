@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.Common.Test", "test\SigStat.Common.Test\SigStat.Common.Test.csproj", "{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.PreprocessingBenchmark", "SigStat.PreprocessingBenchmark\SigStat.PreprocessingBenchmark.csproj", "{40C2003F-B38E-4CA3-B047-CDC2EB50BFBB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.Benchmark", "src\SigStat.Benchmark\SigStat.Benchmark.csproj", "{D2DBA13B-279A-4A0A-8D90-7F89EE7F8DD0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigStat.FusionBenchmark", "src\SigStat.FusionBenchmark\SigStat.FusionBenchmark.csproj", "{2580A111-F3FE-46D9-BD8E-6614CB0E80D3}"
@@ -43,10 +41,6 @@ Global
 		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EEAA23C-5880-4DEC-9072-0F3BF1E06DBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40C2003F-B38E-4CA3-B047-CDC2EB50BFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40C2003F-B38E-4CA3-B047-CDC2EB50BFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40C2003F-B38E-4CA3-B047-CDC2EB50BFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40C2003F-B38E-4CA3-B047-CDC2EB50BFBB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2DBA13B-279A-4A0A-8D90-7F89EE7F8DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2DBA13B-279A-4A0A-8D90-7F89EE7F8DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2DBA13B-279A-4A0A-8D90-7F89EE7F8DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU

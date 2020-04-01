@@ -97,25 +97,30 @@ namespace SigStat.Benchmark.Helpers
             int batchSize = 25;
 
             int matchedCnt = 0;
-            List<string> remaining = configs.ToList();
-            while (remaining.Count>0)
+            int totalCount = configs.Count();
+            int processedCount = 0;
+            while (totalCount>processedCount)
             {
 
-                //create write models
-                var bulkOps = remaining.Take(batchSize).Select(config => new UpdateOneModel<BsonDocument>(
-                    Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
-                    Builders<BsonDocument>.Update.SetOnInsert(d => d["config"], config))
-                    { IsUpsert = true });
+
+                ////create write models
+                //var bulkOps = remaining.Take(batchSize).Select(config => new UpdateOneModel<BsonDocument>(
+                //    Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
+                //    Builders<BsonDocument>.Update.SetOnInsert(d => d["config"], config))
+                //    { IsUpsert = true });
 
                 try
                 {
-                    var res = await experimentCollection.BulkWriteAsync(bulkOps,
-                        new BulkWriteOptions { IsOrdered = false });//enables parallel exec*/
+                    //var res = await experimentCollection.BulkWriteAsync(bulkOps,
+                    //    new BulkWriteOptions { IsOrdered = false });//enables parallel exec*/
 
-                    remaining = remaining.Skip(batchSize).ToList();
-                    matchedCnt += (int)res.MatchedCount;
+                    //if (res.IsAcknowledged)
+                    //{
+                    //    //remaining.RemoveRange(0, batchSize);
+                    //    matchedCnt += (int)res.MatchedCount;
 
-                    Console.WriteLine($"{configs.Count() - remaining.Count} / {configs.Count()}");
+                    //    //Console.WriteLine($"{configs.Count() - remaining.Count} / {configs.Count()}");
+                    //}
                 }
                 catch (MongoCommandException)
                 {
@@ -208,10 +213,9 @@ namespace SigStat.Benchmark.Helpers
         }
 
         /// <returns>Number of deleted configurations.</returns>
-        public static async Task<int> ClearExperiment()
+        public static async Task ClearExperiment()
         {
-            var result = await experimentCollection.DeleteManyAsync(d => true);
-            return (int)result.DeletedCount;
+            await db.DropCollectionAsync(Program.Experiment);
         }
 
         /// <summary>

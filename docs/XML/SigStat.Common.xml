@@ -2698,7 +2698,7 @@
         </member>
         <member name="T:SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler">
             <summary>
-            
+            The event is raised whenever a console message is logged
             </summary>
             <param name="consoleMessage"></param>
         </member>
@@ -2709,12 +2709,12 @@
         </member>
         <member name="E:SigStat.Common.Logging.SimpleConsoleLogger.Logged">
             <summary>
-            Occurs when an console message is logged
+            Occurs when a console message is logged
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.
+            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="!:LogLevel.Information"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
@@ -4707,5 +4707,8 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
+    </members>
+</doc>
+er>
     </members>
 </doc>
