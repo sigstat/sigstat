@@ -425,6 +425,18 @@
   - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.OutputX')
   - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.OutputY')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.Transform(SigStat.Common.Signature)')
+- [NormalizeRotation2](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2')
+  - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.InputX')
+  - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.InputY')
+  - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.OutputX')
+  - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.OutputY')
+  - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.Transform(SigStat.Common.Signature)')
+- [NormalizeRotation3](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3')
+  - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.InputX')
+  - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.InputY')
+  - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.OutputX')
+  - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.OutputY')
+  - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.Transform(SigStat.Common.Signature)')
 - [NormalizeRotationForX](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX')
   - [InputT](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-InputT 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputT')
   - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputX')
@@ -5776,6 +5788,116 @@ Gets or sets the output feature representing the X coordinates of an online sign
 Gets or sets the input feature representing the Y coordinates of an online signature
 
 <a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-Transform-SigStat-Common-Signature-'></a>
+### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2'></a>
+## NormalizeRotation2 `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Performs rotation normalization on the online signature
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputX'></a>
+### InputX `property`
+
+##### Summary
+
+Gets or sets the input feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputY'></a>
+### InputY `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Y coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputX'></a>
+### OutputX `property`
+
+##### Summary
+
+Gets or sets the output feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputY'></a>
+### OutputY `property`
+
+##### Summary
+
+Gets or sets the output feature representing the Y coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-Transform-SigStat-Common-Signature-'></a>
+### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3'></a>
+## NormalizeRotation3 `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Performs rotation normalization on the online signature
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputX'></a>
+### InputX `property`
+
+##### Summary
+
+Gets or sets the input feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputY'></a>
+### InputY `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Y coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputX'></a>
+### OutputX `property`
+
+##### Summary
+
+Gets or sets the output feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputY'></a>
+### OutputY `property`
+
+##### Summary
+
+Gets or sets the output feature representing the Y coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-Transform-SigStat-Common-Signature-'></a>
 ### Transform() `method`
 
 ##### Summary
