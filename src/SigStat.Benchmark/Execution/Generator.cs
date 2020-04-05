@@ -43,6 +43,8 @@ namespace SigStat.Benchmark
                 [Translation] -> *none | X0 | Y0 | XY0 | CogX | CogY | CogXY";
 
 
+        public static int BatchSize { get; set; }
+
         public static IEnumerable<string> EnumerateBenchmarks(string ruleString)
         {
             var rules = GrammarEngine.ParseRules(ruleString);
@@ -57,8 +59,9 @@ namespace SigStat.Benchmark
         /// Clear old configs, generate new configs, write to db
         /// </summary>
         /// <returns></returns>
-        internal static async Task RunAsync(string rulesFilePath)
+        internal static async Task RunAsync(string rulesFilePath, int batchSize)
         {
+            BatchSize = batchSize;
             string rulesString;
             if (File.Exists(rulesFilePath))
             {//read rules from file
@@ -72,76 +75,86 @@ namespace SigStat.Benchmark
             }
 
             WriteLine("Initializing experiment...");
-            
-            await InitializeExperiment(rulesString);
 
-            WriteLine("Ready.");
+            while (await InitializeExperiment(rulesString))
+                ;
+
+            WriteLine("Exiting application");
         }
 
-        public static async Task InitializeExperiment(string rulesString)
+
+
+        public static async Task<bool> InitializeExperiment(string rulesString)
         {
+            var prevRules = await BenchmarkDatabase.GetGrammarRules();
+            if (rulesString != prevRules)
+            {
+                WriteLine($"Rules have changed. Do you want to update them? [Y/N]");
+                if (Console.ReadKey().KeyChar != 'y')
+                    return false;
+                Console.WriteLine("Updating rules...");
+                await BenchmarkDatabase.SetGrammarRules(rulesString);
+            }
+
+
             bool experimentExists = await BenchmarkDatabase.ExperimentExists();
-            var prevRules = BenchmarkDatabase.GetGrammarRules();
-
-
-            int choice = 1;//Default: Clear previous experiment
+            var configs = EnumerateBenchmarks(rulesString);
+            var configCount = configs.Count();
+            int queuedCount = 0, lockedCount = 0, faultedCount = 0, finishedCount = 0;
             if (experimentExists)
             {
                 var queued = BenchmarkDatabase.CountQueued();
                 var locked = BenchmarkDatabase.CountLocked();
-                var errors = BenchmarkDatabase.CountFaulted();
+                var faulted = BenchmarkDatabase.CountFaulted();
                 var finished = BenchmarkDatabase.CountFinished();
-                Task.WaitAll(queued, locked, errors, finished, prevRules);
-
-                if (rulesString != prevRules.Result)
-                    Console.WriteLine("Warning: The currently loaded rules don't match with the experiment's previous run.");
-
-                if (!Console.IsInputRedirected)
-                {
-                    Console.WriteLine("This experiment already exists. Choose an option:");
-                    Console.WriteLine();
-                    Console.WriteLine($"(0) - Exit");
-                    Console.WriteLine($"(1) - Clear Experiment");
-                    Console.WriteLine($"        * Clear all {queued.Result + locked.Result + errors.Result + finished.Result} items");
-                    Console.WriteLine($"(2) - Keep Results");
-                    Console.WriteLine($"        * Keep {finished.Result} successful results");
-                    Console.WriteLine($"        * Keep {queued.Result} unprocessed items in queue");
-                    Console.WriteLine($"        * Remove {locked.Result + errors.Result} locks ({locked.Result} stuck, {errors.Result} faulted)");
-                    while (!int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out choice) || choice > 2) ;
-                    Console.WriteLine();
-                }
+                Task.WaitAll(queued, locked, faulted, finished);
+                queuedCount = queued.Result;
+                lockedCount = locked.Result;
+                faultedCount = faulted.Result;
+                finishedCount = finished.Result;
             }
 
-            switch (choice)
-            { 
-                case 0: //exit
-                    return;
-                case 1: //clear all
-                    WriteLine($"Clearing Experiment...");
+            Console.WriteLine($"Experiment: {Program.Experiment}");
+            Console.WriteLine($"Exists: {experimentExists} Queued: {queuedCount} Locked: {lockedCount} Faulted: {faultedCount} Finished: {finishedCount}");
+            Console.WriteLine($"Current rules would generate {configCount} configurations");
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("[G]enerate benchmarks (Overwrite existing data)");
+            Console.WriteLine("[D]elete experiment data");
+            Console.WriteLine("[F]aulted removal");
+            Console.WriteLine("[L]ock removal");
+            Console.WriteLine("[E]xit");
+
+            char ch = ' ';
+            while (!new []{ 'g', 'd', 'f', 'l', 'e' }.Contains(ch)) 
+                ch = Console.ReadKey(true).KeyChar;
+
+
+            switch (ch)
+            {
+                case 'g':
+                    WriteLine($"Updating database...");
+                    int insertedCnt = await BenchmarkDatabase.UpsertConfigs(configs, BatchSize);
+                    WriteLine($"{insertedCnt} new items inserted.");
+                    return true;
+                case 'd': //clear all
+                    WriteLine($"Deleting experiment...");
                     await BenchmarkDatabase.ClearExperiment();
                     WriteLine($"Deleted all configurations.");
-                    break;
-                case 2:
+                    return true;
+                case 'f':
+                    WriteLine($"Removing faulted...");
+                    int faultedResult = await BenchmarkDatabase.ResetFaulted();
+                    WriteLine($"Removed {faultedResult} faulted configs.");
+                    return true;
+                case 'l':
                     WriteLine($"Removing locks...");
-                    int stuckCnt = await BenchmarkDatabase.RemoveLocks();
-                    int faultsCnt = await BenchmarkDatabase.ResetFaulted();
-                    WriteLine($"Removed {stuckCnt + faultsCnt} locks.");
-                    break;
+                    int lockedResult = await BenchmarkDatabase.RemoveLocks();
+                    WriteLine($"Removed {lockedResult} locks.");
+                    return true;
+                case 'e': //exit
+                    return false;
             }
-
-            if (rulesString != prevRules.Result)
-            {
-                WriteLine($"Setting grammar rules...");
-                await BenchmarkDatabase.SetGrammarRules(rulesString);
-            }
-
-            WriteLine($"Generating combinations... ");
-            var configs = EnumerateBenchmarks(rulesString);
-            WriteLine($"{configs.Count()} combinations generated. Updating database...");
-
-            int insertedCnt = await BenchmarkDatabase.UpsertConfigs(configs);
-            WriteLine($"{insertedCnt} new items inserted.");
-
+            return false;
         }
 
         public static void WriteLine(string value)

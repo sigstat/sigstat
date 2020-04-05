@@ -6,10 +6,12 @@ using SigStat.Common.Helpers;
 using SigStat.Common.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+
 
 namespace SigStat.Benchmark.Helpers
 {
@@ -61,7 +63,7 @@ namespace SigStat.Benchmark.Helpers
                 {
                     connectionString = await File.ReadAllTextAsync(connectionString);
                 }
-                catch(IOException exc)
+                catch (IOException exc)
                 {
                     throw new IOException($"Couldn't load connection string from '{connectionString}'", exc);
                 }
@@ -91,46 +93,66 @@ namespace SigStat.Benchmark.Helpers
         /// </summary>
         /// <param name="configs"></param>
         /// <returns>Number of new configurations inserted.</returns>
-        public static async Task<int> UpsertConfigs(IEnumerable<string> configs)
+        public static async Task<int> UpsertConfigs(IEnumerable<string> configs, int batchSize = 10)
         {
-            int delayMs = 1000;
-            int batchSize = 25;
-
-            int matchedCnt = 0;
             int totalCount = configs.Count();
             int processedCount = 0;
-            while (totalCount>processedCount)
+            int lastProcessedCount = 0;
+            int throttlingDelay = 0;
+            Stopwatch sw = Stopwatch.StartNew();
+
+            foreach (var configBatch in configs.ToArrays(batchSize))
             {
+                //create write models
+                var bulkOps = configBatch.Select(config => new UpdateOneModel<BsonDocument>(
+                    Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
+                    Builders<BsonDocument>.Update.SetOnInsert(d => d["config"], config))
+                { IsUpsert = true });
+                bool isAcknowledged = false;
+                int retryCount = 21;
 
-
-                ////create write models
-                //var bulkOps = remaining.Take(batchSize).Select(config => new UpdateOneModel<BsonDocument>(
-                //    Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
-                //    Builders<BsonDocument>.Update.SetOnInsert(d => d["config"], config))
-                //    { IsUpsert = true });
-
-                try
+                while (!isAcknowledged && retryCount > 0)
                 {
-                    //var res = await experimentCollection.BulkWriteAsync(bulkOps,
-                    //    new BulkWriteOptions { IsOrdered = false });//enables parallel exec*/
+                    await Task.Delay(throttlingDelay);
+                    retryCount--;
+                    try
+                    {
+                        var res = await experimentCollection.BulkWriteAsync(bulkOps,
+                            new BulkWriteOptions { IsOrdered = false });//enables parallel execution
 
-                    //if (res.IsAcknowledged)
-                    //{
-                    //    //remaining.RemoveRange(0, batchSize);
-                    //    matchedCnt += (int)res.MatchedCount;
+                        if (res.IsAcknowledged)
+                        {
+                            isAcknowledged = true;
+                            processedCount += configBatch.Length;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Operation was not acknowledged. Retrying ({retryCount})...");
+                        }
 
-                    //    //Console.WriteLine($"{configs.Count() - remaining.Count} / {configs.Count()}");
-                    //}
+                    }
+                    catch (MongoCommandException exc)
+                    {
+                        if (exc.Code != 16500)
+                            throw;
+                        throttlingDelay += 10;
+                        Console.WriteLine($"Throttling limit reached. Adjusting delay between calls to {throttlingDelay} milliseconds. Retrying ({retryCount})...");
+                        await Task.Delay(1000);
+                    }
                 }
-                catch (MongoCommandException)
+
+                if (retryCount == 0)
+                    throw new Exception("Retry limit exceeded");
+
+                if (sw.Elapsed.Seconds > 10)
                 {
-                    Console.WriteLine("Throttling...");
-                    await Task.Delay(delayMs);
+                    var rps = (processedCount - lastProcessedCount) * 1000 / sw.ElapsedMilliseconds;
+                    lastProcessedCount = processedCount;
+                    sw.Restart();
+                    Console.WriteLine($"{DateTime.Now}: {processedCount}/{totalCount} ({rps}/second)");
                 }
-
             }
-
-            return configs.Count()/* - matchedCnt*/;//TODO: fix: First request matches more configs???
+            return processedCount; // configs.Count()/* - matchedCnt*/;//TODO: fix: First request matches more configs???
         }
 
         /// <summary>
@@ -139,17 +161,33 @@ namespace SigStat.Benchmark.Helpers
         /// <returns>Configuration string</returns>
         public static async Task<string> LockNextConfig(int procId)
         {
-            var result = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
-                Builders<BsonDocument>.Update
-                    .Set("lockDate", DateTime.Now)
-                    .Set("machine", Environment.MachineName)
-                    .Set("procId", procId),
-                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+            int retryCount = 21;
+            while (retryCount > 0)
+            {
+                retryCount--;
+                try
+                {
+                    var result = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
+                        Builders<BsonDocument>.Update
+                            .Set("lockDate", DateTime.Now)
+                            .Set("machine", Environment.MachineName)
+                            .Set("procId", procId),
+                        new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
-            if (result == null)
-                return null;
-            else
-                return (string)result["config"];
+                    if (result == null)
+                        return null;
+                    else
+                        return (string)result["config"];
+                }
+                catch (MongoCommandException exc)
+                {
+                    if (exc.Code != 16500)
+                        throw;
+                    Console.WriteLine($"Throttling limit reached. Retrying ({retryCount})...");
+                    await Task.Delay(new Random().Next(10000));
+                }
+            }
+            throw new Exception("Retry limit exceeded");
         }
 
         /// <summary>
@@ -157,7 +195,13 @@ namespace SigStat.Benchmark.Helpers
         /// </summary>
         public static async Task SendResults(int procId, string benchmarkConfig, BenchmarkLogModel results)
         {
-            var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
+            int retryCount = 21;
+            while (retryCount > 0)
+            {
+                retryCount--;
+                try
+                {
+                    var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
             var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
                 d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
@@ -167,6 +211,16 @@ namespace SigStat.Benchmark.Helpers
                     .Set("results", bsonResults),
                 new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
+                }
+                catch (MongoCommandException exc)
+                {
+                    if (exc.Code != 16500)
+                        throw;
+                    Console.WriteLine($"Throttling limit reached. Retrying ({retryCount})...");
+                    await Task.Delay(new Random().Next(10000));
+                }
+            }
+            throw new Exception("Retry limit exceeded");
         }
 
         /// <summary>
@@ -174,13 +228,30 @@ namespace SigStat.Benchmark.Helpers
         /// </summary>
         public static async Task SendErrorLog(int procId, string benchmarkConfig, string logString)
         {
-            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+            int retryCount = 21;
+            while (retryCount > 0)
+            {
+                retryCount--;
+                try
+                {
+                    var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
                 d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
                 Builders<BsonDocument>.Update
                     .Set("end_date", DateTime.Now)
                     .Set("resultType", "Error")
                     .Set("errorLog", logString),
                 new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+                }
+                catch (MongoCommandException exc)
+                {
+                    if (exc.Code != 16500)
+                        throw;
+                    Console.WriteLine($"Throttling limit reached. Retrying ({retryCount})...");
+                    await Task.Delay(new Random().Next(10000));
+
+                }
+            }
+            throw new Exception("Retry limit exceeded");
 
         }
 
@@ -195,11 +266,11 @@ namespace SigStat.Benchmark.Helpers
 
         public static async Task<int> CountQueued()
         {
-            return (int) await experimentCollection.CountDocumentsAsync(queuedFilter);
+            return (int)await experimentCollection.CountDocumentsAsync(queuedFilter);
         }
         public static async Task<int> CountLocked()
         {
-            return (int) await experimentCollection.CountDocumentsAsync(lockedFilter);
+            return (int)await experimentCollection.CountDocumentsAsync(lockedFilter);
         }
 
         public static async Task<int> CountFaulted()

@@ -22,6 +22,7 @@
   - [Sum(array,x1,y1,x2,y2)](#M-SigStat-Common-ArrayExtension-Sum-System-Double[0-,0-],System-Int32,System-Int32,System-Int32,System-Int32- 'SigStat.Common.ArrayExtension.Sum(System.Double[0:,0:],System.Int32,System.Int32,System.Int32,System.Int32)')
   - [SumCol(array,column)](#M-SigStat-Common-ArrayExtension-SumCol-System-Double[0-,0-],System-Int32- 'SigStat.Common.ArrayExtension.SumCol(System.Double[0:,0:],System.Int32)')
   - [SumRow(array,row)](#M-SigStat-Common-ArrayExtension-SumRow-System-Double[0-,0-],System-Int32- 'SigStat.Common.ArrayExtension.SumRow(System.Double[0:,0:],System.Int32)')
+  - [ToArrays\`\`1(items,capacity)](#M-SigStat-Common-ArrayExtension-ToArrays``1-System-Collections-Generic-IEnumerable{``0},System-Int32- 'SigStat.Common.ArrayExtension.ToArrays``1(System.Collections.Generic.IEnumerable{``0},System.Int32)')
 - [AutoSetMode](#T-SigStat-Common-Pipeline-AutoSetMode 'SigStat.Common.Pipeline.AutoSetMode')
   - [Always](#F-SigStat-Common-Pipeline-AutoSetMode-Always 'SigStat.Common.Pipeline.AutoSetMode.Always')
   - [IfNull](#F-SigStat-Common-Pipeline-AutoSetMode-IfNull 'SigStat.Common.Pipeline.AutoSetMode.IfNull')
@@ -1124,6 +1125,30 @@ Returns the sum of row values in a two dimensional array
 | ---- | ---- | ----------- |
 | array | [System.Double[0:](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[0: 'System.Double[0:') | A two dimensional array with double values |
 | row | [0:]](#T-0-] '0:]') | The row, to sum |
+
+<a name='M-SigStat-Common-ArrayExtension-ToArrays``1-System-Collections-Generic-IEnumerable{``0},System-Int32-'></a>
+### ToArrays\`\`1(items,capacity) `method`
+
+##### Summary
+
+Enumerates items into arrays of given capacity. If there are less items than 'capacity', a smaller array is returned
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The items. |
+| capacity | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The capacity. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T |  |
 
 <a name='T-SigStat-Common-Pipeline-AutoSetMode'></a>
 ## AutoSetMode `type`

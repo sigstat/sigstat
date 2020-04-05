@@ -772,6 +772,15 @@
             Helper methods for processing arrays
             </summary>
         </member>
+        <member name="M:SigStat.Common.ArrayExtension.ToArrays``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Enumerates items into arrays of given capacity. If there are less items than 'capacity', a smaller array is returned
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items">The items.</param>
+            <param name="capacity">The capacity.</param>
+            <returns></returns>
+        </member>
         <member name="M:SigStat.Common.ArrayExtension.GetValues``1(``0[0:,0:])">
             <summary>
             Enumerates all values in a two dimensional array
@@ -4767,8 +4776,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>

@@ -6,7 +6,7 @@
                 [Classifier] -> Dtw_[Distance] | OptimalDtw_[Distance]
                 [Distance] -> Manhattan | Euclidean
                 [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Scaling]_[Translation]
-                [Rotation] -> *none | rotation
+                [Rotation] -> none | rotation
                 [Gap] -> [FilterGap]_[FillGap]
                 [FilterGap] -> none | filter 
                 [FillGap] -> none | fill_[FillInterpolation]
