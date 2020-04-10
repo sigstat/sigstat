@@ -23,6 +23,7 @@ using static SigStat.Common.Loaders.SigComp13JapaneseLoader;
 using SixLabors.Primitives;
 using System.Drawing;
 using SigStat.Common.Logging;
+using SigStat.Benchmark;
 
 namespace SigStat.Sample
 {
@@ -72,7 +73,8 @@ namespace SigStat.Sample
             //JsonSerializeOnlineVerifier();
             //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
-            ExcelReportGeneratorTest();
+            //ExcelReportGeneratorTest();
+            PreprocessingBenchmarkDemo();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -124,6 +126,7 @@ namespace SigStat.Sample
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
+        
         private static void SignatureToImageTesting()
         {
             var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
@@ -327,48 +330,35 @@ namespace SigStat.Sample
             }
             return;
         }
+        static string rulesString = @" [Benchmark] -> [Database]_[Split]_[Feature]_[Verifier]
+                [Database] -> svc2004 | mcyt100 | dutch | chinese | japanese
+                [Feature] -> X | Y | P | XY | XYP | XP | YP
+                [Split] -> s1 | s2 | s3 | s4
+                [Verifier] -> [Pipeline]_[Classifier]
+                [Classifier] -> Dtw_[Distance] | OptimalDtw_[Distance]
+                [Distance] -> Manhattan | Euclidean
+                [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Scaling]_[Translation]
+                [Rotation] -> none | rotation
+                [Gap] -> [FilterGap]_[FillGap]
+                [FilterGap] -> none | filter 
+                [FillGap] -> none | fill_[FillInterpolation]
+                [FillInterpolation] -> linear | cubic
+                [Resampling] -> none | [SampleCount]samples_[ResamplingInterpolation]
+                [SampleCount] ->  50 | 100 | 500 | 1000
+                [ResamplingInterpolation] -> linear | cubic
+                [Scaling] -> none | scale1| scaleS
+                [Translation] -> none | to0 | toCog";
 
         private static void PreprocessingBenchmarkDemo()
         {
-            ////var config = BenchmarkConfig.FromJsonFile(path);
-            BenchmarkConfig config = new BenchmarkConfig()
-            {
-                Classifier = "OptimalDtw",
-                Sampling = "S1",
-                Database = "GERMAN",
-                Rotation = true,
-                Translation_Scaling = ("BottomLeftToOrigin", "None"),
-                ResamplingType_Filter = "P_FillPenUp",
-                ResamplingParam = 0,
-                Interpolation = "Linear",
-                Features = "P",
-                Distance = "Euclidean"
-            };
-            //var configs = BenchmarkConfig.GenerateConfigurations();
-            //var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
-            ////var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
-
-
-            //var benchmark = BenchmarkBuilder.Build(myConfig);
-            //benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
-            //benchmark.Execute(false);
-            //benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
-
-
-            var configs = BenchmarkConfig.GenerateConfigurations();
-            var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
-            //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
-
-
-            var benchmark = BenchmarkBuilder.Build(myConfig);
-            SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
-            benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
+            string configString = "svc2004_s3_Y_none_filter_fill_linear_1000samples_cubic_scale1_to0_OptimalDtw_Manhattan";
+            var rules = GrammarEngine.ParseRules(rulesString);
+            var configDict = GrammarEngine.ParseSentence(configString, rules);
+            var builder = new Benchmark.BenchmarkBuilder(Environment.GetEnvironmentVariable("SigStatDB")); // feltételezzük ,hog
+            var benchmark = builder.Build(configDict);
 
             benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
             benchmark.Execute(false);
-            benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
-
-
         }
 
         public static void SignatureDemo()

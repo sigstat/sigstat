@@ -36,7 +36,7 @@ namespace SigStat.Benchmark
             loaders = new Dictionary<string, DataSetLoader>()
             {
                 { "svc2004", new Svc2004Loader(Path.Combine(databasePath, "SVC2004.zip"), true)},
-                { "mcyt", new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true)},
+                { "mcyt100", new MCYTLoader(Path.Combine(databasePath, "MCYT100.zip"), true)},
                 { "dutch", new SigComp11DutchLoader(Path.Combine(databasePath, "SigComp11_Dutch.zip"), true)},
                 { "chinese", new SigComp11ChineseLoader(Path.Combine(databasePath, "SigComp11Chinese.zip"), true)},
                 { "german", new SigComp15GermanLoader(Path.Combine(databasePath, "SigWiComp2015_German.zip"), true)},

@@ -65,7 +65,7 @@ namespace SigStat.Benchmark
             string rulesString;
             if (File.Exists(rulesFilePath))
             {//read rules from file
-                WriteLine($"Loading rules for experiment {Program.Experiment}...");
+                WriteLine($"Loading rules for experiment ",Program.Experiment);
                 rulesString = await File.ReadAllTextAsync(rulesFilePath);
             }
             else
@@ -100,32 +100,26 @@ namespace SigStat.Benchmark
             bool experimentExists = await BenchmarkDatabase.ExperimentExists();
             var configs = EnumerateBenchmarks(rulesString);
             var configCount = configs.Count();
-            int queuedCount = 0, lockedCount = 0, faultedCount = 0, finishedCount = 0;
-            if (experimentExists)
-            {
-                var queued = BenchmarkDatabase.CountQueued();
-                var locked = BenchmarkDatabase.CountLocked();
-                var faulted = BenchmarkDatabase.CountFaulted();
-                var finished = BenchmarkDatabase.CountFinished();
-                Task.WaitAll(queued, locked, faulted, finished);
-                queuedCount = queued.Result;
-                lockedCount = locked.Result;
-                faultedCount = faulted.Result;
-                finishedCount = finished.Result;
-            }
+            var totalCount = await BenchmarkDatabase.CountTotal();
+            var queuedCount = await BenchmarkDatabase.CountQueued();
+            var lockedCount = await BenchmarkDatabase.CountLocked();
+            var faultedCount = await BenchmarkDatabase.CountFaulted();
+            var finishedCount = await BenchmarkDatabase.CountFinished();
 
-            Console.WriteLine($"Experiment: {Program.Experiment}");
-            Console.WriteLine($"Exists: {experimentExists} Queued: {queuedCount} Locked: {lockedCount} Faulted: {faultedCount} Finished: {finishedCount}");
+            Console.WriteLine();
+            WriteLine($"Experiment: ",Program.Experiment);
+            Console.WriteLine($"Exists: {experimentExists} Total: {totalCount} Queued: {queuedCount} Locked: {lockedCount} Faulted: {faultedCount} Finished: {finishedCount}");
             Console.WriteLine($"Current rules would generate {configCount} configurations");
             Console.WriteLine("What do you want to do?");
-            Console.WriteLine("[G]enerate benchmarks (Overwrite existing data)");
+            Console.WriteLine("[G]enerate configs (Overwrite existing data)");
+            Console.WriteLine("[C]ontinue config generation (skip existing configs)");
             Console.WriteLine("[D]elete experiment data");
             Console.WriteLine("[F]aulted removal");
             Console.WriteLine("[L]ock removal");
             Console.WriteLine("[E]xit");
 
             char ch = ' ';
-            while (!new []{ 'g', 'd', 'f', 'l', 'e' }.Contains(ch)) 
+            while (!new []{ 'g', 'c','d', 'f', 'l', 'e' }.Contains(ch)) 
                 ch = Console.ReadKey(true).KeyChar;
 
 
@@ -134,6 +128,11 @@ namespace SigStat.Benchmark
                 case 'g':
                     WriteLine($"Updating database...");
                     int insertedCnt = await BenchmarkDatabase.UpsertConfigs(configs, BatchSize);
+                    WriteLine($"{insertedCnt} new items inserted.");
+                    return true;
+                case 'c':
+                    WriteLine($"Updating database...");
+                    insertedCnt = await BenchmarkDatabase.UpsertConfigs(configs, BatchSize, totalCount);
                     WriteLine($"{insertedCnt} new items inserted.");
                     return true;
                 case 'd': //clear all
@@ -157,10 +156,23 @@ namespace SigStat.Benchmark
             return false;
         }
 
-        public static void WriteLine(string value)
+        public static void WriteLine(string value, string value2 = null)
         {
-            Console.WriteLine($"{DateTime.Now}: {value}");
+            if (string.IsNullOrWhiteSpace(value2))
+            {
+                Console.WriteLine($"{DateTime.Now}: {value}");
+            }
+            else
+            {
+                var oldColor = Console.ForegroundColor;
+                Console.Write($"{DateTime.Now}: {value}");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(value2);
+                Console.ForegroundColor = oldColor;
+            }
         }
+
+      
 
     }
 }

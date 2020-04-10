@@ -15,6 +15,13 @@ using System.Threading.Tasks;
 
 namespace SigStat.Benchmark.Helpers
 {
+    static class States
+    {
+        public const string Queued = "queued";
+        public const string Locked = "locked";
+        public const string Faulted = "faulted";
+        public const string Finished = "finished";
+    }
     /// <summary>
     /// dal for sigstat benchmarks database
     /// </summary>
@@ -25,20 +32,16 @@ namespace SigStat.Benchmark.Helpers
         private static IMongoCollection<BsonDocument> experimentCollection;
 
         private static readonly Expression<Func<BsonDocument, bool>> queuedFilter = d =>
-                d["results"] == BsonNull.Value &&
-                d["errorLog"] == BsonNull.Value &&
-                d["lockDate"] == BsonNull.Value;
+                d["state"] == States.Queued;
 
         private static readonly Expression<Func<BsonDocument, bool>> lockedFilter = d =>
-                d["results"] == BsonNull.Value &&
-                d["errorLog"] == BsonNull.Value &&
-                d["lockDate"] != BsonNull.Value;
+                d["state"] == States.Locked;
 
         private static readonly Expression<Func<BsonDocument, bool>> faultedFilter = d =>
-                d["errorLog"] != BsonNull.Value;
+                d["state"] == States.Faulted;
 
         private static readonly Expression<Func<BsonDocument, bool>> finishedFilter = d =>
-                d["results"] != BsonNull.Value;
+                d["state"] == States.Finished;
 
         /// <summary>
         /// This filter ensures to only lock items that are in the queue or have been locked for 1+ hours.
@@ -51,7 +54,7 @@ namespace SigStat.Benchmark.Helpers
                 queuedFilter,
                 Builders<BsonDocument>.Filter.And(
                     lockedFilter,
-                    Builders<BsonDocument>.Filter.Lt(d => d["lockDate"], new BsonDateTime(DateTime.Now.AddHours(-1)))
+                    Builders<BsonDocument>.Filter.Lt(d => d["lockDate"], new BsonDateTime(DateTime.Now.AddHours(-3)))
             ));
 
         public static async Task InitializeConnection(string connectionString)
@@ -93,20 +96,22 @@ namespace SigStat.Benchmark.Helpers
         /// </summary>
         /// <param name="configs"></param>
         /// <returns>Number of new configurations inserted.</returns>
-        public static async Task<int> UpsertConfigs(IEnumerable<string> configs, int batchSize = 10)
+        public static async Task<int> UpsertConfigs(IEnumerable<string> configs, int batchSize = 10, int skipCount = 0)
         {
             int totalCount = configs.Count();
-            int processedCount = 0;
-            int lastProcessedCount = 0;
+            int processedCount = skipCount;
+            int lastProcessedCount = skipCount;
             int throttlingDelay = 0;
             Stopwatch sw = Stopwatch.StartNew();
 
-            foreach (var configBatch in configs.ToArrays(batchSize))
+            foreach (var configBatch in configs.Skip(skipCount).ToArrays(batchSize))
             {
                 //create write models
                 var bulkOps = configBatch.Select(config => new UpdateOneModel<BsonDocument>(
                     Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
-                    Builders<BsonDocument>.Update.SetOnInsert(d => d["config"], config))
+                    Builders<BsonDocument>.Update
+                        .SetOnInsert(d => d["config"], config)
+                        .Set(d=>d["state"],States.Queued))
                 { IsUpsert = true });
                 bool isAcknowledged = false;
                 int retryCount = 21;
@@ -170,6 +175,7 @@ namespace SigStat.Benchmark.Helpers
                     var result = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
                         Builders<BsonDocument>.Update
                             .Set("lockDate", DateTime.Now)
+                            .Set("state", States.Locked)
                             .Set("machine", Environment.MachineName)
                             .Set("procId", procId),
                         new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
@@ -203,14 +209,14 @@ namespace SigStat.Benchmark.Helpers
                 {
                     var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
-            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
-                d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
-                Builders<BsonDocument>.Update
-                    .Set("end_date", DateTime.Now)
-                    .Set("resultType", "Success")
-                    .Set("results", bsonResults),
-                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
-
+                    var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                        d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
+                        Builders<BsonDocument>.Update
+                            .Set("end_date", DateTime.Now)
+                            .Set("results", bsonResults)
+                            .Set("state", States.Finished),
+                        new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+                    return;
                 }
                 catch (MongoCommandException exc)
                 {
@@ -235,12 +241,13 @@ namespace SigStat.Benchmark.Helpers
                 try
                 {
                     var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
-                d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
-                Builders<BsonDocument>.Update
-                    .Set("end_date", DateTime.Now)
-                    .Set("resultType", "Error")
-                    .Set("errorLog", logString),
-                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+                        d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
+                        Builders<BsonDocument>.Update
+                            .Set("end_date", DateTime.Now)
+                            .Set("errorLog", logString)
+                            .Set("state", States.Faulted),
+                        new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+                    return;
                 }
                 catch (MongoCommandException exc)
                 {
@@ -262,6 +269,11 @@ namespace SigStat.Benchmark.Helpers
             throw new NotImplementedException();
             //var cursor = await experimentCollection.Find(d => van result).ToCursorAsync();
             //return cursor.ToEnumerable().Select(d => BsonSerializer.Deserialize<@@@>(d));
+        }
+
+        public static async Task<int> CountTotal()
+        {
+            return (int)await experimentCollection.CountDocumentsAsync(b => true);
         }
 
         public static async Task<int> CountQueued()
@@ -297,6 +309,7 @@ namespace SigStat.Benchmark.Helpers
         {
             var result = await experimentCollection.UpdateManyAsync(lockedFilter,
                Builders<BsonDocument>.Update
+                .Set("state", States.Queued)
                 .Unset("lockDate"),
                new UpdateOptions() { IsUpsert = false });
             return (int)result.MatchedCount;
@@ -310,6 +323,7 @@ namespace SigStat.Benchmark.Helpers
         {
             var result = await experimentCollection.UpdateManyAsync(faultedFilter,
                Builders<BsonDocument>.Update
+                .Set("state", States.Queued)
                 .Unset("errorLog")
                 .Unset("lockDate"),
                new UpdateOptions() { IsUpsert = false });
@@ -332,7 +346,9 @@ namespace SigStat.Benchmark.Helpers
             var rulesCollection = db.GetCollection<BsonDocument>("rules");
             var doc = await rulesCollection
                 .Find(d => d["experiment"] == Program.Experiment)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
+            if (doc == null)
+                return "";
             return doc["rulesString"].AsString;
         }
 

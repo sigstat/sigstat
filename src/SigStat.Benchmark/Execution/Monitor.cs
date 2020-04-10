@@ -39,15 +39,15 @@ namespace SigStat.Benchmark
                 {
                     var queued = BenchmarkDatabase.CountQueued();
                     var locked = BenchmarkDatabase.CountLocked();
-                    var errors = BenchmarkDatabase.CountFaulted();
+                    var faulted = BenchmarkDatabase.CountFaulted();
                     var finished = BenchmarkDatabase.CountFinished();
-                    Task.WaitAll(queued, locked, errors, finished);
+                    Task.WaitAll(queued, locked, faulted, finished);
 
                     Console.WriteLine(
                         $"{DateTime.Now}: " +
                         $"Queued: {queued.Result}. " +
                         $"Locked: {locked.Result}. " +
-                        $"Errors: {errors.Result}." +
+                        $"Faulted: {faulted.Result}." +
                         $"Finished: {finished.Result}. ");
 
                     lastRefresh = DateTime.Now;
