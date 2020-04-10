@@ -42,13 +42,11 @@ namespace SigStat.Benchmark
                     var faulted = BenchmarkDatabase.CountFaulted();
                     var finished = BenchmarkDatabase.CountFinished();
                     Task.WaitAll(queued, locked, faulted, finished);
+                    var total = queued.Result + locked.Result + faulted.Result + finished.Result;
+                    var percent = 100 * finished.Result / total;
 
                     Console.WriteLine(
-                        $"{DateTime.Now}: " +
-                        $"Queued: {queued.Result}. " +
-                        $"Locked: {locked.Result}. " +
-                        $"Faulted: {faulted.Result}." +
-                        $"Finished: {finished.Result}. ");
+                        $"{DateTime.Now}: Queued: {queued.Result} Locked: {locked.Result} Faulted: {faulted.Result} Finished: {finished.Result} Progress: {percent}");
 
                     lastRefresh = DateTime.Now;
                     action = Action.Run;
