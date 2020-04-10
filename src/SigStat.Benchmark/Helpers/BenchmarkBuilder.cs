@@ -163,10 +163,13 @@ namespace SigStat.Benchmark
                         // Nothing to do here
                         break;
                     case "samples":
+                        var resamplingFeatures = features.ToList();
+                        if (!resamplingFeatures.Contains(Features.Pressure))
+                            resamplingFeatures.Add(Features.Pressure);
                         b.Verifier.Pipeline.Add(new ResampleSamplesCountBased()
                         {
-                            InputFeatures = features,
-                            OutputFeatures = features,
+                            InputFeatures = resamplingFeatures,
+                            OutputFeatures = resamplingFeatures,
                             OriginalTFeature = Features.T,
                             ResampledTFeature = Features.T,
                             NumOfSamples = int.Parse(config["SampleCount"]),
