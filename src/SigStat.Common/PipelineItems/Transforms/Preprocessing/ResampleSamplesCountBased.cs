@@ -110,12 +110,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             double actualTimestamp = minTimestamp;
             int stepCount = 0;
-            while (stepCount < NumOfSamples - 1)
+            while (stepCount < NumOfSamples - 1) 
             {
                 resampledTimestamps.Add(actualTimestamp);
                 actualTimestamp += timeSlot;
                 stepCount++;
             }
+            resampledTimestamps.Add(originalTimestamps[originalTimestamps.Count - 1]);
 
             return resampledTimestamps;
         }
