@@ -115,7 +115,10 @@ namespace SigStat.Benchmark
                         var filterFeatures = features.ToList();
                         if (!filterFeatures.Contains(Features.T))
                             filterFeatures.Add(Features.T);
-
+                        if (!filterFeatures.Contains(Features.Y))
+                            filterFeatures.Add(Features.Y);
+                        if (!filterFeatures.Contains(Features.PointTypes))
+                            filterFeatures.Add(Features.PointTypes);
                         b.Verifier.Pipeline.Add(new FilterPoints()
                         {
                             InputFeatures = filterFeatures,
@@ -137,14 +140,19 @@ namespace SigStat.Benchmark
                         // Nothing to do here
                         break;
                     case "fill":
+                        var fillingFeatures = features.ToList();
+                        if (!fillingFeatures.Contains(Features.Y))
+                            fillingFeatures.Add(Features.Y);
                         b.Verifier.Pipeline.Add(new FillPenUpDurations()
                         {
-                            InputFeatures = features,
-                            OutputFeatures = features,
+                            InputFeatures = fillingFeatures,
+                            OutputFeatures = fillingFeatures,
                             TimeInputFeature = Features.T,
                             TimeOutputFeature = Features.T,
                             PressureInputFeature = Features.Pressure,
                             PressureOutputFeature = Features.Pressure,
+                            PointTypesInputFeature = Features.PointTypes,
+                            PointTypesOutputFeature = Features.PointTypes,
                             InterpolationType = interpolations[config["FillInterpolation"]]
                         });
                         break;
@@ -166,6 +174,10 @@ namespace SigStat.Benchmark
                         var resamplingFeatures = features.ToList();
                         if (!resamplingFeatures.Contains(Features.Pressure))
                             resamplingFeatures.Add(Features.Pressure);
+                        if (!resamplingFeatures.Contains(Features.Y))
+                            resamplingFeatures.Add(Features.Y);
+                        if (!resamplingFeatures.Contains(Features.PointTypes))
+                            resamplingFeatures.Add(Features.PointTypes);
                         b.Verifier.Pipeline.Add(new ResampleSamplesCountBased()
                         {
                             InputFeatures = resamplingFeatures,

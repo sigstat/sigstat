@@ -305,6 +305,16 @@
             It is true when the pen touches the paper.
             </summary>
         </member>
+        <member name="F:SigStat.Common.Features.PointTypes">
+            <summary>
+            Type of points of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>.
+            The type of a point is defined by:
+            0 - Stroke - Internal point of an up or downstroke
+            1 - Start - Starting point of a downstroke
+            2 - End - Last point of a downstroke
+            3 - ShortStroke - First and last point of a downstroke
+            </summary>
+        </member>
         <member name="F:SigStat.Common.Features.Azimuth">
             <summary>
             Azimuth of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>
@@ -3207,6 +3217,11 @@
             Gets or sets the feature representing pressure in an online signature
             </summary>
         </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesInputFeature">
+            <summary>
+            Gets or sets the feature representing the type of the points in an online signature
+            </summary>
+        </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InputFeatures">
             <summary>
             Gets or sets the features of an online signature that need to be altered
@@ -3220,6 +3235,11 @@
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureOutputFeature">
             <summary>
             Gets or sets the feature representing the modified pressure values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesOutputFeature">
+            <summary>
+            Gets or sets the feature representing the modified point type values in an online signature
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.OutputFeatures">
@@ -4776,5 +4796,8 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
+    </members>
+</doc>
+er>
     </members>
 </doc>

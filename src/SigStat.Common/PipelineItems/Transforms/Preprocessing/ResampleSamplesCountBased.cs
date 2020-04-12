@@ -81,9 +81,70 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 if (InputFeatures[i] == OriginalTFeature)
                     continue;
                 var featureValues = new List<double>(signature.GetFeature(InputFeatures[i]));
-                signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues, originalTimestamps, resampledTimestamps));
+                if (InputFeatures[i] == Features.Pressure)
+                    signature.SetFeature(OutputFeatures[i], GenerateResampledPressureValues(featureValues, originalTimestamps, resampledTimestamps));
+                else if (InputFeatures[i] == Features.PointTypes)
+                    signature.SetFeature(OutputFeatures[i], GenerateResampledPointTypeValues(featureValues, originalTimestamps, resampledTimestamps));
+                else
+                    signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues, originalTimestamps, resampledTimestamps));
             }
             signature.SetFeature(ResampledTFeature, resampledTimestamps);
+        }
+
+        private List<double> GenerateResampledPressureValues(List<double> originalValues, List<double> originalTimestamps, List<double> resampledTimestamps)
+        {
+            var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
+            interpolation.TimeValues = originalTimestamps;
+            interpolation.FeatureValues = originalValues;
+
+            var resampledValues = new List<double>(NumOfSamples);
+
+            foreach (var ts in resampledTimestamps)
+            {
+                int previous, next;
+                var isRangeFound = GetNeighbourIndexes(originalTimestamps, ts, out previous, out next);
+                if (isRangeFound)
+                {
+                    if (originalValues[previous] > 0 && originalValues[next] > 0)
+                        resampledValues.Add(interpolation.GetValue(ts));
+                    else
+                        resampledValues.Add(0);
+                }
+                else
+                    resampledValues.Add(originalValues[previous]);
+            }
+
+            return resampledValues;
+        }
+
+        private List<double> GenerateResampledPointTypeValues(List<double> originalValues, List<double> originalTimestamps, List<double> resampledTimestamps)
+        {
+            var resampledValues = new List<double>(NumOfSamples);
+
+            foreach (var ts in resampledTimestamps)
+            {
+                int previous, next;
+                var isRangeFound = GetNeighbourIndexes(originalTimestamps, ts, out previous, out next);
+                if (isRangeFound)
+                {
+                    if (ts == resampledTimestamps.Where(rts => rts > originalTimestamps[previous]).ToList()[0] 
+                        && originalValues[previous] != 2 && previous != 0)
+                        resampledValues.Add(originalValues[previous]);
+                    else
+                    {
+                        var lessThanNextTimestamps = resampledTimestamps.Where(rts => rts < originalTimestamps[next]).ToList();
+                        if (ts == lessThanNextTimestamps[lessThanNextTimestamps.Count - 1] 
+                            && originalValues[next] != 1 && next != resampledTimestamps.Count-1)
+                            resampledValues.Add(originalValues[next]);
+                        else
+                            resampledValues.Add(0);
+                    }
+                }
+                else
+                    resampledValues.Add(originalValues[previous]);
+            }
+
+            return resampledValues;
         }
 
         private List<double> GenerateResampledValues(List<double> originalValues, List<double> originalTimestamps, List<double> resampledTimestamps)
@@ -110,7 +171,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             double actualTimestamp = minTimestamp;
             int stepCount = 0;
-            while (stepCount < NumOfSamples - 1) 
+            while (stepCount < NumOfSamples - 1)
             {
                 resampledTimestamps.Add(actualTimestamp);
                 actualTimestamp += timeSlot;
@@ -119,6 +180,33 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             resampledTimestamps.Add(originalTimestamps[originalTimestamps.Count - 1]);
 
             return resampledTimestamps;
+        }
+
+        private bool GetNeighbourIndexes(List<double> originalValues, double value, out int previous, out int next)
+        {
+            if (originalValues.Contains(value))
+            {
+                previous = originalValues.IndexOf(value);
+                next = originalValues.IndexOf(value);
+                return false;
+            }
+
+            bool isRangeFound = false;
+            previous = 0; next = 0;
+            for (int i = 0; i < originalValues.Count - 1 && !isRangeFound; i++)
+            {
+                if (originalValues[i] < value && originalValues[i + 1] > value)
+                {
+                    previous = i;
+                    next = i + 1;
+                    isRangeFound = true;
+                }
+            }
+
+            if (!isRangeFound)
+                throw new ArgumentOutOfRangeException("The given timestamp is not in the range of TimeValues");
+
+            return true;
         }
     }
 }

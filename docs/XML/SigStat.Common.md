@@ -262,6 +262,7 @@
   - [Dpi](#F-SigStat-Common-Features-Dpi 'SigStat.Common.Features.Dpi')
   - [Image](#F-SigStat-Common-Features-Image 'SigStat.Common.Features.Image')
   - [PenDown](#F-SigStat-Common-Features-PenDown 'SigStat.Common.Features.PenDown')
+  - [PointTypes](#F-SigStat-Common-Features-PointTypes 'SigStat.Common.Features.PointTypes')
   - [Pressure](#F-SigStat-Common-Features-Pressure 'SigStat.Common.Features.Pressure')
   - [Size](#F-SigStat-Common-Features-Size 'SigStat.Common.Features.Size')
   - [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
@@ -272,6 +273,8 @@
   - [InputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-InputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InputFeatures')
   - [InterpolationType](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-InterpolationType 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InterpolationType')
   - [OutputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-OutputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.OutputFeatures')
+  - [PointTypesInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypesInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesInputFeature')
+  - [PointTypesOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypesOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesOutputFeature')
   - [PressureInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureInputFeature')
   - [PressureOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureOutputFeature')
   - [TimeInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeInputFeature')
@@ -4032,6 +4035,18 @@ The visaul representation of a signature
 Pen position of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T').
 It is true when the pen touches the paper.
 
+<a name='F-SigStat-Common-Features-PointTypes'></a>
+### PointTypes `constants`
+
+##### Summary
+
+Type of points of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T').
+The type of a point is defined by:
+0 - Stroke - Internal point of an up or downstroke
+1 - Start - Starting point of a downstroke
+2 - End - Last point of a downstroke
+3 - ShortStroke - First and last point of a downstroke
+
 <a name='F-SigStat-Common-Features-Pressure'></a>
 ### Pressure `constants`
 
@@ -4111,6 +4126,20 @@ An implementation of [IInterpolation](#T-SigStat-Common-PipelineItems-Transforms
 ##### Summary
 
 Gets or sets the features of an online signature that were altered
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypesInputFeature'></a>
+### PointTypesInputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing the type of the points in an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypesOutputFeature'></a>
+### PointTypesOutputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing the modified point type values in an online signature
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureInputFeature'></a>
 ### PressureInputFeature `property`
@@ -8975,7 +9004,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 

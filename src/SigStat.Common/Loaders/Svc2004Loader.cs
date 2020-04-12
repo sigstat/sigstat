@@ -240,6 +240,21 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.PenDown, lines.Select(l => (l[3] == 1)).ToList());
+                var penDowns = signature.GetFeature(Features.PenDown).ToList();
+                signature.SetFeature(Features.PointTypes, 
+                    penDowns.Select((pd, i) =>
+                        i < penDowns.Count - 1
+                            ?
+                                (pd == false
+                                    ?
+                                        1.0
+                                    :
+                                        (penDowns[i + 1] == false ? 2.0 : 0.0)
+                                )
+                            :
+                                2.0
+                    ).Select((pt, i) => pt).ToList());
+                SignatureHelper.CalculateStandardStatistics(signature);
             }
 
             if (lines[0].Length == 7) // Task2
@@ -258,52 +273,6 @@ namespace SigStat.Common.Loaders
                 }
             }
 
-            if (standardFeatures)
-            {
-                //Standardize gap handling
-                //1. Find all indexes with button status 0
-                var buttonUpIndexes = signature.GetFeature(Svc2004.Button)
-                .Select((button, index) => new { button, index })
-                .Where(sample => sample.button == 0)
-                .Select(sample => sample.index).ToArray();
-
-                //2. Get captured feature lists
-                var features = signature.GetFeatureDescriptors();
-
-                //3. Insert 2 zero pressure points before points with button status 0
-                foreach (var feature in features)
-                {
-                    if (!feature.Key.Contains("Svc"))
-                    {
-                        switch (feature.Key)
-                        {
-                            case "T":
-                                var timestamps = signature.GetFeature(Features.T);
-                                DataCleaningHelper.InsertTimestampsForGapBorderPoints(buttonUpIndexes, timestamps, 1);
-                                signature.SetFeature(Features.T, timestamps);
-                                break;
-                            case "Pressure":
-                                var pressureValues = signature.GetFeature(Features.Pressure);
-                                DataCleaningHelper.InsertPressureValuesForGapBorderPoints(buttonUpIndexes, pressureValues);
-                                signature.SetFeature(Features.Pressure, pressureValues);
-                                break;
-                            case "PenDown":
-                                var penDownValues = signature.GetFeature(Features.PenDown);
-                                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(buttonUpIndexes, penDownValues);
-                                signature.SetFeature(Features.PenDown, penDownValues);
-                                break;
-                            default:
-                                var featureValues = signature.GetFeature<List<double>>(feature);
-                                DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints(buttonUpIndexes, featureValues);
-                                signature.SetFeature(feature, featureValues);
-                                break;
-                        }
-                    }
-                }
-
-                //This function adds a new feature to the signature, which would cause errors during the gap handling data cleaning
-                SignatureHelper.CalculateStandardStatistics(signature);
-            }
         }
 
 

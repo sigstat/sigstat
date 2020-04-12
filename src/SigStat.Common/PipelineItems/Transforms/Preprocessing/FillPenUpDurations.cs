@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public FeatureDescriptor<List<double>> PressureInputFeature { get; set; } = Features.Pressure;
 
         /// <summary>
+        /// Gets or sets the feature representing the type of the points in an online signature
+        /// </summary>
+        [Input]
+        public FeatureDescriptor<List<double>> PointTypesInputFeature { get; set; } = Features.PointTypes;
+
+        /// <summary>
         /// Gets or sets the features of an online signature that need to be altered
         /// </summary>
         [Input]
@@ -101,6 +108,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> PressureOutputFeature { get; set; }
+
+        /// <summary>
+        /// Gets or sets the feature representing the modified point type values in an online signature
+        /// </summary>
+        [Output]
+        public FeatureDescriptor<List<double>> PointTypesOutputFeature { get; set; }
 
         /// <summary>
         /// Gets or sets the features of an online signature that were altered
@@ -137,6 +150,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             var originalTimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
             var timeValues = new List<double>(signature.GetFeature(TimeInputFeature));
             var pressureValues = new List<double>(signature.GetFeature(PressureInputFeature));
+            var pointTypeValues = new List<double>(signature.GetFeature(PointTypesInputFeature));
 
             var timeSlots = CalculateTimeSlots(signature);
             var timeSlotMedian = timeSlots.Where(ts => ts.PenDown == true).Select(ts => ts.Length).Median();
@@ -148,7 +162,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
                 for (int i = 0; i < InputFeatures.Count; i++)
                 {
-                    if (InputFeatures[i] == TimeInputFeature || InputFeatures[i] == PressureInputFeature)
+                    if (InputFeatures[i] == TimeInputFeature || InputFeatures[i] == PressureInputFeature || InputFeatures[i] == PointTypesInputFeature)
                         continue;
                     var values = new List<double>(signature.GetFeature(InputFeatures[i]));
                     interpolation.FeatureValues = new List<double>(values);
@@ -156,10 +170,6 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
                     foreach (var ts in penUpTimeSlots)
                     {
-                        int index = interpolation.TimeValues.IndexOf(ts.EndTime);
-                        interpolation.FeatureValues.RemoveAt(index);
-                        interpolation.TimeValues.RemoveAt(index);
-
                         var actualTimestamp = ts.StartTime + timeSlotMedian;
                         int actualIndex = timeValues.IndexOf(ts.StartTime) + 1;
 
@@ -169,6 +179,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                             {
                                 timeValues.Insert(actualIndex, actualTimestamp);
                                 pressureValues.Insert(actualIndex, 0);
+                                pointTypeValues.Insert(actualIndex, 0);
                             }
                             values.Insert(actualIndex, interpolation.GetValue(actualTimestamp));
 
@@ -182,6 +193,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     {
                         signature.SetFeature(TimeOutputFeature, timeValues);
                         signature.SetFeature(PressureOutputFeature, pressureValues);
+                        signature.SetFeature(PointTypesOutputFeature, pointTypeValues);
                     }
                     signature.SetFeature(OutputFeatures[i], values); //TODO: make sure InputFeatures-OutputFeatures are in pairs
                 }
@@ -195,16 +207,25 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             var pressureValues = signature.GetFeature(PressureInputFeature);
             var timesValues = signature.GetFeature(TimeInputFeature);
+            var pointTypeValues = signature.GetFeature(PointTypesInputFeature);
 
             if (pressureValues.Count != timesValues.Count)
                 throw new ArgumentException($"The length of {nameof(PressureInputFeature)} and {nameof(TimeInputFeature)} are not the same.");
+            if (pressureValues.Count != pointTypeValues.Count)
+                throw new ArgumentException($"The length of {nameof(PressureInputFeature)} and {nameof(PointTypesInputFeature)} are not the same.");
+
+
 
             return timesValues
                 .Select((t, i) => new TimeSlot()
                 {
                     StartTime = timesValues[i > 0 ? i - 1 : 0],
                     EndTime = t,
-                    PenDown = !(pressureValues[i > 0 ? i - 1 : 0] == 0 && pressureValues[i] == 0)
+                    PenDown = (
+                        pointTypeValues[i > 0 ? i - 1 : 0] == 1
+                    || (pointTypeValues[i > 0 ? i - 1 : 0] == 3 && pressureValues[i] > 0)
+                    || (pointTypeValues[i > 0 ? i - 1 : 0] == 0 && pressureValues[i] > 0)
+                    )
                 }).Skip(1).ToList();
         }
     }
