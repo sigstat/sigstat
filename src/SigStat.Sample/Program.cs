@@ -118,7 +118,7 @@ namespace SigStat.Sample
 
             var result = benchmark.Execute(true);
 
-            var model = LogAnalyzer.GetBenchmarkLogModel(logger.ReportLogs);
+            var model = LogAnalyzer.GetBenchmarkLogModel(logger.GetReportLogs());
 
             ExcelReportGenerator.GenerateReport(model);
 

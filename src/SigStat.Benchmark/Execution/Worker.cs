@@ -101,7 +101,7 @@ namespace SigStat.Benchmark
                 if (CurrentResultType == "Success")
                 {
                     Console.WriteLine($"{DateTime.Now}: Analyzing report...");
-                    var logmodel = LogAnalyzer.GetBenchmarkLogModel(reportInformationLogger.ReportLogs);
+                    var logmodel = LogAnalyzer.GetBenchmarkLogModel(reportInformationLogger.GetReportLogs());
                     Console.WriteLine($"{DateTime.Now}: Writing results to MongoDB...");
                     await BenchmarkDatabase.SendResults(ProcessId, CurrentBenchmarkId, logmodel);
                 }

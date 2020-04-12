@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Text;
 
 namespace SigStat.Common.Logging
@@ -8,6 +9,9 @@ namespace SigStat.Common.Logging
     /// <summary>
     /// Logger for logging report informations.
     /// </summary>
+    /// <remarks>
+    /// The class is thread safe
+    /// </remarks>
     public class ReportInformationLogger : ILogger
     {
 
@@ -19,12 +23,8 @@ namespace SigStat.Common.Logging
         /// <summary>
         /// Stored logs that contain information for the report.
         /// </summary>
-        private List<SigStatLogState> reportLogs;
+        private ConcurrentBag<SigStatLogState> reportLogs;
 
-        /// <summary>
-        /// Public read-only interface to reach logged states.
-        /// </summary>
-        public IReadOnlyList<SigStatLogState> ReportLogs { get { return reportLogs; } }
 
         /// <summary>
         /// Occurs when an error is logged.
@@ -36,7 +36,7 @@ namespace SigStat.Common.Logging
         /// </summary>
         public ReportInformationLogger()
         {
-            reportLogs = new List<SigStatLogState>();
+            reportLogs = new ConcurrentBag<SigStatLogState>();
         }
 
         /// <inheritdoc/>
@@ -44,6 +44,15 @@ namespace SigStat.Common.Logging
         {
             throw new NotSupportedException("Scopes are not supported by ReportInformationLogger");
         }
+
+
+
+        /// <inheritdoc/>
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            return true;
+        }
+
 
         /// <inheritdoc/>
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
@@ -55,10 +64,13 @@ namespace SigStat.Common.Logging
             }
         }
 
-        /// <inheritdoc/>
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return true;
+        /// <summary>
+        /// Enumerates the log entries
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SigStatLogState> GetReportLogs() 
+        { 
+            return reportLogs; 
         }
 
     }
