@@ -22,6 +22,7 @@ namespace SigStat.Common.Logging
 
             foreach (var log in logs)
             {
+                if (log is null) continue;
                 //Benchmark key-values
                 if (log.GetType() == typeof(BenchmarkKeyValueLogState))
                 {

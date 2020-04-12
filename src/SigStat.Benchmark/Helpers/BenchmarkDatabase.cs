@@ -111,7 +111,7 @@ namespace SigStat.Benchmark.Helpers
                     Builders<BsonDocument>.Filter.Where(d => d["config"] == config),
                     Builders<BsonDocument>.Update
                         .SetOnInsert(d => d["config"], config)
-                        .Set(d=>d["state"],States.Queued))
+                        .Set(d => d["state"], States.Queued))
                 { IsUpsert = true });
                 bool isAcknowledged = false;
                 int retryCount = 21;
@@ -262,6 +262,52 @@ namespace SigStat.Benchmark.Helpers
 
         }
 
+        public struct ExecutionStatistics
+        {
+            public long TotalMilliseconds;
+            public long MaxMilliseconds;
+            public long Count;
+        }
+        public static async Task<ExecutionStatistics> GetExecutionStatisticsAsync()
+        {
+            //db.PreprocessingBenchmark.aggregate([
+            //   { $match: { state: "finished" } },
+            //   { $group: 
+            //       { 
+            //       _id: "1", 
+            //       total: { $sum: { $toLong: "$results.KeyValueGroups.Execution.dict.Duration" }},
+            //       max: { $max: { $toLong: "$results.KeyValueGroups.Execution.dict.Duration" }},
+            //       count: { $sum: 1}
+            //       } 
+            //    }
+            //])
+            var match = new BsonDocument { { "$match", new BsonDocument { { "state", "finished" } } } };
+            var group = new BsonDocument
+                {
+                    { "$group",
+                        new BsonDocument
+                            {
+                                { "_id", "1" },
+                                { "count", new BsonDocument{{"$sum", 1}}},
+                                { "total", new BsonDocument{{"$sum", new BsonDocument{{"$toLong", "$results.KeyValueGroups.Execution.dict.Duration" } }} } },
+                                { "max", new BsonDocument{{"$max", new BsonDocument{{"$toLong", "$results.KeyValueGroups.Execution.dict.Duration" } }} } }
+
+                            }
+                  }
+                };
+            var pipeline = new[] { match, group };
+            var cursor = await experimentCollection.AggregateAsync<BsonDocument>(pipeline);
+            var result = await cursor.FirstAsync();
+
+
+            return new ExecutionStatistics
+            {
+                Count = result["count"].ToInt64(),
+                MaxMilliseconds = result["max"].ToInt64(),
+                TotalMilliseconds = result["total"].ToInt64()
+            };
+
+        }
         //IAsyncEnumerable..
         //Sort?
         public static async Task<IEnumerable<BenchmarkResults>> GetResults()
@@ -325,10 +371,22 @@ namespace SigStat.Benchmark.Helpers
                Builders<BsonDocument>.Update
                 .Set("state", States.Queued)
                 .Unset("errorLog")
-                .Unset("lockDate"),
+                .Unset("end_date"),
+
                new UpdateOptions() { IsUpsert = false });
             return (int)result.MatchedCount;
         }
+        public static async Task<int> ResetResults()
+        {
+            var result = await experimentCollection.UpdateManyAsync(faultedFilter,
+               Builders<BsonDocument>.Update
+                .Set("state", States.Queued)
+                .Unset("results")
+                .Unset("end_date"),
+               new UpdateOptions() { IsUpsert = false });
+            return (int)result.MatchedCount;
+        }
+
 
         public static async Task SetGrammarRules(string rulesString)
         {

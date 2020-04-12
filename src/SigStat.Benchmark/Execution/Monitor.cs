@@ -11,15 +11,15 @@ namespace SigStat.Benchmark
 {
     class Monitor
     {
-        enum Action { Run, Refresh, Abort };
+        enum Action { Run, Refresh,Eta, Abort };
 
         internal static async Task RunAsync()
         {        
 
-            Action action = Action.Run;
+            Action action = Action.Eta;
             DateTime lastRefresh = DateTime.Now.AddDays(-1);
 
-            Console.WriteLine("Monitor is running. Press 'r' to force a refresh, press any other key to quit");
+            Console.WriteLine("Monitor is running. Press 'r' to force a refresh, press 'e' to calculate ETA, press any other key to quit");
             while (action != Action.Abort)
             {
                 if (Console.KeyAvailable)
@@ -29,13 +29,28 @@ namespace SigStat.Benchmark
                         case ConsoleKey.R:
                             action = Action.Refresh;
                             break;
+                        case ConsoleKey.E:
+                            action = Action.Eta;
+                            break;
                         default:
                             action = Action.Abort;
                             break;
                     }
                 }
 
-                if (((DateTime.Now - lastRefresh).TotalMinutes > 1) || action == Action.Refresh)
+                if (action == Action.Eta)
+                {
+                    var stats = await BenchmarkDatabase.GetExecutionStatisticsAsync();
+                    var lockedCount = await BenchmarkDatabase.CountLocked();
+                    var queuedCount = await BenchmarkDatabase.CountQueued();
+                    var averageJobSeconds = stats.TotalMilliseconds / stats.Count / 1000;
+
+                    Console.WriteLine($"Finished {stats.Count} records in {stats.TotalMilliseconds / 1000 / 60 / 60} processing hours."); 
+                    Console.WriteLine($"The slowest job took {stats.MaxMilliseconds/1000/60} minutes, the average job length is {averageJobSeconds} seconds.");
+                    Console.WriteLine($"Assuming {lockedCount} workers, the remaining {queuedCount} items will be processed in {queuedCount*averageJobSeconds/lockedCount/60/60} hours");
+                    action = Action.Run;
+                }
+                else if (((DateTime.Now - lastRefresh).TotalMinutes > 1) || action == Action.Refresh)
                 {
                     var queued = BenchmarkDatabase.CountQueued();
                     var locked = BenchmarkDatabase.CountLocked();
@@ -46,7 +61,7 @@ namespace SigStat.Benchmark
                     var percent = 100 * finished.Result / total;
 
                     Console.WriteLine(
-                        $"{DateTime.Now}: Queued: {queued.Result} Locked: {locked.Result} Faulted: {faulted.Result} Finished: {finished.Result} Progress: {percent}");
+                        $"{DateTime.Now}: Queued: {queued.Result} Locked: {locked.Result} Faulted: {faulted.Result} Finished: {finished.Result} Progress: {percent}%");
 
                     lastRefresh = DateTime.Now;
                     action = Action.Run;

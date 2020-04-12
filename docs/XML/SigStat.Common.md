@@ -552,8 +552,8 @@
 - [ReportInformationLogger](#T-SigStat-Common-Logging-ReportInformationLogger 'SigStat.Common.Logging.ReportInformationLogger')
   - [#ctor()](#M-SigStat-Common-Logging-ReportInformationLogger-#ctor 'SigStat.Common.Logging.ReportInformationLogger.#ctor')
   - [reportLogs](#F-SigStat-Common-Logging-ReportInformationLogger-reportLogs 'SigStat.Common.Logging.ReportInformationLogger.reportLogs')
-  - [ReportLogs](#P-SigStat-Common-Logging-ReportInformationLogger-ReportLogs 'SigStat.Common.Logging.ReportInformationLogger.ReportLogs')
   - [BeginScope\`\`1()](#M-SigStat-Common-Logging-ReportInformationLogger-BeginScope``1-``0- 'SigStat.Common.Logging.ReportInformationLogger.BeginScope``1(``0)')
+  - [GetReportLogs()](#M-SigStat-Common-Logging-ReportInformationLogger-GetReportLogs 'SigStat.Common.Logging.ReportInformationLogger.GetReportLogs')
   - [IsEnabled()](#M-SigStat-Common-Logging-ReportInformationLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.ReportInformationLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
   - [Log\`\`1()](#M-SigStat-Common-Logging-ReportInformationLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.ReportInformationLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
 - [ResampleSamplesCountBased](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased')
@@ -7044,6 +7044,10 @@ SigStat.Common.Logging
 
 Logger for logging report informations.
 
+##### Remarks
+
+The class is thread safe
+
 <a name='M-SigStat-Common-Logging-ReportInformationLogger-#ctor'></a>
 ### #ctor() `constructor`
 
@@ -7062,19 +7066,27 @@ This constructor has no parameters.
 
 Stored logs that contain information for the report.
 
-<a name='P-SigStat-Common-Logging-ReportInformationLogger-ReportLogs'></a>
-### ReportLogs `property`
-
-##### Summary
-
-Public read-only interface to reach logged states.
-
 <a name='M-SigStat-Common-Logging-ReportInformationLogger-BeginScope``1-``0-'></a>
 ### BeginScope\`\`1() `method`
 
 ##### Summary
 
 *Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-GetReportLogs'></a>
+### GetReportLogs() `method`
+
+##### Summary
+
+Enumerates the log entries
+
+##### Returns
+
+
 
 ##### Parameters
 

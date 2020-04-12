@@ -116,10 +116,11 @@ namespace SigStat.Benchmark
             Console.WriteLine("[D]elete experiment data");
             Console.WriteLine("[F]aulted removal");
             Console.WriteLine("[L]ock removal");
+            Console.WriteLine("[R]esult removal");
             Console.WriteLine("[E]xit");
 
             char ch = ' ';
-            while (!new []{ 'g', 'c','d', 'f', 'l', 'e' }.Contains(ch)) 
+            while (!new []{ 'g', 'c','d', 'f', 'l','r', 'e' }.Contains(ch)) 
                 ch = Console.ReadKey(true).KeyChar;
 
 
@@ -149,6 +150,11 @@ namespace SigStat.Benchmark
                     WriteLine($"Removing locks...");
                     int lockedResult = await BenchmarkDatabase.RemoveLocks();
                     WriteLine($"Removed {lockedResult} locks.");
+                    return true;
+                case 'r':
+                    WriteLine($"Removing results...");
+                    int count = await BenchmarkDatabase.ResetResults();
+                    WriteLine($"Removed {count} results.");
                     return true;
                 case 'e': //exit
                     return false;

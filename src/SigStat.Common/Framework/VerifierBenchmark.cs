@@ -301,7 +301,7 @@ namespace SigStat.Common
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Agent", Environment.MachineName));
 
             //log benchmark duration
-            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Duration", stopwatch.ElapsedMilliseconds.ToString() + "ms"));
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Duration", stopwatch.ElapsedMilliseconds.ToString()));
 
             //log parameters
             foreach (var parameter in this.Parameters)

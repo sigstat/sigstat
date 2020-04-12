@@ -2468,6 +2468,9 @@
             <summary>
             Logger for logging report informations.
             </summary>
+            <remarks>
+            The class is thread safe
+            </remarks>
         </member>
         <member name="T:SigStat.Common.Logging.ReportInformationLogger.LogStateLoggedEventHandler">
             <summary>
@@ -2477,11 +2480,6 @@
         <member name="F:SigStat.Common.Logging.ReportInformationLogger.reportLogs">
             <summary>
             Stored logs that contain information for the report.
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Logging.ReportInformationLogger.ReportLogs">
-            <summary>
-            Public read-only interface to reach logged states.
             </summary>
         </member>
         <member name="E:SigStat.Common.Logging.ReportInformationLogger.Logged">
@@ -2497,11 +2495,17 @@
         <member name="M:SigStat.Common.Logging.ReportInformationLogger.BeginScope``1(``0)">
             <inheritdoc/>
         </member>
+        <member name="M:SigStat.Common.Logging.ReportInformationLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
+            <inheritdoc/>
+        </member>
         <member name="M:SigStat.Common.Logging.ReportInformationLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
             <inheritdoc/>
         </member>
-        <member name="M:SigStat.Common.Logging.ReportInformationLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">
-            <inheritdoc/>
+        <member name="M:SigStat.Common.Logging.ReportInformationLogger.GetReportLogs">
+            <summary>
+            Enumerates the log entries
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SigStat.Common.Logging.SignerResults">
             <summary>
