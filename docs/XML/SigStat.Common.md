@@ -130,6 +130,7 @@
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.TimeValues')
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.GetValue(System.Double)')
 - [DataCleaningHelper](#T-SigStat-Common-Helpers-DataCleaningHelper 'SigStat.Common.Helpers.DataCleaningHelper')
+  - [InitializeTimestamps(signature,unitTimeSlot)](#M-SigStat-Common-Helpers-DataCleaningHelper-InitializeTimestamps-SigStat-Common-Signature,System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.InitializeTimestamps(SigStat.Common.Signature,System.Double)')
   - [Insert2DPointsForGapBorders(gapIndexes,signature,unitTimeSlot)](#M-SigStat-Common-Helpers-DataCleaningHelper-Insert2DPointsForGapBorders-System-Int32[],SigStat-Common-Signature,System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.Insert2DPointsForGapBorders(System.Int32[],SigStat.Common.Signature,System.Double)')
   - [InsertDuplicatedValuesForGapBorderPoints\`\`1(gapIndexes,featureValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertDuplicatedValuesForGapBorderPoints``1-System-Int32[],System-Collections-Generic-List{``0}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints``1(System.Int32[],System.Collections.Generic.List{``0})')
   - [InsertPenUpValuesForGapBorderPoints(gapIndexes,penDownValues)](#M-SigStat-Common-Helpers-DataCleaningHelper-InsertPenUpValuesForGapBorderPoints-System-Int32[],System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})')
@@ -2267,6 +2268,20 @@ SigStat.Common.Helpers
 ##### Summary
 
 Helper class for cleaning online signature data in loaders
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-InitializeTimestamps-SigStat-Common-Signature,System-Double-'></a>
+### InitializeTimestamps(signature,unitTimeSlot) `method`
+
+##### Summary
+
+Initialize timestamps of an online signature which does not have captured timestamps
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signature | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') | The online signature which's timestamps are initialized |
+| unitTimeSlot | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The unit time slot between two points of the signature |
 
 <a name='M-SigStat-Common-Helpers-DataCleaningHelper-Insert2DPointsForGapBorders-System-Int32[],SigStat-Common-Signature,System-Double-'></a>
 ### Insert2DPointsForGapBorders(gapIndexes,signature,unitTimeSlot) `method`
@@ -9016,7 +9031,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
 
 ##### Parameters
 

@@ -193,6 +193,30 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.PenDown, lines.Select(l=>l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                var pressureValues = signature.GetFeature(Features.Pressure).ToList();
+                signature.SetFeature(Features.PointTypes,
+                    pressureValues.Select((p, i) =>
+                        i < pressureValues.Count - 1
+                            ?
+                               (i > 0
+                                    ?
+                                        (p > 0
+                                            ?
+                                                (pressureValues[i - 1] > 0 && pressureValues[i + 1] > 0
+                                                    ?
+                                                         0.0
+                                                    :
+                                                        (pressureValues[i + 1] > 0 ? 1.0 : 2.0)
+                                                )
+                                            :
+                                                0.0
+                                        )
+                                    :
+                                        1.0
+                                )
+                            :
+                                2.0
+                ).ToList());
                 signature.CalculateStandardStatistics();
 
             }

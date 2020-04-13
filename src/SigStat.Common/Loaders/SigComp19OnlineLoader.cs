@@ -195,7 +195,7 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(SigComp19.Altitude, lines.Select(l => l[5]).ToList());
             signature.SetFeature(SigComp19.Azimuth, lines.Select(l => l[6]).ToList());
             signature.SetFeature(SigComp19.Distance, lines.Select(l => l[7]).ToList());
-            
+
             if (standardFeatures)
             {
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[2]).ToList());
@@ -205,6 +205,30 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.PenDown, lines.Select(l => l[0] == 1).ToList()); // 1 -pen down, 3 - pen up
                 signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[6]).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
+                var pressureValues = signature.GetFeature(Features.Pressure).ToList();
+                signature.SetFeature(Features.PointTypes,
+                    pressureValues.Select((p, i) =>
+                        i < pressureValues.Count - 1
+                            ?
+                               (i > 0
+                                    ?
+                                        (p > 0
+                                            ?
+                                                (pressureValues[i - 1] > 0 && pressureValues[i + 1] > 0
+                                                    ?
+                                                         0.0
+                                                    :
+                                                        (pressureValues[i + 1] > 0 ? 1.0 : 2.0)
+                                                )
+                                            :
+                                                0.0
+                                        )
+                                    :
+                                        1.0
+                                )
+                            :
+                                2.0
+                ).ToList());
                 SignatureHelper.CalculateStandardStatistics(signature);
 
             }
