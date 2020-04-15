@@ -97,7 +97,7 @@ namespace SigStat.Benchmark
                         // Nothing to do here
                         break;
                     case "rotation":
-                        b.Verifier.Pipeline.Add(new NormalizeRotation() { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y });
+                        b.Verifier.Pipeline.Add(new NormalizeRotation2() { InputX = Features.X, InputY = Features.Y, OutputX = Features.X, OutputY = Features.Y });
                         break;
                     default:
                         throw new NotSupportedException("Unsupported rotation: " + config["Rotation"]);
@@ -117,8 +117,8 @@ namespace SigStat.Benchmark
                             filterFeatures.Add(Features.T);
                         if (!filterFeatures.Contains(Features.Y))
                             filterFeatures.Add(Features.Y);
-                        if (!filterFeatures.Contains(Features.PointTypes))
-                            filterFeatures.Add(Features.PointTypes);
+                        if (!filterFeatures.Contains(Features.PointType))
+                            filterFeatures.Add(Features.PointType);
                         b.Verifier.Pipeline.Add(new FilterPoints()
                         {
                             InputFeatures = filterFeatures,
@@ -151,8 +151,8 @@ namespace SigStat.Benchmark
                             TimeOutputFeature = Features.T,
                             PressureInputFeature = Features.Pressure,
                             PressureOutputFeature = Features.Pressure,
-                            PointTypesInputFeature = Features.PointTypes,
-                            PointTypesOutputFeature = Features.PointTypes,
+                            PointTypeInputFeature = Features.PointType,
+                            PointTypeOutputFeature = Features.PointType,
                             InterpolationType = interpolations[config["FillInterpolation"]]
                         });
                         break;
@@ -176,8 +176,8 @@ namespace SigStat.Benchmark
                             resamplingFeatures.Add(Features.Pressure);
                         if (!resamplingFeatures.Contains(Features.Y))
                             resamplingFeatures.Add(Features.Y);
-                        if (!resamplingFeatures.Contains(Features.PointTypes))
-                            resamplingFeatures.Add(Features.PointTypes);
+                        if (!resamplingFeatures.Contains(Features.PointType))
+                            resamplingFeatures.Add(Features.PointType);
                         b.Verifier.Pipeline.Add(new ResampleSamplesCountBased()
                         {
                             InputFeatures = resamplingFeatures,

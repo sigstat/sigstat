@@ -206,7 +206,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[6]).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
                 var pressureValues = signature.GetFeature(Features.Pressure).ToList();
-                signature.SetFeature(Features.PointTypes,
+                signature.SetFeature(Features.PointType,
                     pressureValues.Select((p, i) =>
                         i < pressureValues.Count - 1
                             ?

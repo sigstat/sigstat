@@ -219,7 +219,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.PenDown, lines.Select(l => true).ToList());
-                signature.SetFeature(Features.PointTypes, lines.Select((l, i) => 
+                signature.SetFeature(Features.PointType, lines.Select((l, i) => 
                     i == 0 || startIndexes.Contains(i)
                         ?
                             1.0

@@ -56,7 +56,7 @@ namespace SigStat.Common
         /// 2 - End - Last point of a downstroke
         /// 3 - ShortStroke - First and last point of a downstroke
         /// </summary>
-        public static readonly FeatureDescriptor<List<double>> PointTypes = FeatureDescriptor.Get<List<double>>("PointTypes");
+        public static readonly FeatureDescriptor<List<double>> PointType = FeatureDescriptor.Get<List<double>>("PointType");
         /// <summary>
         /// Azimuth of an online signature as a function of <see cref="T"/>
         /// </summary>

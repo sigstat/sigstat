@@ -239,21 +239,38 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.PenDown, lines.Select(l => (l[3] == 1)).ToList());
-                var penDowns = signature.GetFeature(Features.PenDown).ToList();
-                signature.SetFeature(Features.PointTypes, 
-                    penDowns.Select((pd, i) =>
-                        i < penDowns.Count - 1
-                            ?
-                                (pd == false
-                                    ?
-                                        1.0
-                                    :
-                                        (penDowns[i + 1] == false ? 2.0 : 0.0)
-                                )
-                            :
-                                2.0
-                    ).Select((pt, i) => pt).ToList());
+                
+                // There are no upstrokes in the database, the starting points of downstrokes are marked by button=0 values 
+                var button = signature.GetFeature(Svc2004.Button);
+                var pointType = new double[button.Count];
+                for (int i = 0; i < button.Count; i++)
+                {
+                    if (button[i] == 0)
+                        pointType[i] = 1;
+                    else if (i == button.Count-1 ||  button[i + 1] == 0)
+                        pointType[i] = 2;
+                    else
+                        pointType[i] = 0;
+
+                }
+                signature.SetFeature(Features.PointType, pointType);
+
+
+                //signature.SetFeature(Features.PenDown, lines.Select(l => (l[3] == 1)).ToList());
+                //var penDowns = signature.GetFeature(Features.PenDown).ToList();
+                //signature.SetFeature(Features.PointType, 
+                //    penDowns.Select((pd, i) =>
+                //        i < penDowns.Count - 1
+                //            ?
+                //                (pd == false
+                //                    ?
+                //                        1.0
+                //                    :
+                //                        (penDowns[i + 1] == false ? 2.0 : 0.0)
+                //                )
+                //            :
+                //                2.0
+                //    ).Select((pt, i) => pt).ToList());
                 SignatureHelper.CalculateStandardStatistics(signature);
             }
 

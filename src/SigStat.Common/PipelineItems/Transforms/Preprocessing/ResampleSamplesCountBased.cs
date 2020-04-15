@@ -83,7 +83,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 var featureValues = new List<double>(signature.GetFeature(InputFeatures[i]));
                 if (InputFeatures[i] == Features.Pressure)
                     signature.SetFeature(OutputFeatures[i], GenerateResampledPressureValues(featureValues, originalTimestamps, resampledTimestamps));
-                else if (InputFeatures[i] == Features.PointTypes)
+                else if (InputFeatures[i] == Features.PointType)
                     signature.SetFeature(OutputFeatures[i], GenerateResampledPointTypeValues(featureValues, originalTimestamps, resampledTimestamps));
                 else
                     signature.SetFeature(OutputFeatures[i], GenerateResampledValues(featureValues, originalTimestamps, resampledTimestamps));

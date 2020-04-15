@@ -132,9 +132,12 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
+
             this.LogTrace("Verifying signature {signature}.", signature.ID);
 
-            Pipeline.Transform(signature);
+            // HACK: OptimalDtwClassifier performs the transformations in the training phase
+            if (!(Classifier is OptimalDtwClassifier))
+                Pipeline.Transform(signature);
 
             this.LogTrace("Signature {signature} transformed.", signature.ID);
 

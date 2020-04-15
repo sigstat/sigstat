@@ -111,7 +111,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    dtwDistances[test.ID, train.ID] = DtwPyWindow.Dtw(train.Values, test.Values, DistanceFunction, WarpingWindowLength);
+                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
                 }
             }
 
