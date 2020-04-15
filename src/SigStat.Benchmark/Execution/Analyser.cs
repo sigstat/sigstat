@@ -12,12 +12,12 @@ using SigStat.Benchmark.Helpers;
 
 namespace SigStat.Benchmark
 {
-    class Analyser
+    public class Analyser
     {
         static string InputDirectory;
         static string OutputFile;
 
-        class ReportLine
+        public class ReportLine
         {
             public string Key { get; set; }
 
@@ -48,11 +48,9 @@ namespace SigStat.Benchmark
         internal static async Task RunAsync()
         {
             Stopwatch sw = Stopwatch.StartNew();
-            //InputDirectory = inputDir;
-            //OutputFile = output;
 
             Console.WriteLine($"{DateTime.Now}: Gathering results for experiment {Program.Experiment}...");
-            var results = (await BenchmarkDatabase.GetResults()).ToList();//szebben
+            //var results = (await BenchmarkDatabase.GetResults()).ToList();//szebben
 
             //var reportFiles = Directory.EnumerateFiles(InputDirectory, "*.xlsx").ToList();
             //reportFiles.Sort();

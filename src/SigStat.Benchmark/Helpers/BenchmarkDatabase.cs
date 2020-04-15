@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.Common.Logging;
@@ -10,8 +12,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
-
+using static SigStat.Benchmark.Analyser;
 
 namespace SigStat.Benchmark.Helpers
 {
@@ -308,13 +311,70 @@ namespace SigStat.Benchmark.Helpers
             };
 
         }
-        //IAsyncEnumerable..
-        //Sort?
-        public static async Task<IEnumerable<BenchmarkResults>> GetResults()
+        public static IEnumerable<ReportLine> GetResults()
         {
-            throw new NotImplementedException();
-            //var cursor = await experimentCollection.Find(d => van result).ToCursorAsync();
-            //return cursor.ToEnumerable().Select(d => BsonSerializer.Deserialize<@@@>(d));
+            var cursor = experimentCollection.FindSync("{}",
+                new FindOptions<BsonDocument, BsonDocument>() { Projection = "{results.KeyValueGroups: 1, config: 1}" });
+            //var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
+
+            foreach (var bson in cursor.ToEnumerable())
+            {
+                yield return new ReportLine();
+                //                Key = 
+                //                   public string Key { get; set; }
+
+                //    public string Date { get; set; }
+                //    public string Agent { get; set; }
+                //    public string Duration { get; set; }
+
+
+                //    public string Translation { get; set; }
+                //    public string Scaling { get; set; }
+                //    public string Classifier { get; set; }
+                //    public string Sampling { get; set; }
+                //    public string Database { get; set; }
+                //    public string Rotation { get; set; }
+                //    public string Translation_Scaling { get; set; }
+                //    public string ResamplingType_Filter { get; set; }
+                //    public string ResamplingParam { get; set; }
+                //    public string Interpolation { get; set; }
+                //    public string Features { get; set; }
+                //    public string Distance { get; set; }
+
+                //    public string Error { get; set; }
+
+                //    public double FRR { get; set; }
+                //    public double FAR { get; set; }
+                //    public double AER { get; set; }
+                //}
+                //            var json = ToJson(bson);
+                //            var result = SerializationHelper.Deserialize<BenchmarkResults>(json);
+                //            result.
+                //            yield return result;
+            }
+        }
+
+        public static string ToJson(BsonDocument bson)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new BsonBinaryWriter(stream))
+                {
+                    BsonSerializer.Serialize(writer, typeof(BsonDocument), bson);
+                }
+                stream.Seek(0, SeekOrigin.Begin);
+                using (var reader = new Newtonsoft.Json.Bson.BsonReader(stream))
+                {
+                    var sb = new StringBuilder();
+                    var sw = new StringWriter(sb);
+                    using (var jWriter = new JsonTextWriter(sw))
+                    {
+                        jWriter.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                        jWriter.WriteToken(reader);
+                    }
+                    return sb.ToString();
+                }
+            }
         }
 
         public static async Task<int> CountTotal()

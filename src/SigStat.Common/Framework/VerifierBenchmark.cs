@@ -56,7 +56,7 @@ namespace SigStat.Common
 
     /// <summary>Contains the benchmark results of every <see cref="Common.Signer"/> and the summarized final results.</summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public struct BenchmarkResults
+    public class BenchmarkResults
     {
         
         /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
