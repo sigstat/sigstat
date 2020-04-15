@@ -151,5 +151,54 @@ namespace SigStat.Common.Helpers
                 featureValues.Insert(index, featureValues[index - 1]); //insert value of the point which is before the gap
             }
         }
+
+        /// <summary>
+        /// Initialize timestamps of an online signature which does not have captured timestamps
+        /// </summary>
+        /// <param name="signature">The online signature which's timestamps are initialized</param>
+        /// <param name="unitTimeSlot">The unit time slot between two points of the signature</param>
+        public static void InitializeTimestamps(Signature signature, double unitTimeSlot)
+        {
+            var x = signature.GetFeature(Features.X);
+            var y = signature.GetFeature(Features.Y);
+            var pointTypes = signature.GetFeature(Features.PointTypes);
+
+            if (x.Count != y.Count)
+            {
+                throw new ArgumentException("The length of X and Y are not the same");
+            }
+
+            var shifts = new List<double>();
+            for (int i = 0; i < x.Count - 1; i++)
+            {
+                if (pointTypes[i] != 2 || (pointTypes[i] == 2 && pointTypes[i+1] != 1)) 
+                {
+                    var xShift = Math.Abs(x[i + 1] - x[i]);
+                    var yShift = Math.Abs(y[i + 1] - y[i]);
+                    shifts.Add(Math.Sqrt((xShift * xShift) + (yShift * yShift)));
+                }
+            }
+
+            var avgShift = shifts.Average();
+            var t = new List<double>(x.Count);
+            t.Add(0); //initialize the timestamp of the first point of the signature
+            for (int i = 1; i < x.Count; i++)
+            {
+                if (pointTypes[i-1] == 2 && pointTypes[i] == 1)
+                {
+                    var xShift = Math.Abs(x[i] - x[i - 1]);
+                    var yShift = Math.Abs(y[i] - y[i - 1]);
+                    var shift = Math.Sqrt((xShift * xShift) + (yShift * yShift));
+
+                    t.Add(t[i-1] + (shift * unitTimeSlot) / avgShift); //timestamp of the gap end (length of the gap)
+                }
+                else
+                {
+                    t.Add(t[i - 1] + unitTimeSlot);
+                }
+            }
+
+            signature.SetFeature(Features.T, t);
+        }
     }
 }

@@ -193,9 +193,9 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0 / 75.0) * 1000).ToList());
 
             // The database uses special datapoints to signal stroke boundaries
-            // We are going to replace them with two zero pressure points in standard features for smoother comparison
-            // New zero pressure points are located at the same corrdinates as the point before and the point after the stroke boundary
-            var gapIndexes = new List<int>();
+            // We are going to remove them in standard features for smoother comparison, and to save this information by PointTypes
+            var stopIndexes = new List<int>();
+            var startIndexes = new List<int>();
             for (int i = 1; i < lines.Count-1; i++)
             {
                 if (lines[i][0] != -1) continue;
@@ -206,8 +206,9 @@ namespace SigStat.Common.Loaders
                     i--;
                     continue;
                 }
-                // Save the index of the point after the gap and remove the special datapoint
-                gapIndexes.Add(i);
+                // Save the index of the points before and after the gap and remove the special datapoint
+                startIndexes.Add(i);
+                stopIndexes.Add(i - 1);
                 lines.RemoveAt(i);
                 i--;
             }
@@ -218,19 +219,17 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.PenDown, lines.Select(l => true).ToList());
+                signature.SetFeature(Features.PointTypes, lines.Select((l, i) => 
+                    i == 0 || startIndexes.Contains(i)
+                        ?
+                            1.0
+                        : 
+                            (i == lines.Count-1 || stopIndexes.Contains(i) ?  2.0 : 0.0)
+                    ).ToList());
 
-                //Insert 2 zero pressure points before points at gapIndexes in Pressure
-                var pressureValues = signature.GetFeature(Features.Pressure);
-                DataCleaningHelper.InsertPressureValuesForGapBorderPoints(gapIndexes.ToArray(), pressureValues);
-                signature.SetFeature(Features.Pressure, pressureValues);
-                //Insert 2 zero pressure points before points at gapIndexes in PenDown
-                var penDownValues = signature.GetFeature(Features.PenDown);
-                DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(gapIndexes.ToArray(), penDownValues);
-                signature.SetFeature(Features.PenDown, penDownValues);
-                //Insert 2 zero points before points at gapIndexes in X, Y, T
                 // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
                 var unitTimeSlot = (1.0 / 75.0) * 1000;
-                DataCleaningHelper.Insert2DPointsForGapBorders(gapIndexes.ToArray(), signature, unitTimeSlot);
+                DataCleaningHelper.InitializeTimestamps(signature, unitTimeSlot);
 
                 var x = signature.GetFeature(Features.X);
                 signature.SetFeature(Features.Azimuth, x.Select(v => 1d).ToList());

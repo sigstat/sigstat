@@ -218,6 +218,30 @@ namespace SigStat.Common.Loaders
                 // Sampling frequency is 100Hz ==> time should be increased by 10 msec for each slot
                 signature.SetFeature(Features.T, Enumerable.Range(0, X.Count).Select(i => i * 10d).ToList());
                 signature.SetFeature(Features.PenDown, Pressure.Select(p => p > 0).ToList());
+                var pressureValues = signature.GetFeature(Features.Pressure).ToList();
+                signature.SetFeature(Features.PointTypes,
+                    pressureValues.Select((p, i) =>
+                        i < pressureValues.Count - 1
+                            ?
+                               (i > 0
+                                    ?
+                                        (p > 0
+                                            ?
+                                                (pressureValues[i - 1] > 0 && pressureValues[i + 1] > 0
+                                                    ?
+                                                         0.0
+                                                    :
+                                                        (pressureValues[i + 1] > 0 ? 1.0 : 2.0)
+                                                )
+                                            :
+                                                0.0
+                                        )
+                                    :
+                                        1.0
+                                )
+                            :
+                                2.0
+                ).ToList());
                 signature.CalculateStandardStatistics();
             }
 

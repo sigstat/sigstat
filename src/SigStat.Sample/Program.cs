@@ -331,7 +331,7 @@ namespace SigStat.Sample
             return;
         }
         static string rulesString = @" [Benchmark] -> [Database]_[Split]_[Feature]_[Verifier]
-                [Database] -> svc2004 | mcyt100 | dutch | chinese | japanese
+                [Database] -> svc2004 | mcyt100 | dutch | chinese | japanese | german
                 [Feature] -> X | Y | P | XY | XYP | XP | YP
                 [Split] -> s1 | s2 | s3 | s4
                 [Verifier] -> [Pipeline]_[Classifier]
@@ -351,7 +351,7 @@ namespace SigStat.Sample
 
         private static void PreprocessingBenchmarkDemo()
         {
-            string configString = "svc2004_s3_Y_none_filter_fill_linear_1000samples_cubic_scale1_to0_OptimalDtw_Manhattan";
+            string configString = "mcyt100_s3_Y_none_filter_fill_linear_1000samples_cubic_scale1_to0_OptimalDtw_Manhattan";
             var rules = GrammarEngine.ParseRules(rulesString);
             var configDict = GrammarEngine.ParseSentence(configString, rules);
             var builder = new Benchmark.BenchmarkBuilder(Environment.GetEnvironmentVariable("SigStatDB")); // feltételezzük ,hog
