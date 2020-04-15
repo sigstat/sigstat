@@ -4340,7 +4340,6 @@
             <summary>
             Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
             <para>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude <see cref="T:SigStat.Common.Features"/></para>
-       n.Features"/></para>
             <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.Image"/></para>
             </summary>
         </member>

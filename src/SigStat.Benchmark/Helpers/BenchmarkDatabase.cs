@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static SigStat.Benchmark.Analyser;
@@ -106,6 +107,15 @@ namespace SigStat.Benchmark.Helpers
             int lastProcessedCount = skipCount;
             int throttlingDelay = 0;
             Stopwatch sw = Stopwatch.StartNew();
+
+            var indexCursor = await experimentCollection.Indexes.ListAsync();
+            var indexes = await indexCursor.ToListAsync();
+            if (!indexes.Any(i => i["name"] == "config_1"))
+                await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ config: 1 }", new CreateIndexOptions() { Name = "config_1" }));
+            if (!indexes.Any(i => i["name"] == "state_1"))
+                await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ state: 1 }", new CreateIndexOptions() { Name = "state_1" }));
+            if (!indexes.Any(i => i["name"] == "duration_1"))
+                await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ \"results.KeyValueGroups.Execution.dict.Duration\": 1 }", new CreateIndexOptions() { Name = "duration_1" }));
 
             foreach (var configBatch in configs.Skip(skipCount).ToArrays(batchSize))
             {
@@ -300,7 +310,10 @@ namespace SigStat.Benchmark.Helpers
                 };
             var pipeline = new[] { match, group };
             var cursor = await experimentCollection.AggregateAsync<BsonDocument>(pipeline);
-            var result = await cursor.FirstAsync();
+            var result = await cursor.FirstOrDefaultAsync();
+
+            if (result == null)
+                return new ExecutionStatistics();
 
 
             return new ExecutionStatistics
@@ -311,43 +324,42 @@ namespace SigStat.Benchmark.Helpers
             };
 
         }
+
+        static Dictionary<string, PropertyInfo> reportLineProperties = typeof(ReportLine)
+            .GetProperties().ToDictionary(p=>p.Name, p=>p);
         public static IEnumerable<ReportLine> GetResults()
         {
             var cursor = experimentCollection.FindSync(finishedFilter,
-                new FindOptions<BsonDocument, BsonDocument>() { Projection = "{results.KeyValueGroups: 1, config: 1}" });
+                new FindOptions<BsonDocument, BsonDocument>() { Projection = "{\"results.KeyValueGroups\": 1, config: 1}" });
 
             //var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
             foreach (var bson in cursor.ToEnumerable())
             {
-                yield return new ReportLine()
+                var execution = bson["results"]["KeyValueGroups"]["Execution"]["dict"];
+                var parameters = bson["results"]["KeyValueGroups"]["Parameters"]["dict"].AsBsonDocument;
+                var benchmarkResults = bson["results"]["KeyValueGroups"]["BenchmarkResults"]["dict"];
+                var reportLine = new ReportLine()
                 {
                     Key = bson["config"].AsString,
-                    Date = bson["results.KeyValueGroups.Execution.dict.Date"].AsString,
-                    Agent = bson["results.KeyValueGroups.Execution.dict.Agent"].AsString,
-                    Duration = bson["results.KeyValueGroups.Execution.dict.Duration"].AsString,
+                    Date = execution["Date"].AsString,
+                    Agent = execution["Agent"].AsString,
+                    Duration = execution["Duration"].AsString,
 
-                    Database = bson["results.KeyValueGroups.Parameters.dict.Database"].AsString,
-                    Feature = bson["results.KeyValueGroups.Parameters.dict.Feature"].AsString,
-                    Split = bson["results.KeyValueGroups.Parameters.dict.Split"].AsString,
-                    Verifier = bson["results.KeyValueGroups.Parameters.dict.Verifier"].AsString,
-                    Classifier = bson["results.KeyValueGroups.Parameters.dict.Classifier"].AsString,
-                    Distance = bson["results.KeyValueGroups.Parameters.dict.Distance"].AsString,
-                    Rotation = bson["results.KeyValueGroups.Parameters.dict.Rotation"].AsString,
-                    FillGap = bson["results.KeyValueGroups.Parameters.dict.FillGap"].AsString,
-                    FilterGap = bson["results.KeyValueGroups.Parameters.dict.FilterGap"].AsString,
-                    FillInterpolation = bson["results.KeyValueGroups.Parameters.dict.FillInterpolation"].AsString,
-                    Resampling = bson["results.KeyValueGroups.Parameters.dict.Resampling"].AsString,
-                    SampleCount = bson["results.KeyValueGroups.Parameters.dict.SampleCount"].AsString,
-                    ResamplingInterpolation = bson["results.KeyValueGroups.Parameters.dict.ResamplingInterpolation"].AsString,
-                    Scaling = bson["results.KeyValueGroups.Parameters.dict.Scaling"].AsString,
-                    Translation = bson["results.KeyValueGroups.Parameters.dict.Translation"].AsString,
+                   
 
-                    FRR = bson["results.KeyValueGroups.BenchmarkResults.dict.Duration"].AsDouble,
-                    FAR = bson["results.KeyValueGroups.BenchmarkResults.dict.Duration"].AsDouble,
-                    AER = bson["results.KeyValueGroups.BenchmarkResults.dict.Duration"].AsDouble,
+                    FRR = benchmarkResults["FRR"].AsDouble,
+                    FAR = benchmarkResults["FAR"].AsDouble,
+                    AER = benchmarkResults["AER"].AsDouble,
 
                 };
+                foreach (var element in parameters.Elements)
+                {
+                    reportLineProperties[element.Name].SetValue(reportLine, element.Value.AsString);
+                }
+
+
+                yield return reportLine;
             }
         }
 
@@ -435,7 +447,7 @@ namespace SigStat.Benchmark.Helpers
         }
         public static async Task<int> ResetResults()
         {
-            var result = await experimentCollection.UpdateManyAsync(faultedFilter,
+            var result = await experimentCollection.UpdateManyAsync(finishedFilter,
                Builders<BsonDocument>.Update
                 .Set("state", States.Queued)
                 .Unset("results")

@@ -354,8 +354,6 @@ namespace SigStat.Common.Loaders
                 Classifier = classifier
             };
 
-            b.Parameters = config.ToKeyValuePairs().ToList();
-
             return b;
 
         }

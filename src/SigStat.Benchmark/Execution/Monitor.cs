@@ -40,7 +40,13 @@ namespace SigStat.Benchmark
 
                 if (action == Action.Eta)
                 {
+                    action = Action.Run;
                     var stats = await BenchmarkDatabase.GetExecutionStatisticsAsync();
+                    if (stats.Count ==0)
+                    {
+                        Console.WriteLine("Execution statistics will be available as soon as the first job finishes");
+                        continue;
+                    }
                     var lockedCount = await BenchmarkDatabase.CountLocked();
                     var queuedCount = await BenchmarkDatabase.CountQueued();
                     var averageJobSeconds = stats.TotalMilliseconds / stats.Count / 1000;
@@ -48,7 +54,6 @@ namespace SigStat.Benchmark
                     Console.WriteLine($"Finished {stats.Count} records in {stats.TotalMilliseconds / 1000 / 60 / 60} processing hours."); 
                     Console.WriteLine($"The slowest job took {stats.MaxMilliseconds/1000/60} minutes, the average job length is {averageJobSeconds} seconds.");
                     Console.WriteLine($"Assuming {lockedCount} workers, the remaining {queuedCount} items will be processed in {queuedCount*averageJobSeconds/lockedCount/60/60} hours");
-                    action = Action.Run;
                 }
                 else if (((DateTime.Now - lastRefresh).TotalMinutes > 1) || action == Action.Refresh)
                 {

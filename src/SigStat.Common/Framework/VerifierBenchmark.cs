@@ -248,10 +248,6 @@ namespace SigStat.Common
             // TODO: centralize logger injection
             Verifier.Logger = logger;
             this.LogInformation("Benchmark execution started.");
-            foreach (var param in Parameters)
-            {
-                this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ParametersGroupName, param.Key, param.Value));
-            }
 
             var results = new List<Result>();
             farAcc = 0;

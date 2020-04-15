@@ -17,15 +17,15 @@ namespace SigStat.Benchmark
         public class ReportLine
         {
             public string Key { get; set; }
+            public double FRR { get; set; }
+            public double FAR { get; set; }
+            public double AER { get; set; }
 
-            public string Date { get; set; }
-            public string Agent { get; set; }
-            public string Duration { get; set; }
+
 
             public string Database { get; set; }
             public string Feature { get; set; }
             public string Split { get; set; }
-            public string Verifier { get; set; }
             public string Classifier { get; set; }
             public string Distance { get; set; }
             public string Rotation { get; set; }
@@ -37,11 +37,17 @@ namespace SigStat.Benchmark
             public string ResamplingInterpolation { get; set; }
             public string Scaling { get; set; }
             public string Translation { get; set; }
-            public string Error { get; set; }
 
-            public double FRR { get; set; }
-            public double FAR { get; set; }
-            public double AER { get; set; }
+
+            public string Date { get; set; }
+            public string Agent { get; set; }
+            public string Duration { get; set; }
+
+            public string Gap { get; set; }
+            public string Pipeline { get; set; }
+            public string Benchmark { get; set; }
+            public string Verifier { get; set; }
+
         }
         internal static async Task RunAsync(string reportFilePath)
         {
