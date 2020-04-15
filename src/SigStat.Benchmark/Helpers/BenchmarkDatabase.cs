@@ -313,44 +313,41 @@ namespace SigStat.Benchmark.Helpers
         }
         public static IEnumerable<ReportLine> GetResults()
         {
-            var cursor = experimentCollection.FindSync("{}",
+            var cursor = experimentCollection.FindSync(finishedFilter,
                 new FindOptions<BsonDocument, BsonDocument>() { Projection = "{results.KeyValueGroups: 1, config: 1}" });
+
             //var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
             foreach (var bson in cursor.ToEnumerable())
             {
-                yield return new ReportLine();
-                //                Key = 
-                //                   public string Key { get; set; }
+                yield return new ReportLine()
+                {
+                    Key = bson["config"].AsString,
+                    Date = bson["results.KeyValueGroups.Execution.dict.Date"].AsString,
+                    Agent = bson["results.KeyValueGroups.Execution.dict.Agent"].AsString,
+                    Duration = bson["results.KeyValueGroups.Execution.dict.Duration"].AsString,
 
-                //    public string Date { get; set; }
-                //    public string Agent { get; set; }
-                //    public string Duration { get; set; }
+                    Database = bson["results.KeyValueGroups.Parameters.dict.Database"].AsString,
+                    Feature = bson["results.KeyValueGroups.Parameters.dict.Feature"].AsString,
+                    Split = bson["results.KeyValueGroups.Parameters.dict.Split"].AsString,
+                    Verifier = bson["results.KeyValueGroups.Parameters.dict.Verifier"].AsString,
+                    Classifier = bson["results.KeyValueGroups.Parameters.dict.Classifier"].AsString,
+                    Distance = bson["results.KeyValueGroups.Parameters.dict.Distance"].AsString,
+                    Rotation = bson["results.KeyValueGroups.Parameters.dict.Rotation"].AsString,
+                    FillGap = bson["results.KeyValueGroups.Parameters.dict.FillGap"].AsString,
+                    FilterGap = bson["results.KeyValueGroups.Parameters.dict.FilterGap"].AsString,
+                    FillInterpolation = bson["results.KeyValueGroups.Parameters.dict.FillInterpolation"].AsString,
+                    Resampling = bson["results.KeyValueGroups.Parameters.dict.Resampling"].AsString,
+                    SampleCount = bson["results.KeyValueGroups.Parameters.dict.SampleCount"].AsString,
+                    ResamplingInterpolation = bson["results.KeyValueGroups.Parameters.dict.ResamplingInterpolation"].AsString,
+                    Scaling = bson["results.KeyValueGroups.Parameters.dict.Scaling"].AsString,
+                    Translation = bson["results.KeyValueGroups.Parameters.dict.Translation"].AsString,
 
+                    FRR = bson["results.KeyValueGroups.BenchmarkResults.dict.Duration"].AsDouble,
+                    FAR = bson["results.KeyValueGroups.BenchmarkResults.dict.Duration"].AsDouble,
+                    AER = bson["results.KeyValueGroups.BenchmarkResults.dict.Duration"].AsDouble,
 
-                //    public string Translation { get; set; }
-                //    public string Scaling { get; set; }
-                //    public string Classifier { get; set; }
-                //    public string Sampling { get; set; }
-                //    public string Database { get; set; }
-                //    public string Rotation { get; set; }
-                //    public string Translation_Scaling { get; set; }
-                //    public string ResamplingType_Filter { get; set; }
-                //    public string ResamplingParam { get; set; }
-                //    public string Interpolation { get; set; }
-                //    public string Features { get; set; }
-                //    public string Distance { get; set; }
-
-                //    public string Error { get; set; }
-
-                //    public double FRR { get; set; }
-                //    public double FAR { get; set; }
-                //    public double AER { get; set; }
-                //}
-                //            var json = ToJson(bson);
-                //            var result = SerializationHelper.Deserialize<BenchmarkResults>(json);
-                //            result.
-                //            yield return result;
+                };
             }
         }
 

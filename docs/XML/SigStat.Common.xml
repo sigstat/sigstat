@@ -305,7 +305,7 @@
             It is true when the pen touches the paper.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Features.PointTypes">
+        <member name="F:SigStat.Common.Features.PointType">
             <summary>
             Type of points of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>.
             The type of a point is defined by:
@@ -3228,7 +3228,7 @@
             Gets or sets the feature representing pressure in an online signature
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesInputFeature">
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypeInputFeature">
             <summary>
             Gets or sets the feature representing the type of the points in an online signature
             </summary>
@@ -3248,7 +3248,7 @@
             Gets or sets the feature representing the modified pressure values of an online signature
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesOutputFeature">
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypeOutputFeature">
             <summary>
             Gets or sets the feature representing the modified point type values in an online signature
             </summary>
@@ -4372,6 +4372,7 @@
             <summary>
             Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
             <para>Default Pipeline Input: X, Y, Button, Pressure, Azimuth, Altitude <see cref="T:SigStat.Common.Features"/></para>
+       n.Features"/></para>
             <para>Default Pipeline Output: <see cref="F:SigStat.Common.Features.Image"/></para>
             </summary>
         </member>
@@ -4807,8 +4808,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>

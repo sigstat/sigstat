@@ -59,13 +59,14 @@ namespace SigStat.Benchmark
 
         public VerifierBenchmark Build(Dictionary<string, string> config)
         {
-
             VerifierBenchmark b = new VerifierBenchmark()
             {
                 Loader = loaders[config["Database"]],
                 Sampler = samplers[config["Split"]],
                 Verifier = new Verifier()
             };
+
+            b.Parameters.AddRange(config);
 
             var features = ParseFeatures(config["Feature"]);
             var dft = typeof(Func<double[], double[], double>);

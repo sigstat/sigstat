@@ -12,12 +12,12 @@ namespace SigStat.Benchmark.Options
     [Verb("analyse", HelpText = "Analyser mode for analysing benchmark results.")]
     public class AnalyserOptions : OptionsBase
     {
-        //input: results
-        //output: summaries
+        [Option('r', "report", Required = false, Default = "report.xlsx", HelpText = "Name of the generated report file (e.g. something.xlsx)")]
+        public string ReportFilePath { get; set; }
 
         public override async Task RunAsync()
         {
-            await Analyser.RunAsync();
+            await Analyser.RunAsync(ReportFilePath);
         }
     }
 }
