@@ -19,7 +19,7 @@ namespace SigStat.Common.Helpers
         {
             var x = signature.GetFeature(Features.X);
             var y = signature.GetFeature(Features.Y);
-            var pointTypes = signature.GetFeature(Features.PointTypes);
+            var pointTypes = signature.GetFeature(Features.PointType);
 
             if (x.Count != y.Count)
             {
