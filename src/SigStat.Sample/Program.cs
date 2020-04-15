@@ -352,7 +352,7 @@ namespace SigStat.Sample
         private static void PreprocessingBenchmarkDemo()
         {
             //string configString = "mcyt100_s3_Y_none_filter_fill_linear_1000samples_cubic_scale1_to0_OptimalDtw_Manhattan";
-            string configString = "mcyt100_s3_XYP_none_filter_fill_linear_none_scale1_to0_OptimalDtw_Manhattan";
+            string configString = "german_s3_XYP_none_filter_fill_linear_none_scale1_to0_OptimalDtw_Manhattan";
 
             var rules = GrammarEngine.ParseRules(rulesString);
             var configDict = GrammarEngine.ParseSentence(configString, rules);
