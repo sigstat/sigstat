@@ -83,7 +83,7 @@ namespace SigStat.Common.Helpers
                     else pointType[i] = 2;
                 }
 
-                else if (pressure[0] > 0) // pen is down in the actual point
+                else if (pressure[i] > 0) // pen is down in the actual point
                 {
                     if (pressure[i - 1] > 0)
                     {

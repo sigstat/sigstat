@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -223,30 +224,9 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.PenDown, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
-                var pressureValues = signature.GetFeature(Features.Pressure).ToList();
-                signature.SetFeature(Features.PointType,
-                    pressureValues.Select((p, i) =>
-                        i < pressureValues.Count - 1
-                            ?
-                               (i > 0
-                                    ?
-                                        (p > 0
-                                            ?
-                                                (pressureValues[i - 1] > 0 && pressureValues[i + 1] > 0
-                                                    ?
-                                                         0.0
-                                                    :
-                                                        (pressureValues[i + 1] > 0 ? 1.0 : 2.0)
-                                                )
-                                            :
-                                                0.0
-                                        )
-                                    :
-                                        1.0
-                                )
-                            :
-                                2.0
-                ).ToList());
+                // Upstorkes are represented by zero pressure points
+                var pressureValues = signature.GetFeature(Features.Pressure).ToArray();
+                signature.SetFeature(Features.PointType, DataCleaningHelper.GeneratePointTypeValuesFromPressure(pressureValues).ToList());
                 signature.CalculateStandardStatistics();
 
             }

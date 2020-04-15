@@ -219,13 +219,17 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.PenDown, lines.Select(l => true).ToList());
-                signature.SetFeature(Features.PointType, lines.Select((l, i) => 
-                    i == 0 || startIndexes.Contains(i)
-                        ?
-                            1.0
-                        : 
-                            (i == lines.Count-1 || stopIndexes.Contains(i) ?  2.0 : 0.0)
-                    ).ToList());
+                
+                // The database uses special datapoints to signal stroke boundaries which were removed above
+                // Stroke start point indexes are in startIndexes, stroke end point indexes are in stopIndexes
+                var pointType = new double[lines.Count];
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    if (i == 0 || startIndexes.Contains(i)) pointType[i] = 1; // stroke start
+                    else if (i == lines.Count - 1 || stopIndexes.Contains(i)) pointType[i] = 2; // stroke end
+                    else pointType[i] =  0; // Internal stroke point
+                }
+                signature.SetFeature(Features.PointType, pointType.ToList());
 
                 // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
                 var unitTimeSlot = (1.0 / 75.0) * 1000;

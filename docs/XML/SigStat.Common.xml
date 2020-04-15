@@ -305,7 +305,7 @@
             It is true when the pen touches the paper.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Features.PointTypes">
+        <member name="F:SigStat.Common.Features.PointType">
             <summary>
             Type of points of an online signature as a function of <see cref="F:SigStat.Common.Features.T"/>.
             The type of a point is defined by:
@@ -897,51 +897,19 @@
             Helper class for cleaning online signature data in loaders
             </summary>
         </member>
-        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.Insert2DPointsForGapBorders(System.Int32[],SigStat.Common.Signature,System.Double)">
-            <summary>
-            Inserts two points as border points of gaps in an online signature.
-            The inserted values are X- and Y-coordinates and a calculated timestamp.
-            </summary>
-            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-            <param name="signature">The online signature in which the points are inserted</param>
-            <param name="unitTimeSlot">The unit time slot between two points of the signature</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertTimestampsForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double},System.Double)">
-            <summary>
-            Inserts timestamps for border points of gaps in an online signature
-            </summary>
-            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-            <param name="timestamps">Timestamps of the signature</param>
-            <param name="difference">Defines the difference between the inserted timestamps and their neighbour timestamp</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertPenUpValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Boolean})">
-            <summary>
-            Insert PenUp values for border points of gaps in an online signature
-            </summary>
-            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-            <param name="penDownValues">PenDown values of the signature</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertPressureValuesForGapBorderPoints(System.Int32[],System.Collections.Generic.List{System.Double})">
-            <summary>
-            Insert zero pressure values for border points of gaps in an online signature
-            </summary>
-            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-            <param name="pressureValues">Pressure values of the signature</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InsertDuplicatedValuesForGapBorderPoints``1(System.Int32[],System.Collections.Generic.List{``0})">
-            <summary>
-            Insert feature values for border points of gaps in an online signature using duplicated neighbour values
-            </summary>
-            <typeparam name="T">Type of the values in featureValues</typeparam>
-            <param name="gapIndexes">Indexes of points where the gaps end in the signature</param>
-            <param name="featureValues">Feature values of the signature</param>
-        </member>
         <member name="M:SigStat.Common.Helpers.DataCleaningHelper.InitializeTimestamps(SigStat.Common.Signature,System.Double)">
             <summary>
             Initialize timestamps of an online signature which does not have captured timestamps
             </summary>
             <param name="signature">The online signature which's timestamps are initialized</param>
             <param name="unitTimeSlot">The unit time slot between two points of the signature</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.DataCleaningHelper.GeneratePointTypeValuesFromPressure(System.Double[])">
+            <summary>
+            Generate point type values of an online signature based on its pressure values (zero pressure points are required)
+            </summary>
+            <param name="pressure">The preussure values of an online signature</param>
+            <returns></returns>
         </member>
         <member name="T:SigStat.Common.Helpers.ExcelHelper">
             <summary>
@@ -3228,7 +3196,7 @@
             Gets or sets the feature representing pressure in an online signature
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesInputFeature">
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypeInputFeature">
             <summary>
             Gets or sets the feature representing the type of the points in an online signature
             </summary>
@@ -3248,7 +3216,7 @@
             Gets or sets the feature representing the modified pressure values of an online signature
             </summary>
         </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypesOutputFeature">
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypeOutputFeature">
             <summary>
             Gets or sets the feature representing the modified point type values in an online signature
             </summary>
@@ -4807,8 +4775,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>
