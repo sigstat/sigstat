@@ -224,7 +224,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
                 var pressureValues = signature.GetFeature(Features.Pressure).ToList();
-                signature.SetFeature(Features.PointTypes,
+                signature.SetFeature(Features.PointType,
                     pressureValues.Select((p, i) =>
                         i < pressureValues.Count - 1
                             ?

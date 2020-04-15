@@ -219,7 +219,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.T, Enumerable.Range(0, X.Count).Select(i => i * 10d).ToList());
                 signature.SetFeature(Features.PenDown, Pressure.Select(p => p > 0).ToList());
                 var pressureValues = signature.GetFeature(Features.Pressure).ToList();
-                signature.SetFeature(Features.PointTypes,
+                signature.SetFeature(Features.PointType,
                     pressureValues.Select((p, i) =>
                         i < pressureValues.Count - 1
                             ?
