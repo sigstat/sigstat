@@ -24,6 +24,8 @@ namespace SigStat.Benchmark
 
         internal static async Task RunAsync(int procId, int maxThreads)
         {
+            Console.WriteLine($"{DateTime.Now}: Worker is running.");
+
             //stop worker process after 3 days
             DateTime stopTime = DateTime.Now.AddHours(71);
 
@@ -36,7 +38,6 @@ namespace SigStat.Benchmark
 
             benchmarkBuilder = new BenchmarkBuilder();
 
-            Console.WriteLine($"{DateTime.Now}: Worker is running.");
             if (!Console.IsInputRedirected)
             {
                 Console.WriteLine("Press 'A' to abort.");

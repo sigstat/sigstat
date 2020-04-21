@@ -68,6 +68,7 @@ namespace SigStat.Benchmark.Helpers
             {
                 try
                 {
+                    Console.WriteLine("Loading connection string from file");
                     connectionString = await File.ReadAllTextAsync(connectionString);
                 }
                 catch (IOException exc)
@@ -77,11 +78,14 @@ namespace SigStat.Benchmark.Helpers
             }
 
 
+            Console.WriteLine("Connecting to server...");
             client = new MongoClient(connectionString);
+            Console.WriteLine("Connecting to database...");
             db = client.GetDatabase("Benchmark");
+            Console.WriteLine($"Connecting to {Program.Experiment} collection...");
             experimentCollection = db.GetCollection<BsonDocument>(Program.Experiment);
-
-
+            Console.WriteLine("Connection ready");
+        
         }
 
         public static async Task<bool> ExperimentExists()

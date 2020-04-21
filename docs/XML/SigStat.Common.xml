@@ -2712,7 +2712,7 @@
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="!:LogLevel.Information"/>.
+            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
@@ -4775,8 +4775,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>
