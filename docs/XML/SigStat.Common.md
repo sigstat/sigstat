@@ -749,7 +749,9 @@
   - [Transform()](#M-SigStat-Common-SimpleRenderingTransformation-Transform-SigStat-Common-Signature- 'SigStat.Common.SimpleRenderingTransformation.Transform(SigStat.Common.Signature)')
 - [StrokeHelper](#T-SigStat-Common-StrokeHelper 'SigStat.Common.StrokeHelper')
   - [GetStroke(startIndex,pressure)](#M-SigStat-Common-StrokeHelper-GetStroke-System-Int32,System-Double- 'SigStat.Common.StrokeHelper.GetStroke(System.Int32,System.Double)')
+  - [GetStrokeByButton(startIndex,button,pressure)](#M-SigStat-Common-StrokeHelper-GetStrokeByButton-System-Int32,System-Int32,System-Double- 'SigStat.Common.StrokeHelper.GetStrokeByButton(System.Int32,System.Int32,System.Double)')
   - [GetStrokes(signature)](#M-SigStat-Common-StrokeHelper-GetStrokes-SigStat-Common-Signature- 'SigStat.Common.StrokeHelper.GetStrokes(SigStat.Common.Signature)')
+  - [GetStrokesByButton(signature)](#M-SigStat-Common-StrokeHelper-GetStrokesByButton-SigStat-Common-Signature- 'SigStat.Common.StrokeHelper.GetStrokesByButton(SigStat.Common.Signature)')
 - [StrokeInterval](#T-SigStat-Common-StrokeInterval 'SigStat.Common.StrokeInterval')
   - [#ctor(startIndex,endIndex,strokeType)](#M-SigStat-Common-StrokeInterval-#ctor-System-Int32,System-Int32,SigStat-Common-StrokeType- 'SigStat.Common.StrokeInterval.#ctor(System.Int32,System.Int32,SigStat.Common.StrokeType)')
   - [EndIndex](#F-SigStat-Common-StrokeInterval-EndIndex 'SigStat.Common.StrokeInterval.EndIndex')
@@ -8989,7 +8991,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
 
 ##### Parameters
 
@@ -9099,6 +9101,25 @@ Creates a [StrokeInterval](#T-SigStat-Common-StrokeInterval 'SigStat.Common.Stro
 | startIndex | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The start index. |
 | pressure | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The pressure. |
 
+<a name='M-SigStat-Common-StrokeHelper-GetStrokeByButton-System-Int32,System-Int32,System-Double-'></a>
+### GetStrokeByButton(startIndex,button,pressure) `method`
+
+##### Summary
+
+Creates a [StrokeInterval](#T-SigStat-Common-StrokeInterval 'SigStat.Common.StrokeInterval') and initializes it with the given parameters
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| startIndex | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The start index. |
+| button | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The button status. |
+| pressure | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The pressure. |
+
 <a name='M-SigStat-Common-StrokeHelper-GetStrokes-SigStat-Common-Signature-'></a>
 ### GetStrokes(signature) `method`
 
@@ -9116,6 +9137,24 @@ the signature has to contain [T](#F-SigStat-Common-Features-T 'SigStat.Common.Fe
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | signature | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') | An online signature with standard features |
+
+<a name='M-SigStat-Common-StrokeHelper-GetStrokesByButton-SigStat-Common-Signature-'></a>
+### GetStrokesByButton(signature) `method`
+
+##### Summary
+
+Test to find SVC2004 anomalies. Gets the strokes from an SVC2004 online signature. Note that
+the signature has to contain [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T') and [Button](#F-SigStat-Common-Loaders-Svc2004-Button 'SigStat.Common.Loaders.Svc2004.Button')
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signature | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') | An SVC2004 online signature with standard features |
 
 <a name='T-SigStat-Common-StrokeInterval'></a>
 ## StrokeInterval `type`

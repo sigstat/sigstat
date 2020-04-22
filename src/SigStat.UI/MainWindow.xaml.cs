@@ -59,9 +59,12 @@ namespace SigStat.UI
             {
                 InputFeatures = { Features.X, Features.Y },
                 OutputFeatures = { Features.X, Features.Y },
-                PressureInputFeature = Features.Pressure, PressureOutputFeature = Features.Pressure,
-                TimeInputFeature = Features.T, TimeOutputFeature = Features.T,
-                PointTypeInputFeature = Features.PointType, PointTypeOutputFeature = Features.PointType,
+                PressureInputFeature = Features.Pressure,
+                PressureOutputFeature = Features.Pressure,
+                TimeInputFeature = Features.T,
+                TimeOutputFeature = Features.T,
+                PointTypeInputFeature = Features.PointType,
+                PointTypeOutputFeature = Features.PointType,
                 InterpolationType = typeof(CubicInterpolation)
             };
             for (int signerId = 0; signerId < signers.Count(); signerId++)
@@ -75,7 +78,6 @@ namespace SigStat.UI
             }
 
             VM.Signers = signers;
-
         }
     }
 }

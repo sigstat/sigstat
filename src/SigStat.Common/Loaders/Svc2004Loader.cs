@@ -229,6 +229,18 @@ namespace SigStat.Common.Loaders
                     i--;
                 }
             }
+
+            // Remove noise (points with 0 pressure) from the beginning of the signature
+            while (lines.Count > 0 && lines[0][6] == 0)
+            {
+                lines.RemoveAt(0);
+            }
+            // Remove noise (points with 0 pressure) from the end of the signature
+            while (lines.Count > 0 && lines[lines.Count - 1][6] == 0)
+            {
+                lines.RemoveAt(lines.Count - 1);
+            }
+
             // Task1, Task2
             signature.SetFeature(Svc2004.X, lines.Select(l => l[0]).ToList());
             signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());
@@ -239,7 +251,7 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                
+                signature.SetFeature(Features.PenDown, lines.Select(l => l[3] % 2 == 1).ToList());
                 // There are no upstrokes in the database, the starting points of downstrokes are marked by button=0 values 
                 var button = signature.GetFeature(Svc2004.Button).ToArray();
                 var pointType = new double[button.Length];
@@ -247,8 +259,12 @@ namespace SigStat.Common.Loaders
                 {
                     if (button[i] == 0)
                         pointType[i] = 1;
-                    else if (i == button.Length-1 ||  button[i + 1] == 0)
+                    else if (i == button.Length - 1 || (button[i] % 2 == 1 && button[i + 1] % 2 == 0))
                         pointType[i] = 2;
+                    else if (button[i] == 2 || button[i] == 4)
+                        pointType[i] = 0;
+                    else if (button[i] % 2 == 1 && button[i - 1] % 2 == 0 && button[i - 1] != 0)
+                        pointType[i] = 1;
                     else
                         pointType[i] = 0;
 
@@ -256,6 +272,11 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.PointType, pointType.ToList());
 
                 SignatureHelper.CalculateStandardStatistics(signature);
+
+                if (signature.Signer.ID == "26" && signature.ID == "32")
+                {
+                    ;
+                }
             }
 
             if (lines[0].Length == 7) // Task2
