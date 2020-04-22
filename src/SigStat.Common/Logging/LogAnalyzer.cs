@@ -39,7 +39,7 @@ namespace SigStat.Common.Logging
 
                     if (!model.SignerResults.ContainsKey(classifierLog.Signer1Id))
                         model.SignerResults.Add(classifierLog.Signer1Id, new SignerResults(classifierLog.Signer1Id));
-                    model.SignerResults[classifierLog.Signer1Id].DistanceMatrix[classifierLog.Signature1Id, classifierLog.Signature2Id] = classifierLog.distance;
+                    model.SignerResults[classifierLog.Signer1Id].DistanceMatrix[classifierLog.Signature1Id, classifierLog.Signature2Id] = classifierLog.Distance;
                 }
                 //Benchmark results
                 else if (log.GetType() == typeof(BenchmarkResultsLogState))
