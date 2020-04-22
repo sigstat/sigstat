@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Loaders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace SigStat.Common
 
             var timestamps = signature.GetFeature(Features.T);
             var pressures = signature.GetFeature(Features.Pressure);
+
 
             if (timestamps.Count != pressures.Count)
                 throw new ArgumentException("Pressure and timestamp count is inconsistent", nameof(signature));
@@ -66,5 +68,66 @@ namespace SigStat.Common
             return new StrokeInterval(startIndex, startIndex, pressure > 0 ? StrokeType.Down : StrokeType.Up);
         }
 
+        /// <summary>
+        /// Test to find SVC2004 anomalies. Gets the strokes from an SVC2004 online signature. Note that
+        /// the signature has to contain <see cref="Features.T"/> and <see cref="Svc2004.Button"/>
+        /// </summary>
+        /// <param name="signature">An SVC2004 online signature with standard features</param>
+        /// <returns></returns>
+        public static List<StrokeInterval> GetStrokesByButton(this Signature signature)
+        {
+
+            var timestamps = signature.GetFeature(Features.T);
+            var pressures = signature.GetFeature(Features.Pressure);
+            var buttons = signature.GetFeature(Svc2004.Button);
+
+            if (timestamps.Count != pressures.Count)
+                throw new ArgumentException("Pressure and timestamp count is inconsistent", nameof(signature));
+
+            if (timestamps.Count != buttons.Count)
+                throw new ArgumentException("Button and timestamp count is inconsistent", nameof(signature));
+
+            List<StrokeInterval> strokeIntervals = new List<StrokeInterval>();
+
+            if (timestamps.Count == 0)
+                return new List<StrokeInterval>();
+
+            if (timestamps.Count == 1)
+                return new List<StrokeInterval>() { GetStrokeByButton(0, buttons[0], pressures[0]) };
+
+            var timestampLength = timestamps.Select((ts, i) => ts - timestamps[i > 0 ? i - 1 : 0]).Skip(1).Median();
+
+            var stroke = GetStrokeByButton(0, buttons[0], pressures[0]);
+            strokeIntervals.Add(stroke);
+
+            int index = 1;
+            while (index < timestamps.Count)
+            {
+                if (timestamps[index] - timestamps[index - 1] > timestampLength * 2
+                    || (pressures[index] > 0 || buttons[0] % 2 == 1) && stroke.StrokeType == StrokeType.Up
+                    || (pressures[index] <= 0 || buttons[0] % 2 == 0) && stroke.StrokeType == StrokeType.Down)
+                {
+                    stroke.EndIndex = index - 1;
+                    stroke = GetStrokeByButton(index - 1, buttons[index], pressures[index]);
+                    strokeIntervals.Add(stroke);
+                }
+                index++;
+            }
+            stroke.EndIndex = timestamps.Count - 1;
+            return strokeIntervals;
+        }
+
+
+        /// <summary>
+        /// Creates a <see cref="StrokeInterval"/> and initializes it with the given parameters
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="button">The button status.</param>
+        /// <param name="pressure">The pressure.</param>
+        /// <returns></returns>
+        private static StrokeInterval GetStrokeByButton(int startIndex, int button, double pressure)
+        {
+            return new StrokeInterval(startIndex, startIndex, (button % 2 == 1 || pressure > 0) ? StrokeType.Down : StrokeType.Up);
+        }
     }
 }
