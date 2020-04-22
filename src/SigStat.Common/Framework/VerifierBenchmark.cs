@@ -301,6 +301,9 @@ namespace SigStat.Common
             //log benchmark agent
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Agent", Environment.MachineName));
 
+            //log degree of parallelism
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "ProcessorCount", degreeOfParallelism));
+
             //log benchmark duration
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Duration", stopwatch.ElapsedMilliseconds.ToString()));
 

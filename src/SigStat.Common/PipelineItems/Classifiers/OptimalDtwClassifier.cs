@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SigStat.Common.Algorithms;
 using SigStat.Common.Helpers.Serialization;
+using SigStat.Common.Logging;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// </summary>
         public class OptimalDtwSignerModel : ISignerModel
         {
+            /// <inheritdoc/>
+            public string SignerID { get; set; }
             /// <summary>
             /// Gets or sets the signature distance from training.
             /// </summary>
@@ -97,6 +100,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
             if (signatures.Count == 0)
                 throw new ArgumentException("'sigantures' can not be empty", nameof(signatures));
 
+            var signerID = signatures[0].Signer?.ID;
+
             var trainSignatures = Sampler.SampleReferences(signatures).Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
             var testGenuine = Sampler.SampleGenuineTests(signatures).Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
             var testForged = Sampler.SampleForgeryTests(signatures).Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
@@ -111,7 +116,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    dtwDistances[test.ID, train.ID] = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
+                    var distance = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
+                    dtwDistances[test.ID, train.ID] = distance;
+                    this.LogTrace(new ClassifierDistanceLogState(signerID, signerID, train.ID, test.ID, distance));
                 }
             }
 
@@ -144,6 +151,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             OptimalDtwSignerModel model = new OptimalDtwSignerModel()
             {
+                SignerID = signerID,
                 DistanceMatrix = dtwDistances,
                 SignatureDistanceFromTraining = averageDistances.ToDictionary(sig => sig.ID, sig => sig.Distance),
                 ErrorRates = errorRates,

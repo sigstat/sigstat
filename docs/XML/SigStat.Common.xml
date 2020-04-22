@@ -2988,6 +2988,9 @@
             Represents a trained model for <see cref="T:SigStat.Common.PipelineItems.Classifiers.DtwClassifier"/>
             </summary>
         </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.SignerID">
+            <inheritdoc/>
+        </member>
         <member name="P:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.GenuineSignatures">
             <summary>
             A list a of genuine signatures used for training
@@ -3053,6 +3056,9 @@
             <summary>
             Represents a trained model for <see cref="T:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier"/>
             </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.SignerID">
+            <inheritdoc/>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.SignatureDistanceFromTraining">
             <summary>
@@ -4653,6 +4659,14 @@
             <summary>
             Analyzes signatures based on their similiarity to the trained model
             </summary>
+        </member>
+        <member name="P:SigStat.Common.Pipeline.ISignerModel.SignerID">
+            <summary>
+            Identifies the signer, to whom this model belongs to
+            </summary>
+            <value>
+            The signer identifier.
+            </value>
         </member>
         <member name="T:SigStat.Common.Pipeline.ParallelTransformPipeline">
             <summary>

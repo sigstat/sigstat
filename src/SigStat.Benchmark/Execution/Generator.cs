@@ -117,10 +117,10 @@ namespace SigStat.Benchmark
             Console.WriteLine("[F]aulted removal");
             Console.WriteLine("[L]ock removal");
             Console.WriteLine("[R]esult removal");
-            Console.WriteLine("[E]xit");
+            Console.WriteLine("E[x]it");
 
             char ch = ' ';
-            while (!new []{ 'g', 'c','d', 'f', 'l','r', 'e' }.Contains(ch)) 
+            while (!new []{ 'g', 'c','d', 'f', 'l','r', 'x' }.Contains(ch)) 
                 ch = Console.ReadKey(true).KeyChar;
 
 
@@ -156,7 +156,7 @@ namespace SigStat.Benchmark
                     int count = await BenchmarkDatabase.ResetResults();
                     WriteLine($"Removed {count} results.");
                     return true;
-                case 'e': //exit
+                case 'x': //exit
                     return false;
             }
             return false;

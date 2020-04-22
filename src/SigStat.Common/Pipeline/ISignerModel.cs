@@ -9,6 +9,12 @@ namespace SigStat.Common.Pipeline
     /// </summary>
     public interface ISignerModel
     {
-
+        /// <summary>
+        /// Identifies the signer, to whom this model belongs to
+        /// </summary>
+        /// <value>
+        /// The signer identifier.
+        /// </value>
+        string SignerID { get; }
     }
 }

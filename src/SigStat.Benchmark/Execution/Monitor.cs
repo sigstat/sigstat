@@ -11,7 +11,7 @@ namespace SigStat.Benchmark
 {
     class Monitor
     {
-        enum Action { Run, Refresh,Eta, Abort };
+        enum Action { Run, Refresh,Eta, Exit };
 
         internal static async Task RunAsync()
         {        
@@ -19,8 +19,8 @@ namespace SigStat.Benchmark
             Action action = Action.Eta;
             DateTime lastRefresh = DateTime.Now.AddDays(-1);
 
-            Console.WriteLine("Monitor is running. Press 'r' to force a refresh, press 'e' to calculate ETA, press any other key to quit");
-            while (action != Action.Abort)
+            Console.WriteLine("Monitor is running. [R]efresh, [E]TA, E[x]it");
+            while (action != Action.Exit)
             {
                 if (Console.KeyAvailable)
                 {
@@ -32,8 +32,8 @@ namespace SigStat.Benchmark
                         case ConsoleKey.E:
                             action = Action.Eta;
                             break;
-                        default:
-                            action = Action.Abort;
+                        case ConsoleKey.X:
+                            action = Action.Exit;
                             break;
                     }
                 }

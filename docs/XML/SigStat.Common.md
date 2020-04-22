@@ -177,6 +177,7 @@
   - [DistanceMatrix](#F-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.DistanceMatrix')
   - [Threshold](#F-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.Threshold')
   - [GenuineSignatures](#P-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-GenuineSignatures 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.GenuineSignatures')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.SignerID')
 - [EndpointExtraction](#T-SigStat-Common-Transforms-EndpointExtraction 'SigStat.Common.Transforms.EndpointExtraction')
   - [OutputCrossingPoints](#P-SigStat-Common-Transforms-EndpointExtraction-OutputCrossingPoints 'SigStat.Common.Transforms.EndpointExtraction.OutputCrossingPoints')
   - [OutputEndpoints](#P-SigStat-Common-Transforms-EndpointExtraction-OutputEndpoints 'SigStat.Common.Transforms.EndpointExtraction.OutputEndpoints')
@@ -340,6 +341,7 @@
 - [IProgress](#T-SigStat-Common-Helpers-IProgress 'SigStat.Common.Helpers.IProgress')
   - [Progress](#P-SigStat-Common-Helpers-IProgress-Progress 'SigStat.Common.Helpers.IProgress.Progress')
 - [ISignerModel](#T-SigStat-Common-Pipeline-ISignerModel 'SigStat.Common.Pipeline.ISignerModel')
+  - [SignerID](#P-SigStat-Common-Pipeline-ISignerModel-SignerID 'SigStat.Common.Pipeline.ISignerModel.SignerID')
 - [ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
   - [Transform(signature)](#M-SigStat-Common-ITransformation-Transform-SigStat-Common-Signature- 'SigStat.Common.ITransformation.Transform(SigStat.Common.Signature)')
 - [ImageGenerator](#T-SigStat-Common-Transforms-ImageGenerator 'SigStat.Common.Transforms.ImageGenerator')
@@ -467,6 +469,7 @@
   - [DistanceMatrix](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.DistanceMatrix')
   - [ErrorRates](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-ErrorRates 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.ErrorRates')
   - [SignatureDistanceFromTraining](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-SignatureDistanceFromTraining 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.SignatureDistanceFromTraining')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.SignerID')
   - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.Threshold')
 - [Origin](#T-SigStat-Common-Origin 'SigStat.Common.Origin')
   - [Forged](#F-SigStat-Common-Origin-Forged 'SigStat.Common.Origin.Forged')
@@ -2954,6 +2957,13 @@ be classified as forgeries
 
 A list a of genuine signatures used for training
 
+<a name='P-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
+
 <a name='T-SigStat-Common-Transforms-EndpointExtraction'></a>
 ## EndpointExtraction `type`
 
@@ -4856,6 +4866,13 @@ SigStat.Common.Pipeline
 
 Analyzes signatures based on their similiarity to the trained model
 
+<a name='P-SigStat-Common-Pipeline-ISignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+Identifies the signer, to whom this model belongs to
+
 <a name='T-SigStat-Common-ITransformation'></a>
 ## ITransformation `type`
 
@@ -6195,6 +6212,13 @@ Gets or sets the error rates corresponding to specific thresholds
 ##### Summary
 
 Gets or sets the signature distance from training.
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
 
 <a name='P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-Threshold'></a>
 ### Threshold `property`
