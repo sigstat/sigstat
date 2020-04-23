@@ -89,6 +89,13 @@ namespace SigStat.Common.Logging
             Far = far;
             Frr = frr;
         }
+
+        ///<inheritdoc/>
+        public override string ToString()
+        {
+            return $"BenchmarkResults: AER: {Aer} (FAR: {Far}, FRR: {Frr})";
+        }
+
     }
 
     /// <summary>
@@ -124,6 +131,12 @@ namespace SigStat.Common.Logging
             Aer = aer;
             Far = far;
             Frr = frr;
+        }
+
+        ///<inheritdoc/>
+        public override string ToString()
+        {
+            return $"SignerResults for {SignerID}: AER: {Aer} (FAR: {Far}, FRR: {Frr})";
         }
     }
 
@@ -161,6 +174,12 @@ namespace SigStat.Common.Logging
             Key = key;
             Value = value;
         }
+
+        ///<inheritdoc/>
+        public override string ToString()
+        {
+            return $"{Group}.{Key}={Value}";
+        }
     }
 
 
@@ -193,7 +212,7 @@ namespace SigStat.Common.Logging
         /// <summary>
         /// Distance values between the signatures
         /// </summary>
-        public double distance { get; set; }
+        public double Distance { get; set; }
 
         /// <summary>
         /// Creates a ClassifierDistanceLogState
@@ -209,7 +228,13 @@ namespace SigStat.Common.Logging
             Signer2Id = signer2Id;
             Signature1Id = signature1Id;
             Signature2Id = signature2Id;
-            this.distance = distance;
+            this.Distance = distance;
+        }
+
+        ///<inheritdoc/>
+        public override string ToString()
+        {
+            return $"Distance of {Signer1Id}.{Signature1Id} and {Signer2Id}.{Signature2Id} is {Distance}";
         }
     }
 

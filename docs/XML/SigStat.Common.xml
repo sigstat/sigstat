@@ -2591,6 +2591,9 @@
             <param name="far"> Far</param>
             <param name="frr"> Frr</param>
         </member>
+        <member name="M:SigStat.Common.Logging.BenchmarkResultsLogState.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.Logging.SignerResultsLogState">
             <summary>
             Specific state used for Signer result transiting
@@ -2620,6 +2623,9 @@
             <param name="far"> Far</param>
             <param name="frr"> Frr</param>
         </member>
+        <member name="M:SigStat.Common.Logging.SignerResultsLogState.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.Logging.BenchmarkKeyValueLogState">
             <summary>
             Specific state used for Benchmarks key-value information transiting
@@ -2648,6 +2654,9 @@
             <param name="key">Key</param>
             <param name="value">Value</param>
         </member>
+        <member name="M:SigStat.Common.Logging.BenchmarkKeyValueLogState.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.Logging.ClassifierDistanceLogState">
             <summary>
             Specific state for signature distance information transiting
@@ -2673,7 +2682,7 @@
             Id of the second signature
             </summary>
         </member>
-        <member name="P:SigStat.Common.Logging.ClassifierDistanceLogState.distance">
+        <member name="P:SigStat.Common.Logging.ClassifierDistanceLogState.Distance">
             <summary>
             Distance values between the signatures
             </summary>
@@ -2687,6 +2696,9 @@
             <param name="signature1Id">Id of the first signature</param>
             <param name="signature2Id">Id of the second signature</param>
             <param name="distance">Distance values between the signatures</param>
+        </member>
+        <member name="M:SigStat.Common.Logging.ClassifierDistanceLogState.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Logging.SimpleConsoleLogger">
             <summary>
@@ -4789,5 +4801,8 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
+    </members>
+</doc>
+er>
     </members>
 </doc>
