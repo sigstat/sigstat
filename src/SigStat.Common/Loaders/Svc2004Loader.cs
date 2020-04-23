@@ -246,13 +246,14 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(Svc2004.Y, lines.Select(l => l[1]).ToList());
             signature.SetFeature(Svc2004.T, lines.Select(l => l[2]).ToList());
             signature.SetFeature(Svc2004.Button, lines.Select(l => l[3]).ToList());
+
+            // There are some anomalies in the database which have to be eliminated by standard features
+            var standardLines = lines.ToList();
             if (standardFeatures)
             {
-                signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
-                signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
-                signature.SetFeature(Features.T, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.PenDown, lines.Select(l => l[3] % 2 == 1).ToList());
                 // There are no upstrokes in the database, the starting points of downstrokes are marked by button=0 values 
+                // Tere are some anomalies in the database: button values between 2-5 and some upstrokes were not deleted               // Button is 2 or 4 if the given point's pressure is 0
+                // Button is 1, 3, 5 if the given point is in a downstroke
                 var button = signature.GetFeature(Svc2004.Button).ToArray();
                 var pointType = new double[button.Length];
                 for (int i = 0; i < button.Length; i++)
@@ -269,14 +270,34 @@ namespace SigStat.Common.Loaders
                         pointType[i] = 0;
 
                 }
-                signature.SetFeature(Features.PointType, pointType.ToList());
+
+
+                // Because of the anomalies we have to remove some zero pressure points
+                standardLines.Reverse();
+                var standartPointType = pointType.ToList();
+                standartPointType.Reverse();
+                for (int i = standardLines.Count - 1; i >= 0; i--)
+                {
+                    if (standardLines[i][3] == 2 || standardLines[i][3] == 4)
+                    {
+                        standardLines.RemoveAt(i);
+                        standartPointType.RemoveAt(i); // we have to remove generated point type values of zero pressure points as well
+                    }
+                }
+                standardLines.Reverse();
+                standartPointType.Reverse();
+
+
+                signature.SetFeature(Features.X, standardLines.Select(l => (double)l[0]).ToList());
+                signature.SetFeature(Features.Y, standardLines.Select(l => (double)l[1]).ToList());
+                signature.SetFeature(Features.T, standardLines.Select(l => (double)l[2]).ToList());
+                signature.SetFeature(Features.PenDown, standardLines.Select(l => l[3] != 0).ToList());
+                signature.SetFeature(Features.PointType, standartPointType);
+
 
                 SignatureHelper.CalculateStandardStatistics(signature);
 
-                if (signature.Signer.ID == "26" && signature.ID == "32")
-                {
-                    ;
-                }
+                
             }
 
             if (lines[0].Length == 7) // Task2
@@ -289,10 +310,12 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Svc2004.Pressure, pressure);
                 if (standardFeatures)
                 {
-                    signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[4]).ToList());
-                    signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
-                    signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[6]).ToList().ToList());
+                    signature.SetFeature(Features.Azimuth, standardLines.Select(l => (double)l[4]).ToList());
+                    signature.SetFeature(Features.Altitude, standardLines.Select(l => (double)l[5]).ToList());
+                    signature.SetFeature(Features.Pressure, standardLines.Select(l => (double)l[6]).ToList().ToList());
                 }
+
+
             }
 
         }

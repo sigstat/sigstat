@@ -351,7 +351,7 @@ namespace SigStat.Sample
 
         private static void PreprocessingBenchmarkDemo()
         {
-            string configString = "svc2004_s3_XYP_none_none_none_none_scaleS_toCog_OptimalDtw_Manhattan";
+            string configString = "svc2004_s3_XYP_none_filter_none_none_scaleS_toCog_OptimalDtw_Manhattan";
 
             var rules = GrammarEngine.ParseRules(rulesString);
             var configDict = GrammarEngine.ParseSentence(configString, rules);

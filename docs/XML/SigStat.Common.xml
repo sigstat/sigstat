@@ -1656,23 +1656,6 @@
             <param name="pressure">The pressure.</param>
             <returns></returns>
         </member>
-        <member name="M:SigStat.Common.StrokeHelper.GetStrokesByButton(SigStat.Common.Signature)">
-            <summary>
-            Test to find SVC2004 anomalies. Gets the strokes from an SVC2004 online signature. Note that
-            the signature has to contain <see cref="F:SigStat.Common.Features.T"/> and <see cref="F:SigStat.Common.Loaders.Svc2004.Button"/>
-            </summary>
-            <param name="signature">An SVC2004 online signature with standard features</param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.StrokeHelper.GetStrokeByButton(System.Int32,System.Int32,System.Double)">
-            <summary>
-            Creates a <see cref="T:SigStat.Common.StrokeInterval"/> and initializes it with the given parameters
-            </summary>
-            <param name="startIndex">The start index.</param>
-            <param name="button">The button status.</param>
-            <param name="pressure">The pressure.</param>
-            <returns></returns>
-        </member>
         <member name="T:SigStat.Common.StrokeInterval">
             <summary>
             Represents a stroke in an online signature
