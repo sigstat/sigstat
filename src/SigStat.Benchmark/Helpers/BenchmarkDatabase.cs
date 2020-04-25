@@ -118,8 +118,8 @@ namespace SigStat.Benchmark.Helpers
                 await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ config: 1 }", new CreateIndexOptions() { Name = "config_1" }));
             if (!indexes.Any(i => i["name"] == "state_1"))
                 await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ state: 1 }", new CreateIndexOptions() { Name = "state_1" }));
-            if (!indexes.Any(i => i["name"] == "duration_1"))
-                await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ \"results.KeyValueGroups.Execution.dict.Duration\": 1 }", new CreateIndexOptions() { Name = "duration_1" }));
+            if (!indexes.Any(i => i["name"] == "state_1_duration_1"))
+                await experimentCollection.Indexes.CreateOneAsync(new CreateIndexModel<BsonDocument>("{ state: 1, \"results.KeyValueGroups.Execution.dict.Duration\": 1 }", new CreateIndexOptions() { Name = "state_1_duration_1" }));
 
             foreach (var configBatch in configs.Skip(skipCount).ToArrays(batchSize))
             {
@@ -284,9 +284,12 @@ namespace SigStat.Benchmark.Helpers
             public long TotalMilliseconds;
             public long MaxMilliseconds;
             public long Count;
+            public long Size;
+            public long StorageSize;
         }
         public static async Task<ExecutionStatistics> GetExecutionStatisticsAsync()
         {
+            var result = new ExecutionStatistics();
             //db.PreprocessingBenchmark.aggregate([
             //   { $match: { state: "finished" } },
             //   { $group: 
@@ -298,6 +301,13 @@ namespace SigStat.Benchmark.Helpers
             //       } 
             //    }
             //])
+
+            var stats = await db.RunCommandAsync<BsonDocument>("{collstats: '" + Program.Experiment + "'}");
+            result.Size = stats["size"].ToInt64();
+            result.StorageSize = stats["storageSize"].ToInt64();
+
+
+
             var match = new BsonDocument { { "$match", new BsonDocument { { "state", "finished" } } } };
             var group = new BsonDocument
                 {
@@ -314,18 +324,14 @@ namespace SigStat.Benchmark.Helpers
                 };
             var pipeline = new[] { match, group };
             var cursor = await experimentCollection.AggregateAsync<BsonDocument>(pipeline);
-            var result = await cursor.FirstOrDefaultAsync();
-
-            if (result == null)
-                return new ExecutionStatistics();
-
-
-            return new ExecutionStatistics
+            var queryResult = await cursor.FirstOrDefaultAsync();
+            if (queryResult != null)
             {
-                Count = result["count"].ToInt64(),
-                MaxMilliseconds = result["max"].ToInt64(),
-                TotalMilliseconds = result["total"].ToInt64()
-            };
+                result.Count = queryResult["count"].ToInt64();
+                result.MaxMilliseconds = queryResult["max"].ToInt64();
+                result.TotalMilliseconds = queryResult["total"].ToInt64();
+            }
+            return result;
 
         }
 

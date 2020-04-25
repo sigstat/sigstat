@@ -49,6 +49,7 @@
   - [Group](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Group 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Group')
   - [Key](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Key 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Key')
   - [Value](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Value 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Value')
+  - [ToString()](#M-SigStat-Common-Logging-BenchmarkKeyValueLogState-ToString 'SigStat.Common.Logging.BenchmarkKeyValueLogState.ToString')
 - [BenchmarkLogModel](#T-SigStat-Common-Logging-BenchmarkLogModel 'SigStat.Common.Logging.BenchmarkLogModel')
   - [#ctor()](#M-SigStat-Common-Logging-BenchmarkLogModel-#ctor 'SigStat.Common.Logging.BenchmarkLogModel.#ctor')
   - [BenchmarkResultsGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName')
@@ -67,6 +68,7 @@
   - [Aer](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Aer 'SigStat.Common.Logging.BenchmarkResultsLogState.Aer')
   - [Far](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Far 'SigStat.Common.Logging.BenchmarkResultsLogState.Far')
   - [Frr](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Frr 'SigStat.Common.Logging.BenchmarkResultsLogState.Frr')
+  - [ToString()](#M-SigStat-Common-Logging-BenchmarkResultsLogState-ToString 'SigStat.Common.Logging.BenchmarkResultsLogState.ToString')
 - [Binarization](#T-SigStat-Common-Transforms-Binarization 'SigStat.Common.Transforms.Binarization')
   - [#ctor()](#M-SigStat-Common-Transforms-Binarization-#ctor 'SigStat.Common.Transforms.Binarization.#ctor')
   - [#ctor(foregroundType,binThreshold)](#M-SigStat-Common-Transforms-Binarization-#ctor-SigStat-Common-Transforms-Binarization-ForegroundType,System-Nullable{System-Double}- 'SigStat.Common.Transforms.Binarization.#ctor(SigStat.Common.Transforms.Binarization.ForegroundType,System.Nullable{System.Double})')
@@ -94,11 +96,12 @@
   - [OutputY](#P-SigStat-Common-Transforms-CentroidTranslate-OutputY 'SigStat.Common.Transforms.CentroidTranslate.OutputY')
 - [ClassifierDistanceLogState](#T-SigStat-Common-Logging-ClassifierDistanceLogState 'SigStat.Common.Logging.ClassifierDistanceLogState')
   - [#ctor(signer1Id,signer2Id,signature1Id,signature2Id,distance)](#M-SigStat-Common-Logging-ClassifierDistanceLogState-#ctor-System-String,System-String,System-String,System-String,System-Double- 'SigStat.Common.Logging.ClassifierDistanceLogState.#ctor(System.String,System.String,System.String,System.String,System.Double)')
+  - [Distance](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Distance 'SigStat.Common.Logging.ClassifierDistanceLogState.Distance')
   - [Signature1Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature1Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signature1Id')
   - [Signature2Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature2Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signature2Id')
   - [Signer1Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer1Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signer1Id')
   - [Signer2Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer2Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signer2Id')
-  - [distance](#P-SigStat-Common-Logging-ClassifierDistanceLogState-distance 'SigStat.Common.Logging.ClassifierDistanceLogState.distance')
+  - [ToString()](#M-SigStat-Common-Logging-ClassifierDistanceLogState-ToString 'SigStat.Common.Logging.ClassifierDistanceLogState.ToString')
 - [ComponentExtraction](#T-SigStat-Common-Transforms-ComponentExtraction 'SigStat.Common.Transforms.ComponentExtraction')
   - [#ctor(samplingResolution)](#M-SigStat-Common-Transforms-ComponentExtraction-#ctor-System-Int32- 'SigStat.Common.Transforms.ComponentExtraction.#ctor(System.Int32)')
   - [CrossingPoints](#P-SigStat-Common-Transforms-ComponentExtraction-CrossingPoints 'SigStat.Common.Transforms.ComponentExtraction.CrossingPoints')
@@ -731,6 +734,7 @@
   - [Aer](#P-SigStat-Common-Logging-SignerResultsLogState-Aer 'SigStat.Common.Logging.SignerResultsLogState.Aer')
   - [Far](#P-SigStat-Common-Logging-SignerResultsLogState-Far 'SigStat.Common.Logging.SignerResultsLogState.Far')
   - [Frr](#P-SigStat-Common-Logging-SignerResultsLogState-Frr 'SigStat.Common.Logging.SignerResultsLogState.Frr')
+  - [ToString()](#M-SigStat-Common-Logging-SignerResultsLogState-ToString 'SigStat.Common.Logging.SignerResultsLogState.ToString')
 - [SignerStatisticsHelper](#T-SigStat-Common-Helpers-SignerStatisticsHelper 'SigStat.Common.Helpers.SignerStatisticsHelper')
   - [GetHeightAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetHeightAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetHeightAvg(SigStat.Common.Signer)')
   - [GetLengthAverage(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetLengthAverage-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetLengthAverage(SigStat.Common.Signer)')
@@ -1451,6 +1455,17 @@ Key
 
 Value
 
+<a name='M-SigStat-Common-Logging-BenchmarkKeyValueLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-Logging-BenchmarkLogModel'></a>
 ## BenchmarkLogModel `type`
 
@@ -1600,6 +1615,17 @@ False accaptance rate
 ##### Summary
 
 False rejection rate
+
+<a name='M-SigStat-Common-Logging-BenchmarkResultsLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-Transforms-Binarization'></a>
 ## Binarization `type`
@@ -1895,6 +1921,13 @@ Creates a ClassifierDistanceLogState
 | signature2Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the second signature |
 | distance | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Distance values between the signatures |
 
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Distance'></a>
+### Distance `property`
+
+##### Summary
+
+Distance values between the signatures
+
 <a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature1Id'></a>
 ### Signature1Id `property`
 
@@ -1923,12 +1956,16 @@ Id of the first signature's signer
 
 /// Id of the second signature's signer
 
-<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-distance'></a>
-### distance `property`
+<a name='M-SigStat-Common-Logging-ClassifierDistanceLogState-ToString'></a>
+### ToString() `method`
 
 ##### Summary
 
-Distance values between the signatures
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-Transforms-ComponentExtraction'></a>
 ## ComponentExtraction `type`
@@ -8863,6 +8900,17 @@ False accaptance rate
 
 False rejection rate
 
+<a name='M-SigStat-Common-Logging-SignerResultsLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-Helpers-SignerStatisticsHelper'></a>
 ## SignerStatisticsHelper `type`
 
@@ -8989,7 +9037,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 

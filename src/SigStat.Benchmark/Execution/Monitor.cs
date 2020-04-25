@@ -11,10 +11,10 @@ namespace SigStat.Benchmark
 {
     class Monitor
     {
-        enum Action { Run, Refresh,Eta, Exit };
+        enum Action { Run, Refresh, Eta, Exit };
 
         internal static async Task RunAsync()
-        {        
+        {
 
             Action action = Action.Eta;
             DateTime lastRefresh = DateTime.Now.AddDays(-1);
@@ -42,7 +42,7 @@ namespace SigStat.Benchmark
                 {
                     action = Action.Run;
                     var stats = await BenchmarkDatabase.GetExecutionStatisticsAsync();
-                    if (stats.Count ==0)
+                    if (stats.Count == 0)
                     {
                         Console.WriteLine("Execution statistics will be available as soon as the first job finishes");
                         continue;
@@ -51,9 +51,13 @@ namespace SigStat.Benchmark
                     var queuedCount = await BenchmarkDatabase.CountQueued();
                     var averageJobSeconds = stats.TotalMilliseconds / stats.Count / 1000;
 
-                    Console.WriteLine($"Finished {stats.Count} records in {stats.TotalMilliseconds / 1000 / 60 / 60} processing hours."); 
-                    Console.WriteLine($"The slowest job took {stats.MaxMilliseconds/1000/60} minutes, the average job length is {averageJobSeconds} seconds.");
-                    Console.WriteLine($"Assuming {lockedCount} workers, the remaining {queuedCount} items will be processed in {queuedCount*averageJobSeconds/lockedCount/60/60} hours");
+                    Console.WriteLine($"Finished {stats.Count} records in {stats.TotalMilliseconds / 1000 / 60 / 60} processing hours.");
+                    Console.WriteLine($"The slowest job took {stats.MaxMilliseconds / 1000 / 60} minutes, the average job length is {averageJobSeconds} seconds.");
+                    Console.WriteLine($"Assuming {lockedCount} workers, the remaining {queuedCount} items will be processed in {queuedCount * averageJobSeconds / lockedCount / 60 / 60} hours");
+                    Console.WriteLine($"Collection size is {SizeToString(stats.Size)} with storage size of {SizeToString(stats.StorageSize)}");
+
+
+
                 }
                 else if (((DateTime.Now - lastRefresh).TotalMinutes > 1) || action == Action.Refresh)
                 {
@@ -76,6 +80,21 @@ namespace SigStat.Benchmark
                     Thread.Sleep(100);
                 }
             }
+
+
+
+
+        }
+        public static string SizeToString(long size)
+        {
+            if (size < 1024)
+                return $"{size} bytes";
+            else if (size < 1024 * 1024)
+                return $"{size / 1024} kb";
+            else if (size < 1024 * 1024 * 1024)
+                return $"{size / 1024 / 1024} Mb";
+            else
+                return $"{size / 1024 / 1024 / 1024} Gb";
         }
     }
 }
