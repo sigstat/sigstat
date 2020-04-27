@@ -53,9 +53,12 @@ namespace SigStat.Benchmark
 
                     Console.WriteLine($"Finished {stats.Count} records in {stats.TotalMilliseconds / 1000 / 60 / 60} processing hours.");
                     Console.WriteLine($"The slowest job took {stats.MaxMilliseconds / 1000 / 60} minutes, the average job length is {averageJobSeconds} seconds.");
-                    Console.WriteLine($"Assuming {lockedCount} workers, the remaining {queuedCount} items will be processed in {queuedCount * averageJobSeconds / lockedCount / 60 / 60} hours");
+                    if (lockedCount>0)
+                        Console.WriteLine($"Assuming {lockedCount} workers, the remaining {queuedCount} items will be processed in {queuedCount * averageJobSeconds / lockedCount / 60 / 60} hours");
+                    else
+                        Console.WriteLine("No active workers");
                     Console.WriteLine($"Collection size is {SizeToString(stats.Size)} with storage size of {SizeToString(stats.StorageSize)}");
-
+                    Console.WriteLine($"Expired locks:{stats.ExpiredLockCount}");
 
 
                 }

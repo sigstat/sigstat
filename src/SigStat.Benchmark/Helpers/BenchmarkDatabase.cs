@@ -47,19 +47,19 @@ namespace SigStat.Benchmark.Helpers
         private static readonly Expression<Func<BsonDocument, bool>> finishedFilter = d =>
                 d["state"] == States.Finished;
 
+
+        private static readonly FilterDefinition<BsonDocument> expiredLockFilter =
+             Builders<BsonDocument>.Filter.And(
+                    lockedFilter,
+                    Builders<BsonDocument>.Filter.Lt(d => d["lockDate"], new BsonDateTime(DateTime.Now.AddHours(-3))));
         /// <summary>
         /// This filter ensures to only lock items that are in the queue or have been locked for 1+ hours.
         /// </summary>
         /// <remarks>
         /// Since BsonDateTime comparison does not work in Expression filters, this must be defined with Filter Builders.
         /// </remarks>
-        private static readonly FilterDefinition<BsonDocument> lockableFilter = Builders<BsonDocument>.Filter
-            .Or(
-                queuedFilter,
-                Builders<BsonDocument>.Filter.And(
-                    lockedFilter,
-                    Builders<BsonDocument>.Filter.Lt(d => d["lockDate"], new BsonDateTime(DateTime.Now.AddHours(-3)))
-            ));
+        private static readonly FilterDefinition<BsonDocument> lockableFilter =
+            Builders<BsonDocument>.Filter.Or(expiredLockFilter, queuedFilter);
 
         public static async Task InitializeConnection(string connectionString)
         {
@@ -85,7 +85,7 @@ namespace SigStat.Benchmark.Helpers
             Console.WriteLine($"Connecting to {Program.Experiment} collection...");
             experimentCollection = db.GetCollection<BsonDocument>(Program.Experiment);
             Console.WriteLine("Connection ready");
-        
+
         }
 
         public static async Task<bool> ExperimentExists()
@@ -286,6 +286,7 @@ namespace SigStat.Benchmark.Helpers
             public long Count;
             public long Size;
             public long StorageSize;
+            public long ExpiredLockCount;
         }
         public static async Task<ExecutionStatistics> GetExecutionStatisticsAsync()
         {
@@ -301,6 +302,7 @@ namespace SigStat.Benchmark.Helpers
             //       } 
             //    }
             //])
+            result.ExpiredLockCount = await experimentCollection.CountDocumentsAsync(expiredLockFilter);
 
             var stats = await db.RunCommandAsync<BsonDocument>("{collstats: '" + Program.Experiment + "'}");
             result.Size = stats["size"].ToInt64();
@@ -322,6 +324,7 @@ namespace SigStat.Benchmark.Helpers
                             }
                   }
                 };
+
             var pipeline = new[] { match, group };
             var cursor = await experimentCollection.AggregateAsync<BsonDocument>(pipeline);
             var queryResult = await cursor.FirstOrDefaultAsync();
@@ -336,7 +339,7 @@ namespace SigStat.Benchmark.Helpers
         }
 
         static Dictionary<string, PropertyInfo> reportLineProperties = typeof(ReportLine)
-            .GetProperties().ToDictionary(p=>p.Name, p=>p);
+            .GetProperties().ToDictionary(p => p.Name, p => p);
         public static IEnumerable<ReportLine> GetResults()
         {
             var cursor = experimentCollection.FindSync(finishedFilter,
@@ -356,7 +359,7 @@ namespace SigStat.Benchmark.Helpers
                     Agent = execution["Agent"].AsString,
                     Duration = execution["Duration"].AsString,
 
-                   
+
 
                     FRR = benchmarkResults["FRR"].AsDouble,
                     FAR = benchmarkResults["FAR"].AsDouble,
@@ -409,6 +412,7 @@ namespace SigStat.Benchmark.Helpers
         {
             return (int)await experimentCollection.CountDocumentsAsync(lockedFilter);
         }
+        
 
         public static async Task<int> CountFaulted()
         {
