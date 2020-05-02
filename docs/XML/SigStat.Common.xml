@@ -4,6 +4,61 @@
         <name>SigStat.Common</name>
     </assembly>
     <members>
+        <member name="T:SigStat.Common.Algorithms.Distances.DtwDistance">
+            <summary>
+            Calculates the distance between two vector sequences using Dynamic Time Warping
+            </summary>
+            <remarks>Based on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+            Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
+        </member>
+        <member name="P:SigStat.Common.Algorithms.Distances.DtwDistance.LocalDistance">
+            <summary>
+            The local distance function to use, when calculating the distance between two sueqence-points. Default is EuclideanDistance
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Distances.DtwDistance.Calculate(System.Double[][],System.Double[][])">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.Algorithms.Distances.EuclideanDistance">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Distances.EuclideanDistance.Calculate(System.Double[],System.Double[])">
+            <summary>
+              Gets the Euclidean distance between two points.
+            </summary>
+            
+            <param name="x">A point in space.</param>
+            <param name="y">A point in space.</param>
+            
+            <returns>The Euclidean distance between x and y.</returns>
+        </member>
+        <member name="T:SigStat.Common.Algorithms.Distances.IDistance`1">
+            <summary>
+            An abstract base class for the calculation of the distance of two entities (points, sequences etc.)
+            </summary>
+            <typeparam name="P">Entity type</typeparam>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Distances.IDistance`1.Calculate(`0,`0)">
+            <summary>
+            Calculates the distance between the two parameters
+            </summary>
+            <param name="p1">Firs parameter</param>
+            <param name="p2">Second parameter</param>
+            <returns></returns>
+        </member>
+        <member name="T:SigStat.Common.Algorithms.Distances.ManhattanDistance">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Distances.ManhattanDistance.Calculate(System.Double[],System.Double[])">
+            <summary>
+              Gets the Manhattan distance between two points.
+            </summary>
+            
+            <param name="x">A point in space.</param>
+            <param name="y">A point in space.</param>
+            
+            <returns>The Manhattan distance between x and y.</returns>
+        </member>
         <member name="T:SigStat.Common.Algorithms.Dtw">
             <summary>
             Dynamic Time Warping algorithm
@@ -59,7 +114,7 @@
             <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
             Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ExactDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
+        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ExactDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
             <summary>
             Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
             </summary>
@@ -1247,6 +1302,64 @@
             <summary>
             Gets the current progress in percentage.
             </summary>
+        </member>
+        <member name="T:SigStat.Common.Helpers.ProgressHelper">
+            <summary>
+            A helper class for tracking progress of an operation. 
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ProgressHelper.Maximum">
+            <summary>
+            The total number of individual items to be processed.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ProgressHelper.Value">
+            <summary>
+            The actual number of processed items.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ProgressHelper.ReportIntervallSeconds">
+            <summary>
+            If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> property changes. 
+            </summary>
+        </member>
+        <member name="E:SigStat.Common.Helpers.ProgressHelper.ReportProgress">
+            <summary>
+            Event will be executed periodically after <see cref="P:SigStat.Common.Helpers.ProgressHelper.ReportIntervallSeconds"/> when the <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> property changes. 
+            </summary>
+            <remarks>If <see cref="P:SigStat.Common.Helpers.ProgressHelper.ReportIntervallSeconds"/> is set to 0, this event will be suppressed</remarks>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ProgressHelper.Elapsed">
+            <summary>
+            Gets the total elapsed time measured by the current instance.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ProgressHelper.Eta">
+            <summary>
+            Gets the estimated time of completion assuming linear progress.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.ProgressHelper.Remaining">
+            <summary>
+            Gets the estimated remaining time till completion assuming linear progress.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.ProgressHelper.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:SigStat.Common.Helpers.ProgressHelper"/>
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper})">
+            <summary>
+            Initializes an instance of <see cref="T:SigStat.Common.Helpers.ProgressHelper"/> with the given parameters. Make sure to manually set the <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> property during operation.
+            </summary>
+            <param name="maximum">The total number of individual items to be processed.</param>
+            <param name="reportIntervallSeconds">If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> property changes. </param>
+            <param name="reportProgress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.ProgressHelper.Dispose">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter">
             <summary>
@@ -3053,6 +3166,83 @@
         <member name="M:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <inheridoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier">
+            <summary>
+            This <see cref="T:SigStat.Common.Pipeline.IDistanceClassifier"/> implementation will consider both test and 
+            training samples and claculate the threshold to separate the original and forged
+            signatures to approximate EER. Note that this classifier is not applicable for 
+            real world scenarios. It was developed to test the theoratical boundaries of 
+            threshold based classification
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.Pipeline.IDistanceClassifier" />
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel">
+            <summary>
+            Represents a trained model for <see cref="T:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignerID">
+            <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignatureDistanceFromTraining">
+            <summary>
+            Gets or sets the signature distance from training.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.Threshold">
+            <summary>
+            A threshold, that will be used for classification. Signatures with
+            an average DTW distance from the genuines above this threshold will
+            be classified as forgeries
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.ErrorRates">
+            <summary>
+            Gets or sets the error rates corresponding to specific thresholds
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.DistanceMatrix">
+            <summary>
+            DTW distance matrix of the signatures
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Features">
+            <summary>
+            <see cref="T:SigStat.Common.FeatureDescriptor"/>s to consider during classification
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler">
+            <summary>
+            <see cref="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler"/> used for selecting training and test sets during a benchmark
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction">
+            <summary>
+            The function used to calculate the distance between two data sequences
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.#ctor(System.Nullable{System.Int32},SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier"/> class.
+            </summary>
+            <param name="nearestNeighborCount">The number of nearest neighbours to consider during classification</param>
+            <param name="distanceFunction">The distance function.</param>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})">
+            <summary>
+            Trains the specified signatures based on a precalculated distance matrix
+            </summary>
+            <param name="signatures">The signatures.</param>
+            <param name="distanceMatrix">The distance matrix.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier">
             <summary>
             This <see cref="T:SigStat.Common.Pipeline.IDistanceClassifier"/> implementation will consider both test and 
@@ -4801,5 +4991,8 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
+    </members>
+</doc>
+er>
     </members>
 </doc>

@@ -351,12 +351,13 @@ namespace SigStat.Sample
 
         private static void PreprocessingBenchmarkDemo()
         {
-            string configString = "svc2004_s3_XYP_none_filter_none_none_scaleS_toCog_OptimalDtw_Manhattan";
+            string configString = "svc2004_s1_Y_none_none_none_none_scale1_none_OptimalDtw_Manhattan";
 
             var rules = GrammarEngine.ParseRules(rulesString);
             var configDict = GrammarEngine.ParseSentence(configString, rules);
             var builder = new Benchmark.BenchmarkBuilder(Environment.GetEnvironmentVariable("SigStatDB")); // feltételezzük ,hog
             var benchmark = builder.Build(configDict);
+            ((Svc2004Loader)benchmark.Loader).SignerFilter = s => s.ID == "34";
 
             benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
             benchmark.Execute(false);

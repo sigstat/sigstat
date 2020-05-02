@@ -15,7 +15,7 @@ namespace SigStat.Common.Test.Algorithms
         [TestMethod]
         public void TestComputeTwoDimension()
         {
-            var dtw1 = DtwExperiments.ExactDTw(s1, s2, EuclideanDistance);
+            var dtw1 = DtwExperiments.ExactDtw(s1, s2, EuclideanDistance);
             var dtw2 = DtwExperiments.ExactDtwWikipedia(s1, s2, EuclideanDistance);
             var dtw3 = DtwExperiments.OptimizedDtw(s1, s2, EuclideanDistance);
 

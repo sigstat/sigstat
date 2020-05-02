@@ -109,7 +109,7 @@ namespace SigStat.Common.Algorithms
         /// <returns></returns>
         /// <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
         /// Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
-        public static double ExactDTw<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance)
+        public static double ExactDtw<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance)
         {
             //Input: s1 and s2 are time series of length n and m
             //Output: DTW distance d between x and y

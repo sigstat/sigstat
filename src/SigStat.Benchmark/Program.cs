@@ -13,7 +13,7 @@ namespace SigStat.Benchmark
         static async Task Main(string[] args)
         {
             Console.WriteLine("Initializing...");
-            await Parser.Default.ParseArguments<MonitorOptions, WorkerOptions, GeneratorOptions, AnalyserOptions>(args)
+            await Parser.Default.ParseArguments<MonitorOptions, WorkerOptions, GeneratorOptions, AnalyserOptions, ProcessorOptions>(args)
                 .MapResult<OptionsBase, Task>(async o =>
                 {
                     Experiment = o.Experiment;

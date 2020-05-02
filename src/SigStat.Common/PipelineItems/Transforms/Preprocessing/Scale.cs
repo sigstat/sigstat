@@ -77,14 +77,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             switch (Mode)
             {
                 case ScalingMode.Scaling1:
-                    var oldMaxValue = values.Max();
-                    var range = oldMaxValue - oldMinValue;
+                    var range = values.Max();
                     //scale values between 0 and 1
                     values = values.Select(v => v / range).ToList();
                     break;
                 case ScalingMode.ScalingS:
                     var mean = values.Average();
-                    var stdev = Math.Sqrt(values.Select(d => (d - mean) * (d - mean)).Sum() / (values.Count()-1));
+                    var stdev = Math.Sqrt(values.Select(d => (d - mean) * (d - mean)).Sum() / (values.Count-1));
                     //scale values based on standard deviation
                     values = values.Select(v => v / stdev).ToList();
                     break;

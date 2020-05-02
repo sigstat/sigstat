@@ -3,6 +3,7 @@ using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Newtonsoft.Json;
+using SigStat.Benchmark.Model;
 using SigStat.Common;
 using SigStat.Common.Helpers;
 using SigStat.Common.Logging;
@@ -376,6 +377,50 @@ namespace SigStat.Benchmark.Helpers
             }
         }
 
+        public static IEnumerable<BenchmarkReport> GetBenchmarkReports()
+        {
+            var cursor = experimentCollection.FindSync(finishedFilter,
+                new FindOptions<BsonDocument, BsonDocument>() { });
+
+            foreach (var bson in cursor.ToEnumerable())
+            {
+                BenchmarkReport report = new BenchmarkReport();
+                report.Config = bson["config"].AsString;
+                report.SignerResults = new List<SignerResults>();
+                foreach (var signer in bson["results"]["SignerResults"].AsBsonDocument)
+                {
+                    var signerDoc = signer.Value.AsBsonDocument;
+                    SignerResults signerResult = new SignerResults(signerDoc["SignerID"].AsString)
+                    {
+                        Far = signerDoc["Far"].AsDouble,
+                        Frr = signerDoc["Frr"].AsDouble,
+                        Aer = signerDoc["Aer"].AsDouble,
+                    };
+                    var rows = signerDoc["DistanceMatrix"].AsBsonArray;
+                    var colHeaders = rows[0].AsBsonArray.Select(v => v.ToString()).ToArray();
+                    var rowHeaders = rows.Select(r => r.AsBsonArray[0].ToString()).ToArray();
+
+                    for (int rowIndex = 1; rowIndex < rows.Count; rowIndex++)
+                    {
+                        var row = rows[rowIndex].AsBsonArray;
+                        for (int colIndex = 1; colIndex < row.Count; colIndex++)
+                        {
+
+                            if (row[colIndex].IsString && row[colIndex].AsString == "NaN")
+                                signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = Double.NaN;
+                            else if (row[colIndex].IsString && row[colIndex].AsString == "Infinity")
+                                signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = Double.PositiveInfinity;
+
+                            else
+                                signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = row[colIndex].AsDouble;
+                        }
+                    }
+                    report.SignerResults.Add(signerResult);
+                };
+                yield return report;
+            }
+        }
+
         public static string ToJson(BsonDocument bson)
         {
             using (var stream = new MemoryStream())
@@ -412,7 +457,7 @@ namespace SigStat.Benchmark.Helpers
         {
             return (int)await experimentCollection.CountDocumentsAsync(lockedFilter);
         }
-        
+
 
         public static async Task<int> CountFaulted()
         {
