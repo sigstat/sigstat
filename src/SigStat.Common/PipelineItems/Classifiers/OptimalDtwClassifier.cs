@@ -116,7 +116,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             {
                 foreach (var test in trainSignatures.Concat(testSignatures))
                 {
-                    var distance = DtwPy.Dtw(train.Values, test.Values, DistanceFunction);
+                    var distance = DtwImplementations.ExactDtwWikipedia(train.Values, test.Values, DistanceFunction);
                     dtwDistances[test.ID, train.ID] = distance;
                     this.LogTrace(new ClassifierDistanceLogState(signerID, signerID, train.ID, test.ID, distance));
                 }

@@ -20,7 +20,7 @@ namespace SigStat.Common.Algorithms.Distances
         /// <inheritdoc/>
         public double Calculate(double[][] p1, double[][] p2)
         {
-            return DtwExperiments.ExactDtw(p1, p2, LocalDistance.Calculate);
+            return DtwImplementations.OptimizedDtw(p1, p2, LocalDistance.Calculate);
 
         }
     }

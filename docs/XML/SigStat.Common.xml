@@ -59,48 +59,12 @@
             
             <returns>The Manhattan distance between x and y.</returns>
         </member>
-        <member name="T:SigStat.Common.Algorithms.Dtw">
-            <summary>
-            Dynamic Time Warping algorithm
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Algorithms.Dtw.ForwardPath">
-            <summary>
-            Gets the list of points representing the shortest path.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.Dtw.#ctor">
-            <summary>
-            Initialize the DTW algorithm with the default Euclidean distance method.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.Dtw.#ctor(System.Func{System.Double[],System.Double[],System.Double})">
-            <summary>
-            Initialize the DTW algorithm with given distance method.
-            </summary>
-            <param name="distMethod">Accord.Math.Distance.*</param>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.Dtw.Compute(System.Double[][],System.Double[][])">
-            <summary>
-            Generate shortest path between the two sequences.
-            </summary>
-            <returns>Cost of the path.</returns>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.Dtw.Distance(System.Double[],System.Double[])">
-            <summary>
-            Calculates distance between two points.
-            Distance method can be set in ctor.
-            </summary>
-            <param name="p1">Point 1</param>
-            <param name="p2">Point 2</param>
-            <returns>Distance between <paramref name="p1"/> and <paramref name="p2"/></returns>
-        </member>
-        <member name="T:SigStat.Common.Algorithms.DtwExperiments">
+        <member name="T:SigStat.Common.Algorithms.DtwImplementations">
             <summary>
             A simple implementation of the DTW algorithm.
             </summary>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)">
+        <member name="M:SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)">
             <summary>
             Complex, optimized DTW calculation (Abdullah Mueen, Eamonn J. Keogh)
             </summary>
@@ -114,7 +78,7 @@
             <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
             Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ExactDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
+        <member name="M:SigStat.Common.Algorithms.DtwImplementations.ExactDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
             <summary>
             Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
             </summary>
@@ -126,7 +90,7 @@
             <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
             Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+        <member name="M:SigStat.Common.Algorithms.DtwImplementations.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
             <summary>
             Constrained DTW implementation  (Abdullah Mueen, Eamonn J. Keogh)
             </summary>
@@ -139,7 +103,7 @@
             <remarks>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
             Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
+        <member name="M:SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
             <summary>
             Exact DTW implementation (Wikipedia)
             </summary>
@@ -150,7 +114,7 @@
             <returns></returns>
             <remarks>https://en.wikipedia.org/wiki/Dynamic_time_warping</remarks>
         </member>
-        <member name="M:SigStat.Common.Algorithms.DtwExperiments.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
+        <member name="M:SigStat.Common.Algorithms.DtwImplementations.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
             <summary>
             Constrained DTW implementation  (Wikipedia)
             </summary>
@@ -2837,7 +2801,7 @@
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="!:LogLevel.Information"/>.
+            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
@@ -3135,7 +3099,7 @@
         </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.DtwClassifier">
             <summary>
-            Classifies Signatures with the <see cref="T:SigStat.Common.Algorithms.Dtw"/> algorithm.
+            Classifies Signatures with the <see cref="!:Dtw"/> algorithm.
             </summary>
         </member>
         <member name="P:SigStat.Common.PipelineItems.Classifiers.DtwClassifier.DistanceFunction">
@@ -4991,8 +4955,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>

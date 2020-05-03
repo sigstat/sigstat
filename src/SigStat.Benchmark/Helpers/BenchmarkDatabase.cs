@@ -232,7 +232,9 @@ namespace SigStat.Benchmark.Helpers
                         Builders<BsonDocument>.Update
                             .Set("end_date", DateTime.Now)
                             .Set("results", bsonResults)
-                            .Set("state", States.Finished),
+                            .Set("state", States.Finished)
+                            .Set("dtw", "wiki"),
+
                         new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
                     return;
                 }
@@ -444,10 +446,7 @@ namespace SigStat.Benchmark.Helpers
             }
         }
 
-        public static async Task<int> CountTotal()
-        {
-            return (int)await experimentCollection.CountDocumentsAsync(b => true);
-        }
+
 
         public static async Task<int> CountQueued()
         {

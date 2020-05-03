@@ -65,7 +65,7 @@ namespace SigStat.Benchmark
             string rulesString;
             if (File.Exists(rulesFilePath))
             {//read rules from file
-                WriteLine($"Loading rules for experiment ",Program.Experiment);
+                WriteLine($"Loading rules for experiment ", Program.Experiment);
                 rulesString = await File.ReadAllTextAsync(rulesFilePath);
             }
             else
@@ -74,7 +74,7 @@ namespace SigStat.Benchmark
                 rulesString = defaultRuleString;
             }
 
-            WriteLine("Initializing experiment...");
+            WriteLine("Loading experiment details...");
 
             while (await InitializeExperiment(rulesString))
                 ;
@@ -86,6 +86,9 @@ namespace SigStat.Benchmark
 
         public static async Task<bool> InitializeExperiment(string rulesString)
         {
+            Console.WriteLine();
+            WriteLine($"Experiment: ", Program.Experiment);
+
             var prevRules = await BenchmarkDatabase.GetGrammarRules();
             if (rulesString != prevRules)
             {
@@ -95,21 +98,24 @@ namespace SigStat.Benchmark
                 Console.WriteLine("Updating rules...");
                 await BenchmarkDatabase.SetGrammarRules(rulesString);
             }
+            else
+            {
+                Console.WriteLine("Rules are consistent with the previous run.");
+            }
 
-
-            bool experimentExists = await BenchmarkDatabase.ExperimentExists();
             var configs = EnumerateBenchmarks(rulesString);
             var configCount = configs.Count();
-            var totalCount = await BenchmarkDatabase.CountTotal();
+            Console.WriteLine($"Current rules would generate {configCount} configurations");
+
+            bool experimentExists = await BenchmarkDatabase.ExperimentExists();
+
             var queuedCount = await BenchmarkDatabase.CountQueued();
             var lockedCount = await BenchmarkDatabase.CountLocked();
             var faultedCount = await BenchmarkDatabase.CountFaulted();
             var finishedCount = await BenchmarkDatabase.CountFinished();
+            var totalCount = queuedCount + lockedCount + faultedCount + finishedCount;
 
-            Console.WriteLine();
-            WriteLine($"Experiment: ",Program.Experiment);
             Console.WriteLine($"Exists: {experimentExists} Total: {totalCount} Queued: {queuedCount} Locked: {lockedCount} Faulted: {faultedCount} Finished: {finishedCount}");
-            Console.WriteLine($"Current rules would generate {configCount} configurations");
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("[G]enerate configs (Overwrite existing data)");
             Console.WriteLine("[C]ontinue config generation (skip existing configs)");
@@ -120,7 +126,7 @@ namespace SigStat.Benchmark
             Console.WriteLine("E[x]it");
 
             char ch = ' ';
-            while (!new []{ 'g', 'c','d', 'f', 'l','r', 'x' }.Contains(ch)) 
+            while (!new[] { 'g', 'c', 'd', 'f', 'l', 'r', 'x' }.Contains(ch))
                 ch = Console.ReadKey(true).KeyChar;
 
 
@@ -178,7 +184,7 @@ namespace SigStat.Benchmark
             }
         }
 
-      
+
 
     }
 }

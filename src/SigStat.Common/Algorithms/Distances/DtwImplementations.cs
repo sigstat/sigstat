@@ -10,7 +10,7 @@ namespace SigStat.Common.Algorithms
     /// <summary>
     /// A simple implementation of the DTW algorithm.
     /// </summary>
-    public static class DtwExperiments
+    public static class DtwImplementations
     {
 
 
@@ -36,13 +36,13 @@ namespace SigStat.Common.Algorithms
             if (m == 0)
                 m = s1.Length;
             if (r == 0)
-                r = s1.Length;
+                r = s2.Length;
 
             double[] cost_tmp;
             int i, j, k;
             double x, y, z, min_cost;
 
-            /// Instead of using matrix of size O(m^2) or O(mr), we will reuse two array of size O(r).
+            // Instead of using matrix of size O(m^2) or O(mr), we will reuse two array of size O(r).
             var cost = new double[2 * r + 1];
             for (k = 0; k < cost.Length; k++) cost[k] = double.PositiveInfinity;
 

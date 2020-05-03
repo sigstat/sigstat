@@ -150,12 +150,6 @@
   - [GetValues()](#M-SigStat-Common-DistanceMatrix`3-GetValues 'SigStat.Common.DistanceMatrix`3.GetValues')
   - [ToArray()](#M-SigStat-Common-DistanceMatrix`3-ToArray 'SigStat.Common.DistanceMatrix`3.ToArray')
   - [TryGetValue(row,column,value)](#M-SigStat-Common-DistanceMatrix`3-TryGetValue-`0,`1,`2@- 'SigStat.Common.DistanceMatrix`3.TryGetValue(`0,`1,`2@)')
-- [Dtw](#T-SigStat-Common-Algorithms-Dtw 'SigStat.Common.Algorithms.Dtw')
-  - [#ctor()](#M-SigStat-Common-Algorithms-Dtw-#ctor 'SigStat.Common.Algorithms.Dtw.#ctor')
-  - [#ctor(distMethod)](#M-SigStat-Common-Algorithms-Dtw-#ctor-System-Func{System-Double[],System-Double[],System-Double}- 'SigStat.Common.Algorithms.Dtw.#ctor(System.Func{System.Double[],System.Double[],System.Double})')
-  - [ForwardPath](#P-SigStat-Common-Algorithms-Dtw-ForwardPath 'SigStat.Common.Algorithms.Dtw.ForwardPath')
-  - [Compute()](#M-SigStat-Common-Algorithms-Dtw-Compute-System-Double[][],System-Double[][]- 'SigStat.Common.Algorithms.Dtw.Compute(System.Double[][],System.Double[][])')
-  - [Distance(p1,p2)](#M-SigStat-Common-Algorithms-Dtw-Distance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Dtw.Distance(System.Double[],System.Double[])')
 - [DtwClassifier](#T-SigStat-Common-PipelineItems-Classifiers-DtwClassifier 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier')
   - [#ctor()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.#ctor')
   - [#ctor(distanceMethod)](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor-System-Func{System-Double[],System-Double[],System-Double}- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.#ctor(System.Func{System.Double[],System.Double[],System.Double})')
@@ -164,12 +158,15 @@
   - [MultiplicationFactor](#P-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-MultiplicationFactor 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.MultiplicationFactor')
   - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
   - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
-- [DtwExperiments](#T-SigStat-Common-Algorithms-DtwExperiments 'SigStat.Common.Algorithms.DtwExperiments')
-  - [ConstrainedDTw\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
-  - [ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
-  - [ExactDTw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwExperiments-ExactDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwExperiments.ExactDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
-  - [ExactDtwWikipedia\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwExperiments-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwExperiments.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
-  - [OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r)](#M-SigStat-Common-Algorithms-DtwExperiments-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32- 'SigStat.Common.Algorithms.DtwExperiments.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)')
+- [DtwDistance](#T-SigStat-Common-Algorithms-Distances-DtwDistance 'SigStat.Common.Algorithms.Distances.DtwDistance')
+  - [LocalDistance](#P-SigStat-Common-Algorithms-Distances-DtwDistance-LocalDistance 'SigStat.Common.Algorithms.Distances.DtwDistance.LocalDistance')
+  - [Calculate()](#M-SigStat-Common-Algorithms-Distances-DtwDistance-Calculate-System-Double[][],System-Double[][]- 'SigStat.Common.Algorithms.Distances.DtwDistance.Calculate(System.Double[][],System.Double[][])')
+- [DtwImplementations](#T-SigStat-Common-Algorithms-DtwImplementations 'SigStat.Common.Algorithms.DtwImplementations')
+  - [ConstrainedDTw\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
+  - [ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
+  - [ExactDtwWikipedia\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwImplementations-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
+  - [ExactDtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwImplementations-ExactDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwImplementations.ExactDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
+  - [OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r)](#M-SigStat-Common-Algorithms-DtwImplementations-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)')
 - [DtwPy](#T-SigStat-Common-Algorithms-DtwPy 'SigStat.Common.Algorithms.DtwPy')
   - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwPy-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwPy.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
   - [EuclideanDistance(vector1,vector2)](#M-SigStat-Common-Algorithms-DtwPy-EuclideanDistance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.DtwPy.EuclideanDistance(System.Double[],System.Double[])')
@@ -191,6 +188,8 @@
   - [Far](#F-SigStat-Common-ErrorRate-Far 'SigStat.Common.ErrorRate.Far')
   - [Frr](#F-SigStat-Common-ErrorRate-Frr 'SigStat.Common.ErrorRate.Frr')
   - [Aer](#P-SigStat-Common-ErrorRate-Aer 'SigStat.Common.ErrorRate.Aer')
+- [EuclideanDistance](#T-SigStat-Common-Algorithms-Distances-EuclideanDistance 'SigStat.Common.Algorithms.Distances.EuclideanDistance')
+  - [Calculate(x,y)](#M-SigStat-Common-Algorithms-Distances-EuclideanDistance-Calculate-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Distances.EuclideanDistance.Calculate(System.Double[],System.Double[])')
 - [EvenNSampler](#T-SigStat-Common-Framework-Samplers-EvenNSampler 'SigStat.Common.Framework.Samplers.EvenNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-EvenNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.EvenNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-EvenNSampler-N 'SigStat.Common.Framework.Samplers.EvenNSampler.N')
@@ -320,6 +319,8 @@
   - [EnumerateSigners(signerFilter)](#M-SigStat-Common-Loaders-IDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
   - [DistanceFunction](#P-SigStat-Common-Pipeline-IDistanceClassifier-DistanceFunction 'SigStat.Common.Pipeline.IDistanceClassifier.DistanceFunction')
+- [IDistance\`1](#T-SigStat-Common-Algorithms-Distances-IDistance`1 'SigStat.Common.Algorithms.Distances.IDistance`1')
+  - [Calculate(p1,p2)](#M-SigStat-Common-Algorithms-Distances-IDistance`1-Calculate-`0,`0- 'SigStat.Common.Algorithms.Distances.IDistance`1.Calculate(`0,`0)')
 - [IInterpolation](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation 'SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation')
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.TimeValues')
@@ -406,6 +407,8 @@
   - [StandardFeatures](#P-SigStat-Common-Loaders-MCYTLoader-StandardFeatures 'SigStat.Common.Loaders.MCYTLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-MCYTLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MCYTLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
+- [ManhattanDistance](#T-SigStat-Common-Algorithms-Distances-ManhattanDistance 'SigStat.Common.Algorithms.Distances.ManhattanDistance')
+  - [Calculate(x,y)](#M-SigStat-Common-Algorithms-Distances-ManhattanDistance-Calculate-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Distances.ManhattanDistance.Calculate(System.Double[],System.Double[])')
 - [Map](#T-SigStat-Common-Transforms-Map 'SigStat.Common.Transforms.Map')
   - [#ctor(minVal,maxVal)](#M-SigStat-Common-Transforms-Map-#ctor-System-Double,System-Double- 'SigStat.Common.Transforms.Map.#ctor(System.Double,System.Double)')
   - [Input](#P-SigStat-Common-Transforms-Map-Input 'SigStat.Common.Transforms.Map.Input')
@@ -420,6 +423,14 @@
   - [InputList](#P-SigStat-Common-Transforms-Multiply-InputList 'SigStat.Common.Transforms.Multiply.InputList')
   - [Output](#P-SigStat-Common-Transforms-Multiply-Output 'SigStat.Common.Transforms.Multiply.Output')
   - [Transform()](#M-SigStat-Common-Transforms-Multiply-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)')
+- [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
+  - [#ctor(nearestNeighborCount,distanceFunction)](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-#ctor-System-Nullable{System-Int32},SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.#ctor(System.Nullable{System.Int32},SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})')
+  - [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction')
+  - [Features](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Features 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Features')
+  - [Sampler](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler')
+  - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
+  - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
+  - [Train(signatures,distanceMatrix)](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})')
 - [Normalize](#T-SigStat-Common-Transforms-Normalize 'SigStat.Common.Transforms.Normalize')
   - [Input](#P-SigStat-Common-Transforms-Normalize-Input 'SigStat.Common.Transforms.Normalize.Input')
   - [Output](#P-SigStat-Common-Transforms-Normalize-Output 'SigStat.Common.Transforms.Normalize.Output')
@@ -535,6 +546,16 @@
   - [IsTemporary](#P-SigStat-Common-Pipeline-PipelineOutput-IsTemporary 'SigStat.Common.Pipeline.PipelineOutput.IsTemporary')
   - [PropName](#P-SigStat-Common-Pipeline-PipelineOutput-PropName 'SigStat.Common.Pipeline.PipelineOutput.PropName')
   - [Type](#P-SigStat-Common-Pipeline-PipelineOutput-Type 'SigStat.Common.Pipeline.PipelineOutput.Type')
+- [ProgressHelper](#T-SigStat-Common-Helpers-ProgressHelper 'SigStat.Common.Helpers.ProgressHelper')
+  - [#ctor()](#M-SigStat-Common-Helpers-ProgressHelper-#ctor 'SigStat.Common.Helpers.ProgressHelper.#ctor')
+  - [Elapsed](#P-SigStat-Common-Helpers-ProgressHelper-Elapsed 'SigStat.Common.Helpers.ProgressHelper.Elapsed')
+  - [Eta](#P-SigStat-Common-Helpers-ProgressHelper-Eta 'SigStat.Common.Helpers.ProgressHelper.Eta')
+  - [Maximum](#P-SigStat-Common-Helpers-ProgressHelper-Maximum 'SigStat.Common.Helpers.ProgressHelper.Maximum')
+  - [Remaining](#P-SigStat-Common-Helpers-ProgressHelper-Remaining 'SigStat.Common.Helpers.ProgressHelper.Remaining')
+  - [ReportIntervallSeconds](#P-SigStat-Common-Helpers-ProgressHelper-ReportIntervallSeconds 'SigStat.Common.Helpers.ProgressHelper.ReportIntervallSeconds')
+  - [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value')
+  - [Dispose()](#M-SigStat-Common-Helpers-ProgressHelper-Dispose 'SigStat.Common.Helpers.ProgressHelper.Dispose')
+  - [StartNew(maximum,reportIntervallSeconds,reportProgress)](#M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}- 'SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper})')
 - [RealisticImageGenerator](#T-SigStat-Common-Transforms-RealisticImageGenerator 'SigStat.Common.Transforms.RealisticImageGenerator')
   - [#ctor(resolutionX,resolutionY)](#M-SigStat-Common-Transforms-RealisticImageGenerator-#ctor-System-Int32,System-Int32- 'SigStat.Common.Transforms.RealisticImageGenerator.#ctor(System.Int32,System.Int32)')
   - [Altitude](#P-SigStat-Common-Transforms-RealisticImageGenerator-Altitude 'SigStat.Common.Transforms.RealisticImageGenerator.Altitude')
@@ -722,6 +743,12 @@
   - [ToString()](#M-SigStat-Common-Signer-ToString 'SigStat.Common.Signer.ToString')
 - [SignerLogState](#T-SigStat-Common-Logging-SignerLogState 'SigStat.Common.Logging.SignerLogState')
   - [SignerID](#P-SigStat-Common-Logging-SignerLogState-SignerID 'SigStat.Common.Logging.SignerLogState.SignerID')
+- [SignerModel](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel')
+  - [DistanceMatrix](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.DistanceMatrix')
+  - [ErrorRates](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-ErrorRates 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.ErrorRates')
+  - [SignatureDistanceFromTraining](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignatureDistanceFromTraining 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignatureDistanceFromTraining')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignerID')
+  - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.Threshold')
 - [SignerResults](#T-SigStat-Common-Logging-SignerResults 'SigStat.Common.Logging.SignerResults')
   - [#ctor(signerId)](#M-SigStat-Common-Logging-SignerResults-#ctor-System-String- 'SigStat.Common.Logging.SignerResults.#ctor(System.String)')
   - [Aer](#F-SigStat-Common-Logging-SignerResults-Aer 'SigStat.Common.Logging.SignerResults.Aer')
@@ -2535,82 +2562,6 @@ true if the Matrix contains an element with the specified keys; otherwise, false
 | column | [\`1](#T-`1 '`1') |  |
 | value | [\`2@](#T-`2@ '`2@') |  |
 
-<a name='T-SigStat-Common-Algorithms-Dtw'></a>
-## Dtw `type`
-
-##### Namespace
-
-SigStat.Common.Algorithms
-
-##### Summary
-
-Dynamic Time Warping algorithm
-
-<a name='M-SigStat-Common-Algorithms-Dtw-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initialize the DTW algorithm with the default Euclidean distance method.
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-SigStat-Common-Algorithms-Dtw-#ctor-System-Func{System-Double[],System-Double[],System-Double}-'></a>
-### #ctor(distMethod) `constructor`
-
-##### Summary
-
-Initialize the DTW algorithm with given distance method.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| distMethod | [System.Func{System.Double[],System.Double[],System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{System.Double[],System.Double[],System.Double}') | Accord.Math.Distance.* |
-
-<a name='P-SigStat-Common-Algorithms-Dtw-ForwardPath'></a>
-### ForwardPath `property`
-
-##### Summary
-
-Gets the list of points representing the shortest path.
-
-<a name='M-SigStat-Common-Algorithms-Dtw-Compute-System-Double[][],System-Double[][]-'></a>
-### Compute() `method`
-
-##### Summary
-
-Generate shortest path between the two sequences.
-
-##### Returns
-
-Cost of the path.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-SigStat-Common-Algorithms-Dtw-Distance-System-Double[],System-Double[]-'></a>
-### Distance(p1,p2) `method`
-
-##### Summary
-
-Calculates distance between two points.
-Distance method can be set in ctor.
-
-##### Returns
-
-Distance between `p1` and `p2`
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| p1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | Point 1 |
-| p2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | Point 2 |
-
 <a name='T-SigStat-Common-PipelineItems-Classifiers-DtwClassifier'></a>
 ## DtwClassifier `type`
 
@@ -2620,7 +2571,7 @@ SigStat.Common.PipelineItems.Classifiers
 
 ##### Summary
 
-Classifies Signatures with the [Dtw](#T-SigStat-Common-Algorithms-Dtw 'SigStat.Common.Algorithms.Dtw') algorithm.
+Classifies Signatures with the [](#!-Dtw 'Dtw') algorithm.
 
 <a name='M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor'></a>
 ### #ctor() `constructor`
@@ -2681,8 +2632,42 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='T-SigStat-Common-Algorithms-DtwExperiments'></a>
-## DtwExperiments `type`
+<a name='T-SigStat-Common-Algorithms-Distances-DtwDistance'></a>
+## DtwDistance `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+Calculates the distance between two vector sequences using Dynamic Time Warping
+
+##### Remarks
+
+Based on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
+
+<a name='P-SigStat-Common-Algorithms-Distances-DtwDistance-LocalDistance'></a>
+### LocalDistance `property`
+
+##### Summary
+
+The local distance function to use, when calculating the distance between two sueqence-points. Default is EuclideanDistance
+
+<a name='M-SigStat-Common-Algorithms-Distances-DtwDistance-Calculate-System-Double[][],System-Double[][]-'></a>
+### Calculate() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Algorithms-DtwImplementations'></a>
+## DtwImplementations `type`
 
 ##### Namespace
 
@@ -2692,7 +2677,7 @@ SigStat.Common.Algorithms
 
 A simple implementation of the DTW algorithm.
 
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
 ### ConstrainedDTw\`\`1(sequence1,sequence2,distance,w) `method`
 
 ##### Summary
@@ -2723,7 +2708,7 @@ Constrained DTW implementation  (Abdullah Mueen, Eamonn J. Keogh)
 Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
 Performance from Dynamic Time Warping.KDD 2016: 2129-2130
 
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
 ### ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w) `method`
 
 ##### Summary
@@ -2753,37 +2738,7 @@ Constrained DTW implementation  (Wikipedia)
 
 https://en.wikipedia.org/wiki/Dynamic_time_warping
 
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-ExactDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
-### ExactDTw\`\`1(sequence1,sequence2,distance) `method`
-
-##### Summary
-
-Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
-| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
-| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| P |  |
-
-##### Remarks
-
-Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
-Performance from Dynamic Time Warping.KDD 2016: 2129-2130
-
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
 ### ExactDtwWikipedia\`\`1(sequence1,sequence2,distance) `method`
 
 ##### Summary
@@ -2812,7 +2767,37 @@ Exact DTW implementation (Wikipedia)
 
 https://en.wikipedia.org/wiki/Dynamic_time_warping
 
-<a name='M-SigStat-Common-Algorithms-DtwExperiments-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32-'></a>
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ExactDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
+### ExactDtw\`\`1(sequence1,sequence2,distance) `method`
+
+##### Summary
+
+Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
+
+##### Remarks
+
+Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
+
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32-'></a>
 ### OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r) `method`
 
 ##### Summary
@@ -3096,6 +3081,35 @@ False Rejection Rate
 ##### Summary
 
 Average Error Rate (calculated from Far and Frr)
+
+<a name='T-SigStat-Common-Algorithms-Distances-EuclideanDistance'></a>
+## EuclideanDistance `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-SigStat-Common-Algorithms-Distances-EuclideanDistance-Calculate-System-Double[],System-Double[]-'></a>
+### Calculate(x,y) `method`
+
+##### Summary
+
+Gets the Euclidean distance between two points.
+
+##### Returns
+
+The Euclidean distance between x and y.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| x | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
+| y | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
 
 <a name='T-SigStat-Common-Framework-Samplers-EvenNSampler'></a>
 ## EvenNSampler `type`
@@ -4605,6 +4619,41 @@ Trains classification models based on reference signatures, by calculating the d
 
 A function to calculate the distance between two online signature points
 
+<a name='T-SigStat-Common-Algorithms-Distances-IDistance`1'></a>
+## IDistance\`1 `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+An abstract base class for the calculation of the distance of two entities (points, sequences etc.)
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P | Entity type |
+
+<a name='M-SigStat-Common-Algorithms-Distances-IDistance`1-Calculate-`0,`0-'></a>
+### Calculate(p1,p2) `method`
+
+##### Summary
+
+Calculates the distance between the two parameters
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| p1 | [\`0](#T-`0 '`0') | Firs parameter |
+| p2 | [\`0](#T-`0 '`0') | Second parameter |
+
 <a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation'></a>
 ## IInterpolation `type`
 
@@ -5578,6 +5627,35 @@ Loads one signature from specified stream.
 
 Based on Mohammad's MCYT reader.
 
+<a name='T-SigStat-Common-Algorithms-Distances-ManhattanDistance'></a>
+## ManhattanDistance `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-SigStat-Common-Algorithms-Distances-ManhattanDistance-Calculate-System-Double[],System-Double[]-'></a>
+### Calculate(x,y) `method`
+
+##### Summary
+
+Gets the Manhattan distance between two points.
+
+##### Returns
+
+The Manhattan distance between x and y.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| x | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
+| y | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
+
 <a name='T-SigStat-Common-Transforms-Map'></a>
 ## Map `type`
 
@@ -5748,6 +5826,101 @@ Output
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier'></a>
+## NearestNeighborEerClassifier `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers
+
+##### Summary
+
+This [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier') implementation will consider both test and 
+training samples and claculate the threshold to separate the original and forged
+signatures to approximate EER. Note that this classifier is not applicable for 
+real world scenarios. It was developed to test the theoratical boundaries of 
+threshold based classification
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.Pipeline.IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-#ctor-System-Nullable{System-Int32},SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}-'></a>
+### #ctor(nearestNeighborCount,distanceFunction) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [OptimalDtwClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier') class.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| nearestNeighborCount | [System.Nullable{System.Int32}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{System.Int32}') | The number of nearest neighbours to consider during classification |
+| distanceFunction | [SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}](#T-SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]} 'SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}') | The distance function. |
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction'></a>
+### DistanceFunction `property`
+
+##### Summary
+
+The function used to calculate the distance between two data sequences
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Features'></a>
+### Features `property`
+
+##### Summary
+
+[FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')s to consider during classification
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler'></a>
+### Sampler `property`
+
+##### Summary
+
+[Sampler](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler') used for selecting training and test sets during a benchmark
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature-'></a>
+### Test() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}-'></a>
+### Train() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}-'></a>
+### Train(signatures,distanceMatrix) `method`
+
+##### Summary
+
+Trains the specified signatures based on a precalculated distance matrix
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signatures | [System.Collections.Generic.List{SigStat.Common.Signature}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SigStat.Common.Signature}') | The signatures. |
+| distanceMatrix | [SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}](#T-SigStat-Common-DistanceMatrix{System-String,System-String,System-Double} 'SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}') | The distance matrix. |
 
 <a name='T-SigStat-Common-Transforms-Normalize'></a>
 ## Normalize `type`
@@ -6864,6 +7037,100 @@ Gets the name of the property.
 ##### Summary
 
 Gets the type of the property
+
+<a name='T-SigStat-Common-Helpers-ProgressHelper'></a>
+## ProgressHelper `type`
+
+##### Namespace
+
+SigStat.Common.Helpers
+
+##### Summary
+
+A helper class for tracking progress of an operation.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes an instance of [ProgressHelper](#T-SigStat-Common-Helpers-ProgressHelper 'SigStat.Common.Helpers.ProgressHelper')
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Elapsed'></a>
+### Elapsed `property`
+
+##### Summary
+
+Gets the total elapsed time measured by the current instance.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Eta'></a>
+### Eta `property`
+
+##### Summary
+
+Gets the estimated time of completion assuming linear progress.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Maximum'></a>
+### Maximum `property`
+
+##### Summary
+
+The total number of individual items to be processed.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Remaining'></a>
+### Remaining `property`
+
+##### Summary
+
+Gets the estimated remaining time till completion assuming linear progress.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-ReportIntervallSeconds'></a>
+### ReportIntervallSeconds `property`
+
+##### Summary
+
+If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') property changes.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Value'></a>
+### Value `property`
+
+##### Summary
+
+The actual number of processed items.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-Dispose'></a>
+### Dispose() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}-'></a>
+### StartNew(maximum,reportIntervallSeconds,reportProgress) `method`
+
+##### Summary
+
+Initializes an instance of [ProgressHelper](#T-SigStat-Common-Helpers-ProgressHelper 'SigStat.Common.Helpers.ProgressHelper') with the given parameters. Make sure to manually set the [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') property during operation.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| maximum | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The total number of individual items to be processed. |
+| reportIntervallSeconds | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') property changes. |
+| reportProgress | [System.Action{SigStat.Common.Helpers.ProgressHelper}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{SigStat.Common.Helpers.ProgressHelper}') |  |
 
 <a name='T-SigStat-Common-Transforms-RealisticImageGenerator'></a>
 ## RealisticImageGenerator `type`
@@ -8793,6 +9060,54 @@ Specific state used for signer information transiting
 
 Id of the signer
 
+<a name='T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel'></a>
+## SignerModel `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier
+
+##### Summary
+
+Represents a trained model for [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix'></a>
+### DistanceMatrix `property`
+
+##### Summary
+
+DTW distance matrix of the signatures
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-ErrorRates'></a>
+### ErrorRates `property`
+
+##### Summary
+
+Gets or sets the error rates corresponding to specific thresholds
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignatureDistanceFromTraining'></a>
+### SignatureDistanceFromTraining `property`
+
+##### Summary
+
+Gets or sets the signature distance from training.
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-Threshold'></a>
+### Threshold `property`
+
+##### Summary
+
+A threshold, that will be used for classification. Signatures with
+an average DTW distance from the genuines above this threshold will
+be classified as forgeries
+
 <a name='T-SigStat-Common-Logging-SignerResults'></a>
 ## SignerResults `type`
 
@@ -9037,7 +9352,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 
