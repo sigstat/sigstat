@@ -3,6 +3,7 @@ using MongoDB.Bson.IO;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Newtonsoft.Json;
+using SigStat.Benchmark.Execution;
 using SigStat.Benchmark.Model;
 using SigStat.Common;
 using SigStat.Common.Helpers;
@@ -35,6 +36,8 @@ namespace SigStat.Benchmark.Helpers
         private static MongoClient client;
         private static IMongoDatabase db;
         private static IMongoCollection<BsonDocument> experimentCollection;
+
+
 
         private static readonly Expression<Func<BsonDocument, bool>> queuedFilter = d =>
                 d["state"] == States.Queued;
@@ -249,6 +252,16 @@ namespace SigStat.Benchmark.Helpers
             throw new Exception("Retry limit exceeded");
         }
 
+        internal async static void SetField<T>(string config, string key, T value)
+        {
+            await experimentCollection.UpdateOneAsync<BsonDocument>(d => d["config"] == config,
+               Builders<BsonDocument>.Update
+                   .Set<T>(key, value)
+                   .Set("processingState", States.Finished)
+                   ,
+               new UpdateOptions { IsUpsert = false });
+        }
+
         /// <summary>
         /// Send log after exception.
         /// </summary>
@@ -388,6 +401,11 @@ namespace SigStat.Benchmark.Helpers
             {
                 BenchmarkReport report = new BenchmarkReport();
                 report.Config = bson["config"].AsString;
+                var resultsBlock = bson["results"]["KeyValueGroups"]["Parameters"]["dict"];
+                report.Split = resultsBlock["Split"].AsString;
+                report.Database = resultsBlock["Database"].AsString;
+                report.Distance = resultsBlock["Distance"].AsString;
+
                 report.SignerResults = new List<SignerResults>();
                 foreach (var signer in bson["results"]["SignerResults"].AsBsonDocument)
                 {
@@ -407,20 +425,28 @@ namespace SigStat.Benchmark.Helpers
                         var row = rows[rowIndex].AsBsonArray;
                         for (int colIndex = 1; colIndex < row.Count; colIndex++)
                         {
-
-                            if (row[colIndex].IsString && row[colIndex].AsString == "NaN")
-                                signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = Double.NaN;
-                            else if (row[colIndex].IsString && row[colIndex].AsString == "Infinity")
-                                signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = Double.PositiveInfinity;
-
-                            else
-                                signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = row[colIndex].AsDouble;
+                            signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = ParseDouble(row[colIndex]);
                         }
                     }
                     report.SignerResults.Add(signerResult);
                 };
                 yield return report;
             }
+        }
+
+        private static double ParseDouble(BsonValue bsonValue)
+        {
+            if (bsonValue.IsDouble)
+                return bsonValue.AsDouble;
+            if (bsonValue.IsString)
+            {
+                switch (bsonValue.AsString)
+                {
+                    case "NaN": return double.NaN;
+                    case "Infinity": return double.PositiveInfinity;
+                }
+            }
+            throw new NotSupportedException("Unsupported double value: " + bsonValue?.ToString());
         }
 
         public static string ToJson(BsonDocument bson)

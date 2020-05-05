@@ -159,6 +159,7 @@
   - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
   - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [DtwDistance](#T-SigStat-Common-Algorithms-Distances-DtwDistance 'SigStat.Common.Algorithms.Distances.DtwDistance')
+  - [#ctor(localDistance)](#M-SigStat-Common-Algorithms-Distances-DtwDistance-#ctor-SigStat-Common-Algorithms-Distances-IDistance{System-Double[]}- 'SigStat.Common.Algorithms.Distances.DtwDistance.#ctor(SigStat.Common.Algorithms.Distances.IDistance{System.Double[]})')
   - [LocalDistance](#P-SigStat-Common-Algorithms-Distances-DtwDistance-LocalDistance 'SigStat.Common.Algorithms.Distances.DtwDistance.LocalDistance')
   - [Calculate()](#M-SigStat-Common-Algorithms-Distances-DtwDistance-Calculate-System-Double[][],System-Double[][]- 'SigStat.Common.Algorithms.Distances.DtwDistance.Calculate(System.Double[][],System.Double[][])')
 - [DtwImplementations](#T-SigStat-Common-Algorithms-DtwImplementations 'SigStat.Common.Algorithms.DtwImplementations')
@@ -167,12 +168,6 @@
   - [ExactDtwWikipedia\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwImplementations-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
   - [ExactDtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwImplementations-ExactDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwImplementations.ExactDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
   - [OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r)](#M-SigStat-Common-Algorithms-DtwImplementations-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)')
-- [DtwPy](#T-SigStat-Common-Algorithms-DtwPy 'SigStat.Common.Algorithms.DtwPy')
-  - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwPy-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwPy.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
-  - [EuclideanDistance(vector1,vector2)](#M-SigStat-Common-Algorithms-DtwPy-EuclideanDistance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.DtwPy.EuclideanDistance(System.Double[],System.Double[])')
-- [DtwPyWindow](#T-SigStat-Common-Algorithms-DtwPyWindow 'SigStat.Common.Algorithms.DtwPyWindow')
-  - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwPyWindow-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwPyWindow.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
-  - [EuclideanDistance(vector1,vector2)](#M-SigStat-Common-Algorithms-DtwPyWindow-EuclideanDistance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.DtwPyWindow.EuclideanDistance(System.Double[],System.Double[])')
 - [DtwSignerModel](#T-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel')
   - [DistanceMatrix](#F-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.DistanceMatrix')
   - [Threshold](#F-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.Threshold')
@@ -2648,6 +2643,19 @@ Calculates the distance between two vector sequences using Dynamic Time Warping
 Based on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
 Performance from Dynamic Time Warping.KDD 2016: 2129-2130
 
+<a name='M-SigStat-Common-Algorithms-Distances-DtwDistance-#ctor-SigStat-Common-Algorithms-Distances-IDistance{System-Double[]}-'></a>
+### #ctor(localDistance) `constructor`
+
+##### Summary
+
+Initializes a new instance of the DtwDistance class with default settings
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| localDistance | [SigStat.Common.Algorithms.Distances.IDistance{System.Double[]}](#T-SigStat-Common-Algorithms-Distances-IDistance{System-Double[]} 'SigStat.Common.Algorithms.Distances.IDistance{System.Double[]}') | The distance function used to calculate the distance between two individual points of the squences. Set the parameter to 'null' to use the default [EuclideanDistance](#T-SigStat-Common-Algorithms-Distances-EuclideanDistance 'SigStat.Common.Algorithms.Distances.EuclideanDistance') |
+
 <a name='P-SigStat-Common-Algorithms-Distances-DtwDistance-LocalDistance'></a>
 ### LocalDistance `property`
 
@@ -2828,122 +2836,6 @@ Complex, optimized DTW calculation (Abdullah Mueen, Eamonn J. Keogh)
 
 Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
 Performance from Dynamic Time Warping.KDD 2016: 2129-2130
-
-<a name='T-SigStat-Common-Algorithms-DtwPy'></a>
-## DtwPy `type`
-
-##### Namespace
-
-SigStat.Common.Algorithms
-
-##### Summary
-
-A simple implementation of the DTW algorithm.
-
-<a name='M-SigStat-Common-Algorithms-DtwPy-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
-### Dtw\`\`1(sequence1,sequence2,distance) `method`
-
-##### Summary
-
-Calculates the distance between two time sequences
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 1 |
-| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 2 |
-| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | a function to calculate the distance between two points |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| P | the type of data points |
-
-<a name='M-SigStat-Common-Algorithms-DtwPy-EuclideanDistance-System-Double[],System-Double[]-'></a>
-### EuclideanDistance(vector1,vector2) `method`
-
-##### Summary
-
-Calculates the euclidean distance of two vectors
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| vector1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector1 |
-| vector2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector2 |
-
-##### Remarks
-
-The two vectors must have the same length
-
-<a name='T-SigStat-Common-Algorithms-DtwPyWindow'></a>
-## DtwPyWindow `type`
-
-##### Namespace
-
-SigStat.Common.Algorithms
-
-##### Summary
-
-A simple implementation of the DTW algorithm.
-
-<a name='M-SigStat-Common-Algorithms-DtwPyWindow-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
-### Dtw\`\`1(sequence1,sequence2,distance) `method`
-
-##### Summary
-
-Calculates the distance between two time sequences
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 1 |
-| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 2 |
-| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | a function to calculate the distance between two points |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| P | the type of data points |
-
-<a name='M-SigStat-Common-Algorithms-DtwPyWindow-EuclideanDistance-System-Double[],System-Double[]-'></a>
-### EuclideanDistance(vector1,vector2) `method`
-
-##### Summary
-
-Calculates the euclidean distance of two vectors
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| vector1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector1 |
-| vector2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector2 |
-
-##### Remarks
-
-The two vectors must have the same length
 
 <a name='T-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel'></a>
 ## DtwSignerModel `type`
@@ -5920,7 +5812,8 @@ Trains the specified signatures based on a precalculated distance matrix
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | signatures | [System.Collections.Generic.List{SigStat.Common.Signature}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SigStat.Common.Signature}') | The signatures. |
-| distanceMatrix | [SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}](#T-SigStat-Common-DistanceMatrix{System-String,System-String,System-Double} 'SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}') | The distance matrix. |
+| distanceMatrix | [SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}](#T-SigStat-Common-DistanceMatrix{System-String,System-String,System-Double} 'SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}') | The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+distances will be calculated automatically using [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction'). |
 
 <a name='T-SigStat-Common-Transforms-Normalize'></a>
 ## Normalize `type`
@@ -9352,7 +9245,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
 
 ##### Parameters
 

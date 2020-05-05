@@ -16,6 +16,12 @@
             The local distance function to use, when calculating the distance between two sueqence-points. Default is EuclideanDistance
             </summary>
         </member>
+        <member name="M:SigStat.Common.Algorithms.Distances.DtwDistance.#ctor(SigStat.Common.Algorithms.Distances.IDistance{System.Double[]})">
+            <summary>
+            Initializes a new instance of the DtwDistance class with default settings
+            </summary>
+            <param name="localDistance">The distance function used to calculate the distance between two individual points of the squences. Set the parameter to 'null' to use the default <see cref="T:SigStat.Common.Algorithms.Distances.EuclideanDistance"/></param>
+        </member>
         <member name="M:SigStat.Common.Algorithms.Distances.DtwDistance.Calculate(System.Double[][],System.Double[][])">
             <inheritdoc/>
         </member>
@@ -125,54 +131,6 @@
             <param name="w">The w.</param>
             <returns></returns>
             <remarks>https://en.wikipedia.org/wiki/Dynamic_time_warping</remarks>
-        </member>
-        <member name="T:SigStat.Common.Algorithms.DtwPy">
-            <summary>
-            A simple implementation of the DTW algorithm.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.DtwPy.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})">
-            <summary>
-            Calculates the distance between two time sequences
-            </summary>
-            <typeparam name="P">the type of data points</typeparam>
-            <param name="sequence1">time sequence 1</param>
-            <param name="sequence2">time sequence 2</param>
-            <param name="distance">a function to calculate the distance between two points</param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.DtwPy.EuclideanDistance(System.Double[],System.Double[])">
-            <summary>
-            Calculates the euclidean distance of two vectors
-            </summary>
-            <param name="vector1">vector1</param>
-            <param name="vector2">vector2</param>
-            <returns></returns>
-            <remarks>The two vectors must have the same length</remarks>
-        </member>
-        <member name="T:SigStat.Common.Algorithms.DtwPyWindow">
-            <summary>
-            A simple implementation of the DTW algorithm.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.DtwPyWindow.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)">
-            <summary>
-            Calculates the distance between two time sequences
-            </summary>
-            <typeparam name="P">the type of data points</typeparam>
-            <param name="sequence1">time sequence 1</param>
-            <param name="sequence2">time sequence 2</param>
-            <param name="distance">a function to calculate the distance between two points</param>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Algorithms.DtwPyWindow.EuclideanDistance(System.Double[],System.Double[])">
-            <summary>
-            Calculates the euclidean distance of two vectors
-            </summary>
-            <param name="vector1">vector1</param>
-            <param name="vector2">vector2</param>
-            <returns></returns>
-            <remarks>The two vectors must have the same length</remarks>
         </member>
         <member name="T:SigStat.Common.Algorithms.HSCPThinningStep">
             <summary>
@@ -2801,7 +2759,7 @@
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.
+            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="!:LogLevel.Information"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
@@ -3201,7 +3159,8 @@
             Trains the specified signatures based on a precalculated distance matrix
             </summary>
             <param name="signatures">The signatures.</param>
-            <param name="distanceMatrix">The distance matrix.</param>
+            <param name="distanceMatrix">The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+            distances will be calculated automatically using <see cref="P:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction"/>.</param>
             <returns></returns>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">

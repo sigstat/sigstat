@@ -14,8 +14,17 @@ namespace SigStat.Common.Algorithms.Distances
         /// <summary>
         /// The local distance function to use, when calculating the distance between two sueqence-points. Default is EuclideanDistance
         /// </summary>
-        public IDistance<double[]> LocalDistance { get; set; } = new EuclideanDistance();
+        public IDistance<double[]> LocalDistance { get; set; }
 
+
+        /// <summary>
+        /// Initializes a new instance of the DtwDistance class with default settings
+        /// </summary>
+        /// <param name="localDistance">The distance function used to calculate the distance between two individual points of the squences. Set the parameter to 'null' to use the default <see cref="EuclideanDistance"/></param>
+        public DtwDistance(IDistance<double[]> localDistance = null)
+        {
+            this.LocalDistance = localDistance ?? new EuclideanDistance();
+        }
 
         /// <inheritdoc/>
         public double Calculate(double[][] p1, double[][] p2)

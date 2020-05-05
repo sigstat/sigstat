@@ -100,7 +100,8 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// Trains the specified signatures based on a precalculated distance matrix
         /// </summary>
         /// <param name="signatures">The signatures.</param>
-        /// <param name="distanceMatrix">The distance matrix.</param>
+        /// <param name="distanceMatrix">The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+        /// distances will be calculated automatically using <see cref="DistanceFunction"/>.</param>
         /// <returns></returns>
         public ISignerModel Train(List<Signature> signatures, DistanceMatrix<string, string, double> distanceMatrix)
         {
@@ -112,37 +113,48 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             var signerID = signatures[0].Signer?.ID;
 
-            var trainSignatures = Sampler.SampleReferences(signatures).Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
-            var testGenuine = Sampler.SampleGenuineTests(signatures).Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
-            var testForged = Sampler.SampleForgeryTests(signatures).Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
-
+            var trainSignatures = Sampler.SampleReferences(signatures);
+            var testGenuine = Sampler.SampleGenuineTests(signatures);
+            var testForged = Sampler.SampleForgeryTests(signatures);
             var testSignatures = testGenuine.Concat(testForged).ToList();
 
-            var dtwDistances = new DistanceMatrix<string, string, double>();
-
-            if (NearestNeighborCount == null)
-                NearestNeighborCount = trainSignatures.Count;
-
-            if (NearestNeighborCount>trainSignatures.Count)
-                throw new ArgumentNullException("NearestNeighbourCount can not be larger than the number of training signatures", nameof(signatures));
-
-
-            foreach (var train in trainSignatures)
+            // calculate the values for distance matrix, if it has been passed as argument to the function
+            if (distanceMatrix == null)
             {
-                foreach (var test in trainSignatures.Concat(testSignatures))
+
+                var trainSignaturesFeatures = trainSignatures.Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
+                var testSignatureFeatures = testSignatures.Select(s => new { s.ID, s.Origin, Values = s.GetAggregateFeature(Features).ToArray() }).ToList();
+
+
+                distanceMatrix = new DistanceMatrix<string, string, double>();
+
+                if (NearestNeighborCount == null)
+                    NearestNeighborCount = trainSignatures.Count;
+
+                if (NearestNeighborCount > trainSignatures.Count)
+                    throw new ArgumentNullException("NearestNeighbourCount can not be larger than the number of training signatures", nameof(signatures));
+
+
+                foreach (var train in trainSignaturesFeatures)
                 {
-                    var distance = DistanceFunction.Calculate(train.Values, test.Values);
-                    dtwDistances[test.ID, train.ID] = distance;
-                    this.LogTrace(new ClassifierDistanceLogState(signerID, signerID, train.ID, test.ID, distance));
+                    foreach (var test in trainSignaturesFeatures.Concat(testSignatureFeatures))
+                    {
+                        var distance = DistanceFunction.Calculate(train.Values, test.Values);
+                        distanceMatrix[test.ID, train.ID] = distance;
+                        this.LogTrace(new ClassifierDistanceLogState(signerID, signerID, train.ID, test.ID, distance));
+                    }
                 }
             }
 
+
+            // Calculate optimal threshold for minimizing the error rate
+            
             var averageDistances =
                 testSignatures.Select(test => new SignatureDistance
                 {
                     ID = test.ID,
                     Origin = test.Origin,
-                    Distance = trainSignatures.Where(train => train.ID != test.ID).Select(train => dtwDistances[test.ID, train.ID]).Average()
+                    Distance = trainSignatures.Where(train => train.ID != test.ID).Select(train => distanceMatrix[test.ID, train.ID]).Average()
                 })
                 .OrderBy(d => d.Distance)
                 .ToList();
@@ -167,7 +179,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             SignerModel model = new SignerModel()
             {
                 SignerID = signerID,
-                DistanceMatrix = dtwDistances,
+                DistanceMatrix = distanceMatrix,
                 SignatureDistanceFromTraining = averageDistances.ToDictionary(sig => sig.ID, sig => sig.Distance),
                 ErrorRates = errorRates,
                 Threshold = errorRates.First(e => e.Value.Far >= e.Value.Frr).Key

@@ -72,8 +72,8 @@ namespace SigStat.Benchmark
             var dft = typeof(Func<double[], double[], double>);
             var distance = (Func<double[], double[], double>)typeof(Accord.Math.Distance)
                     //.GetMethod(config["Distance"], new Type[] { dft })
-                    .GetMethods().First(i => 
-                        i.Name == config["Distance"] && 
+                    .GetMethods().First(i =>
+                        i.Name == config["Distance"] &&
                         i.GetParameters()[0].ParameterType == typeof(double[]))
                     .CreateDelegate(dft);
 
@@ -247,7 +247,7 @@ namespace SigStat.Benchmark
                         throw new NotSupportedException("Unsupported translation: " + config["Translation"]);
                 }
             }
-            
+
 
 
 
@@ -255,6 +255,17 @@ namespace SigStat.Benchmark
 
             return b;
 
+        }
+
+        public Sampler GetSampler(string key)
+        {
+            // Only return a clone, to avoid side effects
+            return samplers[key];
+        }
+
+        public IEnumerable<KeyValuePair<string, DataSetLoader>> GetLoaders()
+        {
+            return loaders;
         }
 
 

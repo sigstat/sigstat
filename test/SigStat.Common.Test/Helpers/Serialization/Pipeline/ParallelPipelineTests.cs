@@ -30,8 +30,7 @@ namespace SigStat.Common.Test.Helpers.Serialization.Pipeline
                 {
                   ""$type"": ""SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale, SigStat.Common"",
                   ""InputFeature"":""X"",
-                  ""NewMinValue"": 0.0,
-                  ""NewMaxValue"": 1.0,
+                  ""Mode"": 0,
                   ""OutputFeature"":""X""
                 }
               ]

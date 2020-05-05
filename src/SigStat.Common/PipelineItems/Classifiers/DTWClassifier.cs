@@ -99,7 +99,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                     }
                     else
                     {
-                        var distance = DtwPy.Dtw(i.Features, j.Features, DistanceFunction);
+                        var distance = DtwImplementations.ExactDtwWikipedia(i.Features, j.Features, DistanceFunction);
                         distanceMatrix[i.ID, j.ID] = distance;
                         this.LogTrace(new ClassifierDistanceLogState(signerID, signerID, i.ID, j.ID, distance));
 
@@ -144,7 +144,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             for (int i = 0; i < dtwModel.GenuineSignatures.Count; i++)
             {
-                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, DistanceFunction);
+                distances[i] = DtwImplementations.ExactDtwWikipedia(dtwModel.GenuineSignatures[i].Value, testSignature, DistanceFunction);
                 dtwModel.DistanceMatrix[signature.ID, dtwModel.GenuineSignatures[i].Key] = distances[i];
                 this.LogTrace(new ClassifierDistanceLogState(model.SignerID, signature?.Signer.ID, dtwModel.GenuineSignatures[i].Key, signature.ID, distances[i]));
             }
