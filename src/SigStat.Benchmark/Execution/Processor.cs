@@ -30,8 +30,7 @@ namespace SigStat.Benchmark.Execution
         {
 
             Console.WriteLine($"{DateTime.Now}: Gathering results for experiment {Program.Experiment}...");
-            var reportCount = await BenchmarkDatabase.CountFinished();
-            var progress = ProgressHelper.StartNew(reportCount, 10);
+            var reportCount = await BenchmarkDatabase.CountQueued();
             var rulesString = await BenchmarkDatabase.GetGrammarRules();
             var builder = new BenchmarkBuilder();
             var distances = new Dictionary<string, IDistance<double[]>>
@@ -41,24 +40,34 @@ namespace SigStat.Benchmark.Execution
             };
             Console.WriteLine("Loading databases...");
             Dictionary<string, List<Signer>> databases = builder.GetLoaders().ToDictionary(kvp => kvp.Key, kvp => kvp.Value.EnumerateSigners().ToList());
-
-            foreach (var report in BenchmarkDatabase.GetBenchmarkReports())
+            using (var progress = ProgressHelper.StartNew(reportCount, 10))
             {
-                var sampler = builder.GetSampler(report.Split);
-                var db = databases[report.Database];
-                var distance = distances[report.Distance];
-
-                List<ClassificationResult> results = new List<ClassificationResult>();
-                for (int k = 0; k < 10; k++)
+                var report = await BenchmarkDatabase.LockNextBenchmarkReport();
+                while (report != null)
                 {
-                    results.Add(GetClassificationResults(report, distance, k, sampler, db)); ;
+                    try
+                    {
+                        var sampler = builder.GetSampler(report.Split);
+                        var db = databases[report.Database];
+                        var distance = distances[report.Distance];
+
+                        List<ClassificationResult> results = new List<ClassificationResult>();
+                        for (int k = 1; k <= 10; k++)
+                        {
+                            results.Add(GetClassificationResults(report, distance, k, sampler, db)); ;
+                        }
+
+                        await BenchmarkDatabase.SendResults(report.Config, "classification", results);
+                        progress.Value++;
+                        report = await BenchmarkDatabase.LockNextBenchmarkReport();
+                    }
+                    catch (Exception exc)
+                    {
+                        report = null;
+                        await BenchmarkDatabase.SendErrorLog(report.Config, exc.ToString());
+                    }
                 }
-
-                BenchmarkDatabase.SetField(report.Config, "classification", results);
-                progress.Value++;
-                break;
             }
-
             Console.WriteLine("Ready");
         }
 
@@ -68,9 +77,9 @@ namespace SigStat.Benchmark.Execution
             cl.Sampler = sampler;
             cl.NearestNeighborCount = k;
 
-            var models = signers.Select(s => 
+            var models = signers.Select(s =>
                 (NearestNeighborEerClassifier.SignerModel)cl.Train(
-                    s.Signatures, 
+                    s.Signatures,
                     report.SignerResults.Single(sr => sr.SignerID == s.ID).DistanceMatrix)
                 ).ToList();
             var errors = models.Select(m => m.ErrorRates.First(e => e.Key == m.Threshold).Value).ToList();

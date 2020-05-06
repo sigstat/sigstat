@@ -53,6 +53,8 @@ namespace SigStat.Benchmark
                 yield return derivedSentence.Sentence;
             }
         }
+        
+        private static string RulesString = ""; 
 
 
         /// <summary>
@@ -62,21 +64,20 @@ namespace SigStat.Benchmark
         internal static async Task RunAsync(string rulesFilePath, int batchSize)
         {
             BatchSize = batchSize;
-            string rulesString;
             if (File.Exists(rulesFilePath))
             {//read rules from file
                 WriteLine($"Loading rules for experiment ", Program.Experiment);
-                rulesString = await File.ReadAllTextAsync(rulesFilePath);
+                RulesString = await File.ReadAllTextAsync(rulesFilePath);
             }
             else
             {
                 WriteLine("Rules file not provided. Using default test rules.");
-                rulesString = defaultRuleString;
+                RulesString = defaultRuleString;
             }
 
             WriteLine("Loading experiment details...");
 
-            while (await InitializeExperiment(rulesString))
+            while (await InitializeExperiment())
                 ;
 
             WriteLine("Exiting application");
@@ -84,26 +85,31 @@ namespace SigStat.Benchmark
 
 
 
-        public static async Task<bool> InitializeExperiment(string rulesString)
+        public static async Task<bool> InitializeExperiment()
         {
             Console.WriteLine();
             WriteLine($"Experiment: ", Program.Experiment);
 
             var prevRules = await BenchmarkDatabase.GetGrammarRules();
-            if (rulesString != prevRules)
+            if (RulesString != prevRules)
             {
                 WriteLine($"Rules have changed. Do you want to update them? [Y/N]");
                 if (Console.ReadKey().KeyChar != 'y')
-                    return false;
+                {
+                    Console.WriteLine("Using previous rules for future operations");
+                    RulesString = prevRules;
+                    return true;
+
+                }
                 Console.WriteLine("Updating rules...");
-                await BenchmarkDatabase.SetGrammarRules(rulesString);
+                await BenchmarkDatabase.SetGrammarRules(RulesString);
             }
             else
             {
                 Console.WriteLine("Rules are consistent with the previous run.");
             }
 
-            var configs = EnumerateBenchmarks(rulesString);
+            var configs = EnumerateBenchmarks(RulesString);
             var configCount = configs.Count();
             Console.WriteLine($"Current rules would generate {configCount} configurations");
 
@@ -122,7 +128,7 @@ namespace SigStat.Benchmark
             Console.WriteLine("[D]elete experiment data");
             Console.WriteLine("[F]aulted removal");
             Console.WriteLine("[L]ock removal");
-            Console.WriteLine("[R]esult removal");
+            Console.WriteLine("[R]equeue configs");
             Console.WriteLine("E[x]it");
 
             char ch = ' ';
@@ -158,9 +164,9 @@ namespace SigStat.Benchmark
                     WriteLine($"Removed {lockedResult} locks.");
                     return true;
                 case 'r':
-                    WriteLine($"Removing results...");
-                    int count = await BenchmarkDatabase.ResetResults();
-                    WriteLine($"Removed {count} results.");
+                    WriteLine($"Reque configs...");
+                    int count = await BenchmarkDatabase.RequeueFinished();
+                    WriteLine($"Requed {count} configs.");
                     return true;
                 case 'x': //exit
                     return false;

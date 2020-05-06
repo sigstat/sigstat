@@ -36,7 +36,7 @@ namespace SigStat.Benchmark.Helpers
         private static MongoClient client;
         private static IMongoDatabase db;
         private static IMongoCollection<BsonDocument> experimentCollection;
-
+        private static object syncObj = new object();
 
 
         private static readonly Expression<Func<BsonDocument, bool>> queuedFilter = d =>
@@ -187,34 +187,20 @@ namespace SigStat.Benchmark.Helpers
         /// <returns>Configuration string</returns>
         public static async Task<string> LockNextConfig(int procId)
         {
-            int retryCount = 21;
-            while (retryCount > 0)
-            {
-                retryCount--;
-                try
-                {
-                    var result = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
-                        Builders<BsonDocument>.Update
-                            .Set("lockDate", DateTime.Now)
-                            .Set("state", States.Locked)
-                            .Set("machine", Environment.MachineName)
-                            .Set("procId", procId),
-                        new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
-                    if (result == null)
-                        return null;
-                    else
-                        return (string)result["config"];
-                }
-                catch (MongoCommandException exc)
-                {
-                    if (exc.Code != 16500)
-                        throw;
-                    Console.WriteLine($"Throttling limit reached. Retrying ({retryCount})...");
-                    await Task.Delay(new Random().Next(10000));
-                }
-            }
-            throw new Exception("Retry limit exceeded");
+            var result = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
+                Builders<BsonDocument>.Update
+                    .Set("lockDate", DateTime.Now)
+                    .Set("state", States.Locked)
+                    .Set("machine", Environment.MachineName)
+                    .Set("procId", procId),
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+
+            if (result == null)
+                return null;
+            else
+                return (string)result["config"];
+
         }
 
         /// <summary>
@@ -222,77 +208,47 @@ namespace SigStat.Benchmark.Helpers
         /// </summary>
         public static async Task SendResults(int procId, string benchmarkConfig, BenchmarkLogModel results)
         {
-            int retryCount = 21;
-            while (retryCount > 0)
-            {
-                retryCount--;
-                try
-                {
-                    var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
-                    var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
-                        d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
-                        Builders<BsonDocument>.Update
-                            .Set("end_date", DateTime.Now)
-                            .Set("results", bsonResults)
-                            .Set("state", States.Finished)
-                            .Set("dtw", "wiki"),
+            var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
-                        new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
-                    return;
-                }
-                catch (MongoCommandException exc)
-                {
-                    if (exc.Code != 16500)
-                        throw;
-                    Console.WriteLine($"Throttling limit reached. Retrying ({retryCount})...");
-                    await Task.Delay(new Random().Next(10000));
-                }
-            }
-            throw new Exception("Retry limit exceeded");
+            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
+                Builders<BsonDocument>.Update
+                    .Set("end_date", DateTime.Now)
+                    .Set("state", States.Finished)
+                    .Set("results", bsonResults)
+                    .Set("dtw", "wiki"),
+
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+            return;
+
+
         }
 
-        internal async static void SetField<T>(string config, string key, T value)
+        internal async static Task SendResults<T>(string config, string key, T value)
         {
-            await experimentCollection.UpdateOneAsync<BsonDocument>(d => d["config"] == config,
+            await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d => d["config"] == config && d["machine"] == Environment.MachineName,
                Builders<BsonDocument>.Update
                    .Set<T>(key, value)
-                   .Set("processingState", States.Finished)
+                    .Set("end_date", DateTime.Now)
+                    .Set("state", States.Finished)
                    ,
-               new UpdateOptions { IsUpsert = false });
+               new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
         }
 
         /// <summary>
         /// Send log after exception.
         /// </summary>
-        public static async Task SendErrorLog(int procId, string benchmarkConfig, string logString)
+        public static async Task SendErrorLog(string benchmarkConfig, string logString)
         {
-            int retryCount = 21;
-            while (retryCount > 0)
-            {
-                retryCount--;
-                try
-                {
-                    var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
-                        d["config"] == benchmarkConfig && d["procId"] == procId && d["machine"] == Environment.MachineName,
-                        Builders<BsonDocument>.Update
-                            .Set("end_date", DateTime.Now)
-                            .Set("errorLog", logString)
-                            .Set("state", States.Faulted),
-                        new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
-                    return;
-                }
-                catch (MongoCommandException exc)
-                {
-                    if (exc.Code != 16500)
-                        throw;
-                    Console.WriteLine($"Throttling limit reached. Retrying ({retryCount})...");
-                    await Task.Delay(new Random().Next(10000));
-
-                }
-            }
-            throw new Exception("Retry limit exceeded");
-
+            var result = await experimentCollection.FindOneAndUpdateAsync<BsonDocument>(d =>
+                d["config"] == benchmarkConfig && d["machine"] == Environment.MachineName,
+                Builders<BsonDocument>.Update
+                    .Set("end_date", DateTime.Now)
+                    .Set("errorLog", logString)
+                    .Set("state", States.Faulted),
+                new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
+            return;
         }
 
         public struct ExecutionStatistics
@@ -392,46 +348,59 @@ namespace SigStat.Benchmark.Helpers
             }
         }
 
-        public static IEnumerable<BenchmarkReport> GetBenchmarkReports()
+        public static async Task<BenchmarkReport> LockNextBenchmarkReport()
         {
-            var cursor = experimentCollection.FindSync(finishedFilter,
-                new FindOptions<BsonDocument, BsonDocument>() { });
+            var bson = await experimentCollection.FindOneAndUpdateAsync(lockableFilter,
+                   Builders<BsonDocument>.Update
+                       .Set("lockDate", DateTime.Now)
+                       .Set("state", States.Locked)
+                       .Set("machine", Environment.MachineName),
+                   new FindOneAndUpdateOptions<BsonDocument> { IsUpsert = false });
 
-            foreach (var bson in cursor.ToEnumerable())
+            if (bson == null)
+                return null;
+
+
+            if (!bson.Contains("results"))
             {
-                BenchmarkReport report = new BenchmarkReport();
-                report.Config = bson["config"].AsString;
-                var resultsBlock = bson["results"]["KeyValueGroups"]["Parameters"]["dict"];
-                report.Split = resultsBlock["Split"].AsString;
-                report.Database = resultsBlock["Database"].AsString;
-                report.Distance = resultsBlock["Distance"].AsString;
-
-                report.SignerResults = new List<SignerResults>();
-                foreach (var signer in bson["results"]["SignerResults"].AsBsonDocument)
-                {
-                    var signerDoc = signer.Value.AsBsonDocument;
-                    SignerResults signerResult = new SignerResults(signerDoc["SignerID"].AsString)
-                    {
-                        Far = signerDoc["Far"].AsDouble,
-                        Frr = signerDoc["Frr"].AsDouble,
-                        Aer = signerDoc["Aer"].AsDouble,
-                    };
-                    var rows = signerDoc["DistanceMatrix"].AsBsonArray;
-                    var colHeaders = rows[0].AsBsonArray.Select(v => v.ToString()).ToArray();
-                    var rowHeaders = rows.Select(r => r.AsBsonArray[0].ToString()).ToArray();
-
-                    for (int rowIndex = 1; rowIndex < rows.Count; rowIndex++)
-                    {
-                        var row = rows[rowIndex].AsBsonArray;
-                        for (int colIndex = 1; colIndex < row.Count; colIndex++)
-                        {
-                            signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = ParseDouble(row[colIndex]);
-                        }
-                    }
-                    report.SignerResults.Add(signerResult);
-                };
-                yield return report;
+                Console.WriteLine("An enqueued config did not contain any results. Config: "+ bson["config"].AsString);
+                return null;
             }
+
+
+            //TODO: this manual bson parsing is highly inefficient
+            BenchmarkReport report = new BenchmarkReport();
+            report.Config = bson["config"].AsString;
+            var resultsBlock = bson["results"]["KeyValueGroups"]["Parameters"]["dict"];
+            report.Split = resultsBlock["Split"].AsString;
+            report.Database = resultsBlock["Database"].AsString;
+            report.Distance = resultsBlock["Distance"].AsString;
+
+            report.SignerResults = new List<SignerResults>();
+            foreach (var signer in bson["results"]["SignerResults"].AsBsonDocument)
+            {
+                var signerDoc = signer.Value.AsBsonDocument;
+                SignerResults signerResult = new SignerResults(signerDoc["SignerID"].AsString)
+                {
+                    Far = signerDoc["Far"].AsDouble,
+                    Frr = signerDoc["Frr"].AsDouble,
+                    Aer = signerDoc["Aer"].AsDouble,
+                };
+                var rows = signerDoc["DistanceMatrix"].AsBsonArray;
+                var colHeaders = rows[0].AsBsonArray.Select(v => v.ToString()).ToArray();
+                var rowHeaders = rows.Select(r => r.AsBsonArray[0].ToString()).ToArray();
+
+                for (int rowIndex = 1; rowIndex < rows.Count; rowIndex++)
+                {
+                    var row = rows[rowIndex].AsBsonArray;
+                    for (int colIndex = 1; colIndex < row.Count; colIndex++)
+                    {
+                        signerResult.DistanceMatrix[rowHeaders[rowIndex], colHeaders[colIndex]] = ParseDouble(row[colIndex]);
+                    }
+                }
+                report.SignerResults.Add(signerResult);
+            }
+            return report;
         }
 
         private static double ParseDouble(BsonValue bsonValue)
@@ -529,12 +498,11 @@ namespace SigStat.Benchmark.Helpers
                new UpdateOptions() { IsUpsert = false });
             return (int)result.MatchedCount;
         }
-        public static async Task<int> ResetResults()
+        public static async Task<int> RequeueFinished()
         {
             var result = await experimentCollection.UpdateManyAsync(finishedFilter,
                Builders<BsonDocument>.Update
                 .Set("state", States.Queued)
-                .Unset("results")
                 .Unset("end_date"),
                new UpdateOptions() { IsUpsert = false });
             return (int)result.MatchedCount;

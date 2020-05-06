@@ -133,8 +133,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
                 if (NearestNeighborCount > trainSignatures.Count)
                     throw new ArgumentNullException("NearestNeighbourCount can not be larger than the number of training signatures", nameof(signatures));
-
-
+                
+                // The distances among training signatures aren't neccessarily needed for calculations. 
+                // We calculate them anyways, as they may be needed for posprocessing the data 
                 foreach (var train in trainSignaturesFeatures)
                 {
                     foreach (var test in trainSignaturesFeatures.Concat(testSignatureFeatures))
@@ -147,14 +148,18 @@ namespace SigStat.Common.PipelineItems.Classifiers
             }
 
 
-            // Calculate optimal threshold for minimizing the error rate
-            
+            // Calculate optimal threshold to approximate Equal Error Rate
+
             var averageDistances =
                 testSignatures.Select(test => new SignatureDistance
                 {
                     ID = test.ID,
                     Origin = test.Origin,
-                    Distance = trainSignatures.Where(train => train.ID != test.ID).Select(train => distanceMatrix[test.ID, train.ID]).Average()
+                    Distance = trainSignatures.Where(train => train.ID != test.ID)
+                                              .Select(train => distanceMatrix[test.ID, train.ID])
+                                              .OrderBy(d=>d)
+                                              .Take(NearestNeighborCount?? trainSignatures.Count)
+                                              .Average()
                 })
                 .OrderBy(d => d.Distance)
                 .ToList();

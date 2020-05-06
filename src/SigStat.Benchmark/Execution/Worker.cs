@@ -110,7 +110,7 @@ namespace SigStat.Benchmark
                 {
                     Console.WriteLine($"{DateTime.Now}: Writing error log to MongoDB...");
                     //Save to File?
-                    await BenchmarkDatabase.SendErrorLog(ProcessId, CurrentBenchmarkId, errorLog.ToString());
+                    await BenchmarkDatabase.SendErrorLog(CurrentBenchmarkId, errorLog.ToString());
                 }
 
             }
