@@ -93,12 +93,15 @@ namespace SigStat.Common.Loaders
         /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
         /// </summary>
         public bool StandardFeatures { get; set; }
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
+        public Predicate<Signer> SignerFilter { get; set; }
 
         /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-            //signerFilter = signerFilter ?? SignerFilter;
+            signerFilter = signerFilter ?? SignerFilter;
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))

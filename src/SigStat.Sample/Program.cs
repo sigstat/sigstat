@@ -58,7 +58,7 @@ namespace SigStat.Sample
             //TransformationPipeline();
             //Classifier();
             //OnlineToImage();
-            //DatabaseLoaderDemo();
+            DatabaseLoaderDemo();
             //GenerateOfflineDatabase();
             //OfflineVerifierDemo();
             //OnlineVerifierDemo();
@@ -74,7 +74,7 @@ namespace SigStat.Sample
             //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
             //ExcelReportGeneratorTest();
-            PreprocessingBenchmarkDemo();
+            //PreprocessingBenchmarkDemo();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -421,13 +421,18 @@ namespace SigStat.Sample
         static void DatabaseLoaderDemo()
         {
             var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            var sw = Stopwatch.StartNew();
+            SigComp11ChineseLoader loader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip").GetPath(), true);
+            loader.EnumerateSigners(s=>s.ID == "015");
+            //Console.WriteLine(list.Count);
+            Console.WriteLine(sw.Elapsed); ;
             //Load signatures from local database
             //SigComp15GermanLoader loader = new SigComp15GermanLoader(Path.Combine(databaseDir, "SigWiComp2015_German.zip").GetPath(), true);
             //SigComp15GermanLoader loader = new SigComp15GermanLoader(@"Databases\SigWiComp2015_German.zip".GetPath(), true);
             //SigComp11ChineseLoader loader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip").GetPath(), true);
-            SigComp13JapaneseLoader loader = new SigComp13JapaneseLoader(Path.Combine(databaseDir, "SigWiComp2013_Japanese.zip").GetPath(), true);
-            var signers = loader.EnumerateSigners().ToList();
-            Console.WriteLine($"{signers.Count} signers loaded with {signers.SelectMany(s => s.Signatures).Count()} signatures");
+            //SigComp13JapaneseLoader loader = new SigComp13JapaneseLoader(Path.Combine(databaseDir, "SigWiComp2013_Japanese.zip").GetPath(), true);
+            //var signers = loader.EnumerateSigners().ToList();
+            //Console.WriteLine($"{signers.Count} signers loaded with {signers.SelectMany(s => s.Signatures).Count()} signatures");
         }
 
         static void LoadSignaturesFromDatabase(out List<Signature> genuines, out Signature challenge)

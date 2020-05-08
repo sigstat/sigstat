@@ -131,9 +131,12 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 if (NearestNeighborCount == null)
                     NearestNeighborCount = trainSignatures.Count;
 
-                if (NearestNeighborCount > trainSignatures.Count)
+                if (NearestNeighborCount > trainSignatures.Count-1)
+                    throw new ArgumentNullException("NearestNeighbourCount can not be larger or equal to the number of training signatures", nameof(signatures));
+
+                if (NearestNeighborCount <= 0)
                     throw new ArgumentNullException("NearestNeighbourCount can not be larger than the number of training signatures", nameof(signatures));
-                
+
                 // The distances among training signatures aren't neccessarily needed for calculations. 
                 // We calculate them anyways, as they may be needed for posprocessing the data 
                 foreach (var train in trainSignaturesFeatures)

@@ -1875,6 +1875,11 @@
             Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
             </summary>
         </member>
+        <member name="P:SigStat.Common.Loaders.MCYTLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
+            </summary>
+        </member>
         <member name="M:SigStat.Common.Loaders.MCYTLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc />
         </member>
@@ -1939,6 +1944,11 @@
         <member name="P:SigStat.Common.Loaders.SigComp11ChineseLoader.StandardFeatures">
             <summary>
             Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.SigComp11ChineseLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
@@ -2007,6 +2017,11 @@
             Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
             </summary>
         </member>
+        <member name="P:SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
+            </summary>
+        </member>
         <member name="M:SigStat.Common.Loaders.SigComp11DutchLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc />
         </member>
@@ -2073,6 +2088,11 @@
             Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
             </summary>
         </member>
+        <member name="P:SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
+            </summary>
+        </member>
         <member name="M:SigStat.Common.Loaders.SigComp13JapaneseLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
             <inheritdoc />
         </member>
@@ -2137,6 +2157,11 @@
         <member name="P:SigStat.Common.Loaders.SigComp15GermanLoader.StandardFeatures">
             <summary>
             Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.SigComp15GermanLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
@@ -2223,6 +2248,11 @@
         <member name="P:SigStat.Common.Loaders.SigComp19OnlineLoader.StandardFeatures">
             <summary>
             Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.SigComp19OnlineLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.SigComp19OnlineLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
@@ -2759,7 +2789,7 @@
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="!:LogLevel.Information"/>.
+            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
@@ -4914,8 +4944,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>

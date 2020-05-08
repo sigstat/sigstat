@@ -399,6 +399,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-MCYTLoader-DatabasePath 'SigStat.Common.Loaders.MCYTLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-MCYTLoader-SamplingFrequency 'SigStat.Common.Loaders.MCYTLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-MCYTLoader-SignerFilter 'SigStat.Common.Loaders.MCYTLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-MCYTLoader-StandardFeatures 'SigStat.Common.Loaders.MCYTLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-MCYTLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MCYTLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -652,6 +653,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11ChineseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11ChineseLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp11ChineseLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11ChineseLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -659,6 +661,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11DutchLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11DutchLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11DutchLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp11DutchLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp11DutchLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp11DutchLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11DutchLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp11DutchLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -671,6 +674,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp13JapaneseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp13JapaneseLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -683,6 +687,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp15GermanLoader-DatabasePath 'SigStat.Common.Loaders.SigComp15GermanLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp15GermanLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter 'SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp15GermanLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp15GermanLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp15GermanLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp15GermanLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp15GermanLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -699,6 +704,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp19OnlineLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp19OnlineLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-DatabasePath 'SigStat.Common.Loaders.SigComp19OnlineLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp19OnlineLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-SignerFilter 'SigStat.Common.Loaders.SigComp19OnlineLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp19OnlineLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp19OnlineLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp19OnlineLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp19OnlineLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp19OnlineLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -5482,6 +5488,13 @@ Gets or sets the database path.
 
 Set MCYT sampling frequenct to 100hz
 
+<a name='P-SigStat-Common-Loaders-MCYTLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-MCYTLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -8034,6 +8047,13 @@ Gets or sets the database path.
 
 Sampling Frequency of this database
 
+<a name='P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-SigComp11ChineseLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -8109,6 +8129,13 @@ Gets or sets the database path.
 ##### Summary
 
 Sampling Frequency of this database
+
+<a name='P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='P-SigStat-Common-Loaders-SigComp11DutchLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
@@ -8225,6 +8252,13 @@ Gets or sets the database path.
 
 Sampling Frequency of this database
 
+<a name='P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-SigComp13JapaneseLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -8339,6 +8373,13 @@ Gets or sets the database path.
 ##### Summary
 
 Sampling Frequency of this database
+
+<a name='P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='P-SigStat-Common-Loaders-SigComp15GermanLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
@@ -8482,6 +8523,13 @@ Gets or sets the database path.
 ##### Summary
 
 sampling frequency for this database
+
+<a name='P-SigStat-Common-Loaders-SigComp19OnlineLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='P-SigStat-Common-Loaders-SigComp19OnlineLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
@@ -9245,7 +9293,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 
