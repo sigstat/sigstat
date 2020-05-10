@@ -12,6 +12,19 @@ namespace SigStat.Common
     public class Signer//TODO: <TSignature> where TSignature: Signature
     {
         /// <summary>
+        /// best sampling frequency for the signer
+        /// </summary>
+        public int bestSampleRate = 50;
+        /// <summary>
+        /// best step (nmber of skipped points) for the signer
+        /// </summary>
+        public int bestStep = 1;
+        /// <summary>
+        /// best frr for the signer, used to find the best sampling frequency and step for each signer
+        /// </summary>
+        public double bestFrr = 1;
+       
+        /// <summary>
         /// An identifier for the Signer. Keep it unique to be useful for logs.
         /// </summary>
         public string ID { get; set; }

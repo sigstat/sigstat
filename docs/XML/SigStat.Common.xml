@@ -500,6 +500,17 @@
             </summary>
             <param name="n">Count of signatures used for training</param>
         </member>
+        <member name="P:SigStat.Common.Framework.Samplers.TestingSampler.N">
+            <summary>
+            Count of signatures used for training
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Framework.Samplers.TestingSampler.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="n">count of signatures used for training</param>
+        </member>
         <member name="T:SigStat.Common.Framework.Samplers.UniversalSampler">
             <summary>
             Selects a given number of signatures for training and testing
@@ -595,7 +606,7 @@
         </member>
         <!-- Badly formed XML comment ignored for member "P:SigStat.Common.Model.SampleRateResults.step" -->
         <!-- Badly formed XML comment ignored for member "P:SigStat.Common.Model.SampleRateResults.pointsAvg" -->
-        <member name="P:SigStat.Common.Model.SampleRateResults.AER">
+        <member name="P:SigStat.Common.Model.SampleRateResults.AER2">
             <summary>
             Gets or sets the input feature representing the X coordinates of an online signature
             </summary>
@@ -2630,6 +2641,46 @@
         </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <inheridoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.samplerate">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputP">
+            <summary>
+            Gets or sets the input feature representing the timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.OutputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation">
             <summary>
