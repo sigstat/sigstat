@@ -35,7 +35,7 @@ namespace SigStat.Common.Model
         }
         //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
 
-        private SequentialTransformPipeline pipeline;
+        private SequentialTransformPipeline pipeline = new SequentialTransformPipeline();
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
         
         public SequentialTransformPipeline Pipeline { get => pipeline;
@@ -132,9 +132,12 @@ namespace SigStat.Common.Model
         /// <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         public virtual double Test(Signature signature)
         {
+
             this.LogTrace("Verifying signature {signature}.", signature.ID);
 
-            Pipeline.Transform(signature);
+            // HACK: OptimalDtwClassifier performs the transformations in the training phase
+            if (!(Classifier is OptimalDtwClassifier))
+                Pipeline.Transform(signature);
 
             this.LogTrace("Signature {signature} transformed.", signature.ID);
 

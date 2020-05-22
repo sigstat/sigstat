@@ -19,24 +19,26 @@ namespace SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks
             var benchmark = FusionPipelines.GetBenchmark(offlineSigners, isoptimal);
 
             var marosPipeline = FusionPipelines.GetMarosPipeline();
-            //marosPipeline.Logger = new SimpleConsoleLogger();
             var onlinePipeline = FusionPipelines.GetOnlinePipeline();
 
             foreach (var offSigner in offlineSigners)
             {
-                Console.WriteLine(offSigner.ID + " started at " + DateTime.Now.ToString("h:mm:ss tt"));
-                Parallel.ForEach(offSigner.Signatures, offSig =>
+                try
                 {
-                    marosPipeline.Transform(offSig);
-                    var xySaver = FusionPipelines.GetXYSaver();
-                    xySaver.Transform(offSig);
-                    onlinePipeline.Transform(offSig);
+                    Console.WriteLine(offSigner.ID + " started at " + DateTime.Now.ToString("h:mm:ss tt"));
+                    Parallel.ForEach(offSigner.Signatures, offSig =>
+                    {
+                        marosPipeline.Transform(offSig);
+                        onlinePipeline.Transform(offSig);
+                    }
+                    );
+                    Console.WriteLine(offSigner.ID + " finished at " + DateTime.Now.ToString("h:mm:ss tt"));
+
                 }
-                );
-                var listWithOnlySigner = new List<Signer>() { offSigner };
-                var onlySigBenchmark = FusionPipelines.GetBenchmark(listWithOnlySigner, true);
-                var onlyRes = onlySigBenchmark.Execute();
-                TxtHelper.Save(TxtHelper.BenchmarkResToLines(onlyRes), "maros_offoff_09_18" + offSigner.ID);
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
             }
             return benchmark.Execute();
         }

@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SigStat.Common.Helpers.Serialization;
+using SigStat.Common.Logging;
 
 namespace SigStat.Common.PipelineItems.Classifiers
 {
@@ -18,6 +19,10 @@ namespace SigStat.Common.PipelineItems.Classifiers
     /// </summary>
     public class DtwSignerModel : ISignerModel
     {
+
+        /// <inheritdoc/>
+        public string SignerID { get; set; }
+
         /// <summary>
         /// A list a of genuine signatures used for training
         /// </summary>
@@ -74,6 +79,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <inheridoc/>
         public ISignerModel Train(List<Signature> signatures)
         {
+            if (signatures == null || signatures.Count == 0)
+                throw new ArgumentException("Argument 'signatures' can not be null or an empty list", nameof(signatures));
+            var signerID = signatures[0].Signer?.ID;
             var genuines = signatures.Where(s => s.Origin == Origin.Genuine)
                 .Select(s => new { s.ID, Features = s.GetAggregateFeature(Features).ToArray() }).ToList();
             var distanceMatrix = new DistanceMatrix<string, string, double>();
@@ -91,7 +99,10 @@ namespace SigStat.Common.PipelineItems.Classifiers
                     }
                     else
                     {
-                        distanceMatrix[i.ID, j.ID] = DtwPy.Dtw(i.Features, j.Features, DistanceFunction);
+                        var distance = DtwImplementations.ExactDtwWikipedia(i.Features, j.Features, DistanceFunction);
+                        distanceMatrix[i.ID, j.ID] = distance;
+                        this.LogTrace(new ClassifierDistanceLogState(signerID, signerID, i.ID, j.ID, distance));
+
                     }
 
                 }
@@ -99,7 +110,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             var distances = distanceMatrix.GetValues().Where(v => v != 0);
             var mean = distances.Average();
-            var stdev = Math.Sqrt(distances.Select(d => (d - mean) * (d - mean)).Sum() / distances.Count());
+            var stdev = Math.Sqrt(distances.Select(d => (d - mean) * (d - mean)).Sum() / (distances.Count()-1));
 
             double med;
             var orderedDistances = new List<double>(distances).OrderBy(d => d);
@@ -116,6 +127,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             return new DtwSignerModel
             {
+                SignerID = signerID,
                 GenuineSignatures = genuines.Select(g => new KeyValuePair<string, double[][]>(g.ID, g.Features)).ToList(),
                 DistanceMatrix = distanceMatrix,
                 Threshold = mean + MultiplicationFactor * stdev
@@ -132,8 +144,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
             for (int i = 0; i < dtwModel.GenuineSignatures.Count; i++)
             {
-                distances[i] = DtwPy.Dtw(dtwModel.GenuineSignatures[i].Value, testSignature, DistanceFunction);
+                distances[i] = DtwImplementations.ExactDtwWikipedia(dtwModel.GenuineSignatures[i].Value, testSignature, DistanceFunction);
                 dtwModel.DistanceMatrix[signature.ID, dtwModel.GenuineSignatures[i].Key] = distances[i];
+                this.LogTrace(new ClassifierDistanceLogState(model.SignerID, signature?.Signer.ID, dtwModel.GenuineSignatures[i].Key, signature.ID, distances[i]));
             }
 
             // returns value between 0 and 1, how confident is the decision about genuineness

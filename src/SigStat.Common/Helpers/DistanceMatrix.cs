@@ -90,6 +90,23 @@ namespace SigStat.Common
 
         }
 
+        internal static DistanceMatrix<TRowKey, TColumnKey, TValue> FromArray(object[,] a)
+        {
+            var dm = new DistanceMatrix<TRowKey, TColumnKey, TValue>();
+            int columnCnt = a.GetLength(0);
+            int rowCnt = a.GetLength(1);
+
+            for (int i = 1; i < columnCnt; i++)
+            {
+                for (int j = 1; j < rowCnt; j++)
+                {
+                    dm[(TRowKey)a[0, j], (TColumnKey)a[i, 0]] = (TValue)a[i, j];
+                }
+            }
+
+            return dm;
+        }
+
         /// <summary>
         /// Enumerates all values stored on the Matrix
         /// </summary>

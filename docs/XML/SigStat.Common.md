@@ -22,6 +22,7 @@
   - [Sum(array,x1,y1,x2,y2)](#M-SigStat-Common-ArrayExtension-Sum-System-Double[0-,0-],System-Int32,System-Int32,System-Int32,System-Int32- 'SigStat.Common.ArrayExtension.Sum(System.Double[0:,0:],System.Int32,System.Int32,System.Int32,System.Int32)')
   - [SumCol(array,column)](#M-SigStat-Common-ArrayExtension-SumCol-System-Double[0-,0-],System-Int32- 'SigStat.Common.ArrayExtension.SumCol(System.Double[0:,0:],System.Int32)')
   - [SumRow(array,row)](#M-SigStat-Common-ArrayExtension-SumRow-System-Double[0-,0-],System-Int32- 'SigStat.Common.ArrayExtension.SumRow(System.Double[0:,0:],System.Int32)')
+  - [ToArrays\`\`1(items,capacity)](#M-SigStat-Common-ArrayExtension-ToArrays``1-System-Collections-Generic-IEnumerable{``0},System-Int32- 'SigStat.Common.ArrayExtension.ToArrays``1(System.Collections.Generic.IEnumerable{``0},System.Int32)')
 - [AutoSetMode](#T-SigStat-Common-Pipeline-AutoSetMode 'SigStat.Common.Pipeline.AutoSetMode')
   - [Always](#F-SigStat-Common-Pipeline-AutoSetMode-Always 'SigStat.Common.Pipeline.AutoSetMode.Always')
   - [IfNull](#F-SigStat-Common-Pipeline-AutoSetMode-IfNull 'SigStat.Common.Pipeline.AutoSetMode.IfNull')
@@ -43,9 +44,31 @@
   - [ToJsonString()](#M-SigStat-Common-Helpers-BenchmarkConfig-ToJsonString 'SigStat.Common.Helpers.BenchmarkConfig.ToJsonString')
   - [ToKeyValuePairs()](#M-SigStat-Common-Helpers-BenchmarkConfig-ToKeyValuePairs 'SigStat.Common.Helpers.BenchmarkConfig.ToKeyValuePairs')
   - [ToShortString()](#M-SigStat-Common-Helpers-BenchmarkConfig-ToShortString 'SigStat.Common.Helpers.BenchmarkConfig.ToShortString')
+- [BenchmarkKeyValueLogState](#T-SigStat-Common-Logging-BenchmarkKeyValueLogState 'SigStat.Common.Logging.BenchmarkKeyValueLogState')
+  - [#ctor(group,key,value)](#M-SigStat-Common-Logging-BenchmarkKeyValueLogState-#ctor-System-String,System-String,System-Object- 'SigStat.Common.Logging.BenchmarkKeyValueLogState.#ctor(System.String,System.String,System.Object)')
+  - [Group](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Group 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Group')
+  - [Key](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Key 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Key')
+  - [Value](#P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Value 'SigStat.Common.Logging.BenchmarkKeyValueLogState.Value')
+  - [ToString()](#M-SigStat-Common-Logging-BenchmarkKeyValueLogState-ToString 'SigStat.Common.Logging.BenchmarkKeyValueLogState.ToString')
+- [BenchmarkLogModel](#T-SigStat-Common-Logging-BenchmarkLogModel 'SigStat.Common.Logging.BenchmarkLogModel')
+  - [#ctor()](#M-SigStat-Common-Logging-BenchmarkLogModel-#ctor 'SigStat.Common.Logging.BenchmarkLogModel.#ctor')
+  - [BenchmarkResultsGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName')
+  - [ExecutionGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ExecutionGroupName')
+  - [ParametersGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ParametersGroupName')
+  - [BenchmarkResults](#P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResults 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResults')
+  - [Excecution](#P-SigStat-Common-Logging-BenchmarkLogModel-Excecution 'SigStat.Common.Logging.BenchmarkLogModel.Excecution')
+  - [KeyValueGroups](#P-SigStat-Common-Logging-BenchmarkLogModel-KeyValueGroups 'SigStat.Common.Logging.BenchmarkLogModel.KeyValueGroups')
+  - [Parameters](#P-SigStat-Common-Logging-BenchmarkLogModel-Parameters 'SigStat.Common.Logging.BenchmarkLogModel.Parameters')
+  - [SignerResults](#P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults 'SigStat.Common.Logging.BenchmarkLogModel.SignerResults')
 - [BenchmarkResults](#T-SigStat-Common-BenchmarkResults 'SigStat.Common.BenchmarkResults')
   - [FinalResult](#F-SigStat-Common-BenchmarkResults-FinalResult 'SigStat.Common.BenchmarkResults.FinalResult')
   - [SignerResults](#F-SigStat-Common-BenchmarkResults-SignerResults 'SigStat.Common.BenchmarkResults.SignerResults')
+- [BenchmarkResultsLogState](#T-SigStat-Common-Logging-BenchmarkResultsLogState 'SigStat.Common.Logging.BenchmarkResultsLogState')
+  - [#ctor(aer,far,frr)](#M-SigStat-Common-Logging-BenchmarkResultsLogState-#ctor-System-Double,System-Double,System-Double- 'SigStat.Common.Logging.BenchmarkResultsLogState.#ctor(System.Double,System.Double,System.Double)')
+  - [Aer](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Aer 'SigStat.Common.Logging.BenchmarkResultsLogState.Aer')
+  - [Far](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Far 'SigStat.Common.Logging.BenchmarkResultsLogState.Far')
+  - [Frr](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Frr 'SigStat.Common.Logging.BenchmarkResultsLogState.Frr')
+  - [ToString()](#M-SigStat-Common-Logging-BenchmarkResultsLogState-ToString 'SigStat.Common.Logging.BenchmarkResultsLogState.ToString')
 - [Binarization](#T-SigStat-Common-Transforms-Binarization 'SigStat.Common.Transforms.Binarization')
   - [#ctor()](#M-SigStat-Common-Transforms-Binarization-#ctor 'SigStat.Common.Transforms.Binarization.#ctor')
   - [#ctor(foregroundType,binThreshold)](#M-SigStat-Common-Transforms-Binarization-#ctor-SigStat-Common-Transforms-Binarization-ForegroundType,System-Nullable{System-Double}- 'SigStat.Common.Transforms.Binarization.#ctor(SigStat.Common.Transforms.Binarization.ForegroundType,System.Nullable{System.Double})')
@@ -71,6 +94,14 @@
   - [InputY](#P-SigStat-Common-Transforms-CentroidTranslate-InputY 'SigStat.Common.Transforms.CentroidTranslate.InputY')
   - [OutputX](#P-SigStat-Common-Transforms-CentroidTranslate-OutputX 'SigStat.Common.Transforms.CentroidTranslate.OutputX')
   - [OutputY](#P-SigStat-Common-Transforms-CentroidTranslate-OutputY 'SigStat.Common.Transforms.CentroidTranslate.OutputY')
+- [ClassifierDistanceLogState](#T-SigStat-Common-Logging-ClassifierDistanceLogState 'SigStat.Common.Logging.ClassifierDistanceLogState')
+  - [#ctor(signer1Id,signer2Id,signature1Id,signature2Id,distance)](#M-SigStat-Common-Logging-ClassifierDistanceLogState-#ctor-System-String,System-String,System-String,System-String,System-Double- 'SigStat.Common.Logging.ClassifierDistanceLogState.#ctor(System.String,System.String,System.String,System.String,System.Double)')
+  - [Distance](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Distance 'SigStat.Common.Logging.ClassifierDistanceLogState.Distance')
+  - [Signature1Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature1Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signature1Id')
+  - [Signature2Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature2Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signature2Id')
+  - [Signer1Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer1Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signer1Id')
+  - [Signer2Id](#P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer2Id 'SigStat.Common.Logging.ClassifierDistanceLogState.Signer2Id')
+  - [ToString()](#M-SigStat-Common-Logging-ClassifierDistanceLogState-ToString 'SigStat.Common.Logging.ClassifierDistanceLogState.ToString')
 - [ComponentExtraction](#T-SigStat-Common-Transforms-ComponentExtraction 'SigStat.Common.Transforms.ComponentExtraction')
   - [#ctor(samplingResolution)](#M-SigStat-Common-Transforms-ComponentExtraction-#ctor-System-Int32- 'SigStat.Common.Transforms.ComponentExtraction.#ctor(System.Int32)')
   - [CrossingPoints](#P-SigStat-Common-Transforms-ComponentExtraction-CrossingPoints 'SigStat.Common.Transforms.ComponentExtraction.CrossingPoints')
@@ -91,28 +122,34 @@
   - [X](#P-SigStat-Common-Transforms-ComponentsToFeatures-X 'SigStat.Common.Transforms.ComponentsToFeatures.X')
   - [Y](#P-SigStat-Common-Transforms-ComponentsToFeatures-Y 'SigStat.Common.Transforms.ComponentsToFeatures.Y')
   - [Transform()](#M-SigStat-Common-Transforms-ComponentsToFeatures-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.ComponentsToFeatures.Transform(SigStat.Common.Signature)')
+- [CompositeLogger](#T-SigStat-Common-Logging-CompositeLogger 'SigStat.Common.Logging.CompositeLogger')
+  - [Loggers](#P-SigStat-Common-Logging-CompositeLogger-Loggers 'SigStat.Common.Logging.CompositeLogger.Loggers')
+  - [BeginScope\`\`1()](#M-SigStat-Common-Logging-CompositeLogger-BeginScope``1-``0- 'SigStat.Common.Logging.CompositeLogger.BeginScope``1(``0)')
+  - [IsEnabled()](#M-SigStat-Common-Logging-CompositeLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.CompositeLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
+  - [Log\`\`1()](#M-SigStat-Common-Logging-CompositeLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.CompositeLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
+- [ConsoleMessageLoggedEventHandler](#T-SigStat-Common-Logging-SimpleConsoleLogger-ConsoleMessageLoggedEventHandler 'SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler')
 - [CubicInterpolation](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation')
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.TimeValues')
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.GetValue(System.Double)')
+- [DataCleaningHelper](#T-SigStat-Common-Helpers-DataCleaningHelper 'SigStat.Common.Helpers.DataCleaningHelper')
+  - [GeneratePointTypeValuesFromPressure(pressure)](#M-SigStat-Common-Helpers-DataCleaningHelper-GeneratePointTypeValuesFromPressure-System-Double[]- 'SigStat.Common.Helpers.DataCleaningHelper.GeneratePointTypeValuesFromPressure(System.Double[])')
+  - [InitializeTimestamps(signature,unitTimeSlot)](#M-SigStat-Common-Helpers-DataCleaningHelper-InitializeTimestamps-SigStat-Common-Signature,System-Double- 'SigStat.Common.Helpers.DataCleaningHelper.InitializeTimestamps(SigStat.Common.Signature,System.Double)')
 - [DataSetLoader](#T-SigStat-Common-Loaders-DataSetLoader 'SigStat.Common.Loaders.DataSetLoader')
   - [Logger](#P-SigStat-Common-Loaders-DataSetLoader-Logger 'SigStat.Common.Loaders.DataSetLoader.Logger')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-DataSetLoader-SamplingFrequency 'SigStat.Common.Loaders.DataSetLoader.SamplingFrequency')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [DistanceFunctionJsonConverter](#T-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter 'SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter')
+- [DistanceMatrixConverter](#T-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter')
+  - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},System.Boolean,Newtonsoft.Json.JsonSerializer)')
+  - [WriteJson()](#M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},Newtonsoft.Json.JsonSerializer)')
 - [DistanceMatrix\`3](#T-SigStat-Common-DistanceMatrix`3 'SigStat.Common.DistanceMatrix`3')
   - [Item](#P-SigStat-Common-DistanceMatrix`3-Item-`0,`1- 'SigStat.Common.DistanceMatrix`3.Item(`0,`1)')
   - [ContainsKey(row,column)](#M-SigStat-Common-DistanceMatrix`3-ContainsKey-`0,`1- 'SigStat.Common.DistanceMatrix`3.ContainsKey(`0,`1)')
   - [GetValues()](#M-SigStat-Common-DistanceMatrix`3-GetValues 'SigStat.Common.DistanceMatrix`3.GetValues')
   - [ToArray()](#M-SigStat-Common-DistanceMatrix`3-ToArray 'SigStat.Common.DistanceMatrix`3.ToArray')
   - [TryGetValue(row,column,value)](#M-SigStat-Common-DistanceMatrix`3-TryGetValue-`0,`1,`2@- 'SigStat.Common.DistanceMatrix`3.TryGetValue(`0,`1,`2@)')
-- [Dtw](#T-SigStat-Common-Algorithms-Dtw 'SigStat.Common.Algorithms.Dtw')
-  - [#ctor()](#M-SigStat-Common-Algorithms-Dtw-#ctor 'SigStat.Common.Algorithms.Dtw.#ctor')
-  - [#ctor(distMethod)](#M-SigStat-Common-Algorithms-Dtw-#ctor-System-Func{System-Double[],System-Double[],System-Double}- 'SigStat.Common.Algorithms.Dtw.#ctor(System.Func{System.Double[],System.Double[],System.Double})')
-  - [ForwardPath](#P-SigStat-Common-Algorithms-Dtw-ForwardPath 'SigStat.Common.Algorithms.Dtw.ForwardPath')
-  - [Compute()](#M-SigStat-Common-Algorithms-Dtw-Compute-System-Double[][],System-Double[][]- 'SigStat.Common.Algorithms.Dtw.Compute(System.Double[][],System.Double[][])')
-  - [Distance(p1,p2)](#M-SigStat-Common-Algorithms-Dtw-Distance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Dtw.Distance(System.Double[],System.Double[])')
 - [DtwClassifier](#T-SigStat-Common-PipelineItems-Classifiers-DtwClassifier 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier')
   - [#ctor()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.#ctor')
   - [#ctor(distanceMethod)](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor-System-Func{System-Double[],System-Double[],System-Double}- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.#ctor(System.Func{System.Double[],System.Double[],System.Double})')
@@ -121,26 +158,33 @@
   - [MultiplicationFactor](#P-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-MultiplicationFactor 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.MultiplicationFactor')
   - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
   - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.DtwClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
-- [DtwPy](#T-SigStat-Common-Algorithms-DtwPy 'SigStat.Common.Algorithms.DtwPy')
-  - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwPy-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwPy.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
-  - [EuclideanDistance(vector1,vector2)](#M-SigStat-Common-Algorithms-DtwPy-EuclideanDistance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.DtwPy.EuclideanDistance(System.Double[],System.Double[])')
-- [DtwPyWindow](#T-SigStat-Common-Algorithms-DtwPyWindow 'SigStat.Common.Algorithms.DtwPyWindow')
-  - [Dtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwPyWindow-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwPyWindow.Dtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
-  - [EuclideanDistance(vector1,vector2)](#M-SigStat-Common-Algorithms-DtwPyWindow-EuclideanDistance-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.DtwPyWindow.EuclideanDistance(System.Double[],System.Double[])')
+- [DtwDistance](#T-SigStat-Common-Algorithms-Distances-DtwDistance 'SigStat.Common.Algorithms.Distances.DtwDistance')
+  - [#ctor(localDistance)](#M-SigStat-Common-Algorithms-Distances-DtwDistance-#ctor-SigStat-Common-Algorithms-Distances-IDistance{System-Double[]}- 'SigStat.Common.Algorithms.Distances.DtwDistance.#ctor(SigStat.Common.Algorithms.Distances.IDistance{System.Double[]})')
+  - [LocalDistance](#P-SigStat-Common-Algorithms-Distances-DtwDistance-LocalDistance 'SigStat.Common.Algorithms.Distances.DtwDistance.LocalDistance')
+  - [Calculate()](#M-SigStat-Common-Algorithms-Distances-DtwDistance-Calculate-System-Double[][],System-Double[][]- 'SigStat.Common.Algorithms.Distances.DtwDistance.Calculate(System.Double[][],System.Double[][])')
+- [DtwImplementations](#T-SigStat-Common-Algorithms-DtwImplementations 'SigStat.Common.Algorithms.DtwImplementations')
+  - [ConstrainedDTw\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.ConstrainedDTw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
+  - [ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w)](#M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.ConstrainedDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32)')
+  - [ExactDtwWikipedia\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwImplementations-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
+  - [ExactDtw\`\`1(sequence1,sequence2,distance)](#M-SigStat-Common-Algorithms-DtwImplementations-ExactDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.DtwImplementations.ExactDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double})')
+  - [OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r)](#M-SigStat-Common-Algorithms-DtwImplementations-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32- 'SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Double},System.Int32,System.Int32)')
 - [DtwSignerModel](#T-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel')
   - [DistanceMatrix](#F-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.DistanceMatrix')
   - [Threshold](#F-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.Threshold')
   - [GenuineSignatures](#P-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-GenuineSignatures 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.GenuineSignatures')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.SignerID')
 - [EndpointExtraction](#T-SigStat-Common-Transforms-EndpointExtraction 'SigStat.Common.Transforms.EndpointExtraction')
   - [OutputCrossingPoints](#P-SigStat-Common-Transforms-EndpointExtraction-OutputCrossingPoints 'SigStat.Common.Transforms.EndpointExtraction.OutputCrossingPoints')
   - [OutputEndpoints](#P-SigStat-Common-Transforms-EndpointExtraction-OutputEndpoints 'SigStat.Common.Transforms.EndpointExtraction.OutputEndpoints')
   - [Skeleton](#P-SigStat-Common-Transforms-EndpointExtraction-Skeleton 'SigStat.Common.Transforms.EndpointExtraction.Skeleton')
   - [Transform()](#M-SigStat-Common-Transforms-EndpointExtraction-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.EndpointExtraction.Transform(SigStat.Common.Signature)')
-- [ErrorEventHandler](#T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler 'SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler')
+- [ErrorEventHandler](#T-SigStat-Common-Logging-CompositeLogger-ErrorEventHandler 'SigStat.Common.Logging.CompositeLogger.ErrorEventHandler')
 - [ErrorRate](#T-SigStat-Common-ErrorRate 'SigStat.Common.ErrorRate')
   - [Far](#F-SigStat-Common-ErrorRate-Far 'SigStat.Common.ErrorRate.Far')
   - [Frr](#F-SigStat-Common-ErrorRate-Frr 'SigStat.Common.ErrorRate.Frr')
   - [Aer](#P-SigStat-Common-ErrorRate-Aer 'SigStat.Common.ErrorRate.Aer')
+- [EuclideanDistance](#T-SigStat-Common-Algorithms-Distances-EuclideanDistance 'SigStat.Common.Algorithms.Distances.EuclideanDistance')
+  - [Calculate(x,y)](#M-SigStat-Common-Algorithms-Distances-EuclideanDistance-Calculate-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Distances.EuclideanDistance.Calculate(System.Double[],System.Double[])')
 - [EvenNSampler](#T-SigStat-Common-Framework-Samplers-EvenNSampler 'SigStat.Common.Framework.Samplers.EvenNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-EvenNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.EvenNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-EvenNSampler-N 'SigStat.Common.Framework.Samplers.EvenNSampler.N')
@@ -167,6 +211,8 @@
   - [InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable``1(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.String)')
   - [InsertText(ws,row,col,text,level)](#M-SigStat-Common-Helpers-ExcelHelper-InsertText-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-String,SigStat-Common-Helpers-Excel-TextLevel- 'SigStat.Common.Helpers.ExcelHelper.InsertText(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.String,SigStat.Common.Helpers.Excel.TextLevel)')
   - [Merge(range)](#M-SigStat-Common-Helpers-ExcelHelper-Merge-OfficeOpenXml-ExcelRangeBase- 'SigStat.Common.Helpers.ExcelHelper.Merge(OfficeOpenXml.ExcelRangeBase)')
+- [ExcelReportGenerator](#T-SigStat-Common-Logging-ExcelReportGenerator 'SigStat.Common.Logging.ExcelReportGenerator')
+  - [GenerateReport(model,fileName)](#M-SigStat-Common-Logging-ExcelReportGenerator-GenerateReport-SigStat-Common-Logging-BenchmarkLogModel,System-String- 'SigStat.Common.Logging.ExcelReportGenerator.GenerateReport(SigStat.Common.Logging.BenchmarkLogModel,System.String)')
 - [Extrema](#T-SigStat-Common-Transforms-Extrema 'SigStat.Common.Transforms.Extrema')
   - [Transform()](#M-SigStat-Common-Transforms-Extrema-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Extrema.Transform(SigStat.Common.Signature)')
 - [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')
@@ -201,16 +247,17 @@
 - [FeatureDescriptor\`1](#T-SigStat-Common-FeatureDescriptor`1 'SigStat.Common.FeatureDescriptor`1')
   - [Get()](#M-SigStat-Common-FeatureDescriptor`1-Get-System-String- 'SigStat.Common.FeatureDescriptor`1.Get(System.String)')
 - [FeatureStreamingContextState](#T-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState')
-  - [#ctor()](#M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor')
+  - [#ctor()](#M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor-System-Boolean- 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor(System.Boolean)')
   - [KnownFeatureKeys](#P-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-KnownFeatureKeys 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.KnownFeatureKeys')
 - [Features](#T-SigStat-Common-Features 'SigStat.Common.Features')
   - [All](#F-SigStat-Common-Features-All 'SigStat.Common.Features.All')
   - [Altitude](#F-SigStat-Common-Features-Altitude 'SigStat.Common.Features.Altitude')
   - [Azimuth](#F-SigStat-Common-Features-Azimuth 'SigStat.Common.Features.Azimuth')
-  - [Button](#F-SigStat-Common-Features-Button 'SigStat.Common.Features.Button')
   - [Cog](#F-SigStat-Common-Features-Cog 'SigStat.Common.Features.Cog')
   - [Dpi](#F-SigStat-Common-Features-Dpi 'SigStat.Common.Features.Dpi')
   - [Image](#F-SigStat-Common-Features-Image 'SigStat.Common.Features.Image')
+  - [PenDown](#F-SigStat-Common-Features-PenDown 'SigStat.Common.Features.PenDown')
+  - [PointType](#F-SigStat-Common-Features-PointType 'SigStat.Common.Features.PointType')
   - [Pressure](#F-SigStat-Common-Features-Pressure 'SigStat.Common.Features.Pressure')
   - [Size](#F-SigStat-Common-Features-Size 'SigStat.Common.Features.Size')
   - [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
@@ -221,6 +268,10 @@
   - [InputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-InputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InputFeatures')
   - [InterpolationType](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-InterpolationType 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.InterpolationType')
   - [OutputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-OutputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.OutputFeatures')
+  - [PointTypeInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypeInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypeInputFeature')
+  - [PointTypeOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypeOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PointTypeOutputFeature')
+  - [PressureInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureInputFeature')
+  - [PressureOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.PressureOutputFeature')
   - [TimeInputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeInputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeInputFeature')
   - [TimeOutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeOutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeOutputFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.Transform(SigStat.Common.Signature)')
@@ -263,6 +314,8 @@
   - [EnumerateSigners(signerFilter)](#M-SigStat-Common-Loaders-IDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
   - [DistanceFunction](#P-SigStat-Common-Pipeline-IDistanceClassifier-DistanceFunction 'SigStat.Common.Pipeline.IDistanceClassifier.DistanceFunction')
+- [IDistance\`1](#T-SigStat-Common-Algorithms-Distances-IDistance`1 'SigStat.Common.Algorithms.Distances.IDistance`1')
+  - [Calculate(p1,p2)](#M-SigStat-Common-Algorithms-Distances-IDistance`1-Calculate-`0,`0- 'SigStat.Common.Algorithms.Distances.IDistance`1.Calculate(`0,`0)')
 - [IInterpolation](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation 'SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation')
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.TimeValues')
@@ -276,6 +329,7 @@
   - [LogError(obj,exception,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogError-SigStat-Common-ILoggerObject,System-Exception,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogError(SigStat.Common.ILoggerObject,System.Exception,System.String,System.Object[])')
   - [LogInformation(obj,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogInformation-SigStat-Common-ILoggerObject,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogInformation(SigStat.Common.ILoggerObject,System.String,System.Object[])')
   - [LogTrace(obj,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogTrace-SigStat-Common-ILoggerObject,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogTrace(SigStat.Common.ILoggerObject,System.String,System.Object[])')
+  - [LogTrace\`\`1(obj,state,eventId,exception,formatter)](#M-SigStat-Common-ILoggerObjectExtensions-LogTrace``1-SigStat-Common-ILoggerObject,``0,Microsoft-Extensions-Logging-EventId,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.ILoggerObjectExtensions.LogTrace``1(SigStat.Common.ILoggerObject,``0,Microsoft.Extensions.Logging.EventId,System.Exception,System.Func{``0,System.Exception,System.String})')
   - [LogWarning(obj,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogWarning-SigStat-Common-ILoggerObject,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogWarning(SigStat.Common.ILoggerObject,System.String,System.Object[])')
   - [LogWarning(obj,exception,message,args)](#M-SigStat-Common-ILoggerObjectExtensions-LogWarning-SigStat-Common-ILoggerObject,System-Exception,System-String,System-Object[]- 'SigStat.Common.ILoggerObjectExtensions.LogWarning(SigStat.Common.ILoggerObject,System.Exception,System.String,System.Object[])')
 - [IOExtensions](#T-SigStat-Common-IOExtensions 'SigStat.Common.IOExtensions')
@@ -286,6 +340,7 @@
 - [IProgress](#T-SigStat-Common-Helpers-IProgress 'SigStat.Common.Helpers.IProgress')
   - [Progress](#P-SigStat-Common-Helpers-IProgress-Progress 'SigStat.Common.Helpers.IProgress.Progress')
 - [ISignerModel](#T-SigStat-Common-Pipeline-ISignerModel 'SigStat.Common.Pipeline.ISignerModel')
+  - [SignerID](#P-SigStat-Common-Pipeline-ISignerModel-SignerID 'SigStat.Common.Pipeline.ISignerModel.SignerID')
 - [ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
   - [Transform(signature)](#M-SigStat-Common-ITransformation-Transform-SigStat-Common-Signature- 'SigStat.Common.ITransformation.Transform(SigStat.Common.Signature)')
 - [ImageGenerator](#T-SigStat-Common-Transforms-ImageGenerator 'SigStat.Common.Transforms.ImageGenerator')
@@ -308,6 +363,13 @@
 - [Input](#T-SigStat-Common-Pipeline-Input 'SigStat.Common.Pipeline.Input')
   - [#ctor(AutoSetMode)](#M-SigStat-Common-Pipeline-Input-#ctor-SigStat-Common-Pipeline-AutoSetMode- 'SigStat.Common.Pipeline.Input.#ctor(SigStat.Common.Pipeline.AutoSetMode)')
   - [AutoSetMode](#F-SigStat-Common-Pipeline-Input-AutoSetMode 'SigStat.Common.Pipeline.Input.AutoSetMode')
+- [KeyValueGroup](#T-SigStat-Common-Logging-KeyValueGroup 'SigStat.Common.Logging.KeyValueGroup')
+  - [#ctor(name)](#M-SigStat-Common-Logging-KeyValueGroup-#ctor-System-String- 'SigStat.Common.Logging.KeyValueGroup.#ctor(System.String)')
+  - [Items](#P-SigStat-Common-Logging-KeyValueGroup-Items 'SigStat.Common.Logging.KeyValueGroup.Items')
+  - [Name](#P-SigStat-Common-Logging-KeyValueGroup-Name 'SigStat.Common.Logging.KeyValueGroup.Name')
+- [KeyValueGroupConverter](#T-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter 'SigStat.Common.Helpers.Serialization.KeyValueGroupConverter')
+  - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-Logging-KeyValueGroup,System-Boolean,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.KeyValueGroupConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.Logging.KeyValueGroup,System.Boolean,Newtonsoft.Json.JsonSerializer)')
+  - [WriteJson()](#M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-Logging-KeyValueGroup,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.KeyValueGroupConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.Logging.KeyValueGroup,Newtonsoft.Json.JsonSerializer)')
 - [LastNSampler](#T-SigStat-Common-Framework-Samplers-LastNSampler 'SigStat.Common.Framework.Samplers.LastNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-LastNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.LastNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-LastNSampler-N 'SigStat.Common.Framework.Samplers.LastNSampler.N')
@@ -317,6 +379,9 @@
   - [FeatureValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-FeatureValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.FeatureValues')
   - [TimeValues](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-TimeValues 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.TimeValues')
   - [GetValue(timestamp)](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-LinearInterpolation-GetValue-System-Double- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.GetValue(System.Double)')
+- [LogAnalyzer](#T-SigStat-Common-Logging-LogAnalyzer 'SigStat.Common.Logging.LogAnalyzer')
+  - [GetBenchmarkLogModel(logs)](#M-SigStat-Common-Logging-LogAnalyzer-GetBenchmarkLogModel-System-Collections-Generic-IEnumerable{SigStat-Common-Logging-SigStatLogState}- 'SigStat.Common.Logging.LogAnalyzer.GetBenchmarkLogModel(System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState})')
+- [LogStateLoggedEventHandler](#T-SigStat-Common-Logging-ReportInformationLogger-LogStateLoggedEventHandler 'SigStat.Common.Logging.ReportInformationLogger.LogStateLoggedEventHandler')
 - [Loop](#T-SigStat-Common-Loop 'SigStat.Common.Loop')
   - [#ctor()](#M-SigStat-Common-Loop-#ctor 'SigStat.Common.Loop.#ctor')
   - [#ctor(centerX,centerY)](#M-SigStat-Common-Loop-#ctor-System-Single,System-Single- 'SigStat.Common.Loop.#ctor(System.Single,System.Single)')
@@ -334,9 +399,12 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-MCYTLoader-DatabasePath 'SigStat.Common.Loaders.MCYTLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-MCYTLoader-SamplingFrequency 'SigStat.Common.Loaders.MCYTLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-MCYTLoader-SignerFilter 'SigStat.Common.Loaders.MCYTLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-MCYTLoader-StandardFeatures 'SigStat.Common.Loaders.MCYTLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-MCYTLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MCYTLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
+- [ManhattanDistance](#T-SigStat-Common-Algorithms-Distances-ManhattanDistance 'SigStat.Common.Algorithms.Distances.ManhattanDistance')
+  - [Calculate(x,y)](#M-SigStat-Common-Algorithms-Distances-ManhattanDistance-Calculate-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Distances.ManhattanDistance.Calculate(System.Double[],System.Double[])')
 - [Map](#T-SigStat-Common-Transforms-Map 'SigStat.Common.Transforms.Map')
   - [#ctor(minVal,maxVal)](#M-SigStat-Common-Transforms-Map-#ctor-System-Double,System-Double- 'SigStat.Common.Transforms.Map.#ctor(System.Double,System.Double)')
   - [Input](#P-SigStat-Common-Transforms-Map-Input 'SigStat.Common.Transforms.Map.Input')
@@ -351,6 +419,14 @@
   - [InputList](#P-SigStat-Common-Transforms-Multiply-InputList 'SigStat.Common.Transforms.Multiply.InputList')
   - [Output](#P-SigStat-Common-Transforms-Multiply-Output 'SigStat.Common.Transforms.Multiply.Output')
   - [Transform()](#M-SigStat-Common-Transforms-Multiply-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)')
+- [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
+  - [#ctor(nearestNeighborCount,distanceFunction)](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-#ctor-System-Nullable{System-Int32},SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.#ctor(System.Nullable{System.Int32},SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})')
+  - [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction')
+  - [Features](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Features 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Features')
+  - [Sampler](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler')
+  - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
+  - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
+  - [Train(signatures,distanceMatrix)](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})')
 - [Normalize](#T-SigStat-Common-Transforms-Normalize 'SigStat.Common.Transforms.Normalize')
   - [Input](#P-SigStat-Common-Transforms-Normalize-Input 'SigStat.Common.Transforms.Normalize.Input')
   - [Output](#P-SigStat-Common-Transforms-Normalize-Output 'SigStat.Common.Transforms.Normalize.Output')
@@ -362,6 +438,18 @@
   - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.OutputX')
   - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.OutputY')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.Transform(SigStat.Common.Signature)')
+- [NormalizeRotation2](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2')
+  - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.InputX')
+  - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.InputY')
+  - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.OutputX')
+  - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.OutputY')
+  - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.Transform(SigStat.Common.Signature)')
+- [NormalizeRotation3](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3')
+  - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.InputX')
+  - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.InputY')
+  - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.OutputX')
+  - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.OutputY')
+  - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.Transform(SigStat.Common.Signature)')
 - [NormalizeRotationForX](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX')
   - [InputT](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-InputT 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputT')
   - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.InputX')
@@ -391,6 +479,7 @@
   - [DistanceMatrix](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.DistanceMatrix')
   - [ErrorRates](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-ErrorRates 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.ErrorRates')
   - [SignatureDistanceFromTraining](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-SignatureDistanceFromTraining 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.SignatureDistanceFromTraining')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.SignerID')
   - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.Threshold')
 - [Origin](#T-SigStat-Common-Origin 'SigStat.Common.Origin')
   - [Forged](#F-SigStat-Common-Origin-Forged 'SigStat.Common.Origin.Forged')
@@ -453,6 +542,16 @@
   - [IsTemporary](#P-SigStat-Common-Pipeline-PipelineOutput-IsTemporary 'SigStat.Common.Pipeline.PipelineOutput.IsTemporary')
   - [PropName](#P-SigStat-Common-Pipeline-PipelineOutput-PropName 'SigStat.Common.Pipeline.PipelineOutput.PropName')
   - [Type](#P-SigStat-Common-Pipeline-PipelineOutput-Type 'SigStat.Common.Pipeline.PipelineOutput.Type')
+- [ProgressHelper](#T-SigStat-Common-Helpers-ProgressHelper 'SigStat.Common.Helpers.ProgressHelper')
+  - [#ctor()](#M-SigStat-Common-Helpers-ProgressHelper-#ctor 'SigStat.Common.Helpers.ProgressHelper.#ctor')
+  - [Elapsed](#P-SigStat-Common-Helpers-ProgressHelper-Elapsed 'SigStat.Common.Helpers.ProgressHelper.Elapsed')
+  - [Eta](#P-SigStat-Common-Helpers-ProgressHelper-Eta 'SigStat.Common.Helpers.ProgressHelper.Eta')
+  - [Maximum](#P-SigStat-Common-Helpers-ProgressHelper-Maximum 'SigStat.Common.Helpers.ProgressHelper.Maximum')
+  - [Remaining](#P-SigStat-Common-Helpers-ProgressHelper-Remaining 'SigStat.Common.Helpers.ProgressHelper.Remaining')
+  - [ReportIntervallSeconds](#P-SigStat-Common-Helpers-ProgressHelper-ReportIntervallSeconds 'SigStat.Common.Helpers.ProgressHelper.ReportIntervallSeconds')
+  - [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value')
+  - [Dispose()](#M-SigStat-Common-Helpers-ProgressHelper-Dispose 'SigStat.Common.Helpers.ProgressHelper.Dispose')
+  - [StartNew(maximum,reportIntervallSeconds,reportProgress)](#M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}- 'SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper})')
 - [RealisticImageGenerator](#T-SigStat-Common-Transforms-RealisticImageGenerator 'SigStat.Common.Transforms.RealisticImageGenerator')
   - [#ctor(resolutionX,resolutionY)](#M-SigStat-Common-Transforms-RealisticImageGenerator-#ctor-System-Int32,System-Int32- 'SigStat.Common.Transforms.RealisticImageGenerator.#ctor(System.Int32,System.Int32)')
   - [Altitude](#P-SigStat-Common-Transforms-RealisticImageGenerator-Altitude 'SigStat.Common.Transforms.RealisticImageGenerator.Altitude')
@@ -473,6 +572,13 @@
   - [OutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-OutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.OutputFeature')
   - [ReferenceFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-ReferenceFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.ReferenceFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.Transform(SigStat.Common.Signature)')
+- [ReportInformationLogger](#T-SigStat-Common-Logging-ReportInformationLogger 'SigStat.Common.Logging.ReportInformationLogger')
+  - [#ctor()](#M-SigStat-Common-Logging-ReportInformationLogger-#ctor 'SigStat.Common.Logging.ReportInformationLogger.#ctor')
+  - [reportLogs](#F-SigStat-Common-Logging-ReportInformationLogger-reportLogs 'SigStat.Common.Logging.ReportInformationLogger.reportLogs')
+  - [BeginScope\`\`1()](#M-SigStat-Common-Logging-ReportInformationLogger-BeginScope``1-``0- 'SigStat.Common.Logging.ReportInformationLogger.BeginScope``1(``0)')
+  - [GetReportLogs()](#M-SigStat-Common-Logging-ReportInformationLogger-GetReportLogs 'SigStat.Common.Logging.ReportInformationLogger.GetReportLogs')
+  - [IsEnabled()](#M-SigStat-Common-Logging-ReportInformationLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.ReportInformationLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
+  - [Log\`\`1()](#M-SigStat-Common-Logging-ReportInformationLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.ReportInformationLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
 - [ResampleSamplesCountBased](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased')
   - [InputFeatures](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased-InputFeatures 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.InputFeatures')
   - [InterpolationType](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-ResampleSamplesCountBased-InterpolationType 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.InterpolationType')
@@ -503,7 +609,7 @@
   - [samplerate](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-samplerate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.samplerate')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.Transform(SigStat.Common.Signature)')
 - [SampleRateResults](#T-SigStat-Common-Model-SampleRateResults 'SigStat.Common.Model.SampleRateResults')
-  - [AER2](#P-SigStat-Common-Model-SampleRateResults-AER2 'SigStat.Common.Model.SampleRateResults.AER2')
+  - [AER](#P-SigStat-Common-Model-SampleRateResults-AER 'SigStat.Common.Model.SampleRateResults.AER')
 - [Sampler](#T-SigStat-Common-Sampler 'SigStat.Common.Sampler')
   - [#ctor(references,genuineTests,forgeryTests)](#M-SigStat-Common-Sampler-#ctor-System-Func{System-Collections-Generic-List{SigStat-Common-Signature},System-Collections-Generic-List{SigStat-Common-Signature}},System-Func{System-Collections-Generic-List{SigStat-Common-Signature},System-Collections-Generic-List{SigStat-Common-Signature}},System-Func{System-Collections-Generic-List{SigStat-Common-Signature},System-Collections-Generic-List{SigStat-Common-Signature}}- 'SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})')
   - [ForgeryTestFilter](#P-SigStat-Common-Sampler-ForgeryTestFilter 'SigStat.Common.Sampler.ForgeryTestFilter')
@@ -514,10 +620,12 @@
   - [SampleReferences()](#M-SigStat-Common-Sampler-SampleReferences-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.Sampler.SampleReferences(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [Scale](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale')
   - [InputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-InputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.InputFeature')
-  - [NewMaxValue](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMaxValue 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMaxValue')
-  - [NewMinValue](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMinValue 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.NewMinValue')
+  - [Mode](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-Mode 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.Mode')
   - [OutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-OutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.OutputFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.Transform(SigStat.Common.Signature)')
+- [ScalingMode](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode')
+  - [Scaling1](#F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-Scaling1 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.Scaling1')
+  - [ScalingS](#F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-ScalingS 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.ScalingS')
 - [SequentialTransformPipeline](#T-SigStat-Common-Pipeline-SequentialTransformPipeline 'SigStat.Common.Pipeline.SequentialTransformPipeline')
   - [Items](#F-SigStat-Common-Pipeline-SequentialTransformPipeline-Items 'SigStat.Common.Pipeline.SequentialTransformPipeline.Items')
   - [PipelineInputs](#P-SigStat-Common-Pipeline-SequentialTransformPipeline-PipelineInputs 'SigStat.Common.Pipeline.SequentialTransformPipeline.PipelineInputs')
@@ -528,8 +636,8 @@
 - [SerializationHelper](#T-SigStat-Common-Helpers-SerializationHelper 'SigStat.Common.Helpers.SerializationHelper')
   - [DeserializeFromFile\`\`1(path)](#M-SigStat-Common-Helpers-SerializationHelper-DeserializeFromFile``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.DeserializeFromFile``1(System.String)')
   - [Deserialize\`\`1(s)](#M-SigStat-Common-Helpers-SerializationHelper-Deserialize``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.Deserialize``1(System.String)')
-  - [GetSettings()](#M-SigStat-Common-Helpers-SerializationHelper-GetSettings 'SigStat.Common.Helpers.SerializationHelper.GetSettings')
-  - [JsonSerializeToFile\`\`1(o,path)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String)')
+  - [GetSettings()](#M-SigStat-Common-Helpers-SerializationHelper-GetSettings-System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.GetSettings(System.Boolean)')
+  - [JsonSerializeToFile\`\`1(o,path)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String,System.Boolean)')
   - [JsonSerialize\`\`1(o)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)')
 - [SigComp11](#T-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11')
   - [T](#F-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11-T 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.T')
@@ -545,6 +653,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11ChineseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11ChineseLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp11ChineseLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11ChineseLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -552,6 +661,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11DutchLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11DutchLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11DutchLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp11DutchLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp11DutchLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp11DutchLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11DutchLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp11DutchLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -564,6 +674,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp13JapaneseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp13JapaneseLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -576,6 +687,7 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp15GermanLoader-DatabasePath 'SigStat.Common.Loaders.SigComp15GermanLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp15GermanLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter 'SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp15GermanLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp15GermanLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp15GermanLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp15GermanLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp15GermanLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
@@ -592,12 +704,15 @@
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp19OnlineLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp19OnlineLoader.#ctor(System.String,System.Boolean)')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-DatabasePath 'SigStat.Common.Loaders.SigComp19OnlineLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp19OnlineLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-SignerFilter 'SigStat.Common.Loaders.SigComp19OnlineLoader.SignerFilter')
   - [StandardFeatures](#P-SigStat-Common-Loaders-SigComp19OnlineLoader-StandardFeatures 'SigStat.Common.Loaders.SigComp19OnlineLoader.StandardFeatures')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-SigComp19OnlineLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp19OnlineLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp19OnlineLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp19OnlineLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
 - [SigStatEvents](#T-SigStat-Common-SigStatEvents 'SigStat.Common.SigStatEvents')
   - [BenchmarkEvent](#F-SigStat-Common-SigStatEvents-BenchmarkEvent 'SigStat.Common.SigStatEvents.BenchmarkEvent')
   - [VerifierEvent](#F-SigStat-Common-SigStatEvents-VerifierEvent 'SigStat.Common.SigStatEvents.VerifierEvent')
+- [SigStatLogState](#T-SigStat-Common-Logging-SigStatLogState 'SigStat.Common.Logging.SigStatLogState')
+  - [Source](#P-SigStat-Common-Logging-SigStatLogState-Source 'SigStat.Common.Logging.SigStatLogState.Source')
 - [Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature')
   - [#ctor()](#M-SigStat-Common-Signature-#ctor 'SigStat.Common.Signature.#ctor')
   - [#ctor(signatureID,origin,signer)](#M-SigStat-Common-Signature-#ctor-System-String,SigStat-Common-Origin,SigStat-Common-Signer- 'SigStat.Common.Signature.#ctor(System.String,SigStat.Common.Origin,SigStat.Common.Signer)')
@@ -620,10 +735,34 @@
 - [SignatureHelper](#T-SigStat-Common-SignatureHelper 'SigStat.Common.SignatureHelper')
   - [GetSignatureLength(signature)](#M-SigStat-Common-SignatureHelper-GetSignatureLength-SigStat-Common-Signature- 'SigStat.Common.SignatureHelper.GetSignatureLength(SigStat.Common.Signature)')
   - [SaveImage(sig,fileName)](#M-SigStat-Common-SignatureHelper-SaveImage-SigStat-Common-Signature,System-String- 'SigStat.Common.SignatureHelper.SaveImage(SigStat.Common.Signature,System.String)')
+- [SignatureLogState](#T-SigStat-Common-Logging-SignatureLogState 'SigStat.Common.Logging.SignatureLogState')
+  - [SignatureID](#P-SigStat-Common-Logging-SignatureLogState-SignatureID 'SigStat.Common.Logging.SignatureLogState.SignatureID')
+  - [SignerID](#P-SigStat-Common-Logging-SignatureLogState-SignerID 'SigStat.Common.Logging.SignatureLogState.SignerID')
 - [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')
   - [ID](#P-SigStat-Common-Signer-ID 'SigStat.Common.Signer.ID')
   - [Signatures](#P-SigStat-Common-Signer-Signatures 'SigStat.Common.Signer.Signatures')
   - [ToString()](#M-SigStat-Common-Signer-ToString 'SigStat.Common.Signer.ToString')
+- [SignerLogState](#T-SigStat-Common-Logging-SignerLogState 'SigStat.Common.Logging.SignerLogState')
+  - [SignerID](#P-SigStat-Common-Logging-SignerLogState-SignerID 'SigStat.Common.Logging.SignerLogState.SignerID')
+- [SignerModel](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel')
+  - [DistanceMatrix](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.DistanceMatrix')
+  - [ErrorRates](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-ErrorRates 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.ErrorRates')
+  - [SignatureDistanceFromTraining](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignatureDistanceFromTraining 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignatureDistanceFromTraining')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignerID')
+  - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.Threshold')
+- [SignerResults](#T-SigStat-Common-Logging-SignerResults 'SigStat.Common.Logging.SignerResults')
+  - [#ctor(signerId)](#M-SigStat-Common-Logging-SignerResults-#ctor-System-String- 'SigStat.Common.Logging.SignerResults.#ctor(System.String)')
+  - [Aer](#F-SigStat-Common-Logging-SignerResults-Aer 'SigStat.Common.Logging.SignerResults.Aer')
+  - [Far](#F-SigStat-Common-Logging-SignerResults-Far 'SigStat.Common.Logging.SignerResults.Far')
+  - [Frr](#F-SigStat-Common-Logging-SignerResults-Frr 'SigStat.Common.Logging.SignerResults.Frr')
+  - [DistanceMatrix](#P-SigStat-Common-Logging-SignerResults-DistanceMatrix 'SigStat.Common.Logging.SignerResults.DistanceMatrix')
+  - [SignerID](#P-SigStat-Common-Logging-SignerResults-SignerID 'SigStat.Common.Logging.SignerResults.SignerID')
+- [SignerResultsLogState](#T-SigStat-Common-Logging-SignerResultsLogState 'SigStat.Common.Logging.SignerResultsLogState')
+  - [#ctor(signerId,aer,far,frr)](#M-SigStat-Common-Logging-SignerResultsLogState-#ctor-System-String,System-Double,System-Double,System-Double- 'SigStat.Common.Logging.SignerResultsLogState.#ctor(System.String,System.Double,System.Double,System.Double)')
+  - [Aer](#P-SigStat-Common-Logging-SignerResultsLogState-Aer 'SigStat.Common.Logging.SignerResultsLogState.Aer')
+  - [Far](#P-SigStat-Common-Logging-SignerResultsLogState-Far 'SigStat.Common.Logging.SignerResultsLogState.Far')
+  - [Frr](#P-SigStat-Common-Logging-SignerResultsLogState-Frr 'SigStat.Common.Logging.SignerResultsLogState.Frr')
+  - [ToString()](#M-SigStat-Common-Logging-SignerResultsLogState-ToString 'SigStat.Common.Logging.SignerResultsLogState.ToString')
 - [SignerStatisticsHelper](#T-SigStat-Common-Helpers-SignerStatisticsHelper 'SigStat.Common.Helpers.SignerStatisticsHelper')
   - [GetHeightAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetHeightAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetHeightAvg(SigStat.Common.Signer)')
   - [GetLengthAverage(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetLengthAverage-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetLengthAverage(SigStat.Common.Signer)')
@@ -631,13 +770,13 @@
   - [GetMinSignaturePoints(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetMinSignaturePoints-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetMinSignaturePoints(SigStat.Common.Signer)')
   - [GetPointsAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetPointsAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetPointsAvg(SigStat.Common.Signer)')
   - [GetWidthAvg(signer)](#M-SigStat-Common-Helpers-SignerStatisticsHelper-GetWidthAvg-SigStat-Common-Signer- 'SigStat.Common.Helpers.SignerStatisticsHelper.GetWidthAvg(SigStat.Common.Signer)')
-- [SimpleConsoleLogger](#T-SigStat-Common-Helpers-SimpleConsoleLogger 'SigStat.Common.Helpers.SimpleConsoleLogger')
-  - [#ctor()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor 'SigStat.Common.Helpers.SimpleConsoleLogger.#ctor')
-  - [#ctor(logLevel)](#M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Helpers.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)')
-  - [LogLevel](#P-SigStat-Common-Helpers-SimpleConsoleLogger-LogLevel 'SigStat.Common.Helpers.SimpleConsoleLogger.LogLevel')
-  - [BeginScope\`\`1()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-BeginScope``1-``0- 'SigStat.Common.Helpers.SimpleConsoleLogger.BeginScope``1(``0)')
-  - [IsEnabled()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Helpers.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
-  - [Log\`\`1()](#M-SigStat-Common-Helpers-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Helpers.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
+- [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger')
+  - [#ctor()](#M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor 'SigStat.Common.Logging.SimpleConsoleLogger.#ctor')
+  - [#ctor(logLevel)](#M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)')
+  - [LogLevel](#P-SigStat-Common-Logging-SimpleConsoleLogger-LogLevel 'SigStat.Common.Logging.SimpleConsoleLogger.LogLevel')
+  - [BeginScope\`\`1()](#M-SigStat-Common-Logging-SimpleConsoleLogger-BeginScope``1-``0- 'SigStat.Common.Logging.SimpleConsoleLogger.BeginScope``1(``0)')
+  - [IsEnabled()](#M-SigStat-Common-Logging-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel- 'SigStat.Common.Logging.SimpleConsoleLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)')
+  - [Log\`\`1()](#M-SigStat-Common-Logging-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}- 'SigStat.Common.Logging.SimpleConsoleLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})')
 - [SimpleRenderingTransformation](#T-SigStat-Common-SimpleRenderingTransformation 'SigStat.Common.SimpleRenderingTransformation')
   - [Transform()](#M-SigStat-Common-SimpleRenderingTransformation-Transform-SigStat-Common-Signature- 'SigStat.Common.SimpleRenderingTransformation.Transform(SigStat.Common.Signature)')
 - [StrokeHelper](#T-SigStat-Common-StrokeHelper 'SigStat.Common.StrokeHelper')
@@ -676,9 +815,6 @@
   - [X](#P-SigStat-Common-Transforms-TangentExtraction-X 'SigStat.Common.Transforms.TangentExtraction.X')
   - [Y](#P-SigStat-Common-Transforms-TangentExtraction-Y 'SigStat.Common.Transforms.TangentExtraction.Y')
   - [Transform()](#M-SigStat-Common-Transforms-TangentExtraction-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.TangentExtraction.Transform(SigStat.Common.Signature)')
-- [TestingSampler](#T-SigStat-Common-Framework-Samplers-TestingSampler 'SigStat.Common.Framework.Samplers.TestingSampler')
-  - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-TestingSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.TestingSampler.#ctor(System.Int32)')
-  - [N](#P-SigStat-Common-Framework-Samplers-TestingSampler-N 'SigStat.Common.Framework.Samplers.TestingSampler.N')
 - [TextLevel](#T-SigStat-Common-Helpers-Excel-TextLevel 'SigStat.Common.Helpers.Excel.TextLevel')
   - [Heading1](#F-SigStat-Common-Helpers-Excel-TextLevel-Heading1 'SigStat.Common.Helpers.Excel.TextLevel.Heading1')
   - [Heading2](#F-SigStat-Common-Helpers-Excel-TextLevel-Heading2 'SigStat.Common.Helpers.Excel.TextLevel.Heading2')
@@ -690,6 +826,7 @@
 - [TimeSlot](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot')
   - [EndTime](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-EndTime 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.EndTime')
   - [Length](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-Length 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.Length')
+  - [PenDown](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-PenDown 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.PenDown')
   - [StartTime](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-StartTime 'SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.StartTime')
 - [Translate](#T-SigStat-Common-Transforms-Translate 'SigStat.Common.Transforms.Translate')
   - [#ctor(xAdd,yAdd)](#M-SigStat-Common-Transforms-Translate-#ctor-System-Double,System-Double- 'SigStat.Common.Transforms.Translate.#ctor(System.Double,System.Double)')
@@ -761,14 +898,6 @@
   - [InputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-ZNormalization-InputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.InputFeature')
   - [OutputFeature](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-ZNormalization-OutputFeature 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.OutputFeature')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-ZNormalization-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.Transform(SigStat.Common.Signature)')
-- [chooseSampleRate](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate')
-  - [InputP](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-InputP 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputP')
-  - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputX')
-  - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputY')
-  - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.OutputX')
-  - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.OutputY')
-  - [samplerate](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-samplerate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.samplerate')
-  - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.Transform(SigStat.Common.Signature)')
 
 <a name='T-SigStat-Common-Transforms-AddConst'></a>
 ## AddConst `type`
@@ -1032,6 +1161,30 @@ Returns the sum of row values in a two dimensional array
 | array | [System.Double[0:](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[0: 'System.Double[0:') | A two dimensional array with double values |
 | row | [0:]](#T-0-] '0:]') | The row, to sum |
 
+<a name='M-SigStat-Common-ArrayExtension-ToArrays``1-System-Collections-Generic-IEnumerable{``0},System-Int32-'></a>
+### ToArrays\`\`1(items,capacity) `method`
+
+##### Summary
+
+Enumerates items into arrays of given capacity. If there are less items than 'capacity', a smaller array is returned
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The items. |
+| capacity | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The capacity. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T |  |
+
 <a name='T-SigStat-Common-Pipeline-AutoSetMode'></a>
 ## AutoSetMode `type`
 
@@ -1283,6 +1436,142 @@ Helper
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Logging-BenchmarkKeyValueLogState'></a>
+## BenchmarkKeyValueLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for Benchmarks key-value information transiting
+
+<a name='M-SigStat-Common-Logging-BenchmarkKeyValueLogState-#ctor-System-String,System-String,System-Object-'></a>
+### #ctor(group,key,value) `constructor`
+
+##### Summary
+
+Creates a BenchmarkKeyValueLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| group | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Group |
+| key | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Key |
+| value | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | Value |
+
+<a name='P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Group'></a>
+### Group `property`
+
+##### Summary
+
+Group of the key-value pair
+
+<a name='P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Key'></a>
+### Key `property`
+
+##### Summary
+
+Key
+
+<a name='P-SigStat-Common-Logging-BenchmarkKeyValueLogState-Value'></a>
+### Value `property`
+
+##### Summary
+
+Value
+
+<a name='M-SigStat-Common-Logging-BenchmarkKeyValueLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Logging-BenchmarkLogModel'></a>
+## BenchmarkLogModel `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Represents the results of a benchmark
+
+<a name='M-SigStat-Common-Logging-BenchmarkLogModel-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Default constructor creating a blank model.
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName'></a>
+### BenchmarkResultsGroupName `constants`
+
+##### Summary
+
+Name of the "BenchmarkResults" group
+
+<a name='F-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName'></a>
+### ExecutionGroupName `constants`
+
+##### Summary
+
+Name of the "Excecution" group
+
+<a name='F-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName'></a>
+### ParametersGroupName `constants`
+
+##### Summary
+
+Name of the "Parameters" group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResults'></a>
+### BenchmarkResults `property`
+
+##### Summary
+
+Benchmark results group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-Excecution'></a>
+### Excecution `property`
+
+##### Summary
+
+Excecution group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-KeyValueGroups'></a>
+### KeyValueGroups `property`
+
+##### Summary
+
+Benchmark results stored in Key-Value groups
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-Parameters'></a>
+### Parameters `property`
+
+##### Summary
+
+Parameters group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults'></a>
+### SignerResults `property`
+
+##### Summary
+
+Results belonging to signers
+
 <a name='T-SigStat-Common-BenchmarkResults'></a>
 ## BenchmarkResults `type`
 
@@ -1307,6 +1596,64 @@ Summarized, final result of the benchmark execution.
 ##### Summary
 
 List that contains the [Result](#T-SigStat-Common-Result 'SigStat.Common.Result')s for each [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')
+
+<a name='T-SigStat-Common-Logging-BenchmarkResultsLogState'></a>
+## BenchmarkResultsLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for Benchmark result transiting
+
+<a name='M-SigStat-Common-Logging-BenchmarkResultsLogState-#ctor-System-Double,System-Double,System-Double-'></a>
+### #ctor(aer,far,frr) `constructor`
+
+##### Summary
+
+Creates a BenchmarkResultsLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| aer | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Aer |
+| far | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Far |
+| frr | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Frr |
+
+<a name='P-SigStat-Common-Logging-BenchmarkResultsLogState-Aer'></a>
+### Aer `property`
+
+##### Summary
+
+Average error rate
+
+<a name='P-SigStat-Common-Logging-BenchmarkResultsLogState-Far'></a>
+### Far `property`
+
+##### Summary
+
+False accaptance rate
+
+<a name='P-SigStat-Common-Logging-BenchmarkResultsLogState-Frr'></a>
+### Frr `property`
+
+##### Summary
+
+False rejection rate
+
+<a name='M-SigStat-Common-Logging-BenchmarkResultsLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-Transforms-Binarization'></a>
 ## Binarization `type`
@@ -1574,6 +1921,80 @@ Gets or sets the output feature representing the X coordinates of an online sign
 
 Gets or sets the output feature representing the X coordinates of an online signature
 
+<a name='T-SigStat-Common-Logging-ClassifierDistanceLogState'></a>
+## ClassifierDistanceLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state for signature distance information transiting
+
+<a name='M-SigStat-Common-Logging-ClassifierDistanceLogState-#ctor-System-String,System-String,System-String,System-String,System-Double-'></a>
+### #ctor(signer1Id,signer2Id,signature1Id,signature2Id,distance) `constructor`
+
+##### Summary
+
+Creates a ClassifierDistanceLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signer1Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the first signature's signer |
+| signer2Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the second signature's signer |
+| signature1Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the first signature |
+| signature2Id | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the second signature |
+| distance | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Distance values between the signatures |
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Distance'></a>
+### Distance `property`
+
+##### Summary
+
+Distance values between the signatures
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature1Id'></a>
+### Signature1Id `property`
+
+##### Summary
+
+Id of the first signature
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signature2Id'></a>
+### Signature2Id `property`
+
+##### Summary
+
+Id of the second signature
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer1Id'></a>
+### Signer1Id `property`
+
+##### Summary
+
+Id of the first signature's signer
+
+<a name='P-SigStat-Common-Logging-ClassifierDistanceLogState-Signer2Id'></a>
+### Signer2Id `property`
+
+##### Summary
+
+/// Id of the second signature's signer
+
+<a name='M-SigStat-Common-Logging-ClassifierDistanceLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-Transforms-ComponentExtraction'></a>
 ## ComponentExtraction `type`
 
@@ -1782,6 +2203,74 @@ Y
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Logging-CompositeLogger'></a>
+## CompositeLogger `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Forwards messages to [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') components.
+
+<a name='P-SigStat-Common-Logging-CompositeLogger-Loggers'></a>
+### Loggers `property`
+
+##### Summary
+
+The list of [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') components that messages are forwarded to. Empty by default.
+
+<a name='M-SigStat-Common-Logging-CompositeLogger-BeginScope``1-``0-'></a>
+### BeginScope\`\`1() `method`
+
+##### Summary
+
+Calls [BeginScope\`\`1](#M-Microsoft-Extensions-Logging-ILogger-BeginScope``1-``0- 'Microsoft.Extensions.Logging.ILogger.BeginScope``1(``0)') on each component.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-CompositeLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
+### IsEnabled() `method`
+
+##### Summary
+
+Returns true if any of the [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') components are enabled on the specified [LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel').
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-CompositeLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+### Log\`\`1() `method`
+
+##### Summary
+
+Forwards the message to each [ILogger](#T-Microsoft-Extensions-Logging-ILogger 'Microsoft.Extensions.Logging.ILogger') component.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Logging-SimpleConsoleLogger-ConsoleMessageLoggedEventHandler'></a>
+## ConsoleMessageLoggedEventHandler `type`
+
+##### Namespace
+
+SigStat.Common.Logging.SimpleConsoleLogger
+
+##### Summary
+
+The event is raised whenever a console message is logged
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| consoleMessage | [T:SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler](#T-T-SigStat-Common-Logging-SimpleConsoleLogger-ConsoleMessageLoggedEventHandler 'T:SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler') |  |
+
 <a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-CubicInterpolation'></a>
 ## CubicInterpolation `type`
 
@@ -1832,6 +2321,48 @@ Gets the value.
 or
 List of feature values is null |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | The given timestamp is not in the range of TimeValues |
+
+<a name='T-SigStat-Common-Helpers-DataCleaningHelper'></a>
+## DataCleaningHelper `type`
+
+##### Namespace
+
+SigStat.Common.Helpers
+
+##### Summary
+
+Helper class for cleaning online signature data in loaders
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-GeneratePointTypeValuesFromPressure-System-Double[]-'></a>
+### GeneratePointTypeValuesFromPressure(pressure) `method`
+
+##### Summary
+
+Generate point type values of an online signature based on its pressure values (zero pressure points are required)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| pressure | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | The preussure values of an online signature |
+
+<a name='M-SigStat-Common-Helpers-DataCleaningHelper-InitializeTimestamps-SigStat-Common-Signature,System-Double-'></a>
+### InitializeTimestamps(signature,unitTimeSlot) `method`
+
+##### Summary
+
+Initialize timestamps of an online signature which does not have captured timestamps
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signature | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') | The online signature which's timestamps are initialized |
+| unitTimeSlot | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The unit time slot between two points of the signature |
 
 <a name='T-SigStat-Common-Loaders-DataSetLoader'></a>
 ## DataSetLoader `type`
@@ -1894,6 +2425,39 @@ Helper class for serializing distance functions
 ##### See Also
 
 - [Newtonsoft.Json.JsonConverter](#T-Newtonsoft-Json-JsonConverter 'Newtonsoft.Json.JsonConverter')
+
+<a name='T-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter'></a>
+## DistanceMatrixConverter `type`
+
+##### Namespace
+
+SigStat.Common.Helpers.Serialization
+
+##### Summary
+
+Serializes/Deserializes a [](#!-DistanceMatrix<string,string,double> 'DistanceMatrix<string,string,double>') object using its ToArray() and FromArray() methods.
+
+<a name='M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer-'></a>
+### ReadJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},Newtonsoft-Json-JsonSerializer-'></a>
+### WriteJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-DistanceMatrix`3'></a>
 ## DistanceMatrix\`3 `type`
@@ -1999,82 +2563,6 @@ true if the Matrix contains an element with the specified keys; otherwise, false
 | column | [\`1](#T-`1 '`1') |  |
 | value | [\`2@](#T-`2@ '`2@') |  |
 
-<a name='T-SigStat-Common-Algorithms-Dtw'></a>
-## Dtw `type`
-
-##### Namespace
-
-SigStat.Common.Algorithms
-
-##### Summary
-
-Dynamic Time Warping algorithm
-
-<a name='M-SigStat-Common-Algorithms-Dtw-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Initialize the DTW algorithm with the default Euclidean distance method.
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-SigStat-Common-Algorithms-Dtw-#ctor-System-Func{System-Double[],System-Double[],System-Double}-'></a>
-### #ctor(distMethod) `constructor`
-
-##### Summary
-
-Initialize the DTW algorithm with given distance method.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| distMethod | [System.Func{System.Double[],System.Double[],System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{System.Double[],System.Double[],System.Double}') | Accord.Math.Distance.* |
-
-<a name='P-SigStat-Common-Algorithms-Dtw-ForwardPath'></a>
-### ForwardPath `property`
-
-##### Summary
-
-Gets the list of points representing the shortest path.
-
-<a name='M-SigStat-Common-Algorithms-Dtw-Compute-System-Double[][],System-Double[][]-'></a>
-### Compute() `method`
-
-##### Summary
-
-Generate shortest path between the two sequences.
-
-##### Returns
-
-Cost of the path.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-SigStat-Common-Algorithms-Dtw-Distance-System-Double[],System-Double[]-'></a>
-### Distance(p1,p2) `method`
-
-##### Summary
-
-Calculates distance between two points.
-Distance method can be set in ctor.
-
-##### Returns
-
-Distance between `p1` and `p2`
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| p1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | Point 1 |
-| p2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | Point 2 |
-
 <a name='T-SigStat-Common-PipelineItems-Classifiers-DtwClassifier'></a>
 ## DtwClassifier `type`
 
@@ -2084,7 +2572,7 @@ SigStat.Common.PipelineItems.Classifiers
 
 ##### Summary
 
-Classifies Signatures with the [Dtw](#T-SigStat-Common-Algorithms-Dtw 'SigStat.Common.Algorithms.Dtw') algorithm.
+Classifies Signatures with the [](#!-Dtw 'Dtw') algorithm.
 
 <a name='M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor'></a>
 ### #ctor() `constructor`
@@ -2145,8 +2633,55 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='T-SigStat-Common-Algorithms-DtwPy'></a>
-## DtwPy `type`
+<a name='T-SigStat-Common-Algorithms-Distances-DtwDistance'></a>
+## DtwDistance `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+Calculates the distance between two vector sequences using Dynamic Time Warping
+
+##### Remarks
+
+Based on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
+
+<a name='M-SigStat-Common-Algorithms-Distances-DtwDistance-#ctor-SigStat-Common-Algorithms-Distances-IDistance{System-Double[]}-'></a>
+### #ctor(localDistance) `constructor`
+
+##### Summary
+
+Initializes a new instance of the DtwDistance class with default settings
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| localDistance | [SigStat.Common.Algorithms.Distances.IDistance{System.Double[]}](#T-SigStat-Common-Algorithms-Distances-IDistance{System-Double[]} 'SigStat.Common.Algorithms.Distances.IDistance{System.Double[]}') | The distance function used to calculate the distance between two individual points of the squences. Set the parameter to 'null' to use the default [EuclideanDistance](#T-SigStat-Common-Algorithms-Distances-EuclideanDistance 'SigStat.Common.Algorithms.Distances.EuclideanDistance') |
+
+<a name='P-SigStat-Common-Algorithms-Distances-DtwDistance-LocalDistance'></a>
+### LocalDistance `property`
+
+##### Summary
+
+The local distance function to use, when calculating the distance between two sueqence-points. Default is EuclideanDistance
+
+<a name='M-SigStat-Common-Algorithms-Distances-DtwDistance-Calculate-System-Double[][],System-Double[][]-'></a>
+### Calculate() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Algorithms-DtwImplementations'></a>
+## DtwImplementations `type`
 
 ##### Namespace
 
@@ -2156,12 +2691,12 @@ SigStat.Common.Algorithms
 
 A simple implementation of the DTW algorithm.
 
-<a name='M-SigStat-Common-Algorithms-DtwPy-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
-### Dtw\`\`1(sequence1,sequence2,distance) `method`
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDTw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
+### ConstrainedDTw\`\`1(sequence1,sequence2,distance,w) `method`
 
 ##### Summary
 
-Calculates the distance between two time sequences
+Constrained DTW implementation  (Abdullah Mueen, Eamonn J. Keogh)
 
 ##### Returns
 
@@ -2171,55 +2706,28 @@ Calculates the distance between two time sequences
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 1 |
-| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 2 |
-| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | a function to calculate the distance between two points |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+| w | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The w. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| P | the type of data points |
-
-<a name='M-SigStat-Common-Algorithms-DtwPy-EuclideanDistance-System-Double[],System-Double[]-'></a>
-### EuclideanDistance(vector1,vector2) `method`
-
-##### Summary
-
-Calculates the euclidean distance of two vectors
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| vector1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector1 |
-| vector2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector2 |
+| P |  |
 
 ##### Remarks
 
-The two vectors must have the same length
+Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
 
-<a name='T-SigStat-Common-Algorithms-DtwPyWindow'></a>
-## DtwPyWindow `type`
-
-##### Namespace
-
-SigStat.Common.Algorithms
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ConstrainedDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
+### ConstrainedDtwWikipedia\`\`1(sequence1,sequence2,distance,w) `method`
 
 ##### Summary
 
-A simple implementation of the DTW algorithm.
-
-<a name='M-SigStat-Common-Algorithms-DtwPyWindow-Dtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32-'></a>
-### Dtw\`\`1(sequence1,sequence2,distance) `method`
-
-##### Summary
-
-Calculates the distance between two time sequences
+Constrained DTW implementation  (Wikipedia)
 
 ##### Returns
 
@@ -2229,22 +2737,27 @@ Calculates the distance between two time sequences
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 1 |
-| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | time sequence 2 |
-| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | a function to calculate the distance between two points |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+| w | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The w. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| P | the type of data points |
+| P |  |
 
-<a name='M-SigStat-Common-Algorithms-DtwPyWindow-EuclideanDistance-System-Double[],System-Double[]-'></a>
-### EuclideanDistance(vector1,vector2) `method`
+##### Remarks
+
+https://en.wikipedia.org/wiki/Dynamic_time_warping
+
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ExactDtwWikipedia``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
+### ExactDtwWikipedia\`\`1(sequence1,sequence2,distance) `method`
 
 ##### Summary
 
-Calculates the euclidean distance of two vectors
+Exact DTW implementation (Wikipedia)
 
 ##### Returns
 
@@ -2254,12 +2767,81 @@ Calculates the euclidean distance of two vectors
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| vector1 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector1 |
-| vector2 | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | vector2 |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
 
 ##### Remarks
 
-The two vectors must have the same length
+https://en.wikipedia.org/wiki/Dynamic_time_warping
+
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-ExactDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double}-'></a>
+### ExactDtw\`\`1(sequence1,sequence2,distance) `method`
+
+##### Summary
+
+Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence1. |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | The sequence2. |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | The distance. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
+
+##### Remarks
+
+Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
+
+<a name='M-SigStat-Common-Algorithms-DtwImplementations-OptimizedDtw``1-System-Collections-Generic-IEnumerable{``0},System-Collections-Generic-IEnumerable{``0},System-Func{``0,``0,System-Double},System-Int32,System-Int32-'></a>
+### OptimizedDtw\`\`1(sequence1,sequence2,distance,m,r) `method`
+
+##### Summary
+
+Complex, optimized DTW calculation (Abdullah Mueen, Eamonn J. Keogh)
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| sequence1 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') |  |
+| sequence2 | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') |  |
+| distance | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') |  |
+| m | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') |  |
+| r | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') |  |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P |  |
+
+##### Remarks
+
+Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130
 
 <a name='T-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel'></a>
 ## DtwSignerModel `type`
@@ -2294,6 +2876,13 @@ be classified as forgeries
 ##### Summary
 
 A list a of genuine signatures used for training
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-DtwSignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
 
 <a name='T-SigStat-Common-Transforms-EndpointExtraction'></a>
 ## EndpointExtraction `type`
@@ -2342,22 +2931,22 @@ Binary representation of an image
 
 This method has no parameters.
 
-<a name='T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler'></a>
+<a name='T-SigStat-Common-Logging-CompositeLogger-ErrorEventHandler'></a>
 ## ErrorEventHandler `type`
 
 ##### Namespace
 
-SigStat.Common.Helpers.SimpleConsoleLogger
+SigStat.Common.Logging.CompositeLogger
 
 ##### Summary
 
-The event is raised whenever an error is logged
+The event is raised whenever an error is logged.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| message | [T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler](#T-T-SigStat-Common-Helpers-SimpleConsoleLogger-ErrorEventHandler 'T:SigStat.Common.Helpers.SimpleConsoleLogger.ErrorEventHandler') | The message. |
+| message | [T:SigStat.Common.Logging.CompositeLogger.ErrorEventHandler](#T-T-SigStat-Common-Logging-CompositeLogger-ErrorEventHandler 'T:SigStat.Common.Logging.CompositeLogger.ErrorEventHandler') | The message. |
 
 <a name='T-SigStat-Common-ErrorRate'></a>
 ## ErrorRate `type`
@@ -2390,6 +2979,35 @@ False Rejection Rate
 ##### Summary
 
 Average Error Rate (calculated from Far and Frr)
+
+<a name='T-SigStat-Common-Algorithms-Distances-EuclideanDistance'></a>
+## EuclideanDistance `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-SigStat-Common-Algorithms-Distances-EuclideanDistance-Calculate-System-Double[],System-Double[]-'></a>
+### Calculate(x,y) `method`
+
+##### Summary
+
+Gets the Euclidean distance between two points.
+
+##### Returns
+
+The Euclidean distance between x and y.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| x | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
+| y | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
 
 <a name='T-SigStat-Common-Framework-Samplers-EvenNSampler'></a>
 ## EvenNSampler `type`
@@ -2778,6 +3396,31 @@ Merge all cells into one in the range.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | range | [OfficeOpenXml.ExcelRangeBase](#T-OfficeOpenXml-ExcelRangeBase 'OfficeOpenXml.ExcelRangeBase') | Cells to merge |
+
+<a name='T-SigStat-Common-Logging-ExcelReportGenerator'></a>
+## ExcelReportGenerator `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+This class is used to generate a report in Excel file format, form a Benchmark model.
+
+<a name='M-SigStat-Common-Logging-ExcelReportGenerator-GenerateReport-SigStat-Common-Logging-BenchmarkLogModel,System-String-'></a>
+### GenerateReport(model,fileName) `method`
+
+##### Summary
+
+Generates an Excel file that contains the report.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| model | [SigStat.Common.Logging.BenchmarkLogModel](#T-SigStat-Common-Logging-BenchmarkLogModel 'SigStat.Common.Logging.BenchmarkLogModel') | The model of the report |
+| fileName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The name of the generated excel file |
 
 <a name='T-SigStat-Common-Transforms-Extrema'></a>
 ## Extrema `type`
@@ -3221,7 +3864,7 @@ SigStat.Common.Helpers.Serialization
 
 SerializationContext for serializing SigStat objects
 
-<a name='M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor'></a>
+<a name='M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor-System-Boolean-'></a>
 ### #ctor() `constructor`
 
 ##### Summary
@@ -3271,13 +3914,6 @@ Altitude of an online signature as a function of [T](#F-SigStat-Common-Features-
 
 Azimuth of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
 
-<a name='F-SigStat-Common-Features-Button'></a>
-### Button `constants`
-
-##### Summary
-
-Pen position of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T')
-
 <a name='F-SigStat-Common-Features-Cog'></a>
 ### Cog `constants`
 
@@ -3298,6 +3934,26 @@ Dots per inch
 ##### Summary
 
 The visaul representation of a signature
+
+<a name='F-SigStat-Common-Features-PenDown'></a>
+### PenDown `constants`
+
+##### Summary
+
+Pen position of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T').
+It is true when the pen touches the paper.
+
+<a name='F-SigStat-Common-Features-PointType'></a>
+### PointType `constants`
+
+##### Summary
+
+Type of points of an online signature as a function of [T](#F-SigStat-Common-Features-T 'SigStat.Common.Features.T').
+The type of a point is defined by:
+0 - Stroke - Internal point of an up or downstroke
+1 - Start - Starting point of a downstroke
+2 - End - Last point of a downstroke
+3 - ShortStroke - First and last point of a downstroke
 
 <a name='F-SigStat-Common-Features-Pressure'></a>
 ### Pressure `constants`
@@ -3350,8 +4006,8 @@ SigStat.Common.PipelineItems.Transforms.Preprocessing
 
 ##### Summary
 
-This transformation will fill "holes" in the "Time" feature by interpolating the last known
-feature values.
+This transformation fills gaps of online signature by interpolating the last known
+feature values. Gaps should be represented in the signature with two zero pressure border points.
 
 ##### See Also
 
@@ -3378,6 +4034,34 @@ An implementation of [IInterpolation](#T-SigStat-Common-PipelineItems-Transforms
 ##### Summary
 
 Gets or sets the features of an online signature that were altered
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypeInputFeature'></a>
+### PointTypeInputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing the type of the points in an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PointTypeOutputFeature'></a>
+### PointTypeOutputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing the modified point type values in an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureInputFeature'></a>
+### PressureInputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing pressure in an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-PressureOutputFeature'></a>
+### PressureOutputFeature `property`
+
+##### Summary
+
+Gets or sets the feature representing the modified pressure values of an online signature
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeInputFeature'></a>
 ### TimeInputFeature `property`
@@ -3833,6 +4517,41 @@ Trains classification models based on reference signatures, by calculating the d
 
 A function to calculate the distance between two online signature points
 
+<a name='T-SigStat-Common-Algorithms-Distances-IDistance`1'></a>
+## IDistance\`1 `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+An abstract base class for the calculation of the distance of two entities (points, sequences etc.)
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| P | Entity type |
+
+<a name='M-SigStat-Common-Algorithms-Distances-IDistance`1-Calculate-`0,`0-'></a>
+### Calculate(p1,p2) `method`
+
+##### Summary
+
+Calculates the distance between the two parameters
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| p1 | [\`0](#T-`0 '`0') | Firs parameter |
+| p2 | [\`0](#T-`0 '`0') | Second parameter |
+
 <a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-IInterpolation'></a>
 ## IInterpolation `type`
 
@@ -3999,6 +4718,29 @@ Formats and writes a trace log message.
 | message | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Format string of the log message in message template format. Example: "User {User} logged in from {Address}" |
 | args | [System.Object[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object[] 'System.Object[]') | An object array that contains zero or more objects to format. |
 
+<a name='M-SigStat-Common-ILoggerObjectExtensions-LogTrace``1-SigStat-Common-ILoggerObject,``0,Microsoft-Extensions-Logging-EventId,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+### LogTrace\`\`1(obj,state,eventId,exception,formatter) `method`
+
+##### Summary
+
+Formats and writes a trace log message with state.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| obj | [SigStat.Common.ILoggerObject](#T-SigStat-Common-ILoggerObject 'SigStat.Common.ILoggerObject') | The SigStat.Common.ILoggerObject containing the Logger to write to. |
+| state | [\`\`0](#T-``0 '``0') | The entry to be written. |
+| eventId | [Microsoft.Extensions.Logging.EventId](#T-Microsoft-Extensions-Logging-EventId 'Microsoft.Extensions.Logging.EventId') | Id of the event. |
+| exception | [System.Exception](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Exception 'System.Exception') | The exception related to this entry. |
+| formatter | [System.Func{\`\`0,System.Exception,System.String}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,System.Exception,System.String}') | Function to create a String message of the state and exception. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TState | The type of the object to be written (preferably a descendant of SigstatLogState). |
+
 <a name='M-SigStat-Common-ILoggerObjectExtensions-LogWarning-SigStat-Common-ILoggerObject,System-String,System-Object[]-'></a>
 ### LogWarning(obj,message,args) `method`
 
@@ -4107,6 +4849,13 @@ SigStat.Common.Pipeline
 ##### Summary
 
 Analyzes signatures based on their similiarity to the trained model
+
+<a name='P-SigStat-Common-Pipeline-ISignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+Identifies the signer, to whom this model belongs to
 
 <a name='T-SigStat-Common-ITransformation'></a>
 ## ITransformation `type`
@@ -4362,6 +5111,77 @@ Initializes a new instance of the [Input](#T-SigStat-Common-Pipeline-Input 'SigS
 
 The automatic set mode
 
+<a name='T-SigStat-Common-Logging-KeyValueGroup'></a>
+## KeyValueGroup `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+A group of key-value pairs
+
+<a name='M-SigStat-Common-Logging-KeyValueGroup-#ctor-System-String-'></a>
+### #ctor(name) `constructor`
+
+##### Summary
+
+Creates an emty key-value group
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| name | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Name if the new group |
+
+<a name='P-SigStat-Common-Logging-KeyValueGroup-Items'></a>
+### Items `property`
+
+##### Summary
+
+Key-Value pairs in the group
+
+<a name='P-SigStat-Common-Logging-KeyValueGroup-Name'></a>
+### Name `property`
+
+##### Summary
+
+Name of the group
+
+<a name='T-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter'></a>
+## KeyValueGroupConverter `type`
+
+##### Namespace
+
+SigStat.Common.Helpers.Serialization
+
+##### Summary
+
+Serializes / Deserializes a logging dictionary [KeyValueGroup](#T-SigStat-Common-Logging-KeyValueGroup 'SigStat.Common.Logging.KeyValueGroup')
+
+<a name='M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-Logging-KeyValueGroup,System-Boolean,Newtonsoft-Json-JsonSerializer-'></a>
+### ReadJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-Serialization-KeyValueGroupConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-Logging-KeyValueGroup,Newtonsoft-Json-JsonSerializer-'></a>
+### WriteJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-Framework-Samplers-LastNSampler'></a>
 ## LastNSampler `type`
 
@@ -4471,6 +5291,45 @@ Gets the interpolated value at a given timestamp
 | [System.InvalidOperationException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.InvalidOperationException 'System.InvalidOperationException') | TimeValues is not initialized |
 | [System.NullReferenceException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.NullReferenceException 'System.NullReferenceException') | FeatureValues is not initialized |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | The given timestamp is not in the range of TimeValues |
+
+<a name='T-SigStat-Common-Logging-LogAnalyzer'></a>
+## LogAnalyzer `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Analizes logs and creates a model from the gained information
+
+<a name='M-SigStat-Common-Logging-LogAnalyzer-GetBenchmarkLogModel-System-Collections-Generic-IEnumerable{SigStat-Common-Logging-SigStatLogState}-'></a>
+### GetBenchmarkLogModel(logs) `method`
+
+##### Summary
+
+Creates a BenchmarkLogModel from previous logs
+
+##### Returns
+
+The Benchmark model filled with information according to the logs
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| logs | [System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{SigStat.Common.Logging.SigStatLogState}') | The collection of logs, that contains the required information for a BenchmarkLogModel |
+
+<a name='T-SigStat-Common-Logging-ReportInformationLogger-LogStateLoggedEventHandler'></a>
+## LogStateLoggedEventHandler `type`
+
+##### Namespace
+
+SigStat.Common.Logging.ReportInformationLogger
+
+##### Summary
+
+The event is raised whenever a SigStatLogState is logged.
 
 <a name='T-SigStat-Common-Loop'></a>
 ## Loop `type`
@@ -4629,6 +5488,13 @@ Gets or sets the database path.
 
 Set MCYT sampling frequenct to 100hz
 
+<a name='P-SigStat-Common-Loaders-MCYTLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-MCYTLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -4665,6 +5531,35 @@ Loads one signature from specified stream.
 ##### Remarks
 
 Based on Mohammad's MCYT reader.
+
+<a name='T-SigStat-Common-Algorithms-Distances-ManhattanDistance'></a>
+## ManhattanDistance `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Distances
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-SigStat-Common-Algorithms-Distances-ManhattanDistance-Calculate-System-Double[],System-Double[]-'></a>
+### Calculate(x,y) `method`
+
+##### Summary
+
+Gets the Manhattan distance between two points.
+
+##### Returns
+
+The Manhattan distance between x and y.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| x | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
+| y | [System.Double[]](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[] 'System.Double[]') | A point in space. |
 
 <a name='T-SigStat-Common-Transforms-Map'></a>
 ## Map `type`
@@ -4837,6 +5732,102 @@ Output
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier'></a>
+## NearestNeighborEerClassifier `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers
+
+##### Summary
+
+This [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier') implementation will consider both test and 
+training samples and claculate the threshold to separate the original and forged
+signatures to approximate EER. Note that this classifier is not applicable for 
+real world scenarios. It was developed to test the theoratical boundaries of 
+threshold based classification
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.Pipeline.IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-#ctor-System-Nullable{System-Int32},SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}-'></a>
+### #ctor(nearestNeighborCount,distanceFunction) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [OptimalDtwClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier 'SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier') class.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| nearestNeighborCount | [System.Nullable{System.Int32}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{System.Int32}') | The number of nearest neighbours to consider during classification |
+| distanceFunction | [SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}](#T-SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]} 'SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}') | The distance function. |
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction'></a>
+### DistanceFunction `property`
+
+##### Summary
+
+The function used to calculate the distance between two data sequences
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Features'></a>
+### Features `property`
+
+##### Summary
+
+[FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')s to consider during classification
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler'></a>
+### Sampler `property`
+
+##### Summary
+
+[Sampler](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler') used for selecting training and test sets during a benchmark
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature-'></a>
+### Test() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}-'></a>
+### Train() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}-'></a>
+### Train(signatures,distanceMatrix) `method`
+
+##### Summary
+
+Trains the specified signatures based on a precalculated distance matrix
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signatures | [System.Collections.Generic.List{SigStat.Common.Signature}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SigStat.Common.Signature}') | The signatures. |
+| distanceMatrix | [SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}](#T-SigStat-Common-DistanceMatrix{System-String,System-String,System-Double} 'SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}') | The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+distances will be calculated automatically using [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction'). |
+
 <a name='T-SigStat-Common-Transforms-Normalize'></a>
 ## Normalize `type`
 
@@ -4933,6 +5924,116 @@ Gets or sets the output feature representing the X coordinates of an online sign
 Gets or sets the input feature representing the Y coordinates of an online signature
 
 <a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation-Transform-SigStat-Common-Signature-'></a>
+### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2'></a>
+## NormalizeRotation2 `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Performs rotation normalization on the online signature
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputX'></a>
+### InputX `property`
+
+##### Summary
+
+Gets or sets the input feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-InputY'></a>
+### InputY `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Y coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputX'></a>
+### OutputX `property`
+
+##### Summary
+
+Gets or sets the output feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-OutputY'></a>
+### OutputY `property`
+
+##### Summary
+
+Gets or sets the output feature representing the Y coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation2-Transform-SigStat-Common-Signature-'></a>
+### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3'></a>
+## NormalizeRotation3 `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Performs rotation normalization on the online signature
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputX'></a>
+### InputX `property`
+
+##### Summary
+
+Gets or sets the input feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-InputY'></a>
+### InputY `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Y coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputX'></a>
+### OutputX `property`
+
+##### Summary
+
+Gets or sets the output feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-OutputY'></a>
+### OutputY `property`
+
+##### Summary
+
+Gets or sets the output feature representing the Y coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotation3-Transform-SigStat-Common-Signature-'></a>
 ### Transform() `method`
 
 ##### Summary
@@ -5227,6 +6328,13 @@ Gets or sets the error rates corresponding to specific thresholds
 ##### Summary
 
 Gets or sets the signature distance from training.
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
 
 <a name='P-SigStat-Common-PipelineItems-Classifiers-OptimalDtwClassifier-OptimalDtwSignerModel-Threshold'></a>
 ### Threshold `property`
@@ -5836,6 +6944,100 @@ Gets the name of the property.
 
 Gets the type of the property
 
+<a name='T-SigStat-Common-Helpers-ProgressHelper'></a>
+## ProgressHelper `type`
+
+##### Namespace
+
+SigStat.Common.Helpers
+
+##### Summary
+
+A helper class for tracking progress of an operation.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes an instance of [ProgressHelper](#T-SigStat-Common-Helpers-ProgressHelper 'SigStat.Common.Helpers.ProgressHelper')
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Elapsed'></a>
+### Elapsed `property`
+
+##### Summary
+
+Gets the total elapsed time measured by the current instance.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Eta'></a>
+### Eta `property`
+
+##### Summary
+
+Gets the estimated time of completion assuming linear progress.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Maximum'></a>
+### Maximum `property`
+
+##### Summary
+
+The total number of individual items to be processed.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Remaining'></a>
+### Remaining `property`
+
+##### Summary
+
+Gets the estimated remaining time till completion assuming linear progress.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-ReportIntervallSeconds'></a>
+### ReportIntervallSeconds `property`
+
+##### Summary
+
+If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') property changes.
+
+<a name='P-SigStat-Common-Helpers-ProgressHelper-Value'></a>
+### Value `property`
+
+##### Summary
+
+The actual number of processed items.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-Dispose'></a>
+### Dispose() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}-'></a>
+### StartNew(maximum,reportIntervallSeconds,reportProgress) `method`
+
+##### Summary
+
+Initializes an instance of [ProgressHelper](#T-SigStat-Common-Helpers-ProgressHelper 'SigStat.Common.Helpers.ProgressHelper') with the given parameters. Make sure to manually set the [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') property during operation.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| maximum | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The total number of individual items to be processed. |
+| reportIntervallSeconds | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') property changes. |
+| reportProgress | [System.Action{SigStat.Common.Helpers.ProgressHelper}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{SigStat.Common.Helpers.ProgressHelper}') |  |
+
 <a name='T-SigStat-Common-Transforms-RealisticImageGenerator'></a>
 ## RealisticImageGenerator `type`
 
@@ -6034,6 +7236,87 @@ Gets or sets the reference feature.
 
 <a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-RelativeScale-Transform-SigStat-Common-Signature-'></a>
 ### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Logging-ReportInformationLogger'></a>
+## ReportInformationLogger `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Logger for logging report informations.
+
+##### Remarks
+
+The class is thread safe
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes a new instance of [ReportInformationLogger](#T-SigStat-Common-Logging-ReportInformationLogger 'SigStat.Common.Logging.ReportInformationLogger').
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='F-SigStat-Common-Logging-ReportInformationLogger-reportLogs'></a>
+### reportLogs `constants`
+
+##### Summary
+
+Stored logs that contain information for the report.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-BeginScope``1-``0-'></a>
+### BeginScope\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-GetReportLogs'></a>
+### GetReportLogs() `method`
+
+##### Summary
+
+Enumerates the log entries
+
+##### Returns
+
+
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
+### IsEnabled() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Logging-ReportInformationLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+### Log\`\`1() `method`
 
 ##### Summary
 
@@ -6287,8 +7570,8 @@ This method has no parameters.
 
 SigStat.Common.Model
 
-<a name='P-SigStat-Common-Model-SampleRateResults-AER2'></a>
-### AER2 `property`
+<a name='P-SigStat-Common-Model-SampleRateResults-AER'></a>
+### AER `property`
 
 ##### Summary
 
@@ -6409,19 +7692,12 @@ OutputFeature: output feature for scaled InputFeature
 
 Gets or sets the input feature.
 
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMaxValue'></a>
-### NewMaxValue `property`
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-Mode'></a>
+### Mode `property`
 
 ##### Summary
 
-NewMaxValue: upper bound of the interval, in which the input feature will be scaled
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-NewMinValue'></a>
-### NewMinValue `property`
-
-##### Summary
-
-NewMinValue: lower bound of the interval, in which the input feature will be scaled
+Type of the scaling which defines the scaling behavior
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale-OutputFeature'></a>
 ### OutputFeature `property`
@@ -6440,6 +7716,31 @@ Gets or sets the output feature.
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode'></a>
+## ScalingMode `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Mode specification for [Scale](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-Scale 'SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale')
+
+<a name='F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-Scaling1'></a>
+### Scaling1 `constants`
+
+##### Summary
+
+Values are scaled into an interval, where the difference between the lower and upper bounds is 1
+
+<a name='F-SigStat-Common-PipelineItems-Transforms-Preprocessing-ScalingMode-ScalingS'></a>
+### ScalingS `constants`
+
+##### Summary
+
+Values are scaled based on their standard deviation
 
 <a name='T-SigStat-Common-Pipeline-SequentialTransformPipeline'></a>
 ## SequentialTransformPipeline `type`
@@ -6571,7 +7872,7 @@ The object that was serialized
 | ---- | ----------- |
 | T | A type which has a public parameterless constructor |
 
-<a name='M-SigStat-Common-Helpers-SerializationHelper-GetSettings'></a>
+<a name='M-SigStat-Common-Helpers-SerializationHelper-GetSettings-System-Boolean-'></a>
 ### GetSettings() `method`
 
 ##### Summary
@@ -6586,7 +7887,7 @@ A new settings object
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String-'></a>
+<a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean-'></a>
 ### JsonSerializeToFile\`\`1(o,path) `method`
 
 ##### Summary
@@ -6746,6 +8047,13 @@ Gets or sets the database path.
 
 Sampling Frequency of this database
 
+<a name='P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-SigComp11ChineseLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -6821,6 +8129,13 @@ Gets or sets the database path.
 ##### Summary
 
 Sampling Frequency of this database
+
+<a name='P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='P-SigStat-Common-Loaders-SigComp11DutchLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
@@ -6937,6 +8252,13 @@ Gets or sets the database path.
 
 Sampling Frequency of this database
 
+<a name='P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-SigComp13JapaneseLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -7051,6 +8373,13 @@ Gets or sets the database path.
 ##### Summary
 
 Sampling Frequency of this database
+
+<a name='P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='P-SigStat-Common-Loaders-SigComp15GermanLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
@@ -7195,6 +8524,13 @@ Gets or sets the database path.
 
 sampling frequency for this database
 
+<a name='P-SigStat-Common-Loaders-SigComp19OnlineLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
 <a name='P-SigStat-Common-Loaders-SigComp19OnlineLoader-StandardFeatures'></a>
 ### StandardFeatures `property`
 
@@ -7256,6 +8592,24 @@ Events originating from a benchmark
 ##### Summary
 
 Events originating from a verifier
+
+<a name='T-SigStat-Common-Logging-SigStatLogState'></a>
+## SigStatLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Base state used in report information logging.
+
+<a name='P-SigStat-Common-Logging-SigStatLogState-Source'></a>
+### Source `property`
+
+##### Summary
+
+Object from which the state originates.
 
 <a name='T-SigStat-Common-Signature'></a>
 ## Signature `type`
@@ -7563,6 +8917,31 @@ Save online signature as file
 | sig | [SigStat.Common.Signature](#T-SigStat-Common-Signature 'SigStat.Common.Signature') |  |
 | fileName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') |  |
 
+<a name='T-SigStat-Common-Logging-SignatureLogState'></a>
+## SignatureLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for signature information transiting
+
+<a name='P-SigStat-Common-Logging-SignatureLogState-SignatureID'></a>
+### SignatureID `property`
+
+##### Summary
+
+Id of the signature
+
+<a name='P-SigStat-Common-Logging-SignatureLogState-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+Id of the owning signer
+
 <a name='T-SigStat-Common-Signer'></a>
 ## Signer `type`
 
@@ -7599,6 +8978,190 @@ Returns a string representation of a Signer
 ##### Returns
 
 
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-SigStat-Common-Logging-SignerLogState'></a>
+## SignerLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for signer information transiting
+
+<a name='P-SigStat-Common-Logging-SignerLogState-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+Id of the signer
+
+<a name='T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel'></a>
+## SignerModel `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier
+
+##### Summary
+
+Represents a trained model for [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix'></a>
+### DistanceMatrix `property`
+
+##### Summary
+
+DTW distance matrix of the signatures
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-ErrorRates'></a>
+### ErrorRates `property`
+
+##### Summary
+
+Gets or sets the error rates corresponding to specific thresholds
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignatureDistanceFromTraining'></a>
+### SignatureDistanceFromTraining `property`
+
+##### Summary
+
+Gets or sets the signature distance from training.
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-Threshold'></a>
+### Threshold `property`
+
+##### Summary
+
+A threshold, that will be used for classification. Signatures with
+an average DTW distance from the genuines above this threshold will
+be classified as forgeries
+
+<a name='T-SigStat-Common-Logging-SignerResults'></a>
+## SignerResults `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Informations of a signer
+
+<a name='M-SigStat-Common-Logging-SignerResults-#ctor-System-String-'></a>
+### #ctor(signerId) `constructor`
+
+##### Summary
+
+Creates a signer result with emty result values
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signerId | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The id of the signer |
+
+<a name='F-SigStat-Common-Logging-SignerResults-Aer'></a>
+### Aer `constants`
+
+##### Summary
+
+Average Error Rate of the signer
+
+<a name='F-SigStat-Common-Logging-SignerResults-Far'></a>
+### Far `constants`
+
+##### Summary
+
+False Acceptance Rate of the signer
+
+<a name='F-SigStat-Common-Logging-SignerResults-Frr'></a>
+### Frr `constants`
+
+##### Summary
+
+False Rejection Rate of the signer
+
+<a name='P-SigStat-Common-Logging-SignerResults-DistanceMatrix'></a>
+### DistanceMatrix `property`
+
+##### Summary
+
+Distacne matrix of the signers signatures
+
+<a name='P-SigStat-Common-Logging-SignerResults-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+The ID of the signer
+
+<a name='T-SigStat-Common-Logging-SignerResultsLogState'></a>
+## SignerResultsLogState `type`
+
+##### Namespace
+
+SigStat.Common.Logging
+
+##### Summary
+
+Specific state used for Signer result transiting
+
+<a name='M-SigStat-Common-Logging-SignerResultsLogState-#ctor-System-String,System-Double,System-Double,System-Double-'></a>
+### #ctor(signerId,aer,far,frr) `constructor`
+
+##### Summary
+
+Creates a SignerResultsLogState
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signerId | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Id of the signer |
+| aer | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Aer |
+| far | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Far |
+| frr | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | Frr |
+
+<a name='P-SigStat-Common-Logging-SignerResultsLogState-Aer'></a>
+### Aer `property`
+
+##### Summary
+
+Average error rate
+
+<a name='P-SigStat-Common-Logging-SignerResultsLogState-Far'></a>
+### Far `property`
+
+##### Summary
+
+False accaptance rate
+
+<a name='P-SigStat-Common-Logging-SignerResultsLogState-Frr'></a>
+### Frr `property`
+
+##### Summary
+
+False rejection rate
+
+<a name='M-SigStat-Common-Logging-SignerResultsLogState-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
 
 ##### Parameters
 
@@ -7713,60 +9276,50 @@ Return signer width average
 | ---- | ---- | ----------- |
 | signer | [SigStat.Common.Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer') |  |
 
-<a name='T-SigStat-Common-Helpers-SimpleConsoleLogger'></a>
+<a name='T-SigStat-Common-Logging-SimpleConsoleLogger'></a>
 ## SimpleConsoleLogger `type`
 
 ##### Namespace
 
-SigStat.Common.Helpers
+SigStat.Common.Logging
 
 ##### Summary
 
-A easy-to-use class to log pipeline messages, complete with filtering levels and multi-thread support.
+Logs messages to [Console](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Console 'System.Console'). 
+The font color is determined by the severity level.
 
-##### Example
-
-```
-Logger l1 = new Logger(LogLevel.Info);
-Logger.Warn(this, "Training on non-genuine signature.");
-```
-
-##### Remarks
-
-
-
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
 
-Initializes a SimpleConsoleLogger instance with LogLevel set to LogLevel.Information
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 
 This constructor has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-#ctor-Microsoft-Extensions-Logging-LogLevel-'></a>
 ### #ctor(logLevel) `constructor`
 
 ##### Summary
 
-Initializes an instance of SimpleConsoleLogger with a custom LogLevel
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with a custom [LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel').
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| logLevel | [Microsoft.Extensions.Logging.LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel') | initial value for LogLevel |
+| logLevel | [Microsoft.Extensions.Logging.LogLevel](#T-Microsoft-Extensions-Logging-LogLevel 'Microsoft.Extensions.Logging.LogLevel') | Initial value for LogLevel. |
 
-<a name='P-SigStat-Common-Helpers-SimpleConsoleLogger-LogLevel'></a>
+<a name='P-SigStat-Common-Logging-SimpleConsoleLogger-LogLevel'></a>
 ### LogLevel `property`
 
 ##### Summary
 
 All events below this level will be filtered
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-BeginScope``1-``0-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-BeginScope``1-``0-'></a>
 ### BeginScope\`\`1() `method`
 
 ##### Summary
@@ -7777,7 +9330,7 @@ All events below this level will be filtered
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-IsEnabled-Microsoft-Extensions-Logging-LogLevel-'></a>
 ### IsEnabled() `method`
 
 ##### Summary
@@ -7788,7 +9341,7 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
+<a name='M-SigStat-Common-Logging-SimpleConsoleLogger-Log``1-Microsoft-Extensions-Logging-LogLevel,Microsoft-Extensions-Logging-EventId,``0,System-Exception,System-Func{``0,System-Exception,System-String}-'></a>
 ### Log\`\`1() `method`
 
 ##### Summary
@@ -8170,33 +9723,6 @@ Gets or sets the input feature representing the Y coordinates of an online signa
 
 This method has no parameters.
 
-<a name='T-SigStat-Common-Framework-Samplers-TestingSampler'></a>
-## TestingSampler `type`
-
-##### Namespace
-
-SigStat.Common.Framework.Samplers
-
-<a name='M-SigStat-Common-Framework-Samplers-TestingSampler-#ctor-System-Int32-'></a>
-### #ctor(n) `constructor`
-
-##### Summary
-
-Constructor
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| n | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | count of signatures used for training |
-
-<a name='P-SigStat-Common-Framework-Samplers-TestingSampler-N'></a>
-### N `property`
-
-##### Summary
-
-Count of signatures used for training
-
 <a name='T-SigStat-Common-Helpers-Excel-TextLevel'></a>
 ## TextLevel `type`
 
@@ -8294,6 +9820,13 @@ Gets or sets the end time of the slot
 ##### Summary
 
 Gets the length of the slot
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-PenDown'></a>
+### PenDown `property`
+
+##### Summary
+
+This indicates whether the pen touches the paper during the time slot
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-FillPenUpDurations-TimeSlot-StartTime'></a>
 ### StartTime `property`
@@ -8990,75 +10523,6 @@ Gets or sets the input feature.
 Gets or sets the output feature.
 
 <a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-ZNormalization-Transform-SigStat-Common-Signature-'></a>
-### Transform() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate'></a>
-## chooseSampleRate `type`
-
-##### Namespace
-
-SigStat.Common.PipelineItems.Transforms.Preprocessing
-
-##### Summary
-
-Performs rotation normalization on the online signature
-
-##### See Also
-
-- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
-- [SigStat.Common.ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-InputP'></a>
-### InputP `property`
-
-##### Summary
-
-Gets or sets the input feature representing the timestamps of an online signature
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-InputX'></a>
-### InputX `property`
-
-##### Summary
-
-Gets or sets the input feature representing the X coordinates of an online signature
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-InputY'></a>
-### InputY `property`
-
-##### Summary
-
-Gets or sets the input feature representing the Y coordinates of an online signature
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-OutputX'></a>
-### OutputX `property`
-
-##### Summary
-
-Gets or sets the output feature representing the X coordinates of an online signature
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-OutputY'></a>
-### OutputY `property`
-
-##### Summary
-
-Gets or sets the input feature representing the Y coordinates of an online signature
-
-<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-samplerate'></a>
-### samplerate `property`
-
-##### Summary
-
-Gets or sets the input feature representing the X coordinates of an online signature
-
-<a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-chooseSampleRate-Transform-SigStat-Common-Signature-'></a>
 ### Transform() `method`
 
 ##### Summary

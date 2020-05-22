@@ -12,6 +12,37 @@ namespace SigStat.Common
     public static class ArrayExtension
     {
         /// <summary>
+        /// Enumerates items into arrays of given capacity. If there are less items than 'capacity', a smaller array is returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items">The items.</param>
+        /// <param name="capacity">The capacity.</param>
+        /// <returns></returns>
+        public static IEnumerable<T[]> ToArrays<T>(this IEnumerable<T> items, int capacity)
+        {
+            var enumerator = items.GetEnumerator();
+            while (true)
+            {
+                T[] result = new T[capacity];
+                for (int i = 0; i < capacity; i++)
+                {
+                    if (enumerator.MoveNext())
+                    {
+                        result[i] = enumerator.Current;
+                    }
+                    else
+                    {
+                        if (i > 0)
+                        {
+                            yield return result.Take(i).ToArray();
+                        }
+                        yield break;
+                    }
+                }
+                yield return result;
+            }
+        }
+        /// <summary>
         /// Enumerates all values in a two dimensional array
         /// </summary>
         /// <typeparam name="T">Array type</typeparam>

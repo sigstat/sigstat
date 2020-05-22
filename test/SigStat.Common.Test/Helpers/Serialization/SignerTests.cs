@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Test.Helpers.Serialization
@@ -15,7 +12,11 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var signer = new Signer();
             signer.ID = "Test";
             var json = SerializationHelper.JsonSerialize(signer);
-            JsonAssert.AreEqual(signer, json);
+            var expectedJson = @"{
+              ""ID"": ""Test"",
+              ""Signatures"": []
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

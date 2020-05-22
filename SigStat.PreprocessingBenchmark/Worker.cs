@@ -3,6 +3,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Queue;
 using SigStat.Common.Helpers;
 using SigStat.Common.Loaders;
+using SigStat.Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;

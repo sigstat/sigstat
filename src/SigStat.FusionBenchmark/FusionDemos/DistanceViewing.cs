@@ -1,4 +1,5 @@
-﻿using SigStat.FusionBenchmark.VisualHelpers;
+﻿using SigStat.Common.Loaders;
+using SigStat.FusionBenchmark.VisualHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,15 @@ namespace SigStat.FusionBenchmark.FusionDemos
 {
     public static class DistanceViewing
     {
-        public static void Calculate(string[] ids)
+        public static void Calculate(string[] ids, DataSetLoader offlineLoader, DataSetLoader onlineLoader)
         {
-            var offlineLoader = FusionPipelines.GetOfflineLoader();
-            var onlineLoader = FusionPipelines.GetOnlineLoader();
 
             var offlineSigners = offlineLoader.EnumerateSigners(signer => ids.Contains(signer.ID)).ToList();
             var onlineSigners = onlineLoader.EnumerateSigners(signer => ids.Contains(signer.ID)).ToList();
 
             var offlinePipeline = FusionPipelines.GetOfflinePipeline();
             var onlinePipeline = FusionPipelines.GetOnlinePipeline();
-            var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, "001");
+            var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, 0);
             foreach (var offSigner in offlineSigners)
             {
                 Console.WriteLine(offSigner.ID + " started at " + DateTime.Now.ToString("h:mm:ss tt"));

@@ -19,7 +19,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
                 Converters = new List<JsonConverter> { new RectangleFConverter() }
             };
         }
@@ -42,7 +42,13 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var jsonSerializerSettings = GetTestSettings();
             var rectangleF = new RectangleF(1.0f, 1.0f, 1.0f, 1.0f);
             var json = JsonConvert.SerializeObject(rectangleF,Formatting.Indented,jsonSerializerSettings);
-            JsonAssert.AreEqual(rectangleF, json,jsonSerializerSettings);
+            var expectedJson = @"{
+              ""X"": 1.0,
+              ""Y"": 1.0,
+              ""Width"": 1.0,
+              ""Height"": 1.0
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

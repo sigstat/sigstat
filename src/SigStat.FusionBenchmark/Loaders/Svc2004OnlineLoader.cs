@@ -62,8 +62,8 @@ namespace SigStat.FusionBenchmark.Loaders
             public SignatureFile(string file)
             {
                 File = file;
-                string name = file.Split('/').Last();//handle if file is in zip directory
-                var parts = Path.GetFileNameWithoutExtension(name).Replace("U", "").Split('S');
+                string name = file.Split(Path.PathSeparator).Last();//handle if file is in zip directory
+                var parts = Path.GetFileNameWithoutExtension(name).Replace("U", "").Split("S");
                 if (parts.Length != 2)
                 {
                     throw new InvalidOperationException("Invalid file format. All signature files should be in 'U__S__.txt' format");
@@ -86,6 +86,8 @@ namespace SigStat.FusionBenchmark.Loaders
         /// Ignores any signers during the loading, that do not match the predicate
         /// </summary>
         public Predicate<Signer> SignerFilter { get; set; }
+
+        public override int SamplingFrequency => throw new NotImplementedException();
 
 
 
@@ -128,39 +130,34 @@ namespace SigStat.FusionBenchmark.Loaders
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
             signerFilter = signerFilter ?? SignerFilter;
 
-            this.LogInformation("Enumerating signers started.");
-            using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
+            var signatureGroups = Directory.GetFileSystemEntries(DatabasePath, "*.TXT", SearchOption.AllDirectories).Select(f => new SignatureFile(f)).GroupBy(sf => sf.SignerID);
+
+            this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
+            foreach (var group in signatureGroups)
             {
-                //cut names if the files are in directories
-                var signatureGroups = zip.Entries.Where(f => f.Name.EndsWith(".TXT")).Select(f => new SignatureFile(f.FullName)).GroupBy(sf => sf.SignerID);
-                this.LogTrace(signatureGroups.Count().ToString() + " signers found in database");
-                foreach (var group in signatureGroups)
+                Signer signer = new Signer { ID = group.Key };
+
+                if (signerFilter != null && !signerFilter(signer))
                 {
-                    Signer signer = new Signer { ID = group.Key };
-
-                    if (signerFilter != null && !signerFilter(signer))
-                    {
-                        continue;
-                    }
-                    foreach (var signatureFile in group)
-                    {
-                        Signature signature = new Signature
-                        {
-                            Signer = signer,
-                            ID = signatureFile.SignatureID
-                        };
-                        using (Stream s = zip.GetEntry(signatureFile.File).Open())
-                        {
-                            LoadSignature(signature, s, StandardFeatures);
-                        }
-                        signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
-                        signer.Signatures.Add(signature);
-
-                    }
-                    signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
-                    yield return signer;
+                    continue;
                 }
+                foreach (var signatureFile in group)
+                {
+                    Signature signature = new Signature
+                    {
+                        Signer = signer,
+                        ID = signatureFile.SignatureID
+                    };
+                    this.LoadSignature(signature, (signatureFile.File).GetPath(), StandardFeatures);
+
+                    signature.Origin = int.Parse(signature.ID) < 21 ? Origin.Genuine : Origin.Forged;
+                    signer.Signatures.Add(signature);
+
+                }
+                signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
+                yield return signer;
             }
+            
             this.LogInformation("Enumerating signers finished.");
         }
 

@@ -2,7 +2,7 @@
   "profiles": {
     "SigStat.Benchmark": {
       "commandName": "Project",
-      "commandLineArgs": "work --procId 1 --inputDir benchmarks --outputDir results"
+      "commandLineArgs": "process --connection \"Mongo.txt\" --experiment Test"
     }
   }
 }

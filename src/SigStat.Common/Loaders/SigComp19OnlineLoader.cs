@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -103,10 +104,16 @@ namespace SigStat.Common.Loaders
         /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
         /// </summary>
         public bool StandardFeatures { get; set; }
-
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
+        public Predicate<Signer> SignerFilter { get; set; }
         /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
+            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
+            signerFilter = signerFilter ?? SignerFilter;
+
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
             //signerFilter = signerFilter ?? SignerFilter;
 
@@ -195,16 +202,19 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(SigComp19.Altitude, lines.Select(l => l[5]).ToList());
             signature.SetFeature(SigComp19.Azimuth, lines.Select(l => l[6]).ToList());
             signature.SetFeature(SigComp19.Distance, lines.Select(l => l[7]).ToList());
-            
+
             if (standardFeatures)
             {
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[3]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[4]).ToList());
                 signature.SetFeature(Features.T, lines.Select(l => (double)l[1]).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[0] == 3).ToList());
+                signature.SetFeature(Features.PenDown, lines.Select(l => l[0] == 1).ToList()); // 1 -pen down, 3 - pen up
                 signature.SetFeature(Features.Azimuth, lines.Select(l => (double)l[6]).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => (double)l[5]).ToList());
+                // Upstorkes are represented by zero pressure points
+                var pressureValues = signature.GetFeature(Features.Pressure).ToArray();
+                signature.SetFeature(Features.PointType, DataCleaningHelper.GeneratePointTypeValuesFromPressure(pressureValues).ToList());
                 SignatureHelper.CalculateStandardStatistics(signature);
 
             }

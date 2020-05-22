@@ -22,11 +22,18 @@ namespace SigStat.FusionBenchmark.FusionDemos
 
             foreach (var onSigner in onlineSigners)
             {
-                Parallel.ForEach(onSigner.Signatures, onSig =>
+                try
                 {
-                    onlinePipeline.Transform(onSig);
+                    Parallel.ForEach(onSigner.Signatures, onSig =>
+                    {
+                        onlinePipeline.Transform(onSig);
+                    }
+                    );
                 }
-                );
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
             }
             return benchmark.Execute();
         }

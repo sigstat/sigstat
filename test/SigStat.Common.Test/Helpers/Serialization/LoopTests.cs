@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigStat.Common.Helpers;
 
 namespace SigStat.Common.Test.Helpers.Serialization
@@ -17,7 +11,19 @@ namespace SigStat.Common.Test.Helpers.Serialization
         {
             var loop = new Loop(1.0f,2.0f);
             var json = SerializationHelper.JsonSerialize(loop);
-            JsonAssert.AreEqual(loop,json);
+            var expectedJson = @"{
+              ""Center"": {
+                ""X"": 1.0,
+                ""Y"": 2.0
+              },
+              ""Bounds"": {
+                ""X"": 0.0,
+                ""Y"": 0.0,
+                ""Width"": 0.0,
+                ""Height"": 0.0
+              }
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

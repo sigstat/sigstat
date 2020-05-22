@@ -1,0 +1,1 @@
+dotnet SigStat.Benchmark.dll monitor --connection "Mongo.txt" --experiment Test

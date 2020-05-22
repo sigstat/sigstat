@@ -53,11 +53,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             var xValues = new List<double>(signature.GetFeature(InputX));
             var yValues = new List<double>(signature.GetFeature(InputY));
 
+            if (xValues.Count != yValues.Count)
+                throw new ArgumentException($"The length of {nameof(InputX)} and {nameof(InputY)} are not the same");
+
             var time = signature.GetFeature(InputT);
 
-            var angle = CalculateAngleBetweenLines(
-                time.Min(), time.Max(), linePoints.Min(), linePoints.Max(),
-                time.Min(), time.Max(), linePoints.Min(), linePoints.Min());
+            var angle = Math.Atan((linePoints.Max() - linePoints.Min()) / (time.Max() - time.Min()));
 
             double cosa = Math.Cos(angle);
             double sina = Math.Sin(angle);
@@ -80,46 +81,27 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             var tValues = new List<double>(sig.GetFeature(InputT));
             var yValues = new List<double>(sig.GetFeature(InputY));
 
+            if (tValues.Count != yValues.Count)
+                throw new ArgumentException($"The length of {nameof(InputT)} and {nameof(InputY)} are not the same");
+
             int numPoints = yValues.Count;
+            double sumT = tValues.Sum();
+            double sumY = yValues.Sum();
+            double sumTSquared = tValues.Sum(t => t * t);
+            double sumTY = tValues.Select((t, i) => t * yValues[i]).Sum();
+
+            a = (sumTY * numPoints - sumT * sumY) / (sumTSquared * numPoints - sumT * sumT);
+
             double meanT = tValues.Average();
             double meanY = yValues.Average();
-
-            double sumTSquared = tValues.Sum(t => t * t);
-
-            double sumTY = 0;
-            for (int i = 0; i < numPoints; i++)
-            {
-                sumTY += tValues[i] * yValues[i];
-            }
-
-            a = (sumTY / numPoints - meanT * meanY) / (sumTSquared / numPoints - meanT * meanT);
-            b = (a * meanT - meanY);
+            b = (meanY - a * meanT);
 
             double a1 = a;
             double b1 = b;
 
-            var newYValues = new List<double>(numPoints);
-            for (int i = 0; i < numPoints; i++)
-            {
-                newYValues.Add(a1 * tValues[i] - b1);
-            }
-
-            return newYValues;
+            return tValues.Select(t => b1 + a1 * t).ToList();
 
         }
 
-        private double CalculateAngleBetweenLines(
-            double p1x0, double p1x1, double p1y0, double p1y1, 
-            double p2x0, double p2x1, double p2y0, double p2y1)
-        {
-            //Calculate the angles
-            var thetaP1 = Math.Atan2(p1y0 - p1y1, p1x0 - p1x1);
-            var thetaP2 = Math.Atan2(p2y0 - p2y1, p2x0 - p2x1);
-
-            //Calculate the angle between the lines
-            var diff = Math.Abs(thetaP1 - thetaP2);
-
-            return diff;
-        }
     }
 }

@@ -11,23 +11,23 @@ Cubic interpolation algorithm
 
 ## Constructors
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
-| CubicInterpolation () |  | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| CubicInterpolation (  ) |  | 
 
 
 ## Properties
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
 | FeatureValues | FeatureValues | 
 | TimeValues | TimeValues | 
 
 
 ## Methods
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
-| [GetValue](./Methods/CubicInterpolation--GetValue.md) ([`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double)) | Gets the value. | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| GetValue ( [`Double`](https://docs.microsoft.com/en-us/dotnet/api/System.Double) ) | Gets the value. | 
 
 

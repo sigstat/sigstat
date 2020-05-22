@@ -5,16 +5,22 @@ Namespace: [SigStat]() > [Common](./README.md)
 Assembly: SigStat.Common.dll
 
 ## Summary
-Contains the benchmark results of a single [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Signer.md)
+Contains the benchmark results of a single [Signer](https://github.com/hargitomi97/sigstat/blob/master/docs/md/SigStat/Common/Signer.md)
 
 ## Fields
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| Model |  | 
+
+
+## Properties
+
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
 | Aer | Average Error Rate | 
 | Far | False Acceptance Rate | 
 | Frr | False Rejection Rate | 
-| Model |  | 
-| Signer | Identifier of the [Signer](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/Result.md) | 
+| Signer | Identifier of the [Signer](https://github.com/hargitomi97/sigstat/blob/master/docs/md/SigStat/Common/Result.md) | 
 
 

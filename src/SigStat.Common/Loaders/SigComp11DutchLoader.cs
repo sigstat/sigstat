@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -92,12 +93,15 @@ namespace SigStat.Common.Loaders
         /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
         /// </summary>
         public bool StandardFeatures { get; set; }
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
+        public Predicate<Signer> SignerFilter { get; set; }
 
         /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-            //signerFilter = signerFilter ?? SignerFilter;
+            signerFilter = signerFilter ?? SignerFilter;
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
@@ -131,11 +135,11 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
-                        
+
 
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
-                    
+
 
                     yield return signer;
                 }
@@ -168,12 +172,12 @@ namespace SigStat.Common.Loaders
                 .ToList();
 
             // Remove noise (points with 0 pressure) from the beginning of the signature
-            while (lines.Count>0 && lines[0][2] == 0)
+            while (lines.Count > 0 && lines[0][2] == 0)
             {
                 lines.RemoveAt(0);
             }
             // Remove noise (points with 0 pressure) from the end of the signature
-            while (lines.Count > 0 &&  lines[lines.Count-1][2] == 0)
+            while (lines.Count > 0 && lines[lines.Count - 1][2] == 0)
             {
                 lines.RemoveAt(lines.Count - 1);
             }
@@ -182,7 +186,7 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(SigComp11.Y, lines.Select(l => l[1]).ToList());
             signature.SetFeature(SigComp11.Z, lines.Select(l => l[2]).ToList());
             // Sampling frequency is 200Hz ==> time should be increased by 5 msec for each slot
-            signature.SetFeature(SigComp11.T, Enumerable.Range(0, lines.Count).Select(i=>i*5).ToList());
+            signature.SetFeature(SigComp11.T, Enumerable.Range(0, lines.Count).Select(i => i * 5).ToList());
 
             if (standardFeatures)
             {
@@ -190,13 +194,16 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l=>l[2]>0).ToList());
+                signature.SetFeature(Features.PenDown, lines.Select(l => l[2] > 0).ToList());
                 signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
                 signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                // Upstorkes are represented by zero pressure points
+                var pressureValues = signature.GetFeature(Features.Pressure).ToArray();
+                signature.SetFeature(Features.PointType, DataCleaningHelper.GeneratePointTypeValuesFromPressure(pressureValues).ToList());
                 signature.CalculateStandardStatistics();
 
             }
-          
+
         }
 
     }

@@ -28,6 +28,9 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
         [Input]
         public RectangleF InputGoalBounds { get; set; }
 
+        [Input]
+        public double InputScaleRate { get; set; }
+
         [Output("Vertices")]
         public FeatureDescriptor<List<Vertex>> OutputVertices { get; set; }
 
@@ -63,6 +66,7 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
                                 );
                 }
             }
+
             vertices.Add(new Vertex(new Point((int)xs[n-1], (int)ys[n-1]), bs[n-1]) { Rutovitz = 2 });
             signature.SetFeature<List<Vertex>>(OutputVertices, vertices);
             signature.SetFeature<List<Vertex>>(OutputBaseTrajectory, new List<Vertex>(vertices));
@@ -126,7 +130,10 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
             PointF vector = new PointF((float)Math.Cos(angle), (float)Math.Sin(angle));
             PointF iterPos = new PointF((float)fromVertex.Pos.X, (float)fromVertex.Pos.Y);
             //Console.WriteLine("{0} {1} -> {2} {3}", fromVertex.Pos.X, fromVertex.Pos.Y, toVertex.Pos.X, toVertex.Pos.Y);
-            while (!Vertex.AreNeighbours(toVertex, res.Last()) && !toVertex.Equals(res.Last()))
+            while ( 
+                    (Math.Abs(iterPos.X - fromVertex.Pos.X) < Math.Abs(toVertex.Pos.X - fromVertex.Pos.X)) && 
+                    (Math.Abs(iterPos.Y - fromVertex.Pos.Y) < Math.Abs(toVertex.Pos.Y - fromVertex.Pos.Y)) 
+                  )
             {
                 //Console.WriteLine("{0} - {1}",iterPos.X, iterPos.Y);
                 iterPos.X += vector.X;
@@ -141,6 +148,16 @@ namespace SigStat.FusionBenchmark.FusionFeatureExtraction
             return res;
         }
 
+
+        private bool ScalePredicate(List<Vertex> trajectory, int idx, int cnt, int inputScale)
+        {
+            return (cnt >= inputScale) ||
+                    (idx == 0 || idx == trajectory.Count - 1) ||
+                    (idx > 0 && !Vertex.AreNeighbours(trajectory[idx - 1], trajectory[idx]) &&
+                                                    !trajectory[idx - 1].Equals(trajectory[idx])) ||
+                    (idx < trajectory.Count - 1 && !Vertex.AreNeighbours(trajectory[idx], trajectory[idx + 1]) &&
+                                                !trajectory[idx].Equals(trajectory[idx + 1]));
+        }
 
     }
 }

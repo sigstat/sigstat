@@ -1,14 +1,16 @@
 ﻿using Newtonsoft.Json;
+using SigStat.Common.Helpers;
 using SigStat.Common.Pipeline;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 {
     /// <summary>
-    /// This transformation will fill "holes" in the "Time" feature by interpolating the last known
-    /// feature values. 
+    /// This transformation fills gaps of online signature by interpolating the last known
+    /// feature values. Gaps should be represented in the signature with two zero pressure border points.
     /// </summary>
     /// <seealso cref="SigStat.Common.PipelineBase" />
     /// <seealso cref="SigStat.Common.ITransformation" />
@@ -63,20 +65,37 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             /// Gets the length of the slot
             /// </summary>
             public double Length { get; private set; }
+
+            /// <summary>
+            /// This indicates whether the pen touches the paper during the time slot
+            /// </summary>
+            public bool PenDown { get; set; }
         }
 
 
         /// <summary>
         /// Gets or sets the feature representing the timestamps of an online signature
         /// </summary>
-        [Input]        
+        [Input]
         public FeatureDescriptor<List<double>> TimeInputFeature { get; set; } = Features.T;
+
+        /// <summary>
+        /// Gets or sets the feature representing pressure in an online signature
+        /// </summary>
+        [Input]
+        public FeatureDescriptor<List<double>> PressureInputFeature { get; set; } = Features.Pressure;
+
+        /// <summary>
+        /// Gets or sets the feature representing the type of the points in an online signature
+        /// </summary>
+        [Input]
+        public FeatureDescriptor<List<double>> PointTypeInputFeature { get; set; } = Features.PointType;
 
         /// <summary>
         /// Gets or sets the features of an online signature that need to be altered
         /// </summary>
         [Input]
-        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
+        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
         /// <summary>
         /// Gets or sets the feature representing the modified timestamps of an online signature
@@ -85,10 +104,22 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public FeatureDescriptor<List<double>> TimeOutputFeature { get; set; }
 
         /// <summary>
+        /// Gets or sets the feature representing the modified pressure values of an online signature
+        /// </summary>
+        [Output]
+        public FeatureDescriptor<List<double>> PressureOutputFeature { get; set; }
+
+        /// <summary>
+        /// Gets or sets the feature representing the modified point type values in an online signature
+        /// </summary>
+        [Output]
+        public FeatureDescriptor<List<double>> PointTypeOutputFeature { get; set; }
+
+        /// <summary>
         /// Gets or sets the features of an online signature that were altered
         /// </summary>
         [Output]
-        public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
+        public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
         //public List<TimeSlot> TimeSlots { get; set; }
 
@@ -116,84 +147,86 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 throw new NullReferenceException("Output features are not defined");
             }
 
-
-            var timeSlots = CalculateTimeSlots(signature);
-
-            var timeSlotMedian = CalculateTimeSlotsMedian(timeSlots);
-
-            var longTimeSlots = new List<TimeSlot>(timeSlots.Count);
-            foreach (var ts in timeSlots)
-            {
-                if (ts.Length > timeSlotMedian)
-                {
-                    longTimeSlots.Add(ts);
-                }
-            }
-
             var originalTimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
             var timeValues = new List<double>(signature.GetFeature(TimeInputFeature));
+            var pressureValues = new List<double>(signature.GetFeature(PressureInputFeature));
+            var pointTypeValues = new List<double>(signature.GetFeature(PointTypeInputFeature));
 
-            var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
+            var timeSlots = CalculateTimeSlots(signature);
+            var timeSlotMedian = timeSlots.Where(ts => ts.PenDown == true).Select(ts => ts.Length).Median();
+            var penUpTimeSlots = timeSlots.Where(ts => ts.PenDown == false && ts.Length > timeSlotMedian).ToList();
 
-            for (int i = 0; i < InputFeatures.Count; i++)
+            if (penUpTimeSlots.Count != 0)
             {
-                var values = new List<double>(signature.GetFeature(InputFeatures[i]));
-                interpolation.FeatureValues = new List<double>(values);
-                interpolation.TimeValues = originalTimeValues;
+                var interpolation = (IInterpolation)Activator.CreateInstance(InterpolationType);
 
-                foreach (var ts in longTimeSlots)
+                for (int i = 0; i < InputFeatures.Count; i++)
                 {
-                    var actualTimestamp = ts.StartTime + timeSlotMedian;
-                    int actualIndex = timeValues.IndexOf(ts.StartTime) + 1;
-                    while (actualTimestamp < ts.EndTime)
+                    if (InputFeatures[i] == TimeInputFeature || InputFeatures[i] == PressureInputFeature || InputFeatures[i] == PointTypeInputFeature)
+                        continue;
+                    var values = new List<double>(signature.GetFeature(InputFeatures[i]));
+                    interpolation.FeatureValues = new List<double>(values);
+                    interpolation.TimeValues = new List<double>(originalTimeValues);
+
+                    foreach (var ts in penUpTimeSlots)
                     {
-                        if (i == 0) { timeValues.Insert(actualIndex, actualTimestamp); }
-                        values.Insert(actualIndex, interpolation.GetValue(actualTimestamp));
+                        var actualTimestamp = ts.StartTime + timeSlotMedian;
+                        int actualIndex = timeValues.IndexOf(ts.StartTime) + 1;
 
-                        actualTimestamp += timeSlotMedian;
-                        actualIndex++;
+                        while (actualTimestamp < ts.EndTime)
+                        {
+                            if (i == 0)
+                            {
+                                timeValues.Insert(actualIndex, actualTimestamp);
+                                pressureValues.Insert(actualIndex, 0);
+                                pointTypeValues.Insert(actualIndex, 0);
+                            }
+                            values.Insert(actualIndex, interpolation.GetValue(actualTimestamp));
+
+                            actualTimestamp += timeSlotMedian;
+                            actualIndex++;
+                        }
+
                     }
+
+                    if (i == 0)
+                    {
+                        signature.SetFeature(TimeOutputFeature, timeValues);
+                        signature.SetFeature(PressureOutputFeature, pressureValues);
+                        signature.SetFeature(PointTypeOutputFeature, pointTypeValues);
+                    }
+                    signature.SetFeature(OutputFeatures[i], values); //TODO: make sure InputFeatures-OutputFeatures are in pairs
                 }
-
-                if (i == 0) { signature.SetFeature(TimeOutputFeature, timeValues); }
-                signature.SetFeature(OutputFeatures[i], values);
             }
 
 
         }
 
-        private double CalculateTimeSlotsMedian(List<TimeSlot> timeSlots)
-        {
-            var timeSlotsLength = new List<double>(timeSlots.Count);
-            foreach (var ts in timeSlots)
-            {
-                timeSlotsLength.Add(ts.Length);
-            }
-            timeSlotsLength.Sort();
-
-            if (timeSlotsLength.Count % 2 == 0)
-            {
-                int i = (timeSlotsLength.Count / 2) - 1;
-                return (timeSlotsLength[i] + timeSlotsLength[i + 1]) / 2;
-            }
-            else
-            {
-                int i = timeSlotsLength.Count / 2;
-                return timeSlotsLength[i];
-            }
-        }
 
         private List<TimeSlot> CalculateTimeSlots(Signature signature)
         {
+            var pressureValues = signature.GetFeature(PressureInputFeature);
             var timesValues = signature.GetFeature(TimeInputFeature);
-            var timeSlots = new List<TimeSlot>(timesValues.Count - 1);
+            var pointTypeValues = signature.GetFeature(PointTypeInputFeature);
 
-            for (int i = 0; i < timesValues.Count - 1; i++)
-            {
-                timeSlots.Add(new TimeSlot() { StartTime = timesValues[i], EndTime = timesValues[i + 1] });
-            }
+            if (pressureValues.Count != timesValues.Count)
+                throw new ArgumentException($"The length of {nameof(PressureInputFeature)} and {nameof(TimeInputFeature)} are not the same.");
+            if (pressureValues.Count != pointTypeValues.Count)
+                throw new ArgumentException($"The length of {nameof(PressureInputFeature)} and {nameof(PointTypeInputFeature)} are not the same.");
 
-            return timeSlots;
+
+
+            return timesValues
+                .Select((t, i) => new TimeSlot()
+                {
+                    StartTime = timesValues[i > 0 ? i - 1 : 0],
+                    EndTime = t,
+                    PenDown = (
+                        pointTypeValues[i > 0 ? i - 1 : 0] == 1
+                    || (pointTypeValues[i > 0 ? i - 1 : 0] == 3 && pressureValues[i] > 0)
+                    || (pointTypeValues[i > 0 ? i - 1 : 0] == 0 && pressureValues[i] > 0)
+                    )
+                }).Skip(1).ToList();
         }
     }
 }

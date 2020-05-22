@@ -5,21 +5,21 @@ Namespace: [SigStat]() > [Common](./../../README.md) > [Helpers](./../README.md)
 Assembly: SigStat.Common.dll
 
 ## Summary
-Custom serializer for a Dictionary of [FeatureDescriptor](https://github.com/sigstat/sigstat/blob/develop/docs/md/SigStat/Common/FeatureDescriptor.md)
+Custom serializer for a Dictionary of [FeatureDescriptor](https://github.com/hargitomi97/sigstat/blob/master/docs/md/SigStat/Common/FeatureDescriptor.md)
 
 ## Constructors
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
-| FeatureDescriptorDictionaryConverter () |  | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| FeatureDescriptorDictionaryConverter (  ) |  | 
 
 
 ## Methods
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
-| [CanConvert](./Methods/FeatureDescriptorDictionaryConverter--CanConvert.md) ([`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type)) | Tells if the current object is of the correct type | 
-| [ReadJson](./Methods/FeatureDescriptorDictionaryConverter--ReadJson.md) ([`JsonReader`](./FeatureDescriptorDictionaryConverter.md), [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializer`](./FeatureDescriptorDictionaryConverter.md)) |  | 
-| [WriteJson](./Methods/FeatureDescriptorDictionaryConverter--WriteJson.md) ([`JsonWriter`](./FeatureDescriptorDictionaryConverter.md), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializer`](./FeatureDescriptorDictionaryConverter.md)) |  | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| CanConvert ( [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type) ) | Tells if the current object is of the correct type | 
+| ReadJson ( [`JsonReader`](./FeatureDescriptorDictionaryConverter.md), [`Type`](https://docs.microsoft.com/en-us/dotnet/api/System.Type), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializer`](./FeatureDescriptorDictionaryConverter.md) ) |  | 
+| WriteJson ( [`JsonWriter`](./FeatureDescriptorDictionaryConverter.md), [`Object`](https://docs.microsoft.com/en-us/dotnet/api/System.Object), [`JsonSerializer`](./FeatureDescriptorDictionaryConverter.md) ) |  | 
 
 

@@ -23,7 +23,7 @@ namespace SigStat.FusionBenchmark.FusionDemos
 
             var offlinePipeline = FusionPipelines.GetOfflinePipeline();
             var onlinePipeline = FusionPipelines.GetOnlinePipeline();
-            var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, "001");
+            var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, 0);
 
 
             foreach (var offSigner in offlineSigners)
@@ -39,25 +39,14 @@ namespace SigStat.FusionBenchmark.FusionDemos
                     onlinePipeline.Transform(onSig);
                 }
                 );
-                //var xySaver = FusionPipelines.GetXYSaver();
                 Parallel.ForEach(offSigner.Signatures, offSig =>
                 {
                     fusionPipeline.Transform(offSig);
-                    //xySaver.Transform(offSig);
                     onlinePipeline.Transform(offSig);
                 }
                 );
 
-                //var strokepairingdists = new StrokePairingDistances
-                //{
-                //    InputOfflineTrajectory = FusionFeatures.Trajectory,
-                //    InputOnlineTrajectory = FusionFeatures.Trajectory,
-                //    OfflineSignatures = offSigner.Signatures,
-                //    OnlineSignatures = onSigner.Signatures
-                //};
-                //var pairingRes = strokepairingdists.Calculate();
-                //TxtHelper.Save(TxtHelper.TuplesToLines(pairingRes), "pairdist_" + offSigner.ID);
-
+               
                 var listWithOnlySigner = new List<Signer>() { offSigner };
                 var onlySigBenchmark = FusionPipelines.GetBenchmark(listWithOnlySigner, true);
                 var onlyRes = onlySigBenchmark.Execute();

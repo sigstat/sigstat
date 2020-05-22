@@ -18,7 +18,7 @@ namespace SigStat.Common.Test.Helpers.Serialization
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
+                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState(false)),
                 Converters = new List<JsonConverter> { new FeatureDescriptorTJsonConverter() }
             };
         }
@@ -39,20 +39,13 @@ namespace SigStat.Common.Test.Helpers.Serialization
         public void TestWrite()
         {
             var jsonSerializerSettings = GetTestSettings();
-            var cleanSerializerSettings = new JsonSerializerSettings
-
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                NullValueHandling = NullValueHandling.Ignore,
-                ContractResolver = new VerifierResolver(),
-                Context = new StreamingContext(StreamingContextStates.All, new FeatureStreamingContextState()),
-                Converters = new List<JsonConverter> { new FeatureDescriptorTJsonConverter() }
-            };
             var feature = Features.Pressure;
             var json = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
-            JsonAssert.AreEqual(feature,json,cleanSerializerSettings);
+            var expectedJson = @"""Pressure | System.Collections.Generic.List`1[[System.Double, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e""";
+            JsonAssert.AreEqual(expectedJson, json);
             var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
-            JsonAssert.AreEqual(feature,shortJson,jsonSerializerSettings);
+            var expectedShortJson = @"""Pressure""";
+            JsonAssert.AreEqual(expectedShortJson, shortJson);
         }
 
         [TestMethod]
@@ -64,10 +57,10 @@ namespace SigStat.Common.Test.Helpers.Serialization
             var shortJson = JsonConvert.SerializeObject(feature, Formatting.Indented, jsonSerializerSettings);
 
             var featureDeserialized = JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(json,GetTestSettings());
-            JsonAssert.AreEqual(feature, featureDeserialized, jsonSerializerSettings);
+            JsonAssert.AreEqual(feature, featureDeserialized);
             var featureDeserializedShort =
                 JsonConvert.DeserializeObject<FeatureDescriptor<List<double>>>(shortJson, GetTestSettings());
-            JsonAssert.AreEqual(feature, featureDeserializedShort, jsonSerializerSettings);
+            JsonAssert.AreEqual(feature, featureDeserializedShort);
         }
         [TestMethod]
         public void TestReadWrongJson()

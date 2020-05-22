@@ -12,7 +12,11 @@ namespace SigStat.Common.Test.Helpers.Serialization.Samplers
         {
             var universalSampler = new UniversalSampler(5,20);
             var json = SerializationHelper.JsonSerialize(universalSampler);
-            JsonAssert.AreEqual(universalSampler, json);
+            var expectedJson = @"{
+              ""TrainingCount"": 5,
+              ""TestCount"": 20
+            }";
+            JsonAssert.AreEqual(expectedJson, json);
         }
 
         [TestMethod]

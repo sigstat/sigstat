@@ -26,7 +26,7 @@ namespace SigStat.FusionBenchmark.Loaders
             public SignatureFile(string file)
             {
                 File = file;
-                string name = file.Split('/').Last();//handle if file is in zip directory
+                string name = file.Split(Path.PathSeparator).Last();//handle if file is in zip directory
                 var parts = Path.GetFileNameWithoutExtension(name).Replace("u", "").Replace("_sg", "_").Replace("s", "_").Replace(".png", "").Replace("g", "_g").Replace("f", "_f").Split("_");
 
                 if (parts.Last() != "f" && parts.Last() != "g")
@@ -53,6 +53,7 @@ namespace SigStat.FusionBenchmark.Loaders
 
         public Predicate<Signer> SignerFilter { get; set; }
 
+        public override int SamplingFrequency => throw new NotImplementedException();
 
         public BiosecureIDOfflineLoader(string databasePath, Predicate<Signer> signerFilter = null)
         {

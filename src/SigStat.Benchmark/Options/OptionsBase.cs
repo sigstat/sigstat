@@ -11,13 +11,12 @@ namespace SigStat.Benchmark.Options
     /// </summary>
     public abstract class OptionsBase
     {
-        [Option('k', "key", Required = false, HelpText = "Azure key to use for managing the job.")]
-        public string AccountKey { get; set; }
+        private const string DefaultConnectionString = "mongodb://localhost:27017/";
 
-        [Option('a', "account", Required = false, Default = "preprocessingbenchmark", HelpText = "Azure storage account to use for managing the job.")]
-        public string AccountName { get; set; }
+        [Option('c', "connection", Required = false, Default = DefaultConnectionString, HelpText = "MongoDB connection string in Uri format (see: https://docs.mongodb.com/manual/reference/connection-string). Defaults to localhost.")]
+        public string Connection { get; set; }
 
-        [Option('e', "experiment", Required = false, Default = "default", HelpText = "Unique name for the experiment.")]
+        [Option('e', "experiment", Required = false, Default = "test", HelpText = "Unique name for the experiment. Default: test")]
         public string Experiment { get; set; }
 
         public abstract Task RunAsync();

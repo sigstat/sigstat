@@ -303,25 +303,27 @@ namespace SigStat.Common.Helpers
             //If we show a header the height of the table is 1 bigger
             int tableLength = 2;
             int tableHeight = data.Count();
-            var tableRange = ws.Cells[row, col, row + tableHeight - 1, col + tableLength - 1];
+            var tableRange = ws.Cells[row, col, row + Math.Max(0, tableHeight - 1), col + tableLength - 1];
 
             //Format table
             //Get the starting row for inserting data
             int startRow = tableRange.FormatAsTableWithTitle(title, color, false, false);
 
             //Write data
-            int i = 0;
-            foreach (var value in data)
+            if ((data.Count() > 0))
             {
-                ws.Cells[startRow + i, col].Value = value.Key;
-                ws.Cells[startRow + i, col + 1].Value = value.Value;
-                i++;
+                int i = 0;
+                foreach (var value in data)
+                {
+                    ws.Cells[startRow + i, col].Value = value.Key;
+                    ws.Cells[startRow + i, col + 1].Value = value.Value;
+                    i++;
+                }
+
+                //Set columns to autofit for better output
+                tableRange = ws.Cells[startRow, col, startRow + tableHeight - 1, col + tableLength - 1];
+                //tableRange.AutoFitColumns();//ehhez gdi+ kell
             }
-
-            //Set columns to autofit for better output
-            tableRange = ws.Cells[startRow, col, startRow + tableHeight - 1, col + tableLength - 1];
-            //tableRange.AutoFitColumns();//ehhez gdi+ kell
-
             //create NamedRange
             if (Name != null)
                 ws.Names.Add(Name, tableRange);

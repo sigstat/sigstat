@@ -5,16 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using SigStat.Common;
 using SigStat.FusionBenchmark.VisualHelpers;
+using SigStat.Common.Loaders;
 
 namespace SigStat.FusionBenchmark.FusionDemos
 {
     public static class Strokepairingmatrix
     {
 
-        public static void Calculate(string[] ids)
+        public static void Calculate(string[] ids, DataSetLoader offlineLoader, DataSetLoader onlineLoader)
         {
-            var offlineLoader = FusionPipelines.GetOfflineLoader();
-            var onlineLoader = FusionPipelines.GetOnlineLoader();
 
             var offlineSigners = offlineLoader.EnumerateSigners(signer => ids.Contains(signer.ID)).ToList();
             var onlineSigners = onlineLoader.EnumerateSigners(signer => ids.Contains(signer.ID)).ToList();
@@ -45,7 +44,7 @@ namespace SigStat.FusionBenchmark.FusionDemos
 
                 for (int i = 0; i < references.Count; i++)
                 {
-                    var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, references[i].ID);
+                    var fusionPipeline = FusionPipelines.GetFusionPipeline(onlineSigners, false, i);
                     Parallel.For(0, genuines.Count, j=>
                     {
                         Console.WriteLine("ref: {0}, sig: {1}", i, j);

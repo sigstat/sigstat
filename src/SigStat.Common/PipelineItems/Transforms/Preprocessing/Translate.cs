@@ -90,7 +90,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 case OriginType.Minimum:
                     ExtremaTransform(signature, false);
                     break;
-                case OriginType.Maximum:
+                case OriginType.Maximum: //TODO: think over the proper behavior
                     ExtremaTransform(signature, true);
                     break;
                 case OriginType.Predefined:
@@ -119,7 +119,11 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             var translatedValues = new List<double>(sig.GetFeature(InputFeature));
 
-            var origin = isMax ? translatedValues.Max() : translatedValues.Min();
+            var min = translatedValues.Min();
+            if (InputFeature == Features.Pressure)
+                min = 0;
+
+            var origin = isMax ? translatedValues.Max() : min;
             _newOrigin = origin;
 
             for (int i = 0; i < translatedValues.Count; i++)

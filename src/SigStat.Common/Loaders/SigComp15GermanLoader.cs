@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigStat.Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -38,6 +39,8 @@ namespace SigStat.Common.Loaders
             /// </summary>
             public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp15.T");
         }
+
+
 
         private struct SigComp15GermanSignatureFile
         {
@@ -99,12 +102,15 @@ namespace SigStat.Common.Loaders
         /// Gets or sets a value indicating whether features are also loaded as <see cref="Features"/>
         /// </summary>
         public bool StandardFeatures { get; set; }
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
+        public Predicate<Signer> SignerFilter { get; set; }
 
         /// <inheritdoc />
         public override IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter)
         {
-            //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-            //signerFilter = signerFilter ?? SignerFilter;
+            signerFilter = signerFilter ?? SignerFilter;
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))
@@ -184,8 +190,17 @@ namespace SigStat.Common.Loaders
             {
                 lines.RemoveAt(lines.Count - 1);
             }
+
+            signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
+            signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
+            signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
+            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
+            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0 / 75.0) * 1000).ToList());
+
             // The database uses special datapoints to signal stroke boundaries
-            // We are going to replace them with averaged values to allow for smoother comparison
+            // We are going to remove them in standard features for smoother comparison, and to save this information by PointTypes
+            var stopIndexes = new List<int>();
+            var startIndexes = new List<int>();
             for (int i = 1; i < lines.Count-1; i++)
             {
                 if (lines[i][0] != -1) continue;
@@ -196,33 +211,42 @@ namespace SigStat.Common.Loaders
                     i--;
                     continue;
                 }
-                lines[i][0] = (lines[i - 1][0] + lines[i + 1][0]) / 2;
-                lines[i][1] = (lines[i - 1][1] + lines[i + 1][1]) / 2;
-                lines[i][2] = 0;
+                // Save the index of the points before and after the gap and remove the special datapoint
+                startIndexes.Add(i);
+                stopIndexes.Add(i - 1);
+                lines.RemoveAt(i);
+                i--;
             }
-
-            signature.SetFeature(SigComp15.X, lines.Select(l => l[0]).ToList());
-            signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
-            signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
-            // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
-            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0/75.0)*1000).ToList());
 
             if (standardFeatures)
             {
                 signature.SetFeature(Features.X, lines.Select(l => (double)l[0]).ToList());
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
-                signature.SetFeature(Features.T, Enumerable.Range(0, lines.Count).Select(i => i * 5d).ToList());
-                signature.SetFeature(Features.Button, lines.Select(l => l[2] > 0).ToList());
-                signature.SetFeature(Features.Azimuth, lines.Select(l => 1d).ToList());
-                signature.SetFeature(Features.Altitude, lines.Select(l => 1d).ToList());
+                signature.SetFeature(Features.PenDown, lines.Select(l => true).ToList());
+                
+                // The database uses special datapoints to signal stroke boundaries which were removed above
+                // Stroke start point indexes are in startIndexes, stroke end point indexes are in stopIndexes
+                var pointType = new double[lines.Count];
+                for (int i = 0; i < lines.Count; i++)
+                {
+                    if (i == 0 || startIndexes.Contains(i)) pointType[i] = 1; // stroke start
+                    else if (i == lines.Count - 1 || stopIndexes.Contains(i)) pointType[i] = 2; // stroke end
+                    else pointType[i] =  0; // Internal stroke point
+                }
+                signature.SetFeature(Features.PointType, pointType.ToList());
+
+                // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
+                var unitTimeSlot = (1.0 / 75.0) * 1000;
+                DataCleaningHelper.InitializeTimestamps(signature, unitTimeSlot);
+
+                var x = signature.GetFeature(Features.X);
+                signature.SetFeature(Features.Azimuth, x.Select(v => 1d).ToList());
+                signature.SetFeature(Features.Altitude, x.Select(v => 1d).ToList());
+
                 signature.CalculateStandardStatistics();
-
-
-
             }
 
         }
-
     }
 }

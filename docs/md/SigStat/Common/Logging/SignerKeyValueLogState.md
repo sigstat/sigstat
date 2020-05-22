@@ -7,8 +7,8 @@ Assembly: SigStat.Common.dll
 
 ## Constructors
 
-| <span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> | Summary | 
-| :--- | :--- | 
-| SignerKeyValueLogState () |  | 
+| Name<div><a href="#"><img width=225></a></div> | Summary<div><a href="#"><img width=525></a></div> | 
+| --- | --- | 
+| SignerKeyValueLogState (  ) |  | 
 
 

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using SigStat.Common;
+using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 
 namespace SigStat.UI
 {
@@ -100,9 +101,13 @@ namespace SigStat.UI
             var sig = Signature;
             if (sig == null)
                 return;
+            
+
             var strokes = sig.GetStrokes();
             var xt = sig.GetFeature(Features.X);
             var yt = sig.GetFeature(Features.Y);
+
+
 
             switch (DisplayMode)
             {

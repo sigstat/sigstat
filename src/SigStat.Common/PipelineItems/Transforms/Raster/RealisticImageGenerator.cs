@@ -39,7 +39,7 @@ namespace SigStat.Common.Transforms
         /// Input <see cref="FeatureDescriptor"/> describing the stroke endings of an online signature
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<bool>> Button { get; set; } = Features.Button;
+        public FeatureDescriptor<List<bool>> Button { get; set; } = Features.PenDown;
 
         /// <summary>
         /// Input <see cref="FeatureDescriptor"/> describing the pressure values of an online signature
