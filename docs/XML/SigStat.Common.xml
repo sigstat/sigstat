@@ -566,6 +566,11 @@
             </summary>
             <param name="n">Count of signatures used for training</param>
         </member>
+        <member name="T:SigStat.Common.Framework.Samplers.TestingSampler">
+            <summary>
+            Testing sampler for signer dependent sampling frequency verification system
+            </summary>
+        </member>
         <member name="P:SigStat.Common.Framework.Samplers.TestingSampler.N">
             <summary>
             Count of signatures used for training
@@ -670,11 +675,29 @@
             <param name="signature"></param>
             <returns>True if <paramref name="signature"/> passes the verification test.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SigStat.Common.Model.SampleRateResults.step" -->
-        <!-- Badly formed XML comment ignored for member "P:SigStat.Common.Model.SampleRateResults.pointsAvg" -->
-        <member name="P:SigStat.Common.Model.SampleRateResults.AER2">
+        <member name="T:SigStat.Common.Model.SampleRateResults">
             <summary>
-            Gets or sets the input feature representing the X coordinates of an online signature
+            used to store results for testing different sampling frequencies
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.SampleRateResults.step">
+            <summary>
+            number of skipped points
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.SampleRateResults.pointsAvg">
+            <summary>
+            average points of the signer
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.SampleRateResults.AER">
+            <summary>
+            AER for current sampling frequency test
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Model.SampleRateResults.samplerate">
+            <summary>
+            current samplerate tested
             </summary>
         </member>
         <member name="T:SigStat.Common.Result">
@@ -1769,10 +1792,20 @@
             Sampling frequency for each database
             </summary>
         </member>
+        <member name="P:SigStat.Common.Loaders.DataSetLoader.SigStat#Common#Loaders#IDataSetLoader#SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Loaders.IDataSetLoader">
             <summary>
             Exposes a function to enable loading collections of <see cref="T:SigStat.Common.Signer"/>s.
             Base abstract class: <see cref="T:SigStat.Common.Loaders.DataSetLoader"/>.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.IDataSetLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
             </summary>
         </member>
         <member name="M:SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners">
@@ -1871,6 +1904,18 @@
             <param name="databasePath">The database path.</param>
             <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
+        <member name="M:SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.MCYTLoader"/> class with specified database.
+            </summary>
+            <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+            <list type="bullet">
+            <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+            <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+            </list></param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter">Sets the <see cref="P:SigStat.Common.Loaders.MCYTLoader.SignerFilter"/> property</param>
+        </member>
         <member name="P:SigStat.Common.Loaders.MCYTLoader.SamplingFrequency">
             <summary>
             Set MCYT sampling frequenct to 100hz
@@ -1947,6 +1992,18 @@
             <param name="databasePath">The database path.</param>
             <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
+        <member name="M:SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.SigComp11ChineseLoader"/> class with specified database.
+            </summary>
+            <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+            <list type="bullet">
+            <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+            <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+            </list></param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter">Sets the <see cref="P:SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter"/> property</param>
+        </member>
         <member name="P:SigStat.Common.Loaders.SigComp11ChineseLoader.DatabasePath">
             <summary>
             Gets or sets the database path.
@@ -2017,6 +2074,18 @@
             </summary>
             <param name="databasePath">The database path.</param>
             <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
+        <member name="M:SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.SigComp11DutchLoader"/> class with specified database.
+            </summary>
+            <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+            <list type="bullet">
+            <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+            <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+            </list></param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter">Sets the <see cref="P:SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter"/> property</param>
         </member>
         <member name="P:SigStat.Common.Loaders.SigComp11DutchLoader.DatabasePath">
             <summary>
@@ -2089,6 +2158,18 @@
             <param name="databasePath">The database path.</param>
             <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="T:SigStat.Common.Features"/>.</param>
         </member>
+        <member name="M:SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.SigComp13JapaneseLoader"/> class with specified database.
+            </summary>
+            <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+            <list type="bullet">
+            <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+            <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+            </list></param>
+            <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter">Sets the <see cref="P:SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter"/> property</param>
+        </member>
         <member name="P:SigStat.Common.Loaders.SigComp13JapaneseLoader.DatabasePath">
             <summary>
             Gets or sets the database path.
@@ -2159,6 +2240,18 @@
             </summary>
             <param name="databasePath">The database path.</param>
             <param name="standardFeatures">if set to <c>true</c> features will be also stored in <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
+        <member name="M:SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.SigComp15GermanLoader"/> class with specified database.
+            </summary>
+            <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+            <list type="bullet">
+            <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+            <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+            </list></param>
+            <param name="standardFeatures">Convert loaded data  to standard <see cref="T:SigStat.Common.Features"/>.</param>
+            <param name="signerFilter">Sets the <see cref="P:SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter"/> property</param>
         </member>
         <member name="P:SigStat.Common.Loaders.SigComp15GermanLoader.DatabasePath">
             <summary>
@@ -2800,7 +2893,7 @@
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor">
             <summary>
-            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.
+            Initializes a new instance of <see cref="T:SigStat.Common.Logging.SimpleConsoleLogger"/> with LogLevel set to <see cref="!:LogLevel.Information"/>.
             </summary>
         </member>
         <member name="M:SigStat.Common.Logging.SimpleConsoleLogger.#ctor(Microsoft.Extensions.Logging.LogLevel)">
@@ -3038,6 +3131,21 @@
         <member name="T:SigStat.Common.Signer">
             <summary>
             Represents a person as an <see cref="P:SigStat.Common.Signer.ID"/> and a list of <see cref="P:SigStat.Common.Signer.Signatures"/>.
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Signer.bestSampleRate">
+            <summary>
+            best sampling frequency for the signer
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Signer.bestStep">
+            <summary>
+            best step (nmber of skipped points) for the signer
+            </summary>
+        </member>
+        <member name="F:SigStat.Common.Signer.bestFrr">
+            <summary>
+            best frr for the signer, used to find the best sampling frequency and step for each signer
             </summary>
         </member>
         <member name="P:SigStat.Common.Signer.ID">
@@ -3300,46 +3408,6 @@
         </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <inheridoc/>
-        </member>
-        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate">
-            <summary>
-            Performs rotation normalization on the online signature
-            </summary>
-            <seealso cref="T:SigStat.Common.PipelineBase" />
-            <seealso cref="T:SigStat.Common.ITransformation" />
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.samplerate">
-            <summary>
-            Gets or sets the input feature representing the X coordinates of an online signature
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputX">
-            <summary>
-            Gets or sets the input feature representing the X coordinates of an online signature
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputY">
-            <summary>
-            Gets or sets the input feature representing the Y coordinates of an online signature
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.InputP">
-            <summary>
-            Gets or sets the input feature representing the timestamps of an online signature
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.OutputX">
-            <summary>
-            Gets or sets the output feature representing the X coordinates of an online signature
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.OutputY">
-            <summary>
-            Gets or sets the input feature representing the Y coordinates of an online signature
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.chooseSampleRate.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation">
             <summary>
@@ -4995,5 +5063,8 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
+    </members>
+</doc>
+er>
     </members>
 </doc>

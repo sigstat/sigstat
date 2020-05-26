@@ -113,7 +113,22 @@ namespace SigStat.Common.Loaders
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SigComp11ChineseLoader"/> class with specified database.
+        /// </summary>
+        /// <param name="databasePath">Represents the path, to load the signatures from. It supports two basic approaches:
+        /// <list type="bullet">
+        /// <item>DatabasePath may point to a (non password protected) zip file, containing the siganture files</item>
+        /// <item>DatabasePath may point to a directory with all the signer files or with files grouped in subdirectories</item>
+        /// </list></param>
+        /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
+        /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
+        public SigComp11ChineseLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        {
+            DatabasePath = databasePath;
+            StandardFeatures = standardFeatures;
+            SignerFilter = signerFilter;
+        }
         /// <summary>
         /// Gets or sets the database path.
         /// </summary>

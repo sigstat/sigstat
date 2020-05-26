@@ -24,9 +24,16 @@ namespace SigStat.Common.Loaders
         }
         /// <inheritdoc/>
         public abstract IEnumerable<Signer> EnumerateSigners(Predicate<Signer> signerFilter);
+
+      
         /// <summary>
         /// Sampling frequency for each database
         /// </summary>
         public abstract int SamplingFrequency {get;}
-}
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
+        
+        Predicate<Signer> IDataSetLoader.SignerFilter { get ; set ; }
+    }
 }

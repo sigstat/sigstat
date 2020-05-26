@@ -23,7 +23,7 @@ namespace SigStat.Common.Framework.Samplers
         {
             N = n;
             TrainingFilter = sl => sl.Where(s => s.Origin == Origin.Genuine).Take(N).ToList();
-            GenuineTestFilter = sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(N).Take(N).ToList();
+            GenuineTestFilter = sl => sl.Where(s => s.Origin == Origin.Genuine).Skip(N).Take(10-N).ToList();
             ForgeryTestFilter = sl => sl.Where(s => s.Origin == Origin.Forged).ToList();
         }
     }
