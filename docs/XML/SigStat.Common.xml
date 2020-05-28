@@ -4,6 +4,27 @@
         <name>SigStat.Common</name>
     </assembly>
     <members>
+        <member name="T:SigStat.Common.Algorithms.Classifiers.Ocjknn">
+            <summary>
+            One Class JKNN classifier based on: Khan, Shehroz Saeed. "Kernels for one-class nearest neighbour classification and comparison of chemical spectral data." College of Engineering and Informatics, National University of Ireland (2010).
+            https://cs.uwaterloo.ca/~s255khan/files/Kernels_for_One-Class_Nearest_Neighbour_Classification_and_Comparison_of_Chemical_Spectral_Data-libre.pdf
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Algorithms.Classifiers.Ocjknn.Test``1(``0,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Double,System.Func{``0,``0,System.Double})">
+            <summary>
+            Step 1: find the <paramref name="j"/> nearest neighbors of <paramref name="testItem"/> in the set of <paramref name="targetItems"/>. 
+            Step 2: for each neighbor, if (distance from test) / (average distance from <paramref name="k"/> nearest neighbors) &lt; <paramref name="threshold"/> accept++
+            Steo 3: return accept / <paramref name="j"/>
+            </summary>
+            <typeparam name="T">Item type (typically a vector or a label, that  <paramref name="distanceFunction"/> can work with)</typeparam>
+            <param name="testItem">The item, that we want to classify</param>
+            <param name="targetItems">Items belonging to the target class</param>
+            <param name="j">See algorithm description for details</param>
+            <param name="k">See algorithm description for details</param>
+            <param name="threshold">See algorithm description for details</param>
+            <param name="distanceFunction">Calculates the distance between two items of type <typeparamref name="T"/></param>
+            <returns>If the result is 0.5 or greater, then <paramref name="testItem"/> should be accepted as a member of target class</returns>
+        </member>
         <member name="T:SigStat.Common.Algorithms.Distances.DtwDistance">
             <summary>
             Calculates the distance between two vector sequences using Dynamic Time Warping
@@ -1593,6 +1614,14 @@
             <typeparam name="TRowKey">Type to represent the row indexes</typeparam>
             <typeparam name="TColumnKey">Type to represent the column indexes</typeparam>
             <typeparam name="TValue">Type to represent the distances</typeparam>
+        </member>
+        <member name="M:SigStat.Common.DistanceMatrix`3.GetDistance(`0,`1)">
+            <summary>
+            Gets or sets a distance for a given row and column
+            </summary>
+            <param name="row">row</param>
+            <param name="column">column</param>
+            <returns></returns>
         </member>
         <member name="P:SigStat.Common.DistanceMatrix`3.Item(`0,`1)">
             <summary>
@@ -3313,6 +3342,84 @@
             <returns></returns>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier">
+            <summary>
+            This <see cref="T:SigStat.Common.Pipeline.IDistanceClassifier"/> implementation will consider both test and 
+            training samples and claculate the threshold to separate the original and forged
+            signatures to approximate EER. Note that this classifier is not applicable for 
+            real world scenarios. It was developed to test the theoratical boundaries of 
+            threshold based classification
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.Pipeline.IDistanceClassifier" />
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel">
+            <summary>
+            Represents a trained model for <see cref="T:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.SignerID">
+            <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.DistanceCache">
+            <summary>
+            Precalculated distances of known signatures
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.TrainingSignatures">
+            <summary>
+            A list a of genuine signatures used for training
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features">
+            <summary>
+            <see cref="T:SigStat.Common.FeatureDescriptor"/>s to consider during classification
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction">
+            <summary>
+            The function used to calculate the distance between two data sequences
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J">
+            <summary>
+            The J parameter of the <see cref="T:SigStat.Common.Algorithms.Classifiers.Ocjknn"/> classifier
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K">
+            <summary>
+            The K parameter of the <see cref="T:SigStat.Common.Algorithms.Classifiers.Ocjknn"/> classifier
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold">
+            <summary>
+            The Threshold parameter of the <see cref="T:SigStat.Common.Algorithms.Classifiers.Ocjknn"/> classifier
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.#ctor(System.Int32,System.Int32,System.Double,SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier"/> class.
+            </summary>
+            <param name="j">The J parameter of the <see cref="T:SigStat.Common.Algorithms.Classifiers.Ocjknn"/> classifier</param>
+            <param name="k">The K parameter of the <see cref="T:SigStat.Common.Algorithms.Classifiers.Ocjknn"/> classifier</param>
+            <param name="threshold">The K parameter of the <see cref="T:SigStat.Common.Algorithms.Classifiers.Ocjknn"/> classifier</param>
+            <param name="distanceFunction">The distance function.</param>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">
+            <inheritdoc/>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})">
+            <summary>
+            Trains the specified signatures based on a precalculated distance matrix
+            </summary>
+            <param name="signatures">The signatures.</param>
+            <param name="distanceMatrix">The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+            distances will be calculated automatically using <see cref="P:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier">

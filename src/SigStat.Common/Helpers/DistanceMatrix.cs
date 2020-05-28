@@ -14,6 +14,16 @@ namespace SigStat.Common
     public class DistanceMatrix<TRowKey, TColumnKey, TValue>
     {
         Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue> items = new Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue>();
+        /// <summary>
+        /// Gets or sets a distance for a given row and column
+        /// </summary>
+        /// <param name="row">row</param>
+        /// <param name="column">column</param>
+        /// <returns></returns>
+        public TValue GetDistance(TRowKey row, TColumnKey column)
+        {
+            return this[row, column];
+        }
 
         /// <summary>
         /// Gets or sets a distance for a given row and column
@@ -48,6 +58,7 @@ namespace SigStat.Common
         {
             return items.TryGetValue(new KeyValuePair<TRowKey, TColumnKey>(row, column), out value);
         }
+
 
         /// <summary>
         /// Determines whether the Matrix contains the specified key pair
