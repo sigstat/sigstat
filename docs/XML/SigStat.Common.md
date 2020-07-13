@@ -138,6 +138,7 @@
 - [DataSetLoader](#T-SigStat-Common-Loaders-DataSetLoader 'SigStat.Common.Loaders.DataSetLoader')
   - [Logger](#P-SigStat-Common-Loaders-DataSetLoader-Logger 'SigStat.Common.Loaders.DataSetLoader.Logger')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-DataSetLoader-SamplingFrequency 'SigStat.Common.Loaders.DataSetLoader.SamplingFrequency')
+  - [SigStat#Common#Loaders#IDataSetLoader#SignerFilter](#P-SigStat-Common-Loaders-DataSetLoader-SigStat#Common#Loaders#IDataSetLoader#SignerFilter 'SigStat.Common.Loaders.DataSetLoader.SigStat#Common#Loaders#IDataSetLoader#SignerFilter')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [DistanceFunctionJsonConverter](#T-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter 'SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter')
@@ -312,6 +313,7 @@
   - [Test(signature,model)](#M-SigStat-Common-Pipeline-IClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.Pipeline.IClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
   - [Train(signatures)](#M-SigStat-Common-Pipeline-IClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.Pipeline.IClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [IDataSetLoader](#T-SigStat-Common-Loaders-IDataSetLoader 'SigStat.Common.Loaders.IDataSetLoader')
+  - [SignerFilter](#P-SigStat-Common-Loaders-IDataSetLoader-SignerFilter 'SigStat.Common.Loaders.IDataSetLoader.SignerFilter')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-IDataSetLoader-EnumerateSigners 'SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners')
   - [EnumerateSigners(signerFilter)](#M-SigStat-Common-Loaders-IDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.IDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
@@ -631,6 +633,9 @@
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.Transform(SigStat.Common.Signature)')
 - [SampleRateResults](#T-SigStat-Common-Model-SampleRateResults 'SigStat.Common.Model.SampleRateResults')
   - [AER](#P-SigStat-Common-Model-SampleRateResults-AER 'SigStat.Common.Model.SampleRateResults.AER')
+  - [pointsAvg](#P-SigStat-Common-Model-SampleRateResults-pointsAvg 'SigStat.Common.Model.SampleRateResults.pointsAvg')
+  - [samplerate](#P-SigStat-Common-Model-SampleRateResults-samplerate 'SigStat.Common.Model.SampleRateResults.samplerate')
+  - [step](#P-SigStat-Common-Model-SampleRateResults-step 'SigStat.Common.Model.SampleRateResults.step')
 - [Sampler](#T-SigStat-Common-Sampler 'SigStat.Common.Sampler')
   - [#ctor(references,genuineTests,forgeryTests)](#M-SigStat-Common-Sampler-#ctor-System-Func{System-Collections-Generic-List{SigStat-Common-Signature},System-Collections-Generic-List{SigStat-Common-Signature}},System-Func{System-Collections-Generic-List{SigStat-Common-Signature},System-Collections-Generic-List{SigStat-Common-Signature}},System-Func{System-Collections-Generic-List{SigStat-Common-Signature},System-Collections-Generic-List{SigStat-Common-Signature}}- 'SigStat.Common.Sampler.#ctor(System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}},System.Func{System.Collections.Generic.List{SigStat.Common.Signature},System.Collections.Generic.List{SigStat.Common.Signature}})')
   - [ForgeryTestFilter](#P-SigStat-Common-Sampler-ForgeryTestFilter 'SigStat.Common.Sampler.ForgeryTestFilter')
@@ -760,6 +765,9 @@
   - [SignatureID](#P-SigStat-Common-Logging-SignatureLogState-SignatureID 'SigStat.Common.Logging.SignatureLogState.SignatureID')
   - [SignerID](#P-SigStat-Common-Logging-SignatureLogState-SignerID 'SigStat.Common.Logging.SignatureLogState.SignerID')
 - [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')
+  - [bestFrr](#F-SigStat-Common-Signer-bestFrr 'SigStat.Common.Signer.bestFrr')
+  - [bestSampleRate](#F-SigStat-Common-Signer-bestSampleRate 'SigStat.Common.Signer.bestSampleRate')
+  - [bestStep](#F-SigStat-Common-Signer-bestStep 'SigStat.Common.Signer.bestStep')
   - [ID](#P-SigStat-Common-Signer-ID 'SigStat.Common.Signer.ID')
   - [Signatures](#P-SigStat-Common-Signer-Signatures 'SigStat.Common.Signer.Signatures')
   - [ToString()](#M-SigStat-Common-Signer-ToString 'SigStat.Common.Signer.ToString')
@@ -840,6 +848,9 @@
   - [X](#P-SigStat-Common-Transforms-TangentExtraction-X 'SigStat.Common.Transforms.TangentExtraction.X')
   - [Y](#P-SigStat-Common-Transforms-TangentExtraction-Y 'SigStat.Common.Transforms.TangentExtraction.Y')
   - [Transform()](#M-SigStat-Common-Transforms-TangentExtraction-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.TangentExtraction.Transform(SigStat.Common.Signature)')
+- [TestingSampler](#T-SigStat-Common-Framework-Samplers-TestingSampler 'SigStat.Common.Framework.Samplers.TestingSampler')
+  - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-TestingSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.TestingSampler.#ctor(System.Int32)')
+  - [N](#P-SigStat-Common-Framework-Samplers-TestingSampler-N 'SigStat.Common.Framework.Samplers.TestingSampler.N')
 - [TextLevel](#T-SigStat-Common-Helpers-Excel-TextLevel 'SigStat.Common.Helpers.Excel.TextLevel')
   - [Heading1](#F-SigStat-Common-Helpers-Excel-TextLevel-Heading1 'SigStat.Common.Helpers.Excel.TextLevel.Heading1')
   - [Heading2](#F-SigStat-Common-Helpers-Excel-TextLevel-Heading2 'SigStat.Common.Helpers.Excel.TextLevel.Heading2')
@@ -2414,6 +2425,13 @@ Abstract loader class to inherit from. Implements ILogger.
 ##### Summary
 
 Sampling frequency for each database
+
+<a name='P-SigStat-Common-Loaders-DataSetLoader-SigStat#Common#Loaders#IDataSetLoader#SignerFilter'></a>
+### SigStat#Common#Loaders#IDataSetLoader#SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners'></a>
 ### EnumerateSigners() `method`
@@ -4540,6 +4558,13 @@ SigStat.Common.Loaders
 
 Exposes a function to enable loading collections of [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')s.
 Base abstract class: [DataSetLoader](#T-SigStat-Common-Loaders-DataSetLoader 'SigStat.Common.Loaders.DataSetLoader').
+
+<a name='P-SigStat-Common-Loaders-IDataSetLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
 
 <a name='M-SigStat-Common-Loaders-IDataSetLoader-EnumerateSigners'></a>
 ### EnumerateSigners() `method`
@@ -7859,12 +7884,37 @@ This method has no parameters.
 
 SigStat.Common.Model
 
+##### Summary
+
+used to store results for testing different sampling frequencies
+
 <a name='P-SigStat-Common-Model-SampleRateResults-AER'></a>
 ### AER `property`
 
 ##### Summary
 
-Gets or sets the input feature representing the X coordinates of an online signature
+AER for current sampling frequency test
+
+<a name='P-SigStat-Common-Model-SampleRateResults-pointsAvg'></a>
+### pointsAvg `property`
+
+##### Summary
+
+average points of the signer
+
+<a name='P-SigStat-Common-Model-SampleRateResults-samplerate'></a>
+### samplerate `property`
+
+##### Summary
+
+current samplerate tested
+
+<a name='P-SigStat-Common-Model-SampleRateResults-step'></a>
+### step `property`
+
+##### Summary
+
+number of skipped points
 
 <a name='T-SigStat-Common-Sampler'></a>
 ## Sampler `type`
@@ -9242,6 +9292,27 @@ SigStat.Common
 
 Represents a person as an [ID](#P-SigStat-Common-Signer-ID 'SigStat.Common.Signer.ID') and a list of [Signatures](#P-SigStat-Common-Signer-Signatures 'SigStat.Common.Signer.Signatures').
 
+<a name='F-SigStat-Common-Signer-bestFrr'></a>
+### bestFrr `constants`
+
+##### Summary
+
+best frr for the signer, used to find the best sampling frequency and step for each signer
+
+<a name='F-SigStat-Common-Signer-bestSampleRate'></a>
+### bestSampleRate `constants`
+
+##### Summary
+
+best sampling frequency for the signer
+
+<a name='F-SigStat-Common-Signer-bestStep'></a>
+### bestStep `constants`
+
+##### Summary
+
+best step (nmber of skipped points) for the signer
+
 <a name='P-SigStat-Common-Signer-ID'></a>
 ### ID `property`
 
@@ -10043,6 +10114,37 @@ Gets or sets the input feature representing the Y coordinates of an online signa
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-Framework-Samplers-TestingSampler'></a>
+## TestingSampler `type`
+
+##### Namespace
+
+SigStat.Common.Framework.Samplers
+
+##### Summary
+
+Testing sampler for signer dependent sampling frequency verification system
+
+<a name='M-SigStat-Common-Framework-Samplers-TestingSampler-#ctor-System-Int32-'></a>
+### #ctor(n) `constructor`
+
+##### Summary
+
+Constructor
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| n | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | count of signatures used for training |
+
+<a name='P-SigStat-Common-Framework-Samplers-TestingSampler-N'></a>
+### N `property`
+
+##### Summary
+
+Count of signatures used for training
 
 <a name='T-SigStat-Common-Helpers-Excel-TextLevel'></a>
 ## TextLevel `type`

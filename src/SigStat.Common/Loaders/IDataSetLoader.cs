@@ -11,8 +11,11 @@ namespace SigStat.Common.Loaders
     /// </summary>
     public interface IDataSetLoader
     {
-
-       // int SamplingFrequency { get; }
+        /// <summary>
+        /// Ignores any signers during the loading, that do not match the predicate
+        /// </summary>
+         Predicate<Signer> SignerFilter { get; set; }
+        // int SamplingFrequency { get; }
 
         /// <summary>
         /// Enumerates all signers of the database
