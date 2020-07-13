@@ -47,11 +47,11 @@ namespace SigStat.Common.Algorithms.Classifiers
                 neighborsOfA[i] = new Neighbor<T> { Label = trainingSet[i], Index = i, Distance = distanceFunction(testItem, trainingSet[i]) };
             }
 
-            var jNearestNeighborsOfA =neighborsOfA.OrderBy(g=>g.Distance).Take(j).ToArray();
+            var jNearestNeighborsOfA = neighborsOfA.OrderBy(g => g.Distance).Take(j).ToArray();
 
             for (int i = 0; i < jNearestNeighborsOfA.Length; i++)
             {
-                var neighborsOfB = trainingSet.Take(i).Skip(1);
+                var neighborsOfB = trainingSet.Where((t,ind) => ind!=jNearestNeighborsOfA[i].Index);
                 var kNearestNeighborsOfB = neighborsOfB.Select(b => distanceFunction(b, jNearestNeighborsOfA[i].Label)).OrderBy(d => d).Take(k);
                 jNearestNeighborsOfA[i].ReferenceDistance = kNearestNeighborsOfB.Average();
             }

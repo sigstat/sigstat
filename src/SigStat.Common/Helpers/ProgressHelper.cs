@@ -27,7 +27,7 @@ namespace SigStat.Common.Helpers
             set
             {
                 this.value = value;
-                if (value == 0 || value == Maximum || (ReportIntervallSeconds > 0 && (DateTime.Now - lastProgress).Seconds > ReportIntervallSeconds))
+                if (value == 0 || value == Maximum || (ReportIntervallSeconds > 0 && (DateTime.Now - lastProgress).TotalSeconds > ReportIntervallSeconds))
                 {
                     ReportProgress?.Invoke(this);
                     lastProgress = DateTime.Now;

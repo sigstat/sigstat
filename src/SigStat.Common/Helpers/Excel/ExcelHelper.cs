@@ -2,6 +2,7 @@
 using OfficeOpenXml.Drawing.Chart;
 using SigStat.Common.Helpers.Excel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
@@ -202,23 +203,11 @@ namespace SigStat.Common.Helpers
         public static ExcelRange InsertTable<T>(this ExcelWorksheet ws, int row, int col, IEnumerable<T> data, string title = null, ExcelColor color = ExcelColor.Primary, bool showHeader = true, string Name = null)
         {
             //Get required Type data
-            var dataType = data.First().GetType();
+            var dataType = typeof(T);
             var props = dataType.GetProperties();
 
-            //We use the data often, don't want to always iterate on it
-            var dataArray = data.ToArray();
-            //Get table's range
-            //If we show a header the height of the table is 1 bigger
-            var tableHeight = dataArray.Length + (showHeader ? 1 : 0);
-            var tableLength = props.Length;
-            var tableRange = ws.Cells[row, col, row + tableHeight - 1, col + tableLength - 1];
-
-            //Format table
-            //Get the starting row for inserting data
-            int startRow = tableRange.FormatAsTableWithTitle(title, color, showHeader, false);
-
-            //Refresh table range
-            tableRange = ws.Cells[startRow, col, startRow + tableHeight - 1, col + tableLength - 1];
+            int startRow = row;
+            int startCol = col;
 
             //Write header
             if (showHeader)
@@ -226,7 +215,7 @@ namespace SigStat.Common.Helpers
                 //If we show header then it contains the name of the properties
                 for (int i = 0; i < props.Length; i++)
                 {
-                    var cell = ws.Cells[startRow, col + i];
+                    var cell = ws.Cells[row, startCol + i];
                     //If the property has Display attribute "Name" then the header will contain that instead of the property's name from code
                     string name = ((DisplayAttribute)(props[i].GetCustomAttributes(typeof(DisplayAttribute), true)?.FirstOrDefault()))?.Name;
                     if (name != null)
@@ -242,8 +231,33 @@ namespace SigStat.Common.Helpers
                             cell.AddComment(description, "ExcelReportGenerator");
                     }
                 }
-                startRow += 1;
+                row += 1;
             }
+
+            //Insert data
+            foreach (var item in data)
+            {
+                for (int j = 0; j < props.Length; j++)
+                {
+                    Object obj = props[j].GetValue(item);
+                    ws.Cells[row, startCol + j].Value = obj;
+                }
+                row += 1;
+            }
+
+
+            //Set columns to autofit for better output
+            //tableRange.AutoFitColumns();//ehhez gdi+ kell
+            //Get table's range
+            //If we show a header the height of the table is 1 bigger
+            var rowCount = row - startRow;
+            var tableHeight = rowCount;
+            var tableWidth = props.Length;
+            var tableRange = ws.Cells[startRow, startCol, startRow + tableHeight - 1, startCol + tableWidth - 1];
+
+            //Format table
+            //Get the starting row for inserting data
+            tableRange.FormatAsTableWithTitle(title, color, showHeader, false);
 
             //Set numberformat for the table
             for (int i = 0; i < props.Length; i++)
@@ -262,26 +276,78 @@ namespace SigStat.Common.Helpers
                 }
             }
 
-
-
-            //Insert data
-            for (int i = 0; i < dataArray.Length; i++)
-            {
-                for (int j = 0; j < props.Length; j++)
-                {
-                    Object obj = props[j].GetValue(dataArray[i]);
-                    ws.Cells[startRow + i, col + j].Value = obj;
-                }
-            }
-
-            //Set columns to autofit for better output
-            //tableRange.AutoFitColumns();//ehhez gdi+ kell
-
             //create NamedRange
             if (Name != null)
                 ws.Names.Add(Name, tableRange);
             return tableRange;
         }
+
+        /// <summary>
+        /// Insert a table filled with data from an IEnumerable
+        /// </summary>
+        /// <typeparam name="T">Type of inserted objects</typeparam>
+        /// <param name="ws">Worksheet in wich the table is created</param>
+        /// <param name="col">Starting column of the table</param>
+        /// <param name="row">Starting row of the table</param>
+        /// <param name="data">IEnumerable in wich the data to insert is stored</param>
+        /// <param name="title">The table's title</param>
+        /// <param name="color">The table's color</param>
+        /// <param name="headers">Defines if the table has header</param>
+        /// <param name="name">If given, creates a named range, with this name</param>
+        ///  <returns>Range of the inserted data</returns>
+        public static ExcelRange InsertTable(this ExcelWorksheet ws, int row, int col, IEnumerable<IEnumerable<object>> data, IEnumerable<string> headers, string title = null, ExcelColor color = ExcelColor.Primary, string name = null)
+        {
+            int startRow = row;
+            int startCol = col;
+
+            //Write header
+            if (headers != null)
+            {
+                //If we show header then it contains the name of the properties
+                foreach (var header in headers)
+                {
+
+                    var cell = ws.Cells[row, col];
+                    cell.Value = header;
+                    col++;
+                }
+                row += 1;
+            }
+            int columnCount = col-startCol;
+
+            //Insert data
+            foreach (var dataRow in data)
+            {
+                col = startCol;
+                foreach (var obj in dataRow)
+                {
+                    ws.Cells[row, col].Value = obj;
+                    col++;
+                }
+                row += 1;
+            }
+
+
+            //Set columns to autofit for better output
+            //tableRange.AutoFitColumns();//ehhez gdi+ kell
+            //Get table's range
+            //If we show a header the height of the table is 1 bigger
+            var rowCount = row - startRow;
+            var tableHeight = rowCount;
+            var tableWidth = columnCount;
+            var tableRange = ws.Cells[startRow, startCol, startRow + tableHeight - 1, startCol + tableWidth - 1];
+
+            //Format table
+            //Get the starting row for inserting data
+            tableRange.FormatAsTableWithTitle(title, color, headers!=null, false);
+
+            //create NamedRange
+            if (name != null)
+                ws.Names.Add(name, tableRange);
+            return tableRange;
+        }
+
+
 
         /// <summary>
         /// Insert table from key-value pairs

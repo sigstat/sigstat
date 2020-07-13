@@ -214,7 +214,7 @@ namespace SigStat.Benchmark
                         }
                         break;
                     default:
-                        throw new NotSupportedException("Unsupported classifier: " + config["Classifier"]);
+                        throw new NotSupportedException("Unsupported scaling: " + config["Scaling"]);
                 }
             }
 
@@ -269,7 +269,7 @@ namespace SigStat.Benchmark
         }
 
 
-        private List<FeatureDescriptor<List<double>>> ParseFeatures(string featuresString)
+        public List<FeatureDescriptor<List<double>>> ParseFeatures(string featuresString)
         {
             switch (featuresString)
             {

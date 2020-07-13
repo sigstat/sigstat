@@ -37,8 +37,10 @@ namespace SigStat.Common.Model
 
         private SequentialTransformPipeline pipeline = new SequentialTransformPipeline();
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
-        
-        public SequentialTransformPipeline Pipeline { get => pipeline;
+
+        public SequentialTransformPipeline Pipeline
+        {
+            get => pipeline;
             set
             {
                 pipeline = value;
@@ -50,15 +52,15 @@ namespace SigStat.Common.Model
         }
 
         /// <summary>  Gets or sets the classifier pipeline. Hands over the Logger object. </summary>
-        
+
         public IClassifier Classifier { get; set; }
 
         /// <summary>Gets or sets the signer model.</summary>
         /// <value>The signer model.</value>
         public ISignerModel SignerModel { get; set; }
-       
+
         /// <summary> Gets or sets the class responsible for logging</summary>
-        
+
         public ILogger Logger { get; set; }
 
         /// <summary>
@@ -75,7 +77,8 @@ namespace SigStat.Common.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Verifier"/> class.
         /// </summary>
-        public Verifier(){
+        public Verifier()
+        {
             this.Logger = null;
             this.LogTrace("Verifier created");
         }
@@ -116,10 +119,7 @@ namespace SigStat.Common.Model
             }
             this.LogTrace("Signatures transformed.");
 
-            if (Classifier == null)
-                this.LogError("No Classifier attached to the Verifier");
-            else
-                SignerModel = Classifier.Train(signatures);
+            SignerModel = Classifier.Train(signatures);
 
             this.LogTrace("Training finished.");
 

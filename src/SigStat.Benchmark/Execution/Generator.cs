@@ -28,7 +28,7 @@ namespace SigStat.Benchmark
                 [Feature] -> *X | *Y | P | XY | XYP | XP | YP
                 [Split] -> *s1 | s2 | s3 | s4
                 [Verifier] -> [Pipeline]_[Classifier]
-                [Classifier] -> *Dtw_[Distance] | OptimalDtw_[Distance]
+                [Classifier] -> Dtw_[Distance] | *OptimalDtw_[Distance]
                 [Distance] -> Manhattan | Euclidean
                 [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Scaling]_[Translation]
                 [Rotation] -> *none | rotation

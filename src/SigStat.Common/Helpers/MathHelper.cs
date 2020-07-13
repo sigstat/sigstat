@@ -57,7 +57,7 @@ namespace SigStat.Common
         /// <summary>
         /// return standard diviation of a feature values
         /// </summary>
-        /// <param name="feature"></param>
+        /// <param name="values"></param>
         /// <returns></returns>
         public static double StdDiviation(this IEnumerable<double> values)
         {

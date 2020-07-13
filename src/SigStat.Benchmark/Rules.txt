@@ -1,18 +1,18 @@
 ﻿ [Benchmark] -> [Database]_[Split]_[Feature]_[Verifier]
-                [Database] -> svc2004 | mcyt100 | dutch | chinese | german | japanese
-                [Feature] -> X | Y | P | XY | XYP | XP | YP
-                [Split] -> s1 | s2 | s3 | s4
+                [Database] -> *svc2004 | mcyt100 | dutch | chinese | german | japanese
+                [Feature] -> *X | *Y | P | XY | XYP | XP | YP
+                [Split] -> *s1 | s2 | s3 | s4
                 [Verifier] -> [Pipeline]_[Classifier]
                 [Classifier] -> Dtw_[Distance] | *OptimalDtw_[Distance]
                 [Distance] -> Manhattan | Euclidean
                 [Pipeline] -> [Rotation]_[Gap]_[Resampling]_[Scaling]_[Translation]
-                [Rotation] -> none | rotation
+                [Rotation] -> *none | rotation
                 [Gap] -> [FilterGap]_[FillGap]
-                [FilterGap] -> none | filter 
-                [FillGap] -> none | fill_[FillInterpolation]
-                [FillInterpolation] -> linear | cubic
-                [Resampling] -> none | [SampleCount]samples_[ResamplingInterpolation]
+                [FilterGap] -> *none | filter 
+                [FillGap] -> *none | fill_[FillInterpolation]
+                [FillInterpolation] -> *linear | cubic
+                [Resampling] -> *none | [SampleCount]samples_[ResamplingInterpolation]
                 [SampleCount] ->  50 | 100 | 500 | 1000
                 [ResamplingInterpolation] -> linear | cubic
-                [Scaling] -> none | scale1| scaleS
+                [Scaling] -> *none | scale1| scaleS
                 [Translation] -> none | to0 | toCog

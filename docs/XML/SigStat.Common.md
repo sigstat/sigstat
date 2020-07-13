@@ -147,6 +147,7 @@
 - [DistanceMatrix\`3](#T-SigStat-Common-DistanceMatrix`3 'SigStat.Common.DistanceMatrix`3')
   - [Item](#P-SigStat-Common-DistanceMatrix`3-Item-`0,`1- 'SigStat.Common.DistanceMatrix`3.Item(`0,`1)')
   - [ContainsKey(row,column)](#M-SigStat-Common-DistanceMatrix`3-ContainsKey-`0,`1- 'SigStat.Common.DistanceMatrix`3.ContainsKey(`0,`1)')
+  - [GetDistance(row,column)](#M-SigStat-Common-DistanceMatrix`3-GetDistance-`0,`1- 'SigStat.Common.DistanceMatrix`3.GetDistance(`0,`1)')
   - [GetValues()](#M-SigStat-Common-DistanceMatrix`3-GetValues 'SigStat.Common.DistanceMatrix`3.GetValues')
   - [ToArray()](#M-SigStat-Common-DistanceMatrix`3-ToArray 'SigStat.Common.DistanceMatrix`3.ToArray')
   - [TryGetValue(row,column,value)](#M-SigStat-Common-DistanceMatrix`3-TryGetValue-`0,`1,`2@- 'SigStat.Common.DistanceMatrix`3.TryGetValue(`0,`1,`2@)')
@@ -208,6 +209,7 @@
   - [InsertLink(range,sheet,cells)](#M-SigStat-Common-Helpers-ExcelHelper-InsertLink-OfficeOpenXml-ExcelRange,System-String,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertLink(OfficeOpenXml.ExcelRange,System.String,System.String)')
   - [InsertTable(ws,col,row,data,title,color,hasRowHeader,hasColumnHeader,name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Object[0-,0-],System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Object[0:,0:],System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.Boolean,System.String)')
   - [InsertTable(ws,col,row,data,title,color,hasRowHeader,hasColumnHeader,name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Double[0-,0-],System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Double[0:,0:],System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.Boolean,System.String)')
+  - [InsertTable(ws,col,row,data,title,color,headers,name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{System-Collections-Generic-IEnumerable{System-Object}},System-Collections-Generic-IEnumerable{System-String},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}},System.Collections.Generic.IEnumerable{System.String},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.String)')
   - [InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable``1(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.String)')
   - [InsertText(ws,row,col,text,level)](#M-SigStat-Common-Helpers-ExcelHelper-InsertText-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-String,SigStat-Common-Helpers-Excel-TextLevel- 'SigStat.Common.Helpers.ExcelHelper.InsertText(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.String,SigStat.Common.Helpers.Excel.TextLevel)')
   - [Merge(range)](#M-SigStat-Common-Helpers-ExcelHelper-Merge-OfficeOpenXml-ExcelRangeBase- 'SigStat.Common.Helpers.ExcelHelper.Merge(OfficeOpenXml.ExcelRangeBase)')
@@ -413,7 +415,14 @@
 - [MathHelper](#T-SigStat-Common-MathHelper 'SigStat.Common.MathHelper')
   - [Median(values)](#M-SigStat-Common-MathHelper-Median-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.Median(System.Collections.Generic.IEnumerable{System.Double})')
   - [Min(d1,d2,d3)](#M-SigStat-Common-MathHelper-Min-System-Double,System-Double,System-Double- 'SigStat.Common.MathHelper.Min(System.Double,System.Double,System.Double)')
-  - [StdDiviation(feature)](#M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.StdDiviation(System.Collections.Generic.IEnumerable{System.Double})')
+  - [StdDiviation(values)](#M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.StdDiviation(System.Collections.Generic.IEnumerable{System.Double})')
+- [MemoryDataSetLoader](#T-SigStat-Common-Loaders-MemoryDataSetLoader 'SigStat.Common.Loaders.MemoryDataSetLoader')
+  - [#ctor()](#M-SigStat-Common-Loaders-MemoryDataSetLoader-#ctor-System-Collections-Generic-IEnumerable{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MemoryDataSetLoader.#ctor(System.Collections.Generic.IEnumerable{SigStat.Common.Signer})')
+  - [DatabasePath](#P-SigStat-Common-Loaders-MemoryDataSetLoader-DatabasePath 'SigStat.Common.Loaders.MemoryDataSetLoader.DatabasePath')
+  - [SamplingFrequency](#P-SigStat-Common-Loaders-MemoryDataSetLoader-SamplingFrequency 'SigStat.Common.Loaders.MemoryDataSetLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-MemoryDataSetLoader-SignerFilter 'SigStat.Common.Loaders.MemoryDataSetLoader.SignerFilter')
+  - [StandardFeatures](#P-SigStat-Common-Loaders-MemoryDataSetLoader-StandardFeatures 'SigStat.Common.Loaders.MemoryDataSetLoader.StandardFeatures')
+  - [EnumerateSigners()](#M-SigStat-Common-Loaders-MemoryDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MemoryDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [Multiply](#T-SigStat-Common-Transforms-Multiply 'SigStat.Common.Transforms.Multiply')
   - [#ctor(byConst)](#M-SigStat-Common-Transforms-Multiply-#ctor-System-Double- 'SigStat.Common.Transforms.Multiply.#ctor(System.Double)')
   - [InputList](#P-SigStat-Common-Transforms-Multiply-InputList 'SigStat.Common.Transforms.Multiply.InputList')
@@ -457,9 +466,21 @@
   - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.OutputX')
   - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.OutputY')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.Transform(SigStat.Common.Signature)')
+- [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn')
+  - [Test\`\`1(testItem,targetItems,j,k,threshold,distanceFunction)](#M-SigStat-Common-Algorithms-Classifiers-Ocjknn-Test``1-``0,System-Collections-Generic-IEnumerable{``0},System-Int32,System-Int32,System-Double,System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.Classifiers.Ocjknn.Test``1(``0,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Double,System.Func{``0,``0,System.Double})')
 - [OddNSampler](#T-SigStat-Common-Framework-Samplers-OddNSampler 'SigStat.Common.Framework.Samplers.OddNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-OddNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.OddNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-OddNSampler-N 'SigStat.Common.Framework.Samplers.OddNSampler.N')
+- [OneClassNearestNeighborClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier')
+  - [#ctor(j,k,threshold,distanceFunction)](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-#ctor-System-Int32,System-Int32,System-Double,SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.#ctor(System.Int32,System.Int32,System.Double,SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})')
+  - [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction')
+  - [Features](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Features 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features')
+  - [J](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-J 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J')
+  - [K](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-K 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K')
+  - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Threshold 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold')
+  - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
+  - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
+  - [Train(signatures,distanceMatrix)](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})')
 - [OnePixelThinning](#T-SigStat-Common-Transforms-OnePixelThinning 'SigStat.Common.Transforms.OnePixelThinning')
   - [Input](#P-SigStat-Common-Transforms-OnePixelThinning-Input 'SigStat.Common.Transforms.OnePixelThinning.Input')
   - [Output](#P-SigStat-Common-Transforms-OnePixelThinning-Output 'SigStat.Common.Transforms.OnePixelThinning.Output')
@@ -745,11 +766,15 @@
 - [SignerLogState](#T-SigStat-Common-Logging-SignerLogState 'SigStat.Common.Logging.SignerLogState')
   - [SignerID](#P-SigStat-Common-Logging-SignerLogState-SignerID 'SigStat.Common.Logging.SignerLogState.SignerID')
 - [SignerModel](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel')
+- [SignerModel](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel')
   - [DistanceMatrix](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.DistanceMatrix')
   - [ErrorRates](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-ErrorRates 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.ErrorRates')
   - [SignatureDistanceFromTraining](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignatureDistanceFromTraining 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignatureDistanceFromTraining')
   - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignerID')
   - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.Threshold')
+  - [DistanceCache](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-DistanceCache 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.DistanceCache')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.SignerID')
+  - [TrainingSignatures](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-TrainingSignatures 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.TrainingSignatures')
 - [SignerResults](#T-SigStat-Common-Logging-SignerResults 'SigStat.Common.Logging.SignerResults')
   - [#ctor(signerId)](#M-SigStat-Common-Logging-SignerResults-#ctor-System-String- 'SigStat.Common.Logging.SignerResults.#ctor(System.String)')
   - [Aer](#F-SigStat-Common-Logging-SignerResults-Aer 'SigStat.Common.Logging.SignerResults.Aer')
@@ -874,6 +899,7 @@
   - [Train(signatures)](#M-SigStat-Common-Model-Verifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.Model.Verifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [VerifierBenchmark](#T-SigStat-Common-VerifierBenchmark 'SigStat.Common.VerifierBenchmark')
   - [#ctor()](#M-SigStat-Common-VerifierBenchmark-#ctor 'SigStat.Common.VerifierBenchmark.#ctor')
+  - [SignerModels](#F-SigStat-Common-VerifierBenchmark-SignerModels 'SigStat.Common.VerifierBenchmark.SignerModels')
   - [loader](#F-SigStat-Common-VerifierBenchmark-loader 'SigStat.Common.VerifierBenchmark.loader')
   - [sampler](#F-SigStat-Common-VerifierBenchmark-sampler 'SigStat.Common.VerifierBenchmark.sampler')
   - [Loader](#P-SigStat-Common-VerifierBenchmark-Loader 'SigStat.Common.VerifierBenchmark.Loader')
@@ -2514,6 +2540,24 @@ true if the Matrix contains an element with the specified keys; otherwise, false
 | row | [\`0](#T-`0 '`0') |  |
 | column | [\`1](#T-`1 '`1') |  |
 
+<a name='M-SigStat-Common-DistanceMatrix`3-GetDistance-`0,`1-'></a>
+### GetDistance(row,column) `method`
+
+##### Summary
+
+Gets or sets a distance for a given row and column
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| row | [\`0](#T-`0 '`0') | row |
+| column | [\`1](#T-`1 '`1') | column |
+
 <a name='M-SigStat-Common-DistanceMatrix`3-GetValues'></a>
 ### GetValues() `method`
 
@@ -3336,6 +3380,36 @@ Range of the inserted data
 | hasRowHeader | [SigStat.Common.Helpers.Excel.ExcelColor](#T-SigStat-Common-Helpers-Excel-ExcelColor 'SigStat.Common.Helpers.Excel.ExcelColor') | Defines if the table has row header |
 | hasColumnHeader | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Defines if the table has column header |
 | name | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If given, creates a named range, with this name |
+
+<a name='M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{System-Collections-Generic-IEnumerable{System-Object}},System-Collections-Generic-IEnumerable{System-String},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-String-'></a>
+### InsertTable(ws,col,row,data,title,color,headers,name) `method`
+
+##### Summary
+
+Insert a table filled with data from an IEnumerable
+
+##### Returns
+
+Range of the inserted data
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| ws | [OfficeOpenXml.ExcelWorksheet](#T-OfficeOpenXml-ExcelWorksheet 'OfficeOpenXml.ExcelWorksheet') | Worksheet in wich the table is created |
+| col | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Starting column of the table |
+| row | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Starting row of the table |
+| data | [System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}}') | IEnumerable in wich the data to insert is stored |
+| title | [System.Collections.Generic.IEnumerable{System.String}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.String}') | The table's title |
+| color | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The table's color |
+| headers | [SigStat.Common.Helpers.Excel.ExcelColor](#T-SigStat-Common-Helpers-Excel-ExcelColor 'SigStat.Common.Helpers.Excel.ExcelColor') | Defines if the table has header |
+| name | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | If given, creates a named range, with this name |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Type of inserted objects |
 
 <a name='M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String-'></a>
 ### InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name) `method`
@@ -5663,7 +5737,7 @@ Returns the smallest of the three double parameters
 | d3 | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') |  |
 
 <a name='M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}-'></a>
-### StdDiviation(feature) `method`
+### StdDiviation(values) `method`
 
 ##### Summary
 
@@ -5677,7 +5751,68 @@ return standard diviation of a feature values
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| feature | [System.Collections.Generic.IEnumerable{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Double}') |  |
+| values | [System.Collections.Generic.IEnumerable{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Double}') |  |
+
+<a name='T-SigStat-Common-Loaders-MemoryDataSetLoader'></a>
+## MemoryDataSetLoader `type`
+
+##### Namespace
+
+SigStat.Common.Loaders
+
+##### Summary
+
+Stores and enumerates Signer data that has already been loaded
+
+<a name='M-SigStat-Common-Loaders-MemoryDataSetLoader-#ctor-System-Collections-Generic-IEnumerable{SigStat-Common-Signer}-'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes a new instance of the [Svc2004Loader](#T-SigStat-Common-Loaders-Svc2004Loader 'SigStat.Common.Loaders.Svc2004Loader') class with specified database.
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-DatabasePath'></a>
+### DatabasePath `property`
+
+##### Summary
+
+Gets or sets the database path.
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-SamplingFrequency'></a>
+### SamplingFrequency `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-StandardFeatures'></a>
+### StandardFeatures `property`
+
+##### Summary
+
+Gets or sets a value indicating whether features are also loaded as [Features](#T-SigStat-Common-Features 'SigStat.Common.Features')
+
+<a name='M-SigStat-Common-Loaders-MemoryDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}-'></a>
+### EnumerateSigners() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-Transforms-Multiply'></a>
 ## Multiply `type`
@@ -6106,6 +6241,48 @@ Gets or sets the input feature representing the Y coordinates of an online signa
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Algorithms-Classifiers-Ocjknn'></a>
+## Ocjknn `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Classifiers
+
+##### Summary
+
+One Class JKNN classifier based on: Khan, Shehroz Saeed. "Kernels for one-class nearest neighbour classification and comparison of chemical spectral data." College of Engineering and Informatics, National University of Ireland (2010).
+https://cs.uwaterloo.ca/~s255khan/files/Kernels_for_One-Class_Nearest_Neighbour_Classification_and_Comparison_of_Chemical_Spectral_Data-libre.pdf
+
+<a name='M-SigStat-Common-Algorithms-Classifiers-Ocjknn-Test``1-``0,System-Collections-Generic-IEnumerable{``0},System-Int32,System-Int32,System-Double,System-Func{``0,``0,System-Double}-'></a>
+### Test\`\`1(testItem,targetItems,j,k,threshold,distanceFunction) `method`
+
+##### Summary
+
+Step 1: find the `j` nearest neighbors of `testItem` in the set of `targetItems`. 
+Step 2: for each neighbor, if (distance from test) / (average distance from `k` nearest neighbors) < `threshold` accept++
+Steo 3: return accept / `j`
+
+##### Returns
+
+If the result is 0.5 or greater, then `testItem` should be accepted as a member of target class
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| testItem | [\`\`0](#T-``0 '``0') | The item, that we want to classify |
+| targetItems | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | Items belonging to the target class |
+| j | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | See algorithm description for details |
+| k | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | See algorithm description for details |
+| threshold | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | See algorithm description for details |
+| distanceFunction | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | Calculates the distance between two items of type `T` |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Item type (typically a vector or a label, that  `distanceFunction` can work with) |
+
 <a name='T-SigStat-Common-Framework-Samplers-OddNSampler'></a>
 ## OddNSampler `type`
 
@@ -6136,6 +6313,118 @@ Constructor
 ##### Summary
 
 Count of signatures used for training
+
+<a name='T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier'></a>
+## OneClassNearestNeighborClassifier `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers
+
+##### Summary
+
+This [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier') implementation will consider both test and 
+training samples and claculate the threshold to separate the original and forged
+signatures to approximate EER. Note that this classifier is not applicable for 
+real world scenarios. It was developed to test the theoratical boundaries of 
+threshold based classification
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.Pipeline.IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-#ctor-System-Int32,System-Int32,System-Double,SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}-'></a>
+### #ctor(j,k,threshold,distanceFunction) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [OneClassNearestNeighborClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier') class.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| j | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The J parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier |
+| k | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The K parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier |
+| threshold | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The K parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier |
+| distanceFunction | [SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}](#T-SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]} 'SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}') | The distance function. |
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-DistanceFunction'></a>
+### DistanceFunction `property`
+
+##### Summary
+
+The function used to calculate the distance between two data sequences
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Features'></a>
+### Features `property`
+
+##### Summary
+
+[FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')s to consider during classification
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-J'></a>
+### J `property`
+
+##### Summary
+
+The J parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-K'></a>
+### K `property`
+
+##### Summary
+
+The K parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Threshold'></a>
+### Threshold `property`
+
+##### Summary
+
+The Threshold parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature-'></a>
+### Test() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}-'></a>
+### Train() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}-'></a>
+### Train(signatures,distanceMatrix) `method`
+
+##### Summary
+
+Trains the specified signatures based on a precalculated distance matrix
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signatures | [System.Collections.Generic.List{SigStat.Common.Signature}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SigStat.Common.Signature}') | The signatures. |
+| distanceMatrix | [SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}](#T-SigStat-Common-DistanceMatrix{System-String,System-String,System-Double} 'SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}') | The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+distances will be calculated automatically using [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction'). |
 
 <a name='T-SigStat-Common-Transforms-OnePixelThinning'></a>
 ## OnePixelThinning `type`
@@ -9012,6 +9301,17 @@ SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier
 
 Represents a trained model for [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
 
+<a name='T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel'></a>
+## SignerModel `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier
+
+##### Summary
+
+Represents a trained model for [OneClassNearestNeighborClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier')
+
 <a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix'></a>
 ### DistanceMatrix `property`
 
@@ -9048,6 +9348,27 @@ Gets or sets the signature distance from training.
 A threshold, that will be used for classification. Signatures with
 an average DTW distance from the genuines above this threshold will
 be classified as forgeries
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-DistanceCache'></a>
+### DistanceCache `property`
+
+##### Summary
+
+Precalculated distances of known signatures
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-TrainingSignatures'></a>
+### TrainingSignatures `property`
+
+##### Summary
+
+A list a of genuine signatures used for training
 
 <a name='T-SigStat-Common-Logging-SignerResults'></a>
 ## SignerResults `type`
@@ -9293,7 +9614,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
 
 ##### Parameters
 
@@ -10285,6 +10606,14 @@ Sets the [Sampler](#T-SigStat-Common-Sampler 'SigStat.Common.Sampler') to the de
 ##### Parameters
 
 This constructor has no parameters.
+
+<a name='F-SigStat-Common-VerifierBenchmark-SignerModels'></a>
+### SignerModels `constants`
+
+##### Summary
+
+An optional dictionary of fully or partially precalculated signer models. You may fill itt before
+executing a benchmark if you have saved the models previously
 
 <a name='F-SigStat-Common-VerifierBenchmark-loader'></a>
 ### loader `constants`

@@ -315,7 +315,7 @@ namespace SigStat.Benchmark.Helpers
         public static IEnumerable<ReportLine> GetResults()
         {
             var cursor = experimentCollection.FindSync(finishedFilter,
-                new FindOptions<BsonDocument, BsonDocument>() { Projection = "{\"results.KeyValueGroups\": 1, config: 1}" });
+                new FindOptions<BsonDocument, BsonDocument>() { Projection = "{\"results.KeyValueGroups\": 1, config: 1, classification: 1}" });
 
             //var bsonResults = BsonSerializer.Deserialize<BsonDocument>(SerializationHelper.JsonSerialize(results));
 
@@ -323,6 +323,7 @@ namespace SigStat.Benchmark.Helpers
             {
                 var execution = bson["results"]["KeyValueGroups"]["Execution"]["dict"];
                 var parameters = bson["results"]["KeyValueGroups"]["Parameters"]["dict"].AsBsonDocument;
+                var classification = bson["classification"].AsBsonArray;
                 var benchmarkResults = bson["results"]["KeyValueGroups"]["BenchmarkResults"]["dict"];
                 var reportLine = new ReportLine()
                 {
@@ -336,6 +337,8 @@ namespace SigStat.Benchmark.Helpers
                     FRR = benchmarkResults["FRR"].AsDouble,
                     FAR = benchmarkResults["FAR"].AsDouble,
                     AER = benchmarkResults["AER"].AsDouble,
+
+                    ClassificationResults = classification.ToList().Select(b=>BsonSerializer.Deserialize<ClassificationResult>(b.AsBsonDocument)).ToList()
 
                 };
                 foreach (var element in parameters.Elements)
@@ -363,7 +366,7 @@ namespace SigStat.Benchmark.Helpers
 
             if (!bson.Contains("results"))
             {
-                Console.WriteLine("An enqueued config did not contain any results. Config: "+ bson["config"].AsString);
+                Console.WriteLine("An enqueued config did not contain any results. Config: " + bson["config"].AsString);
                 return null;
             }
 
