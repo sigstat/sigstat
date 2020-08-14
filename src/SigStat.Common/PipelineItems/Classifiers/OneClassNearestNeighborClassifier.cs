@@ -49,7 +49,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <see cref="FeatureDescriptor"/>s to consider during classification
         /// </summary>
         [Input]
-        public List<FeatureDescriptor> Features { get; set; }
+        public List<FeatureDescriptor> Features { get; set; } = new List<FeatureDescriptor>();
 
         /// <summary>
         /// The function used to calculate the distance between two data sequences

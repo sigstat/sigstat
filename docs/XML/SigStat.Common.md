@@ -401,6 +401,7 @@
   - [Y](#F-SigStat-Common-Loaders-MCYTLoader-MCYT-Y 'SigStat.Common.Loaders.MCYTLoader.MCYT.Y')
 - [MCYTLoader](#T-SigStat-Common-Loaders-MCYTLoader 'SigStat.Common.Loaders.MCYTLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-MCYTLoader-DatabasePath 'SigStat.Common.Loaders.MCYTLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-MCYTLoader-SamplingFrequency 'SigStat.Common.Loaders.MCYTLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-MCYTLoader-SignerFilter 'SigStat.Common.Loaders.MCYTLoader.SignerFilter')
@@ -677,6 +678,7 @@
   - [Y](#F-SigStat-Common-Loaders-SigComp11ChineseLoader-SigComp11Ch-Y 'SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.Y')
 - [SigComp11ChineseLoader](#T-SigStat-Common-Loaders-SigComp11ChineseLoader 'SigStat.Common.Loaders.SigComp11ChineseLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11ChineseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11ChineseLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter')
@@ -685,6 +687,7 @@
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
 - [SigComp11DutchLoader](#T-SigStat-Common-Loaders-SigComp11DutchLoader 'SigStat.Common.Loaders.SigComp11DutchLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11DutchLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11DutchLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11DutchLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter')
@@ -698,6 +701,7 @@
   - [Y](#F-SigStat-Common-Loaders-SigComp13JapaneseLoader-SigComp13Japanese-Y 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.Y')
 - [SigComp13JapaneseLoader](#T-SigStat-Common-Loaders-SigComp13JapaneseLoader 'SigStat.Common.Loaders.SigComp13JapaneseLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp13JapaneseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter')
@@ -711,6 +715,7 @@
   - [Y](#F-SigStat-Common-Loaders-SigComp15GermanLoader-SigComp15-Y 'SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.Y')
 - [SigComp15GermanLoader](#T-SigStat-Common-Loaders-SigComp15GermanLoader 'SigStat.Common.Loaders.SigComp15GermanLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp15GermanLoader-DatabasePath 'SigStat.Common.Loaders.SigComp15GermanLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp15GermanLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter 'SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter')
@@ -5573,6 +5578,21 @@ Initializes a new instance of the [MCYTLoader](#T-SigStat-Common-Loaders-MCYTLoa
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
 
+<a name='M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [MCYTLoader](#T-SigStat-Common-Loaders-MCYTLoader 'SigStat.Common.Loaders.MCYTLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-MCYTLoader-SignerFilter 'SigStat.Common.Loaders.MCYTLoader.SignerFilter') property |
+
 <a name='P-SigStat-Common-Loaders-MCYTLoader-DatabasePath'></a>
 ### DatabasePath `property`
 
@@ -8372,6 +8392,21 @@ Initializes a new instance of the [SigComp11ChineseLoader](#T-SigStat-Common-Loa
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
 
+<a name='M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp11ChineseLoader](#T-SigStat-Common-Loaders-SigComp11ChineseLoader 'SigStat.Common.Loaders.SigComp11ChineseLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter') property |
+
 <a name='P-SigStat-Common-Loaders-SigComp11ChineseLoader-DatabasePath'></a>
 ### DatabasePath `property`
 
@@ -8454,6 +8489,21 @@ Initializes a new instance of the [SigComp11DutchLoader](#T-SigStat-Common-Loade
 | ---- | ---- | ----------- |
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+
+<a name='M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp11DutchLoader](#T-SigStat-Common-Loaders-SigComp11DutchLoader 'SigStat.Common.Loaders.SigComp11DutchLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter') property |
 
 <a name='P-SigStat-Common-Loaders-SigComp11DutchLoader-DatabasePath'></a>
 ### DatabasePath `property`
@@ -8577,6 +8627,21 @@ Initializes a new instance of the [SigComp13JapaneseLoader](#T-SigStat-Common-Lo
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
 
+<a name='M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp13JapaneseLoader](#T-SigStat-Common-Loaders-SigComp13JapaneseLoader 'SigStat.Common.Loaders.SigComp13JapaneseLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter') property |
+
 <a name='P-SigStat-Common-Loaders-SigComp13JapaneseLoader-DatabasePath'></a>
 ### DatabasePath `property`
 
@@ -8698,6 +8763,21 @@ Initializes a new instance of the [SigComp15GermanLoader](#T-SigStat-Common-Load
 | ---- | ---- | ----------- |
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+
+<a name='M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp15GermanLoader](#T-SigStat-Common-Loaders-SigComp15GermanLoader 'SigStat.Common.Loaders.SigComp15GermanLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data  to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter 'SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter') property |
 
 <a name='P-SigStat-Common-Loaders-SigComp15GermanLoader-DatabasePath'></a>
 ### DatabasePath `property`

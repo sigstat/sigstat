@@ -24,6 +24,8 @@ using SixLabors.Primitives;
 using System.Drawing;
 using OfficeOpenXml.Drawing.Chart;
 using SigStat.Common.Logging;
+using SigStat.Common.Algorithms.Distances;
+using Microsoft.Extensions.Logging;
 
 namespace SigStat.Sample
 {
@@ -52,7 +54,8 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
-            signerSampleRateBasedVerifier();
+            OCJKNNTest();
+            //signerSampleRateBasedVerifier();
 
             // SamplingRateTestCompilation();
             //SignatureDemo();
@@ -79,6 +82,95 @@ namespace SigStat.Sample
 
         }
 
+        private static void OCJKNNTest()
+        {
+            // j, k, threshold, reference count, database (1-2)
+
+
+            int row = 1;
+            int col = 1;
+            var excel = new ExcelPackage();
+            var sheet = excel.Workbook.Worksheets.Add("benchmark");
+
+            double threshold = 1.2;
+            int referenceCount = 10;
+
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            var fileLoader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true);
+            //var fileLoader = new SigComp11DutchLoader(Path.Combine(databaseDir, "SigComp11_Dutch.zip"), true);
+
+            var memoryLoader = new MemoryDataSetLoader(fileLoader.EnumerateSigners()); // cache the database in memory to avoid (slow) disc operations
+
+            var sampler = new FirstNSampler(referenceCount);
+
+            var features = new List<FeatureDescriptor> { Features.X, Features.Y, Features.Pressure };
+            Console.WriteLine($"Executing initial benchmark");
+
+            // Calculate all SignerModels and store them for future use
+            var initialBenchmark = new VerifierBenchmark()
+            {
+                Loader = memoryLoader,
+                Sampler = sampler,
+                Verifier = new Verifier()
+                {
+                    Pipeline = {
+                                new ZNormalization() { InputFeature = Features.X, OutputFeature = Features.X },
+                                new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y },
+                                new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure }
+                            },
+                    Classifier = new OneClassNearestNeighborClassifier(referenceCount, referenceCount - 1, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                }
+            };
+            initialBenchmark.Logger = new SimpleConsoleLogger(LogLevel.Debug);
+            var initialResults = initialBenchmark.Execute(true);
+            var signerModels = initialResults.SignerResults.Select(sr => sr.Model).ToList(); // the signer models contain the precalculated DTW distances. We are going to reuse them to reduce further calculation costs
+
+            for (int j = 1; j <= referenceCount; j++)
+            {
+                sheet.Cells[row + j, col].Value = j;
+                sheet.Cells[row + j, col + referenceCount + 3].Value = j;
+                sheet.Cells[row + referenceCount + 3 + j, col].Value = j;
+            }
+            for (int k = 1; k <= referenceCount - 1; k++)
+            {
+                sheet.Cells[row, col + k].Value = k;
+                sheet.Cells[row + referenceCount + 3, col + k].Value = k;
+                sheet.Cells[row, col + referenceCount + 3 + k].Value = k;
+            }
+            sheet.Cells[row, col].Value = "AER";
+            sheet.Cells[row + referenceCount + 3, col].Value = "FAR";
+            sheet.Cells[row, col + referenceCount + 3].Value = "FRR";
+
+
+            // Fixed parameter
+            for (int j = 1; j <= referenceCount; j++)
+            {
+                for (int k = 1; k <= referenceCount - 1; k++)
+                {
+                    Console.WriteLine($"Executing benchmarki for J: {j} K: {k}");
+                    var benchmark = new VerifierBenchmark()
+                    {
+                        SignerModels = signerModels,
+                        Loader = memoryLoader,
+                        Sampler = sampler,
+                        Verifier = new Verifier()
+                        {
+                            Classifier = new OneClassNearestNeighborClassifier(j, k, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                        }
+                    };
+
+                    var results = benchmark.Execute(true);
+
+                    sheet.Cells[row + j, col + k].Value = results.FinalResult.Aer;
+                    sheet.Cells[row + referenceCount + 3 + j, col + k].Value = results.FinalResult.Far;
+                    sheet.Cells[row + j, col + referenceCount + 3 + k].Value = results.FinalResult.Frr;
+
+                }
+            }
+
+            excel.SaveAs(new FileInfo("results.xlsx"));
+        }
+
 
         //*********************************************************************//
         //----------------------------------------------------------------//
@@ -90,10 +182,10 @@ namespace SigStat.Sample
             int e = 1;
             for (int samples = 6; samples < totalSamples; samples++)
             {
-                
+
                 var p = new ExcelPackage();
-                
-                
+
+
                 VerifierBenchmark b = new VerifierBenchmark();
                 Verifier v = new Verifier();
                 List<SequentialTransformPipeline> pipeline_ = new List<SequentialTransformPipeline>();
@@ -131,7 +223,7 @@ namespace SigStat.Sample
                     DistanceFunction = Accord.Math.Distance.Euclidean,
                     Features = new List<FeatureDescriptor>() { Features.X },
                     Sampler = new FirstNSampler(10)
-            });
+                });
 
                 optimalClassifiers.Add(new OptimalDtwClassifier()
                 {
@@ -166,13 +258,13 @@ namespace SigStat.Sample
                     DistanceFunction = Accord.Math.Distance.Euclidean,
                     Features = new List<FeatureDescriptor>() { Features.X }
                 });
-               
+
                 classifiers.Add(new DtwClassifier()
                 {
                     DistanceFunction = Accord.Math.Distance.Euclidean,
                     Features = new List<FeatureDescriptor>() { Features.Y }
                 });
-                
+
                 classifiers.Add(new DtwClassifier()
                 {
                     DistanceFunction = Accord.Math.Distance.Euclidean,
@@ -184,18 +276,18 @@ namespace SigStat.Sample
                     Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
 
                 });
-                
+
                 classifiers.Add(new DtwClassifier()
                 {
                     DistanceFunction = Accord.Math.Distance.Euclidean,
                     Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
                 });
-             
 
 
-              // pipeline_.Add(pip0);
-               // pipeline_.Add(pip1);
-               // pipeline_.Add(pip2);
+
+                // pipeline_.Add(pip0);
+                // pipeline_.Add(pip1);
+                // pipeline_.Add(pip2);
                 pipeline_.Add(pip3);
                 int samplingrate = 100;
 
@@ -262,9 +354,9 @@ namespace SigStat.Sample
                     var loader2 = b.Loader;
                     var loader3 = b.Loader;
 
-                    
+
                     foreach (DtwClassifier classifier in classifiers)
-                      {
+                    {
                         foreach (SequentialTransformPipeline pip in pipeline_)
                         {
                             var data = p.Workbook.Worksheets.Add("Data");
@@ -333,7 +425,7 @@ namespace SigStat.Sample
                                     //   DtwSignerModel signerModel = (DtwSignerModel)result.SignerResults.Single(e => e.Signer == sig.ID).Model;
                                     //  double th = signerModel.Threshold;
 
-                                    if (signers.Single(o => o.ID == sig.ID).bestFrr > result.SignerResults.Single(e2 => e2.Signer == sig.ID).Frr  && signers.Single(o => o.ID == sig.ID).bestFrr != 0)
+                                    if (signers.Single(o => o.ID == sig.ID).bestFrr > result.SignerResults.Single(e2 => e2.Signer == sig.ID).Frr && signers.Single(o => o.ID == sig.ID).bestFrr != 0)
                                     {
 
                                         signers.Single(o => o.ID == sig.ID).bestFrr = result.SignerResults.Single(e3 => e3.Signer == sig.ID).Frr;
@@ -512,9 +604,9 @@ namespace SigStat.Sample
                             benchmark2.Verifier = new Verifier();
                             benchmark2.Verifier.Pipeline = pip;
 
-                          
-                             benchmark2.Verifier.Classifier = optimalClassifiers[cla];
-                           
+
+                            benchmark2.Verifier.Classifier = optimalClassifiers[cla];
+
 
                             benchmark2.Sampler = new FirstNSampler(10);
                             benchmark2.Logger = new SimpleConsoleLogger();
@@ -527,10 +619,10 @@ namespace SigStat.Sample
                             Console.WriteLine("AER is: " + result2.FinalResult.Aer);
                             compareSheet.Cells[e + 2, 4].Value = result2.FinalResult.Aer;
                             double improvement = (((result2.FinalResult.Aer) - avg));
-                            compareSheet.Cells[e + 2, 5].Value = improvement*100;
+                            compareSheet.Cells[e + 2, 5].Value = improvement * 100;
 
-                            if(improvement > 0)  
-                            compareSheet.Cells[e + 2, 6].Value = "Positive";
+                            if (improvement > 0)
+                                compareSheet.Cells[e + 2, 6].Value = "Positive";
                             else if (improvement == 0)
                                 compareSheet.Cells[e + 2, 6].Value = "-";
                             else
@@ -540,7 +632,7 @@ namespace SigStat.Sample
                             foreach (Signer sig in signers)
                             {
 
-                                
+
 
                                 Sheet2.Cells[1, 4].Value = "ID";
                                 Sheet2.Cells[1, 5].Value = "SamplingFrequency";
@@ -566,7 +658,7 @@ namespace SigStat.Sample
 
                             }
                             Sheet2.Cells[s4 + 1, 8].Value = result2.FinalResult.Aer;
-                            
+
 
                             string str2 = null;
                             if (pip == pip0)
