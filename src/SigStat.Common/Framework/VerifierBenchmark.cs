@@ -58,7 +58,7 @@ namespace SigStat.Common
     [JsonObject(MemberSerialization.OptOut)]
     public class BenchmarkResults
     {
-        
+
         /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
         [JsonProperty]
         public readonly List<Result> SignerResults;
@@ -87,7 +87,7 @@ namespace SigStat.Common
 
         private Verifier verifier;
         /// <summary> Gets or sets the <see cref="Model.Verifier"/> to be benchmarked. </summary>
-        
+
         public Verifier Verifier
         {
             get => verifier;
@@ -103,6 +103,12 @@ namespace SigStat.Common
 
         /// <summary>A key value store that can be used to store custom information about the benchmark</summary>
         public List<KeyValuePair<string, string>> Parameters { get; set; } = new List<KeyValuePair<string, string>>();
+
+        /// <summary>
+        /// An optional dictionary of fully or partially precalculated signer models. You may fill itt before
+        /// executing a benchmark if you have saved the models previously
+        /// </summary>
+        public List<ISignerModel> SignerModels;
 
         /// <summary>
         /// Dumps the results of the benchmark in a file.
@@ -137,12 +143,13 @@ namespace SigStat.Common
                 summarySheet.InsertTable(8, 8, resultsSummary, "Results", ExcelColor.Warning, true);
                 var resultsSheet = p.Workbook.Worksheets.Add("Results");
                 var signers = benchmarkResults.SignerResults.OrderBy(s => s.Signer).ToList();
-                var signerSummaries = signers.Select(s => new {
+                var signerSummaries = signers.Select(s => new
+                {
                     s.Signer,
                     FAR = s.Far,
                     FRR = s.Frr,
                     AER = s.Aer
-                    
+
                 });
 
                 resultsSheet.InsertTable(2, 2, signerSummaries);
@@ -194,12 +201,12 @@ namespace SigStat.Common
         /// <summary>
         /// The loader that will provide the database for benchmarking
         /// </summary>
-        
+
         public IDataSetLoader Loader { get => loader; set => loader = value; }
         /// <summary>
         /// The <see cref="Common.Sampler"/> to be used for benchmarking
         /// </summary>
-        
+
         public Sampler Sampler { get => sampler; set => sampler = value; }
 
         /// <inheritdoc/>
@@ -258,8 +265,8 @@ namespace SigStat.Common
             var signers = new List<Signer>(Loader.EnumerateSigners());
             this.LogTrace("{signersCount} signers found. Benchmarking..", signers.Count);
 
-            if (degreeOfParallelism>1)
-            {               
+            if (degreeOfParallelism > 1)
+            {
                 results = signers.AsParallel().WithDegreeOfParallelism(degreeOfParallelism).SelectMany(s => benchmarkSigner(s, signers.Count)).ToList();
             }
             else
@@ -330,9 +337,15 @@ namespace SigStat.Common
             if (vClone.Classifier is OptimalDtwClassifier)
                 references = iSigner.Signatures;
 
+            var signerModel = SignerModels?.SingleOrDefault(s=>s.SignerID==iSigner.ID);
+
+
             try
             {
-                vClone.Train(references);
+                if (signerModel != null)
+                    vClone.SignerModel = signerModel;
+                else
+                    vClone.Train(references);
             }
             catch (Exception exc)
             {

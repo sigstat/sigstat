@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using SigStat.Common.Helpers;
 using System.Diagnostics;
 using SigStat.Benchmark.Helpers;
+using SigStat.Benchmark.Execution;
+using System.Reflection;
 
 namespace SigStat.Benchmark
 {
@@ -48,33 +50,64 @@ namespace SigStat.Benchmark
             public string Benchmark { get; set; }
             public string Verifier { get; set; }
 
+            public List<ClassificationResult> ClassificationResults { get; set; }
+
         }
+
+        static PropertyInfo[] ReportLineProperties = typeof(ReportLine).GetProperties();
         internal static async Task RunAsync(string reportFilePath)
         {
-            Stopwatch sw = Stopwatch.StartNew();
-
             Console.WriteLine($"{DateTime.Now}: Gathering results for experiment {Program.Experiment}...");
-            var reportLineCount = await BenchmarkDatabase.CountFinished();
+            var totalCount = await BenchmarkDatabase.CountFinished();
 
-            List<ReportLine> reports = new List<ReportLine>();
+            var reportLine = BenchmarkDatabase.GetResults().First();
+            var classificationHeaders = reportLine.ClassificationResults.OrderBy(c => c.J).ThenBy(c => c.K)
+                   .SelectMany(c => new[] { $"{c.J}-{c.K} FAR", $"{c.J}-{c.K} FRR", $"{c.J}-{c.K} AER" });
+            var headers = ReportLineProperties.Select(p => p.Name).Concat(classificationHeaders).ToArray();
 
-            foreach (var reportLine in BenchmarkDatabase.GetResults())
-            {
-                long eta = reports.Count > 0 ? sw.ElapsedMilliseconds * (reportLineCount - reports.Count) / reports.Count : 0;
-                if (reports.Count % 100 == 0)
-                    Console.WriteLine(DateTime.Now + ": " + reports.Count + "/" + reportLineCount + " ETA: " + TimeSpan.FromMilliseconds(eta));
-                reports.Add(reportLine);
-
-            }
             Console.WriteLine("Generating Excel document");
-            using (var p = new ExcelPackage())
+            using (var fs = File.Create(reportFilePath))
+            using (var sw = new StreamWriter(fs, Encoding.UTF8))
             {
-                var sheet = p.Workbook.Worksheets.Add("Summary");
-                sheet.InsertTable(2, 2, reports);
-                p.SaveAs(new FileInfo(reportFilePath));
+                sw.WriteLine(string.Join(';', headers));
+                foreach (var line in EnumerateReportLinesWithProgress(totalCount))
+                {
+                    sw.WriteLine(string.Join(';', line));
+                }
+            }
+            //using (var p = new ExcelPackage())
+            //{
+            //    var sheet = p.Workbook.Worksheets.Add("Summary");
+            //    sheet.InsertTable(1, 1, EnumerateReportLinesWithProgress(totalCount), headers);
+            //    p.SaveAs(new FileInfo(reportFilePath));
+            //}
+        }
+
+        internal static IEnumerable<IEnumerable<object>> EnumerateReportLinesWithProgress(int totalCount)
+        {
+            using (var progress = ProgressHelper.StartNew(totalCount, 1))
+            {
+                foreach (var reportLine in BenchmarkDatabase.GetResults())
+                {
+                    progress.Value++;
+                    yield return GetReportLineValues(reportLine);
+                }
             }
         }
 
-  
+        private static IEnumerable<object> GetReportLineValues(ReportLine reportLine)
+        {
+            foreach (var prop in ReportLineProperties)
+            {
+                yield return prop.GetValue(reportLine);
+            }
+            var classificationValues = reportLine.ClassificationResults.OrderBy(c => c.J).ThenBy(c => c.K)
+                   .SelectMany(c => new[] { c.Far, c.Frr, c.Aer });
+            foreach (var val in classificationValues)
+            {
+                yield return val;
+            }
+
+        }
     }
 }

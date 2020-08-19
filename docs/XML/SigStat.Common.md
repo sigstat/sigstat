@@ -210,6 +210,7 @@
   - [InsertLink(range,sheet,cells)](#M-SigStat-Common-Helpers-ExcelHelper-InsertLink-OfficeOpenXml-ExcelRange,System-String,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertLink(OfficeOpenXml.ExcelRange,System.String,System.String)')
   - [InsertTable(ws,col,row,data,title,color,hasRowHeader,hasColumnHeader,name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Object[0-,0-],System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Object[0:,0:],System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.Boolean,System.String)')
   - [InsertTable(ws,col,row,data,title,color,hasRowHeader,hasColumnHeader,name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Double[0-,0-],System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Double[0:,0:],System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.Boolean,System.String)')
+  - [InsertTable(ws,col,row,data,title,color,headers,name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{System-Collections-Generic-IEnumerable{System-Object}},System-Collections-Generic-IEnumerable{System-String},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}},System.Collections.Generic.IEnumerable{System.String},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.String)')
   - [InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable``1(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.String)')
   - [InsertText(ws,row,col,text,level)](#M-SigStat-Common-Helpers-ExcelHelper-InsertText-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-String,SigStat-Common-Helpers-Excel-TextLevel- 'SigStat.Common.Helpers.ExcelHelper.InsertText(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.String,SigStat.Common.Helpers.Excel.TextLevel)')
   - [Merge(range)](#M-SigStat-Common-Helpers-ExcelHelper-Merge-OfficeOpenXml-ExcelRangeBase- 'SigStat.Common.Helpers.ExcelHelper.Merge(OfficeOpenXml.ExcelRangeBase)')
@@ -417,7 +418,14 @@
 - [MathHelper](#T-SigStat-Common-MathHelper 'SigStat.Common.MathHelper')
   - [Median(values)](#M-SigStat-Common-MathHelper-Median-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.Median(System.Collections.Generic.IEnumerable{System.Double})')
   - [Min(d1,d2,d3)](#M-SigStat-Common-MathHelper-Min-System-Double,System-Double,System-Double- 'SigStat.Common.MathHelper.Min(System.Double,System.Double,System.Double)')
-  - [StdDiviation(feature)](#M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.StdDiviation(System.Collections.Generic.IEnumerable{System.Double})')
+  - [StdDiviation(values)](#M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.StdDiviation(System.Collections.Generic.IEnumerable{System.Double})')
+- [MemoryDataSetLoader](#T-SigStat-Common-Loaders-MemoryDataSetLoader 'SigStat.Common.Loaders.MemoryDataSetLoader')
+  - [#ctor()](#M-SigStat-Common-Loaders-MemoryDataSetLoader-#ctor-System-Collections-Generic-IEnumerable{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MemoryDataSetLoader.#ctor(System.Collections.Generic.IEnumerable{SigStat.Common.Signer})')
+  - [DatabasePath](#P-SigStat-Common-Loaders-MemoryDataSetLoader-DatabasePath 'SigStat.Common.Loaders.MemoryDataSetLoader.DatabasePath')
+  - [SamplingFrequency](#P-SigStat-Common-Loaders-MemoryDataSetLoader-SamplingFrequency 'SigStat.Common.Loaders.MemoryDataSetLoader.SamplingFrequency')
+  - [SignerFilter](#P-SigStat-Common-Loaders-MemoryDataSetLoader-SignerFilter 'SigStat.Common.Loaders.MemoryDataSetLoader.SignerFilter')
+  - [StandardFeatures](#P-SigStat-Common-Loaders-MemoryDataSetLoader-StandardFeatures 'SigStat.Common.Loaders.MemoryDataSetLoader.StandardFeatures')
+  - [EnumerateSigners()](#M-SigStat-Common-Loaders-MemoryDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MemoryDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [Multiply](#T-SigStat-Common-Transforms-Multiply 'SigStat.Common.Transforms.Multiply')
   - [#ctor(byConst)](#M-SigStat-Common-Transforms-Multiply-#ctor-System-Double- 'SigStat.Common.Transforms.Multiply.#ctor(System.Double)')
   - [InputList](#P-SigStat-Common-Transforms-Multiply-InputList 'SigStat.Common.Transforms.Multiply.InputList')
@@ -916,6 +924,7 @@
   - [Train(signatures)](#M-SigStat-Common-Model-Verifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.Model.Verifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
 - [VerifierBenchmark](#T-SigStat-Common-VerifierBenchmark 'SigStat.Common.VerifierBenchmark')
   - [#ctor()](#M-SigStat-Common-VerifierBenchmark-#ctor 'SigStat.Common.VerifierBenchmark.#ctor')
+  - [SignerModels](#F-SigStat-Common-VerifierBenchmark-SignerModels 'SigStat.Common.VerifierBenchmark.SignerModels')
   - [loader](#F-SigStat-Common-VerifierBenchmark-loader 'SigStat.Common.VerifierBenchmark.loader')
   - [sampler](#F-SigStat-Common-VerifierBenchmark-sampler 'SigStat.Common.VerifierBenchmark.sampler')
   - [Loader](#P-SigStat-Common-VerifierBenchmark-Loader 'SigStat.Common.VerifierBenchmark.Loader')
@@ -3404,6 +3413,36 @@ Range of the inserted data
 | hasColumnHeader | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Defines if the table has column header |
 | name | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If given, creates a named range, with this name |
 
+<a name='M-SigStat-Common-Helpers-ExcelHelper-InsertTable-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{System-Collections-Generic-IEnumerable{System-Object}},System-Collections-Generic-IEnumerable{System-String},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-String-'></a>
+### InsertTable(ws,col,row,data,title,color,headers,name) `method`
+
+##### Summary
+
+Insert a table filled with data from an IEnumerable
+
+##### Returns
+
+Range of the inserted data
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| ws | [OfficeOpenXml.ExcelWorksheet](#T-OfficeOpenXml-ExcelWorksheet 'OfficeOpenXml.ExcelWorksheet') | Worksheet in wich the table is created |
+| col | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Starting column of the table |
+| row | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Starting row of the table |
+| data | [System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}}') | IEnumerable in wich the data to insert is stored |
+| title | [System.Collections.Generic.IEnumerable{System.String}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.String}') | The table's title |
+| color | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The table's color |
+| headers | [SigStat.Common.Helpers.Excel.ExcelColor](#T-SigStat-Common-Helpers-Excel-ExcelColor 'SigStat.Common.Helpers.Excel.ExcelColor') | Defines if the table has header |
+| name | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | If given, creates a named range, with this name |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Type of inserted objects |
+
 <a name='M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String-'></a>
 ### InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name) `method`
 
@@ -5752,7 +5791,7 @@ Returns the smallest of the three double parameters
 | d3 | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') |  |
 
 <a name='M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}-'></a>
-### StdDiviation(feature) `method`
+### StdDiviation(values) `method`
 
 ##### Summary
 
@@ -5766,7 +5805,68 @@ return standard diviation of a feature values
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| feature | [System.Collections.Generic.IEnumerable{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Double}') |  |
+| values | [System.Collections.Generic.IEnumerable{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{System.Double}') |  |
+
+<a name='T-SigStat-Common-Loaders-MemoryDataSetLoader'></a>
+## MemoryDataSetLoader `type`
+
+##### Namespace
+
+SigStat.Common.Loaders
+
+##### Summary
+
+Stores and enumerates Signer data that has already been loaded
+
+<a name='M-SigStat-Common-Loaders-MemoryDataSetLoader-#ctor-System-Collections-Generic-IEnumerable{SigStat-Common-Signer}-'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Initializes a new instance of the [Svc2004Loader](#T-SigStat-Common-Loaders-Svc2004Loader 'SigStat.Common.Loaders.Svc2004Loader') class with specified database.
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-DatabasePath'></a>
+### DatabasePath `property`
+
+##### Summary
+
+Gets or sets the database path.
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-SamplingFrequency'></a>
+### SamplingFrequency `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-SignerFilter'></a>
+### SignerFilter `property`
+
+##### Summary
+
+Ignores any signers during the loading, that do not match the predicate
+
+<a name='P-SigStat-Common-Loaders-MemoryDataSetLoader-StandardFeatures'></a>
+### StandardFeatures `property`
+
+##### Summary
+
+Gets or sets a value indicating whether features are also loaded as [Features](#T-SigStat-Common-Features 'SigStat.Common.Features')
+
+<a name='M-SigStat-Common-Loaders-MemoryDataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}-'></a>
+### EnumerateSigners() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-SigStat-Common-Transforms-Multiply'></a>
 ## Multiply `type`
@@ -10773,6 +10873,14 @@ Sets the [Sampler](#T-SigStat-Common-Sampler 'SigStat.Common.Sampler') to the de
 ##### Parameters
 
 This constructor has no parameters.
+
+<a name='F-SigStat-Common-VerifierBenchmark-SignerModels'></a>
+### SignerModels `constants`
+
+##### Summary
+
+An optional dictionary of fully or partially precalculated signer models. You may fill itt before
+executing a benchmark if you have saved the models previously
 
 <a name='F-SigStat-Common-VerifierBenchmark-loader'></a>
 ### loader `constants`

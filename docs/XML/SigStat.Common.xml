@@ -763,6 +763,12 @@
         <member name="P:SigStat.Common.VerifierBenchmark.Parameters">
             <summary>A key value store that can be used to store custom information about the benchmark</summary>
         </member>
+        <member name="F:SigStat.Common.VerifierBenchmark.SignerModels">
+            <summary>
+            An optional dictionary of fully or partially precalculated signer models. You may fill itt before
+            executing a benchmark if you have saved the models previously
+            </summary>
+        </member>
         <member name="M:SigStat.Common.VerifierBenchmark.Dump(System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
             <summary>
             Dumps the results of the benchmark in a file.
@@ -1017,6 +1023,21 @@
             <param name="color">The table's color</param>
             <param name="showHeader">Defines if the table has header</param>
             <param name="Name">If given, creates a named range, with this name</param>
+             <returns>Range of the inserted data</returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.ExcelHelper.InsertTable(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{System.Object}},System.Collections.Generic.IEnumerable{System.String},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.String)">
+            <summary>
+            Insert a table filled with data from an IEnumerable
+            </summary>
+            <typeparam name="T">Type of inserted objects</typeparam>
+            <param name="ws">Worksheet in wich the table is created</param>
+            <param name="col">Starting column of the table</param>
+            <param name="row">Starting row of the table</param>
+            <param name="data">IEnumerable in wich the data to insert is stored</param>
+            <param name="title">The table's title</param>
+            <param name="color">The table's color</param>
+            <param name="headers">Defines if the table has header</param>
+            <param name="name">If given, creates a named range, with this name</param>
              <returns>Range of the inserted data</returns>
         </member>
         <member name="M:SigStat.Common.Helpers.ExcelHelper.InsertDictionary``2(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.String)">
@@ -1716,7 +1737,7 @@
             <summary>
             return standard diviation of a feature values
             </summary>
-            <param name="feature"></param>
+            <param name="values"></param>
             <returns></returns>
         </member>
         <member name="M:SigStat.Common.SignatureHelper.SaveImage(SigStat.Common.Signature,System.String)">
@@ -1978,6 +1999,37 @@
             <param name="signature">Signature to write features to.</param>
             <param name="stream">Stream to read MCYT data from.</param>
             <param name="standardFeatures">Convert loaded data to standard <see cref="T:SigStat.Common.Features"/>.</param>
+        </member>
+        <member name="T:SigStat.Common.Loaders.MemoryDataSetLoader">
+            <summary>
+            Stores and enumerates Signer data that has already been loaded
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.MemoryDataSetLoader.SamplingFrequency">
+             <inheritdoc/>
+        </member>
+        <member name="P:SigStat.Common.Loaders.MemoryDataSetLoader.DatabasePath">
+            <summary>
+            Gets or sets the database path.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.MemoryDataSetLoader.StandardFeatures">
+            <summary>
+            Gets or sets a value indicating whether features are also loaded as <see cref="T:SigStat.Common.Features"/>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Loaders.MemoryDataSetLoader.SignerFilter">
+            <summary>
+            Ignores any signers during the loading, that do not match the predicate
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.MemoryDataSetLoader.#ctor(System.Collections.Generic.IEnumerable{SigStat.Common.Signer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SigStat.Common.Loaders.Svc2004Loader"/> class with specified database.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Loaders.MemoryDataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Loaders.SigComp11ChineseLoader">
             <summary>

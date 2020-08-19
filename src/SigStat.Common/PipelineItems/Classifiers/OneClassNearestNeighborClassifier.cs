@@ -22,7 +22,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
     /// <seealso cref="SigStat.Common.PipelineBase" />
     /// <seealso cref="SigStat.Common.Pipeline.IDistanceClassifier" />
     [JsonObject(MemberSerialization.OptOut)]
-    public class OneClassNearestNeighborClassifier : PipelineBase
+    public class OneClassNearestNeighborClassifier : PipelineBase, IClassifier
     {
         #region SignerModel
         /// <summary>
@@ -32,11 +32,11 @@ namespace SigStat.Common.PipelineItems.Classifiers
         {
             /// <inheritdoc/>
             public string SignerID { get; set; }
-          
+
             /// <summary>
             /// Precalculated distances of known signatures
             /// </summary>
-            public DistanceMatrix<string, string, double> DistanceCache{ get; set; }
+            public DistanceMatrix<string, string, double> DistanceCache { get; set; }
 
             /// <summary>
             /// A list a of genuine signatures used for training
@@ -44,12 +44,12 @@ namespace SigStat.Common.PipelineItems.Classifiers
             public List<KeyValuePair<string, double[][]>> TrainingSignatures { get; set; }
         }
         #endregion
-   
+
         /// <summary>
         /// <see cref="FeatureDescriptor"/>s to consider during classification
         /// </summary>
         [Input]
-        public List<FeatureDescriptor> Features { get; set; }
+        public List<FeatureDescriptor> Features { get; set; } = new List<FeatureDescriptor>();
 
         /// <summary>
         /// The function used to calculate the distance between two data sequences
@@ -77,7 +77,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <param name="k">The K parameter of the <see cref="Ocjknn"/> classifier</param>
         /// <param name="threshold">The K parameter of the <see cref="Ocjknn"/> classifier</param>
         /// <param name="distanceFunction">The distance function.</param>
-        public OneClassNearestNeighborClassifier(int j = 1, int k = 1, double threshold=1, IDistance<double[][]> distanceFunction = null)
+        public OneClassNearestNeighborClassifier(int j = 1, int k = 1, double threshold = 1, IDistance<double[][]> distanceFunction = null)
         {
             J = j;
             K = k;
@@ -107,7 +107,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 throw new ArgumentException("'sigantures' can not be empty", nameof(signatures));
 
             var signerID = signatures[0].Signer?.ID;
-            var trainSignaturesFeatures = signatures.Select(s => new KeyValuePair<string, double[][]>( s.ID,  s.GetAggregateFeature(Features).ToArray())).ToList();
+            var trainSignaturesFeatures = signatures.Select(s => new KeyValuePair<string, double[][]>(s.ID, s.GetAggregateFeature(Features).ToArray())).ToList();
 
             // calculate the values for distance matrix, if it has not been passed as argument to the function
             if (distanceMatrix == null)
@@ -116,7 +116,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 distanceMatrix = new DistanceMatrix<string, string, double>();
 
                 foreach (var s1 in trainSignaturesFeatures)
-                { 
+                {
                     foreach (var s2 in trainSignaturesFeatures)
                     {
                         if (distanceMatrix.ContainsKey(s1.Key, s2.Key))
@@ -144,9 +144,13 @@ namespace SigStat.Common.PipelineItems.Classifiers
         {
             var model = (SignerModel)signerModel;
             var testSignatureFeatures = testSignature.GetAggregateFeature(Features).ToArray();
-
             foreach (var item in model.TrainingSignatures)
             {
+                //avoid costly calculations, if the distance has already been calculated
+                if (model.DistanceCache.ContainsKey(testSignature.ID, item.Key) || testSignature.ID == item.Key)
+                    continue;
+
+                 
                 var distance = DistanceFunction.Calculate(testSignatureFeatures, item.Value);
                 model.DistanceCache[testSignature.ID, item.Key] = distance;
                 model.DistanceCache[item.Key, testSignature.ID] = distance;
