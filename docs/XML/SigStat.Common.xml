@@ -3162,6 +3162,11 @@
             Represents a person as an <see cref="P:SigStat.Common.Signer.ID"/> and a list of <see cref="P:SigStat.Common.Signer.Signatures"/>.
             </summary>
         </member>
+        <member name="F:SigStat.Common.Signer.signerBestSteps">
+            <summary>
+            a dictionary to save the best FRRs for the signer , to use later ofr signer sampling rate dependant calssification
+            </summary>
+        </member>
         <member name="F:SigStat.Common.Signer.bestSampleRate">
             <summary>
             best sampling frequency for the signer
@@ -3968,6 +3973,46 @@
             </summary>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation">
+            <summary>
+            Performs rotation normalization on the online signature
+            </summary>
+            <seealso cref="T:SigStat.Common.PipelineBase" />
+            <seealso cref="T:SigStat.Common.ITransformation" />
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.samplerate">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.InputX">
+            <summary>
+            Gets or sets the input feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.InputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.InputP">
+            <summary>
+            Gets or sets the input feature representing the timestamps of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.OutputX">
+            <summary>
+            Gets or sets the output feature representing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.OutputY">
+            <summary>
+            Gets or sets the input feature representing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode">
@@ -5170,8 +5215,5 @@
             Raises the <see cref="E:SigStat.Common.PipelineBase.ProgressChanged"/> event
             </summary>
         </member>
-    </members>
-</doc>
-er>
     </members>
 </doc>

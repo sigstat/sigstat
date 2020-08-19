@@ -148,6 +148,7 @@
 - [DistanceMatrix\`3](#T-SigStat-Common-DistanceMatrix`3 'SigStat.Common.DistanceMatrix`3')
   - [Item](#P-SigStat-Common-DistanceMatrix`3-Item-`0,`1- 'SigStat.Common.DistanceMatrix`3.Item(`0,`1)')
   - [ContainsKey(row,column)](#M-SigStat-Common-DistanceMatrix`3-ContainsKey-`0,`1- 'SigStat.Common.DistanceMatrix`3.ContainsKey(`0,`1)')
+  - [GetDistance(row,column)](#M-SigStat-Common-DistanceMatrix`3-GetDistance-`0,`1- 'SigStat.Common.DistanceMatrix`3.GetDistance(`0,`1)')
   - [GetValues()](#M-SigStat-Common-DistanceMatrix`3-GetValues 'SigStat.Common.DistanceMatrix`3.GetValues')
   - [ToArray()](#M-SigStat-Common-DistanceMatrix`3-ToArray 'SigStat.Common.DistanceMatrix`3.ToArray')
   - [TryGetValue(row,column,value)](#M-SigStat-Common-DistanceMatrix`3-TryGetValue-`0,`1,`2@- 'SigStat.Common.DistanceMatrix`3.TryGetValue(`0,`1,`2@)')
@@ -399,6 +400,7 @@
   - [Y](#F-SigStat-Common-Loaders-MCYTLoader-MCYT-Y 'SigStat.Common.Loaders.MCYTLoader.MCYT.Y')
 - [MCYTLoader](#T-SigStat-Common-Loaders-MCYTLoader 'SigStat.Common.Loaders.MCYTLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-MCYTLoader-DatabasePath 'SigStat.Common.Loaders.MCYTLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-MCYTLoader-SamplingFrequency 'SigStat.Common.Loaders.MCYTLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-MCYTLoader-SignerFilter 'SigStat.Common.Loaders.MCYTLoader.SignerFilter')
@@ -459,9 +461,21 @@
   - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.OutputX')
   - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.OutputY')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-NormalizeRotationForX-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.Transform(SigStat.Common.Signature)')
+- [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn')
+  - [Test\`\`1(testItem,targetItems,j,k,threshold,distanceFunction)](#M-SigStat-Common-Algorithms-Classifiers-Ocjknn-Test``1-``0,System-Collections-Generic-IEnumerable{``0},System-Int32,System-Int32,System-Double,System-Func{``0,``0,System-Double}- 'SigStat.Common.Algorithms.Classifiers.Ocjknn.Test``1(``0,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Double,System.Func{``0,``0,System.Double})')
 - [OddNSampler](#T-SigStat-Common-Framework-Samplers-OddNSampler 'SigStat.Common.Framework.Samplers.OddNSampler')
   - [#ctor(n)](#M-SigStat-Common-Framework-Samplers-OddNSampler-#ctor-System-Int32- 'SigStat.Common.Framework.Samplers.OddNSampler.#ctor(System.Int32)')
   - [N](#P-SigStat-Common-Framework-Samplers-OddNSampler-N 'SigStat.Common.Framework.Samplers.OddNSampler.N')
+- [OneClassNearestNeighborClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier')
+  - [#ctor(j,k,threshold,distanceFunction)](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-#ctor-System-Int32,System-Int32,System-Double,SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.#ctor(System.Int32,System.Int32,System.Double,SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})')
+  - [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction')
+  - [Features](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Features 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features')
+  - [J](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-J 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J')
+  - [K](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-K 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K')
+  - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Threshold 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold')
+  - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
+  - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
+  - [Train(signatures,distanceMatrix)](#M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}- 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})')
 - [OnePixelThinning](#T-SigStat-Common-Transforms-OnePixelThinning 'SigStat.Common.Transforms.OnePixelThinning')
   - [Input](#P-SigStat-Common-Transforms-OnePixelThinning-Input 'SigStat.Common.Transforms.OnePixelThinning.Input')
   - [Output](#P-SigStat-Common-Transforms-OnePixelThinning-Output 'SigStat.Common.Transforms.OnePixelThinning.Output')
@@ -610,6 +624,14 @@
   - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.OutputY')
   - [samplerate](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-samplerate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.samplerate')
   - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.Transform(SigStat.Common.Signature)')
+- [SampleRateInterpolation](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation')
+  - [InputP](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-InputP 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.InputP')
+  - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.InputX')
+  - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.InputY')
+  - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.OutputX')
+  - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.OutputY')
+  - [samplerate](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-samplerate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.samplerate')
+  - [Transform()](#M-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-Transform-SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRateInterpolation.Transform(SigStat.Common.Signature)')
 - [SampleRateResults](#T-SigStat-Common-Model-SampleRateResults 'SigStat.Common.Model.SampleRateResults')
   - [AER](#P-SigStat-Common-Model-SampleRateResults-AER 'SigStat.Common.Model.SampleRateResults.AER')
   - [pointsAvg](#P-SigStat-Common-Model-SampleRateResults-pointsAvg 'SigStat.Common.Model.SampleRateResults.pointsAvg')
@@ -656,6 +678,7 @@
   - [Y](#F-SigStat-Common-Loaders-SigComp11ChineseLoader-SigComp11Ch-Y 'SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.Y')
 - [SigComp11ChineseLoader](#T-SigStat-Common-Loaders-SigComp11ChineseLoader 'SigStat.Common.Loaders.SigComp11ChineseLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11ChineseLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11ChineseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11ChineseLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter')
@@ -664,6 +687,7 @@
   - [LoadSignature(signature,stream,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11ChineseLoader-LoadSignature-SigStat-Common-Signature,System-IO-MemoryStream,System-Boolean- 'SigStat.Common.Loaders.SigComp11ChineseLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)')
 - [SigComp11DutchLoader](#T-SigStat-Common-Loaders-SigComp11DutchLoader 'SigStat.Common.Loaders.SigComp11DutchLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp11DutchLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp11DutchLoader-DatabasePath 'SigStat.Common.Loaders.SigComp11DutchLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp11DutchLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter')
@@ -677,6 +701,7 @@
   - [Y](#F-SigStat-Common-Loaders-SigComp13JapaneseLoader-SigComp13Japanese-Y 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.Y')
 - [SigComp13JapaneseLoader](#T-SigStat-Common-Loaders-SigComp13JapaneseLoader 'SigStat.Common.Loaders.SigComp13JapaneseLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp13JapaneseLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-DatabasePath 'SigStat.Common.Loaders.SigComp13JapaneseLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter')
@@ -690,6 +715,7 @@
   - [Y](#F-SigStat-Common-Loaders-SigComp15GermanLoader-SigComp15-Y 'SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.Y')
 - [SigComp15GermanLoader](#T-SigStat-Common-Loaders-SigComp15GermanLoader 'SigStat.Common.Loaders.SigComp15GermanLoader')
   - [#ctor(databasePath,standardFeatures)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean- 'SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean)')
+  - [#ctor(databasePath,standardFeatures,signerFilter)](#M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.SigComp15GermanLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})')
   - [DatabasePath](#P-SigStat-Common-Loaders-SigComp15GermanLoader-DatabasePath 'SigStat.Common.Loaders.SigComp15GermanLoader.DatabasePath')
   - [SamplingFrequency](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SamplingFrequency 'SigStat.Common.Loaders.SigComp15GermanLoader.SamplingFrequency')
   - [SignerFilter](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter 'SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter')
@@ -747,17 +773,22 @@
   - [bestFrr](#F-SigStat-Common-Signer-bestFrr 'SigStat.Common.Signer.bestFrr')
   - [bestSampleRate](#F-SigStat-Common-Signer-bestSampleRate 'SigStat.Common.Signer.bestSampleRate')
   - [bestStep](#F-SigStat-Common-Signer-bestStep 'SigStat.Common.Signer.bestStep')
+  - [signerBestSteps](#F-SigStat-Common-Signer-signerBestSteps 'SigStat.Common.Signer.signerBestSteps')
   - [ID](#P-SigStat-Common-Signer-ID 'SigStat.Common.Signer.ID')
   - [Signatures](#P-SigStat-Common-Signer-Signatures 'SigStat.Common.Signer.Signatures')
   - [ToString()](#M-SigStat-Common-Signer-ToString 'SigStat.Common.Signer.ToString')
 - [SignerLogState](#T-SigStat-Common-Logging-SignerLogState 'SigStat.Common.Logging.SignerLogState')
   - [SignerID](#P-SigStat-Common-Logging-SignerLogState-SignerID 'SigStat.Common.Logging.SignerLogState.SignerID')
 - [SignerModel](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel')
+- [SignerModel](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel')
   - [DistanceMatrix](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.DistanceMatrix')
   - [ErrorRates](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-ErrorRates 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.ErrorRates')
   - [SignatureDistanceFromTraining](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignatureDistanceFromTraining 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignatureDistanceFromTraining')
   - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.SignerID')
   - [Threshold](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-Threshold 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.Threshold')
+  - [DistanceCache](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-DistanceCache 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.DistanceCache')
+  - [SignerID](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-SignerID 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.SignerID')
+  - [TrainingSignatures](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-TrainingSignatures 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.TrainingSignatures')
 - [SignerResults](#T-SigStat-Common-Logging-SignerResults 'SigStat.Common.Logging.SignerResults')
   - [#ctor(signerId)](#M-SigStat-Common-Logging-SignerResults-#ctor-System-String- 'SigStat.Common.Logging.SignerResults.#ctor(System.String)')
   - [Aer](#F-SigStat-Common-Logging-SignerResults-Aer 'SigStat.Common.Logging.SignerResults.Aer')
@@ -2531,6 +2562,24 @@ true if the Matrix contains an element with the specified keys; otherwise, false
 | ---- | ---- | ----------- |
 | row | [\`0](#T-`0 '`0') |  |
 | column | [\`1](#T-`1 '`1') |  |
+
+<a name='M-SigStat-Common-DistanceMatrix`3-GetDistance-`0,`1-'></a>
+### GetDistance(row,column) `method`
+
+##### Summary
+
+Gets or sets a distance for a given row and column
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| row | [\`0](#T-`0 '`0') | row |
+| column | [\`1](#T-`1 '`1') | column |
 
 <a name='M-SigStat-Common-DistanceMatrix`3-GetValues'></a>
 ### GetValues() `method`
@@ -5499,6 +5548,21 @@ Initializes a new instance of the [MCYTLoader](#T-SigStat-Common-Loaders-MCYTLoa
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
 
+<a name='M-SigStat-Common-Loaders-MCYTLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [MCYTLoader](#T-SigStat-Common-Loaders-MCYTLoader 'SigStat.Common.Loaders.MCYTLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-MCYTLoader-SignerFilter 'SigStat.Common.Loaders.MCYTLoader.SignerFilter') property |
+
 <a name='P-SigStat-Common-Loaders-MCYTLoader-DatabasePath'></a>
 ### DatabasePath `property`
 
@@ -6131,6 +6195,48 @@ Gets or sets the input feature representing the Y coordinates of an online signa
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-Algorithms-Classifiers-Ocjknn'></a>
+## Ocjknn `type`
+
+##### Namespace
+
+SigStat.Common.Algorithms.Classifiers
+
+##### Summary
+
+One Class JKNN classifier based on: Khan, Shehroz Saeed. "Kernels for one-class nearest neighbour classification and comparison of chemical spectral data." College of Engineering and Informatics, National University of Ireland (2010).
+https://cs.uwaterloo.ca/~s255khan/files/Kernels_for_One-Class_Nearest_Neighbour_Classification_and_Comparison_of_Chemical_Spectral_Data-libre.pdf
+
+<a name='M-SigStat-Common-Algorithms-Classifiers-Ocjknn-Test``1-``0,System-Collections-Generic-IEnumerable{``0},System-Int32,System-Int32,System-Double,System-Func{``0,``0,System-Double}-'></a>
+### Test\`\`1(testItem,targetItems,j,k,threshold,distanceFunction) `method`
+
+##### Summary
+
+Step 1: find the `j` nearest neighbors of `testItem` in the set of `targetItems`. 
+Step 2: for each neighbor, if (distance from test) / (average distance from `k` nearest neighbors) < `threshold` accept++
+Steo 3: return accept / `j`
+
+##### Returns
+
+If the result is 0.5 or greater, then `testItem` should be accepted as a member of target class
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| testItem | [\`\`0](#T-``0 '``0') | The item, that we want to classify |
+| targetItems | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | Items belonging to the target class |
+| j | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | See algorithm description for details |
+| k | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | See algorithm description for details |
+| threshold | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | See algorithm description for details |
+| distanceFunction | [System.Func{\`\`0,\`\`0,System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``0,System.Double}') | Calculates the distance between two items of type `T` |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Item type (typically a vector or a label, that  `distanceFunction` can work with) |
+
 <a name='T-SigStat-Common-Framework-Samplers-OddNSampler'></a>
 ## OddNSampler `type`
 
@@ -6161,6 +6267,118 @@ Constructor
 ##### Summary
 
 Count of signatures used for training
+
+<a name='T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier'></a>
+## OneClassNearestNeighborClassifier `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers
+
+##### Summary
+
+This [IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier') implementation will consider both test and 
+training samples and claculate the threshold to separate the original and forged
+signatures to approximate EER. Note that this classifier is not applicable for 
+real world scenarios. It was developed to test the theoratical boundaries of 
+threshold based classification
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.Pipeline.IDistanceClassifier](#T-SigStat-Common-Pipeline-IDistanceClassifier 'SigStat.Common.Pipeline.IDistanceClassifier')
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-#ctor-System-Int32,System-Int32,System-Double,SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}-'></a>
+### #ctor(j,k,threshold,distanceFunction) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [OneClassNearestNeighborClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier') class.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| j | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The J parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier |
+| k | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The K parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier |
+| threshold | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The K parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier |
+| distanceFunction | [SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}](#T-SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]} 'SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]}') | The distance function. |
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-DistanceFunction'></a>
+### DistanceFunction `property`
+
+##### Summary
+
+The function used to calculate the distance between two data sequences
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Features'></a>
+### Features `property`
+
+##### Summary
+
+[FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')s to consider during classification
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-J'></a>
+### J `property`
+
+##### Summary
+
+The J parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-K'></a>
+### K `property`
+
+##### Summary
+
+The K parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Threshold'></a>
+### Threshold `property`
+
+##### Summary
+
+The Threshold parameter of the [Ocjknn](#T-SigStat-Common-Algorithms-Classifiers-Ocjknn 'SigStat.Common.Algorithms.Classifiers.Ocjknn') classifier
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature-'></a>
+### Test() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}-'></a>
+### Train() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature},SigStat-Common-DistanceMatrix{System-String,System-String,System-Double}-'></a>
+### Train(signatures,distanceMatrix) `method`
+
+##### Summary
+
+Trains the specified signatures based on a precalculated distance matrix
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| signatures | [System.Collections.Generic.List{SigStat.Common.Signature}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SigStat.Common.Signature}') | The signatures. |
+| distanceMatrix | [SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}](#T-SigStat-Common-DistanceMatrix{System-String,System-String,System-Double} 'SigStat.Common.DistanceMatrix{System.String,System.String,System.Double}') | The distance matrix may contain all the distance pairs for the signatures. If you ommit this parameter, 
+distances will be calculated automatically using [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction'). |
 
 <a name='T-SigStat-Common-Transforms-OnePixelThinning'></a>
 ## OnePixelThinning `type`
@@ -7588,6 +7806,75 @@ Gets or sets the input feature representing the X coordinates of an online signa
 
 This method has no parameters.
 
+<a name='T-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation'></a>
+## SampleRateInterpolation `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Preprocessing
+
+##### Summary
+
+Performs rotation normalization on the online signature
+
+##### See Also
+
+- [SigStat.Common.PipelineBase](#T-SigStat-Common-PipelineBase 'SigStat.Common.PipelineBase')
+- [SigStat.Common.ITransformation](#T-SigStat-Common-ITransformation 'SigStat.Common.ITransformation')
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-InputP'></a>
+### InputP `property`
+
+##### Summary
+
+Gets or sets the input feature representing the timestamps of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-InputX'></a>
+### InputX `property`
+
+##### Summary
+
+Gets or sets the input feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-InputY'></a>
+### InputY `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Y coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-OutputX'></a>
+### OutputX `property`
+
+##### Summary
+
+Gets or sets the output feature representing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-OutputY'></a>
+### OutputY `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Y coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-samplerate'></a>
+### samplerate `property`
+
+##### Summary
+
+Gets or sets the input feature representing the X coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRateInterpolation-Transform-SigStat-Common-Signature-'></a>
+### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-Model-SampleRateResults'></a>
 ## SampleRateResults `type`
 
@@ -8083,6 +8370,21 @@ Initializes a new instance of the [SigComp11ChineseLoader](#T-SigStat-Common-Loa
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
 
+<a name='M-SigStat-Common-Loaders-SigComp11ChineseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp11ChineseLoader](#T-SigStat-Common-Loaders-SigComp11ChineseLoader 'SigStat.Common.Loaders.SigComp11ChineseLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp11ChineseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11ChineseLoader.SignerFilter') property |
+
 <a name='P-SigStat-Common-Loaders-SigComp11ChineseLoader-DatabasePath'></a>
 ### DatabasePath `property`
 
@@ -8165,6 +8467,21 @@ Initializes a new instance of the [SigComp11DutchLoader](#T-SigStat-Common-Loade
 | ---- | ---- | ----------- |
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+
+<a name='M-SigStat-Common-Loaders-SigComp11DutchLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp11DutchLoader](#T-SigStat-Common-Loaders-SigComp11DutchLoader 'SigStat.Common.Loaders.SigComp11DutchLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp11DutchLoader-SignerFilter 'SigStat.Common.Loaders.SigComp11DutchLoader.SignerFilter') property |
 
 <a name='P-SigStat-Common-Loaders-SigComp11DutchLoader-DatabasePath'></a>
 ### DatabasePath `property`
@@ -8288,6 +8605,21 @@ Initializes a new instance of the [SigComp13JapaneseLoader](#T-SigStat-Common-Lo
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
 
+<a name='M-SigStat-Common-Loaders-SigComp13JapaneseLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp13JapaneseLoader](#T-SigStat-Common-Loaders-SigComp13JapaneseLoader 'SigStat.Common.Loaders.SigComp13JapaneseLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp13JapaneseLoader-SignerFilter 'SigStat.Common.Loaders.SigComp13JapaneseLoader.SignerFilter') property |
+
 <a name='P-SigStat-Common-Loaders-SigComp13JapaneseLoader-DatabasePath'></a>
 ### DatabasePath `property`
 
@@ -8409,6 +8741,21 @@ Initializes a new instance of the [SigComp15GermanLoader](#T-SigStat-Common-Load
 | ---- | ---- | ----------- |
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | The database path. |
 | standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | if set to `true` features will be also stored in [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+
+<a name='M-SigStat-Common-Loaders-SigComp15GermanLoader-#ctor-System-String,System-Boolean,System-Predicate{SigStat-Common-Signer}-'></a>
+### #ctor(databasePath,standardFeatures,signerFilter) `constructor`
+
+##### Summary
+
+Initializes a new instance of the [SigComp15GermanLoader](#T-SigStat-Common-Loaders-SigComp15GermanLoader 'SigStat.Common.Loaders.SigComp15GermanLoader') class with specified database.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Represents the path, to load the signatures from. It supports two basic approaches: |
+| standardFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Convert loaded data  to standard [Features](#T-SigStat-Common-Features 'SigStat.Common.Features'). |
+| signerFilter | [System.Predicate{SigStat.Common.Signer}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{SigStat.Common.Signer}') | Sets the [SignerFilter](#P-SigStat-Common-Loaders-SigComp15GermanLoader-SignerFilter 'SigStat.Common.Loaders.SigComp15GermanLoader.SignerFilter') property |
 
 <a name='P-SigStat-Common-Loaders-SigComp15GermanLoader-DatabasePath'></a>
 ### DatabasePath `property`
@@ -9024,6 +9371,13 @@ best sampling frequency for the signer
 
 best step (nmber of skipped points) for the signer
 
+<a name='F-SigStat-Common-Signer-signerBestSteps'></a>
+### signerBestSteps `constants`
+
+##### Summary
+
+a dictionary to save the best FRRs for the signer , to use later ofr signer sampling rate dependant calssification
+
 <a name='P-SigStat-Common-Signer-ID'></a>
 ### ID `property`
 
@@ -9083,6 +9437,17 @@ SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier
 
 Represents a trained model for [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
 
+<a name='T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel'></a>
+## SignerModel `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier
+
+##### Summary
+
+Represents a trained model for [OneClassNearestNeighborClassifier](#T-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier 'SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier')
+
 <a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-SignerModel-DistanceMatrix'></a>
 ### DistanceMatrix `property`
 
@@ -9119,6 +9484,27 @@ Gets or sets the signature distance from training.
 A threshold, that will be used for classification. Signatures with
 an average DTW distance from the genuines above this threshold will
 be classified as forgeries
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-DistanceCache'></a>
+### DistanceCache `property`
+
+##### Summary
+
+Precalculated distances of known signatures
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-SignerID'></a>
+### SignerID `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-OneClassNearestNeighborClassifier-SignerModel-TrainingSignatures'></a>
+### TrainingSignatures `property`
+
+##### Summary
+
+A list a of genuine signatures used for training
 
 <a name='T-SigStat-Common-Logging-SignerResults'></a>
 ## SignerResults `type`

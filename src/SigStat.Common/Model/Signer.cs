@@ -12,6 +12,10 @@ namespace SigStat.Common
     public class Signer//TODO: <TSignature> where TSignature: Signature
     {
         /// <summary>
+        /// a dictionary to save the best FRRs for the signer , to use later ofr signer sampling rate dependant calssification
+        /// </summary>
+       public Dictionary<int, int> signerBestSteps= new Dictionary<int, int>();
+        /// <summary>
         /// best sampling frequency for the signer
         /// </summary>
         public int bestSampleRate = 50;
