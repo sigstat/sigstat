@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding : 0;
+    box-sizing: inherit;
+}
+
+
+
+.faq_cim {
+font-family : Anton;
+padding: 2em;
+padding-top : 3em;
+text-align : center;
+color : black;
+
+}
+
+
+html, body 
+{
+    height:100%;
+}
+
+.accordion-item{
+
+    margin-bottom : 0.3rem;
+    padding: 0;
+  /* box-shadow: .5rem 2px .4rem rgba(0,0,0,.1);*/
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+
+}
+
+
+.accordion-link{
+    color : black;
+    width : 100%;
+    background-color : rgba(180, 180, 180,0.6);
+    text-decoration : none;
+    border-style : solid;
+    border-top-style : none;
+    border-bottom-style : none;
+    border-right-style : none;
+    border-left-color : #9e0b0f;
+    border-left-width : 0.3rem;
+    font-size : 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding : 1rem 0;
+    
+
+
+    
+}
+
+.accordion-link ion-icon{
+    color : #9e0b0f;
+    padding: .5rem;
+
+}
+
+.accordion-link .chevron-down-outline{
+    
+    display: none;
+}
+
+.accordion-link:hover{
+    color : black;
+    text-decoration: none;
+    background-color : rgba(155, 155, 155,0.7);
+    box-shadow: .5rem 2px .4rem rgba(12, 177, 100, 0.696);
+
+}
+
+.kerd_kezd{
+float: left;
+font-size : 2rem;
+padding : 0 1rem;
+
+
+}
+.valasz .val_kezd{
+    float: left;
+    font-size : 2rem;
+    padding: 0 1.3rem;
+    
+    }
+
+.faqoldal{
+    box-sizing : border-box;
+
+    font-family : Playfair;
+    background-color : rgba(128, 128, 128,0.2);
+    height: 100%;
+    display : flex;
+    font-size : 1.4rem;
+    align-items: center;
+    justify-content: space-between;
+    padding : 1rem 0;
+    
+    
+    
+}
+
+
+
+.valasz{
+    max-height: 0;
+    overflow: hidden;
+    position : relative;
+    background-color : rgba(128, 128, 128,0.1);
+    transition: max-height 650ms;
+    
+    
+    
+}
+
+
+
+
+.lefele {
+    display :none;
+}
+
+.accordion-item:target .accordion-link:hover{
+    box-shadow: none;
+    background-color : rgba(180, 180, 180,0.6);
+
+}
+
+.accordion-item:target .valasz{
+    max-height: 20rem;
+
+
+}
+
+.accordion-item:target .vissza{
+display: none;
+
+}
+
+.accordion-item:target .lefele{
+    display: block;
+
+    }
+
+.accordion-item:target {
+    box-shadow: .5rem 2px .4rem rgba(12, 177, 100, 0.696);
+
+}
+
+
+
+  .valasz-link{
+    color: black;
+    text-decoration: none;
+    color : black;
+    width : 100%;
+    font-size : 1.4rem;
+    display: flex;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+}
+
+.valasz-link:hover{
+    text-decoration: none;
+    color : black;
+}
+
+
