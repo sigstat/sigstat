@@ -26,6 +26,2202 @@
       },
       "is_incremental": false,
       "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Classifiers.Ocjknn.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Classifiers.Ocjknn.html",
+          "hash": "bvkGSopqGtHoD8G7I9mLlA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Classifiers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Classifiers.html",
+          "hash": "xFuvzodimNks8z9NgdZPLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Distances.DtwDistance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Distances.DtwDistance.html",
+          "hash": "tw3ekmdZaQ3P4sa8q9HcMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Distances.EuclideanDistance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Distances.EuclideanDistance.html",
+          "hash": "hNJUUitax4vxzafKaXvzUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Distances.IDistance-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Distances.IDistance-1.html",
+          "hash": "WZntUVJK9iickDTJEEcfQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Distances.ManhattanDistance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Distances.ManhattanDistance.html",
+          "hash": "DWJLIGalhU3PxsKzlaHKfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.Distances.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.Distances.html",
+          "hash": "EfZhi26WfGQrS6YFPgHPbQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.DtwImplementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.DtwImplementations.html",
+          "hash": "2/N6Nr6gzucYCK5jGedJSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.HSCPThinningStep.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.HSCPThinningStep.html",
+          "hash": "7//g3TXTou5yX8w3m6FYVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.PatternMatching3x3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.PatternMatching3x3.html",
+          "hash": "O60bleKLVBHJJ7cn66z+WA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Algorithms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Algorithms.html",
+          "hash": "wk+5NLMH45l01sbJ+Im+3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.ArrayExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.ArrayExtension.html",
+          "hash": "Kw62jNbNYRMV9aCKRINgjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Baseline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Baseline.html",
+          "hash": "aPeZrSk9zbvA3OAhJeozuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.BasicMetadataExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.BasicMetadataExtraction.html",
+          "hash": "K6CZUPKV7Uwd8KShsjY9sQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.BenchmarkResults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.BenchmarkResults.html",
+          "hash": "omhcyzY67vClx/DoO882qg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.DistanceMatrix-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.DistanceMatrix-3.html",
+          "hash": "GWXlQaQwvZ3ON88EmLFfhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.ErrorRate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.ErrorRate.html",
+          "hash": "AUSKdeqr+b/XjbT1udGfsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.FeatureDescriptor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.FeatureDescriptor-1.html",
+          "hash": "AKDtBQnDSKgPtqQPth093g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.FeatureDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.FeatureDescriptor.html",
+          "hash": "yB7RkE2lgcltmkIECKxxbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Features.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Features.html",
+          "hash": "PNFdRTLtCYD0anSbUEARCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.EvenNSampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.EvenNSampler.html",
+          "hash": "2btgDanaug1ngb5bfAaRwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.FirstNSampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.FirstNSampler.html",
+          "hash": "W3hIipbgX5UBabNmk1ny3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.LastNSampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.LastNSampler.html",
+          "hash": "MzR++/DY9xmr1IeFQUAC0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.OddNSampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.OddNSampler.html",
+          "hash": "nHKtTgGv7/7OctDOmTREXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.TestingSampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.TestingSampler.html",
+          "hash": "jufy79DKRkH1KEvlBBBNXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.UniversalSampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.UniversalSampler.html",
+          "hash": "4XcDUAkPO/P5kgAm6SeImA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Framework.Samplers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Framework.Samplers.html",
+          "hash": "B7Q6cUaix9dD/Hh5Rb/ooA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.BenchmarkConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.BenchmarkConfig.html",
+          "hash": "QR8L/+W0/i8nnGYdUSLwSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.DataCleaningHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.DataCleaningHelper.html",
+          "hash": "CmbFBuqJFwuyFi0XFAE/Hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Excel.ExcelColor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Excel.ExcelColor.html",
+          "hash": "5SDyuQ2gNXriWdaIBVUhxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Excel.Palette.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Excel.Palette.html",
+          "hash": "OtdtLiqarv0OrJ5VKsHREw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Excel.TextLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Excel.TextLevel.html",
+          "hash": "JNzD9QPqKMbUg2GUOJvusQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Excel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Excel.html",
+          "hash": "hXPgfVCXByBZKN5pwnVAQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.ExcelHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.ExcelHelper.html",
+          "hash": "v6NDJHJY961pQqZv6C8p4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.FeatureDescriptorJsonConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.FeatureDescriptorJsonConverter.html",
+          "hash": "2EjvhTBYZ+phknloDX6N/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.FeatureDescriptorTJsonConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.FeatureDescriptorTJsonConverter.html",
+          "hash": "m4JfYwhXVShL1Jr+sqc4gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.HierarchyElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.HierarchyElement.html",
+          "hash": "lfaR0lGk+iGw/vzYpuynJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.IProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.IProgress.html",
+          "hash": "658NjeLQFVQoI0TFI6Inmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.ProgressHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.ProgressHelper.html",
+          "hash": "4rH4eIKXu+Cw+Xv8ModYDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.html",
+          "hash": "iGkLBcY9AZW1g3CIUnP7IQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.html",
+          "hash": "4e4AwftGNScXRM2U/+iBQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter.html",
+          "hash": "R0PTT88mFCaVco1NIyTa7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter.html",
+          "hash": "S4XZZoTl8FKjJju6SHDtaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.html",
+          "hash": "7tmWxlg4BFHYqzc0M6AXKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.RectangleFConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.RectangleFConverter.html",
+          "hash": "HdEg2fn1JgRQ0MJgDxwrvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.VerifierResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.VerifierResolver.html",
+          "hash": "VpCNLdd41NFQvzpom4uHGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.Serialization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.Serialization.html",
+          "hash": "I6lLJUbSvAnVHBxwhEsHwg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.SerializationHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.SerializationHelper.html",
+          "hash": "DfTWU37xxEgVdKwdJwp4ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.SignerStatisticsHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.SignerStatisticsHelper.html",
+          "hash": "E6i3MbzCNniJ9jINpEVYCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Helpers.html",
+          "hash": "cJhkbJBcsp2tlPMaBNeloQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.ILoggerObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.ILoggerObject.html",
+          "hash": "8zA3x8Uysn3U+0laDd1JIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.ILoggerObjectExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.ILoggerObjectExtensions.html",
+          "hash": "G8xUZY8DC9yebmDtv9TPDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.IOExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.IOExtensions.html",
+          "hash": "n9SoTju1YnB+k5jjXyi3CA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.ITransformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.ITransformation.html",
+          "hash": "EhB5qxZa8hIP6i7Zs6GP/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.BenchmarkBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.BenchmarkBuilder.html",
+          "hash": "D/57al7rp/FBrl5aw0Kxqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.DataSetLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.DataSetLoader.html",
+          "hash": "baznPX2Oa0n1Ke1a8Ab6Gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.IDataSetLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.IDataSetLoader.html",
+          "hash": "Gc5pWZiIjgSCij32Z8/eow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.ImageLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.ImageLoader.html",
+          "hash": "+XWmu+7tGjk5EpxQIK6LPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.ImageSaver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.ImageSaver.html",
+          "hash": "dYRwHfizj4baMilOaAZGKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.MCYTLoader.MCYT.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.MCYTLoader.MCYT.html",
+          "hash": "LX2KhNFPbrOntPpXJQOrrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.MCYTLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.MCYTLoader.html",
+          "hash": "39ekeSLkNbKg3tJZsMM+cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.MemoryDataSetLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.MemoryDataSetLoader.html",
+          "hash": "eQ0aLAWo+18G5o+GiS1IlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.html",
+          "hash": "obdjFh5PmPCdL4tm198Nqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp11ChineseLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp11ChineseLoader.html",
+          "hash": "KRFn7/RxyeIxOysz1Ft4pw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.html",
+          "hash": "jqONY+wTGYPJ3wpWkBoLTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp11DutchLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp11DutchLoader.html",
+          "hash": "yBibPJuzeDw4XcjwaYQauw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.html",
+          "hash": "dG3xv9Dfoq+o2SyZBcLT+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp13JapaneseLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp13JapaneseLoader.html",
+          "hash": "Cco48GcN4zkKzjqlyY+wLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.html",
+          "hash": "YTl8aEQ8A9a5yfzg7DFCHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp15GermanLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp15GermanLoader.html",
+          "hash": "XqvjS0C8gfnEPe74jnvvAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.html",
+          "hash": "xtqjOP06NiUEHLEndfq//A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.SigComp19OnlineLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.SigComp19OnlineLoader.html",
+          "hash": "UkSIHkj9+GqrCw6seBmHeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.Svc2004.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.Svc2004.html",
+          "hash": "ycJmz8qOIiE+FDJeurTQxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.Svc2004Loader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.Svc2004Loader.html",
+          "hash": "Jhu6R2TJxfl62bIXVkGc2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loaders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loaders.html",
+          "hash": "CKk/JcPwMEhP96bipAQd3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.BenchmarkKeyValueLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.BenchmarkKeyValueLogState.html",
+          "hash": "bsqDkfjl+L3jR2NuDy1sqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.BenchmarkLogModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.BenchmarkLogModel.html",
+          "hash": "ki38JhdY058jNfnqUTQ2Bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.BenchmarkResultsLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.BenchmarkResultsLogState.html",
+          "hash": "RIgxifzxLOi/f4J644kfHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.ClassifierDistanceLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.ClassifierDistanceLogState.html",
+          "hash": "e27nczNvFF30vkwVGD4/Kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.CompositeLogger.ErrorEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.CompositeLogger.ErrorEventHandler.html",
+          "hash": "ELwwgzOuChkrJtn8r9SGwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.CompositeLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.CompositeLogger.html",
+          "hash": "fqwyVSr1ePnqaCIT/Ix4Ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.ExcelReportGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.ExcelReportGenerator.html",
+          "hash": "EPC3EE9Pps5FZWAi3r3RMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.KeyValueGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.KeyValueGroup.html",
+          "hash": "ogQuUCHuqu/fKtF9MaX1OA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.LogAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.LogAnalyzer.html",
+          "hash": "BnuUNojcj3E3rldg9g0k3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.ReportInformationLogger.LogStateLoggedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.ReportInformationLogger.LogStateLoggedEventHandler.html",
+          "hash": "9EnLt3u9qlq+0g6xkw6HyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.ReportInformationLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.ReportInformationLogger.html",
+          "hash": "L81ZGSY/a9QLMvKwub6tLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SigStatLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SigStatLogState.html",
+          "hash": "r1Egbc7YJrJIDxXy5cbLYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SignatureLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SignatureLogState.html",
+          "hash": "zTYGyV4kJu3tAf+q4BXPtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SignerLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SignerLogState.html",
+          "hash": "Krr+oznQT3CGtdMLJSYc3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SignerResults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SignerResults.html",
+          "hash": "DziVbL0seFmWxIK1qje4ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SignerResultsLogState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SignerResultsLogState.html",
+          "hash": "lQ03tehVVCQYagVFUebbJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler.html",
+          "hash": "MaZjKmKQ/5Sg1eJuceL9rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.SimpleConsoleLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.SimpleConsoleLogger.html",
+          "hash": "fth3rbhBVTW5cdOvb7WF3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Logging.html",
+          "hash": "oZqsqtqNZ/8RUyQ08NKPlw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Loop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Loop.html",
+          "hash": "Ud8TgYQ+T7RNWhprdbN+Ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.MathHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.MathHelper.html",
+          "hash": "x0VFqrrR38EJ1q38EYuALA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Model.SampleRateResults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Model.SampleRateResults.html",
+          "hash": "73pM/DFoRUR8nea857dhXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Model.Verifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Model.Verifier.html",
+          "hash": "Na1OUmhO6orF54NNNJSU2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Model.html",
+          "hash": "3JCihSGSXzP9eBGT0dlboA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Origin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Origin.html",
+          "hash": "POEGD0umCOgd1dGBpWEGRQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.AutoSetMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.AutoSetMode.html",
+          "hash": "0rC3Wta0mzmib0EfJCGSqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.IClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.IClassifier.html",
+          "hash": "cRVzgjOljaeWQfMb0pGM7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.IDistanceClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.IDistanceClassifier.html",
+          "hash": "TPAFpdDbcTnAUqbLltQWMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.IPipelineIO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.IPipelineIO.html",
+          "hash": "gtaVIve6tFdXgIsSfvHK8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.ISignerModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.ISignerModel.html",
+          "hash": "KwmJKh/AsP5EbBGjwmYHeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.Input.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.Input.html",
+          "hash": "RAgi6HxFLXdgY/fCioLSxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.Output.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.Output.html",
+          "hash": "g/v1ropD2AjVsz0O6yLQFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.ParallelTransformPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.ParallelTransformPipeline.html",
+          "hash": "q57vHqYlcEcApAeGcq6GfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.PipelineInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.PipelineInput.html",
+          "hash": "xY9BoDzQi1I8CbCjMCNhCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.PipelineOutput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.PipelineOutput.html",
+          "hash": "kWKeBc51qxGFBZFrD1tMFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.SequentialTransformPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.SequentialTransformPipeline.html",
+          "hash": "bNrKVOUOxTmRKe2nNDXM4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Pipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Pipeline.html",
+          "hash": "488ps7L8wOy4i893O0YTbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineBase.html",
+          "hash": "BJUvwzQFoyqAKX81xO/NBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.DtwClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.DtwClassifier.html",
+          "hash": "jv0xSf38VpYp5ImLtJ5Pkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.html",
+          "hash": "mvXKjDm8NqX+iJz4G2R0mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.html",
+          "hash": "yz6tG2jjpdVHeLyNHwEGhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.html",
+          "hash": "Cy0nE5+CD5ayHdh1uUtxLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.html",
+          "hash": "40QcHx68HKVqWhVHYB0qaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.html",
+          "hash": "/EjAXk4/Q5yS6qPHjRSCBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.html",
+          "hash": "hUO6w4PEoVXdktvi8/FNWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.html",
+          "hash": "+wHoQE5Fueeu5LWQ2+TBpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.html",
+          "hash": "sC57iXkKrDh3CqBoeBVpnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Classifiers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.html",
+          "hash": "SOdqhdWPXk/hQxZ/t5Capw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.html",
+          "hash": "Pnwo8NE9c1wwZC3gOP9xWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.html",
+          "hash": "UvWe4IjG40fIlLkDWQpXYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.html",
+          "hash": "Osgaft2P6bbnoL/exgrYrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FilterPoints.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FilterPoints.html",
+          "hash": "ddwBf2jxhl2vmM6WeTMrmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.html",
+          "hash": "6P6/TObFF6nzHFfUtvKSGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.html",
+          "hash": "gY/AAEMoWvdOsE445ZAW1A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.html",
+          "hash": "LH5WK6rivRacSypAMZbRTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.html",
+          "hash": "Qu4rP3G7TIJHhscGeKIS7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.html",
+          "hash": "N5FsPKEtYuU33QpLlvkdFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.html",
+          "hash": "i616CmaEsDszJVj7Om9sog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.OriginType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.OriginType.html",
+          "hash": "Cwx661hdODDz/thMH8ZiCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.html",
+          "hash": "NTfvX7OTlvuhJg+aoR8yZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.html",
+          "hash": "QAyV0JiI96yn+ki4O/7IMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.html",
+          "hash": "0KVnWQ4ztsI8cjrbl2h9NA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.html",
+          "hash": "98HuFivpWLu1qMM0Cke6zQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.html",
+          "hash": "NUzYT4XnanKVQsKbEMGV7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.html",
+          "hash": "HMSMYl3CfppWvQMn06pQJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc.html",
+          "hash": "uYA+vTv450WrD65trPea5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.html",
+          "hash": "OKVUVHQsgEnwbL/oHEzA4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.html",
+          "hash": "xLVupm1RRI+eSI+Ue0YnQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.html",
+          "hash": "OrKORcw+KGWgXcvek2j1mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Result.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Result.html",
+          "hash": "ux0HpGzJjIkM4gmh12/Zng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Sampler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Sampler.html",
+          "hash": "bt6nhaWF55SzMF3dHPKh6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.SigStatEvents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.SigStatEvents.html",
+          "hash": "niXm7U3U/iKefARikZHLkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Signature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Signature.html",
+          "hash": "xQjBmNWPVLH/D42x2GsRWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.SignatureHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.SignatureHelper.html",
+          "hash": "Y9GIf2j0kViNF2Q/Q5mycA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Signer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Signer.html",
+          "hash": "1MXDoMZQR71raX0g4aFstg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.SimpleRenderingTransformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.SimpleRenderingTransformation.html",
+          "hash": "g16g9jJNEPxqgus/ZabESQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.StrokeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.StrokeHelper.html",
+          "hash": "6/ZlJQgeWyz67Njkur10hA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.StrokeInterval.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.StrokeInterval.html",
+          "hash": "3zDlehRuHb8VcqjuFde7Wg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.StrokeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.StrokeType.html",
+          "hash": "q77WSYv3/0ogn3S0xvQngg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.AddConst.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.AddConst.html",
+          "hash": "w85MqU6Els49R1P9EWAetg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.AddVector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.AddVector.html",
+          "hash": "DP2Gz5uctSkClTrPrOcOyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.ApproximateOnlineFeatures.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.ApproximateOnlineFeatures.html",
+          "hash": "UzAqvmicIHHjjJvViOG90g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Binarization.ForegroundType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Binarization.ForegroundType.html",
+          "hash": "J/5GZbAEut1IUzDaQ7tAUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Binarization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Binarization.html",
+          "hash": "gb+HekVWnB+nSvVmSKQlxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.BinaryRasterizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.BinaryRasterizer.html",
+          "hash": "t73MijiSddm2CfOinL8ucA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.CentroidExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.CentroidExtraction.html",
+          "hash": "jO+dMmVKcOPMpdWb98XgTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.CentroidTranslate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.CentroidTranslate.html",
+          "hash": "FwMp8B3Rch2qUhkUjYQ7LA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.ComponentExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.ComponentExtraction.html",
+          "hash": "DQrRYkX2FZVAuGVoo+2I1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.ComponentSorter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.ComponentSorter.html",
+          "hash": "BxTCgIWeFGdtq6oN8Vxfkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.ComponentsToFeatures.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.ComponentsToFeatures.html",
+          "hash": "peDwgTGNua65arEAqSMY8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.EndpointExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.EndpointExtraction.html",
+          "hash": "I9A34Tz0zTHOkLDIIoN9cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Extrema.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Extrema.html",
+          "hash": "0vpEvB/DohiighTbdfLt9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.HSCPThinning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.HSCPThinning.html",
+          "hash": "jCVHKDVYEhNfNpJIF8PdsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.ImageGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.ImageGenerator.html",
+          "hash": "OH1WaEjH65Z4LPYojxcdhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Map.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Map.html",
+          "hash": "lEsxkUoasZuqK+5+pqJ0OA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Multiply.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Multiply.html",
+          "hash": "JcMjjWnlWyJt4v4wEe8N8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Normalize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Normalize.html",
+          "hash": "1YnFZUEx47qtB619kva/qA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.OnePixelThinning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.OnePixelThinning.html",
+          "hash": "4qcX0gfqaZbMQGjuqI0qNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.RealisticImageGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.RealisticImageGenerator.html",
+          "hash": "qgC/8vsJXGnh0O+DG71d3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Resize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Resize.html",
+          "hash": "Ra08O1NmeUDT6cJupoOncA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.TangentExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.TangentExtraction.html",
+          "hash": "576VbKCoZNNYYK4qy9Ue2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.TimeReset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.TimeReset.html",
+          "hash": "0BL6b6bh6nLrtH5XYNDm0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Translate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Translate.html",
+          "hash": "SGO5XjEs6806FqR/tDkoNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.Trim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.Trim.html",
+          "hash": "gEyetSnAnEKdp2TkBH5pdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.Transforms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.Transforms.html",
+          "hash": "dxXn7rV+jp0p3bBwb9Coyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.VerifierBenchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.VerifierBenchmark.html",
+          "hash": "mE1sFTdetWH21NzmXTnMPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Common.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Common.html",
+          "hash": "SfaDkvTEjel4CB8GMuaPrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "0jWZrLWwBfXcvGIvf7J9DQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
     }
   ],
   "incremental_info": [
@@ -43,6 +2239,19 @@
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 2,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 182,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
           "skipped_file_count": 0
         }
       }

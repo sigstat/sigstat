@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DtwImplementations
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DtwImplementations
+   ">
+    <meta name="generator" content="docfx 2.45.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SigStat.Common.Algorithms.DtwImplementations">
+  
+  
+  <h1 id="SigStat_Common_Algorithms_DtwImplementations" data-uid="SigStat.Common.Algorithms.DtwImplementations" class="text-break">Class DtwImplementations
+  </h1>
+  <div class="markdown level0 summary"><p>A simple implementation of the DTW algorithm.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DtwImplementations</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.Algorithms.html">SigStat.Common.Algorithms</a></h6>
+  <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
+  <h5 id="SigStat_Common_Algorithms_DtwImplementations_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class DtwImplementations : object</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Algorithms_DtwImplementations_ConstrainedDTw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_.md&amp;value=---%0Auid%3A%20SigStat.Common.Algorithms.DtwImplementations.ConstrainedDTw%60%601(IEnumerable%7B%60%600%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2C%60%600%2CSystem.Double%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Algorithms/Distances/DtwImplementations.cs/#L158">View Source</a>
+  </span>
+  <a id="SigStat_Common_Algorithms_DtwImplementations_ConstrainedDTw_" data-uid="SigStat.Common.Algorithms.DtwImplementations.ConstrainedDTw*"></a>
+  <h4 id="SigStat_Common_Algorithms_DtwImplementations_ConstrainedDTw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_" data-uid="SigStat.Common.Algorithms.DtwImplementations.ConstrainedDTw``1(IEnumerable{``0},IEnumerable{``0},Func{``0,``0,System.Double},System.Int32)">ConstrainedDTw&lt;P&gt;(IEnumerable&lt;P&gt;, IEnumerable&lt;P&gt;, Func&lt;P, P, Double&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constrained DTW implementation  (Abdullah Mueen, Eamonn J. Keogh)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ConstrainedDTw&lt;P&gt;(IEnumerable&lt;P&gt; sequence1, IEnumerable&lt;P&gt; sequence2, Func&lt;P, P, double&gt; distance, int w)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence1</span></td>
+        <td><p>The sequence1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence2</span></td>
+        <td><p>The sequence2.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;P, P, <span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">distance</span></td>
+        <td><p>The distance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">w</span></td>
+        <td><p>The w.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">P</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SigStat_Common_Algorithms_DtwImplementations_ConstrainedDTw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Algorithms_DtwImplementations_ConstrainedDtwWikipedia__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_.md&amp;value=---%0Auid%3A%20SigStat.Common.Algorithms.DtwImplementations.ConstrainedDtwWikipedia%60%601(IEnumerable%7B%60%600%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2C%60%600%2CSystem.Double%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Algorithms/Distances/DtwImplementations.cs/#L248">View Source</a>
+  </span>
+  <a id="SigStat_Common_Algorithms_DtwImplementations_ConstrainedDtwWikipedia_" data-uid="SigStat.Common.Algorithms.DtwImplementations.ConstrainedDtwWikipedia*"></a>
+  <h4 id="SigStat_Common_Algorithms_DtwImplementations_ConstrainedDtwWikipedia__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_" data-uid="SigStat.Common.Algorithms.DtwImplementations.ConstrainedDtwWikipedia``1(IEnumerable{``0},IEnumerable{``0},Func{``0,``0,System.Double},System.Int32)">ConstrainedDtwWikipedia&lt;P&gt;(IEnumerable&lt;P&gt;, IEnumerable&lt;P&gt;, Func&lt;P, P, Double&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constrained DTW implementation  (Wikipedia)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ConstrainedDtwWikipedia&lt;P&gt;(IEnumerable&lt;P&gt; sequence1, IEnumerable&lt;P&gt; sequence2, Func&lt;P, P, double&gt; distance, int w)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence1</span></td>
+        <td><p>The sequence1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence2</span></td>
+        <td><p>The sequence2.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;P, P, <span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">distance</span></td>
+        <td><p>The distance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">w</span></td>
+        <td><p>The w.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">P</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SigStat_Common_Algorithms_DtwImplementations_ConstrainedDtwWikipedia__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">https://en.wikipedia.org/wiki/Dynamic_time_warping</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Algorithms_DtwImplementations_ExactDtw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__.md&amp;value=---%0Auid%3A%20SigStat.Common.Algorithms.DtwImplementations.ExactDtw%60%601(IEnumerable%7B%60%600%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2C%60%600%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Algorithms/Distances/DtwImplementations.cs/#L112">View Source</a>
+  </span>
+  <a id="SigStat_Common_Algorithms_DtwImplementations_ExactDtw_" data-uid="SigStat.Common.Algorithms.DtwImplementations.ExactDtw*"></a>
+  <h4 id="SigStat_Common_Algorithms_DtwImplementations_ExactDtw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__" data-uid="SigStat.Common.Algorithms.DtwImplementations.ExactDtw``1(IEnumerable{``0},IEnumerable{``0},Func{``0,``0,System.Double})">ExactDtw&lt;P&gt;(IEnumerable&lt;P&gt;, IEnumerable&lt;P&gt;, Func&lt;P, P, Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Exact DTW implementation (Abdullah Mueen, Eamonn J. Keogh)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ExactDtw&lt;P&gt;(IEnumerable&lt;P&gt; sequence1, IEnumerable&lt;P&gt; sequence2, Func&lt;P, P, double&gt; distance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence1</span></td>
+        <td><p>The sequence1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence2</span></td>
+        <td><p>The sequence2.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;P, P, <span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">distance</span></td>
+        <td><p>The distance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">P</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SigStat_Common_Algorithms_DtwImplementations_ExactDtw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Algorithms_DtwImplementations_ExactDtwWikipedia__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__.md&amp;value=---%0Auid%3A%20SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia%60%601(IEnumerable%7B%60%600%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2C%60%600%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Algorithms/Distances/DtwImplementations.cs/#L203">View Source</a>
+  </span>
+  <a id="SigStat_Common_Algorithms_DtwImplementations_ExactDtwWikipedia_" data-uid="SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia*"></a>
+  <h4 id="SigStat_Common_Algorithms_DtwImplementations_ExactDtwWikipedia__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__" data-uid="SigStat.Common.Algorithms.DtwImplementations.ExactDtwWikipedia``1(IEnumerable{``0},IEnumerable{``0},Func{``0,``0,System.Double})">ExactDtwWikipedia&lt;P&gt;(IEnumerable&lt;P&gt;, IEnumerable&lt;P&gt;, Func&lt;P, P, Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Exact DTW implementation (Wikipedia)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ExactDtwWikipedia&lt;P&gt;(IEnumerable&lt;P&gt; sequence1, IEnumerable&lt;P&gt; sequence2, Func&lt;P, P, double&gt; distance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence1</span></td>
+        <td><p>The sequence1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence2</span></td>
+        <td><p>The sequence2.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;P, P, <span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">distance</span></td>
+        <td><p>The distance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">P</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SigStat_Common_Algorithms_DtwImplementations_ExactDtwWikipedia__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">https://en.wikipedia.org/wiki/Dynamic_time_warping</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Algorithms_DtwImplementations_OptimizedDtw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw%60%601(IEnumerable%7B%60%600%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2C%60%600%2CSystem.Double%7D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Algorithms/Distances/DtwImplementations.cs/#L32">View Source</a>
+  </span>
+  <a id="SigStat_Common_Algorithms_DtwImplementations_OptimizedDtw_" data-uid="SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw*"></a>
+  <h4 id="SigStat_Common_Algorithms_DtwImplementations_OptimizedDtw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_System_Int32_" data-uid="SigStat.Common.Algorithms.DtwImplementations.OptimizedDtw``1(IEnumerable{``0},IEnumerable{``0},Func{``0,``0,System.Double},System.Int32,System.Int32)">OptimizedDtw&lt;P&gt;(IEnumerable&lt;P&gt;, IEnumerable&lt;P&gt;, Func&lt;P, P, Double&gt;, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Complex, optimized DTW calculation (Abdullah Mueen, Eamonn J. Keogh)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double OptimizedDtw&lt;P&gt;(IEnumerable&lt;P&gt; sequence1, IEnumerable&lt;P&gt; sequence2, Func&lt;P, P, double&gt; distance, int m = 0, int r = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;P&gt;</td>
+        <td><span class="parametername">sequence2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;P, P, <span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">distance</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">m</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">r</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">P</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SigStat_Common_Algorithms_DtwImplementations_OptimizedDtw__1_IEnumerable___0__IEnumerable___0__Func___0___0_System_Double__System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Bases on: Abdullah Mueen, Eamonn J. Keogh: Extracting Optimal
+Performance from Dynamic Time Warping.KDD 2016: 2129-2130</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Algorithms_DtwImplementations.md&amp;value=---%0Auid%3A%20SigStat.Common.Algorithms.DtwImplementations%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Algorithms/Distances/DtwImplementations.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
