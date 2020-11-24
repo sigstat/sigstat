@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class PipelineBase
    ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.45.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
     
@@ -125,14 +125,6 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
       <div class="level2"><a class="xref" href="SigStat.Common.Transforms.Resize.html">Resize</a></div>
       <div class="level2"><a class="xref" href="SigStat.Common.Transforms.TangentExtraction.html">TangentExtraction</a></div>
       <div class="level2"><a class="xref" href="SigStat.Common.Transforms.Trim.html">Trim</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.FusionFeatureExtraction.OnlineToOfflineFeature.html">OnlineToOfflineFeature</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.GraphExtraction.StrokeMerging.html">StrokeMerging</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFeatureExtraction.html">ReSamplingFeatureExtraction</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.TrajectoryRecovery.AlterDtwPairing.html">AlterDtwPairing</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.VisualHelpers.DistanceMatrixViewer.html">DistanceMatrixViewer</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.VisualHelpers.StrokePairingDistances.html">StrokePairingDistances</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.VisualHelpers.StrokePairSaver.html">StrokePairSaver</a></div>
-      <div class="level2"><a class="xref" href="SigStat.FusionBenchmark.VisualHelpers.XYSaver.html">XYSaver</a></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -140,44 +132,20 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
     <div><a class="xref" href="SigStat.Common.Helpers.IProgress.html">IProgress</a></div>
     <div><a class="xref" href="SigStat.Common.Pipeline.IPipelineIO.html">IPipelineIO</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.html">SigStat.Common</a></h6>
   <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
   <h5 id="SigStat_Common_PipelineBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class PipelineBase : ILoggerObject, IProgress, IPipelineIO</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class PipelineBase : object, ILoggerObject, IProgress, IPipelineIO</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase__ctor.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase__ctor.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L30">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L30">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineBase__ctor_" data-uid="SigStat.Common.PipelineBase.#ctor*"></a>
   <h4 id="SigStat_Common_PipelineBase__ctor" data-uid="SigStat.Common.PipelineBase.#ctor">PipelineBase()</h4>
@@ -192,14 +160,15 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_Logger.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.Logger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_Logger.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.Logger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L63">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L63">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineBase_Logger_" data-uid="SigStat.Common.PipelineBase.Logger*"></a>
   <h4 id="SigStat_Common_PipelineBase_Logger" data-uid="SigStat.Common.PipelineBase.Logger">Logger</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the ILogger implementation used to perform logging</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -215,17 +184,17 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="xref">ILogger</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_PipelineInputs.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.PipelineInputs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_PipelineInputs.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.PipelineInputs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L21">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L21">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineBase_PipelineInputs_" data-uid="SigStat.Common.PipelineBase.PipelineInputs*"></a>
   <h4 id="SigStat_Common_PipelineBase_PipelineInputs" data-uid="SigStat.Common.PipelineBase.PipelineInputs">PipelineInputs</h4>
@@ -246,17 +215,17 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.Pipeline.PipelineInput.html">PipelineInput</a>&gt;</td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="SigStat.Common.Pipeline.PipelineInput.html">PipelineInput</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_PipelineOutputs.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.PipelineOutputs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_PipelineOutputs.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.PipelineOutputs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L25">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L25">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineBase_PipelineOutputs_" data-uid="SigStat.Common.PipelineBase.PipelineOutputs*"></a>
   <h4 id="SigStat_Common_PipelineBase_PipelineOutputs" data-uid="SigStat.Common.PipelineBase.PipelineOutputs">PipelineOutputs</h4>
@@ -277,21 +246,22 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.Pipeline.PipelineOutput.html">PipelineOutput</a>&gt;</td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="SigStat.Common.Pipeline.PipelineOutput.html">PipelineOutput</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_Progress.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.Progress%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_Progress.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.Progress%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L67">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L67">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineBase_Progress_" data-uid="SigStat.Common.PipelineBase.Progress*"></a>
   <h4 id="SigStat_Common_PipelineBase_Progress" data-uid="SigStat.Common.PipelineBase.Progress">Progress</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the current progress in percentage.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -316,10 +286,10 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_OnProgressChanged.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.OnProgressChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_OnProgressChanged.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.OnProgressChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L88">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L88">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineBase_OnProgressChanged_" data-uid="SigStat.Common.PipelineBase.OnProgressChanged*"></a>
   <h4 id="SigStat_Common_PipelineBase_OnProgressChanged" data-uid="SigStat.Common.PipelineBase.OnProgressChanged">OnProgressChanged()</h4>
@@ -334,10 +304,10 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_ProgressChanged.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.ProgressChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase_ProgressChanged.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase.ProgressChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L83">View Source</a>
+    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L83">View Source</a>
   </span>
   <h4 id="SigStat_Common_PipelineBase_ProgressChanged" data-uid="SigStat.Common.PipelineBase.ProgressChanged">ProgressChanged</h4>
   <div class="markdown level1 summary"><p>The event is raised whenever the value of <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_Progress">Progress</a> changes</p>
@@ -357,7 +327,7 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -372,34 +342,6 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
   <div>
       <a class="xref" href="SigStat.Common.Pipeline.IPipelineIO.html">IPipelineIO</a>
   </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, Exception, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogInformation_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogInformation(ILoggerObject, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, Exception, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogTrace(ILoggerObject, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace__1_SigStat_Common_ILoggerObject___0_Microsoft_Extensions_Logging_EventId_System_Exception_System_Func___0_System_Exception_System_String__">ILoggerObjectExtensions.LogTrace&lt;TState&gt;(ILoggerObject, TState, EventId, Exception, Func&lt;TState, Exception, String&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogCritical_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogCritical(ILoggerObject, String, Object[])</a>
-  </div>
-  <div>
-      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogDebug_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogDebug(ILoggerObject, String, Object[])</a>
-  </div>
 </article>
           </div>
           
@@ -408,10 +350,10 @@ ILoggerObject, IProgress, IPipelineIO default implementacioja.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineBase.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/PipelineBase.cs/#L16" class="contribution-link">View Source</a>
+                    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/PipelineBase.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
