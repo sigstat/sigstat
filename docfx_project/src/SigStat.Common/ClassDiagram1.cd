@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SigStat.Common.Algorithms.Dtw" Collapsed="true">
+    <Position X="97.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAAAAAAAAAgAAAAAAAAAAAAAABAAAAEAABAAAA=</HashCode>
+      <FileName>Algorithms\Dtw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Algorithms.DtwPy" Collapsed="true">
+    <Position X="99.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAACA=</HashCode>
+      <FileName>Algorithms\DtwPy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Algorithms.HSCPThinningStep" Collapsed="true">
+    <Position X="104.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAACAAA=</HashCode>
+      <FileName>Algorithms\HSCPThinningStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Algorithms.OnePixelThinningStep" Collapsed="true">
+    <Position X="108" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAQAAQAAAAAAA=</HashCode>
+      <FileName>Algorithms\OnePixelThinningStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Algorithms.PatternMatching3x3" Collapsed="true">
+    <Position X="102.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\PatternMatching3x3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Baseline" Collapsed="true">
+    <Position X="99.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Features\Baseline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Features" Collapsed="true">
+    <Position X="99.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAgAAAAAEAABAAAIAAAgAEagA=</HashCode>
+      <FileName>Features\Features.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loop" Collapsed="true">
+    <Position X="104.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAIAgA=</HashCode>
+      <FileName>Features\Loop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.ILoggerObjectExtensions" Collapsed="true">
+    <Position X="106.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAAAAAAAAAAAAAAAAAAAAIQABAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Framework\ILoggerObjectExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Sampler" Collapsed="true">
+    <Position X="5.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AALAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAEAAAQ=</HashCode>
+      <FileName>Framework\Sampler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.SigStatEvents" Collapsed="true">
+    <Position X="106.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Framework\SigStatEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Result" Collapsed="true">
+    <Position X="97.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAQAAAAAAAAAAAAAEAAAAgAAAAAAAg=</HashCode>
+      <FileName>Framework\VerifierBenchmark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.VerifierBenchmark" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="104.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAIAIAAAsCAAQDAAAAgAAAABAAAAEQAIAAAECAACQ=</HashCode>
+      <FileName>Framework\VerifierBenchmark.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.ArrayExtension" Collapsed="true">
+    <Position X="97.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIIAAAgEAAAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Helpers\ArrayExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.DistanceMatrix&lt;TRowKey, TColumnKey, TValue&gt;" Collapsed="true">
+    <Position X="108" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAIAAEAAAACAgAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Helpers\DistanceMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.IOExtensions" Collapsed="true">
+    <Position X="99.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\IOExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.MathHelper" Collapsed="true">
+    <Position X="106.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Helpers\MathHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.StrokeHelper" Collapsed="true">
+    <Position X="97.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\StrokeHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.StrokeInterval" Collapsed="true">
+    <Position X="99.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACACAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\StrokeInterval.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.FeatureDescriptor" Collapsed="true">
+    <Position X="3.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAREAAIAAAQAQAAJAAAAAgEAAAAAAAA=</HashCode>
+      <FileName>Model\FeatureDescriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.FeatureDescriptor&lt;T&gt;" Collapsed="true">
+    <Position X="3.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\FeatureDescriptorT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Signature" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="102.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAQAAAAAgBEECACAAAAAAAAAgAAEAAAAAAgAAAg=</HashCode>
+      <FileName>Model\Signature.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.Signer" Collapsed="true">
+    <Position X="104.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Signer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.PipelineBase" Collapsed="true">
+    <Position X="50" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAMAAAAAAAAAAAAAAAAgAIAAAIAAAASAAAA=</HashCode>
+      <FileName>Pipeline\PipelineBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.BasicMetadataExtraction" Collapsed="true">
+    <Position X="52.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\BasicMetadataExtraction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.SimpleRenderingTransformation" Collapsed="true">
+    <Position X="63.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\SimpleRenderingTransformation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Framework.Samplers.EvenNSampler" Collapsed="true">
+    <Position X="3" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Framework\Samplers\EvenNSampler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Framework.Samplers.FirstNSampler" Collapsed="true">
+    <Position X="5.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Framework\Samplers\FirstNSampler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Framework.Samplers.LastNSampler" Collapsed="true">
+    <Position X="7.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Framework\Samplers\LastNSampler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Framework.Samplers.OddNSampler" Collapsed="true">
+    <Position X="9.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Framework\Samplers\OddNSampler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Framework.Samplers.UniversalSampler" Collapsed="true">
+    <Position X="0.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Samplers\UniversalSampler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Model.Verifier" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="102.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgAAACAEIAAgAAAAAAAAAAAAABAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Framework\Verifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Excel.Level" Collapsed="true">
+    <Position X="101" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAgAAAAACABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Excel\Level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Excel.Palette" Collapsed="true">
+    <Position X="99.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Helpers\Excel\Palette\Palette.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Excel.PaletteStorage" Collapsed="true">
+    <Position X="101" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAQAAAAAAAA=</HashCode>
+      <FileName>Helpers\Excel\Palette\PaletteStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.ExcelHelper" Collapsed="true">
+    <Position X="102.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAEAACAAAQAAAAAQABAAIAAEBCQBABAAABAAgACA=</HashCode>
+      <FileName>Helpers\Excel\ExcelHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.HierarchyElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="102.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYIAAAAAgAAABAEAAAEAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Excel\HierarchyElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.Helpers.FeatureDescriptorJsonConverter" Collapsed="true">
+    <Position X="106.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Helpers\Serialization\FeatureDescriptorJsonConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.FeatureDescriptorTJsonConverter" Collapsed="true">
+    <Position X="97.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Helpers\Serialization\FeatureDescriptorTJsonConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.SerializationHelper" Collapsed="true">
+    <Position X="99.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAqAAAAAAAAAACAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Serialization\SerializationHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.BenchmarkConfig" Collapsed="true">
+    <Position X="102.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAiIAAUAAAIAggAQBAAAAAAABAQBAACAJABIAAAE=</HashCode>
+      <FileName>Helpers\BenchmarkConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.SimpleConsoleLogger" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="108" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAEAAAAAAAgAAAIAAAAIAAAAAAA=</HashCode>
+      <FileName>Helpers\SimpleConsoleLogger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter" Collapsed="true">
+    <Position X="106.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Serialization\DistanceFunctionJsonConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter" Collapsed="true">
+    <Position X="104.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Helpers\Serialization\FeatureDescriptorDictionaryConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter" Collapsed="true">
+    <Position X="108" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAQACAA=</HashCode>
+      <FileName>Helpers\Serialization\FeatureDescriptorListJsonConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Serialization.FeatureStreamingContextState" Collapsed="true">
+    <Position X="101" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Helpers\Serialization\FeatureStreamingContextState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Serialization.RectangleFConverter" Collapsed="true">
+    <Position X="108" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Helpers\Serialization\RectangleFConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Helpers.Serialization.VerifierResolver" Collapsed="true">
+    <Position X="106.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Helpers\Serialization\VerifierResolver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.BenchmarkBuilder" Collapsed="true">
+    <Position X="101" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgBAQAIBAOAAAAAQgAJAACAgABAEgAAAAAgAQAAgIAA=</HashCode>
+      <FileName>Loaders\BenchmarkBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.DataSetLoader" Collapsed="true">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Loaders\DataSetLoader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Loaders.ImageLoader" Collapsed="true">
+    <Position X="1.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Loaders\ImageLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.ImageSaver" Collapsed="true">
+    <Position X="108" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Loaders\ImageSaver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.MCYTLoader" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Loaders\MCYTLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.SigComp11ChineseLoader" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Loaders\SigComp11ChineseLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.SigComp11DutchLoader" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Loaders\SigComp11DutchLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.SigComp13JapaneseLoader" Collapsed="true">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Loaders\SigComp13JapaneseLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.SigComp15GermanLoader" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Loaders\SigComp15GermanLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.SigComp19OnlineLoader" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAAAAAAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Loaders\SigComp19OnlineLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.Svc2004" Collapsed="true">
+    <Position X="101" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAgAEaAA=</HashCode>
+      <FileName>Loaders\Svc2004Loader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Loaders.Svc2004Loader" Collapsed="true">
+    <Position X="17" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAIAAAAAAAAACAAAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Loaders\Svc2004Loader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.SigStatLogState" Collapsed="true">
+    <Position X="7.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.BenchmarkLogState" Collapsed="true">
+    <Position X="14.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAQAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.BenchmarkKeyValueLogState" Collapsed="true">
+    <Position X="1" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.SignerKeyValueLogState" Collapsed="true">
+    <Position X="3.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQCQAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.SignatureKeyValueLogState" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQCQAAAgAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.BenchmarkSignerLogState" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAQAAQAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.TransformLogState" Collapsed="true">
+    <Position X="10" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAQAAQAAgAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Logging.ClassifierDistanceLogState" Collapsed="true">
+    <Position X="12.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logging\SigStatLogState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Pipeline.Input" Collapsed="true">
+    <Position X="97.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Pipeline\IOAttributes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Pipeline.Output" Collapsed="true">
+    <Position X="97.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pipeline\IOAttributes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Pipeline.PipelineInput" Collapsed="true">
+    <Position X="104.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAABAAAAAAAAAAAABAAAARAAAACABAA=</HashCode>
+      <FileName>Pipeline\IPipelineIO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Pipeline.PipelineOutput" Collapsed="true">
+    <Position X="106.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAABEAAAIAAAAAAABAAAARAAAACAAAA=</HashCode>
+      <FileName>Pipeline\IPipelineIO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Pipeline.ParallelTransformPipeline" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAACBAAAAAAAAQAAAAAAIAAAAAAAAQAAAA=</HashCode>
+      <FileName>Pipeline\ParallelPipeline.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Pipeline.SequentialTransformPipeline" Collapsed="true">
+    <Position X="34.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAACBAAAAAAAAQAAAAAAIAAAAAAAAQAAAA=</HashCode>
+      <FileName>Pipeline\SequentialPipeline.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Classifiers.DtwSignerModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="101" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQABAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Classifiers\DTWClassifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Classifiers.DtwClassifier" Collapsed="true">
+    <Position X="54.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAGAACAAA=</HashCode>
+      <FileName>PipelineItems\Classifiers\DTWClassifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier" Collapsed="true">
+    <Position X="65.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAQAAAAAAABAAAAAAAAAAAQAAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Classifiers\OptimalDtwClassifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier" Collapsed="true">
+    <Position X="74.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAAAAAAACBAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>PipelineItems\Classifiers\WeightedClassifier.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.CentroidTranslate" Collapsed="true">
+    <Position X="32" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Composite\CentroidTranslate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Transforms.TimeReset" Collapsed="true">
+    <Position X="34.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Composite\TimeReset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Translate" Collapsed="true">
+    <Position X="36.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Composite\Translate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.Transforms.ApproximateOnlineFeatures" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAQAAAAAAAEAAAABAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\FeatureExtraction\ApproximateOnlineFeatures.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.CentroidExtraction" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\FeatureExtraction\CentroidExtraction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.ComponentExtraction" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAQAgAAAAAEAQAgABABBAAKQAAAAAAACA=</HashCode>
+      <FileName>PipelineItems\Transforms\FeatureExtraction\ComponentExtraction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.ComponentsToFeatures" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAgAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>PipelineItems\Transforms\FeatureExtraction\ComponentsToFeatures.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.EndpointExtraction" Collapsed="true">
+    <Position X="38.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\FeatureExtraction\EndpointExtraction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.TangentExtraction" Collapsed="true">
+    <Position X="45.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>PipelineItems\Transforms\FeatureExtraction\TangentExtraction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.AddConst" Collapsed="true">
+    <Position X="56.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAUAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Operations\AddConst.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.AddVector" Collapsed="true">
+    <Position X="68" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAQAMAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Operations\AddVector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Extrema" Collapsed="true">
+    <Position X="77" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAEAAAAAAAACAAAAAAIAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Operations\Extrema.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Map" Collapsed="true">
+    <Position X="83.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAEBAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Operations\Map.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Multiply" Collapsed="true">
+    <Position X="86" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAIAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Operations\Multiply.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Normalize" Collapsed="true">
+    <Position X="90.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Operations\Normalize.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Binarization" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQABAAAAAAAAAAAAAAAAQAQAAAAAAEABgAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\Binarization.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.BinaryRasterizer" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAIAIQAAgIAIQAEAgAAAAAQEgAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\BinaryRasterizer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.HSCPThinning" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\HSCPThinning.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.ImageGenerator" Collapsed="true">
+    <Position X="27.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgCAAAAAAAAAQAGAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\ImageGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.OnePixelThinning" Collapsed="true">
+    <Position X="41" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\OnePixelThinning.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.RealisticImageGenerator" Collapsed="true">
+    <Position X="47.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAKAEAKAIAAAAAkIQAAAAAAGCgwAgAAgAAaAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\RealisticImageGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Resize" Collapsed="true">
+    <Position X="59" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAABAAACAQAAAAAAEQAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\Resize.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.Trim" Collapsed="true">
+    <Position X="70.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAEAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Raster\Trim.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.Transforms.ComponentSorter" Collapsed="true">
+    <Position X="79.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAEAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\ComponentSorter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="104.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\CubicInterpolation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations" Collapsed="true">
+    <Position X="88.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAgAAAEAAAAAIACQAAAAAAAAAAACIAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\FillPenUpDurations.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.FilterPoints" Collapsed="true">
+    <Position X="92.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAIAAAAAEAABAAAEAQAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\FilterPoints.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="102.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\LinearInterpolation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation" Collapsed="true">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAQAEAAAAAAAgAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\NormalizeRotation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX" Collapsed="true">
+    <Position X="29.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAQAEAAAAAAAgAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\NormalizeRotationForX.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation" Collapsed="true">
+    <Position X="43.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAEAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\OrthognalRotation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale" Collapsed="true">
+    <Position X="50" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\RelativeScale.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased" Collapsed="true">
+    <Position X="61.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAACAEAAAAEAACQAAAAAAAAAAAAMAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\ResampleSamplesCountBased.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate" Collapsed="true">
+    <Position X="72.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAQAEAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\SampleRate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale" Collapsed="true">
+    <Position X="81.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAQAAAAABAAAAAQAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\Scale.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.Shifting" Collapsed="true">
+    <Position X="101" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\Shifting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc" Collapsed="true">
+    <Position X="95" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEAEAAAAAAAAAAAAACQgAAAAAAAIAAAAAIAAQAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\Translate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAAACAAAAAAAAAAAAEAAQAAAAAAAAAAAAAEAAAgAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\UniformScale.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="SigStat.Common.BenchmarkResults" Collapsed="true">
+    <Position X="97.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Framework\VerifierBenchmark.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SigStat.Common.ErrorRate" Collapsed="true">
+    <Position X="99.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAQAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ErrorRate.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="SigStat.Common.ILoggerObject" Collapsed="true">
+    <Position X="101" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\ILoggerObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.ITransformation" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pipeline\ITransformation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.Helpers.IProgress" Collapsed="true">
+    <Position X="102.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Helpers\IProgress.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.Loaders.IDataSetLoader" Collapsed="true">
+    <Position X="97.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Loaders\IDataSetLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.Pipeline.IClassifier" Collapsed="true">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Pipeline\IClassifier.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.Pipeline.IDistanceClassifier" Collapsed="true">
+    <Position X="0.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Pipeline\IClassifier.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.Pipeline.IPipelineIO" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAQAAAA=</HashCode>
+      <FileName>Pipeline\IPipelineIO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.Pipeline.ISignerModel" Collapsed="true">
+    <Position X="104.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pipeline\ISignerModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation" Collapsed="true">
+    <Position X="99.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\IInterpolation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="SigStat.Common.StrokeType" Collapsed="true">
+    <Position X="104.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABI=</HashCode>
+      <FileName>Helpers\StrokeType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SigStat.Common.Origin" Collapsed="true">
+    <Position X="101" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAABA=</HashCode>
+      <FileName>Model\Origin.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SigStat.Common.Helpers.Excel.TextLevel" Collapsed="true">
+    <Position X="106.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAEAAAAAgAAAAAAAIAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Helpers\Excel\Level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SigStat.Common.Helpers.Excel.ExcelColor" Collapsed="true">
+    <Position X="99.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAABAAIAAQAAAABAAAAECAAAA=</HashCode>
+      <FileName>Helpers\Excel\Palette\PaletteStorage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SigStat.Common.Pipeline.AutoSetMode" Collapsed="true">
+    <Position X="97.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Pipeline\IOAttributes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SigStat.Common.PipelineItems.Transforms.Preprocessing.OriginType" Collapsed="true">
+    <Position X="102.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>PipelineItems\Transforms\Preprocessing\Translate.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

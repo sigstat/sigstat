@@ -1,0 +1,38 @@
+.nvcont{
+    padding-right : 15px;
+    padding-left : 15px;
+    margin-right : auto;
+    margin-left : auto; 
+    width : 750px;
+    
+}  
+
+
+@media (min-width:992px){.nvcont{width:970px}
+}
+@media (min-width:1200px){.nvcont{width:1170px}
+}
+@media (min-width:768px){.nvcont{margin-right:0;margin-left:0}}
+
+
+
+
+.navbar{
+    padding : 0px 0px !important;
+}
+
+
+.text-white{
+
+color : #fff!important;
+}
+.text-center{
+text-align: center !important;
+}
+.m-0{
+margin : 0!important;
+}
+
+
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:focus,.navbar-inverse{color: #9d9d9d;background-color:#9e0b0f}
+.navbar-nav>.active>a:hover{color: #fff;}

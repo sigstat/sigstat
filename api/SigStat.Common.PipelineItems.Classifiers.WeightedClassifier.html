@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class WeightedClassifier
    ">
-    <meta name="generator" content="docfx 2.45.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
     
@@ -87,7 +87,7 @@
     <div><a class="xref" href="SigStat.Common.ILoggerObject.html">ILoggerObject</a></div>
     <div><a class="xref" href="SigStat.Common.Helpers.IProgress.html">IProgress</a></div>
     <div><a class="xref" href="SigStat.Common.Pipeline.IPipelineIO.html">IPipelineIO</a></div>
-    <div><span class="xref">IEnumerable</span></div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
     <div><a class="xref" href="SigStat.Common.Pipeline.IClassifier.html">IClassifier</a></div>
   </div>
   <div class="inheritedMembers">
@@ -110,21 +110,43 @@
     <div>
       <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_OnProgressChanged">PipelineBase.OnProgressChanged()</a>
     </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.PipelineItems.Classifiers.html">SigStat.Common.PipelineItems.Classifiers</a></h6>
   <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
   <h5 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class WeightedClassifier : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, IClassifier</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptOut)]
+public class WeightedClassifier : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IEnumerable, IClassifier</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Items.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Items%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Items.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Items%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L20">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L20">View Source</a>
   </span>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Items" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Items">Items</h4>
   <div class="markdown level1 summary"><p>List of classifiers and belonging weights.</p>
@@ -144,7 +166,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<a class="xref" href="SigStat.Common.Pipeline.IClassifier.html">IClassifier</a>, <span class="xref">System.Double</span>&gt;&gt;</td>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<a class="xref" href="SigStat.Common.Pipeline.IClassifier.html">IClassifier</a>, <span class="xref">System.Double</span>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -153,10 +175,10 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Add_System_ValueTuple_SigStat_Common_Pipeline_IClassifier_System_Double__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Add(System.ValueTuple%7BSigStat.Common.Pipeline.IClassifier%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Add_System_ValueTuple_SigStat_Common_Pipeline_IClassifier_System_Double__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Add(System.ValueTuple%7BSigStat.Common.Pipeline.IClassifier%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L30">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L30">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Add_" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Add*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Add_System_ValueTuple_SigStat_Common_Pipeline_IClassifier_System_Double__" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Add(System.ValueTuple{SigStat.Common.Pipeline.IClassifier,System.Double})">Add((IClassifier classifier, Double weight))</h4>
@@ -165,7 +187,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add((IClassifier classifier, double weight)newItem)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Add((IClassifier classifier, double weight) newItem)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -187,10 +209,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_GetEnumerator.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_GetEnumerator.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L23">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L23">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_GetEnumerator_" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.GetEnumerator*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_GetEnumerator" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.GetEnumerator">GetEnumerator()</h4>
@@ -210,17 +232,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerator</span></td>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Test_SigStat_Common_Pipeline_ISignerModel_SigStat_Common_Signature_.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel%2CSigStat.Common.Signature)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Test_SigStat_Common_Pipeline_ISignerModel_SigStat_Common_Signature_.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel%2CSigStat.Common.Signature)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L51">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L51">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Test_" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Test_SigStat_Common_Pipeline_ISignerModel_SigStat_Common_Signature_" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">Test(ISignerModel, Signature)</h4>
@@ -269,13 +291,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Train_List_SigStat_Common_Signature__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Train(List%7BSigStat.Common.Signature%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Train_System_Collections_Generic_List_SigStat_Common_Signature__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Train(System.Collections.Generic.List%7BSigStat.Common.Signature%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L37">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L37">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Train_" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Train*"></a>
-  <h4 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Train_List_SigStat_Common_Signature__" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Train(List{SigStat.Common.Signature})">Train(List&lt;Signature&gt;)</h4>
+  <h4 id="SigStat_Common_PipelineItems_Classifiers_WeightedClassifier_Train_System_Collections_Generic_List_SigStat_Common_Signature__" data-uid="SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">Train(List&lt;Signature&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -293,7 +315,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<a class="xref" href="SigStat.Common.Signature.html">Signature</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.Signature.html">Signature</a>&gt;</td>
         <td><span class="parametername">signatures</span></td>
         <td></td>
       </tr>
@@ -325,10 +347,38 @@
       <a class="xref" href="SigStat.Common.Pipeline.IPipelineIO.html">IPipelineIO</a>
   </div>
   <div>
-      <span class="xref">IEnumerable</span>
+      <span class="xref">System.Collections.IEnumerable</span>
   </div>
   <div>
       <a class="xref" href="SigStat.Common.Pipeline.IClassifier.html">IClassifier</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogInformation_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogInformation(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogTrace(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace__1_SigStat_Common_ILoggerObject___0_Microsoft_Extensions_Logging_EventId_System_Exception_System_Func___0_System_Exception_System_String__">ILoggerObjectExtensions.LogTrace&lt;TState&gt;(ILoggerObject, TState, EventId, Exception, Func&lt;TState, Exception, String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogCritical_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogCritical(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogDebug_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogDebug(ILoggerObject, String, Object[])</a>
   </div>
 </article>
           </div>
@@ -338,10 +388,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_WeightedClassifier.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.WeightedClassifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/WeightedClassifier.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

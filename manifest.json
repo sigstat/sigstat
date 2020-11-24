@@ -1,27 +1,231 @@
 {
   "homepages": [],
-  "source_base_path": "/github/workspace",
+  "source_base_path": "C:/Users/Hetenyi Gergely/source/repos/sigstat/docfx_project",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "LICENSE.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Analyser.ReportLine.yml",
       "output": {
         ".html": {
-          "relative_path": "LICENSE.html",
-          "hash": "P1comK2KtPeqg4xZg63khg=="
+          "relative_path": "api/SigStat.Benchmark.Analyser.ReportLine.html",
+          "hash": "xi6oT6BeinBh5EVUzWDAiA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Analyser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Analyser.html",
+          "hash": "MLMXrSkbY90JZwGMP+O0Fg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.BenchmarkBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.BenchmarkBuilder.html",
+          "hash": "iQPA6YS2Qv6Odbp9i2nVfQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Execution.ClassificationResult.yml",
       "output": {
         ".html": {
-          "relative_path": "README.html",
-          "hash": "PwhxzzEp9iZnAMg470pBRA=="
+          "relative_path": "api/SigStat.Benchmark.Execution.ClassificationResult.html",
+          "hash": "n4YczZqb5nveY+UZdT8Udw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Execution.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Execution.html",
+          "hash": "2eNg5/gfS5mKLdHEgoRXTQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.GrammarEngine.DerivedSentence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.GrammarEngine.DerivedSentence.html",
+          "hash": "3GScSmf6TN0+Kxq7W70Vpg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.GrammarEngine.ProductionRule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.GrammarEngine.ProductionRule.html",
+          "hash": "/B24iy74G3aDJ1/N6hJ9mw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.GrammarEngine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.GrammarEngine.html",
+          "hash": "wIXVfZYW685Yb9+O2XJvhw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Helpers.BenchmarkDatabase.ExecutionStatistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Helpers.BenchmarkDatabase.ExecutionStatistics.html",
+          "hash": "67t14DX2XIhyiu2nFRNsTg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Helpers.BenchmarkDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Helpers.BenchmarkDatabase.html",
+          "hash": "I+mB0by7uCbgp1hdy5Zb1w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Helpers.html",
+          "hash": "hYHvw8UVr2ES3Bb7JWLZaA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Model.BenchmarkReport.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Model.BenchmarkReport.html",
+          "hash": "HtYQSSVI8vm2gIypISKKZw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Model.html",
+          "hash": "d46aPkggl4Pgobh4O2brjA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Options.AnalyserOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Options.AnalyserOptions.html",
+          "hash": "hqpBvIvl1vAT8LmGTrmhHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Options.MonitorOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Options.MonitorOptions.html",
+          "hash": "UBK9V4Sh1JOhzDrUBxmN7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Options.OptionsBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Options.OptionsBase.html",
+          "hash": "3hqAJqfEtGi/kZH/+35xgA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Options.ProcessorOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Options.ProcessorOptions.html",
+          "hash": "cSiPnXggz3LhN3HTMXw3Qw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.Options.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.Options.html",
+          "hash": "VZtVDFVCeWhs0x1RjXqjOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.Benchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.Benchmark.html",
+          "hash": "apjsevyBFhUQ5XHQ0DQ1sg=="
         }
       },
       "is_incremental": false,
@@ -33,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Classifiers.Ocjknn.html",
-          "hash": "bvkGSopqGtHoD8G7I9mLlA=="
+          "hash": "Zmw2hlZzeA4GYzlo/yZRJQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -45,10 +249,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Classifiers.html",
-          "hash": "xFuvzodimNks8z9NgdZPLA=="
+          "hash": "MzJgP0sLVAWD5FhT8DJSGg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -57,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Distances.DtwDistance.html",
-          "hash": "tw3ekmdZaQ3P4sa8q9HcMw=="
+          "hash": "ZXoULZSG2HdGKvusJ7Pvsg=="
         }
       },
       "is_incremental": false,
@@ -69,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Distances.EuclideanDistance.html",
-          "hash": "hNJUUitax4vxzafKaXvzUQ=="
+          "hash": "oIl9Drc2pHRZsgIn8vARLg=="
         }
       },
       "is_incremental": false,
@@ -81,10 +285,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Distances.IDistance-1.html",
-          "hash": "WZntUVJK9iickDTJEEcfQQ=="
+          "hash": "ueODiMDCEsLrXG0SFDtXog=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -93,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Distances.ManhattanDistance.html",
-          "hash": "DWJLIGalhU3PxsKzlaHKfQ=="
+          "hash": "gH8gUBbg2GLh4R9WMRIm/w=="
         }
       },
       "is_incremental": false,
@@ -105,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.Distances.html",
-          "hash": "EfZhi26WfGQrS6YFPgHPbQ=="
+          "hash": "LFhBH8WOUImVN7/u9Zns7Q=="
         }
       },
       "is_incremental": false,
@@ -117,10 +321,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.DtwImplementations.html",
-          "hash": "2/N6Nr6gzucYCK5jGedJSA=="
+          "hash": "5KYEReeJTPNn16ya6xt+mA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -129,10 +333,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.HSCPThinningStep.html",
-          "hash": "7//g3TXTou5yX8w3m6FYVw=="
+          "hash": "Sr3k2DHrL2H5xSYE70PsIg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -141,10 +345,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.PatternMatching3x3.html",
-          "hash": "O60bleKLVBHJJ7cn66z+WA=="
+          "hash": "cYU0uIF6t6JkmJwGTYHXGQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -153,10 +357,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Algorithms.html",
-          "hash": "wk+5NLMH45l01sbJ+Im+3w=="
+          "hash": "xU8w0V5gZmFZUU4D6t6mRw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -165,10 +369,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.ArrayExtension.html",
-          "hash": "Kw62jNbNYRMV9aCKRINgjA=="
+          "hash": "0+QSf5Rx7N6eh6MtoAim3A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -177,10 +381,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Baseline.html",
-          "hash": "aPeZrSk9zbvA3OAhJeozuA=="
+          "hash": "iXhrdMvcWJgJY7pNHAao/g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -189,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.BasicMetadataExtraction.html",
-          "hash": "K6CZUPKV7Uwd8KShsjY9sQ=="
+          "hash": "bIoVZ5CoICPvQpASKKwKKQ=="
         }
       },
       "is_incremental": false,
@@ -201,10 +405,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.BenchmarkResults.html",
-          "hash": "omhcyzY67vClx/DoO882qg=="
+          "hash": "qb+NbiRvvsL1g8xUzXXv3Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -213,10 +417,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.DistanceMatrix-3.html",
-          "hash": "GWXlQaQwvZ3ON88EmLFfhQ=="
+          "hash": "YXAiA0ZVgmg4BSnCWH74bw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -225,10 +429,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.ErrorRate.html",
-          "hash": "AUSKdeqr+b/XjbT1udGfsA=="
+          "hash": "kwMY83XIUOiqUINDC77HBg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -237,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.FeatureDescriptor-1.html",
-          "hash": "AKDtBQnDSKgPtqQPth093g=="
+          "hash": "sDq8GjBP0UwltQdvxOxkbw=="
         }
       },
       "is_incremental": false,
@@ -249,7 +453,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.FeatureDescriptor.html",
-          "hash": "yB7RkE2lgcltmkIECKxxbg=="
+          "hash": "YDvzNVmkIR6TqgxoSB29xg=="
         }
       },
       "is_incremental": false,
@@ -261,7 +465,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Features.html",
-          "hash": "PNFdRTLtCYD0anSbUEARCg=="
+          "hash": "tSwWnEfwljFD6kc51QIBAg=="
         }
       },
       "is_incremental": false,
@@ -273,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.EvenNSampler.html",
-          "hash": "2btgDanaug1ngb5bfAaRwQ=="
+          "hash": "WQ98iGEKIMZLUXI5bHOSHw=="
         }
       },
       "is_incremental": false,
@@ -285,7 +489,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.FirstNSampler.html",
-          "hash": "W3hIipbgX5UBabNmk1ny3w=="
+          "hash": "lIgvGEaOsTkfF1JtgPCsUQ=="
         }
       },
       "is_incremental": false,
@@ -297,7 +501,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.LastNSampler.html",
-          "hash": "MzR++/DY9xmr1IeFQUAC0A=="
+          "hash": "O4XudGexfi8J0lRT2gziUQ=="
         }
       },
       "is_incremental": false,
@@ -309,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.OddNSampler.html",
-          "hash": "nHKtTgGv7/7OctDOmTREXw=="
+          "hash": "8FJPhLqF0HxoOMK395KyVA=="
         }
       },
       "is_incremental": false,
@@ -321,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.TestingSampler.html",
-          "hash": "jufy79DKRkH1KEvlBBBNXw=="
+          "hash": "5eniMtViRn7hlLNDsRKqkA=="
         }
       },
       "is_incremental": false,
@@ -333,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.UniversalSampler.html",
-          "hash": "4XcDUAkPO/P5kgAm6SeImA=="
+          "hash": "ND8s0VkqB/TXCt7DCzrJ7g=="
         }
       },
       "is_incremental": false,
@@ -345,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Framework.Samplers.html",
-          "hash": "B7Q6cUaix9dD/Hh5Rb/ooA=="
+          "hash": "iHOeEnAfQ5WbmaPPs9PrqA=="
         }
       },
       "is_incremental": false,
@@ -357,10 +561,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.BenchmarkConfig.html",
-          "hash": "QR8L/+W0/i8nnGYdUSLwSg=="
+          "hash": "o/TpMB1hcg5UilS3Arc60g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -369,7 +573,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.DataCleaningHelper.html",
-          "hash": "CmbFBuqJFwuyFi0XFAE/Hw=="
+          "hash": "S/3F190EOXWZsOCUUu1YYA=="
         }
       },
       "is_incremental": false,
@@ -381,10 +585,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Excel.ExcelColor.html",
-          "hash": "5SDyuQ2gNXriWdaIBVUhxg=="
+          "hash": "chOLcKy1JOft5su8/DRvpw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -393,10 +597,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Excel.Palette.html",
-          "hash": "OtdtLiqarv0OrJ5VKsHREw=="
+          "hash": "UJK3rvC233CywZI8dAGp9A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -405,10 +609,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Excel.TextLevel.html",
-          "hash": "JNzD9QPqKMbUg2GUOJvusQ=="
+          "hash": "624xqZNAOtdqGepa26RAFA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -417,10 +621,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Excel.html",
-          "hash": "hXPgfVCXByBZKN5pwnVAQQ=="
+          "hash": "RmdqSJ3ouF2dnak3sjUj8g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -429,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.ExcelHelper.html",
-          "hash": "v6NDJHJY961pQqZv6C8p4w=="
+          "hash": "bCuk4ro9Os+1kog6PivgLQ=="
         }
       },
       "is_incremental": false,
@@ -441,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.FeatureDescriptorJsonConverter.html",
-          "hash": "2EjvhTBYZ+phknloDX6N/A=="
+          "hash": "SLNHb+PavmnXVGAYLHtCbA=="
         }
       },
       "is_incremental": false,
@@ -453,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.FeatureDescriptorTJsonConverter.html",
-          "hash": "m4JfYwhXVShL1Jr+sqc4gw=="
+          "hash": "lmVDK07T4v4jnWDvwVza3A=="
         }
       },
       "is_incremental": false,
@@ -465,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.HierarchyElement.html",
-          "hash": "lfaR0lGk+iGw/vzYpuynJg=="
+          "hash": "oBD4Jt1Qivmd8urTEOsNUw=="
         }
       },
       "is_incremental": false,
@@ -477,10 +681,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.IProgress.html",
-          "hash": "658NjeLQFVQoI0TFI6Inmw=="
+          "hash": "pIDMoNJpyyfemLrCh2jp4w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -489,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.ProgressHelper.html",
-          "hash": "4rH4eIKXu+Cw+Xv8ModYDg=="
+          "hash": "OCojOgzGmFEpzmoanm4DrQ=="
         }
       },
       "is_incremental": false,
@@ -501,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.html",
-          "hash": "iGkLBcY9AZW1g3CIUnP7IQ=="
+          "hash": "FQm+uyyGn0tEeABFzGczmQ=="
         }
       },
       "is_incremental": false,
@@ -513,7 +717,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.html",
-          "hash": "4e4AwftGNScXRM2U/+iBQQ=="
+          "hash": "EA8kqTCY8ZNowjEj0UtHsg=="
         }
       },
       "is_incremental": false,
@@ -525,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureDescriptorDictionaryConverter.html",
-          "hash": "R0PTT88mFCaVco1NIyTa7Q=="
+          "hash": "d7JUE3Gt4tHhw0lAfg2J7g=="
         }
       },
       "is_incremental": false,
@@ -537,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureDescriptorListJsonConverter.html",
-          "hash": "S4XZZoTl8FKjJju6SHDtaA=="
+          "hash": "Wh8ED3jRmQW9igdwgZk/FA=="
         }
       },
       "is_incremental": false,
@@ -549,10 +753,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.html",
-          "hash": "7tmWxlg4BFHYqzc0M6AXKw=="
+          "hash": "Ey2ATvmnimf04MXChdM17Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -561,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.RectangleFConverter.html",
-          "hash": "HdEg2fn1JgRQ0MJgDxwrvg=="
+          "hash": "xFeeaT/5hEXc48lVd9SpMg=="
         }
       },
       "is_incremental": false,
@@ -573,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.VerifierResolver.html",
-          "hash": "VpCNLdd41NFQvzpom4uHGQ=="
+          "hash": "ex290VxfIlcbLoQzjLBYMA=="
         }
       },
       "is_incremental": false,
@@ -585,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.Serialization.html",
-          "hash": "I6lLJUbSvAnVHBxwhEsHwg=="
+          "hash": "I2ZrYmM/aa6onpwyKyZvOg=="
         }
       },
       "is_incremental": false,
@@ -597,7 +801,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.SerializationHelper.html",
-          "hash": "DfTWU37xxEgVdKwdJwp4ew=="
+          "hash": "iIWBUWx9bo6VYjtC5rEPgw=="
         }
       },
       "is_incremental": false,
@@ -609,10 +813,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.SignerStatisticsHelper.html",
-          "hash": "E6i3MbzCNniJ9jINpEVYCg=="
+          "hash": "Web+KUeXDaGcYuZYVSj6mw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -621,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Helpers.html",
-          "hash": "cJhkbJBcsp2tlPMaBNeloQ=="
+          "hash": "NJFga8CVQxow8dYls7924g=="
         }
       },
       "is_incremental": false,
@@ -633,10 +837,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.ILoggerObject.html",
-          "hash": "8zA3x8Uysn3U+0laDd1JIg=="
+          "hash": "zWqIbAUEu7u7sbG6ntsf/w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -645,10 +849,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.ILoggerObjectExtensions.html",
-          "hash": "G8xUZY8DC9yebmDtv9TPDw=="
+          "hash": "3FfJjsEBmV8iJWUkryiXtg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -657,10 +861,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.IOExtensions.html",
-          "hash": "n9SoTju1YnB+k5jjXyi3CA=="
+          "hash": "9izrMbrj0iPfJW5pzxzwvw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -669,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.ITransformation.html",
-          "hash": "EhB5qxZa8hIP6i7Zs6GP/w=="
+          "hash": "sD3MALD30Gkr9D5xsfOcPA=="
         }
       },
       "is_incremental": false,
@@ -681,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.BenchmarkBuilder.html",
-          "hash": "D/57al7rp/FBrl5aw0Kxqg=="
+          "hash": "1SeaHxLypqNUPBwBlWWHuw=="
         }
       },
       "is_incremental": false,
@@ -693,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.DataSetLoader.html",
-          "hash": "baznPX2Oa0n1Ke1a8Ab6Gw=="
+          "hash": "ZG8worINUP3goHOJRb4XkQ=="
         }
       },
       "is_incremental": false,
@@ -705,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.IDataSetLoader.html",
-          "hash": "Gc5pWZiIjgSCij32Z8/eow=="
+          "hash": "nelizPvU39mC6EFqwlNUpw=="
         }
       },
       "is_incremental": false,
@@ -717,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.ImageLoader.html",
-          "hash": "+XWmu+7tGjk5EpxQIK6LPw=="
+          "hash": "ERSWt90w0VjFJArXR57/9w=="
         }
       },
       "is_incremental": false,
@@ -729,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.ImageSaver.html",
-          "hash": "dYRwHfizj4baMilOaAZGKg=="
+          "hash": "LBgi2pRdrPV5YlznolxrMg=="
         }
       },
       "is_incremental": false,
@@ -741,10 +945,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.MCYTLoader.MCYT.html",
-          "hash": "LX2KhNFPbrOntPpXJQOrrg=="
+          "hash": "lCkJxCJY1Tm8ONQbgt7Vmg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -753,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.MCYTLoader.html",
-          "hash": "39ekeSLkNbKg3tJZsMM+cw=="
+          "hash": "NrpMyjWaICAgeK5AW9r2Hg=="
         }
       },
       "is_incremental": false,
@@ -765,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.MemoryDataSetLoader.html",
-          "hash": "eQ0aLAWo+18G5o+GiS1IlQ=="
+          "hash": "6lbqqNah9SUoTPOZKEm2lA=="
         }
       },
       "is_incremental": false,
@@ -777,10 +981,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp11ChineseLoader.SigComp11Ch.html",
-          "hash": "obdjFh5PmPCdL4tm198Nqg=="
+          "hash": "qSRO86Slavofk618iuAGSg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -789,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp11ChineseLoader.html",
-          "hash": "KRFn7/RxyeIxOysz1Ft4pw=="
+          "hash": "v+WxbHcT+ECHywgJyilKXg=="
         }
       },
       "is_incremental": false,
@@ -801,10 +1005,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.html",
-          "hash": "jqONY+wTGYPJ3wpWkBoLTw=="
+          "hash": "ZtuJha7vCL/IlhM+5aEs1g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -813,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp11DutchLoader.html",
-          "hash": "yBibPJuzeDw4XcjwaYQauw=="
+          "hash": "wqYe5truzHeb7UOUkap4LQ=="
         }
       },
       "is_incremental": false,
@@ -825,10 +1029,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp13JapaneseLoader.SigComp13Japanese.html",
-          "hash": "dG3xv9Dfoq+o2SyZBcLT+g=="
+          "hash": "5kOZff3+YwlP6Cmzwn+suA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -837,7 +1041,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp13JapaneseLoader.html",
-          "hash": "Cco48GcN4zkKzjqlyY+wLg=="
+          "hash": "4iqZSVQB9QQO6dtPgfTDWQ=="
         }
       },
       "is_incremental": false,
@@ -849,10 +1053,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp15GermanLoader.SigComp15.html",
-          "hash": "YTl8aEQ8A9a5yfzg7DFCHQ=="
+          "hash": "x088QrXJ3Yd5h2GVS/GX9g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -861,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp15GermanLoader.html",
-          "hash": "XqvjS0C8gfnEPe74jnvvAg=="
+          "hash": "Gz9CwbjC3LGgbW8EmrYSvg=="
         }
       },
       "is_incremental": false,
@@ -873,10 +1077,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp19OnlineLoader.SigComp19.html",
-          "hash": "xtqjOP06NiUEHLEndfq//A=="
+          "hash": "DWiCXwmPcBUlkyLd4TXl0A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -885,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.SigComp19OnlineLoader.html",
-          "hash": "UkSIHkj9+GqrCw6seBmHeQ=="
+          "hash": "iSZ1dFb6+ttXX7cCjhULUw=="
         }
       },
       "is_incremental": false,
@@ -897,10 +1101,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.Svc2004.html",
-          "hash": "ycJmz8qOIiE+FDJeurTQxg=="
+          "hash": "F/CZMX2UMWrN1wE2l9hX3w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -909,7 +1113,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.Svc2004Loader.html",
-          "hash": "Jhu6R2TJxfl62bIXVkGc2A=="
+          "hash": "shbq/pwBRevedG/VfP5XFg=="
         }
       },
       "is_incremental": false,
@@ -921,7 +1125,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loaders.html",
-          "hash": "CKk/JcPwMEhP96bipAQd3Q=="
+          "hash": "P4kjcuPuy+8setPyuVOl1A=="
         }
       },
       "is_incremental": false,
@@ -933,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.BenchmarkKeyValueLogState.html",
-          "hash": "bsqDkfjl+L3jR2NuDy1sqw=="
+          "hash": "slojKWaHL/K+FjmmyR4OwQ=="
         }
       },
       "is_incremental": false,
@@ -945,10 +1149,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.BenchmarkLogModel.html",
-          "hash": "ki38JhdY058jNfnqUTQ2Bw=="
+          "hash": "25KIvXyWhUDRQzi9Yfx17g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -957,7 +1161,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.BenchmarkResultsLogState.html",
-          "hash": "RIgxifzxLOi/f4J644kfHw=="
+          "hash": "unTT2xdEwR0NLa5jqXvhQQ=="
         }
       },
       "is_incremental": false,
@@ -969,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.ClassifierDistanceLogState.html",
-          "hash": "e27nczNvFF30vkwVGD4/Kg=="
+          "hash": "Rj6jtnc2AgfIPoxJqCAHpw=="
         }
       },
       "is_incremental": false,
@@ -981,10 +1185,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.CompositeLogger.ErrorEventHandler.html",
-          "hash": "ELwwgzOuChkrJtn8r9SGwQ=="
+          "hash": "P8QocqGUJti75pZVvDcAIg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -993,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.CompositeLogger.html",
-          "hash": "fqwyVSr1ePnqaCIT/Ix4Ag=="
+          "hash": "mITxt6QYzqS1m3IlK51LLw=="
         }
       },
       "is_incremental": false,
@@ -1005,10 +1209,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.ExcelReportGenerator.html",
-          "hash": "EPC3EE9Pps5FZWAi3r3RMA=="
+          "hash": "1cgde+IE7U5ZncHFvxbAZg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1017,10 +1221,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.KeyValueGroup.html",
-          "hash": "ogQuUCHuqu/fKtF9MaX1OA=="
+          "hash": "5Ym23IOSFfETTRulLKG/sw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1029,10 +1233,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.LogAnalyzer.html",
-          "hash": "BnuUNojcj3E3rldg9g0k3g=="
+          "hash": "T17CdFGSRA9QkHL0EjnhOw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1041,10 +1245,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.ReportInformationLogger.LogStateLoggedEventHandler.html",
-          "hash": "9EnLt3u9qlq+0g6xkw6HyA=="
+          "hash": "9ulRFytM5mbKgmxpgj6XRw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1053,7 +1257,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.ReportInformationLogger.html",
-          "hash": "L81ZGSY/a9QLMvKwub6tLg=="
+          "hash": "t1QAivnKBkJ3s0ZRQivWSw=="
         }
       },
       "is_incremental": false,
@@ -1065,7 +1269,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SigStatLogState.html",
-          "hash": "r1Egbc7YJrJIDxXy5cbLYg=="
+          "hash": "PJtnT6AL0RxOzEsPD713Cw=="
         }
       },
       "is_incremental": false,
@@ -1077,7 +1281,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SignatureLogState.html",
-          "hash": "zTYGyV4kJu3tAf+q4BXPtw=="
+          "hash": "ShunbUArUQ6bjjjAKDxviQ=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1293,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SignerLogState.html",
-          "hash": "Krr+oznQT3CGtdMLJSYc3w=="
+          "hash": "CBmkxBe5aeU5u7FBBJu2CA=="
         }
       },
       "is_incremental": false,
@@ -1101,10 +1305,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SignerResults.html",
-          "hash": "DziVbL0seFmWxIK1qje4ew=="
+          "hash": "MtM87zaRUfiewD7C50k2mQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1113,7 +1317,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SignerResultsLogState.html",
-          "hash": "lQ03tehVVCQYagVFUebbJA=="
+          "hash": "lpNSYTFYcdKuufOhn7nGiA=="
         }
       },
       "is_incremental": false,
@@ -1125,10 +1329,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SimpleConsoleLogger.ConsoleMessageLoggedEventHandler.html",
-          "hash": "MaZjKmKQ/5Sg1eJuceL9rw=="
+          "hash": "Pj+R5/0cX1lCXl4RCJjkcQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1137,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.SimpleConsoleLogger.html",
-          "hash": "fth3rbhBVTW5cdOvb7WF3w=="
+          "hash": "3AfUodw8QEnIjFQ8VV1UHQ=="
         }
       },
       "is_incremental": false,
@@ -1149,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Logging.html",
-          "hash": "oZqsqtqNZ/8RUyQ08NKPlw=="
+          "hash": "28+zu0qSYfZkBmmuqyJKSQ=="
         }
       },
       "is_incremental": false,
@@ -1161,10 +1365,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Loop.html",
-          "hash": "Ud8TgYQ+T7RNWhprdbN+Ww=="
+          "hash": "um/kHDGOkgnJGHdVKxz0sA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1173,10 +1377,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.MathHelper.html",
-          "hash": "x0VFqrrR38EJ1q38EYuALA=="
+          "hash": "P1ApNRg9vm+MCknb8NwLVg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1185,7 +1389,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Model.SampleRateResults.html",
-          "hash": "73pM/DFoRUR8nea857dhXA=="
+          "hash": "HE5xgCz6yU6fvIV/4yvNRg=="
         }
       },
       "is_incremental": false,
@@ -1197,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Model.Verifier.html",
-          "hash": "Na1OUmhO6orF54NNNJSU2Q=="
+          "hash": "5QE6YOagyovengCheBW48Q=="
         }
       },
       "is_incremental": false,
@@ -1209,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Model.html",
-          "hash": "3JCihSGSXzP9eBGT0dlboA=="
+          "hash": "d1SjpX6dSd3Ma5FqhjE4WQ=="
         }
       },
       "is_incremental": false,
@@ -1221,7 +1425,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Origin.html",
-          "hash": "POEGD0umCOgd1dGBpWEGRQ=="
+          "hash": "iDLHePYkdwEaPSmTehKe+g=="
         }
       },
       "is_incremental": false,
@@ -1233,10 +1437,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.AutoSetMode.html",
-          "hash": "0rC3Wta0mzmib0EfJCGSqw=="
+          "hash": "gt24/5HsMQaZeyqfx+PbNw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1245,7 +1449,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.IClassifier.html",
-          "hash": "cRVzgjOljaeWQfMb0pGM7g=="
+          "hash": "hGmBz31rZqO++RDI9BeCAA=="
         }
       },
       "is_incremental": false,
@@ -1257,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.IDistanceClassifier.html",
-          "hash": "TPAFpdDbcTnAUqbLltQWMA=="
+          "hash": "E+LYb3d2zt2QGYe6VOl/Ng=="
         }
       },
       "is_incremental": false,
@@ -1269,10 +1473,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.IPipelineIO.html",
-          "hash": "gtaVIve6tFdXgIsSfvHK8A=="
+          "hash": "Xg9GiN6myJuDc6rU664ysw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1281,10 +1485,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.ISignerModel.html",
-          "hash": "KwmJKh/AsP5EbBGjwmYHeA=="
+          "hash": "u1COnPb0Zh9evOpkL1w8IA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1293,7 +1497,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.Input.html",
-          "hash": "RAgi6HxFLXdgY/fCioLSxQ=="
+          "hash": "yim+v4uUr4j7+a1Xhzr5EQ=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1509,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.Output.html",
-          "hash": "g/v1ropD2AjVsz0O6yLQFg=="
+          "hash": "NXJ0c1oJhub0o08hpb/CNg=="
         }
       },
       "is_incremental": false,
@@ -1317,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.ParallelTransformPipeline.html",
-          "hash": "q57vHqYlcEcApAeGcq6GfA=="
+          "hash": "OpDAsE0B6f1XpfuiRzSn4w=="
         }
       },
       "is_incremental": false,
@@ -1329,10 +1533,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.PipelineInput.html",
-          "hash": "xY9BoDzQi1I8CbCjMCNhCQ=="
+          "hash": "nmHk+bXsOrO+LgIH+0zBCA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1341,10 +1545,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.PipelineOutput.html",
-          "hash": "kWKeBc51qxGFBZFrD1tMFA=="
+          "hash": "ogtBshYFmHNcffR+LSqD2w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1353,7 +1557,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.SequentialTransformPipeline.html",
-          "hash": "bNrKVOUOxTmRKe2nNDXM4A=="
+          "hash": "SVXpqM0gzvD34NG+ZuLICA=="
         }
       },
       "is_incremental": false,
@@ -1365,7 +1569,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Pipeline.html",
-          "hash": "488ps7L8wOy4i893O0YTbg=="
+          "hash": "NCnWO/MZyL2byM8Jq+P6Rg=="
         }
       },
       "is_incremental": false,
@@ -1377,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineBase.html",
-          "hash": "BJUvwzQFoyqAKX81xO/NBw=="
+          "hash": "UHg5PawiLtCgAaYBbHwOFg=="
         }
       },
       "is_incremental": false,
@@ -1389,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.DtwClassifier.html",
-          "hash": "jv0xSf38VpYp5ImLtJ5Pkw=="
+          "hash": "FQ1HSJ6TdoF7amTvguAOqw=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1605,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.html",
-          "hash": "mvXKjDm8NqX+iJz4G2R0mQ=="
+          "hash": "7A6HSrmWxaqduFCw+KL5UQ=="
         }
       },
       "is_incremental": false,
@@ -1413,7 +1617,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.SignerModel.html",
-          "hash": "yz6tG2jjpdVHeLyNHwEGhw=="
+          "hash": "9CijEbJEQJLkSPTZvEFdWA=="
         }
       },
       "is_incremental": false,
@@ -1425,7 +1629,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.html",
-          "hash": "Cy0nE5+CD5ayHdh1uUtxLA=="
+          "hash": "G6xqmtEy80K4y8OeVUauAw=="
         }
       },
       "is_incremental": false,
@@ -1437,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.SignerModel.html",
-          "hash": "40QcHx68HKVqWhVHYB0qaQ=="
+          "hash": "Y9xN09pHOKTbtFLZcQHRzg=="
         }
       },
       "is_incremental": false,
@@ -1449,7 +1653,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.html",
-          "hash": "/EjAXk4/Q5yS6qPHjRSCBw=="
+          "hash": "ti4QSbuGkORV6zs2vwd23Q=="
         }
       },
       "is_incremental": false,
@@ -1461,7 +1665,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.OptimalDtwSignerModel.html",
-          "hash": "hUO6w4PEoVXdktvi8/FNWw=="
+          "hash": "wUtuovx3I66+zU467fRo8Q=="
         }
       },
       "is_incremental": false,
@@ -1473,7 +1677,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.OptimalDtwClassifier.html",
-          "hash": "+wHoQE5Fueeu5LWQ2+TBpg=="
+          "hash": "/Kri1a5A8mKzesGIo3DHkg=="
         }
       },
       "is_incremental": false,
@@ -1485,7 +1689,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.html",
-          "hash": "sC57iXkKrDh3CqBoeBVpnQ=="
+          "hash": "XMgU2FugT4jnAffG9jA7SQ=="
         }
       },
       "is_incremental": false,
@@ -1497,7 +1701,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Classifiers.html",
-          "hash": "SOdqhdWPXk/hQxZ/t5Capw=="
+          "hash": "eWILgO0i839+Ap31r2xZOw=="
         }
       },
       "is_incremental": false,
@@ -1509,7 +1713,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.CubicInterpolation.html",
-          "hash": "Pnwo8NE9c1wwZC3gOP9xWA=="
+          "hash": "FhMPMh4G3y+zIVj9cDi+Uw=="
         }
       },
       "is_incremental": false,
@@ -1521,7 +1725,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.TimeSlot.html",
-          "hash": "UvWe4IjG40fIlLkDWQpXYA=="
+          "hash": "W/qYNyr1eLkZQU7Jhr6ehA=="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1737,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FillPenUpDurations.html",
-          "hash": "Osgaft2P6bbnoL/exgrYrw=="
+          "hash": "LQrmCbIdzx4Jg+kpZdOIpA=="
         }
       },
       "is_incremental": false,
@@ -1545,7 +1749,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.FilterPoints.html",
-          "hash": "ddwBf2jxhl2vmM6WeTMrmw=="
+          "hash": "Gq3OU82/0koprirMjb0LSg=="
         }
       },
       "is_incremental": false,
@@ -1557,10 +1761,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.IInterpolation.html",
-          "hash": "6P6/TObFF6nzHFfUtvKSGQ=="
+          "hash": "mk0JCLYgHG6kuEvO0eAGZw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1569,7 +1773,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.LinearInterpolation.html",
-          "hash": "gY/AAEMoWvdOsE445ZAW1A=="
+          "hash": "IfTd0931dVik1CKI/gkpCA=="
         }
       },
       "is_incremental": false,
@@ -1581,7 +1785,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation.html",
-          "hash": "LH5WK6rivRacSypAMZbRTQ=="
+          "hash": "kHUuOFOI+f19Kad+imNpVA=="
         }
       },
       "is_incremental": false,
@@ -1593,7 +1797,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation2.html",
-          "hash": "Qu4rP3G7TIJHhscGeKIS7A=="
+          "hash": "HXgDUzHG6cz5ND+myothhg=="
         }
       },
       "is_incremental": false,
@@ -1605,7 +1809,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotation3.html",
-          "hash": "N5FsPKEtYuU33QpLlvkdFg=="
+          "hash": "D4vuxyVuweq3pP6+fUOpbA=="
         }
       },
       "is_incremental": false,
@@ -1617,7 +1821,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.NormalizeRotationForX.html",
-          "hash": "i616CmaEsDszJVj7Om9sog=="
+          "hash": "HNkJjg7mowgsWTDcDkLBqA=="
         }
       },
       "is_incremental": false,
@@ -1629,7 +1833,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.OriginType.html",
-          "hash": "Cwx661hdODDz/thMH8ZiCA=="
+          "hash": "GNnumQcq46D/hi4cwueo1g=="
         }
       },
       "is_incremental": false,
@@ -1641,7 +1845,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.OrthognalRotation.html",
-          "hash": "NTfvX7OTlvuhJg+aoR8yZw=="
+          "hash": "NIgzwNWjT+xlqfZWJTkZTQ=="
         }
       },
       "is_incremental": false,
@@ -1653,7 +1857,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.RelativeScale.html",
-          "hash": "QAyV0JiI96yn+ki4O/7IMA=="
+          "hash": "O4pK87G5tbnWTiz/DPqv+w=="
         }
       },
       "is_incremental": false,
@@ -1665,7 +1869,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ResampleSamplesCountBased.html",
-          "hash": "0KVnWQ4ztsI8cjrbl2h9NA=="
+          "hash": "+EPcd2XGVbqMi+6oJdbSwQ=="
         }
       },
       "is_incremental": false,
@@ -1677,7 +1881,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.html",
-          "hash": "98HuFivpWLu1qMM0Cke6zQ=="
+          "hash": "dwojXSMat07hcPEE9dsESw=="
         }
       },
       "is_incremental": false,
@@ -1689,7 +1893,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.Scale.html",
-          "hash": "NUzYT4XnanKVQsKbEMGV7Q=="
+          "hash": "cYd8n2h5dGfQLYaNNZRpHA=="
         }
       },
       "is_incremental": false,
@@ -1701,7 +1905,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ScalingMode.html",
-          "hash": "HMSMYl3CfppWvQMn06pQJw=="
+          "hash": "mH7rR0LH92M6mCAQbiNEpw=="
         }
       },
       "is_incremental": false,
@@ -1713,7 +1917,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.TranslatePreproc.html",
-          "hash": "uYA+vTv450WrD65trPea5g=="
+          "hash": "x08zvuaY+tUdo+UCqnqOLw=="
         }
       },
       "is_incremental": false,
@@ -1725,7 +1929,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.UniformScale.html",
-          "hash": "OKVUVHQsgEnwbL/oHEzA4Q=="
+          "hash": "uTYbE0mnu6kxDiMFsto9Ww=="
         }
       },
       "is_incremental": false,
@@ -1737,7 +1941,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.html",
-          "hash": "xLVupm1RRI+eSI+Ue0YnQQ=="
+          "hash": "lrRqbsuCk6Qa9cDBxpQq+A=="
         }
       },
       "is_incremental": false,
@@ -1749,7 +1953,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.PipelineItems.Transforms.Preprocessing.html",
-          "hash": "OrKORcw+KGWgXcvek2j1mA=="
+          "hash": "y0GWOgnKBCHxRlfBtEiYww=="
         }
       },
       "is_incremental": false,
@@ -1761,10 +1965,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Result.html",
-          "hash": "ux0HpGzJjIkM4gmh12/Zng=="
+          "hash": "XeFXUawheg1HX7bufyJA7Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1773,7 +1977,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Sampler.html",
-          "hash": "bt6nhaWF55SzMF3dHPKh6Q=="
+          "hash": "zkTl669z2ZlZym0TJWCSmg=="
         }
       },
       "is_incremental": false,
@@ -1785,10 +1989,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.SigStatEvents.html",
-          "hash": "niXm7U3U/iKefARikZHLkQ=="
+          "hash": "xLDI2b79O+h7DTL/uLx3WA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1797,7 +2001,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Signature.html",
-          "hash": "xQjBmNWPVLH/D42x2GsRWw=="
+          "hash": "JpuicDZEZZ8+P9m4bH33gA=="
         }
       },
       "is_incremental": false,
@@ -1809,7 +2013,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.SignatureHelper.html",
-          "hash": "Y9GIf2j0kViNF2Q/Q5mycA=="
+          "hash": "APXLP3BDg6V6rAM+WBTWWg=="
         }
       },
       "is_incremental": false,
@@ -1821,10 +2025,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Signer.html",
-          "hash": "1MXDoMZQR71raX0g4aFstg=="
+          "hash": "ak4NWh7NchF61czb7ZlPtA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1833,7 +2037,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.SimpleRenderingTransformation.html",
-          "hash": "g16g9jJNEPxqgus/ZabESQ=="
+          "hash": "jJQTGBEroDvJwDZ3kRut7A=="
         }
       },
       "is_incremental": false,
@@ -1845,7 +2049,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.StrokeHelper.html",
-          "hash": "6/ZlJQgeWyz67Njkur10hA=="
+          "hash": "a3E4zfqWj96bTqOKXwYT6w=="
         }
       },
       "is_incremental": false,
@@ -1857,10 +2061,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.StrokeInterval.html",
-          "hash": "3zDlehRuHb8VcqjuFde7Wg=="
+          "hash": "oFftvk76vnXglM0jaxxh0Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1869,10 +2073,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.StrokeType.html",
-          "hash": "q77WSYv3/0ogn3S0xvQngg=="
+          "hash": "PuSoGs0AMhkDkRpJHZB/cw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1881,7 +2085,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.AddConst.html",
-          "hash": "w85MqU6Els49R1P9EWAetg=="
+          "hash": "O6Ne6OE3t6u4mduYCseNFA=="
         }
       },
       "is_incremental": false,
@@ -1893,7 +2097,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.AddVector.html",
-          "hash": "DP2Gz5uctSkClTrPrOcOyw=="
+          "hash": "wb/ygRWfmuviu2brjvloWw=="
         }
       },
       "is_incremental": false,
@@ -1905,7 +2109,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.ApproximateOnlineFeatures.html",
-          "hash": "UzAqvmicIHHjjJvViOG90g=="
+          "hash": "Zs2ypY3p0g+KpVTeUHmZaw=="
         }
       },
       "is_incremental": false,
@@ -1917,10 +2121,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Binarization.ForegroundType.html",
-          "hash": "J/5GZbAEut1IUzDaQ7tAUw=="
+          "hash": "wu79yTJ5teuSaC44LgxeAQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1929,7 +2133,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Binarization.html",
-          "hash": "gb+HekVWnB+nSvVmSKQlxg=="
+          "hash": "6CRfayTMsZmtqxfnOlTrXg=="
         }
       },
       "is_incremental": false,
@@ -1941,7 +2145,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.BinaryRasterizer.html",
-          "hash": "t73MijiSddm2CfOinL8ucA=="
+          "hash": "dtJsUlD7WzsoTzcQRlgyZg=="
         }
       },
       "is_incremental": false,
@@ -1953,7 +2157,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.CentroidExtraction.html",
-          "hash": "jO+dMmVKcOPMpdWb98XgTA=="
+          "hash": "nowk1NgEVuzsy54gYmZgJg=="
         }
       },
       "is_incremental": false,
@@ -1965,7 +2169,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.CentroidTranslate.html",
-          "hash": "FwMp8B3Rch2qUhkUjYQ7LA=="
+          "hash": "SspHatUN7+A5lLHC7w8RVQ=="
         }
       },
       "is_incremental": false,
@@ -1977,7 +2181,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.ComponentExtraction.html",
-          "hash": "DQrRYkX2FZVAuGVoo+2I1w=="
+          "hash": "XCQjyOBCalmAOKrA6VshLg=="
         }
       },
       "is_incremental": false,
@@ -1989,7 +2193,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.ComponentSorter.html",
-          "hash": "BxTCgIWeFGdtq6oN8Vxfkg=="
+          "hash": "E2z4ve4TtAxzEDBc2GMcuQ=="
         }
       },
       "is_incremental": false,
@@ -2001,7 +2205,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.ComponentsToFeatures.html",
-          "hash": "peDwgTGNua65arEAqSMY8w=="
+          "hash": "f45jFztpSSxlebxqGO2K9g=="
         }
       },
       "is_incremental": false,
@@ -2013,7 +2217,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.EndpointExtraction.html",
-          "hash": "I9A34Tz0zTHOkLDIIoN9cw=="
+          "hash": "jYx8ssgjYl/gQmu3k1JtWw=="
         }
       },
       "is_incremental": false,
@@ -2025,7 +2229,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Extrema.html",
-          "hash": "0vpEvB/DohiighTbdfLt9A=="
+          "hash": "rDDTbzrsd8IMBGrDSCJ0TQ=="
         }
       },
       "is_incremental": false,
@@ -2037,7 +2241,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.HSCPThinning.html",
-          "hash": "jCVHKDVYEhNfNpJIF8PdsQ=="
+          "hash": "5wUdVNBd/Y0st3TEAOy1hA=="
         }
       },
       "is_incremental": false,
@@ -2049,7 +2253,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.ImageGenerator.html",
-          "hash": "OH1WaEjH65Z4LPYojxcdhQ=="
+          "hash": "LJGdWhh6JRi9CgVteEA5sA=="
         }
       },
       "is_incremental": false,
@@ -2061,7 +2265,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Map.html",
-          "hash": "lEsxkUoasZuqK+5+pqJ0OA=="
+          "hash": "OKLFJ989x+a0/VeE+fbsHA=="
         }
       },
       "is_incremental": false,
@@ -2073,7 +2277,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Multiply.html",
-          "hash": "JcMjjWnlWyJt4v4wEe8N8Q=="
+          "hash": "DAWbVgUoVz+ByCp7LB2rLQ=="
         }
       },
       "is_incremental": false,
@@ -2085,7 +2289,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Normalize.html",
-          "hash": "1YnFZUEx47qtB619kva/qA=="
+          "hash": "yWPicfGkVTwDR18jkNvv7A=="
         }
       },
       "is_incremental": false,
@@ -2097,7 +2301,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.OnePixelThinning.html",
-          "hash": "4qcX0gfqaZbMQGjuqI0qNA=="
+          "hash": "5vn8+jZDZ6ef5j/CuXCb8Q=="
         }
       },
       "is_incremental": false,
@@ -2109,7 +2313,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.RealisticImageGenerator.html",
-          "hash": "qgC/8vsJXGnh0O+DG71d3Q=="
+          "hash": "gCcqHzbXevx9cUdDSnnLgw=="
         }
       },
       "is_incremental": false,
@@ -2121,7 +2325,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Resize.html",
-          "hash": "Ra08O1NmeUDT6cJupoOncA=="
+          "hash": "c+n+jsJMiqs+YTYmN5EiKg=="
         }
       },
       "is_incremental": false,
@@ -2133,7 +2337,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.TangentExtraction.html",
-          "hash": "576VbKCoZNNYYK4qy9Ue2w=="
+          "hash": "Hlvsndx2pGUh+vIj4cQLFQ=="
         }
       },
       "is_incremental": false,
@@ -2145,7 +2349,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.TimeReset.html",
-          "hash": "0BL6b6bh6nLrtH5XYNDm0Q=="
+          "hash": "gHI9zcjRH9drzF8QBZm+CA=="
         }
       },
       "is_incremental": false,
@@ -2157,7 +2361,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Translate.html",
-          "hash": "SGO5XjEs6806FqR/tDkoNQ=="
+          "hash": "Q7r6wsLjDblR2nZcIjYV1A=="
         }
       },
       "is_incremental": false,
@@ -2169,7 +2373,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.Trim.html",
-          "hash": "gEyetSnAnEKdp2TkBH5pdw=="
+          "hash": "ephViiiWasQiXHm9CCeXKQ=="
         }
       },
       "is_incremental": false,
@@ -2181,7 +2385,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.Transforms.html",
-          "hash": "dxXn7rV+jp0p3bBwb9Coyg=="
+          "hash": "3qkeOKQ8352EkboffbXJ8w=="
         }
       },
       "is_incremental": false,
@@ -2193,7 +2397,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.VerifierBenchmark.html",
-          "hash": "mE1sFTdetWH21NzmXTnMPQ=="
+          "hash": "BGWqm7HcgiLqVKG13Knq/A=="
         }
       },
       "is_incremental": false,
@@ -2205,10 +2409,970 @@
       "output": {
         ".html": {
           "relative_path": "api/SigStat.Common.html",
-          "hash": "SfaDkvTEjel4CB8GMuaPrg=="
+          "hash": "UgEGyhoWP3OYHQ7fzZCubw=="
         }
       },
       "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.DistanceViewing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.DistanceViewing.html",
+          "hash": "snrXpLCb4HqTfeYZgT/UHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FinalPipelines.FinalFusionPipelines.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FinalPipelines.FinalFusionPipelines.html",
+          "hash": "PWaE75Xovam+LlaFhTaRvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FinalPipelines.OnlySignerBenchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FinalPipelines.OnlySignerBenchmark.html",
+          "hash": "igh7++9Ys+++k3eU0PdQnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FinalPipelines.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FinalPipelines.html",
+          "hash": "GCekfN85StXEGShWxbhrbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FusionBenchmarkResults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.FusionBenchmarkResults.html",
+          "hash": "6S38abPLhDvH153+BTx4MQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.OnlineOnlineBenchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.OnlineOnlineBenchmark.html",
+          "hash": "D/RMWtESM1hlmowQEXvrCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.FusionVerifierBenchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.FusionVerifierBenchmark.html",
+          "hash": "G5sZ+HaSka751gJAIXjFEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.MarosBenchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.MarosBenchmark.html",
+          "hash": "CRqI+k9NYRdzsYFbemb3IQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.MarosDtwPairing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.MarosDtwPairing.html",
+          "hash": "yWPbKDL0TwrjJJrquwXFZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.PipelineBenchmarks.html",
+          "hash": "+Ckq5NyeBQ54wSItYVEm8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.ReSamplingBenchmarks.ReSamplingExtractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.ReSamplingBenchmarks.ReSamplingExtractions.html",
+          "hash": "LyTQFrhMDkD0YPzB8Zueaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.ReSamplingBenchmarks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.ReSamplingBenchmarks.html",
+          "hash": "2BUZkUTDUqYm6CsA5MYt5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.StrokePairingExam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.StrokePairingExam.html",
+          "hash": "NqTa6iAYD0n4fUST3kWZNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.Strokepairingmatrix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.Strokepairingmatrix.html",
+          "hash": "U2EsCll/2Hd1fxl3JQh+pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionDemos.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionDemos.html",
+          "hash": "l4hTy74egUV+OnEd2peghA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionFeatureExtraction.OnlineToOfflineFeature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionFeatureExtraction.OnlineToOfflineFeature.html",
+          "hash": "0Ww4ZjyQmvg21KfTgU30Dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionFeatureExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionFeatureExtraction.html",
+          "hash": "SqYlNSbSYjTUcO/E+jva2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.Analizises.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.Analizises.html",
+          "hash": "9R6akNLwDVIdfe9mJ+Bx6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.Geometry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.Geometry.html",
+          "hash": "V5i0iQTd5yTs/+Mu12milg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.PointFHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.PointFHelper.html",
+          "hash": "wH2IpZvK2YJ+F9ZEoRTQpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.PointFSection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.PointFSection.html",
+          "hash": "2cpviIizE4Z06wGzkWhs3A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.PointSection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.PointSection.html",
+          "hash": "pIg1HbIoHXxSBiDEpn6RJA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.StraightLineF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.StraightLineF.html",
+          "hash": "aUp80L3GPUVLy0PryFG4Zg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.Translations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.Translations.html",
+          "hash": "oGkyl0AtQ732SzFf/RRZIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.VectorF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.VectorF.html",
+          "hash": "pK9YPu54R0JBCRLQcUc9sw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.VectorFHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.VectorFHelper.html",
+          "hash": "dQcQ7t5J8/WhypthVf9VvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionMathHelper.html",
+          "hash": "Rz4+cZmiFxQZChAs8RuaQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.FusionPipelines.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.FusionPipelines.html",
+          "hash": "j4zqaYw5unwrifq+Ewpa3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.ConnectionNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.ConnectionNode.html",
+          "hash": "a/jSXxZzZxExpRZaKUEHGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.ConnectionNodesHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.ConnectionNodesHelper.html",
+          "hash": "EHsTsBfvNLjXZW8qoN6cGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.ListHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.ListHelper.html",
+          "hash": "ntZ/VBl+wsijdvNoKv91sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.SkeletonHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.SkeletonHelper.html",
+          "hash": "x8maNlZ7ZaytqhID82BJHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.Stroke.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.Stroke.html",
+          "hash": "Fo2Q6oi3PrL7ZxmsBTsZXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeComponent.html",
+          "hash": "e/f7zeqw79qoUsNigPer9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeComponentHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeComponentHelper.html",
+          "hash": "2Klqts3StGKAhxQvBhESPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeHelper.html",
+          "hash": "Ug3jQyPReemsAClKrdZhWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeMerging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.StrokeMerging.html",
+          "hash": "ZWodwNRBXbXM1EMUxfjEww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.Vertex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.Vertex.html",
+          "hash": "mQNPz3D9BaKlrVv9y7bTDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.VerticesHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.VerticesHelper.html",
+          "hash": "6Z85m59owO0Wq/evlybVAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.GraphExtraction.html",
+          "hash": "7F3U95aFJIjzOZbWCo4fJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.LineTransforms.DOSBasedAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.LineTransforms.DOSBasedAlgorithm.html",
+          "hash": "dJXsfwt5G6TzmC53d4l99A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.LineTransforms.EqualResampling.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.LineTransforms.EqualResampling.html",
+          "hash": "7KrGOZP0f5m/uOy7U98nKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.LineTransforms.LineFittingAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.LineTransforms.LineFittingAlgorithm.html",
+          "hash": "vwba5a3GOzsWA2RzD2Ezyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.LineTransforms.PseudoVelocityAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.LineTransforms.PseudoVelocityAlgorithm.html",
+          "hash": "P10R6OV78Jn6c2PqC9regQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.LineTransforms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.LineTransforms.html",
+          "hash": "6VCiYK1AbsBFOoEUhi2ZfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.BiosecureID.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.BiosecureID.html",
+          "hash": "rKCSZIZnHX3YbWzy/FHdhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.BiosecureIDOfflineLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.BiosecureIDOfflineLoader.html",
+          "hash": "Oa/21OwgTn3nCiojh8jNNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.BiosecureIDOnlineLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.BiosecureIDOnlineLoader.html",
+          "hash": "YJq3S29yXNYm8knz0YPB8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.MemoryLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.MemoryLoader.html",
+          "hash": "FYNt4xfrsmoIMWfmpSDRFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.Svc2004.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.Svc2004.html",
+          "hash": "mIQZZp4NEyH31Zkv+WrxqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.Svc2004OfflineLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.Svc2004OfflineLoader.html",
+          "hash": "7EwMMCTEIjhMTUKW0JLTQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.Svc2004OnlineLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.Svc2004OnlineLoader.html",
+          "hash": "lOSni4eYNmEZYPd20jd9ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.Loaders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.Loaders.html",
+          "hash": "juzD3BhqJlnzB/6mAkqhYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.OfflineVerifier.OfflineVerifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.OfflineVerifier.OfflineVerifier.html",
+          "hash": "c/QEIZcKUqUPxptUPUWGQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.OfflineVerifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.OfflineVerifier.html",
+          "hash": "4cnNAQZYctDET9N573RRUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.FeatureExtractAlgorithms.ICalculate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.FeatureExtractAlgorithms.ICalculate.html",
+          "hash": "cU2SkmxslhI7tOBP2q2LPA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.FeatureExtractAlgorithms.JustOnAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.FeatureExtractAlgorithms.JustOnAlgorithm.html",
+          "hash": "f71VT1YUAjzukOXf2bZk7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.FeatureExtractAlgorithms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.FeatureExtractAlgorithms.html",
+          "hash": "phN/FkOBvGNhu4w1YLzqnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFeatureExtraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFeatureExtraction.html",
+          "hash": "+MBDqgm+bV3GGzYaw+q07w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFuncs.Kivono.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFuncs.Kivono.html",
+          "hash": "LOXPmBmNiAY3Zeqn8qX+RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFuncs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.ReSamplingFuncs.html",
+          "hash": "XAnxYnbkLoWuM6T16vucRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.ReSamplingFeatures.html",
+          "hash": "KK5g7YcQOagSCRrZh3mF1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.TrajectoryRecovery.AlterDtwPairing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.TrajectoryRecovery.AlterDtwPairing.html",
+          "hash": "KREZroETybD8BzJvJ19BAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.TrajectoryRecovery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.TrajectoryRecovery.html",
+          "hash": "OPvPVHD8U8gUED7loeITJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.BenchmarkRsults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.BenchmarkRsults.html",
+          "hash": "hiaCXlNfdQ4jCnWCDtPbLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.DistanceMatrixViewer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.DistanceMatrixViewer.html",
+          "hash": "fY4tJZi1uncgFgcTCx2kpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.ImageHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.ImageHelper.html",
+          "hash": "nbafLtpVyIih2++jkx++zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.StrokePairSaver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.StrokePairSaver.html",
+          "hash": "+RN3eJi1P4jIgJ1DArdSzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.StrokePairingDistances.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.StrokePairingDistances.html",
+          "hash": "b4AVq8gJvicS1HDYeoKjyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.TxtHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.TxtHelper.html",
+          "hash": "1Za2UVAWVANabpaM40gvug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.XYSaver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.XYSaver.html",
+          "hash": "7uTMnzxy3bLu2t9Mbl3L7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.VisualHelpers.html",
+          "hash": "qxkQ1IYuZtyzqf5WBrZf7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.FusionBenchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.FusionBenchmark.html",
+          "hash": "oAZM4RX4H1ZYnBEnY59PYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.UI.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.UI.App.html",
+          "hash": "7IzaRIf+VnSuX7Fg9zjGWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.UI.DisplayMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.UI.DisplayMode.html",
+          "hash": "KuKoc6ur2ptzZ7N+hqf0Fw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.UI.MainViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.UI.MainViewModel.html",
+          "hash": "YhvYctY973SuNEHRZvsYUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.UI.MainWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.UI.MainWindow.html",
+          "hash": "b+ghTnR/SVcO8gn6wWAjBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.UI.SignatureVisualizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.UI.SignatureVisualizer.html",
+          "hash": "LDFI2PJDxU0u9PBXmAri8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SigStat.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SigStat.UI.html",
+          "hash": "CdAs3+hl4CfBMIl44vKTmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "WfxRqoH3+Z+rIpFoX8ycPQ=="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -2217,7 +3381,55 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "0jWZrLWwBfXcvGIvf7J9DQ=="
+          "hash": "BoKjh6Jllz5O9QbSAyitEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "/NQ1k4AUoRmjsinmOE59aw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "PCYIfe9mgjm3JNONXYridQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
         }
       },
       "is_incremental": false,
@@ -2227,25 +3439,23 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 2,
-          "skipped_file_count": 0
+          "total_file_count": 3,
+          "skipped_file_count": 3
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 182,
-          "skipped_file_count": 0
+          "total_file_count": 280,
+          "skipped_file_count": 120
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -2258,8 +3468,8 @@
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

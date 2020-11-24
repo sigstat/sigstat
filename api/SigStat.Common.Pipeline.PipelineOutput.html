@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class PipelineOutput
    ">
-    <meta name="generator" content="docfx 2.45.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
     
@@ -81,23 +81,47 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">PipelineOutput</span></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.Pipeline.html">SigStat.Common.Pipeline</a></h6>
   <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
   <h5 id="SigStat_Common_Pipeline_PipelineOutput_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PipelineOutput : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class PipelineOutput</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput__ctor_System_Object_PropertyInfo_.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.%23ctor(System.Object%2CPropertyInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput__ctor_System_Object_System_Reflection_PropertyInfo_.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.%23ctor(System.Object%2CSystem.Reflection.PropertyInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L126">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L126">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput__ctor_" data-uid="SigStat.Common.Pipeline.PipelineOutput.#ctor*"></a>
-  <h4 id="SigStat_Common_Pipeline_PipelineOutput__ctor_System_Object_PropertyInfo_" data-uid="SigStat.Common.Pipeline.PipelineOutput.#ctor(System.Object,PropertyInfo)">PipelineOutput(Object, PropertyInfo)</h4>
+  <h4 id="SigStat_Common_Pipeline_PipelineOutput__ctor_System_Object_System_Reflection_PropertyInfo_" data-uid="SigStat.Common.Pipeline.PipelineOutput.#ctor(System.Object,System.Reflection.PropertyInfo)">PipelineOutput(Object, PropertyInfo)</h4>
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SigStat.Common.Pipeline.PipelineOutput.html">PipelineOutput</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -122,9 +146,25 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">PropertyInfo</span></td>
+        <td><span class="xref">System.Reflection.PropertyInfo</span></td>
         <td><span class="parametername">PI</span></td>
         <td><p>The pi.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Pipeline Output '{PropName}' of '{PipelineItem.ToString()}' not public</p>
 </td>
       </tr>
     </tbody>
@@ -133,10 +173,10 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_Default.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.Default%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_Default.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.Default%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L100">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L100">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput_Default_" data-uid="SigStat.Common.Pipeline.PipelineOutput.Default*"></a>
   <h4 id="SigStat_Common_Pipeline_PipelineOutput_Default" data-uid="SigStat.Common.Pipeline.PipelineOutput.Default">Default</h4>
@@ -164,10 +204,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_FD.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.FD%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_FD.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.FD%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L85">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L85">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput_FD_" data-uid="SigStat.Common.Pipeline.PipelineOutput.FD*"></a>
   <h4 id="SigStat_Common_Pipeline_PipelineOutput_FD" data-uid="SigStat.Common.Pipeline.PipelineOutput.FD">FD</h4>
@@ -195,10 +235,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_IsCollectionOfFeatureDescriptors.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.IsCollectionOfFeatureDescriptors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_IsCollectionOfFeatureDescriptors.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.IsCollectionOfFeatureDescriptors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L111">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L111">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput_IsCollectionOfFeatureDescriptors_" data-uid="SigStat.Common.Pipeline.PipelineOutput.IsCollectionOfFeatureDescriptors*"></a>
   <h4 id="SigStat_Common_Pipeline_PipelineOutput_IsCollectionOfFeatureDescriptors" data-uid="SigStat.Common.Pipeline.PipelineOutput.IsCollectionOfFeatureDescriptors">IsCollectionOfFeatureDescriptors</h4>
@@ -227,10 +267,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_IsTemporary.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.IsTemporary%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_IsTemporary.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.IsTemporary%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L96">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L96">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput_IsTemporary_" data-uid="SigStat.Common.Pipeline.PipelineOutput.IsTemporary*"></a>
   <h4 id="SigStat_Common_Pipeline_PipelineOutput_IsTemporary" data-uid="SigStat.Common.Pipeline.PipelineOutput.IsTemporary">IsTemporary</h4>
@@ -259,10 +299,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_PropName.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.PropName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_PropName.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.PropName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L115">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L115">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput_PropName_" data-uid="SigStat.Common.Pipeline.PipelineOutput.PropName*"></a>
   <h4 id="SigStat_Common_Pipeline_PipelineOutput_PropName" data-uid="SigStat.Common.Pipeline.PipelineOutput.PropName">PropName</h4>
@@ -290,10 +330,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_Type.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput_Type.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L104">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L104">View Source</a>
   </span>
   <a id="SigStat_Common_Pipeline_PipelineOutput_Type_" data-uid="SigStat.Common.Pipeline.PipelineOutput.Type*"></a>
   <h4 id="SigStat_Common_Pipeline_PipelineOutput_Type" data-uid="SigStat.Common.Pipeline.PipelineOutput.Type">Type</h4>
@@ -314,7 +354,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Type</span></td>
+        <td><span class="xref">System.Type</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -327,10 +367,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Pipeline_PipelineOutput.md&amp;value=---%0Auid%3A%20SigStat.Common.Pipeline.PipelineOutput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L80" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Pipeline/IPipelineIO.cs/#L80" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

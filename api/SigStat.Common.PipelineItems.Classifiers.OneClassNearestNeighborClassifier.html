@@ -10,13 +10,13 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class OneClassNearestNeighborClassifier
    ">
-    <meta name="generator" content="docfx 2.45.1.0">
+    <meta name="generator" content="docfx 2.56.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="">
+    <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
     
@@ -113,21 +113,43 @@ threshold based classification</p>
     <div>
       <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_OnProgressChanged">PipelineBase.OnProgressChanged()</a>
     </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.PipelineItems.Classifiers.html">SigStat.Common.PipelineItems.Classifiers</a></h6>
   <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
   <h5 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class OneClassNearestNeighborClassifier : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IClassifier</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptOut)]
+public class OneClassNearestNeighborClassifier : PipelineBase, ILoggerObject, IProgress, IPipelineIO, IClassifier</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier__ctor_System_Int32_System_Int32_System_Double_SigStat_Common_Algorithms_Distances_IDistance_System_Double______.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Double%2CSigStat.Common.Algorithms.Distances.IDistance%7BSystem.Double%5B%5D%5B%5D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier__ctor_System_Int32_System_Int32_System_Double_SigStat_Common_Algorithms_Distances_IDistance_System_Double______.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Double%2CSigStat.Common.Algorithms.Distances.IDistance%7BSystem.Double%5B%5D%5B%5D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L80">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L80">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier__ctor_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.#ctor*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier__ctor_System_Int32_System_Int32_System_Double_SigStat_Common_Algorithms_Distances_IDistance_System_Double______" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.#ctor(System.Int32,System.Int32,System.Double,SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})">OneClassNearestNeighborClassifier(Int32, Int32, Double, IDistance&lt;Double[][]&gt;)</h4>
@@ -136,7 +158,7 @@ threshold based classification</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public OneClassNearestNeighborClassifier(int j = 1, int k = 1, double threshold = null, IDistance&lt;double[][]&gt; distanceFunction = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public OneClassNearestNeighborClassifier(int j = 1, int k = 1, double threshold = 1, IDistance&lt;double[][]&gt; distanceFunction = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -178,10 +200,10 @@ threshold based classification</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_DistanceFunction.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_DistanceFunction.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L57">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L57">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_DistanceFunction_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_DistanceFunction" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.DistanceFunction">DistanceFunction</h4>
@@ -209,10 +231,10 @@ threshold based classification</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Features.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Features.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L51">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L51">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Features_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Features" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Features">Features</h4>
@@ -221,7 +243,8 @@ threshold based classification</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;FeatureDescriptor&gt; Features { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Input(AutoSetMode.IfNull)]
+public List&lt;FeatureDescriptor&gt; Features { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -233,17 +256,17 @@ threshold based classification</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_J.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_J.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L62">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L62">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_J_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_J" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.J">J</h4>
@@ -271,10 +294,10 @@ threshold based classification</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_K.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_K.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L66">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L66">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_K_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_K" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.K">K</h4>
@@ -302,10 +325,10 @@ threshold based classification</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Threshold.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Threshold.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L70">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L70">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Threshold_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Threshold" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Threshold">Threshold</h4>
@@ -335,16 +358,14 @@ threshold based classification</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Test_SigStat_Common_Pipeline_ISignerModel_SigStat_Common_Signature_.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test(SigStat.Common.Pipeline.ISignerModel%2CSigStat.Common.Signature)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Test_SigStat_Common_Pipeline_ISignerModel_SigStat_Common_Signature_.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test(SigStat.Common.Pipeline.ISignerModel%2CSigStat.Common.Signature)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L143">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L143">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Test_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test*"></a>
   <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Test_SigStat_Common_Pipeline_ISignerModel_SigStat_Common_Signature_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)">Test(ISignerModel, Signature)</h4>
-  <div class="markdown level1 summary"><p>Returns a double value in the range [0..1], representing the probability of the given signature belonging to the trained model.</p>
-<ul><li></li><li></li><li></li></ul>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -389,15 +410,14 @@ threshold based classification</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_List_SigStat_Common_Signature__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(List%7BSigStat.Common.Signature%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_System_Collections_Generic_List_SigStat_Common_Signature__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List%7BSigStat.Common.Signature%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L89">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L89">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train*"></a>
-  <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_List_SigStat_Common_Signature__" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(List{SigStat.Common.Signature})">Train(List&lt;Signature&gt;)</h4>
-  <div class="markdown level1 summary"><p>Trains a model based on the signatures and returns the trained model</p>
-</div>
+  <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_System_Collections_Generic_List_SigStat_Common_Signature__" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})">Train(List&lt;Signature&gt;)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -414,7 +434,7 @@ threshold based classification</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<a class="xref" href="SigStat.Common.Signature.html">Signature</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.Signature.html">Signature</a>&gt;</td>
         <td><span class="parametername">signatures</span></td>
         <td></td>
       </tr>
@@ -437,13 +457,13 @@ threshold based classification</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_List_SigStat_Common_Signature__SigStat_Common_DistanceMatrix_System_String_System_String_System_Double__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(List%7BSigStat.Common.Signature%7D%2CSigStat.Common.DistanceMatrix%7BSystem.String%2CSystem.String%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_System_Collections_Generic_List_SigStat_Common_Signature__SigStat_Common_DistanceMatrix_System_String_System_String_System_Double__.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List%7BSigStat.Common.Signature%7D%2CSigStat.Common.DistanceMatrix%7BSystem.String%2CSystem.String%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L101">View Source</a>
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L101">View Source</a>
   </span>
   <a id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train*"></a>
-  <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_List_SigStat_Common_Signature__SigStat_Common_DistanceMatrix_System_String_System_String_System_Double__" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})">Train(List&lt;Signature&gt;, DistanceMatrix&lt;String, String, Double&gt;)</h4>
+  <h4 id="SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier_Train_System_Collections_Generic_List_SigStat_Common_Signature__SigStat_Common_DistanceMatrix_System_String_System_String_System_Double__" data-uid="SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature},SigStat.Common.DistanceMatrix{System.String,System.String,System.Double})">Train(List&lt;Signature&gt;, DistanceMatrix&lt;String, String, Double&gt;)</h4>
   <div class="markdown level1 summary"><p>Trains the specified signatures based on a precalculated distance matrix</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -462,7 +482,7 @@ threshold based classification</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List</span>&lt;<a class="xref" href="SigStat.Common.Signature.html">Signature</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.Signature.html">Signature</a>&gt;</td>
         <td><span class="parametername">signatures</span></td>
         <td><p>The signatures.</p>
 </td>
@@ -504,6 +524,34 @@ distances will be calculated automatically using <a class="xref" href="SigStat.C
   <div>
       <a class="xref" href="SigStat.Common.Pipeline.IClassifier.html">IClassifier</a>
   </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogInformation_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogInformation(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogTrace(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace__1_SigStat_Common_ILoggerObject___0_Microsoft_Extensions_Logging_EventId_System_Exception_System_Func___0_System_Exception_System_String__">ILoggerObjectExtensions.LogTrace&lt;TState&gt;(ILoggerObject, TState, EventId, Exception, Func&lt;TState, Exception, String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogCritical_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogCritical(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogDebug_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogDebug(ILoggerObject, String, Object[])</a>
+  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="SigStat.Common.PipelineBase.html">PipelineBase</a></div>
@@ -517,10 +565,10 @@ distances will be calculated automatically using <a class="xref" href="SigStat.C
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/sigstat/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_PipelineItems_Classifiers_OneClassNearestNeighborClassifier.md&amp;value=---%0Auid%3A%20SigStat.Common.PipelineItems.Classifiers.OneClassNearestNeighborClassifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/sigstat/sigstat/blob/develop/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L24" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Classifiers/OneClassNearestNeighborClassifier.cs/#L24" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

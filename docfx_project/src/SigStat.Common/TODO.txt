@@ -1,0 +1,7 @@
+﻿- Helyességellenőrzés
+- Dilatáció/erózió
+- FeatureDescriptor bővítése: normalizált-e az adat
+- Feltételes pipeline elem: ha nincs normalizálva, akkor normalizáljuk
+- Fotó binarizálás ==> iteratív threshold 
+- Signature hamis ==> megtanulni egy hamisító hibáit ==> egyedi pipeline
+- Log ==> tagek a bejegyzésekhez
