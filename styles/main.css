@@ -18,21 +18,69 @@
 
 
 .navbar{
-    padding : 0px 0px !important;
+    padding : .5rem 1rem !important;
+    font-size : 1.35rem !important;
 }
 
+.svg{
+    height: 32px;
+    width: 100px;
+    border-radius: 8px;
+}
 
 .text-white{
 
 color : #fff!important;
+
 }
 .text-center{
 text-align: center !important;
 }
 .m-0{
 margin : 0!important;
+font-size : 1rem !important;
 }
 
 
-.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:focus,.navbar-inverse{color: #9d9d9d;background-color:#9e0b0f}
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:focus,.navbar-inverse{color: rgba(255,255,255,.5);background-color:#9e0b0f;     font-size : 1.35rem;    }
 .navbar-nav>.active>a:hover{color: #fff;}
+.navbar-inverse .navbar-nav>li>a,.navbar-inverse .navbar-text{color:rgba(255,255,255,.5);     font-size : 1.35rem;   } 
+
+
+
+.container{
+    color : #212529;
+    font-size : 1rem;
+    font-weight : 400;
+    margin: auto;
+}
+
+.h2, h2{
+    font-size : 2rem;
+    font-weight : 500;
+}
+.h4, h4{
+    font-size: 1.5rem;
+    margin-top : 0;
+    font-weight : 500;
+}
+p{
+    margin-bottom : 1rem;
+}
+
+.btn{
+    font-size : 1rem !important;
+    padding : .375rem .75rem ;
+    line-height : 1.5;
+    border-radius : .25rem;
+    border: 1px solid transparent;
+}
+
+body, html {
+    padding-top : 0;
+}
+
+
+#autocollapse .container .navbar-header{
+    padding-right : 1rem;
+}
