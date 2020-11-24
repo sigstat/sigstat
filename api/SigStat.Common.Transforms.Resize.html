@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Resize
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Resize
+   ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SigStat.Common.Transforms.Resize">
+  
+  
+  <h1 id="SigStat_Common_Transforms_Resize" data-uid="SigStat.Common.Transforms.Resize" class="text-break">Class Resize
+  </h1>
+  <div class="markdown level0 summary"><p>Resizes the image to a specified width and height</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="SigStat.Common.PipelineBase.html">PipelineBase</a></div>
+    <div class="level2"><span class="xref">Resize</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SigStat.Common.ILoggerObject.html">ILoggerObject</a></div>
+    <div><a class="xref" href="SigStat.Common.Helpers.IProgress.html">IProgress</a></div>
+    <div><a class="xref" href="SigStat.Common.ITransformation.html">ITransformation</a></div>
+    <div><a class="xref" href="SigStat.Common.Pipeline.IPipelineIO.html">IPipelineIO</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_PipelineInputs">PipelineBase.PipelineInputs</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_PipelineOutputs">PipelineBase.PipelineOutputs</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_Logger">PipelineBase.Logger</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_Progress">PipelineBase.Progress</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_ProgressChanged">PipelineBase.ProgressChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.PipelineBase.html#SigStat_Common_PipelineBase_OnProgressChanged">PipelineBase.OnProgressChanged()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.Transforms.html">SigStat.Common.Transforms</a></h6>
+  <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
+  <h5 id="SigStat_Common_Transforms_Resize_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptOut)]
+public class Resize : PipelineBase, ILoggerObject, IProgress, ITransformation, IPipelineIO</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize_Height.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize.Height%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L41">View Source</a>
+  </span>
+  <a id="SigStat_Common_Transforms_Resize_Height_" data-uid="SigStat.Common.Transforms.Resize.Height*"></a>
+  <h4 id="SigStat_Common_Transforms_Resize_Height" data-uid="SigStat.Common.Transforms.Resize.Height">Height</h4>
+  <div class="markdown level1 summary"><p>The new height. Leave it as null, if you do not want to explicitly specify a given height</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? Height { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize_InputImage.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize.InputImage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L25">View Source</a>
+  </span>
+  <a id="SigStat_Common_Transforms_Resize_InputImage_" data-uid="SigStat.Common.Transforms.Resize.InputImage*"></a>
+  <h4 id="SigStat_Common_Transforms_Resize_InputImage" data-uid="SigStat.Common.Transforms.Resize.InputImage">InputImage</h4>
+  <div class="markdown level1 summary"><p>Input <a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a> describing the image of the signature</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Input(AutoSetMode.IfNull)]
+public FeatureDescriptor&lt;Image&lt;Rgba32&gt;&gt; InputImage { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor-1.html">FeatureDescriptor</a>&lt;<span class="xref">SixLabors.ImageSharp.Image</span>&lt;<span class="xref">SixLabors.ImageSharp.PixelFormats.Rgba32</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize_OutputImage.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize.OutputImage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L31">View Source</a>
+  </span>
+  <a id="SigStat_Common_Transforms_Resize_OutputImage_" data-uid="SigStat.Common.Transforms.Resize.OutputImage*"></a>
+  <h4 id="SigStat_Common_Transforms_Resize_OutputImage" data-uid="SigStat.Common.Transforms.Resize.OutputImage">OutputImage</h4>
+  <div class="markdown level1 summary"><p>Output <a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a> describing the resized image of the signature</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Output(&quot;Resized&quot;)]
+public FeatureDescriptor&lt;Image&lt;Rgba32&gt;&gt; OutputImage { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor-1.html">FeatureDescriptor</a>&lt;<span class="xref">SixLabors.ImageSharp.Image</span>&lt;<span class="xref">SixLabors.ImageSharp.PixelFormats.Rgba32</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize_ResizeFunction.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize.ResizeFunction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L45">View Source</a>
+  </span>
+  <a id="SigStat_Common_Transforms_Resize_ResizeFunction_" data-uid="SigStat.Common.Transforms.Resize.ResizeFunction*"></a>
+  <h4 id="SigStat_Common_Transforms_Resize_ResizeFunction" data-uid="SigStat.Common.Transforms.Resize.ResizeFunction">ResizeFunction</h4>
+  <div class="markdown level1 summary"><p>Set a resize function if you want to dynamically calculate the new width and height of the image</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;Image&lt;Rgba32&gt;, Size&gt; ResizeFunction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">SixLabors.ImageSharp.Image</span>&lt;<span class="xref">SixLabors.ImageSharp.PixelFormats.Rgba32</span>&gt;, <span class="xref">SixLabors.Primitives.Size</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize_Width.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize.Width%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L37">View Source</a>
+  </span>
+  <a id="SigStat_Common_Transforms_Resize_Width_" data-uid="SigStat.Common.Transforms.Resize.Width*"></a>
+  <h4 id="SigStat_Common_Transforms_Resize_Width" data-uid="SigStat.Common.Transforms.Resize.Width">Width</h4>
+  <div class="markdown level1 summary"><p>The new width. Leave it as null, if you do not want to explicitly specify a given width</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? Width { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize_Transform_SigStat_Common_Signature_.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize.Transform(SigStat.Common.Signature)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L48">View Source</a>
+  </span>
+  <a id="SigStat_Common_Transforms_Resize_Transform_" data-uid="SigStat.Common.Transforms.Resize.Transform*"></a>
+  <h4 id="SigStat_Common_Transforms_Resize_Transform_SigStat_Common_Signature_" data-uid="SigStat.Common.Transforms.Resize.Transform(SigStat.Common.Signature)">Transform(Signature)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Transform(Signature signature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Signature.html">Signature</a></td>
+        <td><span class="parametername">signature</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObject.html">ILoggerObject</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.Helpers.IProgress.html">IProgress</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ITransformation.html">ITransformation</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.Pipeline.IPipelineIO.html">IPipelineIO</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogInformation_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogInformation(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogTrace(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace__1_SigStat_Common_ILoggerObject___0_Microsoft_Extensions_Logging_EventId_System_Exception_System_Func___0_System_Exception_System_String__">ILoggerObjectExtensions.LogTrace&lt;TState&gt;(ILoggerObject, TState, EventId, Exception, Func&lt;TState, Exception, String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogCritical_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogCritical(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogDebug_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogDebug(ILoggerObject, String, Object[])</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Transforms_Resize.md&amp;value=---%0Auid%3A%20SigStat.Common.Transforms.Resize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/PipelineItems/Transforms/Raster/Resize.cs/#L19" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

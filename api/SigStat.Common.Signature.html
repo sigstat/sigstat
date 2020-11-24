@@ -1,0 +1,1036 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Signature
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Signature
+   ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SigStat.Common.Signature">
+  
+  
+  <h1 id="SigStat_Common_Signature" data-uid="SigStat.Common.Signature" class="text-break">Class Signature
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a signature as a collection of features, containing the data that flows in the pipeline.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Signature</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>, <span class="xref">System.Object</span>&gt;&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.html">SigStat.Common</a></h6>
+  <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
+  <h5 id="SigStat_Common_Signature_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptOut)]
+public class Signature : IEnumerable&lt;KeyValuePair&lt;FeatureDescriptor, object&gt;&gt;, IEnumerable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature__ctor.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L72">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature__ctor_" data-uid="SigStat.Common.Signature.#ctor*"></a>
+  <h4 id="SigStat_Common_Signature__ctor" data-uid="SigStat.Common.Signature.#ctor">Signature()</h4>
+  <div class="markdown level1 summary"><p>Initializes a signature instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Signature()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature__ctor_System_String_SigStat_Common_Origin_SigStat_Common_Signer_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.%23ctor(System.String%2CSigStat.Common.Origin%2CSigStat.Common.Signer)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L83">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature__ctor_" data-uid="SigStat.Common.Signature.#ctor*"></a>
+  <h4 id="SigStat_Common_Signature__ctor_System_String_SigStat_Common_Origin_SigStat_Common_Signer_" data-uid="SigStat.Common.Signature.#ctor(System.String,SigStat.Common.Origin,SigStat.Common.Signer)">Signature(String, Origin, Signer)</h4>
+  <div class="markdown level1 summary"><p>Initializes a signature instance with the given properties</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Signature(string signatureID, Origin origin = Origin.Unknown, Signer signer = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">signatureID</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Origin.html">Origin</a></td>
+        <td><span class="parametername">origin</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Signer.html">Signer</a></td>
+        <td><span class="parametername">signer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_ID.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.ID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L22">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_ID_" data-uid="SigStat.Common.Signature.ID*"></a>
+  <h4 id="SigStat_Common_Signature_ID" data-uid="SigStat.Common.Signature.ID">ID</h4>
+  <div class="markdown level1 summary"><p>An identifier for the Signature. Keep it unique to be useful for logs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ID { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_Item_SigStat_Common_FeatureDescriptor_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.Item(SigStat.Common.FeatureDescriptor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L57">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_Item_" data-uid="SigStat.Common.Signature.Item*"></a>
+  <h4 id="SigStat_Common_Signature_Item_SigStat_Common_FeatureDescriptor_" data-uid="SigStat.Common.Signature.Item(SigStat.Common.FeatureDescriptor)">Item[FeatureDescriptor]</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the specified feature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object this[FeatureDescriptor featureDescriptor] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a></td>
+        <td><span class="parametername">featureDescriptor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>The feature object without cast.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_Item_System_String_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.Item(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L37">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_Item_" data-uid="SigStat.Common.Signature.Item*"></a>
+  <h4 id="SigStat_Common_Signature_Item_System_String_" data-uid="SigStat.Common.Signature.Item(System.String)">Item[String]</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the specified feature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object this[string featureKey] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">featureKey</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>The feature object without cast.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_Origin.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.Origin%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L24">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_Origin_" data-uid="SigStat.Common.Signature.Origin*"></a>
+  <h4 id="SigStat_Common_Signature_Origin" data-uid="SigStat.Common.Signature.Origin">Origin</h4>
+  <div class="markdown level1 summary"><p>Represents our knowledge on the origin of the signature. <a class="xref" href="SigStat.Common.Origin.html#SigStat_Common_Origin_Unknown">Unknown</a> may be used in practice before it is verified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Origin Origin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Origin.html">Origin</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_Signer.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.Signer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L26">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_Signer_" data-uid="SigStat.Common.Signature.Signer*"></a>
+  <h4 id="SigStat_Common_Signature_Signer" data-uid="SigStat.Common.Signature.Signer">Signer</h4>
+  <div class="markdown level1 summary"><p>A reference to the <a class="xref" href="SigStat.Common.Signer.html">Signer</a> who this signature belongs to. (The origin is not constrained to be genuine.)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Signer Signer { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Signer.html">Signer</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_GetAggregateFeature_System_Collections_Generic_List_SigStat_Common_FeatureDescriptor__.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.GetAggregateFeature(System.Collections.Generic.List%7BSigStat.Common.FeatureDescriptor%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L158">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_GetAggregateFeature_" data-uid="SigStat.Common.Signature.GetAggregateFeature*"></a>
+  <h4 id="SigStat_Common_Signature_GetAggregateFeature_System_Collections_Generic_List_SigStat_Common_FeatureDescriptor__" data-uid="SigStat.Common.Signature.GetAggregateFeature(System.Collections.Generic.List{SigStat.Common.FeatureDescriptor})">GetAggregateFeature(List&lt;FeatureDescriptor&gt;)</h4>
+  <div class="markdown level1 summary"><p>Aggregate multiple features into one. Example: X, Y features -&gt; P.xy feature.
+Use this for example at DTW algorithm input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;double[]&gt; GetAggregateFeature(List&lt;FeatureDescriptor&gt; fs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>&gt;</td>
+        <td><span class="parametername">fs</span></td>
+        <td><p>List of features to aggregate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Double</span>[]&gt;</td>
+        <td><p>Aggregated feature value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_GetEnumerator.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L216">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_GetEnumerator_" data-uid="SigStat.Common.Signature.GetEnumerator*"></a>
+  <h4 id="SigStat_Common_Signature_GetEnumerator" data-uid="SigStat.Common.Signature.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the features.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;KeyValuePair&lt;FeatureDescriptor, object&gt;&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair</span>&lt;<a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><p>An enumerator that can be used to iterate through the features.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_GetFeature__1_SigStat_Common_FeatureDescriptor_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.GetFeature%60%601(SigStat.Common.FeatureDescriptor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L114">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_GetFeature_" data-uid="SigStat.Common.Signature.GetFeature*"></a>
+  <h4 id="SigStat_Common_Signature_GetFeature__1_SigStat_Common_FeatureDescriptor_" data-uid="SigStat.Common.Signature.GetFeature``1(SigStat.Common.FeatureDescriptor)">GetFeature&lt;T&gt;(FeatureDescriptor)</h4>
+  <div class="markdown level1 summary"><p>Gets the specified feature. This is the preferred way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetFeature&lt;T&gt;(FeatureDescriptor featureDescriptor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a></td>
+        <td><span class="parametername">featureDescriptor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The casted feature object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_GetFeature__1_SigStat_Common_FeatureDescriptor___0__.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.GetFeature%60%601(SigStat.Common.FeatureDescriptor%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L104">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_GetFeature_" data-uid="SigStat.Common.Signature.GetFeature*"></a>
+  <h4 id="SigStat_Common_Signature_GetFeature__1_SigStat_Common_FeatureDescriptor___0__" data-uid="SigStat.Common.Signature.GetFeature``1(SigStat.Common.FeatureDescriptor{``0})">GetFeature&lt;T&gt;(FeatureDescriptor&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the specified feature. This is the preferred way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetFeature&lt;T&gt;(FeatureDescriptor&lt;T&gt; featureDescriptor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor-1.html">FeatureDescriptor</a>&lt;T&gt;</td>
+        <td><span class="parametername">featureDescriptor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The casted feature object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_GetFeature__1_System_String_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.GetFeature%60%601(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L95">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_GetFeature_" data-uid="SigStat.Common.Signature.GetFeature*"></a>
+  <h4 id="SigStat_Common_Signature_GetFeature__1_System_String_" data-uid="SigStat.Common.Signature.GetFeature``1(System.String)">GetFeature&lt;T&gt;(String)</h4>
+  <div class="markdown level1 summary"><p>Gets the specified feature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetFeature&lt;T&gt;(string featureKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">featureKey</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The casted feature object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_GetFeatureDescriptors.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.GetFeatureDescriptors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L124">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_GetFeatureDescriptors_" data-uid="SigStat.Common.Signature.GetFeatureDescriptors*"></a>
+  <h4 id="SigStat_Common_Signature_GetFeatureDescriptors" data-uid="SigStat.Common.Signature.GetFeatureDescriptors">GetFeatureDescriptors()</h4>
+  <div class="markdown level1 summary"><p>Gets a collection of <a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>s that are used in this signature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;FeatureDescriptor&gt; GetFeatureDescriptors()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>&gt;</td>
+        <td><p>A collection of <a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a>s.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_HasFeature_SigStat_Common_FeatureDescriptor_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.HasFeature(SigStat.Common.FeatureDescriptor)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L186">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_HasFeature_" data-uid="SigStat.Common.Signature.HasFeature*"></a>
+  <h4 id="SigStat_Common_Signature_HasFeature_SigStat_Common_FeatureDescriptor_" data-uid="SigStat.Common.Signature.HasFeature(SigStat.Common.FeatureDescriptor)">HasFeature(FeatureDescriptor)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the signature contains the specified feature</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasFeature(FeatureDescriptor featureDescriptor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a></td>
+        <td><span class="parametername">featureDescriptor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_HasFeature_System_String_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.HasFeature(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L196">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_HasFeature_" data-uid="SigStat.Common.Signature.HasFeature*"></a>
+  <h4 id="SigStat_Common_Signature_HasFeature_System_String_" data-uid="SigStat.Common.Signature.HasFeature(System.String)">HasFeature(String)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the signature contains the specified feature</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasFeature(string featureKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">featureKey</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_SetFeature__1_SigStat_Common_FeatureDescriptor___0_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.SetFeature%60%601(SigStat.Common.FeatureDescriptor%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L134">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_SetFeature_" data-uid="SigStat.Common.Signature.SetFeature*"></a>
+  <h4 id="SigStat_Common_Signature_SetFeature__1_SigStat_Common_FeatureDescriptor___0_" data-uid="SigStat.Common.Signature.SetFeature``1(SigStat.Common.FeatureDescriptor,``0)">SetFeature&lt;T&gt;(FeatureDescriptor, T)</h4>
+  <div class="markdown level1 summary"><p>Sets the specified feature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Signature SetFeature&lt;T&gt;(FeatureDescriptor featureDescriptor, T feature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.FeatureDescriptor.html">FeatureDescriptor</a></td>
+        <td><span class="parametername">featureDescriptor</span></td>
+        <td><p>The feature to put the new value in.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">feature</span></td>
+        <td><p>The value to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Signature.html">Signature</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_SetFeature__1_System_String___0_.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.SetFeature%60%601(System.String%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L144">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_SetFeature_" data-uid="SigStat.Common.Signature.SetFeature*"></a>
+  <h4 id="SigStat_Common_Signature_SetFeature__1_System_String___0_" data-uid="SigStat.Common.Signature.SetFeature``1(System.String,``0)">SetFeature&lt;T&gt;(String, T)</h4>
+  <div class="markdown level1 summary"><p>Sets the specified feature.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Signature SetFeature&lt;T&gt;(string featureKey, T feature)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">featureKey</span></td>
+        <td><p>The unique key of the feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">feature</span></td>
+        <td><p>The value to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Signature.html">Signature</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_ToString.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L205">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_ToString_" data-uid="SigStat.Common.Signature.ToString*"></a>
+  <h4 id="SigStat_Common_Signature_ToString" data-uid="SigStat.Common.Signature.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the signature</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L221">View Source</a>
+  </span>
+  <a id="SigStat_Common_Signature_System_Collections_IEnumerable_GetEnumerator_" data-uid="SigStat.Common.Signature.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="SigStat_Common_Signature_System_Collections_IEnumerable_GetEnumerator" data-uid="SigStat.Common.Signature.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.ArrayExtension.html#SigStat_Common_ArrayExtension_ToArrays__1_System_Collections_Generic_IEnumerable___0__System_Int32_">ArrayExtension.ToArrays&lt;T&gt;(IEnumerable&lt;T&gt;, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.StrokeHelper.html#SigStat_Common_StrokeHelper_GetStrokes_SigStat_Common_Signature_">StrokeHelper.GetStrokes(Signature)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Signature.md&amp;value=---%0Auid%3A%20SigStat.Common.Signature%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Model/Signature.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

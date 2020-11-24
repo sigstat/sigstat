@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MCYTLoader
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MCYTLoader
+   ">
+    <meta name="generator" content="docfx 2.56.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SigStat.Common.Loaders.MCYTLoader">
+  
+  
+  <h1 id="SigStat_Common_Loaders_MCYTLoader" data-uid="SigStat.Common.Loaders.MCYTLoader" class="text-break">Class MCYTLoader
+  </h1>
+  <div class="markdown level0 summary"><p><a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html">DataSetLoader</a> for the MCYT dataset</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html">DataSetLoader</a></div>
+    <div class="level2"><span class="xref">MCYTLoader</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SigStat.Common.Loaders.IDataSetLoader.html">IDataSetLoader</a></div>
+    <div><a class="xref" href="SigStat.Common.ILoggerObject.html">ILoggerObject</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html#SigStat_Common_Loaders_DataSetLoader_Logger">DataSetLoader.Logger</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html#SigStat_Common_Loaders_DataSetLoader_EnumerateSigners">DataSetLoader.EnumerateSigners()</a>
+    </div>
+    <div>
+      <a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html#SigStat_Common_Loaders_DataSetLoader_SigStat_Common_Loaders_IDataSetLoader_SignerFilter">DataSetLoader.IDataSetLoader.SignerFilter</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SigStat.Common.Loaders.html">SigStat.Common.Loaders</a></h6>
+  <h6><strong>Assembly</strong>: SigStat.Common.dll</h6>
+  <h5 id="SigStat_Common_Loaders_MCYTLoader_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonObject(MemberSerialization.OptOut)]
+public class MCYTLoader : DataSetLoader, IDataSetLoader, ILoggerObject</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader__ctor_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.%23ctor(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L74">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader__ctor_" data-uid="SigStat.Common.Loaders.MCYTLoader.#ctor*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader__ctor_System_String_System_Boolean_" data-uid="SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean)">MCYTLoader(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SigStat.Common.Loaders.MCYTLoader.html">MCYTLoader</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MCYTLoader(string databasePath, bool standardFeatures)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">databasePath</span></td>
+        <td><p>The database path.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">standardFeatures</span></td>
+        <td><p>if set to <code>true</code> features will be also stored in <a class="xref" href="SigStat.Common.Features.html">Features</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader__ctor_System_String_System_Boolean_System_Predicate_SigStat_Common_Signer__.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.%23ctor(System.String%2CSystem.Boolean%2CSystem.Predicate%7BSigStat.Common.Signer%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L89">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader__ctor_" data-uid="SigStat.Common.Loaders.MCYTLoader.#ctor*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader__ctor_System_String_System_Boolean_System_Predicate_SigStat_Common_Signer__" data-uid="SigStat.Common.Loaders.MCYTLoader.#ctor(System.String,System.Boolean,System.Predicate{SigStat.Common.Signer})">MCYTLoader(String, Boolean, Predicate&lt;Signer&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SigStat.Common.Loaders.MCYTLoader.html">MCYTLoader</a> class with specified database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MCYTLoader(string databasePath, bool standardFeatures, Predicate&lt;Signer&gt; signerFilter = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">databasePath</span></td>
+        <td><p>Represents the path, to load the signatures from. It supports two basic approaches:</p>
+<ul><li></li><li></li></ul>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">standardFeatures</span></td>
+        <td><p>Convert loaded data to standard <a class="xref" href="SigStat.Common.Features.html">Features</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Predicate</span>&lt;<a class="xref" href="SigStat.Common.Signer.html">Signer</a>&gt;</td>
+        <td><span class="parametername">signerFilter</span></td>
+        <td><p>Sets the <a class="xref" href="SigStat.Common.Loaders.MCYTLoader.html#SigStat_Common_Loaders_MCYTLoader_SignerFilter">SignerFilter</a> property</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader_DatabasePath.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.DatabasePath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L105">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader_DatabasePath_" data-uid="SigStat.Common.Loaders.MCYTLoader.DatabasePath*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader_DatabasePath" data-uid="SigStat.Common.Loaders.MCYTLoader.DatabasePath">DatabasePath</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the database path.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DatabasePath { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader_SamplingFrequency.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.SamplingFrequency%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L99">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader_SamplingFrequency_" data-uid="SigStat.Common.Loaders.MCYTLoader.SamplingFrequency*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader_SamplingFrequency" data-uid="SigStat.Common.Loaders.MCYTLoader.SamplingFrequency">SamplingFrequency</h4>
+  <div class="markdown level1 summary"><p>Set MCYT sampling frequenct to 100hz</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int SamplingFrequency { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html#SigStat_Common_Loaders_DataSetLoader_SamplingFrequency">DataSetLoader.SamplingFrequency</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader_SignerFilter.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.SignerFilter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L114">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader_SignerFilter_" data-uid="SigStat.Common.Loaders.MCYTLoader.SignerFilter*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader_SignerFilter" data-uid="SigStat.Common.Loaders.MCYTLoader.SignerFilter">SignerFilter</h4>
+  <div class="markdown level1 summary"><p>Ignores any signers during the loading, that do not match the predicate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Predicate&lt;Signer&gt; SignerFilter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Predicate</span>&lt;<a class="xref" href="SigStat.Common.Signer.html">Signer</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader_StandardFeatures.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.StandardFeatures%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L110">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader_StandardFeatures_" data-uid="SigStat.Common.Loaders.MCYTLoader.StandardFeatures*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader_StandardFeatures" data-uid="SigStat.Common.Loaders.MCYTLoader.StandardFeatures">StandardFeatures</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether features are also loaded as <a class="xref" href="SigStat.Common.Features.html">Features</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StandardFeatures { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader_EnumerateSigners_System_Predicate_SigStat_Common_Signer__.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.EnumerateSigners(System.Predicate%7BSigStat.Common.Signer%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L117">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader_EnumerateSigners_" data-uid="SigStat.Common.Loaders.MCYTLoader.EnumerateSigners*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader_EnumerateSigners_System_Predicate_SigStat_Common_Signer__" data-uid="SigStat.Common.Loaders.MCYTLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})">EnumerateSigners(Predicate&lt;Signer&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;Signer&gt; EnumerateSigners(Predicate&lt;Signer&gt; signerFilter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Predicate</span>&lt;<a class="xref" href="SigStat.Common.Signer.html">Signer</a>&gt;</td>
+        <td><span class="parametername">signerFilter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SigStat.Common.Signer.html">Signer</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="SigStat.Common.Loaders.DataSetLoader.html#SigStat_Common_Loaders_DataSetLoader_EnumerateSigners_System_Predicate_SigStat_Common_Signer__">DataSetLoader.EnumerateSigners(Predicate&lt;Signer&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader_LoadSignature_SigStat_Common_Signature_System_IO_MemoryStream_System_Boolean_.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader.LoadSignature(SigStat.Common.Signature%2CSystem.IO.MemoryStream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L170">View Source</a>
+  </span>
+  <a id="SigStat_Common_Loaders_MCYTLoader_LoadSignature_" data-uid="SigStat.Common.Loaders.MCYTLoader.LoadSignature*"></a>
+  <h4 id="SigStat_Common_Loaders_MCYTLoader_LoadSignature_SigStat_Common_Signature_System_IO_MemoryStream_System_Boolean_" data-uid="SigStat.Common.Loaders.MCYTLoader.LoadSignature(SigStat.Common.Signature,System.IO.MemoryStream,System.Boolean)">LoadSignature(Signature, MemoryStream, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Loads one signature from specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LoadSignature(Signature signature, MemoryStream stream, bool standardFeatures)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SigStat.Common.Signature.html">Signature</a></td>
+        <td><span class="parametername">signature</span></td>
+        <td><p>Signature to write features to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.MemoryStream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream to read MCYT data from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">standardFeatures</span></td>
+        <td><p>Convert loaded data to standard <a class="xref" href="SigStat.Common.Features.html">Features</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SigStat_Common_Loaders_MCYTLoader_LoadSignature_SigStat_Common_Signature_System_IO_MemoryStream_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Based on Mohammad's MCYT reader.</p>
+</div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.Loaders.IDataSetLoader.html">IDataSetLoader</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObject.html">ILoggerObject</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogError_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogError(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogInformation_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogInformation(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogWarning_SigStat_Common_ILoggerObject_System_Exception_System_String_System_Object___">ILoggerObjectExtensions.LogWarning(ILoggerObject, Exception, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogTrace(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogTrace__1_SigStat_Common_ILoggerObject___0_Microsoft_Extensions_Logging_EventId_System_Exception_System_Func___0_System_Exception_System_String__">ILoggerObjectExtensions.LogTrace&lt;TState&gt;(ILoggerObject, TState, EventId, Exception, Func&lt;TState, Exception, String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogCritical_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogCritical(ILoggerObject, String, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="SigStat.Common.ILoggerObjectExtensions.html#SigStat_Common_ILoggerObjectExtensions_LogDebug_SigStat_Common_ILoggerObject_System_String_System_Object___">ILoggerObjectExtensions.LogDebug(ILoggerObject, String, Object[])</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Gerghet/sigstat/new/develop/apiSpec/new?filename=SigStat_Common_Loaders_MCYTLoader.md&amp;value=---%0Auid%3A%20SigStat.Common.Loaders.MCYTLoader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Gerghet/sigstat/blob/develop/docfx_project/src/SigStat.Common/Loaders/MCYTLoader.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

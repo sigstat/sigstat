@@ -1,1 +1,0 @@
-dotnet SigStat.Benchmark.dll analyse --connection "Mongo.txt" --experiment Test --report "Summary.xlsx"

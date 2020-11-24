@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "SigStat.PreprocessingBenchmark": {
-      "commandName": "Project",
-      "commandLineArgs": "-k \"D:/key.txt\" -m Worker"
-    }
-  }
-}

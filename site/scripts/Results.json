@@ -1,0 +1,6295 @@
+﻿{
+  "databases": [
+    {
+      "Name": "SVC2004",
+      "Description": "Siganture Verification Competition 2004",
+      "Signers": 20,
+      "GenuineSignatures": 20,
+      "ForgedSignatures": 20,
+      "TotalSignatures": 800,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "MCYT100",
+      "Description": "xyxyxy",
+      "Signers": 2022,
+      "GenuineSignatures": 2210,
+      "ForgedSignatures": 1,
+      "TotalSignatures": 80110,
+      "url": "http://asd.hu"
+    },
+    {
+      "Name": "SigWiComp'11",
+      "Description": "coll04",
+      "Signers": 4420,
+      "GenuineSignatures": 40,
+      "ForgedSignatures": 30,
+      "TotalSignatures": 810,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'13",
+      "Description": "Siganture Verification Competition 2013",
+      "Signers": 20,
+      "GenuineSignatures": 20,
+      "ForgedSignatures": 20,
+      "TotalSignatures": 800,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'15",
+      "Description": "Siganture Verification Competition 2015",
+      "Signers": 40,
+      "GenuineSignatures": 420,
+      "ForgedSignatures": 420,
+      "TotalSignatures": 88,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'17",
+      "Description": "Siganture Verification Competition 2017",
+      "Signers": 240,
+      "GenuineSignatures": 1420,
+      "ForgedSignatures": 1420,
+      "TotalSignatures": 188,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'19",
+      "Description": "Siganture Verification Competition 2019",
+      "Signers": 340,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 3420,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'21",
+      "Description": "Siganture Verification Competition 2021",
+      "Signers": 340,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 3420,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'23",
+      "Description": "Siganture Verification Competition 2023",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'25",
+      "Description": "Siganture Verification Competition 2023",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'27",
+      "Description": "Siganture Verification Competition 2023",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'29",
+      "Description": "Siganture Verification Competition 2023",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'31",
+      "Description": "Siganture Verification Competition 2031",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'33",
+      "Description": "Siganture Verification Competition 2033",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'35",
+      "Description": "Siganture Verification Competition 2035",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'37",
+      "Description": "Siganture Verification Competition 2037",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'39",
+      "Description": "Siganture Verification Competition 2037",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'41",
+      "Description": "Siganture Verification Competition 2037",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'43",
+      "Description": "Siganture Verification Competition 2037",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'45",
+      "Description": "Siganture Verification Competition 2037",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    },
+    {
+      "Name": "SigWiComp'47",
+      "Description": "Siganture Verification Competition 2037",
+      "Signers": 3140,
+      "GenuineSignatures": 3420,
+      "ForgedSignatures": 34520,
+      "TotalSignatures": 388,
+      "url": "http://index.hu"
+    }
+  ],
+  "results": [
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 19,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier123",
+      "verifierDescription": "xxxxx",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 2,
+        "FAR": 5,
+        "FRR": 8,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 11,
+        "FAR": 14,
+        "FRR": 17
+      },
+      "SigWiComp'11": {
+        "AER": 20,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 23,
+        "FAR": 26,
+        "FRR": 29
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 12,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 25,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier456",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 3,
+        "FAR": 6,
+        "FRR": 9,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 12,
+        "FAR": 15,
+        "FRR": 18
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 24,
+        "FAR": 27,
+        "FRR": 30
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 13,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 26,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier789",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 106,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 14,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 27,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifierxyxyxy",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier101112",
+      "verifierDescription": "yyysum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 100,
+        "FAR": 101,
+        "FRR": 102,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 103,
+        "FAR": 104,
+        "FRR": 105
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 107,
+        "FAR": 108,
+        "FRR": 109
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    },
+    {
+      "verifierName": "Simple Verifier",
+      "verifierDescription": "This can be a longer text lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+      "verifierURL": "http://index.hu",
+      "SVC2004": {
+        "AER": 1,
+        "FAR": 4,
+        "FRR": 7,
+        "Comment": "Signer 45 was ignored"
+      },
+      "MCYT100": {
+        "AER": 10,
+        "FAR": 13,
+        "FRR": 16
+      },
+      "SigWiComp'11": {
+        "AER": 21,
+        "FAR": 100,
+        "FRR": 100,
+        "Comment": "Exception was thrown..... long message"
+      },
+      "SigWiComp'13": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'15": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'17": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'19": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'21": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'23": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'25": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'27": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'29": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'31": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'33": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'35": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'37": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'39": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'41": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'43": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'45": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "SigWiComp'47": {
+        "AER": 22,
+        "FAR": 25,
+        "FRR": 28
+      },
+      "Average": {
+        "AER": 11,
+        "FAR": 12,
+        "FRR": 13
+      },
+      "Average Core": {
+        "AER": 24,
+        "FAR": 25,
+        "FRR": 26
+      }
+    }
+  ]
+}
