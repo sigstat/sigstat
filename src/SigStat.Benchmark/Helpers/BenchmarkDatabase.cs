@@ -322,6 +322,8 @@ namespace SigStat.Benchmark.Helpers
             foreach (var bson in cursor.ToEnumerable())
             {
                 var execution = bson["results"]["KeyValueGroups"]["Execution"]["dict"];
+                var signerResults = bson["results"]["KeyValueGroups"]["Results"]["dict"];
+
                 var parameters = bson["results"]["KeyValueGroups"]["Parameters"]["dict"].AsBsonDocument;
                 var classification = bson["classification"].AsBsonArray;
                 var benchmarkResults = bson["results"]["KeyValueGroups"]["BenchmarkResults"]["dict"];
@@ -338,6 +340,7 @@ namespace SigStat.Benchmark.Helpers
                     FAR = benchmarkResults["FAR"].AsDouble,
                     AER = benchmarkResults["AER"].AsDouble,
 
+                    SignerResults = null,
                     ClassificationResults = classification.ToList().Select(b=>BsonSerializer.Deserialize<ClassificationResult>(b.AsBsonDocument)).ToList()
 
                 };

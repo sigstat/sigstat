@@ -4,7 +4,7 @@
       "src": [
         {
           "files": [
-              "./**/SigStat.Common.csproj"
+            "src/SigStat.Common/SigStat.Common.csproj"
           ]
         }
       ],

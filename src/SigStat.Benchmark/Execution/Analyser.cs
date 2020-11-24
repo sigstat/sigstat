@@ -11,6 +11,7 @@ using System.Diagnostics;
 using SigStat.Benchmark.Helpers;
 using SigStat.Benchmark.Execution;
 using System.Reflection;
+using SigStat.Common;
 
 namespace SigStat.Benchmark
 {
@@ -51,6 +52,7 @@ namespace SigStat.Benchmark
             public string Verifier { get; set; }
 
             public List<ClassificationResult> ClassificationResults { get; set; }
+            public List<Result> SignerResults { get; set; }
 
         }
 
