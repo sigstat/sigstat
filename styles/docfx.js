@@ -422,8 +422,6 @@ $(function () {
       $('#toc a.active').parents('li').each(function (i, e) {
         $(e).addClass(active).addClass(expanded);
         $(e).children('a').addClass(active);
-      })
-      $('#toc a.active').parents('li').each(function (i, e) {
         top += $(e).position().top;
       })
       $('.sidetoc').scrollTop(top - 50);
@@ -436,43 +434,20 @@ $(function () {
     }
 
     function registerTocEvents() {
-      var tocFilterInput = $('#toc_filter_input');
-      var tocFilterClearButton = $('#toc_filter_clear');
-        
       $('.toc .nav > li > .expand-stub').click(function (e) {
         $(e.target).parent().toggleClass(expanded);
       });
       $('.toc .nav > li > .expand-stub + a:not([href])').click(function (e) {
         $(e.target).parent().toggleClass(expanded);
       });
-      tocFilterInput.on('input', function (e) {
+      $('#toc_filter_input').on('input', function (e) {
         var val = this.value;
-        //Save filter string to local session storage
-        if (typeof(Storage) !== "undefined") {
-          try {
-            sessionStorage.filterString = val;
-            }
-          catch(e)
-            {}
-        }
         if (val === '') {
           // Clear 'filtered' class
           $('#toc li').removeClass(filtered).removeClass(hide);
-          tocFilterClearButton.fadeOut();
           return;
         }
-        tocFilterClearButton.fadeIn();
 
-        // set all parent nodes status
-        $('#toc li>a').filter(function (i, e) {
-          return $(e).siblings().length > 0
-        }).each(function (i, anchor) {
-          var parent = $(anchor).parent();
-          parent.addClass(hide);
-          parent.removeClass(show);
-          parent.removeClass(filtered);
-        })
-        
         // Get leaf nodes
         $('#toc li>a').filter(function (i, e) {
           return $(e).siblings().length === 0
@@ -513,30 +488,6 @@ $(function () {
           return false;
         }
       });
-      
-      // toc filter clear button
-      tocFilterClearButton.hide();
-      tocFilterClearButton.on("click", function(e){
-        tocFilterInput.val("");
-        tocFilterInput.trigger('input');
-        if (typeof(Storage) !== "undefined") {
-          try {
-            sessionStorage.filterString = "";
-            }
-          catch(e)
-            {}
-        }
-      });
-
-      //Set toc filter from local session storage on page load
-      if (typeof(Storage) !== "undefined") {
-        try {
-          tocFilterInput.val(sessionStorage.filterString);
-          tocFilterInput.trigger('input');
-          }
-        catch(e)
-          {}
-      }
     }
 
     function loadToc() {
@@ -743,6 +694,39 @@ $(function () {
       $(".sidetoc").addClass("shiftup");
       $(".sideaffix").addClass("shiftup");
     }
+  }
+
+  function renderLogo() {
+    // For LOGO SVG
+    // Replace SVG with inline SVG
+    // http://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement
+    jQuery('img.svg').each(function () {
+      var $img = jQuery(this);
+      var imgID = $img.attr('id');
+      var imgClass = $img.attr('class');
+      var imgURL = $img.attr('src');
+
+      jQuery.get(imgURL, function (data) {
+        // Get the SVG tag, ignore the rest
+        var $svg = jQuery(data).find('svg');
+
+        // Add replaced image's ID to the new SVG
+        if (typeof imgID !== 'undefined') {
+          $svg = $svg.attr('id', imgID);
+        }
+        // Add replaced image's classes to the new SVG
+        if (typeof imgClass !== 'undefined') {
+          $svg = $svg.attr('class', imgClass + ' replaced-svg');
+        }
+
+        // Remove any invalid XML tags as per http://validator.w3.org
+        $svg = $svg.removeAttr('xmlns:a');
+
+        // Replace image with new SVG
+        $img.replaceWith($svg);
+
+      }, 'xml');
+    });
   }
 
   function renderTabs() {
@@ -1153,7 +1137,7 @@ $(function () {
 
     $(window).on('hashchange', scrollToCurrent);
 
-    $(window).on('load', function () {
+    $(window).load(function () {
         // scroll to the anchor if present, offset by the header
         scrollToCurrent();
     });
