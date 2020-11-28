@@ -358,7 +358,7 @@ $(function () {
     }
 
     function loadNavbar() {
-      var navbarPath = $("meta[property='docfx\\:navrel']").attr("content");
+      var navbarPath = '../toc.html';
       if (!navbarPath) {
         return;
       }
@@ -719,19 +719,8 @@ $(function () {
     }
 
     function showFooterCore() {
-      if (needFooter()) {
         shiftUpBottomCss();
         $("footer").fadeIn();
-      } else {
-        resetBottomCss();
-        $("footer").fadeOut();
-      }
-    }
-
-    function needFooter() {
-      var scrollHeight = $(document).height();
-      var scrollPosition = $(window).height() + $(window).scrollTop();
-      return (scrollHeight - scrollPosition) < 1;
     }
 
     function resetBottomCss() {

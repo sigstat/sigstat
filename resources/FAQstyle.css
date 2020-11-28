@@ -19,7 +19,6 @@ padding: 2em;
 padding-top : 3em;
 text-align : center;
 color : black;
-
 }
 
 
@@ -29,12 +28,9 @@ html, body
 }
 
 .accordion-item{
-
     margin-bottom : 0.3rem;
     padding: 0;
-  /* box-shadow: .5rem 2px .4rem rgba(0,0,0,.1);*/
-    box-shadow: 0 0 20px rgba(0,0,0,.2);
-
+   /* box-shadow: 0 0 20px rgba(0,0,0,.2);*/
 }
 
 
@@ -54,20 +50,14 @@ html, body
     align-items: center;
     justify-content: space-between;
     padding : 1rem 0;
-    
-
-
-    
 }
 
 .accordion-link ion-icon{
     color : #9e0b0f;
     padding: .5rem;
-
 }
 
 .accordion-link .chevron-down-outline{
-    
     display: none;
 }
 
@@ -75,7 +65,7 @@ html, body
     color : black;
     text-decoration: none;
     background-color : rgba(155, 155, 155,0.7);
-    box-shadow: .5rem 2px .4rem rgba(12, 177, 100, 0.696);
+    /*box-shadow: .5rem 2px .4rem rgba(12, 177, 100, 0.696);*/
 
 }
 
@@ -90,22 +80,16 @@ padding : 0 1rem;
     float: left;
     font-size : 2rem;
     padding: 0 1.3rem;
-    
     }
 
 .faqoldal{
     box-sizing : border-box;
-
-    font-family : Playfair;
     background-color : rgba(128, 128, 128,0.2);
-    height: 100%;
-    display : flex;
+    height: auto;
+    display : flex ;
     font-size : 1.4rem;
     align-items: center;
     justify-content: space-between;
-    
-    
-    
 }
 
 
@@ -116,9 +100,6 @@ padding : 0 1rem;
     position : relative;
     background-color : rgba(128, 128, 128,0.1);
     transition: max-height 650ms;
-    
-    
-    
 }
 
 
@@ -136,23 +117,18 @@ padding : 0 1rem;
 
 .accordion-item:target .valasz{
     max-height: 20rem;
-
-
 }
 
 .accordion-item:target .vissza{
 display: none;
-
 }
 
 .accordion-item:target .lefele{
     display: block;
-
     }
 
 .accordion-item:target {
-    box-shadow: .5rem 2px .4rem rgba(12, 177, 100, 0.696);
-
+   /* box-shadow: .5rem 2px .4rem rgba(12, 177, 100, 0.696);*/
 }
 
 
