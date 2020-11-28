@@ -85,7 +85,7 @@ padding : 0 1rem;
 .faqoldal{
     box-sizing : border-box;
     background-color : rgba(128, 128, 128,0.2);
-    height: auto;
+    height: 100%;
     display : flex ;
     font-size : 1.4rem;
     align-items: center;
