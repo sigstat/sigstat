@@ -111,13 +111,15 @@ button,select {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
+    padding-top: 60px;
+    width: auto !important;
     margin-right: auto;
     margin-left: auto
 }
 
-        @media (min-width: 576px) {
+@media (min-width: 576px) {
     .container {
-        max-width:540px
+        width:540px
     }
 }
         
@@ -352,9 +354,6 @@ body, html {
     height: 100%;
 }
 
-.container {
-    padding-top: 70px;
-}
 .card {
     border: none;
 }
@@ -430,7 +429,7 @@ body, html {
             </div>
             <!-- /.col-lg-8 -->
             <div class="col-lg-5">
-                <p class="text-lg-right font-italic">An open source signature verification framework.</p>
+                <p class="text-lg-right font-italic" style="text-align: right;">An open source signature verification framework.</p>
                 <a class="btn btn-dark float-right" style="background-color: #9e0b0f"
                     href="https://github.com/sigstat/sigstat/releases">Download #1 Alpha Release</a>
             </div>
