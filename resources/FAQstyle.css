@@ -26,6 +26,10 @@ html, body
 {
     height:100%;
 }
+body{
+    background-color : rgba(128, 128, 128,0.2) !important;
+
+}
 
 .accordion-item{
     margin-bottom : 0.3rem;
@@ -84,7 +88,6 @@ padding : 0 1rem;
 
 .faqoldal{
     box-sizing : border-box;
-    background-color : rgba(128, 128, 128,0.2);
     height: 100%;
     display : flex ;
     font-size : 1.4rem;
