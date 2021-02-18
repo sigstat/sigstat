@@ -142,6 +142,8 @@
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-DataSetLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.DataSetLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
 - [DistanceFunctionJsonConverter](#T-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter 'SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter')
+  - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,System-Func{System-Double[],System-Double[],System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Func{System.Double[],System.Double[],System.Double},System.Boolean,Newtonsoft.Json.JsonSerializer)')
+  - [WriteJson()](#M-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter-WriteJson-Newtonsoft-Json-JsonWriter,System-Func{System-Double[],System-Double[],System-Double},Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceFunctionJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Func{System.Double[],System.Double[],System.Double},Newtonsoft.Json.JsonSerializer)')
 - [DistanceMatrixConverter](#T-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter')
   - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},System.Boolean,Newtonsoft.Json.JsonSerializer)')
   - [WriteJson()](#M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-WriteJson-Newtonsoft-Json-JsonWriter,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.DistanceMatrixConverter.WriteJson(Newtonsoft.Json.JsonWriter,SigStat.Common.DistanceMatrix{System.String,System.String,System.Double},Newtonsoft.Json.JsonSerializer)')
@@ -251,6 +253,7 @@
   - [Get()](#M-SigStat-Common-FeatureDescriptor`1-Get-System-String- 'SigStat.Common.FeatureDescriptor`1.Get(System.String)')
 - [FeatureStreamingContextState](#T-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState')
   - [#ctor()](#M-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-#ctor-System-Boolean- 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.#ctor(System.Boolean)')
+  - [CompactFeatures](#P-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-CompactFeatures 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.CompactFeatures')
   - [KnownFeatureKeys](#P-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-KnownFeatureKeys 'SigStat.Common.Helpers.Serialization.FeatureStreamingContextState.KnownFeatureKeys')
 - [Features](#T-SigStat-Common-Features 'SigStat.Common.Features')
   - [All](#F-SigStat-Common-Features-All 'SigStat.Common.Features.All')
@@ -359,6 +362,7 @@
   - [Transform()](#M-SigStat-Common-Transforms-ImageGenerator-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.ImageGenerator.Transform(SigStat.Common.Signature)')
 - [ImageLoader](#T-SigStat-Common-Loaders-ImageLoader 'SigStat.Common.Loaders.ImageLoader')
   - [#ctor(databasePath)](#M-SigStat-Common-Loaders-ImageLoader-#ctor-System-String- 'SigStat.Common.Loaders.ImageLoader.#ctor(System.String)')
+  - [SamplingFrequency](#P-SigStat-Common-Loaders-ImageLoader-SamplingFrequency 'SigStat.Common.Loaders.ImageLoader.SamplingFrequency')
   - [EnumerateSigners()](#M-SigStat-Common-Loaders-ImageLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}- 'SigStat.Common.Loaders.ImageLoader.EnumerateSigners(System.Predicate{SigStat.Common.Signer})')
   - [LoadImage(signature,file)](#M-SigStat-Common-Loaders-ImageLoader-LoadImage-SigStat-Common-Signature,System-String- 'SigStat.Common.Loaders.ImageLoader.LoadImage(SigStat.Common.Signature,System.String)')
   - [LoadSignature(file)](#M-SigStat-Common-Loaders-ImageLoader-LoadSignature-System-String- 'SigStat.Common.Loaders.ImageLoader.LoadSignature(System.String)')
@@ -435,6 +439,7 @@
   - [#ctor(nearestNeighborCount,distanceFunction)](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-#ctor-System-Nullable{System-Int32},SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.#ctor(System.Nullable{System.Int32},SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})')
   - [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction')
   - [Features](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Features 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Features')
+  - [NearestNeighborCount](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-NearestNeighborCount 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.NearestNeighborCount')
   - [Sampler](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Sampler')
   - [Test()](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Test-SigStat-Common-Pipeline-ISignerModel,SigStat-Common-Signature- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Test(SigStat.Common.Pipeline.ISignerModel,SigStat.Common.Signature)')
   - [Train()](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Train-System-Collections-Generic-List{SigStat-Common-Signature}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.Train(System.Collections.Generic.List{SigStat.Common.Signature})')
@@ -628,6 +633,7 @@
   - [InputP](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-InputP 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputP')
   - [InputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-InputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputX')
   - [InputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-InputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputY')
+  - [OutputP](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-OutputP 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.OutputP')
   - [OutputX](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-OutputX 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.OutputX')
   - [OutputY](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-OutputY 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.OutputY')
   - [samplerate](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-samplerate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.samplerate')
@@ -664,8 +670,8 @@
   - [DeserializeFromFile\`\`1(path)](#M-SigStat-Common-Helpers-SerializationHelper-DeserializeFromFile``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.DeserializeFromFile``1(System.String)')
   - [Deserialize\`\`1(s)](#M-SigStat-Common-Helpers-SerializationHelper-Deserialize``1-System-String- 'SigStat.Common.Helpers.SerializationHelper.Deserialize``1(System.String)')
   - [GetSettings()](#M-SigStat-Common-Helpers-SerializationHelper-GetSettings-System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.GetSettings(System.Boolean)')
-  - [JsonSerializeToFile\`\`1(o,path)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String,System.Boolean)')
-  - [JsonSerialize\`\`1(o)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)')
+  - [JsonSerializeToFile\`\`1(o,path,compactFeatures)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerializeToFile``1(``0,System.String,System.Boolean)')
+  - [JsonSerialize\`\`1(o,compactFeatures)](#M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean- 'SigStat.Common.Helpers.SerializationHelper.JsonSerialize``1(``0,System.Boolean)')
 - [SigComp11](#T-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11')
   - [T](#F-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11-T 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.T')
   - [X](#F-SigStat-Common-Loaders-SigComp11DutchLoader-SigComp11-X 'SigStat.Common.Loaders.SigComp11DutchLoader.SigComp11.X')
@@ -1335,7 +1341,7 @@ SigStat.Common
 
 ##### Summary
 
-Extracts basic statistical signature (like [](#!-Features-Bounds 'Features.Bounds') or [Cog](#F-SigStat-Common-Features-Cog 'SigStat.Common.Features.Cog')) information from an Image
+Extracts basic statistical signature (like [X](#F-SigStat-Common-Features-X 'SigStat.Common.Features.X') or [Cog](#F-SigStat-Common-Features-Cog 'SigStat.Common.Features.Cog')) information from an Image
 
 <a name='P-SigStat-Common-BasicMetadataExtraction-Trim'></a>
 ### Trim `property`
@@ -2475,6 +2481,28 @@ Helper class for serializing distance functions
 
 - [Newtonsoft.Json.JsonConverter](#T-Newtonsoft-Json-JsonConverter 'Newtonsoft.Json.JsonConverter')
 
+<a name='M-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,System-Func{System-Double[],System-Double[],System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer-'></a>
+### ReadJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-SigStat-Common-Helpers-Serialization-DistanceFunctionJsonConverter-WriteJson-Newtonsoft-Json-JsonWriter,System-Func{System-Double[],System-Double[],System-Double},Newtonsoft-Json-JsonSerializer-'></a>
+### WriteJson() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter'></a>
 ## DistanceMatrixConverter `type`
 
@@ -2484,7 +2512,7 @@ SigStat.Common.Helpers.Serialization
 
 ##### Summary
 
-Serializes/Deserializes a [](#!-DistanceMatrix<string,string,double> 'DistanceMatrix<string,string,double>') object using its ToArray() and FromArray() methods.
+Serializes/Deserializes a [DistanceMatrix\`3](#T-SigStat-Common-DistanceMatrix`3 'SigStat.Common.DistanceMatrix`3') object using its ToArray() and FromArray() methods.
 
 <a name='M-SigStat-Common-Helpers-Serialization-DistanceMatrixConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,SigStat-Common-DistanceMatrix{System-String,System-String,System-Double},System-Boolean,Newtonsoft-Json-JsonSerializer-'></a>
 ### ReadJson() `method`
@@ -2639,7 +2667,7 @@ SigStat.Common.PipelineItems.Classifiers
 
 ##### Summary
 
-Classifies Signatures with the [](#!-Dtw 'Dtw') algorithm.
+Classifies Signatures with the DTW algorithm.
 
 <a name='M-SigStat-Common-PipelineItems-Classifiers-DtwClassifier-#ctor'></a>
 ### #ctor() `constructor`
@@ -3428,12 +3456,6 @@ Range of the inserted data
 | headers | [SigStat.Common.Helpers.Excel.ExcelColor](#T-SigStat-Common-Helpers-Excel-ExcelColor 'SigStat.Common.Helpers.Excel.ExcelColor') | Defines if the table has header |
 | name | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | If given, creates a named range, with this name |
 
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| T | Type of inserted objects |
-
 <a name='M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String-'></a>
 ### InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name) `method`
 
@@ -3971,6 +3993,13 @@ Constructor
 ##### Parameters
 
 This constructor has no parameters.
+
+<a name='P-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-CompactFeatures'></a>
+### CompactFeatures `property`
+
+##### Summary
+
+Set to true to use compact feature notation
 
 <a name='P-SigStat-Common-Helpers-Serialization-FeatureStreamingContextState-KnownFeatureKeys'></a>
 ### KnownFeatureKeys `property`
@@ -5113,6 +5142,13 @@ Initializes a new instance of the [ImageLoader](#T-SigStat-Common-Loaders-ImageL
 | ---- | ---- | ----------- |
 | databasePath | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | File path to the database. |
 
+<a name='P-SigStat-Common-Loaders-ImageLoader-SamplingFrequency'></a>
+### SamplingFrequency `property`
+
+##### Summary
+
+*Inherit from parent.*
+
 <a name='M-SigStat-Common-Loaders-ImageLoader-EnumerateSigners-System-Predicate{SigStat-Common-Signer}-'></a>
 ### EnumerateSigners() `method`
 
@@ -5959,6 +5995,13 @@ The function used to calculate the distance between two data sequences
 ##### Summary
 
 [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')s to consider during classification
+
+<a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-NearestNeighborCount'></a>
+### NearestNeighborCount `property`
+
+##### Summary
+
+The number of nearest neighbors to consider during evaluation. Set it to null to use all training signatures.
 
 <a name='P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-Sampler'></a>
 ### Sampler `property`
@@ -7865,6 +7908,13 @@ Gets or sets the input feature representing the X coordinates of an online signa
 
 Gets or sets the input feature representing the Y coordinates of an online signature
 
+<a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-OutputP'></a>
+### OutputP `property`
+
+##### Summary
+
+Gets or sets the input feature representing the Pressure values of an online signature
+
 <a name='P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-OutputX'></a>
 ### OutputX `property`
 
@@ -8247,7 +8297,7 @@ A new settings object
 This method has no parameters.
 
 <a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerializeToFile``1-``0,System-String,System-Boolean-'></a>
-### JsonSerializeToFile\`\`1(o,path) `method`
+### JsonSerializeToFile\`\`1(o,path,compactFeatures) `method`
 
 ##### Summary
 
@@ -8259,6 +8309,7 @@ Writes object to file to the given by path in json format
 | ---- | ---- | ----------- |
 | o | [\`\`0](#T-``0 '``0') | The object |
 | path | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Relative path |
+| compactFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Set to true to use compact feature notation |
 
 ##### Generic Types
 
@@ -8267,7 +8318,7 @@ Writes object to file to the given by path in json format
 | T | The type of the object |
 
 <a name='M-SigStat-Common-Helpers-SerializationHelper-JsonSerialize``1-``0,System-Boolean-'></a>
-### JsonSerialize\`\`1(o) `method`
+### JsonSerialize\`\`1(o,compactFeatures) `method`
 
 ##### Summary
 
@@ -8282,6 +8333,7 @@ The json string constructed from the object
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | o | [\`\`0](#T-``0 '``0') | The object |
+| compactFeatures | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Set to true to use compact feature notation |
 
 ##### Generic Types
 
@@ -9305,6 +9357,10 @@ This method has no parameters.
 
 SigStat.Common
 
+##### Summary
+
+Helper functions for the management of signatures
+
 <a name='M-SigStat-Common-SignatureHelper-GetSignatureLength-SigStat-Common-Signature-'></a>
 ### GetSignatureLength(signature) `method`
 
@@ -9646,6 +9702,10 @@ This method has no parameters.
 
 SigStat.Common.Helpers
 
+##### Summary
+
+Calculates general statistics of the signatures of a given signer
+
 <a name='M-SigStat-Common-Helpers-SignerStatisticsHelper-GetHeightAvg-SigStat-Common-Signer-'></a>
 ### GetHeightAvg(signer) `method`
 
@@ -9765,7 +9825,7 @@ The font color is determined by the severity level.
 
 ##### Summary
 
-Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [](#!-LogLevel-Information 'LogLevel.Information').
+Initializes a new instance of [SimpleConsoleLogger](#T-SigStat-Common-Logging-SimpleConsoleLogger 'SigStat.Common.Logging.SimpleConsoleLogger') with LogLevel set to [Information](#F-Microsoft-Extensions-Logging-LogLevel-Information 'Microsoft.Extensions.Logging.LogLevel.Information').
 
 ##### Parameters
 

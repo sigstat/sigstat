@@ -52,6 +52,7 @@ namespace SigStat.Common.Helpers
         /// <typeparam name="T">The type of the object</typeparam>
         /// <param name="o">The object</param>
         /// <param name="path">Relative path</param>
+        /// <param name="compactFeatures">Set to true to use compact feature notation</param>
         public static void JsonSerializeToFile<T>(T o, string path, bool compactFeatures = false)
         {
             File.WriteAllText(path, JsonSerialize(o, compactFeatures));
@@ -61,6 +62,7 @@ namespace SigStat.Common.Helpers
         /// </summary>
         /// <typeparam name="T">The type of the object</typeparam>
         /// <param name="o">The object</param>
+        /// <param name="compactFeatures">Set to true to use compact feature notation</param>
         /// <returns>The json string constructed from the object</returns>
         public static string JsonSerialize<T>(T o, bool compactFeatures = false)
         {

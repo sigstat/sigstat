@@ -87,7 +87,7 @@ namespace SigStat.Common.Algorithms
                 //    return min_cost + cb[i + r + 1];
                 //}
 
-                /// Move current array to previous array.
+                // Move current array to previous array.
                 cost_tmp = cost;
                 cost = cost_prev;
                 cost_prev = cost_tmp;
@@ -302,21 +302,6 @@ namespace SigStat.Common.Algorithms
         {
             double d12 = d1 > d2 ? d2 : d1;
             return d12 > d3 ? d3 : d12;
-
-            if (d3 > d2)
-            {
-                if (d2 > d1)
-                    return d1;
-                else
-                    return d2;
-            }
-            else
-            {
-                if (d3 > d1)
-                    return d1;
-                else
-                    return d3;
-            }
         }
 
 

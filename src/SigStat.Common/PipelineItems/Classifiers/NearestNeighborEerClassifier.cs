@@ -77,6 +77,9 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// </summary>
         public IDistance<double[][]> DistanceFunction { get; set; }
 
+        /// <summary>
+        /// The number of nearest neighbors to consider during evaluation. Set it to null to use all training signatures.
+        /// </summary>
         public int? NearestNeighborCount { get; set; }
 
         /// <summary>

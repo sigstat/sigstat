@@ -285,7 +285,6 @@ namespace SigStat.Common.Helpers
         /// <summary>
         /// Insert a table filled with data from an IEnumerable
         /// </summary>
-        /// <typeparam name="T">Type of inserted objects</typeparam>
         /// <param name="ws">Worksheet in wich the table is created</param>
         /// <param name="col">Starting column of the table</param>
         /// <param name="row">Starting row of the table</param>

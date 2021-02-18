@@ -42,7 +42,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
 
     }
     /// <summary>
-    /// Classifies Signatures with the <see cref="Dtw"/> algorithm.
+    /// Classifies Signatures with the DTW algorithm.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class DtwClassifier : PipelineBase, IDistanceClassifier

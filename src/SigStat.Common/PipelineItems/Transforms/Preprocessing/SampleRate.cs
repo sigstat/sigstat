@@ -50,6 +50,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> OutputY { get; set; } = Features.Y;
+        /// <summary>
+        /// Gets or sets the input feature representing the Pressure values of an online signature
+        /// </summary>
         [Output]
         public FeatureDescriptor<List<double>> OutputP { get; set; } = Features.Pressure;
 

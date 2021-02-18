@@ -7,7 +7,7 @@ using System.Text;
 namespace SigStat.Common.Helpers.Serialization
 {
     /// <summary>
-    /// Serializes/Deserializes a <see cref="DistanceMatrix{string,string,double}"/> object using its ToArray() and FromArray() methods.
+    /// Serializes/Deserializes a <see cref="DistanceMatrix{TRowKey, TColumnKey, TValue}"/> object using its ToArray() and FromArray() methods.
     /// </summary>
     public class DistanceMatrixConverter : JsonConverter<DistanceMatrix<string, string, double>>
     {

@@ -40,15 +40,6 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         public ScalingMode Mode { get; set; } = ScalingMode.Scaling1;
 
-        /// <summary>
-        /// <para>NewMinValue: lower bound of the interval, in which the input feature will be scaled</para> 
-        /// </summary>
-        //public double NewMinValue { get; set; } = 0;
-
-        /// <summary>
-        /// <para>NewMaxValue: upper bound of the interval, in which the input feature will be scaled</para>
-        /// </summary>
-        //public double NewMaxValue { get; } = 1;
 
         /// <summary>
         /// Gets or sets the output feature.

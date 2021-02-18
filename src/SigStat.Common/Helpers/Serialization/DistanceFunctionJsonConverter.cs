@@ -13,6 +13,7 @@ namespace SigStat.Common.Helpers.Serialization
     /// <seealso cref="Newtonsoft.Json.JsonConverter" />
     public class DistanceFunctionJsonConverter : JsonConverter<Func<double[], double[], double>>
     {
+        /// <inheritdoc/>
         public override Func<double[], double[], double> ReadJson(JsonReader reader, Type objectType, Func<double[], double[], double> existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             var distanceFunc = (string)reader.Value;
@@ -41,7 +42,7 @@ namespace SigStat.Common.Helpers.Serialization
             return resultFunc;
 
         }
-
+        /// <inheritdoc/>
         public override void WriteJson(JsonWriter writer, Func<double[], double[], double> value, JsonSerializer serializer)
         {
             if (value.Method.DeclaringType != null)

@@ -30,7 +30,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SigStat.Benchmark\SigStat.Benchmark.csproj" />
     <ProjectReference Include="..\SigStat.Common\SigStat.Common.csproj" />
   </ItemGroup>
   <ItemGroup>

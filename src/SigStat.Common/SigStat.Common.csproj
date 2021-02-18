@@ -3,15 +3,16 @@
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
     <!-- Version info will be overwriten by the publish process -->
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Authors>Bence Kovari</Authors>
     <Company>Budapest University of Technology and Economics</Company>
-    <PackageProjectUrl>https://github.com/bmeaut/sigstat</PackageProjectUrl>
+    <PackageProjectUrl>https://www.sigstat.org</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Package Description</Description>
+    <Description>SigStat is an open source .NET class library for offline (static) and online (dynamic) signature verification.
+    </Description>
     <!-- <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>     -->
-    <Copyright>Copyright 2019</Copyright>
+    <Copyright>Copyright 2021</Copyright>
     <PackageTags>Signature;verification;offline;online</PackageTags>
   </PropertyGroup>
   <PropertyGroup>
@@ -19,8 +20,8 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/sigstat/sigstat</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>0.1.1.0</AssemblyVersion>
-    <FileVersion>0.1.1.0</FileVersion>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>7.3</LangVersion>

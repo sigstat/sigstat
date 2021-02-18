@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace SigStat.Common
 {
     /// <summary>
-    /// Extracts basic statistical signature (like <see cref="Features.Bounds"/> or <see cref="Features.Cog"/>) information from an Image
+    /// Extracts basic statistical signature (like <see cref="Features.X"/> or <see cref="Features.Cog"/>) information from an Image
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
     public class BasicMetadataExtraction : PipelineBase, ITransformation

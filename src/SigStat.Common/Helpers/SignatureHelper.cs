@@ -10,6 +10,9 @@ using System.Linq;
 
 namespace SigStat.Common
 {
+    /// <summary>
+    /// Helper functions for the management of signatures
+    /// </summary>
     public static class SignatureHelper
     {
         /// <summary>

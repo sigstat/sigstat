@@ -20,6 +20,9 @@ namespace SigStat.Common.Helpers.Serialization
         /// </summary>
         public List<string> KnownFeatureKeys { get; set; } = new List<string>();
 
+        /// <summary>
+        /// Set to true to use compact feature notation
+        /// </summary>
         public bool CompactFeatures { get; set; }
     }
 }

@@ -1,8 +1,0 @@
-universe = vanilla
-executable = /home/1/sigstat/bin/SigStat.Benchmark
-arguments = generate --connection mongodb://localhost:27017/ --experiment test
-output = output/generator.out
-error = output/generator.err
-log = output/generator.log
-requirements = ( machine =!= HEAD_NODE )
-queue

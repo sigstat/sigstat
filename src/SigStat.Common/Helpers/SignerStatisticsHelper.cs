@@ -4,6 +4,9 @@ using System.Text;
 using SigStat.Common.Helpers;
 namespace SigStat.Common.Helpers
 {
+    /// <summary>
+    /// Calculates general statistics of the signatures of a given signer
+    /// </summary>
     public static class SignerStatisticsHelper
     {
         /// <summary>

@@ -30,10 +30,7 @@ public class SampleRateResults
         /// </summary>
         [Input]
     public int samplerate { get; set; }
-    /// <summary>
-    /// Gets or sets the input feature representing the X coordinates of an online signature
-    /// </summary>
-   
+
 
 
 
