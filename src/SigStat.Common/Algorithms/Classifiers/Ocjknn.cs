@@ -11,12 +11,22 @@ namespace SigStat.Common.Algorithms.Classifiers
     /// </summary>
     public static class Ocjknn
     {
-        private struct Neighbor<Key>
+        private struct Neighbor<Key> : IEquatable<Neighbor<Key>>
         {
             public Key Label;
             public int Index;
             public double Distance;
             public double ReferenceDistance;
+
+            public bool Equals(Neighbor<Key> other)
+            {
+                return
+                    Label.Equals(other.Label)
+                    && Index == other.Index
+                    && Distance == other.Distance
+                    && ReferenceDistance == other.ReferenceDistance;
+
+            }
         }
 
         /// <summary>

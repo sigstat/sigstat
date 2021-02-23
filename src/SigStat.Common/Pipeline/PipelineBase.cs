@@ -62,7 +62,7 @@ namespace SigStat.Common
         /// <inheritdoc/>
         public ILogger Logger { get; set; }
 
-        private int progress = 0;
+        private int progress;
         /// <inheritdoc/>
         public int Progress
         {

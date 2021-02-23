@@ -24,8 +24,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             private double _startTime;
             private double _endTime;
-            private bool isStartInitialized = false;
-            private bool isEndInitialized = false;
+            private bool isStartInitialized;
+            private bool isEndInitialized;
 
             /// <summary>
             /// Gets or sets the start time of the slot

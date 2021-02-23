@@ -43,7 +43,7 @@ namespace SigStat.Common.Loaders
             // sample rate for the database
         }
 
-        private struct SigComp11ChineseSignatureFile
+        private struct SigComp11ChineseSignatureFile : IEquatable<SigComp11ChineseSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -100,6 +100,19 @@ namespace SigStat.Common.Loaders
                 }
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
+            }
+
+            public bool Equals(SigComp11ChineseSignatureFile other)
+            {
+               
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureIndex == other.SignatureIndex
+                    && ForgerID == other.ForgerID
+                    && SignatureID == other.SignatureID;
+
+
             }
         }
 

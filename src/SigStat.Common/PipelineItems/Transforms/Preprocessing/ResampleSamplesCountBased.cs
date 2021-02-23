@@ -18,7 +18,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <summary>
         /// Gets or sets the number of samples.
         /// </summary>
-        public int NumOfSamples { get; set; } = 0;
+        public int NumOfSamples { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the interpolation. <seealso cref="IInterpolation"/>

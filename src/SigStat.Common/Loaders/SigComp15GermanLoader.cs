@@ -42,7 +42,7 @@ namespace SigStat.Common.Loaders
 
 
 
-        private struct SigComp15GermanSignatureFile
+        private struct SigComp15GermanSignatureFile : IEquatable<SigComp15GermanSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -78,6 +78,16 @@ namespace SigStat.Common.Loaders
                 }
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
+            }
+
+            public bool Equals(SigComp15GermanSignatureFile other)
+            {
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureIndex == other.SignatureIndex
+                    && ForgerID == other.ForgerID
+                    && SignatureID == other.SignatureID;
             }
         }
 

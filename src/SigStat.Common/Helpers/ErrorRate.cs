@@ -7,7 +7,7 @@ namespace SigStat.Common
     /// <summary>
     /// Represents the ErrorRates achieved in a benchmark
     /// </summary>
-    public struct ErrorRate
+    public struct ErrorRate : IEquatable<ErrorRate>
     {
         /// <summary>
         /// False Acceptance Rate
@@ -21,5 +21,13 @@ namespace SigStat.Common
         /// Average Error Rate (calculated from Far and Frr)
         /// </summary>
         public double Aer { get { return (Far + Frr) / 2; } }
+
+        public bool Equals(ErrorRate other)
+        {
+            return
+                Far == other.Far
+                && Frr == other.Frr
+                && Aer == other.Aer;
+        }
     }
 }

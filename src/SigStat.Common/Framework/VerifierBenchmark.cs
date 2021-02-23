@@ -223,9 +223,9 @@ namespace SigStat.Common
             Sampler = new FirstNSampler(10);
         }
 
-        private double farAcc = 0;
-        private double frrAcc = 0;
-        private double pCnt = 0;
+        private double farAcc;
+        private double frrAcc;
+        private double pCnt;
         // HACK: should be refactored after preprocessing benchmark
         private TimeSpan duration = TimeSpan.MinValue;
         private BenchmarkResults benchmarkResults;

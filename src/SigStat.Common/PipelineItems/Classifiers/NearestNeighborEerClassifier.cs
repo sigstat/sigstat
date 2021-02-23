@@ -53,11 +53,19 @@ namespace SigStat.Common.PipelineItems.Classifiers
             public DistanceMatrix<string, string, double> DistanceMatrix { get; set; }
         }
         #endregion
-        struct SignatureDistance
+        struct SignatureDistance : IEquatable<SignatureDistance>
         {
             public string ID;
             public Origin Origin;
             public double Distance;
+
+            public bool Equals(SignatureDistance other)
+            {
+                return
+                    ID == other.ID
+                    && Origin.Equals(other.Origin)
+                    && Distance == other.Distance;
+            }
         }
 
         /// <summary>

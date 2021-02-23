@@ -29,7 +29,7 @@ namespace SigStat.Common.Loaders
             DatabasePath = databasePath;
         }
 
-        private struct SignatureFile
+        private struct SignatureFile : IEquatable<SignatureFile>
         {
             public string File { get; set; }
             public string SignerID { get; set; }
@@ -45,6 +45,14 @@ namespace SigStat.Common.Loaders
                 }
                 SignerID = parts[0].PadLeft(2, '0');
                 SignatureID = parts[1].PadLeft(2, '0');
+            }
+
+            public bool Equals(SignatureFile other)
+            {
+                return
+                    File == other.File
+                    && SignerID == other.SignerID
+                    && SignatureID == other.SignatureID;
             }
         }
 

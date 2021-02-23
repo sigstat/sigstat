@@ -45,7 +45,7 @@ namespace SigStat.Common.Loaders
             public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("MCYT.Pressure");
         }
 
-        private struct MCYTSignatureFile
+        private struct MCYTSignatureFile : IEquatable<MCYTSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -63,6 +63,15 @@ namespace SigStat.Common.Loaders
                 var parts = name.Split(Origin);
                 SignerID = parts[0];
                 SignatureID = name;
+            }
+
+            public bool Equals(MCYTSignatureFile other)
+            {
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureID == other.SignatureID
+                    && Origin == other.Origin;
             }
         }
 

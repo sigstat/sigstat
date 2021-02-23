@@ -47,7 +47,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         public OriginType GoalOrigin { get; set; } = OriginType.Predefined;
 
-        private double _newOrigin = 0;
+        private double _newOrigin;
         /// <summary>
         /// New origin after the translation
         /// </summary>
