@@ -54,10 +54,11 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
-            OCJKNNTest();
+           // OCJKNNTest();
+            //OCJKNNTest2();
             //signerSampleRateBasedVerifier();
 
-            // SamplingRateTestCompilation();
+             SamplingRateTestCompilation();
             //SignatureDemo();
             //TransformationPipeline();
             //Classifier();
@@ -82,35 +83,175 @@ namespace SigStat.Sample
 
         }
 
-        private static void OCJKNNTest()
+        private static void OCJKNNTest2()
         {
-            // j, k, threshold, reference count, database (1-2)
 
+           // List<double> thresholds = new List<double> {  1.3, 1.5,1.6, 1.7 };
+          //  List<int> testRefs = new List<int> { 7, 8, 9,10};
 
             int row = 1;
             int col = 1;
             var excel = new ExcelPackage();
+            var excel2 = new ExcelPackage();
+            var excel3 = new ExcelPackage();
             var sheet = excel.Workbook.Worksheets.Add("benchmark");
+            var sheet2 = excel2.Workbook.Worksheets.Add("All results");
+            var sheet3 = excel3.Workbook.Worksheets.Add("All results");
 
-            double threshold = 1.2;
-            int referenceCount = 10;
+            sheet2.Cells[1, 1].Value = "ReferenceCounts";
+            sheet2.Cells[1, 2].Value = "Threshold";
+            sheet2.Cells[1, 3].Value = "min FRR";
+            sheet2.Cells[1, 3].Value = "best K";
+
+            sheet3.Cells[1, 1].Value = "Database";
+            sheet3.Cells[1, 2].Value = "Threshold";
+            sheet3.Cells[1, 3].Value = "min FRR";
+            sheet3.Cells[1, 4].Value = "best K";
+            sheet3.Cells[1, 5].Value = "AER";
+            int count = 1;
+
+
+
+            double threshold_ = 1.5;
+            int referenceCount = 15;
+            int testingRef = 10;
 
             var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
-            var fileLoader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true);
-            //var fileLoader = new SigComp11DutchLoader(Path.Combine(databaseDir, "SigComp11_Dutch.zip"), true);
+           //var fileLoader = new Svc2004Loader(Path.Combine(databaseDir, "svc2004.zip"), true);
+             var fileLoader = new SigComp11DutchLoader(Path.Combine(databaseDir, "SigComp11_Dutch.zip"), true);
+            //  var fileLoader = new MCYTLoader(Path.Combine(databaseDir, "mcyt100.zip"), true);
+              //var fileLoader = new SigComp15GermanLoader(Path.Combine(databaseDir, "SigWiComp2015_German.zip"), true);
+            // var fileLoader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip"), true);
 
             var memoryLoader = new MemoryDataSetLoader(fileLoader.EnumerateSigners()); // cache the database in memory to avoid (slow) disc operations
-
-            var sampler = new FirstNSampler(referenceCount);
-
+            List<double> bestThresholds = new List<double>();
+            List<int> bestKs = new List<int>();
+            
+            double bestCurrentThreshold = 1;
             var features = new List<FeatureDescriptor> { Features.X, Features.Y, Features.Pressure };
-            Console.WriteLine($"Executing initial benchmark");
+            //  foreach (int testingRef in testRefs)
+            // {
+            // double minFrrforThreshold = 1;
+            // double bestThreshold = 0;
+            // foreach (double threshold in thresholds)
+            //  {
+            double threshold = threshold_;
+                    double min = 1;
+                    
+                    int bestK = 0;
+                    
+                    var sampler = new TestingSampler(testingRef);
 
-            // Calculate all SignerModels and store them for future use
-            var initialBenchmark = new VerifierBenchmark()
+                    
+                    Console.WriteLine($"Executing initial benchmark");
+
+                    // Calculate all SignerModels and store them for future use
+                    var initialBenchmark = new VerifierBenchmark()
+                    {
+                        Loader = memoryLoader,
+                        Sampler = sampler,
+                        Verifier = new Verifier()
+                        {
+                            Pipeline = {
+                                new ZNormalization() { InputFeature = Features.X, OutputFeature = Features.X },
+                                new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y },
+                                new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure }
+                            },
+                            Classifier = new OneClassNearestNeighborClassifier(testingRef, testingRef - 1, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                        }
+                    };
+                    initialBenchmark.Logger = new SimpleConsoleLogger(LogLevel.Debug);
+                    var initialResults = initialBenchmark.Execute(true);
+                    var signerModels = initialResults.SignerResults.Select(sr => sr.Model).ToList(); // the signer models contain the precalculated DTW distances. We are going to reuse them to reduce further calculation costs
+
+                    for (int j = 1; j <= referenceCount; j++)
+                    {
+                        sheet.Cells[row + j, col].Value = j;
+                        sheet.Cells[row + j, col + referenceCount + 3].Value = j;
+                        sheet.Cells[row + referenceCount + 3 + j, col].Value = j;
+                    }
+                    for (int k = 1; k <= referenceCount - 1; k++)
+                    {
+                        sheet.Cells[row, col + k].Value = k;
+                        sheet.Cells[row + referenceCount + 3, col + k].Value = k;
+                        sheet.Cells[row, col + referenceCount + 3 + k].Value = k;
+                    }
+                    sheet.Cells[row, col].Value = "AER";
+                    sheet.Cells[row + referenceCount + 3, col].Value = "FAR";
+                    sheet.Cells[row, col + referenceCount + 3].Value = "FRR";
+
+
+                    // Fixed parameter
+
+                    for (int k = 1; k <= testingRef - 1; k++)
+                    {
+                        Console.WriteLine($"Executing benchmarki for J: 5 K: {k}");
+                        var benchmark2 = new VerifierBenchmark()
+                        {
+                            SignerModels = signerModels,
+                            Loader = memoryLoader,
+                            Sampler = sampler,
+                            Verifier = new Verifier()
+                            {
+                                Classifier = new OneClassNearestNeighborClassifier(5, k, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                            }
+                        };
+
+                        var results2 = benchmark2.Execute(true);
+
+                        if (results2.FinalResult.Frr < min) { bestK = k; min = results2.FinalResult.Frr; }
+                        sheet.Cells[row + 5, col + k].Value = results2.FinalResult.Aer;
+                        sheet.Cells[row + referenceCount + 3 + 5, col + k].Value = results2.FinalResult.Far;
+                        sheet.Cells[row + 5, col + referenceCount + 3 + k].Value = results2.FinalResult.Frr;
+
+                    }
+                  //  bestKs.Add(bestK);
+                  //  if (min< minFrrforThreshold) { minFrrforThreshold = min; bestThreshold = threshold; }
+                    
+
+                    var sampler2 = new FirstNSampler(referenceCount);
+                    Console.WriteLine($"Executing benchmarki for J: 5 and best K ");
+                    var Benchmark3 = new VerifierBenchmark()
+                    {
+                        Loader = fileLoader,
+                        Sampler = sampler2,
+                        Verifier = new Verifier()
+                        {
+                            Pipeline = {
+                                new ZNormalization() { InputFeature = Features.X, OutputFeature = Features.X },
+                                new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y },
+                                new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure }
+                            },
+                            Classifier = new OneClassNearestNeighborClassifier(5, bestK, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                        }
+                    };
+
+
+                    var results3 = Benchmark3.Execute(true);
+
+
+
+                    excel.SaveAs(new FileInfo($"ref({referenceCount})_threshold({threshold})_.xlsx"));
+
+                    sheet3.Cells[1 + count, 1].Value = "SVC2004";
+                    sheet3.Cells[1 + count, 2].Value = threshold;
+                    sheet3.Cells[1 + count, 3].Value = min;
+                    sheet3.Cells[1 + count, 4].Value = bestK;
+                    sheet3.Cells[1 + count, 5].Value = results3.FinalResult.Aer;
+
+
+                    count++;
+                   
+                
+             //   bestThresholds.Add(bestThreshold);
+            
+          //  bestKs.Sort();
+          /*
+            var sampler3 = new FirstNSampler(referenceCount);
+            var Benchmark4 = new VerifierBenchmark()
             {
-                Loader = memoryLoader,
-                Sampler = sampler,
+                Loader = fileLoader,
+                Sampler = sampler3,
                 Verifier = new Verifier()
                 {
                     Pipeline = {
@@ -118,57 +259,135 @@ namespace SigStat.Sample
                                 new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y },
                                 new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure }
                             },
-                    Classifier = new OneClassNearestNeighborClassifier(referenceCount, referenceCount - 1, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                    Classifier = new OneClassNearestNeighborClassifier(5, bestKs.ElementAt((bestKs.Count)/2), bestThresholds.ElementAt((bestThresholds.Count/2)), new DtwDistance(new ManhattanDistance())) { Features = features }
                 }
             };
-            initialBenchmark.Logger = new SimpleConsoleLogger(LogLevel.Debug);
-            var initialResults = initialBenchmark.Execute(true);
-            var signerModels = initialResults.SignerResults.Select(sr => sr.Model).ToList(); // the signer models contain the precalculated DTW distances. We are going to reuse them to reduce further calculation costs
+            var results4 = Benchmark4.Execute(true);
+             Console.WriteLine("best k median: " + bestKs.ElementAt((bestKs.Count) / 2));
+            Console.WriteLine("best threshold median: " + bestThresholds.ElementAt((bestThresholds.Count) / 2));
+            Console.WriteLine("AER " + results4.FinalResult.Aer);
 
-            for (int j = 1; j <= referenceCount; j++)
-            {
-                sheet.Cells[row + j, col].Value = j;
-                sheet.Cells[row + j, col + referenceCount + 3].Value = j;
-                sheet.Cells[row + referenceCount + 3 + j, col].Value = j;
-            }
-            for (int k = 1; k <= referenceCount - 1; k++)
-            {
-                sheet.Cells[row, col + k].Value = k;
-                sheet.Cells[row + referenceCount + 3, col + k].Value = k;
-                sheet.Cells[row, col + referenceCount + 3 + k].Value = k;
-            }
-            sheet.Cells[row, col].Value = "AER";
-            sheet.Cells[row + referenceCount + 3, col].Value = "FAR";
-            sheet.Cells[row, col + referenceCount + 3].Value = "FRR";
+            */
+            excel2.SaveAs(new FileInfo("All results.xlsx"));
+            excel3.SaveAs(new FileInfo("BestK.xlsx"));
+        }
 
+        private static void OCJKNNTest()
+        {
+            // j, k, threshold, reference count, database (1-2)
+            
 
-            // Fixed parameter
-            for (int j = 1; j <= referenceCount; j++)
+            int row = 1;
+            int col = 1;
+            var excel = new ExcelPackage();
+            var excel2 = new ExcelPackage();
+            var sheet = excel.Workbook.Worksheets.Add("benchmark");
+            var sheet2 = excel2.Workbook.Worksheets.Add("All results");
+
+            sheet2.Cells[1, 1].Value = "ReferenceCounts";
+            sheet2.Cells[1, 2].Value = "Threshold";
+            sheet2.Cells[1, 3].Value = "min AER";
+            sheet2.Cells[1, 3].Value = "min FRR";
+            int count = 1;
+            
+
+            List<double> thresholds = new List<double>{ 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5,1.6,1.7,1.8 };
+            List<int> referenceCounts =new List<int> {7,8,9,10,11,12,13,14,15,16,17};
+
+            var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
+            var fileLoader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip"), true);
+            // var fileLoader = new SigComp11DutchLoader(Path.Combine(databaseDir, "SigComp11_Dutch.zip"), true);
+            //  var fileLoader = new MCYTLoader(Path.Combine(databaseDir, "mcyt100.zip"), true);
+            //  var fileLoader = new SigComp15GermanLoader(Path.Combine(databaseDir, "SigWiComp2015_German.zip"), true);
+           // var fileLoader = new SigComp11ChineseLoader(Path.Combine(databaseDir, "SigComp11Chinese.zip"), true);
+
+            var memoryLoader = new MemoryDataSetLoader(fileLoader.EnumerateSigners()); // cache the database in memory to avoid (slow) disc operations
+            foreach (int referenceCount in referenceCounts)
             {
-                for (int k = 1; k <= referenceCount - 1; k++)
+                foreach (double threshold in thresholds)
                 {
-                    Console.WriteLine($"Executing benchmarki for J: {j} K: {k}");
-                    var benchmark = new VerifierBenchmark()
+                    double min = 1;
+                    double min2 = 1;
+
+                    var sampler = new FirstNSampler(referenceCount);
+
+                    var features = new List<FeatureDescriptor> { Features.X, Features.Y, Features.Pressure };
+                    Console.WriteLine($"Executing initial benchmark");
+
+                    // Calculate all SignerModels and store them for future use
+                    var initialBenchmark = new VerifierBenchmark()
                     {
-                        SignerModels = signerModels,
                         Loader = memoryLoader,
                         Sampler = sampler,
                         Verifier = new Verifier()
                         {
-                            Classifier = new OneClassNearestNeighborClassifier(j, k, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                            Pipeline = {
+                                new ZNormalization() { InputFeature = Features.X, OutputFeature = Features.X },
+                                new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y },
+                                new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure }
+                            },
+                            Classifier = new OneClassNearestNeighborClassifier(referenceCount, referenceCount - 1, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
                         }
                     };
+                    initialBenchmark.Logger = new SimpleConsoleLogger(LogLevel.Debug);
+                    var initialResults = initialBenchmark.Execute(true);
+                    var signerModels = initialResults.SignerResults.Select(sr => sr.Model).ToList(); // the signer models contain the precalculated DTW distances. We are going to reuse them to reduce further calculation costs
 
-                    var results = benchmark.Execute(true);
+                    for (int j = 1; j <= referenceCount; j++)
+                    {
+                        sheet.Cells[row + j, col].Value = j;
+                        sheet.Cells[row + j, col + referenceCount + 3].Value = j;
+                        sheet.Cells[row + referenceCount + 3 + j, col].Value = j;
+                    }
+                    for (int k = 1; k <= referenceCount - 1; k++)
+                    {
+                        sheet.Cells[row, col + k].Value = k;
+                        sheet.Cells[row + referenceCount + 3, col + k].Value = k;
+                        sheet.Cells[row, col + referenceCount + 3 + k].Value = k;
+                    }
+                    sheet.Cells[row, col].Value = "AER";
+                    sheet.Cells[row + referenceCount + 3, col].Value = "FAR";
+                    sheet.Cells[row, col + referenceCount + 3].Value = "FRR";
 
-                    sheet.Cells[row + j, col + k].Value = results.FinalResult.Aer;
-                    sheet.Cells[row + referenceCount + 3 + j, col + k].Value = results.FinalResult.Far;
-                    sheet.Cells[row + j, col + referenceCount + 3 + k].Value = results.FinalResult.Frr;
 
+                    // Fixed parameter
+                    for (int j = 1; j <= referenceCount; j++)
+                    {
+                        for (int k = 1; k <= referenceCount - 1; k++)
+                        {
+                            Console.WriteLine($"Executing benchmarki for J: {j} K: {k}");
+                            var benchmark = new VerifierBenchmark()
+                            {
+                                SignerModels = signerModels,
+                                Loader = memoryLoader,
+                                Sampler = sampler,
+                                Verifier = new Verifier()
+                                {
+                                    Classifier = new OneClassNearestNeighborClassifier(j, k, threshold, new DtwDistance(new ManhattanDistance())) { Features = features }
+                                }
+                            };
+
+                            var results = benchmark.Execute(true);
+                            if (results.FinalResult.Aer<min) { min = results.FinalResult.Aer; }
+                            if (results.FinalResult.Frr < min2) { min2 = results.FinalResult.Frr; }
+                            sheet.Cells[row + j, col + k].Value = results.FinalResult.Aer;
+                            sheet.Cells[row + referenceCount + 3 + j, col + k].Value = results.FinalResult.Far;
+                            sheet.Cells[row + j, col + referenceCount + 3 + k].Value = results.FinalResult.Frr;
+
+                        }
+                    }
+
+                    excel.SaveAs(new FileInfo($"ref({referenceCount})_threshold({threshold})_.xlsx"));
+
+                    sheet2.Cells[1+count, 1].Value = referenceCount;
+                    sheet2.Cells[1+count, 2].Value = threshold;
+                    sheet2.Cells[1+count, 3].Value = min;
+                    sheet2.Cells[1 + count, 4].Value = min2;
+
+                    count++;
                 }
             }
-
-            excel.SaveAs(new FileInfo("results.xlsx"));
+            excel2.SaveAs(new FileInfo("All results.xlsx"));
         }
 
 
@@ -893,10 +1112,40 @@ namespace SigStat.Sample
                     ///
                     foreach (SequentialTransformPipeline pipl in pipeline_)
                     {
-
-
+                        List<OneClassNearestNeighborClassifier> classifiers2 = new List<OneClassNearestNeighborClassifier>();
 
                         List<OptimalDtwClassifier> classifiers = new List<OptimalDtwClassifier>();
+                        classifiers2.Add(new OneClassNearestNeighborClassifier(5, 5, 1.5, new DtwDistance(new ManhattanDistance()))
+                        {
+                            
+                             Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                            //Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
+                            //Features = new List<FeatureDescriptor>() { Features.X }
+                        });
+                        classifiers2.Add(new OneClassNearestNeighborClassifier(5, 5, 1.5, new DtwDistance(new ManhattanDistance()))
+                        {
+
+                           // Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                            Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
+                            //Features = new List<FeatureDescriptor>() { Features.X }
+                        });
+                        classifiers2.Add(new OneClassNearestNeighborClassifier(5, 5, 1.5, new DtwDistance(new ManhattanDistance()))
+                        {
+
+                          //  Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                            //Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
+                            Features = new List<FeatureDescriptor>() { Features.X }
+                        });
+
+                        classifiers.Add(new OptimalDtwClassifier()
+                        {
+                            DistanceFunction = Accord.Math.Distance.Euclidean,
+                            WarpingWindowLength = 2000,
+                            Sampler = new EvenNSampler(10),
+                            // Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                            //Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
+                            Features = new List<FeatureDescriptor>() { Features.X }
+                        });
 
                         //////////////////////////////////////////////////////////////////////////////// classifier
                         classifiers.Add(new OptimalDtwClassifier()
@@ -976,17 +1225,19 @@ namespace SigStat.Sample
 
 
                         /////////////////////////////////////////////////////////////////////////////////////
-                        foreach (OptimalDtwClassifier cla in classifiers)
+                        foreach (OneClassNearestNeighborClassifier cla in classifiers2)
                         {
+                         //   foreach (OptimalDtwClassifier cla in classifiers)
+                       // {
 
                             v.Logger = new SimpleConsoleLogger();
                             v.Classifier = cla;
 
                             /////////////////////////////////////////////// sampler
-                            if (cla.Sampler is EvenNSampler)
-                                b.Sampler = new EvenNSampler(10);
-                            else
-                                b.Sampler = new FirstNSampler(10);
+                          //  if (cla.Sampler is EvenNSampler)
+                           //     b.Sampler = new EvenNSampler(10);
+                          //  else
+                          //      b.Sampler = new FirstNSampler(10);
                             ///////////////////////////////////////////////
 
 
@@ -1067,10 +1318,10 @@ namespace SigStat.Sample
                                 pre = "_Z";
                             }
 
-                            if (b.Sampler is EvenNSampler)
-                                pre = pre + "_EVEN_";
-                            else
-                                pre = pre + "_FIRST_";
+                         //   if (b.Sampler is EvenNSampler)
+                        //        pre = pre + "_EVEN_";
+                          //  else
+                          //      pre = pre + "_FIRST_";
 
                             foreach (FeatureDescriptor f in cla.Features)
                             {
