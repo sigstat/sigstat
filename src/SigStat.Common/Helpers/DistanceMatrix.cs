@@ -122,7 +122,7 @@ namespace SigStat.Common
         /// Enumerates all values stored on the Matrix
         /// </summary>
         /// <returns></returns>
-        internal IEnumerable<TValue> GetValues()
+        public IEnumerable<TValue> GetValues()
         {
             return items.Values;
         }
