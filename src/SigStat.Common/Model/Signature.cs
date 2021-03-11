@@ -223,11 +223,6 @@ namespace SigStat.Common
             return GetEnumerator();
         }
 
-        //public void Add(FeatureDescriptor featureDescriptor, object featureValue)
-        //{
-        //    SetFeature(featureDescriptor, featureValue);
-        //}
-
 
         // calculate the signature length based on the distances between the end points
 

@@ -80,7 +80,7 @@ namespace SigStat.Common.Helpers
         /// <returns></returns>
         public static ProgressHelper StartNew(int maximum, int reportIntervallSeconds = 0, Action<ProgressHelper> reportProgress = null, Action<String> logAction = null)
         {
-            var instance = new ProgressHelper()
+            var instance = new ProgressHelper
             {
                 Maximum = maximum,
                 ReportIntervallSeconds = reportIntervallSeconds
@@ -90,7 +90,7 @@ namespace SigStat.Common.Helpers
                 if (reportProgress != null)
                     instance.ReportProgress += reportProgress;
                 else
-                    instance.ReportProgress += pr => logAction?.Invoke($"{pr.Value}/{pr.Maximum} processed in {pr.Elapsed}. (ETA: {pr.Eta})"); ;
+                    instance.ReportProgress += pr => logAction?.Invoke($"{pr.Value}/{pr.Maximum} processed in {pr.Elapsed}. (ETA: {pr.Eta})");
             }
             return instance;
         }

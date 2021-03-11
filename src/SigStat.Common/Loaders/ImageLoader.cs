@@ -96,7 +96,7 @@ namespace SigStat.Common.Loaders
         /// <returns></returns>
         public static Signature LoadSignature(string file)
         {
-            Signature signature = new Signature()
+            Signature signature = new Signature
             {
                 ID = Path.GetFileNameWithoutExtension(file),
                 Origin = Origin.Unknown

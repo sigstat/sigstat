@@ -50,7 +50,7 @@ namespace SigStat.Common
                         }
                         else
                         {//List of Features
-                            //prop.SetValue(this, new List<FeatureDescriptor>());
+                            //prop . SetValue ( this , new List < FeatureDescriptor > ( ) ) ; 
                             //de mennyit? nem eleg egy ures listat letrehozni, mert akkor a transform nak kell megadnia az FD-kat
                             //most hack: transform mondja meg, itt marad null
                         }

@@ -22,19 +22,19 @@ namespace SigStat.Common.Transforms
         /// binary representation of a signature image
         /// </summary>
         [Input]
-        public FeatureDescriptor<bool[,]> Skeleton { get; set; }// = FeatureDescriptor<bool[,]>.Get("Skeleton");
+        public FeatureDescriptor<bool[,]> Skeleton { get; set; }
 
         /// <summary>
         /// endpoints
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<Point>> EndPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("EndPoints");
+        public FeatureDescriptor<List<Point>> EndPoints { get; set; }
 
         /// <summary>
         /// crossing points
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<Point>> CrossingPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
+        public FeatureDescriptor<List<Point>> CrossingPoints { get; set; }
 
         /// <summary>
         /// Output components

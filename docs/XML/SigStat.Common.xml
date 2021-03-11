@@ -4606,9 +4606,6 @@
             <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Multiply"/> class with specified settings. </summary>
             <param name="byConst">The value to multiply the input feature by.</param>
         </member>
-        <member name="M:SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)">
-            <inheritdoc/>
-        </member>
         <member name="T:SigStat.Common.Transforms.Normalize">
             <summary>
             Maps values of a feature to 0.0 - 1.0 range.

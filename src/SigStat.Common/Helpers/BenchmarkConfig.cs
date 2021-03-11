@@ -106,7 +106,7 @@ namespace SigStat.Common.Helpers
         private static List<BenchmarkConfig> Databases(List<BenchmarkConfig> l)
         {
             l.ForEach(c => c.Database = "GERMAN");
-            List<string> es = new List<string>() { "MCYT100", "DUTCH", "SVC2004", "CHINESE", "JAPANESE" };
+            List<string> es = new List<string> { "MCYT100", "DUTCH", "SVC2004", "CHINESE", "JAPANESE" };
             var ls = es.SelectMany(e => l.ConvertAll(c => new BenchmarkConfig(c)
             {
                 Database = e
@@ -119,11 +119,7 @@ namespace SigStat.Common.Helpers
         {
 
             l.ForEach(c => c.Classifier = "OptimalDtw");
-            //var l2 = l.ConvertAll(c => new BenchmarkConfig(c)
-            //{
-            //    Classifier = "Dtw"
-            //});
-            //l.AddRange(l2);
+         
             return l;
         }
 
@@ -155,7 +151,7 @@ namespace SigStat.Common.Helpers
 
             //jobb kezzel megadni az ertelmes parokat: 16 db van, osszes 30 helyett
             l.ForEach(c => c.Translation_Scaling = ("None", "None"));
-            List<(string, string)> es = new List<(string, string)>() {
+            List<(string, string)> es = new List<(string, string)> {
                 ("None","X01Y0prop"),
                 ("None","Y01X0prop"),
                 ("None","X01"),
@@ -235,7 +231,7 @@ namespace SigStat.Common.Helpers
         {
             //csak ott kell interpolaciot allitani, ahol van resampling
             l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp" || c.ResamplingType_Filter == "P_FillPenUp").ToList().ForEach(c => c.Interpolation = "Linear");
-            List<string> es = new List<string>() { "Cubic" };
+            List<string> es = new List<string> { "Cubic" };
             var ls = es.SelectMany(e => l.Where(c => c.ResamplingType_Filter == "SampleCount" || c.ResamplingType_Filter == "FillPenUp" || c.ResamplingType_Filter == "P_FillPenUp").ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Interpolation = e
@@ -248,7 +244,7 @@ namespace SigStat.Common.Helpers
         {
             l.ForEach(c => c.Features = "XYP");
 
-            List<string> es1 = new List<string>() { "X", "Y", "P", "XP", "YP", "XY"};
+            List<string> es1 = new List<string> { "X", "Y", "P", "XP", "YP", "XY"};
             var ls1 = es1.SelectMany(e => l.ToList().ConvertAll(c => new BenchmarkConfig(c)
             {
                 Features = e
@@ -259,29 +255,7 @@ namespace SigStat.Common.Helpers
 
             return l;
 
-            //l.ForEach(c => c.Features = "XYP");
-
-            //var xypConfigs = l.Where(c => c.Database == "DUTCH" || c.Database == "GERMAN" || c.Database == "CHINESE" || c.Database == "JAPANESE");//ezeknek nincs azimuth, altitudeja (1.0 mind)
-
-            //List<string> es1 = new List<string>() { "X", "Y", "P", "XY", "Azimuth", "Altitude", "XYPAzimuthAltitude" };
-            //var ls1 = es1.SelectMany(e => l.Except(xypConfigs).ToList().ConvertAll(c => new BenchmarkConfig(c)
-            //{
-            //    Features = e
-            //})).ToList();
-
-            //List<string> es2 = new List<string>() { "X", "Y", "P", "XY" };
-            //var ls2 = es2.SelectMany(e => xypConfigs.ToList().ConvertAll(c => new BenchmarkConfig(c)
-            //{
-            //    Features = e
-            //})).ToList();
-
-
-            //l.AddRange(ls1);
-            //l.AddRange(ls2);
-
-
-
-            //return l;
+          
         }
 
         public BenchmarkConfig() { }

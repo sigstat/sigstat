@@ -121,7 +121,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
-        //public List<TimeSlot> TimeSlots { get; set; }
+      
 
         /// <summary>
         /// An implementation of <see cref="IInterpolation"/>
@@ -217,7 +217,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
 
             return timesValues
-                .Select((t, i) => new TimeSlot()
+                .Select((t, i) => new TimeSlot
                 {
                     StartTime = timesValues[i > 0 ? i - 1 : 0],
                     EndTime = t,

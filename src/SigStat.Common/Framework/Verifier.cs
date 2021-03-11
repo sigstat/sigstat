@@ -33,7 +33,7 @@ namespace SigStat.Common.Model
 
             }
         }
-        //private readonly EventId VerifierEvent = new EventId(8900, "Verifier");
+
 
         private SequentialTransformPipeline pipeline = new SequentialTransformPipeline();
         /// <summary> Gets or sets the transform pipeline. Hands over the Logger object. </summary>
@@ -68,7 +68,7 @@ namespace SigStat.Common.Model
         /// </summary>
         /// <param name="logger">Initializes the Logger property of the <see cref="Verifier"/></param>
         [JsonConstructor]
-        public Verifier(ILogger logger = null)
+        public Verifier(ILogger logger)
         {
             this.Logger = logger;
             this.LogTrace("Verifier created");
@@ -108,11 +108,7 @@ namespace SigStat.Common.Model
             if (Classifier is ILoggerObject)
                 ((ILoggerObject)Classifier).Logger = this.Logger;
 
-            if (signatures.Any(s => s.Origin != Origin.Genuine))
-            {
-                //this.Warn( $"Training with a non-genuine signature.");
-            }
-
+        
             foreach (var sig in signatures)
             {
                 Pipeline.Transform(sig);

@@ -125,7 +125,7 @@ namespace SigStat.Common.Loaders
             signerFilter = signerFilter ?? SignerFilter;
 
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-            //signerFilter = signerFilter ?? SignerFilter;
+            
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))

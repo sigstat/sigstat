@@ -25,7 +25,7 @@ namespace SigStat.Common.Helpers.Serialization
 
             if (type != null)
             {
-                var paramTypes = new List<Type>()
+                var paramTypes = new List<Type>
                 {
                     typeof(double[]),
                     typeof(double[]),

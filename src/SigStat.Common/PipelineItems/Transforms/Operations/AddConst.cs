@@ -49,12 +49,7 @@ namespace SigStat.Common.Transforms
                 }
                 signature.SetFeature(Output, values);
             }
-            /*else
-            {
-                double value = signature.GetFeature(InputValue);
-                value = value + addValue;
-                signature.SetFeature(Output, value);
-            }*/
+           
 
             Progress = 100;
         }

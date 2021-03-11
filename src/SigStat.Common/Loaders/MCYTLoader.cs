@@ -95,7 +95,7 @@ namespace SigStat.Common.Loaders
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
-        public MCYTLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public MCYTLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
@@ -179,25 +179,14 @@ namespace SigStat.Common.Loaders
         public static void LoadSignature(Signature signature, MemoryStream stream, bool standardFeatures)
         {
             BinaryReader reader = new BinaryReader(stream);
-            var fpg = reader.ReadChars(4); // FPG 
             var hsize = reader.ReadUInt16(); // Header size
             int ver = 1;
             if ((hsize == 48) || (hsize == 60))
             {
                 ver = 2;
             }
-            ushort format = reader.ReadUInt16(); // should be '4'
-
-            var m = reader.ReadUInt16();
-            var can = reader.ReadUInt16();
-            var Ts = reader.ReadUInt32();
             var res = reader.ReadUInt16();
-            var ignore = reader.ReadBytes(4);
-            var coef = reader.ReadUInt32();
-            var mvector = reader.ReadUInt32(); // length of vector
             var nvectores = reader.ReadUInt32(); // number of vectors
-            var nc = reader.ReadUInt16();
-            //uint Fs = 0, mventana = 0, msolapadas = 0;
             if (ver == 2)
             {
                 //No need to store these values as they are not used here
@@ -206,9 +195,6 @@ namespace SigStat.Common.Loaders
                 reader.ReadUInt32();   //msolapadas
             }
             stream.Seek(hsize - 12, SeekOrigin.Begin);
-            var datos = reader.ReadUInt32();
-            var delta = reader.ReadUInt32();
-            var ddelta = reader.ReadUInt32();
 
             stream.Seek(hsize, SeekOrigin.Begin); // not actually needed
 

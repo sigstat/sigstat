@@ -51,22 +51,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //  Signature s2 = new Signature();
-            //      s2=signature;
-            //  var tfs = new SequentialTransformPipeline
-            //  {
-            //      new ParallelTransformPipeline
-            //      {
-
-            //new Normalize() { Input = Features.X, Output = Features.X },
-            //          new Normalize() { Input = Features.Y, Output = Features.Y },
-            //      },
-            //      new RealisticImageGenerator(1280, 720)
-            //  };
-            //  tfs.Logger = new SimpleConsoleLogger();
-            //  tfs.Transform(s2);
-
-            // // ImageSaver.Save(s2, $"{s2.Signer.ID }_{s2.ID }_Brfore_GeneratedOnlineImage.png");
+         
             var xValues = new List<double>(signature.GetFeature(InputX));
             var yValues = new List<double>(signature.GetFeature(InputY));
 
@@ -74,7 +59,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
             double meanX = xValues.Average();
             double meanY = yValues.Average();
 
-            double sumXSquared = xValues.Sum(x => x * x);
+   
             double Sx = 0;
             for (int i = 0; i < numPoints; i++)
             {
@@ -111,34 +96,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 yValues[i] = (x * (Math.Sin(alpha))) + (y * (Math.Cos(alpha)));
             }
 
-            double xmin = xValues.Min();
-            double ymin = yValues.Min();
-
-            //for (int i = 0; i < numPoints; i++)
-            //{
-
-            //    xValues[i] = xValues[i] - xmin;
-            //    yValues[i] = yValues[i] - ymin;
-            //}
-
             signature.SetFeature(OutputX, xValues);
             signature.SetFeature(OutputY, yValues);
-            //    Signature s3 = new Signature();
-            //    s3 = signature;
-            //    tfs = new SequentialTransformPipeline
-            //    {
-            //        new ParallelTransformPipeline
-            //        {
-
-            //  new Normalize() { Input = Features.X, Output = Features.X },
-            //            new Normalize() { Input = Features.Y, Output = Features.Y },
-            //        },
-            //        new RealisticImageGenerator(1280, 720)
-            //    };
-            //    tfs.Logger = new SimpleConsoleLogger();
-            //    tfs.Transform(s3);
-
-            //    //ImageSaver.Save(s3, $"{s3.Signer.ID }_{s3.ID }_After_GeneratedOnlineImage.png");
+         
         }
 
         

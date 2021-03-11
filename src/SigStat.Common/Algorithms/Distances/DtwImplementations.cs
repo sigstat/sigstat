@@ -81,11 +81,7 @@ namespace SigStat.Common.Algorithms
                     }
                 }
 
-                //// We can abandon early if the current cummulative distace with lower bound together are larger than bsf
-                //if (i + r < m - 1 && min_cost + cb[i + r + 1] >= bsf)
-                //{
-                //    return min_cost + cb[i + r + 1];
-                //}
+         
 
                 // Move current array to previous array.
                 cost_tmp = cost;

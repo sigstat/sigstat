@@ -79,7 +79,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     values = values.Select(v => v / stdev).ToList();
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("This value is not supported for Mode");
             }
 
             //translation to the original place

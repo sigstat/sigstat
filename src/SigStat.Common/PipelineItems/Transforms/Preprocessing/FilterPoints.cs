@@ -48,7 +48,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             var keyFeatureValues = new List<double>(signature.GetFeature(KeyFeatureInput));
 
-            //var filterValue = CalculatePercentile(Percentile, keyFeatureValues);
+          
             var filterValue = 0;
 
             var indexes = new List<int>();
@@ -78,7 +78,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
         private double CalculatePercentile(int percentile, List<double> values)
         {
-            var min = 0;// values.Min();
+            var min = 0;
             var rangeLength = values.Max() - min;
             var unitLength = rangeLength / 100.0;
             return min + unitLength * percentile;

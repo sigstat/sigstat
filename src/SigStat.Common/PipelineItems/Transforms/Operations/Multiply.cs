@@ -21,7 +21,7 @@ namespace SigStat.Common.Transforms
         private readonly double byConst;
 
         //[Input(AutoSetMode = AutoSetMode.Never)]
-        //public FeatureDescriptor<double> InputValue;
+        
 
         /// <summary>
         /// Input
@@ -42,36 +42,20 @@ namespace SigStat.Common.Transforms
             this.byConst = byConst;
         }
 
-        /*/// <inheritdoc/>
-        public IEnumerator GetEnumerator()
-        {
-            return InputList.GetEnumerator();
-        }
-        /// <inheritdoc/>
-        public void Add(FeatureDescriptor newItem)
-        {
-            InputList.Add(newItem);
-        }*/
-
-        /// <inheritdoc/>
+       
         public void Transform(Signature signature)
         {
 
-            //if (InputList!=null)
-            {
+           
+            
                 var values = signature.GetFeature(InputList);
                 for (int i = 0; i < values.Count; i++)
                 {
                     values[i] = values[i] * byConst;
                 }
                 signature.SetFeature(Output, values);
-            }
-            /*else
-            {
-                var values = signature.GetFeature(InputValue);
-                values = values * byConst;
-                signature.SetFeature(Output, values);
-            }*/
+            
+        
 
             Progress = 100;
         }

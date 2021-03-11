@@ -157,7 +157,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             )).ToList();
 
 
-            OptimalDtwSignerModel model = new OptimalDtwSignerModel()
+            OptimalDtwSignerModel model = new OptimalDtwSignerModel
             {
                 SignerID = signerID,
                 DistanceMatrix = dtwDistances,

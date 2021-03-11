@@ -195,7 +195,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
             )).ToList();
 
 
-            SignerModel model = new SignerModel()
+            SignerModel model = new SignerModel
             {
                 SignerID = signerID,
                 DistanceMatrix = distanceMatrix,

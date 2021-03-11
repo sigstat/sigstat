@@ -50,7 +50,7 @@ namespace SigStat.Common.Transforms
             var C = FeatureDescriptor<List<double>>.Get("Centroid");//TODO: Register()
             Items = new List<ITransformation>
             {
-                new CentroidExtraction { Inputs = new List<FeatureDescriptor<List<double>>>(){InputX, InputY }, OutputCentroid=C },
+                new CentroidExtraction { Inputs = new List<FeatureDescriptor<List<double>>>{InputX, InputY }, OutputCentroid=C },
                 new Multiply(-1.0),
                 new Translate(C) { OutputX = OutputX, OutputY = OutputY }
             };

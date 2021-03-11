@@ -97,7 +97,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     TranslateToPredefinedOrigin(signature, NewOrigin);
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("This value is not supported for GoalOrigin"); 
             }
         }
 

@@ -33,30 +33,29 @@ namespace SigStat.Common.Loaders
         static SigComp11ChineseLoader chineseLoader;
         static SigComp13JapaneseLoader japaneseLoader;
 
-        static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>()
+        static List<FeatureDescriptor<List<double>>> toFilter = new List<FeatureDescriptor<List<double>>>
         {
             Features.X, Features.Y, Features.Azimuth, Features.Altitude, Features.T
         };
-        static FilterPoints filterPoints = new FilterPoints()
+        static FilterPoints filterPoints = new FilterPoints
         {
             InputFeatures = toFilter,
             OutputFeatures = toFilter,
             KeyFeatureInput = Features.Pressure,
             KeyFeatureOutput = Features.Pressure
         };
-        static NormalizeRotation normalizeRotation = new NormalizeRotation() { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y };
+        static NormalizeRotation normalizeRotation = new NormalizeRotation { InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY = Features.Y };
         static TranslatePreproc cxTranslate = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X };
         static TranslatePreproc cyTranslate = new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y };
         static TranslatePreproc blxTranslate = new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.X, OutputFeature = Features.X };
         static TranslatePreproc blyTranslate = new TranslatePreproc(OriginType.Minimum) { InputFeature = Features.Y, OutputFeature = Features.Y };
-        static Scale xScale = new Scale() { InputFeature = Features.X, OutputFeature = Features.X };
-        static Scale yScale = new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y };
-        static Scale pScale = new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure };
-        static RelativeScale pRelativeScale = new RelativeScale() { InputFeature = Features.Pressure, ReferenceFeature = Features.Y, OutputFeature = Features.Pressure };
-        static UniformScale xyUniformScale = new UniformScale() { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y };
-        static UniformScale yxUniformScale = new UniformScale() { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X };
-        //static LinearInterpolation linearInterpolation = new LinearInterpolation();
-        //static CubicInterpolation cubicInterpolation = new CubicInterpolation(); 
+        static Scale xScale = new Scale { InputFeature = Features.X, OutputFeature = Features.X };
+        static Scale yScale = new Scale { InputFeature = Features.Y, OutputFeature = Features.Y };
+        static Scale pScale = new Scale { InputFeature = Features.Pressure, OutputFeature = Features.Pressure };
+        static RelativeScale pRelativeScale = new RelativeScale { InputFeature = Features.Pressure, ReferenceFeature = Features.Y, OutputFeature = Features.Pressure };
+        static UniformScale xyUniformScale = new UniformScale { BaseDimension = Features.X, BaseDimensionOutput = Features.X, ProportionalDimension = Features.Y, ProportionalDimensionOutput = Features.Y };
+        static UniformScale yxUniformScale = new UniformScale { BaseDimension = Features.Y, BaseDimensionOutput = Features.Y, ProportionalDimension = Features.X, ProportionalDimensionOutput = Features.X };
+      
         //TODO: legyen allapotmentes a maradek is?
 
         public static VerifierBenchmark Build(BenchmarkConfig config, string databasePath = null)
@@ -71,11 +70,7 @@ namespace SigStat.Common.Loaders
             germanLoader = new SigComp15GermanLoader(Path.Combine(databasePath, "SigWiComp2015_German.zip"), true);
             japaneseLoader = new SigComp13JapaneseLoader(Path.Combine(databasePath, "SigWiComp2013_Japanese.zip"), true);
 
-            //labor:
-            //svcLoader = new Svc2004Loader(@"Task2.zip", true);
-            //mcytLoader = new MCYTLoader(@"MCYT_Signature_100.zip", true);
-            //dutchLoader = new SigComp11DutchLoader(@"dutch_renamed.zip", true);
-
+           
 
             Sampler sampler1 = null;
             Sampler sampler2 = null;
@@ -147,7 +142,7 @@ namespace SigStat.Common.Loaders
                     b.Sampler = sampler4;
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("This value is not supported for config.Sampling");
             }
             
 
@@ -161,8 +156,9 @@ namespace SigStat.Common.Loaders
                     pipeline.Add(filterPoints);
                     break;
                 case "None":
-                default:
                     break;
+                default:
+                    throw new NotSupportedException("This value is not supported for config.ResamplingType_Filter");
             }
 
             if (config.Rotation)
@@ -239,7 +235,7 @@ namespace SigStat.Common.Loaders
                     break;
             }
 
-            var featurelist = new List<FeatureDescriptor<List<double>>>()
+            var featurelist = new List<FeatureDescriptor<List<double>>>
             {
                 Features.X, Features.Y, Features.Pressure, Features.Azimuth, Features.Altitude
             };
@@ -248,7 +244,7 @@ namespace SigStat.Common.Loaders
             switch (config.ResamplingType_Filter)
             {
                 case "SampleCount":
-                    pipeline.Add(new ResampleSamplesCountBased()
+                    pipeline.Add(new ResampleSamplesCountBased
                     {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
@@ -260,7 +256,7 @@ namespace SigStat.Common.Loaders
                     break;
                 case "P_FillPenUp":
                 case "FillPenUp":
-                    pipeline.Add(new FillPenUpDurations()
+                    pipeline.Add(new FillPenUpDurations
                     {
                         InputFeatures = featurelist,
                         OutputFeatures = featurelist,
@@ -348,7 +344,7 @@ namespace SigStat.Common.Loaders
             }
             else throw new NotSupportedException();
 
-            b.Verifier = new Model.Verifier()
+            b.Verifier = new Model.Verifier
             {
                 Pipeline = pipeline,
                 Classifier = classifier
