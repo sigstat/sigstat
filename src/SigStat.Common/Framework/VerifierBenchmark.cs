@@ -108,7 +108,7 @@ namespace SigStat.Common
         /// An optional dictionary of fully or partially precalculated signer models. You may fill itt before
         /// executing a benchmark if you have saved the models previously
         /// </summary>
-        public List<ISignerModel> SignerModels;
+        public List<ISignerModel> SignerModels { get; set; }
 
         /// <summary>
         /// Dumps the results of the benchmark in a file.
@@ -256,7 +256,7 @@ namespace SigStat.Common
             Verifier.Logger = logger;
             this.LogInformation("Benchmark execution started.");
 
-            var results = new List<Result>();
+            List<Result> results;
             farAcc = 0;
             frrAcc = 0;
             pCnt = 0;

@@ -54,22 +54,22 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             if (NumOfSamples <= 0)
             {
-                throw new Exception("Number of samples has to be positive");
+                throw new InvalidOperationException("Number of samples has to be positive");
             }
 
             if (InputFeatures == null)
             {
-                throw new NullReferenceException("Input features are not defined");
+                throw new InvalidOperationException("Input features are not defined");
             }
 
             if (OutputFeatures == null)
             {
-                throw new NullReferenceException("Output features are not defined");
+                throw new InvalidOperationException("Output features are not defined");
             }
 
             if (InterpolationType == null)
             {
-                throw new NullReferenceException("Interpolation is not defined");
+                throw new InvalidOperationException("Interpolation is not defined");
             }
 
 

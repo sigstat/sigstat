@@ -52,7 +52,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public void Transform(Signature signature)
         {
             if (InputFeature == null || OutputFeature == null)
-                throw new NullReferenceException("Input or output feature is null");
+                throw new InvalidOperationException("Input or output feature is null");
 
             List<double> values = new List<double>(signature.GetFeature(InputFeature).ToList());
 

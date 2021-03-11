@@ -36,8 +36,9 @@ namespace SigStat.Common.Helpers.Serialization
             }
             else
             {
-                throw new Exception("Unsopported distance function");
+                throw new NotSupportedException("Unsopported distance function");
             }
+           
 
             return resultFunc;
 

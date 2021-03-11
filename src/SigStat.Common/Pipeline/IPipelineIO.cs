@@ -69,7 +69,7 @@ namespace SigStat.Common.Pipeline
             this.PipelineItem = PipelineItem;
             this.PI = PI;
             if (!(PI.GetMethod.IsPublic && PI.SetMethod.IsPublic))//ide is kene Logger
-                throw new Exception($"Pipeline Input '{PropName}' of '{PipelineItem.ToString()}' not public");
+                throw new InvalidOperationException($"Pipeline Input '{PropName}' of '{PipelineItem.ToString()}' not public");
         }
 
     }
@@ -128,7 +128,7 @@ namespace SigStat.Common.Pipeline
             this.PipelineItem = PipelineItem;
             this.PI = PI;
             if (!(PI.GetMethod.IsPublic && PI.SetMethod.IsPublic))//ide is kene Logger
-                throw new Exception($"Pipeline Output '{PropName}' of '{PipelineItem.ToString()}' not public");
+                throw new InvalidOperationException($"Pipeline Output '{PropName}' of '{PipelineItem.ToString()}' not public");
         }
 
     }

@@ -17,7 +17,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
     {
         /// <summary>List of classifiers and belonging weights.</summary>
         
-        public List<(IClassifier classifier, double weight)> Items = new List<(IClassifier classifier, double weight)>();
+        public List<(IClassifier classifier, double weight)> Items { get; set; } = new List<(IClassifier classifier, double weight)>();
 
         /// <inheritdoc/>
         public IEnumerator GetEnumerator()

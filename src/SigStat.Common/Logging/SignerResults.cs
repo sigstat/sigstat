@@ -19,17 +19,17 @@ namespace SigStat.Common.Logging
         /// <summary>
         /// False Acceptance Rate of the signer
         /// </summary>
-        public object Far;
+        public object Far { get; set; }
 
         /// <summary>
         /// False Rejection Rate of the signer
         /// </summary>
-        public object Frr;
+        public object Frr { get; set; }
 
         /// <summary>
         /// Average Error Rate of the signer
         /// </summary>
-        public object Aer;
+        public object Aer { get; set; }
 
         /// <summary>
         /// Distacne matrix of the signers signatures

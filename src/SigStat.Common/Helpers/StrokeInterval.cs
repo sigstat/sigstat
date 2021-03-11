@@ -12,15 +12,15 @@ namespace SigStat.Common
         /// <summary>
         /// The index of the firs element
         /// </summary>
-        public int StartIndex;
+        public int StartIndex { get; set; }
         /// <summary>
         /// The index of the last element
         /// </summary>
-        public int EndIndex;
+        public int EndIndex { get; set; }
         /// <summary>
         /// The <see cref="StrokeType"/> of the stroke.
         /// </summary>
-        public StrokeType StrokeType;
+        public StrokeType StrokeType { get; set; }
 
 
         /// <summary>

@@ -197,12 +197,13 @@ namespace SigStat.Common.Loaders
             var mvector = reader.ReadUInt32(); // length of vector
             var nvectores = reader.ReadUInt32(); // number of vectors
             var nc = reader.ReadUInt16();
-            uint Fs = 0, mventana = 0, msolapadas = 0;
+            //uint Fs = 0, mventana = 0, msolapadas = 0;
             if (ver == 2)
             {
-                Fs = reader.ReadUInt32();
-                mventana = reader.ReadUInt32();
-                msolapadas = reader.ReadUInt32();
+                //No need to store these values as they are not used here
+                reader.ReadUInt32();    //Fs
+                reader.ReadUInt32();    //mventana
+                reader.ReadUInt32();   //msolapadas
             }
             stream.Seek(hsize - 12, SeekOrigin.Begin);
             var datos = reader.ReadUInt32();

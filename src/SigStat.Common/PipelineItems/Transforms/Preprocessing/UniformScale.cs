@@ -61,12 +61,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             if (BaseDimension == null || BaseDimensionOutput == null)
             {
-                throw new NullReferenceException("Input or output of the base dimension is null");
+                throw new InvalidOperationException("Input or output of the base dimension is null");
             }
 
             if (ProportionalDimension == null || ProportionalDimensionOutput == null)
             {
-                throw new NullReferenceException("Input or output of the proportional dimension is null");
+                throw new InvalidOperationException("Input or output of the proportional dimension is null");
             }
 
 

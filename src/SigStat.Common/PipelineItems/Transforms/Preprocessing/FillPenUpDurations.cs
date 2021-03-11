@@ -134,17 +134,17 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             if (InterpolationType == null)
             {
-                throw new NullReferenceException("InterpolationType is not defined");
+                throw new InvalidOperationException("InterpolationType is not defined");
             }
 
             if (InputFeatures == null)
             {
-                throw new NullReferenceException("Input features are not defined");
+                throw new InvalidOperationException("Input features are not defined");
             }
 
             if (OutputFeatures == null)
             {
-                throw new NullReferenceException("Output features are not defined");
+                throw new InvalidOperationException("Output features are not defined");
             }
 
             var originalTimeValues = new List<double>(signature.GetFeature(TimeInputFeature));

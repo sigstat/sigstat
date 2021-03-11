@@ -12,11 +12,11 @@ namespace SigStat.Common
         /// <summary>
         /// False Acceptance Rate
         /// </summary>
-        public double Far;
+        public double Far { get; set; }
         /// <summary>
         /// False Rejection Rate
         /// </summary>
-        public double Frr;
+        public double Frr { get; set; }
         /// <summary>
         /// Average Error Rate (calculated from Far and Frr)
         /// </summary>

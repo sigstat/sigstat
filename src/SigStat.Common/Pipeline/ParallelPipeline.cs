@@ -17,7 +17,7 @@ namespace SigStat.Common.Pipeline
     public class ParallelTransformPipeline : PipelineBase, IEnumerable, ITransformation
     {
         /// <summary>List of transforms to be run parallel.</summary>
-        public List<ITransformation> Items = new List<ITransformation>();
+        public List<ITransformation> Items { get; set; } = new List<ITransformation>();
 
         /// <summary>
         /// Gets the pipeline inputs.

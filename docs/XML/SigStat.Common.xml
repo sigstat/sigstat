@@ -763,7 +763,7 @@
         <member name="P:SigStat.Common.VerifierBenchmark.Parameters">
             <summary>A key value store that can be used to store custom information about the benchmark</summary>
         </member>
-        <member name="F:SigStat.Common.VerifierBenchmark.SignerModels">
+        <member name="P:SigStat.Common.VerifierBenchmark.SignerModels">
             <summary>
             An optional dictionary of fully or partially precalculated signer models. You may fill itt before
             executing a benchmark if you have saved the models previously
@@ -1346,13 +1346,14 @@
             Initializes an instance of <see cref="T:SigStat.Common.Helpers.ProgressHelper"/>
             </summary>
         </member>
-        <member name="M:SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper})">
+        <member name="M:SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper},System.Action{System.String})">
             <summary>
             Initializes an instance of <see cref="T:SigStat.Common.Helpers.ProgressHelper"/> with the given parameters. Make sure to manually set the <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> property during operation.
             </summary>
             <param name="maximum">The total number of individual items to be processed.</param>
             <param name="reportIntervallSeconds">If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> property changes. </param>
             <param name="reportProgress"></param>
+            <param name="logAction">Logging action. E.g. Console.WriteLine()</param>
             <returns></returns>
         </member>
         <member name="M:SigStat.Common.Helpers.ProgressHelper.Dispose">
@@ -1703,12 +1704,12 @@
             Represents the ErrorRates achieved in a benchmark
             </summary>
         </member>
-        <member name="F:SigStat.Common.ErrorRate.Far">
+        <member name="P:SigStat.Common.ErrorRate.Far">
             <summary>
             False Acceptance Rate
             </summary>
         </member>
-        <member name="F:SigStat.Common.ErrorRate.Frr">
+        <member name="P:SigStat.Common.ErrorRate.Frr">
             <summary>
             False Rejection Rate
             </summary>
@@ -1802,19 +1803,19 @@
             Represents a stroke in an online signature
             </summary>
         </member>
-        <member name="F:SigStat.Common.StrokeInterval.StartIndex">
+        <member name="P:SigStat.Common.StrokeInterval.StartIndex">
             <summary>
             The index of the firs element
             </summary>
         </member>
-        <member name="F:SigStat.Common.StrokeInterval.EndIndex">
+        <member name="P:SigStat.Common.StrokeInterval.EndIndex">
             <summary>
             The index of the last element
             </summary>
         </member>
-        <member name="F:SigStat.Common.StrokeInterval.StrokeType">
+        <member name="P:SigStat.Common.StrokeInterval.StrokeType">
             <summary>
-            The <see cref="F:SigStat.Common.StrokeInterval.StrokeType"/> of the stroke.
+            The <see cref="P:SigStat.Common.StrokeInterval.StrokeType"/> of the stroke.
             </summary>
         </member>
         <member name="M:SigStat.Common.StrokeInterval.#ctor(System.Int32,System.Int32,SigStat.Common.StrokeType)">
@@ -2777,17 +2778,17 @@
             The ID of the signer
             </summary>
         </member>
-        <member name="F:SigStat.Common.Logging.SignerResults.Far">
+        <member name="P:SigStat.Common.Logging.SignerResults.Far">
             <summary>
             False Acceptance Rate of the signer
             </summary>
         </member>
-        <member name="F:SigStat.Common.Logging.SignerResults.Frr">
+        <member name="P:SigStat.Common.Logging.SignerResults.Frr">
             <summary>
             False Rejection Rate of the signer
             </summary>
         </member>
-        <member name="F:SigStat.Common.Logging.SignerResults.Aer">
+        <member name="P:SigStat.Common.Logging.SignerResults.Aer">
             <summary>
             Average Error Rate of the signer
             </summary>
@@ -3239,17 +3240,17 @@
             Represents a person as an <see cref="P:SigStat.Common.Signer.ID"/> and a list of <see cref="P:SigStat.Common.Signer.Signatures"/>.
             </summary>
         </member>
-        <member name="F:SigStat.Common.Signer.bestSampleRate">
+        <member name="P:SigStat.Common.Signer.bestSampleRate">
             <summary>
             best sampling frequency for the signer
             </summary>
         </member>
-        <member name="F:SigStat.Common.Signer.bestStep">
+        <member name="P:SigStat.Common.Signer.bestStep">
             <summary>
             best step (nmber of skipped points) for the signer
             </summary>
         </member>
-        <member name="F:SigStat.Common.Signer.bestFrr">
+        <member name="P:SigStat.Common.Signer.bestFrr">
             <summary>
             best frr for the signer, used to find the best sampling frequency and step for each signer
             </summary>
@@ -3298,14 +3299,14 @@
             A list a of genuine signatures used for training
             </summary>
         </member>
-        <member name="F:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.Threshold">
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.Threshold">
             <summary>
             A threshold, that will be used for classification. Signatures with
             an average DTW distance from the genuines above this threshold will
             be classified as forgeries
             </summary>
         </member>
-        <member name="F:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.DistanceMatrix">
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.DtwSignerModel.DistanceMatrix">
             <summary>
             DTW distance matrix of the genuine signatures
             </summary>
@@ -3582,7 +3583,7 @@
             Classifies Signatures by weighing other Classifier results.
             </summary>
         </member>
-        <member name="F:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Items">
+        <member name="P:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.Items">
             <summary>List of classifiers and belonging weights.</summary>
         </member>
         <member name="M:SigStat.Common.PipelineItems.Classifiers.WeightedClassifier.GetEnumerator">
@@ -4966,7 +4967,7 @@
             </summary>
             <seealso cref="T:System.Attribute" />
         </member>
-        <member name="F:SigStat.Common.Pipeline.Input.AutoSetMode">
+        <member name="P:SigStat.Common.Pipeline.Input.AutoSetMode">
             <summary>
             The automatic set mode
             </summary>
@@ -4982,7 +4983,7 @@
             Annotates an output <see cref="T:SigStat.Common.FeatureDescriptor"/> in a transformation pipeline
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.Output.Default">
+        <member name="P:SigStat.Common.Pipeline.Output.Default">
             <summary>
             The default value for the property
             </summary>
@@ -5142,7 +5143,7 @@
             <para>Default Pipeline Output: Range of all the Item outputs.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items">
+        <member name="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Items">
             <summary>List of transforms to be run parallel.</summary>
         </member>
         <member name="P:SigStat.Common.Pipeline.ParallelTransformPipeline.PipelineInputs">
@@ -5166,7 +5167,7 @@
         </member>
         <member name="M:SigStat.Common.Pipeline.ParallelTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="F:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
+            Executes transform <see cref="P:SigStat.Common.Pipeline.ParallelTransformPipeline.Items"/> parallel.
             Passes input features for each.
             Output is a range of all the Item outputs.
             </summary>
@@ -5178,7 +5179,7 @@
             <para>Default Pipeline Output: Output of the last Item in the sequence.</para>
             </summary>
         </member>
-        <member name="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
+        <member name="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Items">
             <summary>List of transforms to be run in sequence.</summary>
         </member>
         <member name="P:SigStat.Common.Pipeline.SequentialTransformPipeline.PipelineInputs">
@@ -5202,7 +5203,7 @@
         </member>
         <member name="M:SigStat.Common.Pipeline.SequentialTransformPipeline.Transform(SigStat.Common.Signature)">
             <summary>
-            Executes transform <see cref="F:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
+            Executes transform <see cref="P:SigStat.Common.Pipeline.SequentialTransformPipeline.Items"/> in sequence.
             Passes input features for each.
             Output is the output of the last Item in the sequence.
             </summary>
