@@ -181,8 +181,10 @@ namespace SigStat.Common.Loaders
                     pipeline.Add(blyTranslate);
                     break;
                 case "None":
-                default:
                     break;
+                default:
+                    throw new NotSupportedException("Not supported value for config.Translation_Scaling.Translation");
+
             }
 
             switch (config.Translation_Scaling.Scaling)
