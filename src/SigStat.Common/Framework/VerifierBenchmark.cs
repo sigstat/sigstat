@@ -41,7 +41,7 @@ namespace SigStat.Common
 
 
         /// HACK: Consider removing this after benchmark
-        public readonly ISignerModel Model;
+        public ISignerModel Model { get; }
 
         //ez internal, mert csak a Benchmark keszithet uj Resultokat
         internal Result(string signer, double frr, double far, double aer, ISignerModel model)
@@ -61,10 +61,10 @@ namespace SigStat.Common
 
         /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
         [JsonProperty]
-        public readonly List<Result> SignerResults;
+        public  List<Result> SignerResults { get; }
         /// <summary>Summarized, final result of the benchmark execution.</summary>
         [JsonProperty]
-        public readonly Result FinalResult;
+        public Result FinalResult { get; }
 
         //ez internal, mert csak a Benchmark keszithet uj BenchmarkResults-t
         internal BenchmarkResults(List<Result> signerResults, Result finalResult)

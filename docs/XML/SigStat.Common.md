@@ -61,8 +61,8 @@
   - [Parameters](#P-SigStat-Common-Logging-BenchmarkLogModel-Parameters 'SigStat.Common.Logging.BenchmarkLogModel.Parameters')
   - [SignerResults](#P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults 'SigStat.Common.Logging.BenchmarkLogModel.SignerResults')
 - [BenchmarkResults](#T-SigStat-Common-BenchmarkResults 'SigStat.Common.BenchmarkResults')
-  - [FinalResult](#F-SigStat-Common-BenchmarkResults-FinalResult 'SigStat.Common.BenchmarkResults.FinalResult')
-  - [SignerResults](#F-SigStat-Common-BenchmarkResults-SignerResults 'SigStat.Common.BenchmarkResults.SignerResults')
+  - [FinalResult](#P-SigStat-Common-BenchmarkResults-FinalResult 'SigStat.Common.BenchmarkResults.FinalResult')
+  - [SignerResults](#P-SigStat-Common-BenchmarkResults-SignerResults 'SigStat.Common.BenchmarkResults.SignerResults')
 - [BenchmarkResultsLogState](#T-SigStat-Common-Logging-BenchmarkResultsLogState 'SigStat.Common.Logging.BenchmarkResultsLogState')
   - [#ctor(aer,far,frr)](#M-SigStat-Common-Logging-BenchmarkResultsLogState-#ctor-System-Double,System-Double,System-Double- 'SigStat.Common.Logging.BenchmarkResultsLogState.#ctor(System.Double,System.Double,System.Double)')
   - [Aer](#P-SigStat-Common-Logging-BenchmarkResultsLogState-Aer 'SigStat.Common.Logging.BenchmarkResultsLogState.Aer')
@@ -623,10 +623,10 @@
   - [Width](#P-SigStat-Common-Transforms-Resize-Width 'SigStat.Common.Transforms.Resize.Width')
   - [Transform()](#M-SigStat-Common-Transforms-Resize-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Resize.Transform(SigStat.Common.Signature)')
 - [Result](#T-SigStat-Common-Result 'SigStat.Common.Result')
-  - [Model](#F-SigStat-Common-Result-Model 'SigStat.Common.Result.Model')
   - [Aer](#P-SigStat-Common-Result-Aer 'SigStat.Common.Result.Aer')
   - [Far](#P-SigStat-Common-Result-Far 'SigStat.Common.Result.Far')
   - [Frr](#P-SigStat-Common-Result-Frr 'SigStat.Common.Result.Frr')
+  - [Model](#P-SigStat-Common-Result-Model 'SigStat.Common.Result.Model')
   - [Signer](#P-SigStat-Common-Result-Signer 'SigStat.Common.Result.Signer')
 - [SampleRate](#T-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate')
   - [InputP](#P-SigStat-Common-PipelineItems-Transforms-Preprocessing-SampleRate-InputP 'SigStat.Common.PipelineItems.Transforms.Preprocessing.SampleRate.InputP')
@@ -1630,15 +1630,15 @@ SigStat.Common
 
 Contains the benchmark results of every [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer') and the summarized final results.
 
-<a name='F-SigStat-Common-BenchmarkResults-FinalResult'></a>
-### FinalResult `constants`
+<a name='P-SigStat-Common-BenchmarkResults-FinalResult'></a>
+### FinalResult `property`
 
 ##### Summary
 
 Summarized, final result of the benchmark execution.
 
-<a name='F-SigStat-Common-BenchmarkResults-SignerResults'></a>
-### SignerResults `constants`
+<a name='P-SigStat-Common-BenchmarkResults-SignerResults'></a>
+### SignerResults `property`
 
 ##### Summary
 
@@ -7829,9 +7829,6 @@ SigStat.Common
 
 Contains the benchmark results of a single [Signer](#T-SigStat-Common-Signer 'SigStat.Common.Signer')
 
-<a name='F-SigStat-Common-Result-Model'></a>
-### Model `constants`
-
 <a name='P-SigStat-Common-Result-Aer'></a>
 ### Aer `property`
 
@@ -7852,6 +7849,9 @@ False Acceptance Rate
 ##### Summary
 
 False Rejection Rate
+
+<a name='P-SigStat-Common-Result-Model'></a>
+### Model `property`
 
 <a name='P-SigStat-Common-Result-Signer'></a>
 ### Signer `property`

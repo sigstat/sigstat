@@ -736,16 +736,16 @@
         <member name="P:SigStat.Common.Result.Aer">
             <summary>Average Error Rate</summary>
         </member>
-        <member name="F:SigStat.Common.Result.Model">
+        <member name="P:SigStat.Common.Result.Model">
             HACK: Consider removing this after benchmark
         </member>
         <member name="T:SigStat.Common.BenchmarkResults">
             <summary>Contains the benchmark results of every <see cref="T:SigStat.Common.Signer"/> and the summarized final results.</summary>
         </member>
-        <member name="F:SigStat.Common.BenchmarkResults.SignerResults">
+        <member name="P:SigStat.Common.BenchmarkResults.SignerResults">
             <summary>List that contains the <see cref="T:SigStat.Common.Result"/>s for each <see cref="T:SigStat.Common.Signer"/></summary>
         </member>
-        <member name="F:SigStat.Common.BenchmarkResults.FinalResult">
+        <member name="P:SigStat.Common.BenchmarkResults.FinalResult">
             <summary>Summarized, final result of the benchmark execution.</summary>
         </member>
         <member name="T:SigStat.Common.VerifierBenchmark">
