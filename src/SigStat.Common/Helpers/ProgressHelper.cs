@@ -41,7 +41,7 @@ namespace SigStat.Common.Helpers
 
 
         private DateTime lastProgress = DateTime.Now;
-        private Stopwatch stopwatch = Stopwatch.StartNew();
+        private readonly Stopwatch stopwatch = Stopwatch.StartNew();
 
         /// <summary>
         /// Event will be executed periodically after <see cref="ReportIntervallSeconds"/> when the <see cref="Value"/> property changes. 

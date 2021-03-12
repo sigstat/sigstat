@@ -61,7 +61,8 @@ namespace SigStat.Common
                         forged++;
                         break;
                     default:
-                        throw new NotSupportedException();
+                        unknown++;
+                        break;
                 }
             }
 

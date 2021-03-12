@@ -9,7 +9,7 @@ namespace SigStat.Common.Logging
     /// <summary>
     /// This class is used to generate a report in Excel file format, form a Benchmark model.
     /// </summary>
-    public class ExcelReportGenerator
+    static public class ExcelReportGenerator
     {
         /// <summary>
         /// Generates an Excel file that contains the report.

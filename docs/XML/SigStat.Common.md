@@ -52,13 +52,13 @@
   - [ToString()](#M-SigStat-Common-Logging-BenchmarkKeyValueLogState-ToString 'SigStat.Common.Logging.BenchmarkKeyValueLogState.ToString')
 - [BenchmarkLogModel](#T-SigStat-Common-Logging-BenchmarkLogModel 'SigStat.Common.Logging.BenchmarkLogModel')
   - [#ctor()](#M-SigStat-Common-Logging-BenchmarkLogModel-#ctor 'SigStat.Common.Logging.BenchmarkLogModel.#ctor')
-  - [BenchmarkResultsGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName')
-  - [ExecutionGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ExecutionGroupName')
-  - [ParametersGroupName](#F-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ParametersGroupName')
   - [BenchmarkResults](#P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResults 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResults')
+  - [BenchmarkResultsGroupName](#P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName 'SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName')
   - [Excecution](#P-SigStat-Common-Logging-BenchmarkLogModel-Excecution 'SigStat.Common.Logging.BenchmarkLogModel.Excecution')
+  - [ExecutionGroupName](#P-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ExecutionGroupName')
   - [KeyValueGroups](#P-SigStat-Common-Logging-BenchmarkLogModel-KeyValueGroups 'SigStat.Common.Logging.BenchmarkLogModel.KeyValueGroups')
   - [Parameters](#P-SigStat-Common-Logging-BenchmarkLogModel-Parameters 'SigStat.Common.Logging.BenchmarkLogModel.Parameters')
+  - [ParametersGroupName](#P-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName 'SigStat.Common.Logging.BenchmarkLogModel.ParametersGroupName')
   - [SignerResults](#P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults 'SigStat.Common.Logging.BenchmarkLogModel.SignerResults')
 - [BenchmarkResults](#T-SigStat-Common-BenchmarkResults 'SigStat.Common.BenchmarkResults')
   - [FinalResult](#P-SigStat-Common-BenchmarkResults-FinalResult 'SigStat.Common.BenchmarkResults.FinalResult')
@@ -223,8 +223,8 @@
 - [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor')
   - [#ctor(name,key,featureType)](#M-SigStat-Common-FeatureDescriptor-#ctor-System-String,System-String,System-Type- 'SigStat.Common.FeatureDescriptor.#ctor(System.String,System.String,System.Type)')
   - [descriptors](#F-SigStat-Common-FeatureDescriptor-descriptors 'SigStat.Common.FeatureDescriptor.descriptors')
+  - [syncRoot](#F-SigStat-Common-FeatureDescriptor-syncRoot 'SigStat.Common.FeatureDescriptor.syncRoot')
   - [FeatureType](#P-SigStat-Common-FeatureDescriptor-FeatureType 'SigStat.Common.FeatureDescriptor.FeatureType')
-  - [IsCollection](#P-SigStat-Common-FeatureDescriptor-IsCollection 'SigStat.Common.FeatureDescriptor.IsCollection')
   - [Key](#P-SigStat-Common-FeatureDescriptor-Key 'SigStat.Common.FeatureDescriptor.Key')
   - [Name](#P-SigStat-Common-FeatureDescriptor-Name 'SigStat.Common.FeatureDescriptor.Name')
   - [Get(key)](#M-SigStat-Common-FeatureDescriptor-Get-System-String- 'SigStat.Common.FeatureDescriptor.Get(System.String)')
@@ -1563,27 +1563,6 @@ Default constructor creating a blank model.
 
 This constructor has no parameters.
 
-<a name='F-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName'></a>
-### BenchmarkResultsGroupName `constants`
-
-##### Summary
-
-Name of the "BenchmarkResults" group
-
-<a name='F-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName'></a>
-### ExecutionGroupName `constants`
-
-##### Summary
-
-Name of the "Excecution" group
-
-<a name='F-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName'></a>
-### ParametersGroupName `constants`
-
-##### Summary
-
-Name of the "Parameters" group
-
 <a name='P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResults'></a>
 ### BenchmarkResults `property`
 
@@ -1591,12 +1570,26 @@ Name of the "Parameters" group
 
 Benchmark results group
 
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-BenchmarkResultsGroupName'></a>
+### BenchmarkResultsGroupName `property`
+
+##### Summary
+
+Name of the "BenchmarkResults" group
+
 <a name='P-SigStat-Common-Logging-BenchmarkLogModel-Excecution'></a>
 ### Excecution `property`
 
 ##### Summary
 
 Excecution group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-ExecutionGroupName'></a>
+### ExecutionGroupName `property`
+
+##### Summary
+
+Name of the "Excecution" group
 
 <a name='P-SigStat-Common-Logging-BenchmarkLogModel-KeyValueGroups'></a>
 ### KeyValueGroups `property`
@@ -1611,6 +1604,13 @@ Benchmark results stored in Key-Value groups
 ##### Summary
 
 Parameters group
+
+<a name='P-SigStat-Common-Logging-BenchmarkLogModel-ParametersGroupName'></a>
+### ParametersGroupName `property`
+
+##### Summary
+
+Name of the "Parameters" group
 
 <a name='P-SigStat-Common-Logging-BenchmarkLogModel-SignerResults'></a>
 ### SignerResults `property`
@@ -3602,19 +3602,19 @@ Therefore, the `key` parameter must be unique.
 
 The static dictionary of all descriptors.
 
+<a name='F-SigStat-Common-FeatureDescriptor-syncRoot'></a>
+### syncRoot `constants`
+
+##### Summary
+
+Gets whether the type of the feature is List.
+
 <a name='P-SigStat-Common-FeatureDescriptor-FeatureType'></a>
 ### FeatureType `property`
 
 ##### Summary
 
 Gets or sets the type of the feature.
-
-<a name='P-SigStat-Common-FeatureDescriptor-IsCollection'></a>
-### IsCollection `property`
-
-##### Summary
-
-Gets whether the type of the feature is List.
 
 <a name='P-SigStat-Common-FeatureDescriptor-Key'></a>
 ### Key `property`

@@ -28,6 +28,9 @@ namespace SigStat.Common.Model
                 //TODO: We should only return the Descriptors that are actually used in the Verifier
                 return FeatureDescriptor.GetAll();
             }
+
+            // TODO : https://app.codacy.com/gh/sigstat/sigstat/file/54164406331/issues/source?bid=22371483&fileBranchId=22371483#l32
+            //        https://app.codacy.com/gh/sigstat/sigstat/file/54164406331/issues/source?bid=22371483&fileBranchId=22371483#l31
             set
             {
 

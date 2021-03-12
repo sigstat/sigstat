@@ -13,7 +13,7 @@ namespace SigStat.Common.Helpers.Serialization
     /// </summary>
     public class FeatureDescriptorListJsonConverter : JsonConverter
     {
-        private FeatureDescriptorTJsonConverter helperConverter = new FeatureDescriptorTJsonConverter();
+        private readonly FeatureDescriptorTJsonConverter helperConverter = new FeatureDescriptorTJsonConverter();
         /// <summary>
         /// Tells if the current object is of the correct type
         /// </summary>

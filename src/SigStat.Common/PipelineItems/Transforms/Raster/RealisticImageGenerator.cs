@@ -71,8 +71,7 @@ namespace SigStat.Common.Transforms
         private readonly Rgba32 fg = Rgba32.LightBlue;
         private readonly Rgba32 bg = Rgba32.White;
 
-        private List<double> xs;
-        private List<double> ys;
+       
         private List<bool> pendowns;
         private List<double> ps;
         private List<double> alts;
@@ -91,8 +90,8 @@ namespace SigStat.Common.Transforms
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            xs = signature.GetFeature(X);
-            ys = signature.GetFeature(Y);
+            List<double>  xs = signature.GetFeature(X);
+            List<double>  ys = signature.GetFeature(Y);
             pendowns = signature.GetFeature(Button);
             ps = signature.GetFeature(Pressure);
             alts = signature.GetFeature(Altitude);

@@ -23,7 +23,7 @@ namespace SigStat.Common.Logging
         /// <summary>
         /// Stored logs that contain information for the report.
         /// </summary>
-        private ConcurrentBag<SigStatLogState> reportLogs;
+        private readonly ConcurrentBag<SigStatLogState> reportLogs;
 
 
         /// <summary>

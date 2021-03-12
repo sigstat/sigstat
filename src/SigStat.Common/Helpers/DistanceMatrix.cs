@@ -13,7 +13,7 @@ namespace SigStat.Common
     /// <typeparam name="TValue">Type to represent the distances</typeparam>
     public class DistanceMatrix<TRowKey, TColumnKey, TValue>
     {
-        Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue> items = new Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue>();
+        readonly Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue>  items = new Dictionary<KeyValuePair<TRowKey, TColumnKey>, TValue>();
         /// <summary>
         /// Gets or sets a distance for a given row and column
         /// </summary>

@@ -121,13 +121,13 @@ namespace SigStat.Common
             {
                 var summarySheet = p.Workbook.Worksheets.Add("Summary");
                 summarySheet.Cells[2, 2].Value = "Preprocessing benchmark";
-                summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
+                summarySheet.Cells[3, 2].Value = DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 summarySheet.Cells[4, 2].Value = Path.GetFileNameWithoutExtension(filename);
                 summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description");
                 var execution = new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("Name:","Preprocessing benchmark"),
-                    new KeyValuePair<string, object>("Date:",DateTime.Now.ToString()),
+                    new KeyValuePair<string, object>("Date:",DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture)),
                     new KeyValuePair<string, object>("Agent:",Environment.MachineName),
                     new KeyValuePair<string, object>("Duration:",duration.ToString()),
                 };
@@ -302,7 +302,7 @@ namespace SigStat.Common
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Name", this.GetType().ToString()));
 
             //log benchmark date
-            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Date", DateTime.Now.ToString()));
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Date", DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture)));
 
             //log benchmark agent
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Agent", Environment.MachineName));

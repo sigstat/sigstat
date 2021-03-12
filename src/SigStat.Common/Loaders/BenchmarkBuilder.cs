@@ -232,6 +232,8 @@ namespace SigStat.Common.Loaders
                     ip = typeof(CubicInterpolation);
                     break;
                 case "Linear":
+                    ip = typeof(LinearInterpolation);
+                    break;
                 default:
                     ip = typeof(LinearInterpolation);
                     break;

@@ -55,8 +55,8 @@ namespace SigStat.Common.Pipeline
         /// </summary>
         public string PropName => PI.Name;
 
-        private object PipelineItem;
-        private PropertyInfo PI;
+        private readonly object PipelineItem;
+        private readonly PropertyInfo PI;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PipelineInput"/> class.

@@ -27,7 +27,7 @@ namespace SigStat.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="PipelineBase"/> class.
         /// </summary>
-        public PipelineBase()
+        protected PipelineBase()
         {
             //init io
             PipelineInputs = this.GetType().GetProperties()
@@ -43,7 +43,7 @@ namespace SigStat.Common
                     {
                         var attr = (Output)Attribute.GetCustomAttribute(prop, typeof(Output));
                         var propType = prop.PropertyType;
-                        if (!(propType.GetGenericTypeDefinition() == typeof(List<>)))
+                        if (propType.GetGenericTypeDefinition() != typeof(List<>))
                         {
                             prop.SetValue(this, FeatureDescriptor.Register(attr.Default ??
                                 $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{prop.Name}", propType.GetGenericArguments()[0]));

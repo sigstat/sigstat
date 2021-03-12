@@ -13,17 +13,17 @@ namespace SigStat.Common.Logging
         /// Name of the "BenchmarkResults" group
         /// </summary>
         [JsonIgnore]
-        public const string BenchmarkResultsGroupName = "BenchmarkResults";
+        public static string BenchmarkResultsGroupName => "BenchmarkResults";
         /// <summary>
         /// Name of the "Parameters" group
         /// </summary>
         [JsonIgnore]
-        public const string ParametersGroupName = "Parameters";
+        public static string ParametersGroupName => "Parameters";
         /// <summary>
         /// Name of the "Excecution" group
         /// </summary>
         [JsonIgnore]
-        public const string ExecutionGroupName = "Execution";
+        public static string ExecutionGroupName => "Execution";
         /// <summary>
         /// Benchmark results stored in Key-Value groups
         /// </summary>

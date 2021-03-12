@@ -2597,17 +2597,17 @@
             Represents the results of a benchmark
             </summary>
         </member>
-        <member name="F:SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName">
+        <member name="P:SigStat.Common.Logging.BenchmarkLogModel.BenchmarkResultsGroupName">
             <summary>
             Name of the "BenchmarkResults" group
             </summary>
         </member>
-        <member name="F:SigStat.Common.Logging.BenchmarkLogModel.ParametersGroupName">
+        <member name="P:SigStat.Common.Logging.BenchmarkLogModel.ParametersGroupName">
             <summary>
             Name of the "Parameters" group
             </summary>
         </member>
-        <member name="F:SigStat.Common.Logging.BenchmarkLogModel.ExecutionGroupName">
+        <member name="P:SigStat.Common.Logging.BenchmarkLogModel.ExecutionGroupName">
             <summary>
             Name of the "Excecution" group
             </summary>
@@ -3032,7 +3032,7 @@
         <member name="P:SigStat.Common.FeatureDescriptor.FeatureType">
             <summary> Gets or sets the type of the feature. </summary>
         </member>
-        <member name="P:SigStat.Common.FeatureDescriptor.IsCollection">
+        <member name="F:SigStat.Common.FeatureDescriptor.syncRoot">
             <summary> Gets whether the type of the feature is List. </summary>
         </member>
         <member name="F:SigStat.Common.FeatureDescriptor.descriptors">

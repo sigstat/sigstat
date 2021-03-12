@@ -229,6 +229,8 @@ namespace SigStat.Common.Loaders
             //HACK: same timestamp for measurements does not make sense
             // therefore, we remove the second entry
             // a better solution would be to change the timestamps based on their environments
+
+            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406821/issues/source?bid=22371483&fileBranchId=22371483#l237
             for (int i = 0; i < lines.Count - 1; i++)
             {
                 if (lines[i][2] == lines[i + 1][2])
@@ -268,11 +270,11 @@ namespace SigStat.Common.Loaders
                 {
                     if (button[i] == 0)
                         pointType[i] = 1;
-                    else if (i == button.Length - 1 || (button[i] % 2 == 1 && button[i + 1] % 2 == 0))
+                    else if (i == button.Length - 1 || (button[i] % 2 != 0 && button[i + 1] % 2 == 0))
                         pointType[i] = 2;
                     else if (button[i] == 2 || button[i] == 4)
                         pointType[i] = 0;
-                    else if (button[i] % 2 == 1 && button[i - 1] % 2 == 0 && button[i - 1] != 0)
+                    else if (button[i] % 2 != 0 && button[i - 1] % 2 == 0 && button[i - 1] != 0)
                         pointType[i] = 1;
                     else
                         pointType[i] = 0;

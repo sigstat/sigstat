@@ -27,7 +27,7 @@ namespace SigStat.Common.Helpers.Excel
     /// <summary>
     /// Stores color information for every ExcelColor
     /// </summary>
-    class PaletteStorage
+    static class PaletteStorage
     {
         //Load colors into a dictionary
         private static readonly Dictionary<ExcelColor, Palette> PaletteColors = new Dictionary<ExcelColor, Palette>

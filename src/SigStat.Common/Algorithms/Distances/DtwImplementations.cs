@@ -214,8 +214,8 @@ namespace SigStat.Common.Algorithms
             //                    return DTW[n, m]
 
             // Indexing starts from 1
-            var s1 = (new P[] { default(P) }).Concat(sequence1).ToArray();
-            var s2 = (new P[] { default(P) }).Concat(sequence2).ToArray();
+            var s1 = (new [] { default(P) }).Concat(sequence1).ToArray();
+            var s2 = (new [] { default(P) }).Concat(sequence2).ToArray();
             var n = s1.Length - 1;
             var m = s2.Length - 1;
             var dtw = new double[n+1, m+1];
@@ -283,6 +283,7 @@ namespace SigStat.Common.Algorithms
                     dtw[i, j] = 0;
             }
 
+            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406687/issues/source?bid=22371483&fileBranchId=22371483#l281
             for (int i = 1; i <= n; i++)
                 for (int j = Math.Max(1, i - w); j <= Math.Min(m, i + w); j++)
                 {
