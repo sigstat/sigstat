@@ -49,10 +49,13 @@ namespace SigStat.Common
                                 $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{prop.Name}", propType.GetGenericArguments()[0]));
                         }
                         else
-                        {//List of Features
+                        {
+#pragma warning disable S125
+                            //List of Features
                             //prop . SetValue ( this , new List < FeatureDescriptor > ( ) ) ; 
                             //de mennyit? nem eleg egy ures listat letrehozni, mert akkor a transform nak kell megadnia az FD-kat
                             //most hack: transform mondja meg, itt marad null
+#pragma warning restore S125
                         }
                     }
                     return new PipelineOutput(this, prop);
