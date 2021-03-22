@@ -83,13 +83,13 @@ namespace SigStat.Common.Logging
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
                 default:
-                    throw new NotSupportedException("This value is not supported for logLevel");
+                    throw new NotSupportedException("This value is not supported for logLevel");   
             }
             string msg = formatter(state, exception);
-            Console.WriteLine(msg);
+            Console.WriteLine(msg); //NOSONAR
             if (exception != null)
             {
-                Console.WriteLine(exception);
+                Console.WriteLine(exception); //NOSONAR
             }
             Console.ForegroundColor = oldColor;
 
