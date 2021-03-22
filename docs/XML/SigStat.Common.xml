@@ -1719,6 +1719,13 @@
             Average Error Rate (calculated from Far and Frr)
             </summary>
         </member>
+        <member name="M:SigStat.Common.ErrorRate.Equals(SigStat.Common.ErrorRate)">
+            <summary>
+            Checks for equality of double values 
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
         <member name="T:SigStat.Common.IOExtensions">
             <summary>
             Extension methods for common IO operations
@@ -1756,6 +1763,13 @@
             return standard diviation of a feature values
             </summary>
             <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.MathHelper.EqualsZero(System.Double)">
+            <summary>
+            Return true if the argument falls into the [-double.Epsilon,double.Epsilon] range
+            </summary>
+            <param name="d"></param>
             <returns></returns>
         </member>
         <member name="T:SigStat.Common.SignatureHelper">

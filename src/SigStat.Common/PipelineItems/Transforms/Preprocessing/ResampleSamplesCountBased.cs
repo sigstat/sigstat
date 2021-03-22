@@ -128,13 +128,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 if (isRangeFound)
                 {
                     if (ts == resampledTimestamps.Where(rts => rts > originalTimestamps[previous]).ToList()[0] 
-                        && originalValues[previous] != 2 && previous != 0)
+                        && ((int)originalValues[previous]) != 2 && previous != 0)
                         resampledValues.Add(originalValues[previous]);
                     else
                     {
                         var lessThanNextTimestamps = resampledTimestamps.Where(rts => rts < originalTimestamps[next]).ToList();
                         if (ts == lessThanNextTimestamps[lessThanNextTimestamps.Count - 1] 
-                            && originalValues[next] != 1 && next != resampledTimestamps.Count-1)
+                            && ((int)originalValues[next]) != 1 && next != resampledTimestamps.Count-1)
                             resampledValues.Add(originalValues[next]);
                         else
                             resampledValues.Add(0);

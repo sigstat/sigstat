@@ -187,6 +187,7 @@
   - [Aer](#P-SigStat-Common-ErrorRate-Aer 'SigStat.Common.ErrorRate.Aer')
   - [Far](#P-SigStat-Common-ErrorRate-Far 'SigStat.Common.ErrorRate.Far')
   - [Frr](#P-SigStat-Common-ErrorRate-Frr 'SigStat.Common.ErrorRate.Frr')
+  - [Equals(other)](#M-SigStat-Common-ErrorRate-Equals-SigStat-Common-ErrorRate- 'SigStat.Common.ErrorRate.Equals(SigStat.Common.ErrorRate)')
 - [EuclideanDistance](#T-SigStat-Common-Algorithms-Distances-EuclideanDistance 'SigStat.Common.Algorithms.Distances.EuclideanDistance')
   - [Calculate(x,y)](#M-SigStat-Common-Algorithms-Distances-EuclideanDistance-Calculate-System-Double[],System-Double[]- 'SigStat.Common.Algorithms.Distances.EuclideanDistance.Calculate(System.Double[],System.Double[])')
 - [EvenNSampler](#T-SigStat-Common-Framework-Samplers-EvenNSampler 'SigStat.Common.Framework.Samplers.EvenNSampler')
@@ -420,6 +421,7 @@
   - [Output](#P-SigStat-Common-Transforms-Map-Output 'SigStat.Common.Transforms.Map.Output')
   - [Transform()](#M-SigStat-Common-Transforms-Map-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Map.Transform(SigStat.Common.Signature)')
 - [MathHelper](#T-SigStat-Common-MathHelper 'SigStat.Common.MathHelper')
+  - [EqualsZero(d)](#M-SigStat-Common-MathHelper-EqualsZero-System-Double- 'SigStat.Common.MathHelper.EqualsZero(System.Double)')
   - [Median(values)](#M-SigStat-Common-MathHelper-Median-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.Median(System.Collections.Generic.IEnumerable{System.Double})')
   - [Min(d1,d2,d3)](#M-SigStat-Common-MathHelper-Min-System-Double,System-Double,System-Double- 'SigStat.Common.MathHelper.Min(System.Double,System.Double,System.Double)')
   - [StdDiviation(values)](#M-SigStat-Common-MathHelper-StdDiviation-System-Collections-Generic-IEnumerable{System-Double}- 'SigStat.Common.MathHelper.StdDiviation(System.Collections.Generic.IEnumerable{System.Double})')
@@ -3073,6 +3075,23 @@ False Acceptance Rate
 ##### Summary
 
 False Rejection Rate
+
+<a name='M-SigStat-Common-ErrorRate-Equals-SigStat-Common-ErrorRate-'></a>
+### Equals(other) `method`
+
+##### Summary
+
+Checks for equality of double values
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| other | [SigStat.Common.ErrorRate](#T-SigStat-Common-ErrorRate 'SigStat.Common.ErrorRate') |  |
 
 <a name='T-SigStat-Common-Algorithms-Distances-EuclideanDistance'></a>
 ## EuclideanDistance `type`
@@ -5779,6 +5798,23 @@ SigStat.Common
 ##### Summary
 
 Common mathematical functions used by the SigStat framework
+
+<a name='M-SigStat-Common-MathHelper-EqualsZero-System-Double-'></a>
+### EqualsZero(d) `method`
+
+##### Summary
+
+Return true if the argument falls into the [-double.Epsilon,double.Epsilon] range
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| d | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') |  |
 
 <a name='M-SigStat-Common-MathHelper-Median-System-Collections-Generic-IEnumerable{System-Double}-'></a>
 ### Median(values) `method`

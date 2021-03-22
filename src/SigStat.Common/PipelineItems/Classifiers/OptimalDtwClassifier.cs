@@ -63,7 +63,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 return
                     ID == other.ID
                     && Origin.Equals(other.Origin)
-                    && Distance == other.Distance;
+                    && Math.Abs(Distance - other.Distance).EqualsZero();
             }
         }
 

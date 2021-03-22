@@ -22,12 +22,18 @@ namespace SigStat.Common
         /// </summary>
         public double Aer { get { return (Far + Frr) / 2; } }
 
+
+        /// <summary>
+        /// Checks for equality of double values 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(ErrorRate other)
         {
             return
-                Far == other.Far
-                && Frr == other.Frr
-                && Aer == other.Aer;
+                Math.Abs(Far - other.Far).EqualsZero()
+                && Math.Abs(Frr - other.Frr).EqualsZero()
+                && Math.Abs(Aer - other.Aer).EqualsZero();
         }
     }
 }

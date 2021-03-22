@@ -23,8 +23,8 @@ namespace SigStat.Common.Algorithms.Classifiers
                 return
                     Label.Equals(other.Label)
                     && Index == other.Index
-                    && Distance == other.Distance
-                    && ReferenceDistance == other.ReferenceDistance;
+                    && Math.Abs(Distance - other.Distance).EqualsZero()
+                    && Math.Abs(ReferenceDistance - other.ReferenceDistance).EqualsZero();
 
             }
         }
