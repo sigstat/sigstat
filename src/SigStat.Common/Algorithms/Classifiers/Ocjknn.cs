@@ -11,22 +11,14 @@ namespace SigStat.Common.Algorithms.Classifiers
     /// </summary>
     public static class Ocjknn
     {
-        private struct Neighbor<Key> : IEquatable<Neighbor<Key>>
+        private struct Neighbor<Key> 
         {
             public Key Label;
             public int Index;
             public double Distance;
             public double ReferenceDistance;
 
-            public bool Equals(Neighbor<Key> other)
-            {
-                return
-                    Label.Equals(other.Label)
-                    && Index == other.Index
-                    && Math.Abs(Distance - other.Distance).EqualsZero()
-                    && Math.Abs(ReferenceDistance - other.ReferenceDistance).EqualsZero();
-
-            }
+         
         }
 
         /// <summary>
@@ -44,6 +36,7 @@ namespace SigStat.Common.Algorithms.Classifiers
         /// <returns>If the result is 0.5 or greater, then <paramref name="testItem"/> should be accepted as a member of target class</returns>
         public static double Test<T>(T testItem, IEnumerable<T> targetItems, int j, int k, double threshold, Func<T, T, double> distanceFunction)
         {
+
             var trainingSet = targetItems.ToArray();
             if (j > trainingSet.Length)
                 throw new ArgumentException($"{nameof(j)} must not be greater than {nameof(targetItems)}.Count()", nameof(j));
@@ -54,7 +47,7 @@ namespace SigStat.Common.Algorithms.Classifiers
             var neighborsOfA = new Neighbor<T>[trainingSet.Length];
             for (int i = 0; i < trainingSet.Length; i++)
             {
-                neighborsOfA[i] = new Neighbor<T> { Label = trainingSet[i], Index = i, Distance = distanceFunction(testItem, trainingSet[i]) };
+                neighborsOfA[i] = new Neighbor<T> { Label = trainingSet[i], Index = i, Distance = distanceFunction(testItem, trainingSet[i]) };           
             }
 
             var jNearestNeighborsOfA = neighborsOfA.OrderBy(g => g.Distance).Take(j).ToArray();
