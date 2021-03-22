@@ -86,12 +86,14 @@ namespace SigStat.Common.Logging
                     throw new NotSupportedException("This value is not supported for logLevel");   
             }
             string msg = formatter(state, exception);
-#pragma warning disable S2228
+            #pragma warning disable S2228
             Console.WriteLine(msg);
-#pragma warning restore S2228
+            #pragma warning restore S2228
             if (exception != null)
             {
+                #pragma warning disable S2228
                 Console.WriteLine(exception);
+                #pragma warning disable S2228
             }
             Console.ForegroundColor = oldColor;
 
