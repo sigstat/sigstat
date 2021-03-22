@@ -222,7 +222,8 @@ namespace SigStat.Common.Loaders
                         pipeline.Add(pRelativeScale);
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("Not supported value for config.Translation_Scaling.Scaling");
+                    
             }
 
             Type ip;
@@ -270,8 +271,9 @@ namespace SigStat.Common.Loaders
                     });
                     break;
                 case "None":
-                default:
                     break;
+                default:
+                    throw new NotSupportedException("Not supported value for config.ResamplingType_Filter");
             }
 
             var ClassifierFeatures = new List<FeatureDescriptor>();
@@ -317,7 +319,8 @@ namespace SigStat.Common.Loaders
                     ClassifierFeatures.Add(Features.Altitude);
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("Not supported value for config.ResamplingType_Filter");
+
             }
 
             Func<double[], double[], double> distance = null;
