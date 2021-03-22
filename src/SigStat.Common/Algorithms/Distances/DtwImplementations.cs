@@ -118,8 +118,8 @@ namespace SigStat.Common.Algorithms
             //d = sqrt(D(n + 1, m + 1));
 
             // TODO: sqrt?
-            var s1 = (new P[] { default(P) }).Concat(sequence1).ToArray();
-            var s2 = (new P[] { default(P) }).Concat(sequence2).ToArray();
+            var s1 = (new [] { default(P) }).Concat(sequence1).ToArray();
+            var s2 = (new [] { default(P) }).Concat(sequence2).ToArray();
             var n = s1.Length - 1;
             var m = s2.Length - 1;
 

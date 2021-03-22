@@ -333,7 +333,9 @@ namespace SigStat.Common.Loaders
                     distance = Accord.Math.Distance.Manhattan;
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("Not supported value for config.Distance");
+
+
             }
             IClassifier classifier;
             if (config.Classifier == "Dtw")
