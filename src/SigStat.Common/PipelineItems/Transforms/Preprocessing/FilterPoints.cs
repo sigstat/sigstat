@@ -24,7 +24,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <see cref="FeatureDescriptor"/> list of all features to resample
         /// </summary>
         [Input]
-        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; }
+        public List<FeatureDescriptor<List<double>>> InputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
         /// <summary>
         /// Resampled output for <see cref="FeatureDescriptor"/> that controls the removal of samples (e.g. <see cref="Features.Pressure"/>)
@@ -36,7 +36,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// Resampled output for all input features
         /// </summary>
         [Output]
-        public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; }
+        public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
         /// <summary>
         /// The lowes percentile of the <see cref="KeyFeatureInput"/> will be removed during filtering

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>SigStat</PackageId>
     <!-- Version info will be overwriten by the publish process -->
-    <Version>0.2.0</Version>
+    <Version>0.2.5</Version>
     <Authors>Bence Kovari</Authors>
     <Company>Budapest University of Technology and Economics</Company>
     <PackageProjectUrl>https://www.sigstat.org</PackageProjectUrl>
@@ -20,8 +20,8 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/sigstat/sigstat</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <FileVersion>0.2.0.0</FileVersion>
+    <AssemblyVersion>0.2.5.0</AssemblyVersion>
+    <FileVersion>0.2.5.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -53,7 +53,7 @@ namespace SigStat.Common.Pipeline
         /// Output is the output of the last Item in the sequence.
         /// </summary>
         /// <param name="signature">Signature to execute transform on.</param>
-        public void Transform(Signature signature)
+        public virtual void Transform(Signature signature)
         {
             if (Items == null || Items.Count == 0)
             {

@@ -208,7 +208,8 @@ namespace SigStat.Common.Helpers
 
             int startRow = row;
             int startCol = col;
-
+            // Remove ignored properties
+            props = props.Where(p => p.GetCustomAttribute(typeof(ExcelIgnoreAttribute)) == null).ToArray();
             //Write header
             if (showHeader)
             {
