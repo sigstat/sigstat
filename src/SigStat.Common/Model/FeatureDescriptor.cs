@@ -21,7 +21,7 @@ namespace SigStat.Common
 
         /// <summary> Gets whether the type of the feature is List. </summary>
 
-        protected static object syncRoot = new object();
+        protected readonly static object syncRoot = new object();
 
         public bool IsCollection
         {
