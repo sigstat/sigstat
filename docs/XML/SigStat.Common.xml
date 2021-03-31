@@ -1131,60 +1131,9 @@
             <param name="text">Text to insert</param>
             <param name="level">Level of text</param>
         </member>
-        <member name="T:SigStat.Common.Helpers.HierarchyElement">
+        <member name="T:SigStat.Common.Helpers.Excel.ExcelIgnoreAttribute">
             <summary>
-            Hierarchical structure to store object
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Helpers.HierarchyElement.Children">
-            <summary>
-            Gets the children.
-            </summary>
-        </member>
-        <member name="P:SigStat.Common.Helpers.HierarchyElement.Content">
-            <summary>
-            Gets or sets the content.
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.#ctor">
-            <summary>
-            Create an emty element
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.#ctor(System.Object)">
-            <summary>
-            Create a new element with content
-            </summary>
-            <param name="Content">Content of the new element</param>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.Add(SigStat.Common.Helpers.HierarchyElement)">
-            <summary>
-            Adds the specified element as a child
-            </summary>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.GetDepth">
-            <summary>
-            Return the hierarchy's depth from this node
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.GetCount">
-            <summary>
-            Returns number of elements under this node and itself
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
-        <member name="M:SigStat.Common.Helpers.HierarchyElement.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
+            Ignores the marked property, when generating an Excel table from the class
             </summary>
         </member>
         <member name="T:SigStat.Common.Helpers.Excel.TextLevel">
@@ -1285,6 +1234,62 @@
             <param name="excelColor"></param>
             <returns>The specified palette</returns>
         </member>
+        <member name="T:SigStat.Common.Helpers.HierarchyElement">
+            <summary>
+            Hierarchical structure to store object
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.HierarchyElement.Children">
+            <summary>
+            Gets the children.
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.Helpers.HierarchyElement.Content">
+            <summary>
+            Gets or sets the content.
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.#ctor">
+            <summary>
+            Create an emty element
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.#ctor(System.Object)">
+            <summary>
+            Create a new element with content
+            </summary>
+            <param name="Content">Content of the new element</param>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.Add(SigStat.Common.Helpers.HierarchyElement)">
+            <summary>
+            Adds the specified element as a child
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.GetDepth">
+            <summary>
+            Return the hierarchy's depth from this node
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.GetCount">
+            <summary>
+            Returns number of elements under this node and itself
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.HierarchyElement.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+        </member>
         <member name="T:SigStat.Common.Helpers.IProgress">
             <summary>
             Enables progress tracking by expsoing the <see cref="P:SigStat.Common.Helpers.IProgress.Progress"/> property and the <see cref="E:SigStat.Common.Helpers.IProgress.ProgressChanged"/> event.
@@ -1355,6 +1360,12 @@
             <param name="reportProgress"></param>
             <param name="logAction">Logging action. E.g. Console.WriteLine()</param>
             <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.Helpers.ProgressHelper.IncrementValue">
+            <summary>
+            Increments <see cref="P:SigStat.Common.Helpers.ProgressHelper.Value"/> by 1.
+            </summary>
+            <remarks>The operation is thread safe.</remarks>
         </member>
         <member name="M:SigStat.Common.Helpers.ProgressHelper.Dispose">
             <inheritdoc/>

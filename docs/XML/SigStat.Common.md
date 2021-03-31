@@ -217,6 +217,7 @@
   - [InsertTable\`\`1(ws,col,row,data,title,color,showHeader,Name)](#M-SigStat-Common-Helpers-ExcelHelper-InsertTable``1-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-Collections-Generic-IEnumerable{``0},System-String,SigStat-Common-Helpers-Excel-ExcelColor,System-Boolean,System-String- 'SigStat.Common.Helpers.ExcelHelper.InsertTable``1(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0},System.String,SigStat.Common.Helpers.Excel.ExcelColor,System.Boolean,System.String)')
   - [InsertText(ws,row,col,text,level)](#M-SigStat-Common-Helpers-ExcelHelper-InsertText-OfficeOpenXml-ExcelWorksheet,System-Int32,System-Int32,System-String,SigStat-Common-Helpers-Excel-TextLevel- 'SigStat.Common.Helpers.ExcelHelper.InsertText(OfficeOpenXml.ExcelWorksheet,System.Int32,System.Int32,System.String,SigStat.Common.Helpers.Excel.TextLevel)')
   - [Merge(range)](#M-SigStat-Common-Helpers-ExcelHelper-Merge-OfficeOpenXml-ExcelRangeBase- 'SigStat.Common.Helpers.ExcelHelper.Merge(OfficeOpenXml.ExcelRangeBase)')
+- [ExcelIgnoreAttribute](#T-SigStat-Common-Helpers-Excel-ExcelIgnoreAttribute 'SigStat.Common.Helpers.Excel.ExcelIgnoreAttribute')
 - [ExcelReportGenerator](#T-SigStat-Common-Logging-ExcelReportGenerator 'SigStat.Common.Logging.ExcelReportGenerator')
   - [GenerateReport(model,fileName)](#M-SigStat-Common-Logging-ExcelReportGenerator-GenerateReport-SigStat-Common-Logging-BenchmarkLogModel,System-String- 'SigStat.Common.Logging.ExcelReportGenerator.GenerateReport(SigStat.Common.Logging.BenchmarkLogModel,System.String)')
 - [Extrema](#T-SigStat-Common-Transforms-Extrema 'SigStat.Common.Transforms.Extrema')
@@ -581,7 +582,8 @@
   - [ReportIntervallSeconds](#P-SigStat-Common-Helpers-ProgressHelper-ReportIntervallSeconds 'SigStat.Common.Helpers.ProgressHelper.ReportIntervallSeconds')
   - [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value')
   - [Dispose()](#M-SigStat-Common-Helpers-ProgressHelper-Dispose 'SigStat.Common.Helpers.ProgressHelper.Dispose')
-  - [StartNew(maximum,reportIntervallSeconds,reportProgress,logAction)](#M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper},System-Action{System-String}- 'SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper},System.Action{System.String})')
+  - [IncrementValue()](#M-SigStat-Common-Helpers-ProgressHelper-IncrementValue 'SigStat.Common.Helpers.ProgressHelper.IncrementValue')
+  - [StartNew(maximum,reportIntervallSeconds,reportProgress)](#M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}- 'SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper})')
 - [RealisticImageGenerator](#T-SigStat-Common-Transforms-RealisticImageGenerator 'SigStat.Common.Transforms.RealisticImageGenerator')
   - [#ctor(resolutionX,resolutionY)](#M-SigStat-Common-Transforms-RealisticImageGenerator-#ctor-System-Int32,System-Int32- 'SigStat.Common.Transforms.RealisticImageGenerator.#ctor(System.Int32,System.Int32)')
   - [Altitude](#P-SigStat-Common-Transforms-RealisticImageGenerator-Altitude 'SigStat.Common.Transforms.RealisticImageGenerator.Altitude')
@@ -3533,6 +3535,17 @@ Merge all cells into one in the range.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | range | [OfficeOpenXml.ExcelRangeBase](#T-OfficeOpenXml-ExcelRangeBase 'OfficeOpenXml.ExcelRangeBase') | Cells to merge |
+
+<a name='T-SigStat-Common-Helpers-Excel-ExcelIgnoreAttribute'></a>
+## ExcelIgnoreAttribute `type`
+
+##### Namespace
+
+SigStat.Common.Helpers.Excel
+
+##### Summary
+
+Ignores the marked property, when generating an Excel table from the class
 
 <a name='T-SigStat-Common-Logging-ExcelReportGenerator'></a>
 ## ExcelReportGenerator `type`
@@ -7420,8 +7433,24 @@ The actual number of processed items.
 
 This method has no parameters.
 
-<a name='M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper},System-Action{System-String}-'></a>
-### StartNew(maximum,reportIntervallSeconds,reportProgress,logAction) `method`
+<a name='M-SigStat-Common-Helpers-ProgressHelper-IncrementValue'></a>
+### IncrementValue() `method`
+
+##### Summary
+
+Increments [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value') by 1.
+
+##### Parameters
+
+This method has no parameters.
+
+##### Remarks
+
+The operation is thread safe.
+
+<a name='M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}-'></a>
+### StartNew(maximum,reportIntervallSeconds,reportProgress) `method`
+
 
 ##### Summary
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Threading;
 
 namespace SigStat.Common.Helpers
 {
@@ -93,6 +94,20 @@ namespace SigStat.Common.Helpers
                     instance.ReportProgress += pr => logAction?.Invoke($"{pr.Value}/{pr.Maximum} processed in {pr.Elapsed}. (ETA: {pr.Eta})");
             }
             return instance;
+        }
+
+        /// <summary>
+        /// Increments <see cref="Value"/> by 1.
+        /// </summary>
+        /// <remarks>The operation is thread safe.</remarks>
+        public void IncrementValue()
+        {
+            Interlocked.Increment(ref value);
+            if (value == 0 || value == Maximum || (ReportIntervallSeconds > 0 && (DateTime.Now - lastProgress).TotalSeconds > ReportIntervallSeconds))
+            {
+                ReportProgress?.Invoke(this);
+                lastProgress = DateTime.Now;
+            }
         }
 
 

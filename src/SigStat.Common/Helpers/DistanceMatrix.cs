@@ -75,7 +75,7 @@ namespace SigStat.Common
         /// Generates a two dimensional array representation of the Matrix
         /// </summary>
         /// <returns>a two dimensional array representation of the Matrix, where the first row and column contain the corresponding row and column indexes</returns>
-        internal object[,] ToArray()
+        public object[,] ToArray()
         {
             var rows = items.Keys.Select(key => key.Key).Distinct().OrderBy(i => i).ToList();
             var columns = items.Keys.Select(key => key.Value).Distinct().OrderBy(i => i).ToList();
@@ -122,7 +122,7 @@ namespace SigStat.Common
         /// Enumerates all values stored on the Matrix
         /// </summary>
         /// <returns></returns>
-        internal IEnumerable<TValue> GetValues()
+        public IEnumerable<TValue> GetValues()
         {
             return items.Values;
         }

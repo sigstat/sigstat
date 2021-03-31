@@ -10,7 +10,7 @@ using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using SigStat.Common.Transforms;
 using System;
-using System.Collections;
+using System.Collections; 
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
