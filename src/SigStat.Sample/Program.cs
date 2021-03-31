@@ -10,7 +10,7 @@ using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
 using SigStat.Common.Transforms;
 using System;
-using System.Collections; 
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -711,112 +711,412 @@ namespace SigStat.Sample
             ExcelWorksheet resultsSheet2;
             int c = 1;
             int steps = 20;
-            using (p)
+            ExcelWorksheet resultsSheet;
+            var databaseDir2 = Environment.GetEnvironmentVariable("SigStatDB");
+            int samplingrate = 0;
+
+            List<string> databases = new List<string>();
+            foreach (string fileName_ in Directory.GetFiles(databaseDir2, "*.zip"))
             {
-                ExcelWorksheet resultsSheet;
-                var databaseDir2 = Environment.GetEnvironmentVariable("SigStatDB");
-                int samplingrate = 0;
+                string[] str = fileName_.Split("\\");
+                databases.Add(str[4]);
+                Console.WriteLine(str[4]);
+                string dataBaseName = str[4];
 
-                List<string> databases = new List<string>();
-                foreach (string fileName_ in Directory.GetFiles(databaseDir2, "*.zip"))
+                VerifierBenchmark b = new VerifierBenchmark();
+                Verifier v = new Verifier();
+
+                ////////////////////////////////////// loader
+                if (dataBaseName == "SVC2004.zip")
                 {
-                    string[] str = fileName_.Split("\\");
-                    databases.Add(str[4]);
-                    Console.WriteLine(str[4]);
-                    string dataBaseName = str[4];
+                    b.Loader = new Svc2004Loader(Path.Combine(databaseDir2, dataBaseName), true);
+                    samplingrate = 100;
+                    steps = 20;
+                    c = 1;
+                    p = new ExcelPackage();
+                    resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
+                    resultsSheet2.Cells[1, 1].Value = "Compilation";
+                    resultsSheet2.Cells[1, 2].Value = "Best Freq";
+                    resultsSheet2.Cells[1, 3].Value = "Avg point";
+                    resultsSheet2.Cells[1, 4].Value = "AER: Best";
+                    resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
+                    resultsSheet2.Cells[1, 6].Value = "AER: Device";
 
-                    VerifierBenchmark b = new VerifierBenchmark();
-                    Verifier v = new Verifier();
+                }
 
-                    ////////////////////////////////////// loader
-                    if (dataBaseName == "SVC2004.zip")
+                else if (dataBaseName == "MCYT100.zip")
+                {
+                    b.Loader = new MCYTLoader(Path.Combine(databaseDir2, dataBaseName), true);
+                    samplingrate = 100;
+                    steps = 20;
+                    c = 1;
+                    p = new ExcelPackage();
+                    resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
+                    resultsSheet2.Cells[1, 1].Value = "Compilation";
+                    resultsSheet2.Cells[1, 2].Value = "Best Freq";
+                    resultsSheet2.Cells[1, 3].Value = "Avg point";
+                    resultsSheet2.Cells[1, 4].Value = "AER: Best";
+                    resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
+                    resultsSheet2.Cells[1, 6].Value = "AER: Device";
+                }
+                else if (dataBaseName == "SigComp11_Dutch.zip")
+                {
+                    b.Loader = new SigComp11DutchLoader(Path.Combine(databaseDir2, dataBaseName), true);
+                    samplingrate = 200;
+                    steps = 40;
+                    c = 1;
+                    p = new ExcelPackage();
+                    resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
+                    resultsSheet2.Cells[1, 1].Value = "Compilation";
+                    resultsSheet2.Cells[1, 2].Value = "Best Freq";
+                    resultsSheet2.Cells[1, 3].Value = "Avg point";
+                    resultsSheet2.Cells[1, 4].Value = "AER: Best";
+                    resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
+                    resultsSheet2.Cells[1, 6].Value = "AER: Device";
+                }
+                else if (dataBaseName == "SigComp11Chinese.zip")
+                {
+                    b.Loader = new SigComp11ChineseLoader(Path.Combine(databaseDir2, dataBaseName), true);
+                    samplingrate = 200;
+                    steps = 40;
+                    c = 1;
+                    p = new ExcelPackage();
+                    resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
+                    resultsSheet2.Cells[1, 1].Value = "Compilation";
+                    resultsSheet2.Cells[1, 2].Value = "Best Freq";
+                    resultsSheet2.Cells[1, 3].Value = "Avg point";
+                    resultsSheet2.Cells[1, 4].Value = "AER: Best";
+                    resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
+                    resultsSheet2.Cells[1, 6].Value = "AER: Device";
+                }
+                else if (dataBaseName == "SigWiComp2013_Japanese.zip")
+                {
+                    b.Loader = new SigComp13JapaneseLoader(Path.Combine(databaseDir2, dataBaseName), true);
+                    samplingrate = 200;
+                    steps = 100;
+                    c = 1;
+                    p = new ExcelPackage();
+                    resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
+                    resultsSheet2.Cells[1, 1].Value = "Compilation";
+                    resultsSheet2.Cells[1, 2].Value = "Best Freq";
+                    resultsSheet2.Cells[1, 3].Value = "Avg point";
+                    resultsSheet2.Cells[1, 4].Value = "AER: Best";
+                    resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
+                    resultsSheet2.Cells[1, 6].Value = "AER: Device";
+
+
+                }
+                else
+                {
+                    b.Loader = new SigComp15GermanLoader(Path.Combine(databaseDir2, dataBaseName), true);
+                    samplingrate = 75;
+                    p = new ExcelPackage();
+                    steps = 20;
+                    c = 1;
+                    resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
+                    resultsSheet2.Cells[1, 1].Value = "Compilation";
+                    resultsSheet2.Cells[1, 1].Style.Font.Bold = true;
+                    resultsSheet2.Cells[1, 1].Style.Font.Size = 14;
+
+                    resultsSheet2.Row(1).Style.Font.Size = 14;
+                    resultsSheet2.Row(1).Style.Font.Bold = true;
+
+
+                    for (int i = 1; i < 42; i++)
                     {
-                        b.Loader = new Svc2004Loader(Path.Combine(databaseDir2, dataBaseName), true);
-                        samplingrate = 100;
-                        steps = 20;
-                        c = 1;
-                        p = new ExcelPackage();
-                        resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
-                        resultsSheet2.Cells[1, 1].Value = "Compilation";
-                        resultsSheet2.Cells[1, 2].Value = "Best Freq";
-                        resultsSheet2.Cells[1, 3].Value = "Avg point";
-                        resultsSheet2.Cells[1, 4].Value = "AER: Best";
-                        resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
-                        resultsSheet2.Cells[1, 6].Value = "AER: Device";
-
+                        for (int j = 1; j < 7; j++)
+                        {
+                            resultsSheet2.Column(j).AutoFit();
+                            resultsSheet2.Column(j).BestFit = true;
+                            if (i % 2 == 0)
+                            {
+                                resultsSheet2.Cells[i, j].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.DarkGray;
+                                resultsSheet2.Cells[i, j].Style.Fill.BackgroundColor.SetColor(Color.LightBlue);
+                                resultsSheet2.Cells[i, j].Style.WrapText = true;
+                            }
+                            else
+                            {
+                                resultsSheet2.Cells[i, j].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.DarkGray;
+                                resultsSheet2.Cells[i, j].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                            }
+                        }
                     }
 
-                    else if (dataBaseName == "MCYT100.zip")
-                    {
-                        b.Loader = new MCYTLoader(Path.Combine(databaseDir2, dataBaseName), true);
-                        samplingrate = 100;
-                        steps = 20;
-                        c = 1;
-                        p = new ExcelPackage();
-                        resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
-                        resultsSheet2.Cells[1, 1].Value = "Compilation";
-                        resultsSheet2.Cells[1, 2].Value = "Best Freq";
-                        resultsSheet2.Cells[1, 3].Value = "Avg point";
-                        resultsSheet2.Cells[1, 4].Value = "AER: Best";
-                        resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
-                        resultsSheet2.Cells[1, 6].Value = "AER: Device";
-                    }
-                    else if (dataBaseName == "SigComp11_Dutch.zip")
-                    {
-                        b.Loader = new SigComp11DutchLoader(Path.Combine(databaseDir2, dataBaseName), true);
-                        samplingrate = 200;
-                        steps = 40;
-                        c = 1;
-                        p = new ExcelPackage();
-                        resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
-                        resultsSheet2.Cells[1, 1].Value = "Compilation";
-                        resultsSheet2.Cells[1, 2].Value = "Best Freq";
-                        resultsSheet2.Cells[1, 3].Value = "Avg point";
-                        resultsSheet2.Cells[1, 4].Value = "AER: Best";
-                        resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
-                        resultsSheet2.Cells[1, 6].Value = "AER: Device";
-                    }
-                    else if (dataBaseName == "SigComp11Chinese.zip")
-                    {
-                        b.Loader = new SigComp11ChineseLoader(Path.Combine(databaseDir2, dataBaseName), true);
-                        samplingrate = 200;
-                        steps = 40;
-                        c = 1;
-                        p = new ExcelPackage();
-                        resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
-                        resultsSheet2.Cells[1, 1].Value = "Compilation";
-                        resultsSheet2.Cells[1, 2].Value = "Best Freq";
-                        resultsSheet2.Cells[1, 3].Value = "Avg point";
-                        resultsSheet2.Cells[1, 4].Value = "AER: Best";
-                        resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
-                        resultsSheet2.Cells[1, 6].Value = "AER: Device";
-                    }
-                    else if (dataBaseName == "SigWiComp2013_Japanese.zip")
-                    {
-                        b.Loader = new SigComp13JapaneseLoader(Path.Combine(databaseDir2, dataBaseName), true);
-                        samplingrate = 200;
-                        steps = 100;
-                        c = 1;
-                        p = new ExcelPackage();
-                        resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
-                        resultsSheet2.Cells[1, 1].Value = "Compilation";
-                        resultsSheet2.Cells[1, 2].Value = "Best Freq";
-                        resultsSheet2.Cells[1, 3].Value = "Avg point";
-                        resultsSheet2.Cells[1, 4].Value = "AER: Best";
-                        resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
-                        resultsSheet2.Cells[1, 6].Value = "AER: Device";
+                    resultsSheet2.Cells[1, 2].Value = "Best Freq";
+                    resultsSheet2.Cells[1, 3].Value = "Avg point";
+                    resultsSheet2.Cells[1, 4].Value = "AER: Best";
+                    resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
+                    resultsSheet2.Cells[1, 6].Value = "AER: Device";
+
+                }
+
+                //////////////////////////////////////
+                ///
+                //////////////////////////////////////////////////////////////////////////////////////////////// preprocessing
+
+                List<SequentialTransformPipeline> pipeline_ = new List<SequentialTransformPipeline>();
+
+                SequentialTransformPipeline pip0 = new SequentialTransformPipeline();
+                pip0.Items.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
+                pip0.Items.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
+                pip0.Items.Add(new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
+                pip0.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
+                pip0.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y });
+                pip0.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
+
+                SequentialTransformPipeline pip1 = new SequentialTransformPipeline();
+                pip1.Items.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
+                pip1.Items.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
+                pip1.Items.Add(new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
 
 
-                    }
-                    else
+                SequentialTransformPipeline pip2 = new SequentialTransformPipeline();
+                pip2.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
+                pip2.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y });
+                pip2.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
+
+                SequentialTransformPipeline pip3 = new SequentialTransformPipeline();
+                pip3.Add(new ZNormalization() { InputFeature = Features.X, OutputFeature = Features.X });
+                pip3.Add(new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y });
+                pip3.Add(new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
+
+
+                pipeline_.Add(pip0);
+                pipeline_.Add(pip1);
+                pipeline_.Add(pip2);
+                pipeline_.Add(pip3);
+
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////
+                ///
+                foreach (SequentialTransformPipeline pipl in pipeline_)
+                {
+
+
+
+                    List<OptimalDtwClassifier> classifiers = new List<OptimalDtwClassifier>();
+
+                    //////////////////////////////////////////////////////////////////////////////// classifier
+                    classifiers.Add(new OptimalDtwClassifier()
                     {
-                        b.Loader = new SigComp15GermanLoader(Path.Combine(databaseDir2, dataBaseName), true);
-                        samplingrate = 75;
-                        p = new ExcelPackage();
-                        steps = 20;
-                        c = 1;
-                        resultsSheet2 = p.Workbook.Worksheets.Add("Summary");
-                        resultsSheet2.Cells[1, 1].Value = "Compilation";
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new EvenNSampler(10),
+                        // Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                        //Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
+                        Features = new List<FeatureDescriptor>() { Features.X }
+                    });
+
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X }
+                    });
+
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new EvenNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.Y }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.Y }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.Pressure }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new EvenNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.Pressure }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new EvenNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new EvenNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                    });
+                    classifiers.Add(new OptimalDtwClassifier()
+                    {
+                        DistanceFunction = Accord.Math.Distance.Euclidean,
+                        WarpingWindowLength = 2000,
+                        Sampler = new FirstNSampler(10),
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                    });
+
+
+                    /////////////////////////////////////////////////////////////////////////////////////
+                    foreach (OptimalDtwClassifier cla in classifiers)
+                    {
+
+                        v.Logger = new SimpleConsoleLogger();
+                        v.Classifier = cla;
+
+                        /////////////////////////////////////////////// sampler
+                        if (cla.Sampler is EvenNSampler)
+                            b.Sampler = new EvenNSampler(10);
+                        else
+                            b.Sampler = new FirstNSampler(10);
+                        ///////////////////////////////////////////////
+
+
+
+
+                        var samplerate = new List<SampleRateResults>();
+                        int s = 1;
+                        int bestFreq = 0;
+                        double avgPoints = 0;
+                        double bestAER = 100;
+                        double lowestFreqAER = 0;
+                        double deviceFreqAER = 0;
+                        for (s = 1; s <= steps; s = s + 1)
+                        {
+                            pipl.Items.Insert(0, new SampleRate() { samplerate = s, InputX = Features.X, InputY = Features.Y, InputP = Features.Pressure, OutputX = Features.X, OutputY = Features.Y, OutputP = Features.Pressure });
+                            v.Pipeline = pipl;
+                            b.Verifier = v;
+
+                            b.ProgressChanged += ProgressPrimary;
+
+                            var result = b.Execute(true);
+
+
+                            List<Signer> signers = b.Loader.EnumerateSigners(null).ToList();
+                            double avg = 0;
+                            int ii = 0;
+                            foreach (Signer sig in signers)
+                            {
+                                avg = avg + SignerStatisticsHelper.GetPointsAvg(sig);
+                                ii++;
+                            }
+                            avg = avg / signers.Count();
+
+
+                            var obj = new SampleRateResults();
+                            obj.step = s; obj.AER = result.FinalResult.Aer; obj.samplerate = samplingrate / s;
+                            obj.pointsAvg = avg / obj.step; // obj.AER2 = result.FinalResult.Aer;
+                            samplerate.Add(obj);
+
+                            if (result.FinalResult.Aer < bestAER)
+                            {
+                                bestFreq = samplingrate / s;
+                                avgPoints = avg / s;
+                                bestAER = result.FinalResult.Aer;
+                            }
+
+                            if (s == 1)
+                            {
+                                deviceFreqAER = result.FinalResult.Aer;
+                            }
+                            if (s == steps)
+                            {
+                                lowestFreqAER = result.FinalResult.Aer;
+                            }
+
+                            pipl.Items.RemoveAt(0);
+
+                        }
+                        string pre = "M";
+
+                        if (b.Verifier.Pipeline == pip0)
+                        {
+                            pre = "_S_T";
+                        }
+
+
+                        if (b.Verifier.Pipeline == pip1)
+                        {
+                            pre = "_S";
+                        }
+
+                        if (b.Verifier.Pipeline == pip2)
+                        {
+                            pre = "_T";
+                        }
+                        if (b.Verifier.Pipeline == pip3)
+                        {
+                            pre = "_Z";
+                        }
+
+                        if (b.Sampler is EvenNSampler)
+                            pre = pre + "_EVEN_";
+                        else
+                            pre = pre + "_FIRST_";
+
+                        foreach (FeatureDescriptor f in cla.Features)
+                        {
+                            string[] f2 = f.ToString().Split("(");
+                            pre = pre + f2[0];
+                        }
+
+
+                        string dBaseName = null;
+
+                        if (dataBaseName == "SVC2004.zip")
+                        {
+                            dBaseName = "SVC";
+                        }
+
+                        else if (dataBaseName == "MCYT100.zip")
+                        {
+                            dBaseName = "MCYT";
+                        }
+                        else if (dataBaseName == "SigComp11_Dutch.zip")
+                        {
+                            dBaseName = "Dut";
+                        }
+                        else if (dataBaseName == "SigComp11Chinese.zip")
+                        {
+                            dBaseName = "Chi";
+                        }
+                        else if (dataBaseName == "SigWiComp2013_Japanese.zip")
+                        {
+                            dBaseName = "Jap";
+                        }
+                        else
+                        {
+                            dBaseName = "Ger";
+
+                        }
+
+                        resultsSheet = p.Workbook.Worksheets.Add(dBaseName + pre);
+                        resultsSheet.InsertTable(1, 1, samplerate);
+
+                        Console.WriteLine(c);
+                        c++;
+                        resultsSheet2.Cells[c, 1].Value = $"{pre}";
+                        resultsSheet2.Cells[c, 2].Value = bestFreq;
+                        resultsSheet2.Cells[c, 3].Value = avgPoints;
+                        resultsSheet2.Cells[c, 4].Value = bestAER;
+                        resultsSheet2.Cells[c, 5].Value = lowestFreqAER;
+                        resultsSheet2.Cells[c, 6].Value = deviceFreqAER;
                         resultsSheet2.Cells[1, 1].Style.Font.Bold = true;
                         resultsSheet2.Cells[1, 1].Style.Font.Size = 14;
 
@@ -843,332 +1143,29 @@ namespace SigStat.Sample
                                 }
                             }
                         }
+                        for (int i = 1; i < 7; i++)
+                            resultsSheet2.Column(i).AutoFit();
 
-                        resultsSheet2.Cells[1, 2].Value = "Best Freq";
-                        resultsSheet2.Cells[1, 3].Value = "Avg point";
-                        resultsSheet2.Cells[1, 4].Value = "AER: Best";
-                        resultsSheet2.Cells[1, 5].Value = "AER: Lowest";
-                        resultsSheet2.Cells[1, 6].Value = "AER: Device";
+
+
+                        // B1:B21,D1:D21
+                        InsertLineChart(resultsSheet, resultsSheet.Cells["B2:C21"], 2, 6, "Points", "Sample frequency", "AER", resultsSheet.Cells["C1:D1"], 400, 300, $"{dBaseName}_{pre}");
+                        InsertLineChart(resultsSheet, resultsSheet.Cells["D2:E21"], 2, 16, "Frequency", "Points average", "AER", resultsSheet.Cells["B1:D1"], 400, 300, $"{dBaseName}_{pre}");
+
 
                     }
-
-                    //////////////////////////////////////
-                    ///
-                    //////////////////////////////////////////////////////////////////////////////////////////////// preprocessing
-
-                    List<SequentialTransformPipeline> pipeline_ = new List<SequentialTransformPipeline>();
-
-                    SequentialTransformPipeline pip0 = new SequentialTransformPipeline();
-                    pip0.Items.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    pip0.Items.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
-                    pip0.Items.Add(new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
-                    pip0.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
-                    pip0.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    pip0.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
-
-                    SequentialTransformPipeline pip1 = new SequentialTransformPipeline();
-                    pip1.Items.Add(new Scale() { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    pip1.Items.Add(new Scale() { InputFeature = Features.X, OutputFeature = Features.X });
-                    pip1.Items.Add(new Scale() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
-
-
-                    SequentialTransformPipeline pip2 = new SequentialTransformPipeline();
-                    pip2.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.X, OutputFeature = Features.X });
-                    pip2.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    pip2.Add(new TranslatePreproc(OriginType.CenterOfGravity) { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
-
-                    SequentialTransformPipeline pip3 = new SequentialTransformPipeline();
-                    pip3.Add(new ZNormalization() { InputFeature = Features.X, OutputFeature = Features.X });
-                    pip3.Add(new ZNormalization() { InputFeature = Features.Y, OutputFeature = Features.Y });
-                    pip3.Add(new ZNormalization() { InputFeature = Features.Pressure, OutputFeature = Features.Pressure });
-
-
-                    pipeline_.Add(pip0);
-                    pipeline_.Add(pip1);
-                    pipeline_.Add(pip2);
-                    pipeline_.Add(pip3);
-
-
-                    //////////////////////////////////////////////////////////////////////////////////////////////////
-                    ///
-                    foreach (SequentialTransformPipeline pipl in pipeline_)
-                    {
-
-
-
-                        List<OptimalDtwClassifier> classifiers = new List<OptimalDtwClassifier>();
-
-                        //////////////////////////////////////////////////////////////////////////////// classifier
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new EvenNSampler(10),
-                            // Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
-                            //Features = new List<FeatureDescriptor>() { Features.X, Features.Y}
-                            Features = new List<FeatureDescriptor>() { Features.X }
-                        });
-
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new FirstNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.X }
-                        });
-
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new EvenNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.Y }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new FirstNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.Y }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new FirstNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.Pressure }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new EvenNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.Pressure }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new EvenNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new FirstNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.X, Features.Y }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new EvenNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
-                        });
-                        classifiers.Add(new OptimalDtwClassifier()
-                        {
-                            DistanceFunction = Accord.Math.Distance.Euclidean,
-                            WarpingWindowLength = 2000,
-                            Sampler = new FirstNSampler(10),
-                            Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
-                        });
-
-
-                        /////////////////////////////////////////////////////////////////////////////////////
-                        foreach (OptimalDtwClassifier cla in classifiers)
-                        {
-
-                            v.Logger = new SimpleConsoleLogger();
-                            v.Classifier = cla;
-
-                            /////////////////////////////////////////////// sampler
-                            if (cla.Sampler is EvenNSampler)
-                                b.Sampler = new EvenNSampler(10);
-                            else
-                                b.Sampler = new FirstNSampler(10);
-                            ///////////////////////////////////////////////
-
-
-
-
-                            var samplerate = new List<SampleRateResults>();
-                            int s = 1;
-                            int bestFreq = 0;
-                            double avgPoints = 0;
-                            double bestAER = 100;
-                            double lowestFreqAER = 0;
-                            double deviceFreqAER = 0;
-                            for (s = 1; s <= steps; s = s + 1)
-                            {
-                                pipl.Items.Insert(0, new SampleRate() { samplerate = s, InputX = Features.X, InputY = Features.Y, InputP = Features.Pressure, OutputX = Features.X, OutputY = Features.Y, OutputP = Features.Pressure });
-                                v.Pipeline = pipl;
-                                b.Verifier = v;
-
-                                b.ProgressChanged += ProgressPrimary;
-
-                                var result = b.Execute(true);
-
-
-                                List<Signer> signers = b.Loader.EnumerateSigners(null).ToList();
-                                double avg = 0;
-                                int ii = 0;
-                                foreach (Signer sig in signers)
-                                {
-                                    avg = avg + SignerStatisticsHelper.GetPointsAvg(sig);
-                                    ii++;
-                                }
-                                avg = avg / signers.Count();
-
-
-                                var obj = new SampleRateResults();
-                                obj.step = s; obj.AER = result.FinalResult.Aer; obj.samplerate = samplingrate / s;
-                                obj.pointsAvg = avg / obj.step; // obj.AER2 = result.FinalResult.Aer;
-                                samplerate.Add(obj);
-
-                                if (result.FinalResult.Aer < bestAER)
-                                {
-                                    bestFreq = samplingrate / s;
-                                    avgPoints = avg / s;
-                                    bestAER = result.FinalResult.Aer;
-                                }
-
-                                if (s == 1)
-                                {
-                                    deviceFreqAER = result.FinalResult.Aer;
-                                }
-                                if (s == steps)
-                                {
-                                    lowestFreqAER = result.FinalResult.Aer;
-                                }
-
-                                pipl.Items.RemoveAt(0);
-
-                            }
-                            string pre = "M";
-
-                            if (b.Verifier.Pipeline == pip0)
-                            {
-                                pre = "_S_T";
-                            }
-
-
-                            if (b.Verifier.Pipeline == pip1)
-                            {
-                                pre = "_S";
-                            }
-
-                            if (b.Verifier.Pipeline == pip2)
-                            {
-                                pre = "_T";
-                            }
-                            if (b.Verifier.Pipeline == pip3)
-                            {
-                                pre = "_Z";
-                            }
-
-                            if (b.Sampler is EvenNSampler)
-                                pre = pre + "_EVEN_";
-                            else
-                                pre = pre + "_FIRST_";
-
-                            foreach (FeatureDescriptor f in cla.Features)
-                            {
-                                string[] f2 = f.ToString().Split("(");
-                                pre = pre + f2[0];
-                            }
-
-
-                            string dBaseName = null;
-
-                            if (dataBaseName == "SVC2004.zip")
-                            {
-                                dBaseName = "SVC";
-                            }
-
-                            else if (dataBaseName == "MCYT100.zip")
-                            {
-                                dBaseName = "MCYT";
-                            }
-                            else if (dataBaseName == "SigComp11_Dutch.zip")
-                            {
-                                dBaseName = "Dut";
-                            }
-                            else if (dataBaseName == "SigComp11Chinese.zip")
-                            {
-                                dBaseName = "Chi";
-                            }
-                            else if (dataBaseName == "SigWiComp2013_Japanese.zip")
-                            {
-                                dBaseName = "Jap";
-                            }
-                            else
-                            {
-                                dBaseName = "Ger";
-
-                            }
-
-                            resultsSheet = p.Workbook.Worksheets.Add(dBaseName + pre);
-                            resultsSheet.InsertTable(1, 1, samplerate);
-
-                            Console.WriteLine(c);
-                            c++;
-                            resultsSheet2.Cells[c, 1].Value = $"{pre}";
-                            resultsSheet2.Cells[c, 2].Value = bestFreq;
-                            resultsSheet2.Cells[c, 3].Value = avgPoints;
-                            resultsSheet2.Cells[c, 4].Value = bestAER;
-                            resultsSheet2.Cells[c, 5].Value = lowestFreqAER;
-                            resultsSheet2.Cells[c, 6].Value = deviceFreqAER;
-                            resultsSheet2.Cells[1, 1].Style.Font.Bold = true;
-                            resultsSheet2.Cells[1, 1].Style.Font.Size = 14;
-
-                            resultsSheet2.Row(1).Style.Font.Size = 14;
-                            resultsSheet2.Row(1).Style.Font.Bold = true;
-
-
-                            for (int i = 1; i < 42; i++)
-                            {
-                                for (int j = 1; j < 7; j++)
-                                {
-                                    resultsSheet2.Column(j).AutoFit();
-                                    resultsSheet2.Column(j).BestFit = true;
-                                    if (i % 2 == 0)
-                                    {
-                                        resultsSheet2.Cells[i, j].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.DarkGray;
-                                        resultsSheet2.Cells[i, j].Style.Fill.BackgroundColor.SetColor(Color.LightBlue);
-                                        resultsSheet2.Cells[i, j].Style.WrapText = true;
-                                    }
-                                    else
-                                    {
-                                        resultsSheet2.Cells[i, j].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.DarkGray;
-                                        resultsSheet2.Cells[i, j].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
-                                    }
-                                }
-                            }
-                            for (int i = 1; i < 7; i++)
-                                resultsSheet2.Column(i).AutoFit();
-
-
-
-                            // B1:B21,D1:D21
-                            InsertLineChart(resultsSheet, resultsSheet.Cells["B2:C21"], 2, 6, "Points", "Sample frequency", "AER", resultsSheet.Cells["C1:D1"], 400, 300, $"{dBaseName}_{pre}");
-                            InsertLineChart(resultsSheet, resultsSheet.Cells["D2:E21"], 2, 16, "Frequency", "Points average", "AER", resultsSheet.Cells["B1:D1"], 400, 300, $"{dBaseName}_{pre}");
-
-
-                        }
-                    }
-
-                    string[] str2 = dataBaseName.Split(".");
-                    p.SaveAs(new FileInfo($"C:/Users/Saleem/OneDrive/Mohammad/Ideas/SampleRate/compilation/{str2[0]}.xlsx"));
-
-
                 }
 
-
-
+                string[] str2 = dataBaseName.Split(".");
+                p.SaveAs(new FileInfo($"C:/Users/Saleem/OneDrive/Mohammad/Ideas/SampleRate/compilation/{str2[0]}.xlsx"));
 
 
             }
+
+
+
+
+
         }
 
         public static void InsertLineChart(ExcelWorksheet ws, ExcelRange range, int row, int col, string name, string xLabel = null, string yLabel = null, ExcelRange SerieLabels = null, int width = -1, int height = -1, string title = null)
@@ -1379,43 +1376,43 @@ namespace SigStat.Sample
 
         private static void PreprocessingBenchmarkDemo()
         {
-            ////var config = BenchmarkConfig.FromJsonFile(path);
-            BenchmarkConfig config = new BenchmarkConfig()
-            {
-                Classifier = "OptimalDtw",
-                Sampling = "S1",
-                Database = "GERMAN",
-                Rotation = true,
-                Translation_Scaling = ("BottomLeftToOrigin", "None"),
-                ResamplingType_Filter = "P_FillPenUp",
-                ResamplingParam = 0,
-                Interpolation = "Linear",
-                Features = "P",
-                Distance = "Euclidean"
-            };
+            //////var config = BenchmarkConfig.FromJsonFile(path);
+            //BenchmarkConfig config = new BenchmarkConfig()
+            //{
+            //    Classifier = "OptimalDtw",
+            //    Sampling = "S1",
+            //    Database = "GERMAN",
+            //    Rotation = true,
+            //    Translation_Scaling = ("BottomLeftToOrigin", "None"),
+            //    ResamplingType_Filter = "P_FillPenUp",
+            //    ResamplingParam = 0,
+            //    Interpolation = "Linear",
+            //    Features = "P",
+            //    Distance = "Euclidean"
+            //};
+            ////var configs = BenchmarkConfig.GenerateConfigurations();
+            ////var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
+            //////var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
+
+
+            ////var benchmark = BenchmarkBuilder.Build(myConfig);
+            ////benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
+            ////benchmark.Execute(false);
+            ////benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
+
+
             //var configs = BenchmarkConfig.GenerateConfigurations();
             //var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
             ////var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
 
 
             //var benchmark = BenchmarkBuilder.Build(myConfig);
+            //SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
+            //benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
+
             //benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
             //benchmark.Execute(false);
             //benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
-
-
-            var configs = BenchmarkConfig.GenerateConfigurations();
-            var myConfig = configs.Single(s => s.ToShortString() == config.ToShortString());
-            //var benchmarks = configs.Select(c => BenchmarkBuilder.Build(c)).ToList();
-
-
-            var benchmark = BenchmarkBuilder.Build(myConfig);
-            SerializationHelper.JsonSerializeToFile(benchmark, @"VerifierBenchmarkSerialized.txt");
-            benchmark = SerializationHelper.DeserializeFromFile<VerifierBenchmark>(@"VerifierBenchmarkSerialized.txt");
-
-            benchmark.Logger = new SimpleConsoleLogger(Microsoft.Extensions.Logging.LogLevel.Trace);
-            benchmark.Execute(false);
-            benchmark.Dump("tmp.xlsx", config.ToKeyValuePairs());
 
 
         }
@@ -2429,7 +2426,6 @@ namespace SigStat.Sample
             };
 
             string path = @"OnlineVerifier.json";
-            string path3 = @"OnlineVerifier3.json";
 
             //File serialization example
             SerializationHelper.JsonSerializeToFile(onlineverifier, path);

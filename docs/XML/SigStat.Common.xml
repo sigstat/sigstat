@@ -3060,6 +3060,11 @@
         <member name="F:SigStat.Common.FeatureDescriptor.syncRoot">
             <summary> Gets whether the type of the feature is List. </summary>
         </member>
+        <member name="P:SigStat.Common.FeatureDescriptor.IsCollection">
+            <summary>
+            Tells whether the feature descriptor contains multiple values
+            </summary>
+        </member>
         <member name="F:SigStat.Common.FeatureDescriptor.descriptors">
             <summary> The static dictionary of all descriptors. </summary>
         </member>
@@ -4630,6 +4635,9 @@
         <member name="M:SigStat.Common.Transforms.Multiply.#ctor(System.Double)">
             <summary> Initializes a new instance of the <see cref="T:SigStat.Common.Transforms.Multiply"/> class with specified settings. </summary>
             <param name="byConst">The value to multiply the input feature by.</param>
+        </member>
+        <member name="M:SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)">
+            <inheritdoc/>
         </member>
         <member name="T:SigStat.Common.Transforms.Normalize">
             <summary>

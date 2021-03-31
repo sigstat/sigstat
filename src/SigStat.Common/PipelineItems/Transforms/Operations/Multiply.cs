@@ -42,7 +42,7 @@ namespace SigStat.Common.Transforms
             this.byConst = byConst;
         }
 
-       
+       /// <inheritdoc/>
         public void Transform(Signature signature)
         {
 

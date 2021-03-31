@@ -23,6 +23,9 @@ namespace SigStat.Common
 
         protected readonly static object syncRoot = new object();
 
+        /// <summary>
+        /// Tells whether the feature descriptor contains multiple values
+        /// </summary>
         public bool IsCollection
         {
             get

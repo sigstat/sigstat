@@ -227,6 +227,7 @@
   - [descriptors](#F-SigStat-Common-FeatureDescriptor-descriptors 'SigStat.Common.FeatureDescriptor.descriptors')
   - [syncRoot](#F-SigStat-Common-FeatureDescriptor-syncRoot 'SigStat.Common.FeatureDescriptor.syncRoot')
   - [FeatureType](#P-SigStat-Common-FeatureDescriptor-FeatureType 'SigStat.Common.FeatureDescriptor.FeatureType')
+  - [IsCollection](#P-SigStat-Common-FeatureDescriptor-IsCollection 'SigStat.Common.FeatureDescriptor.IsCollection')
   - [Key](#P-SigStat-Common-FeatureDescriptor-Key 'SigStat.Common.FeatureDescriptor.Key')
   - [Name](#P-SigStat-Common-FeatureDescriptor-Name 'SigStat.Common.FeatureDescriptor.Name')
   - [Get(key)](#M-SigStat-Common-FeatureDescriptor-Get-System-String- 'SigStat.Common.FeatureDescriptor.Get(System.String)')
@@ -437,6 +438,7 @@
   - [#ctor(byConst)](#M-SigStat-Common-Transforms-Multiply-#ctor-System-Double- 'SigStat.Common.Transforms.Multiply.#ctor(System.Double)')
   - [InputList](#P-SigStat-Common-Transforms-Multiply-InputList 'SigStat.Common.Transforms.Multiply.InputList')
   - [Output](#P-SigStat-Common-Transforms-Multiply-Output 'SigStat.Common.Transforms.Multiply.Output')
+  - [Transform()](#M-SigStat-Common-Transforms-Multiply-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.Multiply.Transform(SigStat.Common.Signature)')
 - [NearestNeighborEerClassifier](#T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier')
   - [#ctor(nearestNeighborCount,distanceFunction)](#M-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-#ctor-System-Nullable{System-Int32},SigStat-Common-Algorithms-Distances-IDistance{System-Double[][]}- 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.#ctor(System.Nullable{System.Int32},SigStat.Common.Algorithms.Distances.IDistance{System.Double[][]})')
   - [DistanceFunction](#P-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier-DistanceFunction 'SigStat.Common.PipelineItems.Classifiers.NearestNeighborEerClassifier.DistanceFunction')
@@ -583,7 +585,7 @@
   - [Value](#P-SigStat-Common-Helpers-ProgressHelper-Value 'SigStat.Common.Helpers.ProgressHelper.Value')
   - [Dispose()](#M-SigStat-Common-Helpers-ProgressHelper-Dispose 'SigStat.Common.Helpers.ProgressHelper.Dispose')
   - [IncrementValue()](#M-SigStat-Common-Helpers-ProgressHelper-IncrementValue 'SigStat.Common.Helpers.ProgressHelper.IncrementValue')
-  - [StartNew(maximum,reportIntervallSeconds,reportProgress)](#M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}- 'SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper})')
+  - [StartNew(maximum,reportIntervallSeconds,reportProgress,logAction)](#M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper},System-Action{System-String}- 'SigStat.Common.Helpers.ProgressHelper.StartNew(System.Int32,System.Int32,System.Action{SigStat.Common.Helpers.ProgressHelper},System.Action{System.String})')
 - [RealisticImageGenerator](#T-SigStat-Common-Transforms-RealisticImageGenerator 'SigStat.Common.Transforms.RealisticImageGenerator')
   - [#ctor(resolutionX,resolutionY)](#M-SigStat-Common-Transforms-RealisticImageGenerator-#ctor-System-Int32,System-Int32- 'SigStat.Common.Transforms.RealisticImageGenerator.#ctor(System.Int32,System.Int32)')
   - [Altitude](#P-SigStat-Common-Transforms-RealisticImageGenerator-Altitude 'SigStat.Common.Transforms.RealisticImageGenerator.Altitude')
@@ -3648,6 +3650,13 @@ Gets whether the type of the feature is List.
 
 Gets or sets the type of the feature.
 
+<a name='P-SigStat-Common-FeatureDescriptor-IsCollection'></a>
+### IsCollection `property`
+
+##### Summary
+
+Tells whether the feature descriptor contains multiple values
+
 <a name='P-SigStat-Common-FeatureDescriptor-Key'></a>
 ### Key `property`
 
@@ -5985,6 +5994,17 @@ Input
 
 Output
 
+<a name='M-SigStat-Common-Transforms-Multiply-Transform-SigStat-Common-Signature-'></a>
+### Transform() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T-SigStat-Common-PipelineItems-Classifiers-NearestNeighborEerClassifier'></a>
 ## NearestNeighborEerClassifier `type`
 
@@ -7448,9 +7468,8 @@ This method has no parameters.
 
 The operation is thread safe.
 
-<a name='M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper}-'></a>
-### StartNew(maximum,reportIntervallSeconds,reportProgress) `method`
-
+<a name='M-SigStat-Common-Helpers-ProgressHelper-StartNew-System-Int32,System-Int32,System-Action{SigStat-Common-Helpers-ProgressHelper},System-Action{System-String}-'></a>
+### StartNew(maximum,reportIntervallSeconds,reportProgress,logAction) `method`
 
 ##### Summary
 
