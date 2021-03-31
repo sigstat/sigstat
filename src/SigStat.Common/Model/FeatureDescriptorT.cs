@@ -26,9 +26,8 @@ namespace SigStat.Common
             //      although we need both of them, the responsibility should be celarly separated
             if (descriptors.TryGetValue(key, out var featureDescriptor))
             {
-                #pragma warning disable S1905
                 return (FeatureDescriptor<T>)featureDescriptor;
-                #pragma warning restore S1905
+
 
             }
 

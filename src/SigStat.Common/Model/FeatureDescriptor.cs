@@ -119,7 +119,10 @@ namespace SigStat.Common
         {
             if (descriptors.ContainsKey(key))
             {
+                #pragma warning disable S1905
                 return (FeatureDescriptor<T>)descriptors[key];
+                #pragma warning restore S1905
+
             }
             //TODO: log info new descriptor created
             return FeatureDescriptor<T>.Get(key);
