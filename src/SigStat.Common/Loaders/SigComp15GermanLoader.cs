@@ -70,7 +70,7 @@ namespace SigStat.Common.Loaders
                     SignatureIndex = parts[2];
                     ForgerID = null;
                 }
-               
+
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
             }
@@ -164,11 +164,11 @@ namespace SigStat.Common.Loaders
                             LoadSignature(signature, ms, StandardFeatures);
                         }
                         signer.Signatures.Add(signature);
-                        
+
 
                     }
                     signer.Signatures = signer.Signatures.OrderBy(s => s.ID).ToList();
-                    
+
                     yield return signer;
                 }
             }
@@ -215,29 +215,31 @@ namespace SigStat.Common.Loaders
             signature.SetFeature(SigComp15.Y, lines.Select(l => l[1]).ToList());
             signature.SetFeature(SigComp15.P, lines.Select(l => l[2]).ToList());
             // Sampling frequency is 75Hz ==> time should be increased by 13.333 msec for each slot
-            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(i => i * (1.0 / 75.0) * 1000).ToList());
+            signature.SetFeature(SigComp15.T, Enumerable.Range(0, lines.Count).Select(k => k * (1.0 / 75.0) * 1000).ToList());
 
             // The database uses special datapoints to signal stroke boundaries
             // We are going to remove them in standard features for smoother comparison, and to save this information by PointTypes
             var stopIndexes = new List<int>();
             var startIndexes = new List<int>();
 
-            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406371/issues/source?bid=22371483&fileBranchId=22371483#l236
-            for (int i = 1; i < lines.Count-1; i++)
+            int i = 1;
+            while (i < lines.Count - 1)
             {
-                if (lines[i][0] != -1) continue;
+                if (lines[i][0] != -1)
+                {
+                    i++;
+                    continue;
+                }
                 if (lines[i][0] == -1 && lines[i + 1][0] == -1)
                 {
                     // Remove duplicate stroke boundaries
                     lines.RemoveAt(i);
-                    i--;
                     continue;
                 }
                 // Save the index of the points before and after the gap and remove the special datapoint
                 startIndexes.Add(i);
                 stopIndexes.Add(i - 1);
                 lines.RemoveAt(i);
-                i--;
             }
 
             if (standardFeatures)
@@ -246,15 +248,15 @@ namespace SigStat.Common.Loaders
                 signature.SetFeature(Features.Y, lines.Select(l => (double)l[1]).ToList());
                 signature.SetFeature(Features.Pressure, lines.Select(l => (double)l[2]).ToList());
                 signature.SetFeature(Features.PenDown, lines.Select(l => true).ToList());
-                
+
                 // The database uses special datapoints to signal stroke boundaries which were removed above
                 // Stroke start point indexes are in startIndexes, stroke end point indexes are in stopIndexes
                 var pointType = new double[lines.Count];
-                for (int i = 0; i < lines.Count; i++)
+                for (i = 0; i < lines.Count; i++)
                 {
                     if (i == 0 || startIndexes.Contains(i)) pointType[i] = 1; // stroke start
                     else if (i == lines.Count - 1 || stopIndexes.Contains(i)) pointType[i] = 2; // stroke end
-                    else pointType[i] =  0; // Internal stroke point
+                    else pointType[i] = 0; // Internal stroke point
                 }
                 signature.SetFeature(Features.PointType, pointType.ToList());
 

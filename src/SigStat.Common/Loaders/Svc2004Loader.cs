@@ -230,14 +230,15 @@ namespace SigStat.Common.Loaders
             // therefore, we remove the second entry
             // a better solution would be to change the timestamps based on their environments
 
-            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406821/issues/source?bid=22371483&fileBranchId=22371483#l237
-            for (int i = 0; i < lines.Count - 1; i++)
+            int i = 0;
+            while (i < lines.Count - 1)
             {
                 if (lines[i][2] == lines[i + 1][2])
                 {
                     lines.RemoveAt(i + 1);
-                    i--;
+                    continue;
                 }
+                i++;
             }
 
             // Remove noise (points with 0 pressure) from the beginning of the signature
@@ -266,7 +267,7 @@ namespace SigStat.Common.Loaders
                 // Button is 1, 3, 5 if the given point is in a downstroke
                 var button = signature.GetFeature(Svc2004.Button).ToArray();
                 var pointType = new double[button.Length];
-                for (int i = 0; i < button.Length; i++)
+                for (i = 0; i < button.Length; i++)
                 {
                     if (button[i] == 0)
                         pointType[i] = 1;
@@ -286,7 +287,7 @@ namespace SigStat.Common.Loaders
                 standardLines.Reverse();
                 var standartPointType = pointType.ToList();
                 standartPointType.Reverse();
-                for (int i = standardLines.Count - 1; i >= 0; i--)
+                for (i = standardLines.Count - 1; i >= 0; i--)
                 {
                     if (standardLines[i][3] == 2 || standardLines[i][3] == 4)
                     {
@@ -307,7 +308,7 @@ namespace SigStat.Common.Loaders
 
                 SignatureHelper.CalculateStandardStatistics(signature);
 
-                
+
             }
 
             if (lines[0].Length == 7) // Task2

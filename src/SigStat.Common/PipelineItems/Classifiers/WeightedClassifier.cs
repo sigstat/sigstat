@@ -36,14 +36,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// <inheridoc/>
         public ISignerModel Train(List<Signature> signatures)
         {
-            //double score = 0;
-            //for (int i = 0; i < Items.Count; i++)
-            //{
-            //    score += Items[i].classifier.Pair(signature1, signature2) * Items[i].weight;
-            //}
-            //this.Log($"Paired SigID {signature1.ID} with SigID {signature2.ID}");
-            //Logger?.LogTrace($"Pairing result of SigID {signature1.ID} with SigID {signature2.ID}: {score}");
-            //return score;
+            
             throw new NotImplementedException();
         }
 

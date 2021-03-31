@@ -285,7 +285,7 @@ namespace SigStat.Common.Algorithms
 
 
             for (int i = 1; i <= n; i++)
-                for (int j = Math.Max(1, i - w); i<= Math.Min(m, i + w);j++)
+                for (int j = Math.Max(1, i - w); j<= Math.Min(m, i + w);j++)
             {
                     dtw[i, j] = 0;
             }

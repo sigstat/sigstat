@@ -11,7 +11,7 @@ namespace SigStat.Common.Algorithms.Classifiers
     /// </summary>
     public static class Ocjknn
     {
-        private struct Neighbor<Key> : IEquatable<Neighbor<Key>>
+        struct Neighbor<Key> : IEquatable<Neighbor<Key>>
         {
             public Key Label;
             public int Index;
