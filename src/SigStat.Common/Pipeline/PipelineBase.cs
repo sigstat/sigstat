@@ -27,7 +27,7 @@ namespace SigStat.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="PipelineBase"/> class.
         /// </summary>
-        public PipelineBase()
+        protected PipelineBase()
         {
             //init io
             PipelineInputs = this.GetType().GetProperties()
@@ -43,16 +43,19 @@ namespace SigStat.Common
                     {
                         var attr = (Output)Attribute.GetCustomAttribute(prop, typeof(Output));
                         var propType = prop.PropertyType;
-                        if (!(propType.GetGenericTypeDefinition() == typeof(List<>)))
+                        if (propType.GetGenericTypeDefinition() != typeof(List<>))
                         {
                             prop.SetValue(this, FeatureDescriptor.Register(attr.Default ??
                                 $"TMP_{this.GetType().ToString()}_{this.GetHashCode().ToString()}_{prop.Name}", propType.GetGenericArguments()[0]));
                         }
                         else
-                        {//List of Features
-                            //prop.SetValue(this, new List<FeatureDescriptor>());
+                        {
+#pragma warning disable S125
+                            //List of Features
+                            //prop . SetValue ( this , new List < FeatureDescriptor > ( ) ) ; 
                             //de mennyit? nem eleg egy ures listat letrehozni, mert akkor a transform nak kell megadnia az FD-kat
                             //most hack: transform mondja meg, itt marad null
+#pragma warning restore S125
                         }
                     }
                     return new PipelineOutput(this, prop);
@@ -62,7 +65,7 @@ namespace SigStat.Common
         /// <inheritdoc/>
         public ILogger Logger { get; set; }
 
-        private int progress = 0;
+        private int progress;
         /// <inheritdoc/>
         public int Progress
         {

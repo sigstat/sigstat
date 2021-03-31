@@ -95,7 +95,6 @@ namespace SigStat.Common.Transforms
 
             if (WriteToFile)
             {
-                string signerString = (signature.Signer != null) ? signature.Signer.ID : "Null";
                 string filename = $"{signature.ID ?? "Null"}_{Input.Name}.png";
                 img.SaveAsPng(File.Create(filename));
                 this.LogInformation($"Image saved: {filename}");

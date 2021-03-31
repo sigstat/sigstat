@@ -42,7 +42,7 @@ namespace SigStat.Common.Helpers
 
 
         private DateTime lastProgress = DateTime.Now;
-        private Stopwatch stopwatch = Stopwatch.StartNew();
+        private readonly Stopwatch stopwatch = Stopwatch.StartNew();
 
         /// <summary>
         /// Event will be executed periodically after <see cref="ReportIntervallSeconds"/> when the <see cref="Value"/> property changes. 
@@ -76,10 +76,12 @@ namespace SigStat.Common.Helpers
         /// <param name="maximum">The total number of individual items to be processed.</param>
         /// <param name="reportIntervallSeconds">If larger than 0, ReportProgress event will be executed periodically after ReportIntervallSeconds when the <see cref="Value"/> property changes. </param>
         /// <param name="reportProgress"></param>
+        /// <param name="logAction">Logging action. E.g. Console.WriteLine()</param>
+
         /// <returns></returns>
-        public static ProgressHelper StartNew(int maximum, int reportIntervallSeconds = 0, Action<ProgressHelper> reportProgress = null)
+        public static ProgressHelper StartNew(int maximum, int reportIntervallSeconds = 0, Action<ProgressHelper> reportProgress = null, Action<String> logAction = null)
         {
-            var instance = new ProgressHelper()
+            var instance = new ProgressHelper
             {
                 Maximum = maximum,
                 ReportIntervallSeconds = reportIntervallSeconds
@@ -89,7 +91,7 @@ namespace SigStat.Common.Helpers
                 if (reportProgress != null)
                     instance.ReportProgress += reportProgress;
                 else
-                    instance.ReportProgress += pr => Console.WriteLine($"{pr.Value}/{pr.Maximum} processed in {pr.Elapsed}. (ETA: {pr.Eta})"); ;
+                    instance.ReportProgress += pr => logAction?.Invoke($"{pr.Value}/{pr.Maximum} processed in {pr.Elapsed}. (ETA: {pr.Eta})");
             }
             return instance;
         }

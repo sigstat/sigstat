@@ -42,7 +42,7 @@ namespace SigStat.Common.Loaders
 
 
 
-        private struct SigComp15GermanSignatureFile
+        private struct SigComp15GermanSignatureFile : IEquatable<SigComp15GermanSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -64,20 +64,25 @@ namespace SigStat.Common.Loaders
                     SignatureIndex = parts[1];
                     ForgerID = parts[1].Skip(1).ToString();
                 }
-                else if (parts[1][0] == 'G')
+                else if (parts[1][0] == 'G' || parts[1][0] == 'R')
                 {
                     SignerID = parts[0];
                     SignatureIndex = parts[2];
                     ForgerID = null;
                 }
-                else if (parts[1][0] == 'R')
-                {
-                    SignerID = parts[0];
-                    SignatureIndex = parts[2];
-                    ForgerID = null;
-                }
+               
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
+            }
+
+            public bool Equals(SigComp15GermanSignatureFile other)
+            {
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureIndex == other.SignatureIndex
+                    && ForgerID == other.ForgerID
+                    && SignatureID == other.SignatureID;
             }
         }
 
@@ -102,7 +107,7 @@ namespace SigStat.Common.Loaders
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data  to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
-        public SigComp15GermanLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public SigComp15GermanLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
@@ -216,6 +221,8 @@ namespace SigStat.Common.Loaders
             // We are going to remove them in standard features for smoother comparison, and to save this information by PointTypes
             var stopIndexes = new List<int>();
             var startIndexes = new List<int>();
+
+            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406371/issues/source?bid=22371483&fileBranchId=22371483#l236
             for (int i = 1; i < lines.Count-1; i++)
             {
                 if (lines[i][0] != -1) continue;

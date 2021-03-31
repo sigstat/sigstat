@@ -15,7 +15,7 @@ namespace SigStat.Common.Pipeline
         /// <summary>
         /// The automatic set mode
         /// </summary>
-        public AutoSetMode AutoSetMode = AutoSetMode.IfNull;
+        public AutoSetMode AutoSetMode { get; set; } = AutoSetMode.IfNull;
         /// <summary>
         /// Initializes a new instance of the <see cref="Input"/> class.
         /// </summary>
@@ -35,7 +35,7 @@ namespace SigStat.Common.Pipeline
         /// <summary>
         /// The default value for the property
         /// </summary>
-        public string Default;
+        public string Default { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Output"/> class.

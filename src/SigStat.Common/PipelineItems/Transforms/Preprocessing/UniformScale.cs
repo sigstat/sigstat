@@ -32,7 +32,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <summary>
         /// Lower bound of the interval, in which the base dimension will be scaled
         /// </summary>
-        public double NewMinBaseValue { get; set; } = 0;
+        public double NewMinBaseValue { get; set; }
 
         /// <summary>
         /// Upper bound of the interval, in which the base dimension will be scaled
@@ -42,7 +42,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <summary>
         /// Lower bound of the interval, in which the proportional dimension will be scaled
         /// </summary>
-        public double NewMinProportionalValue { get; set; } = 0;
+        public double NewMinProportionalValue { get; set; }
 
         /// <summary>
         /// Gets or sets the output base dimension output.
@@ -61,12 +61,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             if (BaseDimension == null || BaseDimensionOutput == null)
             {
-                throw new NullReferenceException("Input or output of the base dimension is null");
+                throw new InvalidOperationException("Input or output of the base dimension is null");
             }
 
             if (ProportionalDimension == null || ProportionalDimensionOutput == null)
             {
-                throw new NullReferenceException("Input or output of the proportional dimension is null");
+                throw new InvalidOperationException("Input or output of the proportional dimension is null");
             }
 
 

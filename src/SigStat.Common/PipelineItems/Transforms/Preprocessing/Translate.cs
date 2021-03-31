@@ -47,7 +47,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// </summary>
         public OriginType GoalOrigin { get; set; } = OriginType.Predefined;
 
-        private double _newOrigin = 0;
+        private double _newOrigin;
         /// <summary>
         /// New origin after the translation
         /// </summary>
@@ -80,7 +80,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public void Transform(Signature signature)
         {
             if (InputFeature == null || OutputFeature == null)
-                throw new NullReferenceException("Input or output feature is null");
+                throw new InvalidOperationException("Input or output feature is null");
 
             switch (GoalOrigin)
             {
@@ -97,7 +97,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     TranslateToPredefinedOrigin(signature, NewOrigin);
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("This value is not supported for GoalOrigin"); 
             }
         }
 

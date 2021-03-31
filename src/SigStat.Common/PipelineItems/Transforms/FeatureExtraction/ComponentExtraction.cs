@@ -22,19 +22,19 @@ namespace SigStat.Common.Transforms
         /// binary representation of a signature image
         /// </summary>
         [Input]
-        public FeatureDescriptor<bool[,]> Skeleton { get; set; }// = FeatureDescriptor<bool[,]>.Get("Skeleton");
+        public FeatureDescriptor<bool[,]> Skeleton { get; set; }
 
         /// <summary>
         /// endpoints
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<Point>> EndPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("EndPoints");
+        public FeatureDescriptor<List<Point>> EndPoints { get; set; }
 
         /// <summary>
         /// crossing points
         /// </summary>
         [Input]
-        public FeatureDescriptor<List<Point>> CrossingPoints { get; set; }// = FeatureDescriptor<List<Point>>.Get("CrossingPoints");
+        public FeatureDescriptor<List<Point>> CrossingPoints { get; set; }
 
         /// <summary>
         /// Output components
@@ -332,6 +332,8 @@ namespace SigStat.Common.Transforms
                     (int iP, int jP) = diffs[diffs.Keys[0]];
                     double diff = diffs.Keys[0];
                     diffs.RemoveAt(0);
+
+                    //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406959/issues/source?bid=22371483&fileBranchId=22371483#l339
                     for (int jD = 0; jD < diffs.Count; jD++)
                     {//toroljuk a rosszabb ertekeit a megtalalt endpointoknak //TODO: ez nem jo, mert lehet olyat torlunk akinek nincs mas parja
                         (int deli, int delj) = diffs[diffs.Keys[jD]];

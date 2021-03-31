@@ -18,7 +18,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <summary>
         /// Gets or sets the number of samples.
         /// </summary>
-        public int NumOfSamples { get; set; } = 0;
+        public int NumOfSamples { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the interpolation. <seealso cref="IInterpolation"/>
@@ -54,22 +54,22 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             if (NumOfSamples <= 0)
             {
-                throw new Exception("Number of samples has to be positive");
+                throw new InvalidOperationException("Number of samples has to be positive");
             }
 
             if (InputFeatures == null)
             {
-                throw new NullReferenceException("Input features are not defined");
+                throw new InvalidOperationException("Input features are not defined");
             }
 
             if (OutputFeatures == null)
             {
-                throw new NullReferenceException("Output features are not defined");
+                throw new InvalidOperationException("Output features are not defined");
             }
 
             if (InterpolationType == null)
             {
-                throw new NullReferenceException("Interpolation is not defined");
+                throw new InvalidOperationException("Interpolation is not defined");
             }
 
 
@@ -128,13 +128,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 if (isRangeFound)
                 {
                     if (ts == resampledTimestamps.Where(rts => rts > originalTimestamps[previous]).ToList()[0] 
-                        && originalValues[previous] != 2 && previous != 0)
+                        && ((int)originalValues[previous]) != 2 && previous != 0)
                         resampledValues.Add(originalValues[previous]);
                     else
                     {
                         var lessThanNextTimestamps = resampledTimestamps.Where(rts => rts < originalTimestamps[next]).ToList();
                         if (ts == lessThanNextTimestamps[lessThanNextTimestamps.Count - 1] 
-                            && originalValues[next] != 1 && next != resampledTimestamps.Count-1)
+                            && ((int)originalValues[next]) != 1 && next != resampledTimestamps.Count-1)
                             resampledValues.Add(originalValues[next]);
                         else
                             resampledValues.Add(0);

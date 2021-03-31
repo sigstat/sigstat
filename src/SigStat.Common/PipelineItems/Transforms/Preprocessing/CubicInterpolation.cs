@@ -31,10 +31,10 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public double GetValue(double timestamp)
         {
             if (TimeValues == null)
-                throw new NullReferenceException("List of timestamps is null");
+                throw new InvalidOperationException("List of timestamps is null");
 
             if (FeatureValues == null)
-                throw new NullReferenceException("List of feature values is null");
+                throw new InvalidOperationException("List of feature values is null");
 
 
             if (TimeValues.Contains(timestamp))
@@ -81,13 +81,13 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 var h10 = t3 - 2 * tSquare + t;
                 var h01 = -2 * t3 + 3 * tSquare;
                 var h11 = t3 - tSquare;
-
+#pragma warning disable S125
                 //factorized
                 //var h00 = (1 + 2 * t) * (1 - t) * (1 - t);
                 //var h10 = t * (1 - t) * (1 - t);
                 //var h01 = t * t * (3 - 2 * t);
                 //var h11 = t * t * (t - 1);
-
+#pragma warning restore S125
                 var m0 = (1 / 2.0) * ((v1 - v0) / (t1 - t0) + (v0 - v_1) / (t0 - t_1));
                 var m1 = (1 / 2.0) * ((v2 - v1) / (t2 - t1) + (v1 - v0) / (t1 - t0));
 

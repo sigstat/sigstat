@@ -15,7 +15,6 @@ namespace SigStat.Common
 
         private FeatureDescriptor(string name, string key) : base(name, key, typeof(T)) { }
 
-        private static object syncRoot = new object();
 
         /// <summary>
         /// Gets the <see cref="FeatureDescriptor{T}"/> specified by <paramref name="key"/>.

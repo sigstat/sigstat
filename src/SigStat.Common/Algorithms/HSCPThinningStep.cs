@@ -116,7 +116,7 @@ namespace SigStat.Common.Algorithms
             // n[3] n[2] n[1]
             // n[4]  p   n[0]
             // n[5] n[6] n[7]
-            return new bool[] {//8 szomszed sorrendben
+            return new [] {//8 szomszed sorrendben
                 b[i+1, j],
                 b[i+1, j-1],
                 b[i,   j-1],

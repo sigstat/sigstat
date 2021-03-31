@@ -43,7 +43,7 @@ namespace SigStat.Common.Loaders
             // sample rate for the database
         }
 
-        private struct SigComp11ChineseSignatureFile
+        private struct SigComp11ChineseSignatureFile : IEquatable<SigComp11ChineseSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -85,7 +85,7 @@ namespace SigStat.Common.Loaders
                     {
                         if (parts[0].Length > 3)
                         {
-                            SignerID = parts[0].Substring(parts[0].Length - 3); ;
+                            SignerID = parts[0].Substring(parts[0].Length - 3);
                             SignatureIndex = parts[1];
                             ForgerID = parts[0];
                         }
@@ -100,6 +100,19 @@ namespace SigStat.Common.Loaders
                 }
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
+            }
+
+            public bool Equals(SigComp11ChineseSignatureFile other)
+            {
+               
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureIndex == other.SignatureIndex
+                    && ForgerID == other.ForgerID
+                    && SignatureID == other.SignatureID;
+
+
             }
         }
 
@@ -123,7 +136,7 @@ namespace SigStat.Common.Loaders
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
-        public SigComp11ChineseLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public SigComp11ChineseLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;

@@ -33,7 +33,7 @@ namespace SigStat.Common
                 return new List<StrokeInterval>();
 
             if (timestamps.Count == 1)
-                return new List<StrokeInterval>() { GetStroke(0, pressures[0]) };
+                return new List<StrokeInterval> { GetStroke(0, pressures[0]) };
 
             var timestampLength = timestamps.Select((ts, i) => ts - timestamps[i > 0 ? i - 1 : 0]).Skip(1).Median();
 

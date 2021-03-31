@@ -55,8 +55,8 @@ namespace SigStat.Common.Pipeline
         /// </summary>
         public string PropName => PI.Name;
 
-        private object PipelineItem;
-        private PropertyInfo PI;
+        private readonly object PipelineItem;
+        private readonly PropertyInfo PI;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PipelineInput"/> class.
@@ -69,7 +69,7 @@ namespace SigStat.Common.Pipeline
             this.PipelineItem = PipelineItem;
             this.PI = PI;
             if (!(PI.GetMethod.IsPublic && PI.SetMethod.IsPublic))//ide is kene Logger
-                throw new Exception($"Pipeline Input '{PropName}' of '{PipelineItem.ToString()}' not public");
+                throw new InvalidOperationException($"Pipeline Input '{PropName}' of '{PipelineItem.ToString()}' not public");
         }
 
     }
@@ -114,8 +114,8 @@ namespace SigStat.Common.Pipeline
         /// </summary>
         public string PropName => PI.Name;
 
-        private object PipelineItem;
-        private PropertyInfo PI;
+        private readonly object PipelineItem;
+        private readonly PropertyInfo PI;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PipelineOutput"/> class.
@@ -128,7 +128,7 @@ namespace SigStat.Common.Pipeline
             this.PipelineItem = PipelineItem;
             this.PI = PI;
             if (!(PI.GetMethod.IsPublic && PI.SetMethod.IsPublic))//ide is kene Logger
-                throw new Exception($"Pipeline Output '{PropName}' of '{PipelineItem.ToString()}' not public");
+                throw new InvalidOperationException($"Pipeline Output '{PropName}' of '{PipelineItem.ToString()}' not public");
         }
 
     }

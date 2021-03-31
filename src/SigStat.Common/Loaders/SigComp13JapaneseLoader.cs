@@ -41,7 +41,7 @@ namespace SigStat.Common.Loaders
             public static readonly FeatureDescriptor<List<int>> T = FeatureDescriptor.Get<List<int>>("SigComp13Japanese.T");
         }
 
-        private struct SigComp13JapaneseSignatureFile
+        private struct SigComp13JapaneseSignatureFile : IEquatable<SigComp13JapaneseSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -70,6 +70,16 @@ namespace SigStat.Common.Loaders
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
             }
+
+            public bool Equals(SigComp13JapaneseSignatureFile other)
+            {
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureIndex == other.SignatureIndex
+                    && ForgerID == other.ForgerID
+                    && SignatureID == other.SignatureID;
+            }
         }
 
         /// <summary>
@@ -93,7 +103,7 @@ namespace SigStat.Common.Loaders
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
-        public SigComp13JapaneseLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public SigComp13JapaneseLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;

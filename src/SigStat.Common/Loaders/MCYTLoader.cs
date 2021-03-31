@@ -45,7 +45,7 @@ namespace SigStat.Common.Loaders
             public static readonly FeatureDescriptor<List<int>> Pressure = FeatureDescriptor.Get<List<int>>("MCYT.Pressure");
         }
 
-        private struct MCYTSignatureFile
+        private struct MCYTSignatureFile : IEquatable<MCYTSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -63,6 +63,15 @@ namespace SigStat.Common.Loaders
                 var parts = name.Split(Origin);
                 SignerID = parts[0];
                 SignatureID = name;
+            }
+
+            public bool Equals(MCYTSignatureFile other)
+            {
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureID == other.SignatureID
+                    && Origin == other.Origin;
             }
         }
 
@@ -86,7 +95,7 @@ namespace SigStat.Common.Loaders
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
-        public MCYTLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public MCYTLoader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
@@ -170,35 +179,22 @@ namespace SigStat.Common.Loaders
         public static void LoadSignature(Signature signature, MemoryStream stream, bool standardFeatures)
         {
             BinaryReader reader = new BinaryReader(stream);
-            var fpg = reader.ReadChars(4); // FPG 
             var hsize = reader.ReadUInt16(); // Header size
             int ver = 1;
             if ((hsize == 48) || (hsize == 60))
             {
                 ver = 2;
             }
-            ushort format = reader.ReadUInt16(); // should be '4'
-
-            var m = reader.ReadUInt16();
-            var can = reader.ReadUInt16();
-            var Ts = reader.ReadUInt32();
             var res = reader.ReadUInt16();
-            var ignore = reader.ReadBytes(4);
-            var coef = reader.ReadUInt32();
-            var mvector = reader.ReadUInt32(); // length of vector
             var nvectores = reader.ReadUInt32(); // number of vectors
-            var nc = reader.ReadUInt16();
-            uint Fs = 0, mventana = 0, msolapadas = 0;
             if (ver == 2)
             {
-                Fs = reader.ReadUInt32();
-                mventana = reader.ReadUInt32();
-                msolapadas = reader.ReadUInt32();
+                //No need to store these values as they are not used here
+                reader.ReadUInt32();    //Fs
+                reader.ReadUInt32();    //mventana
+                reader.ReadUInt32();   //msolapadas
             }
             stream.Seek(hsize - 12, SeekOrigin.Begin);
-            var datos = reader.ReadUInt32();
-            var delta = reader.ReadUInt32();
-            var ddelta = reader.ReadUInt32();
 
             stream.Seek(hsize, SeekOrigin.Begin); // not actually needed
 

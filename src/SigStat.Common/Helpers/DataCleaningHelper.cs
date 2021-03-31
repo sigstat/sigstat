@@ -72,14 +72,14 @@ namespace SigStat.Common.Helpers
                 // First point of the singature
                 if (i == 0)
                 {
-                    if (pressure[i] == 0) pointType[i] = 0; // There are zero pressure points before the signature
+                    if (pressure[i].EqualsZero()) pointType[i] = 0; // There are zero pressure points before the signature
                     else pointType[i] = 1;
                 }
 
                 // Last point of the signature
                 else if (i == pressure.Length - 1)
                 {
-                    if (pressure[i] == 0) pointType[i] = 0; // There are zero pressure points after the signature
+                    if (pressure[i].EqualsZero()) pointType[i] = 0; // There are zero pressure points after the signature
                     else pointType[i] = 2;
                 }
 

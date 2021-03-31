@@ -21,7 +21,7 @@ namespace SigStat.Common.Pipeline
     {
         
         /// <summary>List of transforms to be run in sequence.</summary>
-        public List<ITransformation> Items = new List<ITransformation>();
+        public List<ITransformation> Items { get; set; } = new List<ITransformation>();
         /// <summary>
         /// Gets the pipeline inputs.
         /// </summary>
@@ -83,7 +83,7 @@ namespace SigStat.Common.Pipeline
                     if (inputs[ii].FD == null)
                     {
                         this.LogError("Autowiring pipeline io failed, please provide an input to '{propName}' of '{item}'", inputs[ii].PropName, Items[i].ToString());
-                        throw new /*SigStatPipelineAutoWiring*/Exception($"Autowiring pipeline io failed, please provide an input to '{inputs[ii].PropName}' of '{Items[i].ToString()}'");
+                        throw new /*SigStatPipelineAutoWiring*/InvalidOperationException($"Autowiring pipeline io failed, please provide an input to '{inputs[ii].PropName}' of '{Items[i].ToString()}'");
                     }
                 }
 

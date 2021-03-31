@@ -70,7 +70,7 @@ namespace SigStat.Common.Loaders
         /// </summary>
         public override int SamplingFrequency { get { return 100; } }
 
-        private struct SignatureFile
+        private struct SignatureFile : IEquatable<SignatureFile>
         {
             public string File { get; set; }
             public string SignerID { get; set; }
@@ -87,6 +87,14 @@ namespace SigStat.Common.Loaders
                 }
                 SignerID = parts[0].PadLeft(2, '0');
                 SignatureID = parts[1].PadLeft(2, '0');
+            }
+
+            public bool Equals(SignatureFile other)
+            {
+                return
+                    File == other.File
+                    && SignerID == other.SignerID
+                    && SignatureID == other.SignatureID;
             }
         }
 
@@ -133,7 +141,7 @@ namespace SigStat.Common.Loaders
         /// </list></param>
         /// <param name="standardFeatures">Convert loaded data (<see cref="Svc2004"/>) to standard <see cref="Features"/>.</param>
         /// <param name="signerFilter">Sets the <see cref="SignerFilter"/> property</param>
-        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter = null)
+        public Svc2004Loader(string databasePath, bool standardFeatures, Predicate<Signer> signerFilter)
         {
             DatabasePath = databasePath;
             StandardFeatures = standardFeatures;
@@ -221,6 +229,8 @@ namespace SigStat.Common.Loaders
             //HACK: same timestamp for measurements does not make sense
             // therefore, we remove the second entry
             // a better solution would be to change the timestamps based on their environments
+
+            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406821/issues/source?bid=22371483&fileBranchId=22371483#l237
             for (int i = 0; i < lines.Count - 1; i++)
             {
                 if (lines[i][2] == lines[i + 1][2])
@@ -260,11 +270,11 @@ namespace SigStat.Common.Loaders
                 {
                     if (button[i] == 0)
                         pointType[i] = 1;
-                    else if (i == button.Length - 1 || (button[i] % 2 == 1 && button[i + 1] % 2 == 0))
+                    else if (i == button.Length - 1 || (button[i] % 2 != 0 && button[i + 1] % 2 == 0))
                         pointType[i] = 2;
                     else if (button[i] == 2 || button[i] == 4)
                         pointType[i] = 0;
-                    else if (button[i] % 2 == 1 && button[i - 1] % 2 == 0 && button[i - 1] != 0)
+                    else if (button[i] % 2 != 0 && button[i - 1] % 2 == 0 && button[i - 1] != 0)
                         pointType[i] = 1;
                     else
                         pointType[i] = 0;

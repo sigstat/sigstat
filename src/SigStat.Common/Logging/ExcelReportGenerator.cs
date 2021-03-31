@@ -9,7 +9,7 @@ namespace SigStat.Common.Logging
     /// <summary>
     /// This class is used to generate a report in Excel file format, form a Benchmark model.
     /// </summary>
-    public class ExcelReportGenerator
+    static public class ExcelReportGenerator
     {
         /// <summary>
         /// Generates an Excel file that contains the report.
@@ -36,7 +36,7 @@ namespace SigStat.Common.Logging
 
                 summarySheet.InsertDictionary(8, 2, model.Excecution.Items, model.Excecution.Name, Helpers.Excel.ExcelColor.Secondary);
 
-                //if(model.Parameters.Items.Count > 0)
+                
                 summarySheet.InsertDictionary(8, 5, model.Parameters.Items, model.Parameters.Name, Helpers.Excel.ExcelColor.Secondary);
 
                 summarySheet.InsertDictionary(8, 8, model.BenchmarkResults.Items, model.BenchmarkResults.Name, Helpers.Excel.ExcelColor.Warning);

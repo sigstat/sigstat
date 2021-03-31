@@ -41,7 +41,7 @@ namespace SigStat.Common
 
 
         /// HACK: Consider removing this after benchmark
-        public readonly ISignerModel Model;
+        public ISignerModel Model { get; }
 
         //ez internal, mert csak a Benchmark keszithet uj Resultokat
         internal Result(string signer, double frr, double far, double aer, ISignerModel model)
@@ -61,10 +61,10 @@ namespace SigStat.Common
 
         /// <summary>List that contains the <see cref="Result"/>s for each <see cref="Signer"/></summary>
         [JsonProperty]
-        public readonly List<Result> SignerResults;
+        public  List<Result> SignerResults { get; }
         /// <summary>Summarized, final result of the benchmark execution.</summary>
         [JsonProperty]
-        public readonly Result FinalResult;
+        public Result FinalResult { get; }
 
         //ez internal, mert csak a Benchmark keszithet uj BenchmarkResults-t
         internal BenchmarkResults(List<Result> signerResults, Result finalResult)
@@ -108,7 +108,7 @@ namespace SigStat.Common
         /// An optional dictionary of fully or partially precalculated signer models. You may fill itt before
         /// executing a benchmark if you have saved the models previously
         /// </summary>
-        public List<ISignerModel> SignerModels;
+        public List<ISignerModel> SignerModels { get; set; }
 
         /// <summary>
         /// Dumps the results of the benchmark in a file.
@@ -121,14 +121,13 @@ namespace SigStat.Common
             {
                 var summarySheet = p.Workbook.Worksheets.Add("Summary");
                 summarySheet.Cells[2, 2].Value = "Preprocessing benchmark";
-                summarySheet.Cells[3, 2].Value = DateTime.Now.ToString();
+                summarySheet.Cells[3, 2].Value = DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 summarySheet.Cells[4, 2].Value = Path.GetFileNameWithoutExtension(filename);
-                //summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description", true);
                 summarySheet.Cells[5, 2, 6, 9].InsertLegend("Go to http://sigstat.org/PreprocessingBenchmark for details", "Description");
                 var execution = new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("Name:","Preprocessing benchmark"),
-                    new KeyValuePair<string, object>("Date:",DateTime.Now.ToString()),
+                    new KeyValuePair<string, object>("Date:",DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture)),
                     new KeyValuePair<string, object>("Agent:",Environment.MachineName),
                     new KeyValuePair<string, object>("Duration:",duration.ToString()),
                 };
@@ -223,9 +222,9 @@ namespace SigStat.Common
             Sampler = new FirstNSampler(10);
         }
 
-        private double farAcc = 0;
-        private double frrAcc = 0;
-        private double pCnt = 0;
+        private double farAcc;
+        private double frrAcc;
+        private double pCnt;
         // HACK: should be refactored after preprocessing benchmark
         private TimeSpan duration = TimeSpan.MinValue;
         private BenchmarkResults benchmarkResults;
@@ -256,7 +255,7 @@ namespace SigStat.Common
             Verifier.Logger = logger;
             this.LogInformation("Benchmark execution started.");
 
-            var results = new List<Result>();
+            List<Result> results;
             farAcc = 0;
             frrAcc = 0;
             pCnt = 0;
@@ -303,7 +302,7 @@ namespace SigStat.Common
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Name", this.GetType().ToString()));
 
             //log benchmark date
-            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Date", DateTime.Now.ToString()));
+            this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Date", DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture)));
 
             //log benchmark agent
             this.LogTrace(new BenchmarkKeyValueLogState(BenchmarkLogModel.ExecutionGroupName, "Agent", Environment.MachineName));

@@ -57,7 +57,7 @@ namespace SigStat.Common.Loaders
 
         }
 
-        private struct SigComp19OnlineSignatureFile
+        private struct SigComp19OnlineSignatureFile : IEquatable<SigComp19OnlineSignatureFile>
         {
             public string FilePath { get; set; }
             public string SignerID { get; set; }
@@ -80,6 +80,16 @@ namespace SigStat.Common.Loaders
                 }
                 else
                     throw new NotSupportedException($"Unsupported filename format '{SignatureID}'");
+            }
+
+            public bool Equals(SigComp19OnlineSignatureFile other)
+            {
+                return
+                    FilePath == other.FilePath
+                    && SignerID == other.SignerID
+                    && SignatureIndex == other.SignatureIndex
+                    && ForgerID == other.ForgerID
+                    && SignatureID == other.SignatureID;
             }
         }
 
@@ -115,7 +125,7 @@ namespace SigStat.Common.Loaders
             signerFilter = signerFilter ?? SignerFilter;
 
             //TODO: EnumerateSigners should ba able to operate with a directory path, not just a zip file
-            //signerFilter = signerFilter ?? SignerFilter;
+            
 
             this.LogInformation("Enumerating signers started.");
             using (ZipArchive zip = ZipFile.OpenRead(DatabasePath))

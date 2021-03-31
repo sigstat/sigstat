@@ -59,7 +59,6 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         /// <inheritdoc/>
         public void Transform(Signature signature)
         {
-            //Console.WriteLine(signature.Signer.ID + "   " + signature.ID);
             var xValues = new List<double>(signature.GetFeature(InputX));
             var yValues = new List<double>(signature.GetFeature(InputY));
             var pValues = new List<double>(signature.GetFeature(InputP));

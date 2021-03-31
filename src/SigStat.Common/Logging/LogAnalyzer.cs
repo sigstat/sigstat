@@ -7,7 +7,7 @@ namespace SigStat.Common.Logging
     /// <summary>
     /// Analizes logs and creates a model from the gained information
     /// </summary>
-    public class LogAnalyzer
+    public static class LogAnalyzer
     {
         /// <summary>
         /// Creates a BenchmarkLogModel from previous logs

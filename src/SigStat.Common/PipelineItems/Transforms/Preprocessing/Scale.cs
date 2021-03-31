@@ -52,7 +52,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         public void Transform(Signature signature)
         {
             if (InputFeature == null || OutputFeature == null)
-                throw new NullReferenceException("Input or output feature is null");
+                throw new InvalidOperationException("Input or output feature is null");
 
             List<double> values = new List<double>(signature.GetFeature(InputFeature).ToList());
 
@@ -79,7 +79,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                     values = values.Select(v => v / stdev).ToList();
                     break;
                 default:
-                    break;
+                    throw new NotSupportedException("This value is not supported for Mode");
             }
 
             //translation to the original place

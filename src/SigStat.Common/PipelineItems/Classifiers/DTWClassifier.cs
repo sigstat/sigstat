@@ -32,12 +32,12 @@ namespace SigStat.Common.PipelineItems.Classifiers
         /// an average DTW distance from the genuines above this threshold will
         /// be classified as forgeries
         /// </summary>
-        public double Threshold;
+        public double Threshold { get; set; }
 
         /// <summary>
         /// DTW distance matrix of the genuine signatures
         /// </summary>
-        public DistanceMatrix<string, string, double> DistanceMatrix;
+        public DistanceMatrix<string, string, double> DistanceMatrix  { get; set; }
 
 
     }
@@ -111,27 +111,14 @@ namespace SigStat.Common.PipelineItems.Classifiers
             var distances = distanceMatrix.GetValues().Where(v => v != 0);
             var mean = distances.Average();
             var stdev = Math.Sqrt(distances.Select(d => (d - mean) * (d - mean)).Sum() / (distances.Count()-1));
-
-            double med;
-            var orderedDistances = new List<double>(distances).OrderBy(d => d);
-            if (orderedDistances.Count() % 2 == 0)
-            {
-                int i = orderedDistances.Count() / 2;
-                med = (orderedDistances.ElementAt(i - 1) + orderedDistances.ElementAt(i)) / 2.0;
-            }
-            else
-            {
-                int i = orderedDistances.Count() / 2;
-                med = orderedDistances.ElementAt(i);
-            }
-
+           
+            
             return new DtwSignerModel
             {
                 SignerID = signerID,
                 GenuineSignatures = genuines.Select(g => new KeyValuePair<string, double[][]>(g.ID, g.Features)).ToList(),
                 DistanceMatrix = distanceMatrix,
                 Threshold = mean + MultiplicationFactor * stdev
-                //Threshold = med + (distances.Max() - med) * 1 / 2
             };
         }
 

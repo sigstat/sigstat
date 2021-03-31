@@ -51,6 +51,8 @@ namespace SigStat.Common.Helpers.Excel
                 case TextLevel.Normal:
                     style.StyleAsNormal();
                     break;
+                default:
+                    throw new ArgumentException(nameof(level), "Unsupported TextLevel: " + level);
             }
         }
 

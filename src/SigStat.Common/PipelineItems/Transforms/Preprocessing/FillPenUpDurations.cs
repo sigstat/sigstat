@@ -24,8 +24,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         {
             private double _startTime;
             private double _endTime;
-            private bool isStartInitialized = false;
-            private bool isEndInitialized = false;
+            private bool isStartInitialized;
+            private bool isEndInitialized;
 
             /// <summary>
             /// Gets or sets the start time of the slot
@@ -121,7 +121,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
         [Output]
         public List<FeatureDescriptor<List<double>>> OutputFeatures { get; set; } = new List<FeatureDescriptor<List<double>>>();
 
-        //public List<TimeSlot> TimeSlots { get; set; }
+      
 
         /// <summary>
         /// An implementation of <see cref="IInterpolation"/>
@@ -134,17 +134,17 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
             if (InterpolationType == null)
             {
-                throw new NullReferenceException("InterpolationType is not defined");
+                throw new InvalidOperationException("InterpolationType is not defined");
             }
 
             if (InputFeatures == null)
             {
-                throw new NullReferenceException("Input features are not defined");
+                throw new InvalidOperationException("Input features are not defined");
             }
 
             if (OutputFeatures == null)
             {
-                throw new NullReferenceException("Output features are not defined");
+                throw new InvalidOperationException("Output features are not defined");
             }
 
             var originalTimeValues = new List<double>(signature.GetFeature(TimeInputFeature));
@@ -217,7 +217,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
 
 
             return timesValues
-                .Select((t, i) => new TimeSlot()
+                .Select((t, i) => new TimeSlot
                 {
                     StartTime = timesValues[i > 0 ? i - 1 : 0],
                     EndTime = t,

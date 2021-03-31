@@ -58,7 +58,7 @@ namespace SigStat.Common.Transforms
             if (Inputs.Count != dim || Outputs.Count != dim)
             {
                 this.LogError("Dimension mismatch");
-                throw new /*SigStatTransform*/Exception();
+                throw new /*SigStatTransform*/InvalidOperationException();
             }
             var inputfeatures = Inputs.Select(ifd => signature.GetFeature(ifd)).ToList();
             for (int iF = 0; iF < dim; iF++)

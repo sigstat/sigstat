@@ -129,7 +129,7 @@ namespace SigStat.Common.PipelineItems.Classifiers
                 }
             }
 
-            SignerModel model = new SignerModel()
+            SignerModel model = new SignerModel
             {
                 SignerID = signerID,
                 DistanceCache = distanceMatrix,

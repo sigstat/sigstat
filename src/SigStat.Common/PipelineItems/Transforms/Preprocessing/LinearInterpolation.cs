@@ -32,7 +32,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Preprocessing
                 throw new InvalidOperationException("TimeValues is not initialized");
 
             if (FeatureValues == null)
-                throw new NullReferenceException("FeatureValues is not initialized");
+                throw new InvalidOperationException("FeatureValues is not initialized");
 
 
             if (TimeValues.Contains(timestamp))

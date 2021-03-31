@@ -71,6 +71,17 @@ namespace SigStat.Common
 
             return Math.Sqrt(sum);
         }
+        
+        /// <summary>
+        /// Return true if the argument falls into the [-double.Epsilon,double.Epsilon] range
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool EqualsZero(this double d)
+        {
+            return double.Epsilon >= d && d >= -double.Epsilon;
+        }
+
     }
 
    

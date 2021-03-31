@@ -14,15 +14,15 @@ namespace SigStat.Common
         /// <summary>
         /// best sampling frequency for the signer
         /// </summary>
-        public int bestSampleRate = 50;
-        /// <summary>
-        /// best step (nmber of skipped points) for the signer
-        /// </summary>
-        public int bestStep = 1;
+        public int bestSampleRate { get; set; } = 50;
+    /// <summary>
+    /// best step (nmber of skipped points) for the signer
+    /// </summary>
+        public int bestStep { get; set; } = 1;
         /// <summary>
         /// best frr for the signer, used to find the best sampling frequency and step for each signer
         /// </summary>
-        public double bestFrr = 1;
+        public double bestFrr { get; set; } = 1;
        
         /// <summary>
         /// An identifier for the Signer. Keep it unique to be useful for logs.
@@ -61,7 +61,8 @@ namespace SigStat.Common
                         forged++;
                         break;
                     default:
-                        throw new NotSupportedException();
+                        unknown++;
+                        break;
                 }
             }
 

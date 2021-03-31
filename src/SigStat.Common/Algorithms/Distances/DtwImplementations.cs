@@ -81,11 +81,7 @@ namespace SigStat.Common.Algorithms
                     }
                 }
 
-                //// We can abandon early if the current cummulative distace with lower bound together are larger than bsf
-                //if (i + r < m - 1 && min_cost + cb[i + r + 1] >= bsf)
-                //{
-                //    return min_cost + cb[i + r + 1];
-                //}
+         
 
                 // Move current array to previous array.
                 cost_tmp = cost;
@@ -111,6 +107,7 @@ namespace SigStat.Common.Algorithms
         /// Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         public static double ExactDtw<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance)
         {
+#pragma warning disable S125
             //Input: s1 and s2 are time series of length n and m
             //Output: DTW distance d between x and y
             //D(1:n + 1, 1:m + 1) = inf;
@@ -122,8 +119,9 @@ namespace SigStat.Common.Algorithms
             //d = sqrt(D(n + 1, m + 1));
 
             // TODO: sqrt?
-            var s1 = (new P[] { default(P) }).Concat(sequence1).ToArray();
-            var s2 = (new P[] { default(P) }).Concat(sequence2).ToArray();
+#pragma warning restore S125
+            var s1 = (new [] { default(P) }).Concat(sequence1).ToArray();
+            var s2 = (new [] { default(P) }).Concat(sequence2).ToArray();
             var n = s1.Length - 1;
             var m = s2.Length - 1;
 
@@ -157,6 +155,7 @@ namespace SigStat.Common.Algorithms
         /// Performance from Dynamic Time Warping.KDD 2016: 2129-2130</remarks>
         public static double ConstrainedDTw<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance, int w)
         {
+#pragma warning disable S125
             //D(1:n + 1, 1:m + 1) = inf;
             //D(1, 1) = 0;
             //w = max(w, abs(n - m));
@@ -165,10 +164,10 @@ namespace SigStat.Common.Algorithms
             //cost = (x(i - 1) - y(j - 1)) ^ 2;
             //D(i, j) = cost + min( [D(i - 1, j), D(i, j - 1), D(i - 1, j - 1)]) ;
             //d = sqrt(D(n + 1, m + 1));
-
+#pragma warning restore S125
             // TODO: sqrt?
-            var s1 = (new P[] { default(P) }).Concat(sequence1).ToArray();
-            var s2 = (new P[] { default(P) }).Concat(sequence2).ToArray();
+            var s1 = (new [] { default(P) }).Concat(sequence1).ToArray();
+            var s2 = (new [] { default(P) }).Concat(sequence2).ToArray();
             var n = s1.Length - 1;
             var m = s2.Length - 1;
 
@@ -202,6 +201,7 @@ namespace SigStat.Common.Algorithms
         /// <remarks>https://en.wikipedia.org/wiki/Dynamic_time_warping</remarks>
         public static double ExactDtwWikipedia<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance)
         {
+#pragma warning disable S125
             //int DTWDistance(s: array[1..n], t: array[1..m]) {
             //DTW:= array[0..n, 0..m]
             //   for i := 1 to n
@@ -218,8 +218,9 @@ namespace SigStat.Common.Algorithms
             //                    return DTW[n, m]
 
             // Indexing starts from 1
-            var s1 = (new P[] { default(P) }).Concat(sequence1).ToArray();
-            var s2 = (new P[] { default(P) }).Concat(sequence2).ToArray();
+#pragma warning restore S125
+            var s1 = (new [] { default(P) }).Concat(sequence1).ToArray();
+            var s2 = (new [] { default(P) }).Concat(sequence2).ToArray();
             var n = s1.Length - 1;
             var m = s2.Length - 1;
             var dtw = new double[n+1, m+1];
@@ -247,9 +248,10 @@ namespace SigStat.Common.Algorithms
         /// <remarks>https://en.wikipedia.org/wiki/Dynamic_time_warping</remarks>
         public static double ConstrainedDtwWikipedia<P>(IEnumerable<P> sequence1, IEnumerable<P> sequence2, Func<P, P, double> distance, int w)
         {
+#pragma warning disable S125
             //int DTWDistance(s: array[1..n], t: array[1..m], w: int) {
             //DTW:= array[0..n, 0..m]
-          
+
             //w:= max(w, abs(n - m)) // adapt window size (*)
 
             //for i := 0 to n
@@ -268,10 +270,11 @@ namespace SigStat.Common.Algorithms
             //                                    DTW[i - 1, j - 1])    // match
 
             //return DTW[n, m]
-          
+
             // Indexing starts from 1
-            var s1 = (new P[] { default(P) }).Concat(sequence1).ToArray();
-            var s2 = (new P[] { default(P) }).Concat(sequence2).ToArray();
+#pragma warning restore S125
+            var s1 = (new [] { default(P) }).Concat(sequence1).ToArray();
+            var s2 = (new [] { default(P) }).Concat(sequence2).ToArray();
             var n = s1.Length - 1;
             var m = s2.Length - 1;
 
@@ -287,6 +290,7 @@ namespace SigStat.Common.Algorithms
                     dtw[i, j] = 0;
             }
 
+            //TODO: https://app.codacy.com/gh/sigstat/sigstat/file/54164406687/issues/source?bid=22371483&fileBranchId=22371483#l281
             for (int i = 1; i <= n; i++)
                 for (int j = Math.Max(1, i - w); j <= Math.Min(m, i + w); j++)
                 {

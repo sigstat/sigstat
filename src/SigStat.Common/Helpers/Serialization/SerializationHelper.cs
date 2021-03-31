@@ -8,7 +8,7 @@ namespace SigStat.Common.Helpers
     /// <summary>
     /// Json serialization and deserialization using the custom resolver  <see cref="VerifierResolver"/>
     /// </summary>
-    public class SerializationHelper
+    static public class SerializationHelper
     {
         /// <summary>
         /// Settings used for the serialization methods

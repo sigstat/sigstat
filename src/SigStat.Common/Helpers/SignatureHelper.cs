@@ -26,8 +26,8 @@ namespace SigStat.Common
               {
                   new ParallelTransformPipeline
                   {
-                      new Normalize() { Input = Features.X, Output = Features.X },
-                      new Normalize() { Input = Features.Y, Output = Features.Y },
+                      new Normalize { Input = Features.X, Output = Features.X },
+                      new Normalize { Input = Features.Y, Output = Features.Y },
                   },
                   new RealisticImageGenerator(1280, 720)
               };
