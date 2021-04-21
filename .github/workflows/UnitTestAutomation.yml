@@ -1,9 +1,9 @@
 name: UnitTestAutomation
 
 on: 
-  -push:
+  push:
     branches : [codacy_refactor]
-  -pull_request:
+  pull_request:
     bracnhes : [master]
 
 
