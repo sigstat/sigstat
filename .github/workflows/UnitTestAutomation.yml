@@ -1,11 +1,28 @@
-name: Tests
+name: .NET
 
-on: push
+on:
+  push:
+    branches: [ codacy_refactor ]
+  pull_request:
+    branches: [ codacy_refactor ]
 
 jobs:
-  tests:
-    name: Unit Testing
-    runs-on: windows-latest
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: test/SigStat.Common.Test
+
     steps:
-      - uses: actions/checkout@v2.1.0
-      - run: dotnet test
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
