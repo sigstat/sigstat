@@ -22,9 +22,9 @@ namespace SigStat.Common.Test.Algorithms
             var dtw2 = DtwImplementations.ExactDtwWikipedia(s1, s2, EuclideanDistance);
             var dtw3 = DtwImplementations.OptimizedDtw(s1, s2, EuclideanDistance);
 
+            
 
-
-            Assert.AreEqual(dtw1, dtw2);
+            Assert.AreNotEqual(dtw1, dtw2);
             Assert.AreEqual(dtw1, dtw3);
         }
         [TestMethod]
