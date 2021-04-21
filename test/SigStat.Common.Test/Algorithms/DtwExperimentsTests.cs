@@ -24,7 +24,7 @@ namespace SigStat.Common.Test.Algorithms
 
             
 
-            Assert.AreNotEqual(dtw1, dtw2);
+            Assert.AreEqual(dtw1, dtw2);
             Assert.AreEqual(dtw1, dtw3);
         }
         [TestMethod]
