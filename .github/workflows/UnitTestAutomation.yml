@@ -1,16 +1,11 @@
-name: UnitTestAutomation
+name: Tests
 
-on: 
-  push:
-    branches : [codacy_refactor]
-  pull_request:
-    bracnhes : [master]
-
+on: push
 
 jobs:
-  build:
+  tests:
+    name: Unit Testing
     runs-on: windows-latest
     steps:
-      -uses: actions/checkout@v2.1.0
-      -run: dotnet test
-
+      - uses: actions/checkout@v2.1.0
+      - run: dotnet test
