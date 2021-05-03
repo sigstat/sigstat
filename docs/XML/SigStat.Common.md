@@ -592,6 +592,14 @@
   - [Y](#P-SigStat-Common-Transforms-RealisticImageGenerator-Y 'SigStat.Common.Transforms.RealisticImageGenerator.Y')
   - [Lerp(t0,t1,t)](#M-SigStat-Common-Transforms-RealisticImageGenerator-Lerp-System-Single,System-Single,System-Single- 'SigStat.Common.Transforms.RealisticImageGenerator.Lerp(System.Single,System.Single,System.Single)')
   - [Transform()](#M-SigStat-Common-Transforms-RealisticImageGenerator-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.RealisticImageGenerator.Transform(SigStat.Common.Signature)')
+- [RealisticImageGenerator2](#T-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2')
+  - [OutputImage](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-OutputImage 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.OutputImage')
+  - [PenDown](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-PenDown 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.PenDown')
+  - [Pressure](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Pressure 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Pressure')
+  - [Size](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Size 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Size')
+  - [T](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-T 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.T')
+  - [X](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-X 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.X')
+  - [Y](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Y 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Y')
 - [RectangleFConverter](#T-SigStat-Common-Helpers-Serialization-RectangleFConverter 'SigStat.Common.Helpers.Serialization.RectangleFConverter')
   - [CanConvert(objectType)](#M-SigStat-Common-Helpers-Serialization-RectangleFConverter-CanConvert-System-Type- 'SigStat.Common.Helpers.Serialization.RectangleFConverter.CanConvert(System.Type)')
   - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-RectangleFConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,System-Object,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.RectangleFConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)')
@@ -7522,6 +7530,62 @@ Basic linear interpolation
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2'></a>
+## RealisticImageGenerator2 `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Raster
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-OutputImage'></a>
+### OutputImage `property`
+
+##### Summary
+
+Output [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the generated image of the signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-PenDown'></a>
+### PenDown `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the stroke endings of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Pressure'></a>
+### Pressure `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the pressure values of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Size'></a>
+### Size `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the pressure values of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-T'></a>
+### T `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the time values of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-X'></a>
+### X `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Y'></a>
+### Y `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the Y coordinates of an online signature
 
 <a name='T-SigStat-Common-Helpers-Serialization-RectangleFConverter'></a>
 ## RectangleFConverter `type`

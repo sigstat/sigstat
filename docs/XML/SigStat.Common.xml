@@ -4222,6 +4222,41 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.X">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Y">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.T">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the time values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Pressure">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the pressure values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Size">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the pressure values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.PenDown">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the stroke endings of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.OutputImage">
+            <summary>
+            Output <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the generated image of the signature
+            </summary>
+        </member>
         <member name="T:SigStat.Common.SimpleRenderingTransformation">
             <summary>
             Renders an image of the signature based on the available online information (X,Y,Dpi)
