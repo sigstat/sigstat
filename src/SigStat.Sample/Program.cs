@@ -54,7 +54,7 @@ namespace SigStat.Sample
         {
             Console.WriteLine("SigStat library sample");
 
-            OCJKNNTest();
+            //OCJKNNTest();
             //signerSampleRateBasedVerifier();
 
             // SamplingRateTestCompilation();
@@ -70,12 +70,12 @@ namespace SigStat.Sample
             //OnlineRotationBenchmarkDemo();
             //SampleRateTestingDemo();
             // DtwWindowTest();
-            //OnlineVerifierBenchmarkDemo();
+            OnlineVerifierBenchmarkDemo();
             //PreprocessingBenchmarkDemo();
             //TestPreprocessingTransformations();
             //JsonSerializeSignature();
             //JsonSerializeOnlineVerifier();
-            JsonSerializeOnlineVerifierBenchmark();
+            //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
@@ -1741,57 +1741,50 @@ namespace SigStat.Sample
 
         static void OnlineVerifierBenchmarkDemo()
         {
+            var reportLogger = new ReportInformationLogger();
+            var logger = new CompositeLogger()
+            {
+                Loggers =
+                {
+                    reportLogger,
+                    new SimpleConsoleLogger()
+                }
+            };
             var databaseDir = Environment.GetEnvironmentVariable("SigStatDB");
             var benchmark = new VerifierBenchmark()
             {
-                Loader = new SigComp13JapaneseLoader(Path.Combine(databaseDir, "SigWiComp2013_Japanese.zip").GetPath(), true),
+                Loader = new Svc2004Loader(Path.Combine(databaseDir, "SVC2004.zip").GetPath(), true),
                 Verifier = new Verifier()
                 {
                     Pipeline = new SequentialTransformPipeline
                     {
-                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
-                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
-                        //new UniformScale() {BaseDimension = Features.X, ProportionalDimension = Features.Y, BaseDimensionOutput = Features.X, ProportionalDimensionOutput = Features.Y},
-                        //new NormalizeRotation(){InputX = Features.X, InputY = Features.Y, InputT = Features.T, OutputX = Features.X, OutputY=Features.Y},
-
-                        // new Scale() {InputFeature = Features.X, OutputFeature = Features.X},
-                        //   new Scale() {InputFeature = Features.Y, OutputFeature = Features.Y},
-                        //new ResampleSamplesCountBased() {
-                        //    InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                        //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() {Features.X, Features.Y, Features.Pressure},
-                        //    InterpolationType = typeof(CubicInterpolation),
-                        //    NumOfSamples = 500,
-                        //    OriginalTFeature = Features.T,
-                        //    ResampledTFeature = Features.T,
-                        //},
-                        //new FilterPoints() { KeyFeatureInput = Features.Pressure, KeyFeatureOutput = Features.Pressure,
-                        //InputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y },
-                        //OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y }},
-                        //new FillPenUpDurations()
-                        //{
-                        //    InputFeatures = new List<FeatureDescriptor<List<double>>>(){ Features.X, Features.Y, Features.Pressure },
-                        //    OutputFeatures = new List<FeatureDescriptor<List<double>>>() { Features.X, Features.Y, Features.Pressure },
-                        //    InterpolationType = typeof(CubicInterpolation),
-                        //    TimeInputFeature =Features.T,
-                        //    TimeOutputFeature = Features.T
-                        //}
+                        new Scale() {Mode = ScalingMode.ScalingS, InputFeature = Features.X, OutputFeature = Features.X},
+                        new Scale() {Mode = ScalingMode.ScalingS,InputFeature = Features.Y, OutputFeature = Features.Y},
+                        //new Scale() {Mode = ScalingMode.ScalingS,InputFeature = Features.Pressure, OutputFeature = Features.Pressure},
+                        new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.X, OutputFeature=Features.X },
+                        new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Y, OutputFeature=Features.Y },
+                        //new TranslatePreproc(OriginType.CenterOfGravity) {InputFeature = Features.Pressure, OutputFeature=Features.Pressure },
                     }
                 ,
                     Classifier = new OptimalDtwClassifier()
                     {
                         Sampler = new FirstNSampler(10),
-                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y, Features.Pressure }
+                        Features = new List<FeatureDescriptor>() { Features.X, Features.Y }//, Features.Pressure }
                     }
                 },
                 Sampler = new FirstNSampler(10),
-                Logger = new SimpleConsoleLogger(),
+                Logger = logger
             };
+
+
 
             benchmark.ProgressChanged += ProgressPrimary;
             //benchmark.Verifier.ProgressChanged += ProgressSecondary;
 
             var result = benchmark.Execute(true);
 
+            var model = LogAnalyzer.GetBenchmarkLogModel(reportLogger.GetReportLogs());
+            ExcelReportGenerator.GenerateReport(model, "report.xlsx");
             Console.WriteLine($"AER: {result.FinalResult.Aer}");
         }
 
