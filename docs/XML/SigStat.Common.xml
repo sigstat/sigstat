@@ -4252,6 +4252,11 @@
             Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the stroke endings of an online signature
             </summary>
         </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Dpi">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> dots per inch
+            </summary>
+        </member>
         <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.OutputImage">
             <summary>
             Output <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the generated image of the signature

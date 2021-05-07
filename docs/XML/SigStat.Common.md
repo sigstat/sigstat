@@ -593,6 +593,7 @@
   - [Lerp(t0,t1,t)](#M-SigStat-Common-Transforms-RealisticImageGenerator-Lerp-System-Single,System-Single,System-Single- 'SigStat.Common.Transforms.RealisticImageGenerator.Lerp(System.Single,System.Single,System.Single)')
   - [Transform()](#M-SigStat-Common-Transforms-RealisticImageGenerator-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.RealisticImageGenerator.Transform(SigStat.Common.Signature)')
 - [RealisticImageGenerator2](#T-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2')
+  - [Dpi](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Dpi 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Dpi')
   - [OutputImage](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-OutputImage 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.OutputImage')
   - [PenDown](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-PenDown 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.PenDown')
   - [Pressure](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Pressure 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Pressure')
@@ -7537,6 +7538,13 @@ This method has no parameters.
 ##### Namespace
 
 SigStat.Common.PipelineItems.Transforms.Raster
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Dpi'></a>
+### Dpi `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') dots per inch
 
 <a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-OutputImage'></a>
 ### OutputImage `property`

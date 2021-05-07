@@ -12,14 +12,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
 {
     public class RealisticImageGenerator2 : PipelineBase, ITransformation
     {
-        private double Frame { get; set; }
-        private double ImgW { get; set; }
-        private double ImgH { get; set; }
+        private int Frame { get; set; }
         private double CatmullRomAlpha { get; set; }
 
         private float CatmullRomStep = 0.01f;
 
         private double BaseIntensity = 1;
+
+        private double OutDpi;
 
         /// <summary>
         /// Input <see cref="FeatureDescriptor"/> describing the X coordinates of an online signature
@@ -57,12 +57,16 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
         [Input]
         public FeatureDescriptor<List<bool>> PenDown { get; set; } = Features.PenDown;
 
-        public RealisticImageGenerator2(double width, double height, double frame, double CatmullRomAlpha)
+        /// <summary>
+        /// Input <see cref="FeatureDescriptor"/> dots per inch
+        /// </summary>
+        public FeatureDescriptor<int> Dpi { get; set; } = Features.Dpi;
+
+        public RealisticImageGenerator2(int frame, double CatmullRomAlpha, double OutDpi)
         {
             Frame = frame;
-            ImgW = width;
-            ImgH = height;
             this.CatmullRomAlpha = CatmullRomAlpha;
+            this.OutDpi = OutDpi;
         }
 
         /// <summary>
@@ -78,18 +82,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
             List<double> CPs = signature.GetFeature(Pressure);
             List<bool> PenDowns = signature.GetFeature(PenDown);
             SizeF Size = signature.GetFeature(this.Size);
+            int dpi = signature.GetFeature(Dpi);
 
-            double Ratio = Size.Width / Size.Height;
-
-            // Normalized coordinates (linear map to 0 - 1 interval)
-            List<double> NXs = Normalize(Xs, Xs.Min<double>(), Size.Width);
-            List<double> NYs = Normalize(Ys, Ys.Min<double>(), Size.Height);
 
             // Normalized controll pint pressure values
             List<double> NCPs = Normalize(CPs, CPs.Min<double>(), CPs.Max<double>() - CPs.Min<double>());
 
             // Signature controll points (normalized X-Y pairs) translated to image points
-            List<PointF> ControllPoints = CreateImageControllPoints(Ratio, NXs, NYs);
+            List<PointF> ControllPoints = CreateImageControllPoints(dpi, Xs, Ys);
 
             // Calculating the velocities in each controll point
             List<Vector2> Velocities = CalculateVelocities(ControllPoints, Ts);
@@ -112,8 +112,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
 
             // Fill missing velocity values between controll points
             List<double> NVs = LinearFill(NCVs, PenDowns);
-        
-            Image<Rgba32> img = new Image<Rgba32>((int)ImgW, (int)ImgH);
+
+            Image<Rgba32> img = CreateImage(dpi, Size);
 
             // Set background color to white
             img.Mutate(ctx => ctx.Fill(Rgba32.White));
@@ -122,6 +122,12 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
             DrawSignature(img, Points, NPs, PenDowns, NVs);
 
             signature.SetFeature(OutputImage, img);
+        }
+
+        private Image<Rgba32> CreateImage(int dpi, SizeF size)
+        {
+            double scale = OutDpi / dpi;
+            return new Image<Rgba32>((int)Math.Ceiling(size.Width * scale) + 2 * Frame, (int)Math.Ceiling(size.Height * scale) + 2 * Frame);
         }
 
         private List<double> Normalize(List<double> values, double minimum, double range)
@@ -140,29 +146,17 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
             }
             return NormalizedValues;
         }
-        private List<PointF> CreateImageControllPoints(double Ratio, List<double> NXs, List<double> NYs)
+        private List<PointF> CreateImageControllPoints(double dpi, List<double> Xs, List<double> Ys)
         {
             List<PointF> Points = new List<PointF>();
+            double scale = OutDpi / dpi;
 
-            if (Ratio >= ImgW / ImgH)
+            for (int i = 0; i < Xs.Count(); i++)
             {
-                for (int i = 0; i < NXs.Count(); i++)
-                {
-                    Points.Add(new PointF(
-                        (float)(NXs[i] * (ImgW - 2 * Frame) + Frame),
-                        (float)((1 - NYs[i]) * (ImgW / Ratio) + (ImgH - (ImgW / Ratio)) / 2)
-                    ));
-                }
-            }
-            else
-            {
-                for (int i = 0; i < NXs.Count(); i++)
-                {
-                    Points.Add(new PointF(
-                        (float)(NXs[i] * (ImgH * Ratio) + (ImgW - (ImgH * Ratio)) / 2),
-                        (float)((1 - NYs[i]) * (ImgH - 2 * Frame) + Frame)
-                    ));
-                }
+                Points.Add(new PointF(
+                    (float)((Xs[i]  - Xs.Min() + Frame) * scale),
+                    (float)((Ys.Max() - Ys[i] + Frame) * scale)
+                ));
             }
             return Points;
         }

@@ -2523,15 +2523,21 @@ namespace SigStat.Sample
             var signer = loader.EnumerateSigners(p => p.ID == "02").First();
             var signature = signer.Signatures[1];
 
+
             var imageFeature = FeatureDescriptor.Get<Image<Rgba32>>("RealisticImage");
 
-            RealisticImageGenerator2 generator = new RealisticImageGenerator2(1280, 720, 50, 0.5)
+            var dpi = FeatureDescriptor.Get<int>("Dpi");
+
+            signature.SetFeature(dpi, 300);
+
+            RealisticImageGenerator2 generator = new RealisticImageGenerator2(50, 0.5, 96)
             {
                 X = Features.X,
                 Y = Features.Y,
                 T = Features.T,
                 Pressure = Features.Pressure,
                 PenDown = Features.PenDown,
+                Dpi = Features.Dpi,
                 OutputImage = imageFeature
             };
 
