@@ -312,7 +312,14 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
                     for (int j = circlePoints[i][0].X; j <= circlePoints[i][1].X; j++)
                         if (j >= 0 & j < img.Width)
                         {
-                            img[j, circlePoints[i][0].Y] = color;
+                            Rgba32 baseColor = img[j, circlePoints[i][0].Y];
+                            Rgba32 newColor = new Rgba32(
+                                baseColor.R < color.R ? baseColor.R : color.R,
+                                baseColor.G < color.G ? baseColor.G : color.G,
+                                baseColor.B < color.B ? baseColor.B : color.B,
+                                255
+                            );
+                            img[j, circlePoints[i][0].Y] = newColor;
                         }
         }
 
