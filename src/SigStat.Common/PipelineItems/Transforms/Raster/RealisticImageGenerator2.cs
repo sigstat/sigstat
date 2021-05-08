@@ -75,14 +75,28 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
         private readonly double catmullRomStep;
         // Base color intensity value for the image generation
         private readonly double baseIntensity;
+        // The number of layers a signature is built from.
+        private readonly int layers;
 
-        public RealisticImageGenerator2(int frame, double catmullRomAlpha, double outputImageDpi, double catmullRomStep = 0.01, double baseIntensity = 1)
+        // The values assigned to each layer
+        private List<double> layerValues;
+
+        public RealisticImageGenerator2(int frame, double catmullRomAlpha, double outputImageDpi, double catmullRomStep = 0.01, double baseIntensity = 1, int layers = 5)
         {
             this.frame = frame;
             this.catmullRomAlpha = catmullRomAlpha;
             this.outputImageDpi = outputImageDpi;
             this.catmullRomStep = catmullRomStep;
             this.baseIntensity = baseIntensity;
+            this.layers = layers;
+
+            // Initialize layer values, linear parition the [0.5, 1] interval
+            this.layerValues = new List<double>();
+            double layerStep = 0.5 / (layers - 1);
+            for (int i = 0; i < layers; i++)
+            {
+                layerValues.Add(0.5 + i * layerStep);
+            }
         }
 
         public void Transform(Signature signature)
@@ -389,18 +403,28 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
         private void DrawSignature(Image<Rgba32> img, List<Point> points, List<double> pressures, List<double> velocities)
         {
             double baseRadius = 5;
+            
             img.Mutate(ctx =>
             {
-                for (int i = 0; i < points.Count() - 1; i++)
+                for ( int i = 0; i < layers; i++)
                 {
+                    for (int j = 0; j < points.Count() - 1; j++)
+                    {
+                        // Scale intensity with the layer's value and the pressure
+                        double intensity = baseIntensity * layerValues[i];
+                        intensity *=  pressures[j];
+                        intensity = Math.Min(intensity, 1);
 
-                    double intensity = baseIntensity;
-                    intensity *=  pressures[i];
-                    intensity = Math.Min(intensity, 1);
-                    double radius = baseRadius;
-                    radius = velocities[i] >= 1 ? radius * 0.1 : radius * (1 - velocities[i]);
-                    Rgba32 color = new Rgba32((byte)(255 - intensity * 155.0), (byte)(255 - intensity * 165.0), (byte)(255 - intensity * 75.0), (byte)255);
-                    DrawCircle(img, points[i], radius, color);
+                        // Scale the width of the line with the layer's value and the velocity
+                        double radius = baseRadius * 1 / layerValues[i];
+                        double radiusScale = velocities[j] >= 1 ? 0.5 : 1 - velocities[j] + 0.5;
+                        radiusScale = Math.Min(radiusScale, 1);
+                        radius *= radiusScale;
+
+                        // Draw a circle to the given point with the color determined by the intensity and the radius calculated above
+                        Rgba32 color = new Rgba32((byte)(255 - intensity * 155.0), (byte)(255 - intensity * 165.0), (byte)(255 - intensity * 75.0), (byte)255);
+                        DrawCircle(img, points[j], radius, color);
+                    }
                 }
             });
         }
