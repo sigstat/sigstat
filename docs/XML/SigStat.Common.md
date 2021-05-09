@@ -601,6 +601,7 @@
   - [T](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-T 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.T')
   - [X](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-X 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.X')
   - [Y](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Y 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Y')
+  - [AddNoiseToImage(img)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-AddNoiseToImage-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.AddNoiseToImage(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})')
   - [CalculateImagePoints(controllPoints,pendowns)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateImagePoints-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateImagePoints(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Collections.Generic.List{System.Boolean})')
   - [CalculateVelocities(points,ts)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateVelocities-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Double}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateVelocities(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Collections.Generic.List{System.Double})')
   - [CatmullRomSpline(controllPoints,i,_t)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CatmullRomSpline-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Int32,System-Double- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CatmullRomSpline(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Int32,System.Double)')
@@ -7612,6 +7613,20 @@ Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.Fe
 ##### Summary
 
 Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the Y coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-AddNoiseToImage-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32}-'></a>
+### AddNoiseToImage(img) `method`
+
+##### Summary
+
+Add pseudo random noise to an image. The final noise is based on combining different noise layers.
+[numberOfNoiseLayers](#F-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-numberOfNoiseLayers 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.numberOfNoiseLayers')
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| img | [SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}](#T-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32} 'SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}') | The image to which the noise should be added to. |
 
 <a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateImagePoints-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Boolean}-'></a>
 ### CalculateImagePoints(controllPoints,pendowns) `method`

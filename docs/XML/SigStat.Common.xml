@@ -4355,6 +4355,13 @@
             <param name="pressures"> The pressure values of the signature points (both the controll points and the propagated ones in order). </param>
             <param name="velocities"> The velocity values of the signature points (both the controll points and the propagated ones in order). </param>
         </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.AddNoiseToImage(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})">
+            <summary>
+            Add pseudo random noise to an image. The final noise is based on combining different noise layers.
+            <see cref="F:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.numberOfNoiseLayers"/>
+            </summary>
+            <param name="img"> The image to which the noise should be added to. </param>
+        </member>
         <member name="T:SigStat.Common.SimpleRenderingTransformation">
             <summary>
             Renders an image of the signature based on the available online information (X,Y,Dpi)
