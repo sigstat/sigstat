@@ -76,26 +76,37 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
         // Base color intensity value for the image generation
         private readonly double baseIntensity;
         // The number of layers a signature is built from.
-        private readonly int layers;
+        private readonly int numberOfLayers;
+        // A list describing each layer as a tuple
+        private List<(double width, double intensity)> layers;
 
-        // The values assigned to each layer
-        private List<double> layerValues;
-
-        public RealisticImageGenerator2(int frame, double catmullRomAlpha, double outputImageDpi, double catmullRomStep = 0.01, double baseIntensity = 1, int layers = 5)
+        public RealisticImageGenerator2(int frame, double catmullRomAlpha, double outputImageDpi, double catmullRomStep = 0.01, double baseIntensity = 1, int numberOfLayers = 5, double layerIntensitySlope = 0.33)
         {
             this.frame = frame;
             this.catmullRomAlpha = catmullRomAlpha;
             this.outputImageDpi = outputImageDpi;
             this.catmullRomStep = catmullRomStep;
             this.baseIntensity = baseIntensity;
-            this.layers = layers;
+            this.numberOfLayers= numberOfLayers;
 
-            // Initialize layer values, linear parition the [0.5, 1] interval
-            this.layerValues = new List<double>();
-            double layerStep = 0.5 / (layers - 1);
-            for (int i = 0; i < layers; i++)
+            // Initializing the layers' values
+            layers = new List<(double width, double intensity)>();
+
+            // For the layer width values linear parition the [2, 1] interval
+            double layerWidthStep = 1 / (double)(numberOfLayers - 1);
+            for (int i = 0; i < numberOfLayers; i++)
             {
-                layerValues.Add(0.5 + i * layerStep);
+                // The width of a layer is decreasing linearly from 2 to 1
+                double width = 2 - i * layerWidthStep;
+
+                // The intensity of a layer is increasing linearly and gets throttled at 1.
+                // The value of the increase is defined by the layerIntensitySlope parameter.
+                // Increasing this value will cause the edge of the signature lines to appear "sharper".
+                // It is recommended to keep this value around 1/3 (which is the default value).
+                double intensity = ((i + 1) * layerIntensitySlope) > 1 ? 1 : ((i + 1) * layerIntensitySlope);
+
+                // Add the calculated values to the layer
+                layers.Add((width, intensity));
             }
         }
 
@@ -410,23 +421,23 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
         private void DrawSignature(Image<Rgba32> img, List<Point> points, List<double> pressures, List<double> velocities)
         {
             double baseRadius = 5;
-            
+            double averageVelocity = velocities.Average();
+            double averagePressure = pressures.Average();
+
             img.Mutate(ctx =>
             {
-                for ( int i = 0; i < layers; i++)
+                for ( int i = 0; i < numberOfLayers; i++)
                 {
                     for (int j = 0; j < points.Count() - 1; j++)
                     {
-                        // Scale intensity with the layer's value and the pressure
-                        double intensity = baseIntensity * layerValues[i];
-                        intensity *=  pressures[j];
+                        // Scale intensity with the layer's value and the velocity
+                        double intensity = baseIntensity * layers[i].intensity;
+                        intensity *=  averageVelocity / (velocities[j] > 0 ? velocities[j] : 0.1);
                         intensity = Math.Min(intensity, 1);
 
-                        // Scale the width of the line with the layer's value and the velocity
-                        double radius = baseRadius * 1 / layerValues[i];
-                        double radiusScale = velocities[j] >= 1 ? 0.5 : 1 - velocities[j] + 0.5;
-                        radiusScale = Math.Min(radiusScale, 1);
-                        radius *= radiusScale;
+                        // Scale the width of the line with the layer's value and the pressure
+                        double radius = baseRadius * layers[i].width;
+                        radius *= (pressures[j] > 0 ? pressures[j] : 0.1) / averagePressure;
 
                         // Draw a circle to the given point with the color determined by the intensity and the radius calculated above
                         Rgba32 color = new Rgba32((byte)(255 - intensity * 155.0), (byte)(255 - intensity * 165.0), (byte)(255 - intensity * 75.0), (byte)255);
