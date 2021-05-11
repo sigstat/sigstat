@@ -28,6 +28,7 @@ jobs:
 
     
     - name: Unit teszt eredmények elmentése
+      if: success()
       shell: bash
       run: | 
          out=`echo "$(dotnet test --no-build --verbosity normal)"`
@@ -38,6 +39,7 @@ jobs:
       id: run_tests
 
     - name: Unit tesztelés
+      if: success()
       run: dotnet test --no-build --verbosity normal
 
 
@@ -55,7 +57,7 @@ jobs:
         from: SigStat
           
     - name: Üzenet Küldese Push vagy Merge Hiba Esetén
-      if:  ${{failure() && github.event_name == 'push' && github.event.pull_request.merged == false}}  
+      if:  ${{failure() && github.event_name == 'push'}  
       uses: dawidd6/action-send-mail@v2
       with:
         server_address: smtp.gmail.com
