@@ -2,13 +2,12 @@ name: .NET
 
 on:
   push:
-    branches: [ codacy_refactor ]
+    branches: [ master ]
   pull_request:
-    branches: [ codacy_refactor ]
+    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: windows-latest
     defaults:
       run:
@@ -16,13 +15,72 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Email megszerzése
+      run: echo "EMAIL=$(git --no-pager log --format='%ae' -n1)" >> $GITHUB_ENV
+      shell: bash
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.x
-    - name: Restore dependencies
-      run: dotnet restore
+  
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
+      run: dotnet build
+
+    
+    - name: Unit teszt eredmények elmentése
+      shell: bash
+      run: | 
+         out=`echo "$(dotnet test --no-build --verbosity normal)"`
+         out="${out//'%'/'%25'}"
+         out="${out//$'\n'/'%0A'}"
+         out="${out//$'\r'/'%0D'}"
+         echo "::set-output name=text::$out"
+      id: run_tests
+
+    - name: Unit tesztelés
       run: dotnet test --no-build --verbosity normal
+
+
+    - name: Üzenet Küldése Pull request Hiba Esetén
+      if:  ${{failure() && github.event_name == 'pull_request' }}  
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{secrets.MAIL_USERNAME}}
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Sikertelen Unit test
+        body: A unit tesztek hibát találtak! A Pull-Request linkje -> https://github.com/${{github.repository}}/pull/${{github.event.number}}
+        to: ${{env.EMAIL}}
+        from: SigStat
+          
+    - name: Üzenet Küldese Push vagy Merge Hiba Esetén
+      if:  ${{failure() && github.event_name == 'push' && github.event.pull_request.merged == false}}  
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{secrets.MAIL_USERNAME}}
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Sikertelen Unit test
+        body: A unit tesztek hibát találtak! Kattints a linkre további információkért -> https://github.com/${{github.repository}}/commit/${{github.sha}}
+        to: ${{env.EMAIL}}
+        from: SigStat
+        
+    - name: Sikeres futás kommentje
+      if: success()
+      uses: peter-evans/commit-comment@v1
+      with:
+        body: |
+          **A Unit tesztek sikeresen lefutottak!**
+          - ${{ steps.run_tests.outputs.text }}
+          
+    - name: Sikertelen futás kommentje
+      if: failure()
+      uses: peter-evans/commit-comment@v1
+      with:
+        body: |
+          **A Unit tesztek hibat talaltak!**
+          - ${{ steps.run_tests.outputs.text }}
+          
+ 
