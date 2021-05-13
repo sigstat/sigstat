@@ -4253,6 +4253,163 @@
         <member name="M:SigStat.Common.PipelineItems.Transforms.Preprocessing.ZNormalization.Transform(SigStat.Common.Signature)">
             <inheritdoc/>
         </member>
+        <member name="T:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2">
+            <summary>
+            Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
+            <para>Default Pipeline Input: X, Y, T, Pressure, Size, PenDown, Dpi <see cref="T:SigStat.Common.Features"/></para>
+            <para>Default Pipeline Output: OutputImage <see cref="F:SigStat.Common.Features.Image"/></para>
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.X">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the X coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Y">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the Y coordinates of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.T">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the time values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Pressure">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the pressure values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Size">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the pressure values of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.PenDown">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the stroke endings of an online signature
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Dpi">
+            <summary>
+            Input <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the dots per inch paramater of the device where the  online signature was recorded
+            </summary>
+        </member>
+        <member name="P:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.OutputImage">
+            <summary>
+            Output <see cref="T:SigStat.Common.FeatureDescriptor"/> describing the generated image of the signature
+            </summary>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateImage(System.Int32,SixLabors.Primitives.SizeF)">
+            <summary>
+            Creating the output image based on the size of the signature and DPI of the device it was recorded on.
+            </summary>
+            <param name="dpi"> The DPI of the device the signature was recorded on. </param>
+            <param name="size"> The size of the signature. </param>
+            <returns> The output image object. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Normalize(System.Collections.Generic.List{System.Double},System.Double,System.Double)">
+            <summary>
+            Utility function for feature scaling a list of double values to the [0,1] range.
+            </summary>
+            <param name="values"> The list of values to be normalized. </param>
+            <param name="minimum"> The minmum of the values to be normalized. </param>
+            <param name="range"> The range of the values to be normalized (max - min). </param>
+            <returns> The normalized list of values. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateImageControllPoints(System.Double,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+            <summary>
+            Generate controll points as image points based on the coordinates of the signature.
+            </summary>
+            <param name="dpi"> The DPI of the device the signature was recorded on. </param>
+            <param name="xs"> List containing the X coordinates of the signature. </param>
+            <param name="ys"> List containing the Y coordinates of the signature. </param>
+            <returns> A list of controll points. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CatmullRomSpline(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Int32,System.Double)">
+            <summary>
+            A function that is used for spline interpolation, using the Catmull-Rom method.
+            </summary>
+            <param name="controllPoints"> The controll points of the spline. </param>
+            <param name="i"> The index of the current controll point. </param>
+            <param name="_t"> The current time on the curve between the actual and the next controll point. </param>
+            <returns></returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.GetCirclePoints(SixLabors.Primitives.Point,System.Double)">
+            <summary>
+            Calculating the image points of a circle with a given radius and a center.
+            </summary>
+            <param name="center"> The center of the circle. </param>
+            <param name="radius"> The radius of the circle. </param>
+            <returns> The image points of the circle. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.DrawCircle(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},SixLabors.Primitives.Point,System.Double,SixLabors.ImageSharp.PixelFormats.Rgba32)">
+            <summary>
+            Draw a circle to an image with a given color.
+            The circle is defined with a center and a radius.
+            </summary>
+            <param name="img"> The image where the circle should be drawn to. </param>
+            <param name="center"> The center of the circle. </param>
+            <param name="radius"> The radius of the circle. </param>
+            <param name="color"> The color which the circle should be drawn with. </param>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateVelocities(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Collections.Generic.List{System.Double})">
+            <summary>
+            Calculate the velocity vectors between a list of points.
+            </summary>
+            <param name="points"> A list of points. </param>
+            <param name="ts"> A list of time values. </param>
+            <returns> A list of velocity vectors. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateImagePoints(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Collections.Generic.List{System.Boolean})">
+            <summary>
+            Generate the image points of the signature based on the controll points and the pendown feature.
+            </summary>
+            <param name="controllPoints"> A list of controll points. </param>
+            <param name="pendowns"> <see cref="F:SigStat.Common.Features.PenDown"/> A list of pendown values. </param>
+            <returns> List of image points building up the signature. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.LinearFill(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Boolean})">
+            <summary>
+            Fill missing values between controll points with a linear interpolation.
+            </summary>
+            <param name="values"> List of values that needs to be propagated. </param>
+            <param name="pendowns"> <see cref="F:SigStat.Common.Features.PenDown"/> A list of pendown values. </param>
+            <returns> A list containing the propagated values and the original values in order. </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.DrawSignature(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Collections.Generic.List{SixLabors.Primitives.Point},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+            <summary>
+            Draw the signature to the image.
+            </summary>
+            <param name="img"> The image where the signature should be drawn to.  </param>
+            <param name="points"> The points of the signature (both the controll points and the interpolated ones in order). </param>
+            <param name="pressures"> The pressure values of the signature points (both the controll points and the propagated ones in order). </param>
+            <param name="velocities"> The velocity values of the signature points (both the controll points and the propagated ones in order). </param>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.AddNoiseToImage(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})">
+            <summary>
+            Add pseudo random noise to an image. The final noise is based on combining different noise layers.
+            <see cref="F:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.numberOfNoiseLayers"/>
+            </summary>
+            <param name="img"> The image to which the noise should be added to. </param>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateNoise(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})">
+            <summary>
+            Calculate the noise that will be added to the immage as a two dimensional double array.
+            </summary>
+            <param name="img"> The image which the noise should be added to. </param>
+            <returns> The noise as a two dimensional double arrray </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateNoiseLayer(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Int32,System.Double[0:,0:],System.Random)">
+            <summary>
+            Method that creates a noise layer based on the previous layer.
+            </summary>
+            <param name="img"> The image which the noise should be added to. </param>
+            <param name="exponent"> Exponent used in scaling the layer. </param>
+            <param name="previousNoiseLayer"> The previous noise layer. </param>
+            <param name="rng"> A random object. </param>
+            <returns> A noise layer as a two dimensinal double array. </returns>
+        </member>
         <member name="T:SigStat.Common.SimpleRenderingTransformation">
             <summary>
             Renders an image of the signature based on the available online information (X,Y,Dpi)

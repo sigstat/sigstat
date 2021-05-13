@@ -8,6 +8,7 @@ using SigStat.Common.Model;
 using SigStat.Common.Pipeline;
 using SigStat.Common.PipelineItems.Classifiers;
 using SigStat.Common.PipelineItems.Transforms.Preprocessing;
+using SigStat.Common.PipelineItems.Transforms.Raster;
 using SigStat.Common.Transforms;
 using System;
 using System.Collections;
@@ -26,12 +27,13 @@ using OfficeOpenXml.Drawing.Chart;
 using SigStat.Common.Logging;
 using SigStat.Common.Algorithms.Distances;
 using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace SigStat.Sample
 {
     class Program
     {
-
         public static class MyFeatures
         {
             public static readonly FeatureDescriptor<List<Loop>> Loop = FeatureDescriptor.Get<List<Loop>>("Loop");
@@ -77,6 +79,7 @@ namespace SigStat.Sample
             //JsonSerializeOnlineVerifier();
             //JsonSerializeOnlineVerifierBenchmark();
             //ClassificationBenchmark();
+            RealisticImageRendering2Demo();
             Console.WriteLine("Press <<Enter>> to exit.");
             Console.ReadLine();
 
@@ -89,6 +92,7 @@ namespace SigStat.Sample
 
             int row = 1;
             int col = 1;
+
             var excel = new ExcelPackage();
             var sheet = excel.Workbook.Worksheets.Add("benchmark");
 
@@ -2497,6 +2501,40 @@ namespace SigStat.Sample
                 }
                 Console.WriteLine();
             }
+        }
+
+        static void RealisticImageRendering2Demo()
+        {
+            // Load signatures from local database
+            Svc2004Loader loader = new Svc2004Loader(@"Databases\Online\SVC2004\Task2.zip".GetPath(), true);
+
+            // Load the first signer only
+            var signer = loader.EnumerateSigners(p => p.ID == "02").First();
+            var signature = signer.Signatures[1];
+
+
+            var imageFeature = FeatureDescriptor.Get<Image<Rgba32>>("RealisticImage");
+
+            var dpi = FeatureDescriptor.Get<int>("Dpi");
+
+            signature.SetFeature(dpi, 300);
+
+            RealisticImageGenerator2 generator = new RealisticImageGenerator2(50, 0.5, 96)
+            {
+                X = Features.X,
+                Y = Features.Y,
+                T = Features.T,
+                Pressure = Features.Pressure,
+                PenDown = Features.PenDown,
+                Dpi = Features.Dpi,
+                OutputImage = imageFeature
+            };
+
+            generator.Transform(signature);
+
+            var img = signature.GetFeature(imageFeature);
+            img.SaveAsBmp(new FileStream("tmp.bmp", FileMode.Create));
+
         }
     }
 }

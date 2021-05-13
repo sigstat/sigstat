@@ -597,6 +597,28 @@
   - [Y](#P-SigStat-Common-Transforms-RealisticImageGenerator-Y 'SigStat.Common.Transforms.RealisticImageGenerator.Y')
   - [Lerp(t0,t1,t)](#M-SigStat-Common-Transforms-RealisticImageGenerator-Lerp-System-Single,System-Single,System-Single- 'SigStat.Common.Transforms.RealisticImageGenerator.Lerp(System.Single,System.Single,System.Single)')
   - [Transform()](#M-SigStat-Common-Transforms-RealisticImageGenerator-Transform-SigStat-Common-Signature- 'SigStat.Common.Transforms.RealisticImageGenerator.Transform(SigStat.Common.Signature)')
+- [RealisticImageGenerator2](#T-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2')
+  - [Dpi](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Dpi 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Dpi')
+  - [OutputImage](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-OutputImage 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.OutputImage')
+  - [PenDown](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-PenDown 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.PenDown')
+  - [Pressure](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Pressure 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Pressure')
+  - [Size](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Size 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Size')
+  - [T](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-T 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.T')
+  - [X](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-X 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.X')
+  - [Y](#P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Y 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Y')
+  - [AddNoiseToImage(img)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-AddNoiseToImage-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.AddNoiseToImage(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})')
+  - [CalculateImagePoints(controllPoints,pendowns)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateImagePoints-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateImagePoints(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Collections.Generic.List{System.Boolean})')
+  - [CalculateNoise(img)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateNoise-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateNoise(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})')
+  - [CalculateVelocities(points,ts)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateVelocities-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Double}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateVelocities(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Collections.Generic.List{System.Double})')
+  - [CatmullRomSpline(controllPoints,i,_t)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CatmullRomSpline-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Int32,System-Double- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CatmullRomSpline(System.Collections.Generic.List{SixLabors.Primitives.PointF},System.Int32,System.Double)')
+  - [CreateImage(dpi,size)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CreateImage-System-Int32,SixLabors-Primitives-SizeF- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateImage(System.Int32,SixLabors.Primitives.SizeF)')
+  - [CreateImageControllPoints(dpi,xs,ys)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CreateImageControllPoints-System-Double,System-Collections-Generic-List{System-Double},System-Collections-Generic-List{System-Double}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateImageControllPoints(System.Double,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})')
+  - [CreateNoiseLayer(img,exponent,previousNoiseLayer,rng)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CreateNoiseLayer-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32},System-Int32,System-Double[0-,0-],System-Random- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateNoiseLayer(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Int32,System.Double[0:,0:],System.Random)')
+  - [DrawCircle(img,center,radius,color)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-DrawCircle-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32},SixLabors-Primitives-Point,System-Double,SixLabors-ImageSharp-PixelFormats-Rgba32- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.DrawCircle(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},SixLabors.Primitives.Point,System.Double,SixLabors.ImageSharp.PixelFormats.Rgba32)')
+  - [DrawSignature(img,points,pressures,velocities)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-DrawSignature-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32},System-Collections-Generic-List{SixLabors-Primitives-Point},System-Collections-Generic-List{System-Double},System-Collections-Generic-List{System-Double}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.DrawSignature(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Collections.Generic.List{SixLabors.Primitives.Point},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})')
+  - [GetCirclePoints(center,radius)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-GetCirclePoints-SixLabors-Primitives-Point,System-Double- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.GetCirclePoints(SixLabors.Primitives.Point,System.Double)')
+  - [LinearFill(values,pendowns)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-LinearFill-System-Collections-Generic-List{System-Double},System-Collections-Generic-List{System-Boolean}- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.LinearFill(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Boolean})')
+  - [Normalize(values,minimum,range)](#M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Normalize-System-Collections-Generic-List{System-Double},System-Double,System-Double- 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.Normalize(System.Collections.Generic.List{System.Double},System.Double,System.Double)')
 - [RectangleFConverter](#T-SigStat-Common-Helpers-Serialization-RectangleFConverter 'SigStat.Common.Helpers.Serialization.RectangleFConverter')
   - [CanConvert(objectType)](#M-SigStat-Common-Helpers-Serialization-RectangleFConverter-CanConvert-System-Type- 'SigStat.Common.Helpers.Serialization.RectangleFConverter.CanConvert(System.Type)')
   - [ReadJson()](#M-SigStat-Common-Helpers-Serialization-RectangleFConverter-ReadJson-Newtonsoft-Json-JsonReader,System-Type,System-Object,Newtonsoft-Json-JsonSerializer- 'SigStat.Common.Helpers.Serialization.RectangleFConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)')
@@ -7595,6 +7617,308 @@ Basic linear interpolation
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2'></a>
+## RealisticImageGenerator2 `type`
+
+##### Namespace
+
+SigStat.Common.PipelineItems.Transforms.Raster
+
+##### Summary
+
+Generates a realistic looking image of the Signature based on standard features. Uses blue ink and white paper. It does NOT save the image to file.
+
+Default Pipeline Input: X, Y, T, Pressure, Size, PenDown, Dpi [Features](#T-SigStat-Common-Features 'SigStat.Common.Features')
+
+Default Pipeline Output: OutputImage [Image](#F-SigStat-Common-Features-Image 'SigStat.Common.Features.Image')
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Dpi'></a>
+### Dpi `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the dots per inch paramater of the device where the  online signature was recorded
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-OutputImage'></a>
+### OutputImage `property`
+
+##### Summary
+
+Output [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the generated image of the signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-PenDown'></a>
+### PenDown `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the stroke endings of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Pressure'></a>
+### Pressure `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the pressure values of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Size'></a>
+### Size `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the pressure values of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-T'></a>
+### T `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the time values of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-X'></a>
+### X `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the X coordinates of an online signature
+
+<a name='P-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Y'></a>
+### Y `property`
+
+##### Summary
+
+Input [FeatureDescriptor](#T-SigStat-Common-FeatureDescriptor 'SigStat.Common.FeatureDescriptor') describing the Y coordinates of an online signature
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-AddNoiseToImage-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32}-'></a>
+### AddNoiseToImage(img) `method`
+
+##### Summary
+
+Add pseudo random noise to an image. The final noise is based on combining different noise layers.
+[numberOfNoiseLayers](#F-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-numberOfNoiseLayers 'SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.numberOfNoiseLayers')
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| img | [SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}](#T-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32} 'SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}') | The image to which the noise should be added to. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateImagePoints-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Boolean}-'></a>
+### CalculateImagePoints(controllPoints,pendowns) `method`
+
+##### Summary
+
+Generate the image points of the signature based on the controll points and the pendown feature.
+
+##### Returns
+
+List of image points building up the signature.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| controllPoints | [System.Collections.Generic.List{SixLabors.Primitives.PointF}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SixLabors.Primitives.PointF}') | A list of controll points. |
+| pendowns | [System.Collections.Generic.List{System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Boolean}') | [PenDown](#F-SigStat-Common-Features-PenDown 'SigStat.Common.Features.PenDown') A list of pendown values. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateNoise-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32}-'></a>
+### CalculateNoise(img) `method`
+
+##### Summary
+
+Calculate the noise that will be added to the immage as a two dimensional double array.
+
+##### Returns
+
+The noise as a two dimensional double arrray
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| img | [SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}](#T-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32} 'SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}') | The image which the noise should be added to. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CalculateVelocities-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Collections-Generic-List{System-Double}-'></a>
+### CalculateVelocities(points,ts) `method`
+
+##### Summary
+
+Calculate the velocity vectors between a list of points.
+
+##### Returns
+
+A list of velocity vectors.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| points | [System.Collections.Generic.List{SixLabors.Primitives.PointF}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SixLabors.Primitives.PointF}') | A list of points. |
+| ts | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | A list of time values. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CatmullRomSpline-System-Collections-Generic-List{SixLabors-Primitives-PointF},System-Int32,System-Double-'></a>
+### CatmullRomSpline(controllPoints,i,_t) `method`
+
+##### Summary
+
+A function that is used for spline interpolation, using the Catmull-Rom method.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| controllPoints | [System.Collections.Generic.List{SixLabors.Primitives.PointF}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SixLabors.Primitives.PointF}') | The controll points of the spline. |
+| i | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The index of the current controll point. |
+| _t | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The current time on the curve between the actual and the next controll point. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CreateImage-System-Int32,SixLabors-Primitives-SizeF-'></a>
+### CreateImage(dpi,size) `method`
+
+##### Summary
+
+Creating the output image based on the size of the signature and DPI of the device it was recorded on.
+
+##### Returns
+
+The output image object.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| dpi | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The DPI of the device the signature was recorded on. |
+| size | [SixLabors.Primitives.SizeF](#T-SixLabors-Primitives-SizeF 'SixLabors.Primitives.SizeF') | The size of the signature. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CreateImageControllPoints-System-Double,System-Collections-Generic-List{System-Double},System-Collections-Generic-List{System-Double}-'></a>
+### CreateImageControllPoints(dpi,xs,ys) `method`
+
+##### Summary
+
+Generate controll points as image points based on the coordinates of the signature.
+
+##### Returns
+
+A list of controll points.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| dpi | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The DPI of the device the signature was recorded on. |
+| xs | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | List containing the X coordinates of the signature. |
+| ys | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | List containing the Y coordinates of the signature. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-CreateNoiseLayer-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32},System-Int32,System-Double[0-,0-],System-Random-'></a>
+### CreateNoiseLayer(img,exponent,previousNoiseLayer,rng) `method`
+
+##### Summary
+
+Method that creates a noise layer based on the previous layer.
+
+##### Returns
+
+A noise layer as a two dimensinal double array.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| img | [SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}](#T-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32} 'SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}') | The image which the noise should be added to. |
+| exponent | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Exponent used in scaling the layer. |
+| previousNoiseLayer | [System.Double[0:](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double[0: 'System.Double[0:') | The previous noise layer. |
+| rng | [0:]](#T-0-] '0:]') | A random object. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-DrawCircle-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32},SixLabors-Primitives-Point,System-Double,SixLabors-ImageSharp-PixelFormats-Rgba32-'></a>
+### DrawCircle(img,center,radius,color) `method`
+
+##### Summary
+
+Draw a circle to an image with a given color.
+The circle is defined with a center and a radius.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| img | [SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}](#T-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32} 'SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}') | The image where the circle should be drawn to. |
+| center | [SixLabors.Primitives.Point](#T-SixLabors-Primitives-Point 'SixLabors.Primitives.Point') | The center of the circle. |
+| radius | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The radius of the circle. |
+| color | [SixLabors.ImageSharp.PixelFormats.Rgba32](#T-SixLabors-ImageSharp-PixelFormats-Rgba32 'SixLabors.ImageSharp.PixelFormats.Rgba32') | The color which the circle should be drawn with. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-DrawSignature-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32},System-Collections-Generic-List{SixLabors-Primitives-Point},System-Collections-Generic-List{System-Double},System-Collections-Generic-List{System-Double}-'></a>
+### DrawSignature(img,points,pressures,velocities) `method`
+
+##### Summary
+
+Draw the signature to the image.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| img | [SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}](#T-SixLabors-ImageSharp-Image{SixLabors-ImageSharp-PixelFormats-Rgba32} 'SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32}') | The image where the signature should be drawn to. |
+| points | [System.Collections.Generic.List{SixLabors.Primitives.Point}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{SixLabors.Primitives.Point}') | The points of the signature (both the controll points and the interpolated ones in order). |
+| pressures | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | The pressure values of the signature points (both the controll points and the propagated ones in order). |
+| velocities | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | The velocity values of the signature points (both the controll points and the propagated ones in order). |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-GetCirclePoints-SixLabors-Primitives-Point,System-Double-'></a>
+### GetCirclePoints(center,radius) `method`
+
+##### Summary
+
+Calculating the image points of a circle with a given radius and a center.
+
+##### Returns
+
+The image points of the circle.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| center | [SixLabors.Primitives.Point](#T-SixLabors-Primitives-Point 'SixLabors.Primitives.Point') | The center of the circle. |
+| radius | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The radius of the circle. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-LinearFill-System-Collections-Generic-List{System-Double},System-Collections-Generic-List{System-Boolean}-'></a>
+### LinearFill(values,pendowns) `method`
+
+##### Summary
+
+Fill missing values between controll points with a linear interpolation.
+
+##### Returns
+
+A list containing the propagated values and the original values in order.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| values | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | List of values that needs to be propagated. |
+| pendowns | [System.Collections.Generic.List{System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Boolean}') | [PenDown](#F-SigStat-Common-Features-PenDown 'SigStat.Common.Features.PenDown') A list of pendown values. |
+
+<a name='M-SigStat-Common-PipelineItems-Transforms-Raster-RealisticImageGenerator2-Normalize-System-Collections-Generic-List{System-Double},System-Double,System-Double-'></a>
+### Normalize(values,minimum,range) `method`
+
+##### Summary
+
+Utility function for feature scaling a list of double values to the [0,1] range.
+
+##### Returns
+
+The normalized list of values.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| values | [System.Collections.Generic.List{System.Double}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{System.Double}') | The list of values to be normalized. |
+| minimum | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The minmum of the values to be normalized. |
+| range | [System.Double](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Double 'System.Double') | The range of the values to be normalized (max - min). |
 
 <a name='T-SigStat-Common-Helpers-Serialization-RectangleFConverter'></a>
 ## RectangleFConverter `type`
