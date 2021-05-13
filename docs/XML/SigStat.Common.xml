@@ -4362,6 +4362,23 @@
             </summary>
             <param name="img"> The image to which the noise should be added to. </param>
         </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CalculateNoise(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32})">
+            <summary>
+            Calculate the noise that will be added to the immage as a two dimensional double array.
+            </summary>
+            <param name="img"> The image which the noise should be added to. </param>
+            <returns> The noise as a two dimensional double arrray </returns>
+        </member>
+        <member name="M:SigStat.Common.PipelineItems.Transforms.Raster.RealisticImageGenerator2.CreateNoiseLayer(SixLabors.ImageSharp.Image{SixLabors.ImageSharp.PixelFormats.Rgba32},System.Int32,System.Double[0:,0:],System.Random)">
+            <summary>
+            Method that creates a noise layer based on the previous layer.
+            </summary>
+            <param name="img"> The image which the noise should be added to. </param>
+            <param name="exponent"> Exponent used in scaling the layer. </param>
+            <param name="previousNoiseLayer"> The previous noise layer. </param>
+            <param name="rng"> A random object. </param>
+            <returns> A noise layer as a two dimensinal double array. </returns>
+        </member>
         <member name="T:SigStat.Common.SimpleRenderingTransformation">
             <summary>
             Renders an image of the signature based on the available online information (X,Y,Dpi)
