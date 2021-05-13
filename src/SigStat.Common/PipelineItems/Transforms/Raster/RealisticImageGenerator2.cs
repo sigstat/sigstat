@@ -218,7 +218,7 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
             List<double> NormalizedValues = new List<double>();
             for (int i = 0; i < values.Count(); i++)
             {
-                if (range == 0)
+                if (range <= 0)
                 {
                     NormalizedValues.Add(0);
                 }
@@ -352,9 +352,9 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
         {
             List<List<Point>> circlePoints = GetCirclePoints(center, radius);
             for (int i = 0; i < circlePoints.Count; i++)
-                if (circlePoints[i][0].Y >= 0 & circlePoints[i][0].Y < img.Height)
+                if (circlePoints[i][0].Y >= 0 && circlePoints[i][0].Y < img.Height)
                     for (int j = circlePoints[i][0].X; j <= circlePoints[i][1].X; j++)
-                        if (j >= 0 & j < img.Width)
+                        if (j >= 0 && j < img.Width)
                         {
                             Rgba32 baseColor = img[j, circlePoints[i][0].Y];
                             Rgba32 newColor = new Rgba32(
@@ -380,8 +380,8 @@ namespace SigStat.Common.PipelineItems.Transforms.Raster
             velocities[points.Count() - 1] = new Vector2(0.0f, 0.0f);
             for (int i = 1; i < points.Count() - 1; i++)
             {
-                double timeDelta0 = ts[i] == ts[i - 1] ? 10 : ts[i] - ts[i - 1];
-                double timeDelta1 = ts[i + 1] == ts[i] ? 10 : ts[i + 1] - ts[i];
+                double timeDelta0 = ts[i] <= ts[i - 1] ? 10 : ts[i] - ts[i - 1];
+                double timeDelta1 = ts[i + 1] <= ts[i] ? 10 : ts[i + 1] - ts[i];
                 Vector2 speed1 = new Vector2(points[i].X - points[i - 1].X, points[i].Y - points[i - 1].Y) / (float)timeDelta0;
                 Vector2 speed2 = new Vector2(points[i + 1].X - points[i].X, points[i + 1].Y - points[i].Y) / (float)timeDelta1;
                 velocities[i] = (speed1 + speed2) / 2;
