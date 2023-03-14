@@ -250,7 +250,7 @@
 - [`FirstNSampler`](./SigStat/Common/Framework/Samplers/FirstNSampler.md)
 	- Selects the first N signatures for training
 - [`LastNSampler`](./SigStat/Common/Framework/Samplers/LastNSampler.md)
-	- Selects the first N signatures for training
+	- Selects the last N signatures for training
 - [`OddNSampler`](./SigStat/Common/Framework/Samplers/OddNSampler.md)
 	- Selects the first N signatures with odd index for training
 - [`UniversalSampler`](./SigStat/Common/Framework/Samplers/UniversalSampler.md)
